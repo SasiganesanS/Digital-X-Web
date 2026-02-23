@@ -1,0 +1,356 @@
+/* ---------------- Google Fonts Import ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ---------------- Tailwind Directives ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles for headings */
+@layer base {
+  h1 {
+    @apply text-primary-dark text-4xl font-bold;
+  }
+  h2 {
+    @apply text-primary text-3xl font-semibold;
+  }
+  h3 {
+    @apply text-primary-light text-2xl font-medium;
+  }
+  h4 {
+    @apply text-primary text-xl font-medium;
+  }
+  h5 {
+    @apply text-primary-dark text-lg font-medium;
+  }
+  h6 {
+    @apply text-primary text-base font-medium;
+  }
+}
+
+/* Simple marquee animation */
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+}
+
+.marquee-content {
+  display: flex;
+  animation: scroll 20s linear infinite;
+  gap: 3rem;
+  animation-timing-function: linear;
+  backface-visibility: hidden;
+  perspective: 1000px;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.logo-item {
+  flex: 0 0 auto;
+  padding: 0 0.5rem;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.33%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+  display: flex;
+}
+
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+/* Mobile optimizations for marquee */
+@media (max-width: 768px) {
+  .marquee-mobile {
+    animation-duration: 10s !important;
+    gap: 2.5rem !important;
+  }
+}
+
+/* Custom Scrollbar Styles */
+/* For webkit browsers like Chrome, Safari, newer versions of Opera and Edge */
+::-webkit-scrollbar {
+  width: 14px;
+  height: 14px;
+}
+
+::-webkit-scrollbar-track {
+  background: #efe7f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #371445;
+  border-radius: 10px;
+  border: 3px solid #efe7f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a0e34;
+}
+
+/* Arrows (buttons) on the scrollbar */
+::-webkit-scrollbar-button {
+  display: block;
+  height: 14px;
+  width: 14px;
+  background-color: #efe7f1;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-radius: 4px;
+}
+
+/* Up arrow */
+::-webkit-scrollbar-button:start:vertical {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 24 24' fill='%23371445'%3E%3Cpath d='M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z'/%3E%3C/svg%3E");
+}
+
+/* Down arrow */
+::-webkit-scrollbar-button:end:vertical {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 24 24' fill='%23371445'%3E%3Cpath d='M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z'/%3E%3C/svg%3E");
+}
+
+/* Left arrow */
+::-webkit-scrollbar-button:start:horizontal {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 24 24' fill='%23371445'%3E%3Cpath d='M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z'/%3E%3C/svg%3E");
+}
+
+/* Right arrow */
+::-webkit-scrollbar-button:end:horizontal {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 24 24' fill='%23371445'%3E%3Cpath d='M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z'/%3E%3C/svg%3E");
+}
+
+/* Hover styles for buttons */
+::-webkit-scrollbar-button:hover {
+  background-color: #d8c5dd;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #371445 #efe7f1;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Swiper Pagination Dots Styling */
+.testimonials-swiper .swiper-pagination {
+  position: relative !important;
+  bottom: auto !important;
+  margin-top: 24px !important;
+}
+
+/* Fixed height for all testimonial slides */
+.testimonials-swiper .swiper-wrapper {
+  align-items: stretch;
+}
+
+.testimonials-swiper .swiper-slide {
+  
+  display: flex;
+}
+
+.testimonials-swiper .swiper-slide > div {
+  width: 900px;
+  
+}
+
+.testimonials-swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #fff;
+  opacity: 0.3;
+  transition: all 0.3s ease;
+  margin: 0 6px !important;
+}
+
+.testimonials-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #fff;
+  width: 24px;
+  border-radius: 5px;
+}
+
+@media (min-width: 1024px) {
+  .testimonials-swiper .swiper-pagination {
+    display: none;
+  }
+}
+
+/* Animated Blob Background */
+@keyframes blob {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Professional Color Palette CSS Variables */
+:root {
+  /* Brand Colors */
+  --color-primary: #371445;
+  --color-primary-light: #4a1c5e;
+  --color-primary-dark: #2a0e34;
+
+  /* Secondary/Accent Colors */
+  --color-secondary: #10b981;
+  --color-secondary-light: #34d399;
+  --color-secondary-dark: #059669;
+
+  /* Background */
+  --color-background: #ffffff;
+
+  /* Text Colors */
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-text-lighter: #999999;
+
+  /* UI/Border Colors */
+  --color-ui: #d1d1d1;
+  --color-ui-light: #e5e5e5;
+  --color-ui-dark: #bebebe;
+
+  /* Highlight/Blob Colors */
+  --color-highlight-purple: #f3e8ff;
+  --color-highlight-mint: #a7f3d0;
+}
+
+/* Enhanced gradient utilities for new colors */
+.bg-gradient-radial {
+  background: radial-gradient(circle, var(--tw-gradient-stops));
+}
+
+/* Light Frosted Glass Navbar Styles */
+:root {
+  --light-primary-50: hsl(240, 50%, 98%);
+  --light-primary-100: hsl(240, 45%, 96%);
+  --light-primary-200: hsl(240, 35%, 88%);
+  --light-primary-300: hsl(240, 25%, 75%);
+  --light-primary-400: hsl(240, 15%, 65%);
+  --light-primary-500: hsl(240, 10%, 55%);
+  --light-surface-1: var(--light-primary-50);
+  --light-surface-2: var(--light-primary-100);
+  --light-surface-3: var(--light-primary-200);
+  --light-border-1: hsl(240, 20%, 85%);
+  --light-border-2: hsl(240, 15%, 90%);
+}
+
+.light-frosted-nav {
+  --border-width: 1px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+}
+
+.light-frosted-nav::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  border: var(--border-width) solid transparent;
+  background: linear-gradient(var(--light-border-1), var(--light-border-2))
+    border-box;
+  mask: linear-gradient(black, black) border-box,
+    linear-gradient(black, black) padding-box;
+  mask-composite: subtract;
+}
+
+/* Dark Frosted Glass Navbar Styles */
+:root {
+  --primary-900: hsl(256, 43%, 7%);
+  --primary-800: hsl(240, 24%, 13%);
+  --primary-700: hsl(243, 26%, 15%);
+  --primary-600: hsl(252, 9%, 22%);
+  --primary-500: hsl(259, 13%, 28%);
+  --primary-400: hsl(254, 22%, 32%);
+  --primary-300: hsl(251, 13%, 68%);
+  --primary-200: hsl(240, 15%, 76%);
+  --primary-100: hsl(240, 21%, 88%);
+  --neutral-100: hsl(0, 0%, 100%);
+  --text-1: var(--neutral-100);
+  --text-2: var(--primary-100);
+  --text-3: var(--primary-200);
+  --surface-1: var(--primary-900);
+  --surface-2: var(--primary-800);
+  --surface-3: var(--primary-700);
+  --border-1: var(--primary-500);
+  --border-2: var(--primary-600);
+}
+
+.dark-frosted-nav {
+  --border-width: 1px;
+  background: hsl(from var(--surface-3) h s l / 0.25);
+  backdrop-filter: blur(12px);
+}
+
+.dark-frosted-nav::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  border: var(--border-width) solid transparent;
+  background: linear-gradient(var(--border-1), var(--border-2)) border-box;
+  mask: linear-gradient(black, black) border-box,
+    linear-gradient(black, black) padding-box;
+  mask-composite: subtract;
+}

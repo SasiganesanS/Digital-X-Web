@@ -1,0 +1,273 @@
+@media (max-width: 900px) {
+  .projects-hero-title,
+  .hero-project-container h1 {
+    margin-top: 2.5rem !important;
+  }
+}
+@media (max-width: 800px) {
+  .projects-hero-title,
+  .hero-project-container h1 {
+    margin-top: 2.8rem !important;
+  }
+}
+@media (max-width: 700px) {
+  .projects-hero-title,
+  .hero-project-container h1 {
+    margin-top: 3.2rem !important;
+  }
+}
+/* PERFECT TABLET FIX FOR 768px–885px */
+@media (min-width: 768px) and (max-width: 885px) {
+
+  /* Hero layout fixes */
+  
+  .projects-hero {
+    flex-direction: column !important;
+    text-align: center !important;
+    padding-top: 120px !important;
+  }
+
+  .projects-hero-left {
+    margin-bottom: 2rem !important;
+  }
+
+  .projects-hero-title {
+    font-size: 2rem !important;
+    line-height: 1.3 !important;
+    margin-left: 0 !important;
+  }
+
+  .projects-hero-desc {
+    font-size: 1rem !important;
+    max-width: 80% !important;
+    margin: 0 auto !important;
+  }
+
+  .projects-hero-counts {
+    justify-content: center !important;
+    margin-left: 0 !important;
+  }
+
+  /* BUTTON FIX STARTS HERE */
+  .projects-hero-buttons {
+    justify-content: center !important;
+    margin-left: 0 !important;
+    width: 100% !important;
+    display: flex !important;
+  }
+
+  .projects-cta {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    gap: 1.2rem !important;
+    margin-top: 10px !important;
+  }
+
+  .projects-cta button {
+    padding: 12px 30px !important;
+    width: auto !important;
+    border-radius: 30px !important;
+    font-size: 0.9rem !important;
+    white-space: nowrap !important;
+  }
+
+  .cta-font {
+    font-size: smaller;
+  }
+  /* BUTTON FIX ENDS HERE */
+
+  /* Right hero image container */
+  .projects-hero-image-box {
+    height: 45vh !important;
+    max-width: 90% !important;
+    margin: 30px auto 0 auto !important;
+  }
+
+  /* Development cards grid */
+  .projects-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.8rem !important;
+  }
+
+  .projects-card {
+    max-width: 350px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Blog cards grid */
+  .projects-blog-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.5rem !important;
+  }
+}
+/* PERFECT 4K (2560px – 3840px) RESPONSIVENESS */
+@media (min-width: 2560px) {
+
+  /* Main section – more natural wide layout */
+  .hero-project-container section {
+    min-height: 90vh !important;
+    padding-top: 6rem !important;
+    padding-bottom: 6rem !important;
+    max-width: 3400px !important;
+    margin: 0 auto !important;
+  }
+
+  /* LEFT SIDE — TEXT AREA */
+  .projects-hero-title,
+  .hero-project-container h1 {
+    font-size: 5.5rem !important;
+    line-height: 1.15 !important;
+    max-width: 1800px !important;
+    margin-bottom: 2.5rem !important;
+  }
+
+  .projects-hero-desc,
+  .hero-project-container p {
+    font-size: 1.6rem !important;
+    line-height: 1.75 !important;
+    max-width: 60% !important;
+    margin-bottom: 2rem !important;
+  }
+
+  /* Counts Layout */
+  .projects-hero-counts {
+    gap: 2.5rem !important;
+    font-size: 2rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .projects-hero-counts div span:first-child {
+    font-size: 2.5rem !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  .projects-hero-counts div span:last-child {
+    font-size: 1.2rem !important;
+    letter-spacing: 0.03em !important;
+  }
+
+  /* CTA Buttons */
+  .projects-cta button {
+    padding: 1.4rem 3.2rem !important;
+    font-size: 1.25rem !important;
+    border-width: 2px !important;
+    border-radius: 50px !important;
+    margin-right: 2rem !important;
+  }
+
+  /* RIGHT HERO IMAGE — The sliding showcase */
+  .hero-project-container .relative.w-full {
+    max-width: 3000px !important;
+    min-height: 700px !important;
+    margin: 0 auto !important;
+  }
+
+  .hero-project-container .relative.w-full .h-\[22vh\],
+  .hero-project-container .relative.w-full .h-\[40vh\],
+  .hero-project-container .relative.w-full .h-\[45vh\],
+  .hero-project-container .relative.w-full .h-\[50vh\] {
+    height: 50vh !important;
+    max-height: 900px !important;
+    min-width: 1200px !important;
+  }
+
+  /* Accent lines frame */
+  .hero-project-container .relative.w-full > div[class*="bg-gradient-to"] {
+    height: 3px !important;
+    width: 150px !important;
+    margin-bottom: 1.5rem !important;
+  }
+
+  /* BLOGS SECTION */
+  .projects-blog-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 3rem !important;
+    padding: 2rem 0 !important;
+  }
+
+  .projects-blog-grid h3 {
+    font-size: 1.4rem !important;
+    line-height: 1.6 !important;
+    max-width: 700px !important;
+  }
+
+  .projects-blog-grid img {
+    transform: scale(1.02);
+    border-radius: 1.5rem !important;
+    box-shadow: 0 8px 32px rgba(60, 0, 90, 0.12) !important;
+  }
+
+  /* DEVELOPMENT CARDS BIGGER & CLEANER */
+  .projects-card-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 3rem !important;
+    padding: 2rem 0 !important;
+  }
+
+  .projects-card {
+    max-width: 420px !important;
+    padding: 2rem !important;
+    min-height: 420px !important;
+    box-shadow: 0 12px 48px rgba(60, 0, 90, 0.13) !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .projects-card h2 {
+    font-size: 2rem !important;
+    margin-bottom: 1.2rem !important;
+  }
+
+  .projects-card p {
+    font-size: 1.3rem !important;
+    max-width: 350px !important;
+  }
+
+  .projects-card span {
+    font-size: 6rem !important;
+    margin-top: 1.5rem !important;
+  }
+    .projects-section-header {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      text-align: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      width: 100% !important;
+    }
+    .projects-section-header > * {
+      text-align: center !important;
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+  /* DEVELOPMENT CARD TEXT BIGGER ON 4K */
+  .projects-card h2 {
+    font-size: 3.5rem !important;   /* card title */
+    line-height: 1.15 !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.02em !important;
+  }
+
+  .projects-card p {
+    font-size: 2.2rem !important;   /* description text */
+    line-height: 1.5 !important;
+    max-width: 90% !important;
+    font-weight: 500 !important;
+  }
+
+  .projects-card span {
+    font-size: 8.5rem !important;     /* floating code number */
+    font-weight: 900 !important;
+  }
+
+  .dev-card-text{
+    font-size: 2rem;
+  }
+
+
+}
+  

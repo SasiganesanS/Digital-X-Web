@@ -1,0 +1,81 @@
+/* PERFECT 4K (2560px – 3840px) RESPONSIVENESS */
+@media (min-width: 2560px) {
+    
+  .blog-hero {
+    font-size: 7rem !important;
+    line-height: 1.1 !important;
+    margin-bottom: 3rem !important;
+    text-shadow: 0 2px 8px rgba(60,0,90,0.18);
+  }
+  .blog-desc {
+    font-size: 2rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 2.5rem !important;
+    color: #fff !important;
+    text-shadow: 0 2px 8px rgba(60,0,90,0.10);
+  }
+  .blog-headline {
+    font-size: 3.5rem !important;
+    /* font-weight: 800 !important; */
+    margin-bottom: 2rem !important;
+  }
+  .blog-paragraph {
+    font-size: 2rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 2rem !important;
+  }
+  .blog-image {
+    max-width: 900px !important;
+    border-radius: 2rem !important;
+    box-shadow: 0 12px 48px rgba(60,0,90,0.13) !important;
+  }
+  .blog-value-card {
+    font-size: 2rem !important;
+    padding: 2.5rem !important;
+    border-radius: 2rem !important;
+  }
+  .blog-hero-left {
+    max-width: 1500px !important;
+    padding-left: 6rem !important;
+    padding-right: 2rem !important;
+  }
+
+  .blog-texts{
+    font-size:x-large;
+  }
+  .blog-overview-4k {
+    padding-left: 8rem !important;
+    padding-right: 8rem !important;
+  }
+  .blog-overview-grid-4k {
+    gap: 5rem !important;
+    max-width: 1800px !important;
+  }
+  .blog-value-section-4k {
+    padding-left: 8rem !important;
+    padding-right: 8rem !important;
+  }
+  .blog-value-container-4k {
+    max-width: 1800px !important;
+    gap: 5rem !important;
+  }
+  .view-work-4k {
+    font-size: 2rem !important;
+    padding: 1rem 2rem !important;
+    min-width: 350px !important;
+    min-height: 90px !important;
+  }
+  .view-work-4k {
+    padding-left: 3.5rem !important;
+    padding-right: 3.5rem !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+    font-size: 2rem !important;
+    border-radius: 0.5rem !important;
+    letter-spacing: 0.03em !important;
+  }
+  .view-work-icon-4k {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+  }
+}

@@ -1,0 +1,253 @@
+@media (max-width: 850px) and (min-width: 800px) {
+  .service-calculator-4k h1 {
+    font-size: 1.5rem !important;
+  }
+  .service-calculator-4k .text-4xl {
+    font-size: 1.1rem !important;
+  }
+  .service-calculator-4k .text-base {
+    font-size: 0.8rem !important;
+  }
+  .service-calculator-4k .rounded-xl {
+    border-radius: 0.5rem !important;
+    padding: 0.5rem !important;
+  }
+  .service-calculator-4k .max-w-7xl {
+    max-width: 99vw !important;
+    padding-left: 0.2rem !important;
+    padding-right: 0.2rem !important;
+  }
+  .service-calculator-4k .grid {
+    gap: 0.7rem !important;
+  }
+  .service-calculator-4k .sticky {
+    top: 1rem !important;
+  }
+}
+/* Responsive fixes for ServiceCalculator at common zoom breakpoints */
+@media (max-width: 900px) {
+  .service-calculator-4k h1 {
+    font-size: 2.2rem !important;
+    line-height: 1.2 !important;
+  }
+  .service-calculator-4k .text-4xl {
+    font-size: 2rem !important;
+  }
+  .service-calculator-4k .text-base {
+    font-size: 1rem !important;
+  }
+  .service-calculator-4k .text-sm {
+    font-size: 0.9rem !important;
+  }
+  .service-calculator-4k .rounded-xl {
+    border-radius: 1rem !important;
+    padding: 1.2rem !important;
+  }
+  .service-calculator-4k .grid {
+    gap: 1.2rem !important;
+  }
+  .service-calculator-4k .sticky {
+    top: 2rem !important;
+  }
+  .service-calculator-4k .max-w-7xl {
+    max-width: 98vw !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .service-calculator-4k .mt-12 {
+    margin-top: 2rem !important;
+  }
+  .service-calculator-4k .mb-8 {
+    margin-bottom: 2rem !important;
+  }
+  .service-calculator-4k .mt-100px {
+    margin-top: 2rem !important;
+  }
+}
+
+@media (max-width: 800px) {
+  .service-calculator-4k h1 {
+    font-size: 1.7rem !important;
+  }
+  .service-calculator-4k .text-4xl {
+    font-size: 1.3rem !important;
+  }
+  .service-calculator-4k .text-base {
+    font-size: 0.9rem !important;
+  }
+  .service-calculator-4k .rounded-xl {
+    border-radius: 0.7rem !important;
+    padding: 0.8rem !important;
+  }
+  .service-calculator-4k .max-w-7xl {
+    max-width: 99vw !important;
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .service-calculator-4k h1 {
+    font-size: 1.2rem !important;
+  }
+  .service-calculator-4k .text-4xl {
+    font-size: 1rem !important;
+  }
+  .service-calculator-4k .text-base {
+    font-size: 0.8rem !important;
+  }
+  .service-calculator-4k .rounded-xl {
+    border-radius: 0.5rem !important;
+    padding: 0.5rem !important;
+  }
+  .service-calculator-4k .max-w-7xl {
+    max-width: 100vw !important;
+    padding-left: 0.2rem !important;
+    padding-right: 0.2rem !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .service-calculator-4k h1 {
+    font-size: 1rem !important;
+  }
+  .service-calculator-4k .text-4xl {
+    font-size: 0.8rem !important;
+  }
+  .service-calculator-4k .text-base {
+    font-size: 0.7rem !important;
+  }
+  .service-calculator-4k .rounded-xl {
+    border-radius: 0.3rem !important;
+    padding: 0.3rem !important;
+  }
+  .service-calculator-4k .max-w-7xl {
+    max-width: 100vw !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+@media (min-width: 2560px) {
+  .service-calculator-4k .marquee-content {
+    animation-duration: 45s !important;
+  }
+  .service-calculator-4k .text-center.mb-6 {
+    justify-content: center !important;
+    display: flex !important;
+  }
+  .service-calculator-4k .text-center.mb-6 h2 {
+    margin: 0 auto !important;
+    text-align: center !important;
+    width: fit-content !important;
+  }
+}
+/* 4K responsive styles for tie-up section */
+@media (min-width: 2560px) {
+  .service-calculator-4k .max-w-7xl {
+    max-width: 2200px !important;
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+  .service-calculator-4k .text-center.mb-6 h2 {
+    font-size: 3.5rem !important;
+    margin-bottom: 2.5rem !important;
+  }
+  .service-calculator-4k .marquee-container {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+  }
+  .service-calculator-4k .marquee-content {
+    gap: 8rem !important;
+  }
+  .service-calculator-4k .marquee-content img {
+    height: 5rem !important;
+    max-width: 350px !important;
+  }
+}
+
+/* 4K Responsive Styles for ServiceCalculator */
+@media (min-width: 2560px) {
+  .service-calculator-4k {
+    min-height: 90vh !important;
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+    font-size: 1.5rem !important;
+  }
+  .service-calculator-4k .max-w-7xl {
+    max-width: 2000px !important;
+  }
+  .service-calculator-4k h1 {
+    font-size: 5rem !important;
+    line-height: 1.1 !important;
+  }
+   .service-calculator-4k .text-3xl {
+    min-height: 4.5rem;
+    display: flex;
+    align-items: center;
+  }
+  .service-calculator-4k .text-4xl {
+    font-size: 4rem !important;
+  }
+  .service-calculator-4k .text-base {
+    font-size: 1.5rem !important;
+  }
+  .service-calculator-4k .text-sm {
+    font-size: 1.2rem !important;
+  }
+  .service-calculator-4k .rounded-xl {
+    border-radius: 1.5rem !important;
+    padding: 2.5rem !important;
+  }
+  .service-calculator-4k .grid {
+    gap: 3rem !important;
+  }
+  .service-calculator-4k .sticky {
+    top: 8rem !important;
+  }
+  .service-calculator-4k .w-96, .service-calculator-4k .w-500px {
+    width: 600px !important;
+    height: 600px !important;
+  }
+  .service-calculator-4k .marquee-content img {
+    height: 3.5rem !important;
+    max-width: 300px !important;
+  }
+  .service-calculator-4k .text-3xl {
+    font-size: 3rem !important;
+  }
+  .service-calculator-4k .text-lg {
+    font-size: 2rem !important;
+  }
+  .service-calculator-4k .py-3 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  .service-calculator-4k .px-6 {
+    padding-left: 3rem !important;
+    padding-right: 3rem !important;
+  }
+  .service-calculator-4k .p-6 {
+    padding: 3rem !important;
+  }
+  .service-calculator-4k .p-3 {
+    padding: 1.5rem !important;
+  }
+  .service-calculator-4k .mt-12 {
+    margin-top: 5rem !important;
+  }
+  .service-calculator-4k .mb-8 {
+    margin-bottom: 4rem !important;
+  }
+  .service-calculator-4k .mt-100px {
+    margin-top: 8rem !important;
+  }
+  .price-font{
+    font-size: 1.2rem;
+  }
+}
+/* 4K-only font size for 'Starts at Price' */
+@media (min-width: 2560px) {
+  .service-calculator-4k .starts-at-price-4k {
+    font-size: 1.5rem !important;
+  }
+}

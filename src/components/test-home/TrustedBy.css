@@ -1,0 +1,25 @@
+@keyframes scroll {
+  from {
+    /* Start at the beginning */
+    transform: translateX(0);
+  }
+  to {
+    /* Animate to the halfway point (where the 2nd logo list starts) */
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  /* Adjust the duration (40s) to make it faster or slower.
+    `linear` means it never speeds up or slows down.
+    `infinite` makes it loop.
+  */
+  animation: scroll 40s linear infinite;
+  
+  /* This makes adding/removing logos easy */
+  width: max-content;
+}
+
+.pause-on-hover:hover {
+  animation-play-state: paused;
+}

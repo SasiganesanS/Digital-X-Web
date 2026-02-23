@@ -1,0 +1,243 @@
+@media (max-width: 800px) and (min-width: 700px) {
+  .hero-title {
+    font-size: 2rem !important;
+    line-height: 1.1 !important;
+    /* padding-top: 3rem !important; */
+  }
+  .hero-desc {
+    font-size: 0.9rem !important;
+    max-width: 90vw !important;
+    padding: 0 0.5rem !important;
+    line-height: 1.3em !important;
+  }
+  .hero-image-container {
+    height: 22vh !important;
+    min-height: 100px !important;
+    max-width: 80vw !important;
+    border-radius: 0.5rem !important;
+  }
+  .sliding-image-text {
+    font-size: 0.8rem !important;
+  }
+  .hero-wrapper {
+    gap: 1rem !important;
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+  section.relative.dark-section {
+    min-height: 100vh !important;
+    height: 100vh !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+}
+/* Responsive fixes for browser zoom above 100% */
+@media (max-width: 900px) {
+  .hero-title {
+    font-size: 2.2rem !important;
+    line-height: 1.2 !important;
+  }
+  .hero-desc {
+    font-size: 1rem !important;
+    max-width: 95vw !important;
+    padding: 0 0.5rem !important;
+    line-height: 1.4em !important;
+  }
+  .hero-image-container {
+    height: 28vh !important;
+    min-height: 120px !important;
+    max-width: 95vw !important;
+    border-radius: 0.5rem !important;
+  }
+  .sliding-image-text {
+    font-size: 0.85rem !important;
+  }
+  .hero-wrapper {
+    gap: 1.2rem !important;
+    flex-direction: column !important;
+    text-align: center !important;
+  }
+  section.relative.dark-section {
+    min-height: 100vh !important;
+    height: auto !important;
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+}
+/* ADD THIS TO IMPROVE TABLET (768px) HERO LOOK */
+@media (min-width: 768px) and (max-width: 885px) {
+  .hero-wrapper {
+    flex-direction: column !important;
+    gap: 2rem !important;
+    text-align: center !important;
+  }
+
+  .hero-title {
+    font-size: 2rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .hero-desc {
+    font-size: 0.8rem !important;
+    max-width: 80% !important;
+    line-height: 1.5em;
+  }
+
+  .hero-image-container {
+    height: 45vh !important;
+    max-width: 100% !important;
+  }
+  .sliding-image-text {
+    font-size: 0.8rem !important;
+  }
+
+  .hide-design {
+    display: none !important; /* Corrected from 'hidden' to 'none' */
+  }
+  
+}
+
+/* IMPROVE IPHONE SE (375px) HERO LOOK */
+@media (max-width: 400px) {
+  .hero-title {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+    padding: 0 0.5rem !important;
+  }
+  .hero-desc {
+    font-size: 0.85rem !important;
+    padding: 0 0.5rem !important;
+    max-width: 95% !important;
+    line-height: 1.4em !important;
+  }
+  .hero-image-container {
+    height: 28vh !important;
+    min-height: 140px !important;
+    max-width: 100% !important;
+    border-radius: 0.5rem !important;
+  }
+  .sliding-image-text {
+    font-size: 0.75rem !important;
+  }
+  .hide-design {
+    display: none !important;
+  }
+  section.relative.dark-section.h-screen {
+    min-height: 100vh !important;
+    height: 100vh !important;
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  .mx-auto.max-w-sm.bg-white\/10.backdrop-blur-md.border.border-white\/20.rounded-2xl.shadow-lg.p-5.flex.flex-col.items-center.space-y-4 {
+    height: 160px !important;
+    max-width: 90% !important;
+    padding: 0.75rem !important;
+  }
+  .w-16.h-16.sm\:w-20.sm\:h-20.rounded-full.bg-white\/5.backdrop-blur-sm.border.border-white\/10.flex.items-center.justify-center {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+  }
+  .text-\[\#371445\]\/80.text-4xl.sm\:text-5xl {
+    font-size: 1.3rem !important;
+  }
+  .text-center.text-md.sm\:text-lg.text-white\/80.font-light.mt-4 {
+    font-size: 0.85rem !important;
+    margin-top: 0.5rem !important;
+  }
+}
+
+/* PERFECT 4K (2560px – 3840px) RESPONSIVENESS — EXACT GOOGLE-STYLE CLEAN LAYOUT */
+@media (min-width: 2560px) {
+  section.relative.dark-section {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .hero-title {
+    font-size: 5.8rem !important;
+    line-height: 1.15 !important;
+  }
+
+  .hero-desc {
+    font-size: 1.6rem !important;
+    max-width: 60% !important;
+    line-height: 1.7 !important;
+  }
+  .hero-wrapper {
+    gap: 4rem !important;
+  }
+
+  /* Left content spacing like Google 4K preview */
+  .max-w-7xl {
+    max-width: 1800px !important;
+  }
+
+  .hero-image-container {
+    height: 50vh !important;
+    width: 30vw;
+    max-height: 900px !important;
+    border-radius: 1rem !important;
+  }
+
+  .sliding-image-text {
+    font-size: 1.35rem !important;
+    line-height: 1.6 !important;
+  }
+
+  /* Image border-frame corners */
+  .hero-image-container div[style*="border-"] {
+    width: 90px !important;
+    height: 90px !important;
+  }
+  /* Pagination dots */
+  .hero-image-container .h-1\.5 {
+    height: 10px !important;
+    border-radius: 50px !important;
+  }
+
+  .md-flex .text-white-70 span {
+  font-size: 1.2rem !important;
+}
+
+
+  .md\:flex .w-9,
+  .md\:flex .h-9,
+  .md\:flex .w-10,
+  .md\:flex .h-10 {
+    width: 75px !important;
+    height: 75px !important;
+  }
+
+  .md\:flex svg {
+    font-size: 2.2rem !important;
+  }
+
+  /* CTA Button */
+  button.group {
+    padding: 1.2rem 2.8rem !important;
+    font-size: 1.25rem !important;
+    border-width: 2px !important;
+  }
+}
+
+@media (min-width: 2560px) {
+  .hidden-4k {
+    display: none !important;
+  }
+  .md\:flex .text-white\/70 span {
+    font-size: 2rem !important;
+  }
+}
