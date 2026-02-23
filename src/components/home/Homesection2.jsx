@@ -1,102 +1,245 @@
-// home.zip/home/Homesection2.jsx
-//
-// REASONING FOR CHANGES:
-// 1.  RE-FRAMED: Changed "Latest insights" to "What We Do" and
-//     "Stop Patching Problems. Start Building Solutions." This is clear,
-//     scannable, and motivating. It speaks directly to user pain points.
-// 2.  REWRITTEN CONTENT: Replaced the confusing mix of content with three
-//     clear, scannable service pillars that solve specific problems.
-// 3.  IMPLEMENTED LIQUID GLASS: This is the primary glassmorphism showcase.
-//     The background images are now blurred *behind* the glass cards.
-//     The text sits on the glass card, creating that "Apple" depth effect.
-// 4.  REMOVED CAROUSEL: A carousel is the wrong UI here. Users need to
-//     scan all your services at once. I've used a clear 3-column grid,
-//     which is far better for scannability and clarity.
-//
-import React from 'react';
-import web from "../../assets/web.jpeg";
-import app from "../../assets/germany.jpeg"; // Re-using image, rename as needed
-import security from "../../assets/sus.jpeg"; // Re-using image, rename as needed
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { Link } from "react-router-dom";
 
-// Service data organized for clarity
-const services = [
+/* ─── Project data ─── */
+const projects = [
   {
-    title: "Web & App Development",
-    description: "We build high-performance web and mobile apps that streamline your operations and deliver a seamless user experience.",
-    problem: "Is your outdated software holding you back?",
-    image: web
+    id: "01",
+    name: "3D Studios",
+    services: ["Website Development", "Social Media Edits & Management", "Post Production"],
+    slug: "3d-studios",
+    accent: "#E8192C",
+    bg: "#111",
+    tag: "Creative Studio",
+    icon: "🎬",
   },
   {
-    title: "Digital Marketing",
-    description: "Our data-driven SEO and marketing campaigns find your target audience and turn them into loyal customers.",
-    problem: "Are you invisible to your online customers?",
-    image: app
+    id: "02",
+    name: "Nofa Beauty Center",
+    services: ["Social Media Edits & Management"],
+    slug: "nofa-beauty",
+    accent: "#E8192C",
+    bg: "#0F0F0F",
+    tag: "Beauty & Wellness",
+    icon: "✨",
   },
   {
-    title: "IT Security & Solutions",
-    description: "We implement proactive IT security to safeguard your data, protect your reputation, and ensure compliance.",
-    problem: "Worried about data breaches and digital threats?",
-    image: security
-  }
+    id: "03",
+    name: "Adhithya Fashions",
+    services: ["Website Development", "SEO Optimization", "Map Integration", "Social Media Edits & Management"],
+    slug: "adhithya-fashions",
+    accent: "#E8192C",
+    bg: "#111",
+    tag: "Fashion & Retail",
+    icon: "👗",
+  },
+  {
+    id: "04",
+    name: "Leaf World",
+    services: ["Website Development", "Social Media Edits & Management", "Sales Strategy"],
+    slug: "leaf-world",
+    accent: "#E8192C",
+    bg: "#0F0F0F",
+    tag: "Lifestyle & Nature",
+    icon: "🌿",
+  },
 ];
 
-const Homesection2 = () => {
+/* ─── Single sticky card ─── */
+const ProjectCard = ({ project, index, total }) => {
+  const ref = useRef(null);
+  const topOffset = 80 + index * 14;
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.93]);
+  const opacity = useTransform(scrollYProgress, [0, 0.9, 1], [1, 1, 0.6]);
+
+  const isLast = index === total - 1;
+
   return (
-    <section id="services" className="w-full py-16 md:py-24 bg-white relative overflow-hidden">
-      {/* BACKGROUND BLOBS */}
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-200 rounded-full filter blur-3xl opacity-40 animate-blob animation-delay-4000"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-pink-200 rounded-full filter blur-3xl opacity-40 animate-blob animation-delay-2000"></div>
+    <motion.div
+      ref={ref}
+      className="sticky flex items-start justify-center px-4 md:px-6"
+      style={{
+        top: topOffset,
+        paddingTop: "24px",
+        paddingBottom: "24px",
+        scale: isLast ? 1 : scale,
+        opacity: isLast ? 1 : opacity,
+        willChange: "transform",
+      }}
+    >
+      <div
+        className="relative w-full max-w-5xl rounded-2xl md:rounded-3xl border border-white/8 overflow-hidden"
+        style={{ background: project.bg, minHeight: 280 }}
+      >
+        {/* Red glow top-left */}
+        <div
+          className="absolute top-0 left-0 w-72 h-72 rounded-full pointer-events-none"
+          style={{
+            background: "radial-gradient(circle, rgba(232,25,44,0.08) 0%, transparent 70%)",
+            transform: "translate(-30%, -30%)",
+          }}
+        />
 
-      <div className="max-w-[1280px] w-[90%] mx-auto relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-[#301045] sm:text-4xl mb-4">
-            Stop Patching Problems. Start Building Solutions.
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We help you overcome key business challenges with technology that
-            delivers real results.
-          </p>
-        </div>
-
-        {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="rounded-3xl overflow-hidden shadow-2xl transform transition-all duration-300 hover:-translate-y-2"
-            >
-              <div className="relative h-[450px]">
-                {/* 1. The Background Image */}
-                <img 
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-black/30"></div> {/* Dark overlay for readability */}
-
-                {/* 2. The Liquid Glass Card */}
-                <div className="absolute bottom-4 left-4 right-4 p-5
-                                bg-white/30 backdrop-blur-lg 
-                                rounded-2xl border border-white/20 
-                                shadow-lg"
+        <div className="flex flex-col md:flex-row items-stretch gap-0">
+          {/* Left — project info */}
+          <div className="flex-1 p-8 md:p-10 flex flex-col justify-between">
+            <div>
+              {/* Project number + tag row */}
+              <div className="flex items-center gap-3 mb-6">
+                <span
+                  className="font-black text-[#E8192C]/20 text-5xl md:text-6xl leading-none select-none"
+                  aria-hidden
                 >
-                  <p className="text-sm font-semibold text-white/90 [text-shadow:_0_1px_1px_rgb(0_0_0_/_30%)]">
-                    {service.problem}
-                  </p>
-                  <h3 className="text-xl md:text-2xl font-bold text-white my-2 [text-shadow:_0_1px_2px_rgb(0_0_0_/_50%)]">
-                    {service.title}
+                  {project.id}
+                </span>
+                <div className="flex flex-col gap-1">
+                  <span className="text-[10px] text-white/30 uppercase tracking-[0.2em] font-medium">
+                    {project.tag}
+                  </span>
+                  <h3 className="text-2xl md:text-3xl font-black text-white leading-tight">
+                    {project.name}
                   </h3>
-                  <p className="text-base text-white/90 [text-shadow:_0_1px_1px_rgb(0_0_0_/_30%)]">
-                    {service.description}
-                  </p>
                 </div>
               </div>
+
+              {/* Service chips */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                {project.services.map((svc, i) => (
+                  <span
+                    key={i}
+                    className="text-[11px] font-medium text-white/50 border border-white/8
+                               px-3 py-1 rounded-full"
+                    style={{ background: "rgba(255,255,255,0.03)" }}
+                  >
+                    {svc}
+                  </span>
+                ))}
+              </div>
             </div>
-          ))}
+
+            {/* CTA */}
+            <Link
+              to={`/case-study/${project.slug}`}
+              className="inline-flex items-center gap-2.5 self-start group"
+            >
+              <span
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-[#E8192C]
+                           group-hover:bg-[#ff2235] group-hover:scale-110
+                           transition-all duration-300 shadow-[0_0_20px_rgba(232,25,44,0.3)]"
+              >
+                <svg className="w-4 h-4 text-white transition-transform group-hover:translate-x-0.5"
+                  fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </span>
+              <span className="text-white/60 text-sm font-medium group-hover:text-white transition-colors duration-300">
+                View Case Study
+              </span>
+            </Link>
+          </div>
+
+          {/* Right — visual panel */}
+          <div
+            className="w-full md:w-[260px] lg:w-[320px] flex-shrink-0 flex items-center justify-center
+                       border-t md:border-t-0 md:border-l border-white/5 p-8"
+          >
+            <div className="flex flex-col items-center gap-4 text-center">
+              {/* Emoji icon in a glowing container */}
+              <div
+                className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl
+                           border border-[#E8192C]/20 shadow-[0_0_30px_rgba(232,25,44,0.1)]"
+                style={{ background: "rgba(232,25,44,0.06)" }}
+              >
+                {project.icon}
+              </div>
+              <div className="w-8 h-px bg-[#E8192C]/30" />
+              <p className="text-white/20 text-xs uppercase tracking-widest">Project {project.id}</p>
+            </div>
+          </div>
         </div>
+      </div>
+    </motion.div>
+  );
+};
+
+/* ─── Main section ─── */
+const FeaturedWorks = () => {
+  return (
+    <section
+      id="projects"
+      className="relative w-full overflow-hidden py-14 md:py-20"
+      style={{ background: "#080808" }}
+    >
+      {/* Background */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: "radial-gradient(circle, #ffffff 1px, transparent 1px)",
+            backgroundSize: "44px 44px",
+          }}
+        />
+      </div>
+
+      {/* Section header */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16 mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col sm:flex-row sm:items-end justify-between gap-6"
+        >
+          <div>
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#E8192C] animate-pulse" />
+              <span className="text-[#E8192C] text-xs font-semibold tracking-[0.2em] uppercase">
+                Featured Works
+              </span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.1] tracking-tight text-white">
+              Brands We've{" "}
+              <span className="text-[#E8192C]">Scaled</span>
+            </h2>
+          </div>
+
+          <Link
+            to="/projects"
+            className="inline-flex items-center gap-2 text-white/40 text-sm font-medium
+                       hover:text-white transition-colors duration-300 self-end sm:self-auto pb-1 flex-shrink-0"
+          >
+            View all projects
+            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </motion.div>
+      </div>
+
+      {/* Sticky scroll cards */}
+      <div
+        className="relative z-10"
+        style={{ height: `${projects.length * 40}vh` }}
+      >
+        {projects.map((project, index) => (
+          <ProjectCard
+            key={project.id}
+            project={project}
+            index={index}
+            total={projects.length}
+          />
+        ))}
       </div>
     </section>
   );
 };
 
-export default Homesection2;
+export default FeaturedWorks;

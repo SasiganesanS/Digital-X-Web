@@ -1,170 +1,165 @@
 import React from "react";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { ArrowUpRight, ArrowLeft } from "lucide-react";
+import { useLocation, useNavigate, useParams, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { projects } from "../data/projects";
-
-const DEFAULT_IMAGE = "https://via.placeholder.com/1200x675?text=Project+Image";
 
 const ProjectCaseStudy = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { id } = useParams();
 
-  // Try to get project from location state first, then from URL param
   let project = location.state?.project;
   if (!project && id) {
     project = projects.find((p) => p.id === parseInt(id));
   }
 
-  const handleBackClick = () => {
-    // Navigate back to homepage
-    navigate("/", {
-      state: { scrollToProjects: true },
-      replace: false,
-    });
-  };
-
   if (!project) {
     return (
-      <section className="min-h-screen flex items-center justify-center px-6">
-        <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-4 text-gray-900">
-            Project not found
-          </h2>
-          <p className="text-gray-600 mb-8 text-lg">
-            The project you're looking for doesn't exist.
-          </p>
+      <section
+        className="min-h-screen flex items-center justify-center px-6"
+        style={{ background: "#080808" }}
+      >
+        <div className="text-center">
+          <h2 className="text-3xl font-bold mb-4 text-white">Project not found</h2>
           <button
-            className="inline-flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors"
-            onClick={handleBackClick}
+            className="inline-flex items-center gap-2 bg-[#E8192C] text-white px-6 py-3 rounded-full font-semibold hover:bg-[#ff2235] transition-colors"
+            onClick={() => navigate("/case-study")}
           >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Home
+            ← Back to Case Studies
           </button>
         </div>
       </section>
     );
   }
 
-  const getGradient = (title) => {
-    if (!title) return "from-gray-900/80 via-gray-800/60 to-transparent";
-    const lower = title.toLowerCase();
-    if (lower.includes("honeybee"))
-      return "from-blue-900/80 via-blue-800/60 to-transparent";
-    if (lower.includes("skillbridge"))
-      return "from-purple-900/80 via-purple-800/60 to-transparent";
-    if (lower.includes("tipy"))
-      return "from-indigo-900/80 via-indigo-800/60 to-transparent";
-    return "from-gray-900/80 via-gray-800/60 to-transparent";
-  };
-
-  const gradientClass = getGradient(project.title);
-  const heroImage = project.heroImage || project.image || DEFAULT_IMAGE;
+  const heroImage = project.image;
 
   return (
-    <div className="bg-white">
-      {/* Back Button */}
-      <div className="fixed top-24 left-8 z-50">
+    <div style={{ background: "#080808" }}>
+
+      {/* ── Back button ── */}
+      <div className="fixed top-24 left-6 z-50">
         <button
-          onClick={handleBackClick}
-          className="inline-flex items-center gap-2 bg-white/90 backdrop-blur-sm text-gray-900 px-4 py-2 rounded-full shadow-lg hover:bg-white transition-all border border-gray-200"
+          onClick={() => navigate("/case-study")}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full
+                     border border-white/10 text-white/60 hover:text-white hover:border-white/30
+                     transition-all duration-300 text-sm font-medium backdrop-blur-sm"
+          style={{ background: "rgba(10,10,10,0.8)" }}
         >
-          <ArrowLeft className="w-4 h-4" />
-          <span className="font-medium">Back</span>
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+          </svg>
+          Case Studies
         </button>
       </div>
 
-      {/* === HERO SECTION === */}
+      {/* ── HERO ── */}
       <motion.section
-        className="relative w-full h-screen flex items-center justify-center dark-section overflow-hidden bg-gray-50"
+        className="relative w-full min-h-screen flex items-end overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.7 }}
       >
-        {/* Hero Image with Overlay */}
+        {/* Background image with dark overlay */}
         <div className="absolute inset-0">
-          <img
-            src={heroImage}
-            alt={project.title}
-            className="w-full h-full object-cover"
-          />
-          <div
-            className={`absolute inset-0 bg-gradient-to-br ${gradientClass}`}
-          ></div>
+          <img src={heroImage} alt={project.title} className="w-full h-full object-cover opacity-20" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #080808 30%, rgba(8,8,8,0.6) 100%)" }} />
+          {/* Red glow */}
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full pointer-events-none"
+            style={{ background: "radial-gradient(circle, rgba(232,25,44,0.12) 0%, transparent 65%)", transform: "translate(-20%,20%)" }} />
+          {/* Dot grid */}
+          <div className="absolute inset-0 opacity-[0.025]"
+            style={{ backgroundImage: "radial-gradient(circle, #ffffff 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
         </div>
 
-        {/* Content */}
-        <div className="relative z-10 max-w-6xl mx-auto px-6 md:px-12 text-center text-white">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16 pb-20 pt-40">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
           >
-            <p className="text-sm md:text-base font-medium tracking-wider uppercase mb-6 opacity-90">
-              Case Study
-            </p>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            {/* Eyebrow */}
+            <div className="inline-flex items-center gap-2 mb-6">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#E8192C] animate-pulse" />
+              <span className="text-[#E8192C] text-xs font-semibold tracking-[0.2em] uppercase">Case Study</span>
+            </div>
+
+            <h1 className="text-5xl md:text-7xl font-black text-white mb-4 leading-none tracking-tight">
               {project.title}
             </h1>
-            <p className="text-lg md:text-2xl leading-relaxed max-w-3xl mx-auto opacity-95">
-              {project.description ||
-                "Discover how we built this impactful digital solution."}
-            </p>
-          </motion.div>
-        </div>
+            <p className="text-white/40 text-lg md:text-xl mb-8">{project.description}</p>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2">
-            <div className="w-1 h-3 bg-white/50 rounded-full"></div>
-          </div>
+            {/* Tags + result chip */}
+            <div className="flex flex-wrap gap-3">
+              <span className="px-4 py-1.5 rounded-full border border-[#E8192C]/30 text-[#E8192C] text-sm font-medium bg-[#E8192C]/8">
+                {project.tags}
+              </span>
+              <span className="px-4 py-1.5 rounded-full border border-white/10 text-white/50 text-sm bg-white/4">
+                ✓ {project.result}
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Scroll indicator */}
+          <motion.div
+            className="mt-16 flex items-center gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1, duration: 0.5 }}
+          >
+            <div className="w-6 h-10 border border-white/15 rounded-full flex items-start justify-center p-1.5">
+              <motion.div
+                className="w-1 h-2 bg-[#E8192C] rounded-full"
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </div>
+            <span className="text-white/20 text-xs tracking-widest uppercase">Scroll to explore</span>
+          </motion.div>
         </div>
       </motion.section>
 
-      {/* === PROJECT OVERVIEW SECTION === */}
+      {/* ── OVERVIEW ── */}
       {project.overview && (
-        <section className="w-full min-h-screen flex items-center justify-center bg-white py-20 md:py-32">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              {/* Left: Text Content */}
-              <motion.div
-                className="space-y-8"
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.8 }}
-              >
-                <div>
-                  <h2 className="text-sm font-semibold text-gray-500 tracking-wider uppercase mb-4">
-                    Overview
-                  </h2>
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                    {project.overview.headline || "The Challenge"}
-                  </h3>
-                </div>
+        <section className="w-full py-20 md:py-28 border-t border-white/6">
+          <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20">
 
-                <p className="text-lg md:text-xl text-gray-700 leading-relaxed">
+              {/* Left */}
+              <motion.div
+                initial={{ opacity: 0, x: -24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
+                <span className="text-[#E8192C] text-xs font-semibold tracking-[0.2em] uppercase mb-4 block">Overview</span>
+                <h2 className="text-3xl md:text-4xl font-black text-white leading-tight mb-6">
+                  {project.overview.headline}
+                </h2>
+                <p className="text-white/45 text-base leading-relaxed">
                   {project.overview.paragraph}
                 </p>
+              </motion.div>
 
+              {/* Right — challenges + solutions */}
+              <motion.div
+                className="space-y-10"
+                initial={{ opacity: 0, x: 24 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.7 }}
+              >
                 {project.overview.challenges && (
-                  <div className="space-y-4">
-                    <h4 className="text-xl font-bold text-gray-900">
-                      Key Challenges
-                    </h4>
+                  <div>
+                    <h3 className="text-white font-bold text-lg mb-4">Key Challenges</h3>
                     <ul className="space-y-3">
-                      {project.overview.challenges.map((challenge, i) => (
-                        <li
-                          key={`challenge-${i}`}
-                          className="flex items-start gap-3 text-gray-700"
-                        >
-                          <span className="flex-shrink-0 w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center text-sm font-bold mt-0.5">
+                      {project.overview.challenges.map((c, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#E8192C]/10 border border-[#E8192C]/25
+                                           text-[#E8192C] text-[9px] font-black flex items-center justify-center mt-0.5">
                             {i + 1}
                           </span>
-                          <span className="text-base md:text-lg">
-                            {challenge}
-                          </span>
+                          <span className="text-white/45 text-sm leading-relaxed">{c}</span>
                         </li>
                       ))}
                     </ul>
@@ -172,206 +167,163 @@ const ProjectCaseStudy = () => {
                 )}
 
                 {project.overview.solutions && (
-                  <div className="space-y-4">
-                    <h4 className="text-xl font-bold text-gray-900">
-                      Our Approach
-                    </h4>
+                  <div>
+                    <h3 className="text-white font-bold text-lg mb-4">Our Approach</h3>
                     <ul className="space-y-3">
-                      {project.overview.solutions.map((solution, i) => (
-                        <li
-                          key={`solution-${i}`}
-                          className="flex items-start gap-3 text-gray-700"
-                        >
-                          <span className="flex-shrink-0 w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-sm font-bold mt-0.5">
+                      {project.overview.solutions.map((s, i) => (
+                        <li key={i} className="flex items-start gap-3">
+                          <span className="flex-shrink-0 w-5 h-5 rounded-full bg-green-500/10 border border-green-500/25
+                                           text-green-400 text-[9px] font-black flex items-center justify-center mt-0.5">
                             ✓
                           </span>
-                          <span className="text-base md:text-lg">
-                            {solution}
-                          </span>
+                          <span className="text-white/45 text-sm leading-relaxed">{s}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
                 )}
-
-                {project.overview.liveLink && (
-                  <a
-                    href={project.overview.liveLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 bg-gray-900 text-white px-6 py-3 rounded-lg font-medium hover:bg-gray-800 transition-colors"
-                  >
-                    View Live Project
-                    <ArrowUpRight className="w-5 h-5" />
-                  </a>
-                )}
-              </motion.div>
-
-              {/* Right: Image */}
-              <motion.div
-                className="relative"
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, amount: 0.3 }}
-                transition={{ duration: 0.8 }}
-              >
-                <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-                  <img
-                    src={project.overview.image || heroImage}
-                    alt={project.overview.headline || project.title}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
               </motion.div>
             </div>
           </div>
         </section>
       )}
 
-      {/* === KEY FEATURES SECTION === */}
-      {project.features && project.features.length > 0 && (
-        <section className="w-full min-h-screen flex items-center justify-center bg-gray-50 py-20 md:py-32">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+      {/* ── FEATURES ── */}
+      {project.features?.length > 0 && (
+        <section className="w-full py-20 md:py-28 border-t border-white/6" style={{ background: "#0A0A0A" }}>
+          <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              className="text-center mb-14"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
-              <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className="text-sm font-semibold text-gray-500 tracking-wider uppercase mb-4">
-                  Features
-                </h2>
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
-                  Key Capabilities
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {project.features.map((feature, i) => (
-                  <motion.div
-                    key={feature.id || i}
-                    className="bg-white p-8 rounded-2xl hover:shadow-xl transition-all duration-300 border border-gray-100"
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                    whileHover={{ y: -4 }}
-                  >
-                    {feature.icon && (
-                      <div className="w-14 h-14 rounded-xl bg-gray-900 text-white flex items-center justify-center font-bold text-xl mb-6">
-                        {feature.icon}
-                      </div>
-                    )}
-                    <h4 className="text-xl font-bold text-gray-900 mb-3">
-                      {feature.title}
-                    </h4>
-                    <p className="text-gray-600 leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+              <span className="text-[#E8192C] text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">Features</span>
+              <h2 className="text-3xl md:text-4xl font-black text-white">Key Capabilities</h2>
             </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {project.features.map((f, i) => (
+                <motion.div
+                  key={f.id || i}
+                  className="group relative rounded-2xl border border-white/6 p-6 hover:border-[#E8192C]/25
+                             transition-all duration-300 overflow-hidden"
+                  style={{ background: "#111" }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.07 }}
+                  whileHover={{ y: -4 }}
+                >
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{ background: "radial-gradient(circle at 30% 0%, rgba(232,25,44,0.07) 0%, transparent 65%)" }} />
+                  <div className="text-3xl mb-4">{f.icon}</div>
+                  <h3 className="text-white font-bold text-base mb-2">{f.title}</h3>
+                  <p className="text-white/35 text-sm leading-relaxed">{f.description}</p>
+                  <div className="absolute bottom-0 left-0 h-[2px] w-0 group-hover:w-full
+                                  bg-gradient-to-r from-[#E8192C] to-transparent rounded-full transition-all duration-500" />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
       )}
 
-      {/* === RESULTS & IMPACT SECTION === */}
-      {project.results && project.results.length > 0 && (
-        <section className="w-full min-h-screen flex items-center justify-center bg-white py-20 md:py-32">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+      {/* ── RESULTS ── */}
+      {project.results?.length > 0 && (
+        <section className="w-full py-20 md:py-28 border-t border-white/6">
+          <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              className="text-center mb-14"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
-              <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className="text-sm font-semibold text-gray-500 tracking-wider uppercase mb-4">
-                  Impact
-                </h2>
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
-                  Measurable Results
-                </h3>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {project.results.map((item, i) => (
-                  <motion.div
-                    key={item.id || i}
-                    className="relative bg-gradient-to-br from-gray-50 to-white p-8 md:p-10 rounded-2xl border border-gray-100 overflow-hidden group hover:shadow-xl transition-all duration-300"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                  >
-                    <div className="absolute top-0 right-0 w-32 h-32 bg-gray-900/5 rounded-full -mr-16 -mt-16 group-hover:scale-150 transition-transform duration-500" />
-
-                    {item.metric && (
-                      <motion.p
-                        className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 mb-4"
-                        initial={{ scale: 0.5, opacity: 0 }}
-                        whileInView={{ scale: 1, opacity: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: i * 0.1 + 0.2 }}
-                      >
-                        {item.metric}
-                      </motion.p>
-                    )}
-                    <p className="text-gray-600 text-lg leading-relaxed">
-                      {item.text}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
+              <span className="text-[#E8192C] text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">Impact</span>
+              <h2 className="text-3xl md:text-4xl font-black text-white">Measurable Results</h2>
             </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              {project.results.map((r, i) => (
+                <motion.div
+                  key={r.id || i}
+                  className="relative rounded-2xl border border-white/6 p-8 md:p-10 overflow-hidden group"
+                  style={{ background: "#0F0F0F" }}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                >
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: "radial-gradient(circle at 80% 20%, rgba(232,25,44,0.06) 0%, transparent 60%)" }} />
+                  <p className="text-5xl md:text-6xl font-black text-[#E8192C] mb-3 leading-none">{r.metric}</p>
+                  <p className="text-white/40 text-base leading-relaxed">{r.text}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
       )}
 
-      {/* === TECH STACK SECTION === */}
-      {project.techStack && project.techStack.length > 0 && (
-        <section className="w-full min-h-screen flex items-center justify-center bg-gray-50 py-20 md:py-32">
-          <div className="max-w-7xl mx-auto px-6 md:px-12">
+      {/* ── TECH STACK ── */}
+      {project.techStack?.length > 0 && (
+        <section className="w-full py-20 md:py-28 border-t border-white/6" style={{ background: "#0A0A0A" }}>
+          <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              className="text-center mb-14"
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
             >
-              <div className="text-center max-w-3xl mx-auto mb-16">
-                <h2 className="text-sm font-semibold text-gray-500 tracking-wider uppercase mb-4">
-                  Technologies
-                </h2>
-                <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                  Built With Modern Tools
-                </h3>
-                <p className="text-gray-600 text-lg">
-                  Leveraging industry-leading technologies to deliver
-                  exceptional results
-                </p>
-              </div>
-
-              <div className="flex flex-wrap justify-center gap-4">
-                {project.techStack.map((tech, i) => (
-                  <motion.div
-                    key={i}
-                    className="bg-white px-6 py-3 rounded-lg font-medium text-gray-900 border border-gray-200 hover:border-gray-900 hover:shadow-lg transition-all duration-300 cursor-default"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.3, delay: i * 0.05 }}
-                    whileHover={{ y: -2 }}
-                  >
-                    {tech}
-                  </motion.div>
-                ))}
-              </div>
+              <span className="text-[#E8192C] text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">Technologies</span>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-3">Built With Modern Tools</h2>
+              <p className="text-white/35 text-base">
+                Leveraging industry-leading technologies to deliver exceptional results
+              </p>
             </motion.div>
+
+            <div className="flex flex-wrap justify-center gap-3">
+              {project.techStack.map((tech, i) => (
+                <motion.span
+                  key={i}
+                  className="px-5 py-2.5 rounded-full border border-white/8 text-white/60 text-sm font-medium
+                             hover:border-[#E8192C]/40 hover:text-white hover:bg-[#E8192C]/5 transition-all duration-300 cursor-default"
+                  style={{ background: "#111" }}
+                  initial={{ opacity: 0, scale: 0.85 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: i * 0.06 }}
+                  whileHover={{ y: -2 }}
+                >
+                  {tech}
+                </motion.span>
+              ))}
+            </div>
           </div>
         </section>
       )}
+
+      {/* ── FOOTER CTA ── */}
+      <section className="w-full py-20 border-t border-white/6 text-center">
+        <div className="max-w-2xl mx-auto px-6">
+          <p className="text-white/25 text-xs tracking-widest uppercase mb-6">Next Step</p>
+          <h2 className="text-3xl md:text-4xl font-black text-white mb-6">
+            Ready to build something <span className="text-[#E8192C]">great?</span>
+          </h2>
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <Link
+              to="/case-study"
+              className="px-6 py-3 rounded-full border border-white/10 text-white/50 text-sm font-semibold
+                         hover:text-white hover:border-white/30 transition-all duration-300"
+            >
+              ← More Case Studies
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

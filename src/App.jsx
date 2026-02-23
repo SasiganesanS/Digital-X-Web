@@ -33,6 +33,7 @@ import MobileMarketingCombo from "./components/pricing/MobileMarketingCombo";
 import BlogPage from "./components/pricing/BlogPage";
 import MainBlogPage from "./components/MainBlogPage";
 import ProjectCaseStudy from "./components/ProjectCaseStudy";
+import CaseStudy from "./components/CaseStudy";
 // MERGED: Added new imports from development
 import PlatformPlanPage from "./components/PlatformPlanPage";
 
@@ -72,17 +73,6 @@ const HomePage = () => {
   return (
     <AnimatedPage>
       <Home />
-      <About1 />
-      <TrustedBy />
-      <div id="projects">
-        <FeaturedProjects />
-      </div>
-      <ServiceCard />
-      {/* <Services1 /> */}
-      <Testimonials1 />
-      {/* <Homesection3 /> */}
-      <Contact_page />
-      {/* <Contact /> */}
     </AnimatedPage>
   );
 };
@@ -256,12 +246,22 @@ const AppRoutes = () => {
             </AnimatedPage>
           }
         />
-        
+
         <Route
           path="/blog/:id"
           element={
             <AnimatedPage>
               <BlogPage />
+            </AnimatedPage>
+          }
+        />
+
+        {/* --- Case Study Listing --- */}
+        <Route
+          path="/case-study"
+          element={
+            <AnimatedPage>
+              <CaseStudy />
             </AnimatedPage>
           }
         />
@@ -296,83 +296,11 @@ const AppRoutes = () => {
 // MERGED: This MainLayout component now contains logic from BOTH branches
 // ===================================================================
 const MainLayout = () => {
-  // State from your original App component
   const [showContactForm, setShowContactForm] = useState(false);
-
-  // This is our new state for the Navbar
-  const [isOverDarkSection, setIsOverDarkSection] = useState(false);
-
-  // Get the current location to detect route changes
   const location = useLocation();
 
-  // MERGED: Logic from development's AppLayout
   // Check if current route is a mobile-only page (no navbar/footer)
-  const isMobilePlanPage =
-    location.pathname === "/platform-plan";
-
-  // Logic from your homepage-revamp branch
-  useEffect(() => {
-    // If we're on a mobile plan page, don't run the observer
-    if (isMobilePlanPage) {
-      setIsOverDarkSection(false);
-      return;
-    }
-
-    const options = {
-      root: null,
-      rootMargin: "0px 0px -90% 0px", // Triggers when a section enters the top 10%
-      threshold: 0,
-    };
-
-    let observer = null;
-
-    const setupObserver = () => {
-      // Clean up existing observer
-      if (observer) {
-        observer.disconnect();
-      }
-
-      observer = new IntersectionObserver((entries) => {
-        const isIntersecting = entries.some((entry) => entry.isIntersecting);
-        setIsOverDarkSection(isIntersecting);
-      }, options);
-
-      const darkSections = document.querySelectorAll(".dark-section");
-
-      if (darkSections.length > 0) {
-        darkSections.forEach((section) => observer.observe(section));
-      } else {
-        // No dark sections found, ensure navbar is in light mode
-        setIsOverDarkSection(false);
-      }
-    };
-
-    // Setup observer immediately
-    setupObserver();
-
-    // Also setup after a delay to catch dynamically rendered content
-    const timeouts = [100, 300, 500, 1000].map((delay) =>
-      setTimeout(setupObserver, delay)
-    );
-
-    // Re-check when scrolling (to handle cases where sections load async)
-    let scrollTimeout;
-    const handleScroll = () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(setupObserver, 100);
-    };
-
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => {
-      timeouts.forEach(clearTimeout);
-      clearTimeout(scrollTimeout);
-      window.removeEventListener("scroll", handleScroll);
-      if (observer) {
-        observer.disconnect();
-      }
-    };
-  }, [location.pathname, isMobilePlanPage]); // Re-runs on route change
+  const isMobilePlanPage = location.pathname === "/platform-plan";
 
   // MERGED: Return logic from development's AppLayout
   if (isMobilePlanPage) {
@@ -380,76 +308,75 @@ const MainLayout = () => {
     return <AppRoutes />;
   }
 
-  // Regular pages: with navbar and footer (your branch's logic)
+  // Regular pages: with navbar and footer
   return (
-    <div>
+    <div style={{ backgroundColor: "#080808", minHeight: "100vh" }}>
       <Navbar
         setShowContactForm={setShowContactForm}
-        isOverDarkSection={isOverDarkSection}
       />
       <ContactForm
         isOpen={showContactForm}
         onClose={() => setShowContactForm(false)}
       />
-       {/* Updates Badge - Only visible on home page */}
+      {/* Updates Badge - Only visible on home page */}
       {location.pathname === "/" && (
         <div className="fixed bottom-6 right-6 z-[9999] group">
-          <div 
-          className="relative rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] overflow-hidden transform hover:scale-105 transition-all duration-300"
-          style={{
-            background: 'rgba(255, 255, 255, 0.05)',
-            backdropFilter: 'blur(20px) saturate(180%)',
-            WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-            border: '1px solid rgba(255, 255, 255, 0.2)',
-            boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37), inset 0 1px 1px 0 rgba(255, 255, 255, 0.3)',
-          }}
-        >
-          {/* Subtle gradient overlay for depth */}
-          <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 pointer-events-none"></div>
-          
-          {/* Hover glow */}
-          <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          
-          {/* Subtle animated shine */}
-          <div className="absolute -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:animate-[shine_1.5s_ease-in-out]"></div>
-          
-          <Link
-            to="/blog"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative z-10 flex flex-col items-center p-4 sm:p-5 space-y-2.5"
+          <div
+            className="relative rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.37)] overflow-hidden transform hover:scale-105 transition-all duration-300"
+            style={{
+              background: 'rgba(255, 255, 255, 0.05)',
+              backdropFilter: 'blur(20px) saturate(180%)',
+              WebkitBackdropFilter: 'blur(20px) saturate(180%)',
+              border: '1px solid rgba(255, 255, 255, 0.2)',
+              boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.37), inset 0 1px 1px 0 rgba(255, 255, 255, 0.3)',
+            }}
           >
-            {/* Icon container */}
-            <div className="relative">
-              <div className="absolute inset-0 bg-white/20 rounded-full animate-ping opacity-75"></div>
-              <div 
-                className="relative rounded-full p-2.5 sm:p-3 shadow-[0_4px_16px_rgba(255,255,255,0.2)]"
-                style={{
-                  background: 'rgba(255, 255, 255, 0.15)',
-                  backdropFilter: 'blur(10px)',
-                  WebkitBackdropFilter: 'blur(10px)',
-                }}
-              >
-                <img
-                  src={FavIcon}
-                  alt="Praskla Updates"
-                  className="w-9 h-9 sm:w-11 sm:h-11 object-contain drop-shadow-lg"
-                />
+            {/* Subtle gradient overlay for depth */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-white/5 pointer-events-none"></div>
+
+            {/* Hover glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-400/20 via-transparent to-blue-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+            {/* Subtle animated shine */}
+            <div className="absolute -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-1000 group-hover:animate-[shine_1.5s_ease-in-out]"></div>
+
+            <Link
+              to="/blog"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative z-10 flex flex-col items-center p-4 sm:p-5 space-y-2.5"
+            >
+              {/* Icon container */}
+              <div className="relative">
+                <div className="absolute inset-0 bg-white/20 rounded-full animate-ping opacity-75"></div>
+                <div
+                  className="relative rounded-full p-2.5 sm:p-3 shadow-[0_4px_16px_rgba(255,255,255,0.2)]"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.15)',
+                    backdropFilter: 'blur(10px)',
+                    WebkitBackdropFilter: 'blur(10px)',
+                  }}
+                >
+                  <img
+                    src={FavIcon}
+                    alt="Praskla Updates"
+                    className="w-9 h-9 sm:w-11 sm:h-11 object-contain drop-shadow-lg"
+                  />
+                </div>
               </div>
-            </div>
-            
-            {/* Text with glass effect */}
-            <div className="text-center space-y-0.5">
-              <p className=" font-semibold text-xs sm:text-sm tracking-wider">
-                Latest
-              </p>
-              <p className="text-purple font-semibold text-xs sm:text-sm tracking-wider">
-                Updates
-              </p>
-            </div>
-            
-            
-          </Link>
+
+              {/* Text with glass effect */}
+              <div className="text-center space-y-0.5">
+                <p className=" font-semibold text-xs sm:text-sm tracking-wider">
+                  Latest
+                </p>
+                <p className="text-purple font-semibold text-xs sm:text-sm tracking-wider">
+                  Updates
+                </p>
+              </div>
+
+
+            </Link>
           </div>
         </div>
       )}

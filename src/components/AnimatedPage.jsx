@@ -1,26 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-// These are the animation settings
+// Pure opacity crossfade — no Y-slide to avoid layout gaps that expose the background
 const pageVariants = {
-  initial: {
-    opacity: 0,
-    y: 20 // Start 20px down
-  },
-  in: {
-    opacity: 1,
-    y: 0 // Animate to 0
-  },
-  out: {
-    opacity: 0,
-    y: -20 // Exit 20px up
-  }
+  initial: { opacity: 0 },
+  in: { opacity: 1 },
+  out: { opacity: 0 },
 };
 
 const pageTransition = {
   type: "tween",
-  ease: "anticipate",
-  duration: 0.5
+  ease: "easeInOut",
+  duration: 0.3,
 };
 
 const AnimatedPage = ({ children }) => {
@@ -31,6 +22,8 @@ const AnimatedPage = ({ children }) => {
       exit="out"
       variants={pageVariants}
       transition={pageTransition}
+      // Always fill the viewport with the dark bg so no white shows through during fade
+      style={{ minHeight: "100vh", backgroundColor: "#080808" }}
     >
       {children}
     </motion.div>
