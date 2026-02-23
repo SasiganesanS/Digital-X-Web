@@ -9,8 +9,10 @@ const Navbar = ({ setShowContactForm }) => {
   const location = useLocation();
   const navRef = useRef(null);
 
-  const activeTab =
-    location.pathname === "/" ? "home" : location.pathname.slice(1);
+  // HashRouter puts the route in location.hash (e.g. "#/case-study")
+  // location.pathname is always "/" with HashRouter
+  const rawHash = location.hash.replace(/^#\/?/, ""); // strips "#/" or "#"
+  const activeTab = rawHash === "" ? "home" : rawHash.split("/")[0];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -188,7 +190,10 @@ const Navbar = ({ setShowContactForm }) => {
             <Link
               key={path}
               to={to}
-              onClick={() => setIsOpen(false)}
+              onClick={() => {
+                setIsOpen(false);
+                setIsVisible(true); // prevent scroll-hide from blocking navigation on mobile
+              }}
               className={`flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200
                 ${activeTab === path
                   ? "bg-[#E8192C]/15 text-[#E8192C] border border-[#E8192C]/30"
