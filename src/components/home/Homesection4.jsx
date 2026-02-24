@@ -93,7 +93,7 @@ const OurServices = () => {
   return (
     <section
       id="services"
-      className="relative w-full overflow-hidden pt-0 pb-6 md:pb-10"
+      className="relative w-full overflow-hidden pt-12 md:pt-20 lg:pt-28 pb-10 md:pb-16"
       style={{ background: "#0A0A0A" }}
     >
       {/* Background */}
@@ -108,7 +108,7 @@ const OurServices = () => {
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16 focus-within:z-20">
 
         {/* ── Header ── */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-20 mb-12">
@@ -116,14 +116,14 @@ const OurServices = () => {
             className="flex-1"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6 }}
           >
             <div className="inline-flex items-center gap-2 mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8192C] animate-pulse" />
               <span className="text-[#E8192C] text-xs font-semibold tracking-[0.2em] uppercase">Our Services</span>
             </div>
-            <h2 className="text-[clamp(1.85rem,5.5vw,3.25rem)] font-black leading-[1.1] tracking-tight text-white">
+            <h2 className="text-[clamp(1.85rem,5.5vw,3.25rem)] font-black leading-tight tracking-tight text-white">
               Everything you need to{" "}
               <span className="text-[#E8192C]">grow</span>
             </h2>
@@ -133,7 +133,7 @@ const OurServices = () => {
             className="flex-1 text-white/45 text-base md:text-lg leading-relaxed self-end lg:max-w-xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
             We drive brand growth through thoughtful strategy, creative storytelling, and
@@ -146,7 +146,7 @@ const OurServices = () => {
           className="flex flex-col lg:flex-row gap-4 lg:gap-8"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div
@@ -210,7 +210,7 @@ const OurServices = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -16 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="h-full rounded-2xl border border-white/8 p-5 md:p-7 lg:p-10 flex flex-col justify-between overflow-hidden relative"
+                className="h-full rounded-2xl border border-white/8 p-5 md:p-7 lg:p-10 flex flex-col justify-between relative"
                 style={{ background: "#111" }}
               >
                 {/* Background glow */}
