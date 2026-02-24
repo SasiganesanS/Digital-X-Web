@@ -94,7 +94,7 @@ const OurServices = () => {
     <section
       id="services"
       className="relative w-full overflow-hidden pt-12 md:pt-20 lg:pt-28 pb-10 md:pb-16"
-      style={{ background: "#0A0A0A" }}
+      style={{ background: "#0A0A0A", zIndex: 0 }}
     >
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">

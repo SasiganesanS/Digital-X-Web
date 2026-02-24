@@ -183,8 +183,8 @@ const FeaturedWorks = () => {
   return (
     <section
       id="projects"
-      className="relative w-full overflow-hidden pt-8 md:pt-12 pb-2"
-      style={{ background: "#080808" }}
+      className="relative w-full overflow-visible pt-12 md:pt-20 pb-20 md:pb-32"
+      style={{ background: "#080808", zIndex: 1 }}
     >
       {/* Background */}
       <div className="absolute inset-0 pointer-events-none">
@@ -235,7 +235,7 @@ const FeaturedWorks = () => {
 
       <div
         className="relative z-10"
-        style={{ height: `calc(${projects.length} * 41.75vh)` }}
+        style={{ height: `calc(${projects.length} * 80vh)` }}
       >
         {projects.map((project, index) => (
           <ProjectCard
