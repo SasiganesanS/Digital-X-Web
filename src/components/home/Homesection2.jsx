@@ -49,7 +49,16 @@ const projects = [
 /* ─── Single sticky card ─── */
 const ProjectCard = ({ project, index, total }) => {
   const ref = useRef(null);
-  const topOffset = 80 + index * 14;
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  const topOffset = isMobile ? (60 + index * 40) : (80 + index * 14);
 
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -75,8 +84,8 @@ const ProjectCard = ({ project, index, total }) => {
       }}
     >
       <div
-        className="relative w-full max-w-5xl rounded-2xl md:rounded-3xl border border-white/8 overflow-hidden"
-        style={{ background: project.bg, minHeight: 280 }}
+        className="relative w-full max-w-[min(1024px,92vw)] rounded-2xl md:rounded-3xl border border-white/8 overflow-hidden"
+        style={{ background: project.bg }}
       >
         {/* Red glow top-left */}
         <div
@@ -89,28 +98,28 @@ const ProjectCard = ({ project, index, total }) => {
 
         <div className="flex flex-col md:flex-row items-stretch gap-0">
           {/* Left — project info */}
-          <div className="flex-1 p-8 md:p-10 flex flex-col justify-between">
+          <div className="flex-1 p-5 md:p-8 lg:p-10 flex flex-col justify-between">
             <div>
               {/* Project number + tag row */}
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-4 md:mb-6">
                 <span
-                  className="font-black text-[#E8192C]/20 text-5xl md:text-6xl leading-none select-none"
+                  className="font-black text-[#E8192C]/20 text-4xl md:text-6xl leading-none select-none"
                   aria-hidden
                 >
                   {project.id}
                 </span>
-                <div className="flex flex-col gap-1">
-                  <span className="text-[10px] text-white/30 uppercase tracking-[0.2em] font-medium">
+                <div className="flex flex-col gap-0.5 md:gap-1">
+                  <span className="text-[9px] md:text-[10px] text-white/30 uppercase tracking-[0.2em] font-medium">
                     {project.tag}
                   </span>
-                  <h3 className="text-2xl md:text-3xl font-black text-white leading-tight">
+                  <h3 className="text-xl md:text-3xl font-black text-white leading-tight">
                     {project.name}
                   </h3>
                 </div>
               </div>
 
               {/* Service chips */}
-              <div className="flex flex-wrap gap-2 mb-8">
+              <div className="flex flex-wrap gap-2 mb-5 md:mb-8">
                 {project.services.map((svc, i) => (
                   <span
                     key={i}
@@ -139,7 +148,7 @@ const ProjectCard = ({ project, index, total }) => {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </span>
-              <span className="text-white/60 text-sm font-medium group-hover:text-white transition-colors duration-300">
+              <span className="text-white/60 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">
                 View Case Study
               </span>
             </Link>
@@ -147,20 +156,20 @@ const ProjectCard = ({ project, index, total }) => {
 
           {/* Right — visual panel */}
           <div
-            className="w-full md:w-[260px] lg:w-[320px] flex-shrink-0 flex items-center justify-center
-                       border-t md:border-t-0 md:border-l border-white/5 p-8"
+            className="w-full md:w-[220px] lg:w-[280px] flex-shrink-0 flex items-center justify-center
+                       border-t md:border-t-0 md:border-l border-white/5 p-4 md:p-6"
           >
-            <div className="flex flex-col items-center gap-4 text-center">
+            <div className="flex flex-row md:flex-col items-center gap-4 text-center">
               {/* Emoji icon in a glowing container */}
               <div
-                className="w-20 h-20 rounded-2xl flex items-center justify-center text-4xl
+                className="w-14 h-14 md:w-20 md:h-20 rounded-xl md:rounded-2xl flex items-center justify-center text-3xl md:text-4xl
                            border border-[#E8192C]/20 shadow-[0_0_30px_rgba(232,25,44,0.1)]"
                 style={{ background: "rgba(232,25,44,0.06)" }}
               >
                 {project.icon}
               </div>
-              <div className="w-8 h-px bg-[#E8192C]/30" />
-              <p className="text-white/20 text-xs uppercase tracking-widest">Project {project.id}</p>
+              <div className="hidden md:block w-8 h-px bg-[#E8192C]/30" />
+              <p className="text-white/20 text-[10px] md:text-xs uppercase tracking-widest">Project {project.id}</p>
             </div>
           </div>
         </div>
@@ -174,7 +183,7 @@ const FeaturedWorks = () => {
   return (
     <section
       id="projects"
-      className="relative w-full overflow-hidden py-14 md:py-20"
+      className="relative w-full overflow-hidden pt-12 md:pt-16 pb-7"
       style={{ background: "#080808" }}
     >
       {/* Background */}
@@ -205,7 +214,7 @@ const FeaturedWorks = () => {
                 Featured Works
               </span>
             </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.1] tracking-tight text-white">
+            <h2 className="text-[clamp(1.85rem,5.5vw,3.25rem)] font-black leading-[1.1] tracking-tight text-white">
               Brands We've{" "}
               <span className="text-[#E8192C]">Scaled</span>
             </h2>
@@ -227,7 +236,7 @@ const FeaturedWorks = () => {
       {/* Sticky scroll cards */}
       <div
         className="relative z-10"
-        style={{ height: `${projects.length * 40}vh` }}
+        style={{ height: `calc(${projects.length} * 40vh)` }}
       >
         {projects.map((project, index) => (
           <ProjectCard

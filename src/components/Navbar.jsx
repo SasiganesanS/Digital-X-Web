@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const Navbar = ({ setShowContactForm }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,12 +7,11 @@ const Navbar = ({ setShowContactForm }) => {
   const [scrolled, setScrolled] = useState(false);
   const [lastScrollTop, setLastScrollTop] = useState(0);
   const location = useLocation();
+  const navigate = useNavigate();
   const navRef = useRef(null);
 
-  // HashRouter puts the route in location.hash (e.g. "#/case-study")
-  // location.pathname is always "/" with HashRouter
-  const rawHash = location.hash.replace(/^#\/?/, ""); // strips "#/" or "#"
-  const activeTab = rawHash === "" ? "home" : rawHash.split("/")[0];
+  const activeTab =
+    location.pathname === "/" ? "home" : location.pathname.slice(1).split("/")[0];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -174,38 +173,58 @@ const Navbar = ({ setShowContactForm }) => {
         </div>
       </nav>
 
+      {/* ── Mobile Menu Backdrop ── */}
+      {isOpen && (
+        <div
+          className="lg:hidden fixed inset-0 z-[9998] bg-black/20"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+
       {/* ── Mobile Menu ── */}
       <div
-        className={`lg:hidden fixed top-[80px] left-4 right-4 z-40 rounded-2xl border border-white/10
-                    transition-all duration-300 ease-out overflow-hidden
+        className={`lg:hidden fixed top-[80px] left-4 right-4 z-[9999] rounded-2xl border border-white/10
+                    transition-[opacity,transform] duration-300 ease-out overflow-hidden
                     ${isOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-3 pointer-events-none"}`}
         style={{
-          background: "rgba(10, 10, 10, 0.95)",
+          background: "rgba(10, 10, 10, 0.97)",
           backdropFilter: "blur(20px)",
           WebkitBackdropFilter: "blur(20px)",
         }}
       >
         <div className="p-3 flex flex-col gap-1">
           {navLinks.map(({ path, to, label }) => (
-            <Link
+            <button
               key={path}
-              to={to}
-              onClick={() => {
+              style={{ touchAction: "manipulation", cursor: "pointer" }}
+              onTouchEnd={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                console.log("[NavMobile-touch] navigating to →", to);
                 setIsOpen(false);
-                setIsVisible(true); // prevent scroll-hide from blocking navigation on mobile
+                setIsVisible(true);
+                navigate(to);
               }}
-              className={`flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200
+              onClick={(e) => {
+                e.stopPropagation();
+                console.log("[NavMobile-click] navigating to →", to);
+                setIsOpen(false);
+                setIsVisible(true);
+                navigate(to);
+              }}
+              className={`flex items-center w-full text-left px-4 py-3 rounded-xl text-sm font-medium transition-colors duration-200
                 ${activeTab === path
                   ? "bg-[#E8192C]/15 text-[#E8192C] border border-[#E8192C]/30"
                   : "text-white/70 hover:text-white hover:bg-white/5"
                 }`}
             >
               {label}
-            </Link>
+            </button>
           ))}
 
           {/* Mobile CTA */}
           <button
+            style={{ touchAction: "manipulation", cursor: "pointer" }}
             onClick={() => { setShowContactForm(true); setIsOpen(false); }}
             className="mt-2 w-full py-3 rounded-xl bg-[#E8192C] text-white font-semibold text-sm
                        hover:bg-[#ff2235] transition-colors duration-200

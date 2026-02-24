@@ -9,6 +9,7 @@ import janarathanan from "../assets/team/Janarthanan.png";
 import yogech from "../assets/team/Yogech.png";
 import ram from "../assets/team/Ramachandran.png";
 import Balaji from "../assets/team/balaji.jpg"
+import BaskaranK from "../assets/team/Baskaran-Krishnaswamy.png"
 
 import TeamHierarchy from "./TeamHierarchy";
 
@@ -19,7 +20,7 @@ const Teams = () => {
   const hierarchyData = {
     // CEO is at the top level
     1: { // Pranesh Kumar Baskaran (CEO)
-      directReports: [2, 3, 4, 5, 6, 17], // Updated to include the two directors
+      directReports: [2, 3, 4, 5, 6, 17, 21, 22], // Added Advisors
     },
     // Second level - Department Heads
     2: { // Rama Chandran Baskaran
@@ -46,7 +47,15 @@ const Teams = () => {
       directReports: [],
       reportingTo: 3,
     },
-    16: { // Janarthanan S
+    16: { // Ragavi
+      directReports: [],
+      reportingTo: 3,
+    },
+    21: { // Baskaran K
+      directReports: [],
+      reportingTo: 1,
+    },
+    22: { // Janarthanan S
       directReports: [],
       reportingTo: 1,
     },
@@ -61,19 +70,39 @@ const Teams = () => {
     {
       id: 1,
       name: "Pranesh Kumar Baskaran",
-      role: "Managing Director / CEO",
+      role: "CEO",
       image: pranesh,
-      bio: "Committed to delivering quality-assured software solutions that create lasting value. Guiding the team with strategic vision while fostering growth and long-term success.",
+      bio: "Committed to delivering quality-assured software solutions that generate sustainable value for all stakeholders. With a strategic vision and a focus on long-term growth, the CEO leads the organization by empowering teams, fostering innovation, and steering the company toward enduring success.",
       linkedin: "https://linkedin.com",
       email: "praneshkumarbaskaran@prasklatechnology.com",
       phone: "+91 95906 07783"
     },
     {
+      id: 21,
+      name: "Baskaran Krishnaswamy",
+      role: "Advisor",
+      image: BaskaranK,
+      bio: "Great businesses are built through informed decisions, forward thinking, and well-timed risks. My role is to guide and mentor leadership, navigate complex challenges, and ensure the organization stays ahead in an ever-evolving business landscape.",
+      linkedin: "https://linkedin.com",
+      email: "advisor@prasklatechnology.com",
+      phone: "+91 xxxxx xxxxx"
+    },
+    {
+      id: 22,
+      name: "Janarthanan S",
+      role: "Financial Advisor",
+      image: janarathanan,
+      bio: "Focused on ensuring financial resilience and strategic investments that support long-term growth. Disciplined financial planning and data-driven decision-making form the foundation of sustainable and scalable success.",
+      linkedin: "https://linkedin.com",
+      email: "janarthanan@prasklatechnology.com",
+      phone: "+91 63613 36181"
+    },
+    {
       id: 2,
       name: "Rama Chandran Baskaran",
-      role: "Legal Advisor / Director - Marketing",
+      role: "Legal Advisor & Director – Marketing",
       image: ram,
-      bio: "Strategic legal counsel and marketing expert, ensuring compliance while driving brand growth and market presence.",
+      bio: "Responsible for overseeing all legal governance while driving strategic marketing initiatives that unlock new business opportunities. Effective marketing is about crafting compelling narratives that build trust, strengthen brand identity, and connect meaningfully with audiences.",
       linkedin: "https://linkedin.com",
       email: "ramachandranbaskaran@prasklatechnology.com",
       phone: "+91 93644 33740"
@@ -151,8 +180,20 @@ const Teams = () => {
   };
 
   return (
-    <div className="min-h-screen py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden" style={{ background: "#080808" }}>
+      {/* Background accents */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-0 right-0 w-[clamp(300px,50vw,600px)] h-[clamp(300px,50vw,600px)] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(232,25,44,0.08) 0%, transparent 65%)", transform: "translate(20%, -20%)" }}
+        />
+        <div
+          className="absolute bottom-0 left-0 w-[clamp(300px,50vw,500px)] h-[clamp(300px,50vw,500px)] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", transform: "translate(-20%, 20%)" }}
+        />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -160,17 +201,17 @@ const Teams = () => {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-           <div className="inline-flex items-center border border-[#371445]/90 gap-2 px-3 py-1.5 bg-[#FFFFFF] rounded-full mb-6">
-                <Users className="w-4 h-4 text-[#4a1c5e]" />
-                <span className="text-sm font-semibold text-[#4a1c5e]">
-                  Our Team
-                </span>
-              </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-[#371445] mb-6">
+          <div className="inline-flex items-center border border-white/10 gap-2 px-3 py-1.5 bg-white/5 rounded-full mb-6 backdrop-blur-sm">
+            <Users className="w-4 h-4 text-[#E8192C]" />
+            <span className="text-sm font-semibold text-white/80">
+              Our Team
+            </span>
+          </div>
+          <h1 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
             Division Champions
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            We're building the future of software development.
+          <p className="text-lg text-white/40 max-w-2xl mx-auto">
+            We're building the future of technology and marketing through focused leadership and expert execution.
           </p>
         </motion.div>
 
@@ -186,25 +227,24 @@ const Teams = () => {
               className="group"
             >
               {/* MODIFIED: Added onClick to the entire card wrapper and cursor-pointer class */}
-              <div 
-                className={`relative bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-3xl transition-all duration-300 ${
-                  member.id !== 5 && member.id !== 6 && member.id !== 10 && member.id !== 16
-                    ? 'cursor-pointer' 
-                    : ''
-                }`}
+              <div
+                className={`relative bg-[#111] border border-white/5 rounded-3xl overflow-hidden shadow-2xl transition-all duration-300 ${member.id !== 5 && member.id !== 6 && member.id !== 10 && member.id !== 16
+                  ? 'cursor-pointer hover:border-[#E8192C]/40'
+                  : ''
+                  }`}
                 onClick={(e) => handleCardClick(member, e)}
               >
                 {/* Square Image Container */}
-                <div className="relative w-full aspect-square overflow-hidden bg-gradient-to-br from-purple-100 to-pink-100">
+                <div className="relative w-full aspect-square overflow-hidden bg-white/2">
                   <img
                     src={member.image}
                     alt={member.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  
+
                   {/* Gradient Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                  
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
                   {/* Social Icon Overlay */}
                   <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
                     <a
@@ -223,18 +263,18 @@ const Teams = () => {
 
                 {/* Info Section */}
                 <div className="p-5 text-center">
-                  <h3 className="text-lg font-bold text-gray-900 mb-1">
+                  <h3 className="text-lg font-bold text-white mb-1">
                     {member.name}
                   </h3>
-                  
+
                   {/* MODIFIED: Removed onClick and hover effects from role text */}
-                  <p className="text-sm text-[#371445] font-medium">
+                  <p className="text-sm text-[#E8192C] font-semibold">
                     {member.role}
                   </p>
                 </div>
 
                 {/* Decorative Corner Accent */}
-                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#371445]/10 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute top-0 right-0 w-20 h-20 bg-gradient-to-br from-[#E8192C]/5 to-transparent rounded-bl-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </motion.div>
           ))}

@@ -39,7 +39,7 @@ const DashboardCard = () => {
             initial={{ opacity: 0, x: 60 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.5, ease: "easeOut" }}
-            className="relative w-full max-w-[480px] mx-auto"
+            className="relative w-full max-w-[min(480px,90%)] mx-auto"
         >
             {/* Red glow behind */}
             <div className="absolute inset-0 rounded-2xl bg-[#E8192C]/15 blur-3xl scale-95 -z-10" />
@@ -192,7 +192,7 @@ const HeroSection = () => {
             <div className="absolute inset-0 pointer-events-none">
                 {/* Red glow — bottom left */}
                 <div
-                    className="absolute bottom-0 left-0 w-[650px] h-[650px] rounded-full"
+                    className="absolute bottom-0 left-0 w-[clamp(300px,50vw,650px)] h-[clamp(300px,50vw,650px)] rounded-full"
                     style={{
                         background: "radial-gradient(circle, rgba(232,25,44,0.12) 0%, transparent 65%)",
                         transform: "translate(-25%, 25%)",
@@ -200,7 +200,7 @@ const HeroSection = () => {
                 />
                 {/* Red glow — top right */}
                 <div
-                    className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full"
+                    className="absolute top-0 right-0 w-[clamp(250px,40vw,500px)] h-[clamp(250px,40vw,500px)] rounded-full"
                     style={{
                         background: "radial-gradient(circle, rgba(232,25,44,0.07) 0%, transparent 65%)",
                         transform: "translate(25%, -25%)",
@@ -248,7 +248,7 @@ const HeroSection = () => {
                             initial={{ opacity: 0, y: 24 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.7, delay: 0.1, ease: "easeOut" }}
-                            className="text-4xl sm:text-5xl md:text-[56px] lg:text-[58px] font-black leading-[1.1] tracking-tight text-white mb-6"
+                            className="text-[clamp(2.25rem,6vw,3.75rem)] font-black leading-[1.1] tracking-tight text-white mb-6"
                         >
                             Where brands evolve into{" "}
                             <span className="relative inline-block">

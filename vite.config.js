@@ -13,6 +13,12 @@ export default defineConfig({
       ],
     },
   },
+  server: {
+    historyApiFallback: true,
+  },
+  preview: {
+    historyApiFallback: true,
+  },
   build: {
     outDir: 'dist',
     sourcemap: true

@@ -93,7 +93,7 @@ const OurServices = () => {
   return (
     <section
       id="services"
-      className="relative w-full overflow-hidden py-14 md:py-20"
+      className="relative w-full overflow-hidden pt-0 pb-10 md:pb-16"
       style={{ background: "#0A0A0A" }}
     >
       {/* Background */}
@@ -123,7 +123,7 @@ const OurServices = () => {
               <span className="w-1.5 h-1.5 rounded-full bg-[#E8192C] animate-pulse" />
               <span className="text-[#E8192C] text-xs font-semibold tracking-[0.2em] uppercase">Our Services</span>
             </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.1] tracking-tight text-white">
+            <h2 className="text-[clamp(1.85rem,5.5vw,3.25rem)] font-black leading-[1.1] tracking-tight text-white">
               Everything you need to{" "}
               <span className="text-[#E8192C]">grow</span>
             </h2>
@@ -142,18 +142,17 @@ const OurServices = () => {
           </motion.p>
         </div>
 
-        {/* ── Tab layout ── */}
         <motion.div
-          className="flex flex-col lg:flex-row gap-4 lg:gap-6 min-h-[420px]"
+          className="flex flex-col lg:flex-row gap-4 lg:gap-8"
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          {/* LEFT — Tab list */}
           <div
             className="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible
-                       flex-shrink-0 lg:w-[260px] pb-2 lg:pb-0"
+                       flex-shrink-0 lg:basis-[280px] pb-2 lg:pb-0"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {services.map((svc, i) => {
               const isActive = i === active;
@@ -161,9 +160,9 @@ const OurServices = () => {
                 <button
                   key={svc.id}
                   onClick={() => setActive(i)}
-                  className="relative flex items-center gap-3 text-left rounded-xl px-4 py-3.5
-                             flex-shrink-0 lg:flex-shrink w-[200px] lg:w-full
-                             transition-all duration-300 group"
+                  className="relative flex items-center gap-3 text-left rounded-xl px-3 py-3 lg:px-4 lg:py-3.5
+                             flex-shrink-0 lg:flex-shrink w-auto min-w-[140px] sm:min-w-[170px] lg:w-full
+                             transition-colors duration-300 group"
                   style={{
                     background: isActive ? "#161616" : "transparent",
                     border: isActive ? "1px solid rgba(232,25,44,0.3)" : "1px solid rgba(255,255,255,0.05)",
@@ -211,7 +210,7 @@ const OurServices = () => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -16 }}
                 transition={{ duration: 0.35, ease: "easeOut" }}
-                className="h-full rounded-2xl border border-white/8 p-8 md:p-10 flex flex-col justify-between overflow-hidden relative"
+                className="h-full rounded-2xl border border-white/8 p-5 md:p-7 lg:p-10 flex flex-col justify-between overflow-hidden relative"
                 style={{ background: "#111" }}
               >
                 {/* Background glow */}
@@ -249,8 +248,8 @@ const OurServices = () => {
                   </div>
 
                   {/* Title + desc */}
-                  <h3 className="text-white font-black text-2xl md:text-3xl mb-3">{current.title}</h3>
-                  <p className="text-white/50 text-base leading-relaxed mb-8 max-w-xl">{current.desc}</p>
+                  <h3 className="text-white font-black text-xl md:text-2xl lg:text-3xl mb-3">{current.title}</h3>
+                  <p className="text-white/50 text-sm md:text-base leading-relaxed mb-6 md:mb-8 max-w-xl">{current.desc}</p>
 
                   {/* Tags */}
                   <div className="flex flex-wrap gap-2 mb-8">

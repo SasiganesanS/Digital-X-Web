@@ -83,14 +83,14 @@ const AboutSection = () => {
     return (
         <section
             id="about"
-            className="relative w-full overflow-hidden py-14 md:py-20"
+            className="relative w-full overflow-hidden py-10 md:py-16"
             style={{ background: "#0A0A0A" }}
         >
             {/* ── Background accents ── */}
             <div className="absolute inset-0 pointer-events-none">
                 {/* Top-right red glow */}
                 <div
-                    className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full"
+                    className="absolute top-0 right-0 w-[clamp(250px,45vw,500px)] h-[clamp(250px,45vw,500px)] rounded-full"
                     style={{
                         background: "radial-gradient(circle, rgba(232,25,44,0.08) 0%, transparent 65%)",
                         transform: "translate(20%, -20%)",
@@ -98,7 +98,7 @@ const AboutSection = () => {
                 />
                 {/* Bottom-left red glow */}
                 <div
-                    className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full"
+                    className="absolute bottom-0 left-0 w-[clamp(200px,35vw,400px)] h-[clamp(200px,35vw,400px)] rounded-full"
                     style={{
                         background: "radial-gradient(circle, rgba(232,25,44,0.06) 0%, transparent 65%)",
                         transform: "translate(-20%, 20%)",
@@ -117,7 +117,7 @@ const AboutSection = () => {
             <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
 
                 {/* ── Two-column header ── */}
-                <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 mb-20">
+                <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 mb-10 md:mb-20">
 
                     {/* Left — label + headline */}
                     <motion.div
@@ -138,7 +138,7 @@ const AboutSection = () => {
                         {/* Headline */}
                         <motion.h2
                             variants={fadeUp}
-                            className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.1] tracking-tight text-white"
+                            className="text-[clamp(1.85rem,5.5vw,3.25rem)] font-black leading-[1.1] tracking-tight text-white"
                         >
                             Empowering Brands through{" "}
                             <span className="relative inline-block">
@@ -241,7 +241,7 @@ const AboutSection = () => {
                                 className="group relative rounded-2xl border border-white/8 p-5 flex flex-col gap-4
                                            hover:border-[#E8192C]/40 transition-all duration-300
                                            cursor-default overflow-hidden flex-shrink-0"
-                                style={{ background: "#111", width: "220px" }}
+                                style={{ background: "#111", width: "clamp(180px, 20vw, 240px)" }}
                             >
                                 {/* Hover glow */}
                                 <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
@@ -278,7 +278,7 @@ const AboutSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.3 }}
-                    className="mt-8 rounded-2xl border border-white/8 px-8 py-7 flex flex-col sm:flex-row
+                    className="mt-8 rounded-2xl border border-white/8 px-5 py-5 md:px-8 md:py-7 flex flex-col sm:flex-row
                      items-start sm:items-center gap-4 sm:gap-8"
                     style={{ background: "#111" }}
                 >

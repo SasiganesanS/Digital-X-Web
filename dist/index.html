@@ -1,22 +1,50 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/assets/fav-67a16479.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Praskla Technology</title>
-    <style>
-      link[rel="icon"] {
-        border-radius: 50%;
-        overflow: hidden;
-      }
-    </style>
-    <script type="module" crossorigin src="/assets/index-8c61ece8.js"></script>
-    <link rel="stylesheet" href="/assets/index-9bfcd4a8.css">
-  </head>
-  <body>
-    <div id="root"></div>
-    
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/assets/fav-t9wPa3Nv.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DigitalX — Digital Marketing Agency</title>
+  <style>
+    html,
+    body,
+    #root {
+      background-color: #080808;
+      min-height: 100%;
+    }
+
+    link[rel="icon"] {
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index-DHniENzI.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-D6jv4dBX.css">
+</head>
+
+<body>
+  <div id="root">
+    <svg width="0" height="0" style="position: absolute">
+      <defs>
+        <filter id="wavy-glass">
+          <feTurbulence type="fractalNoise" baseFrequency="0.02 0.05" numOctaves="3" result="noise" />
+
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="20" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+
+        <filter id="liquid-distortion">
+          <feTurbulence type="fractalNoise" baseFrequency="0.01 0.03" numOctaves="1" result="turbulence">
+            <animate attributeName="baseFrequency" dur="10s" values="0.01 0.03;0.02 0.04;0.01 0.03"
+              repeatCount="indefinite" />
+          </feTurbulence>
+          <feDisplacementMap in="SourceGraphic" in2="turbulence" scale="15" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </defs>
+    </svg>
+  </div>
+  <div id="portal-root"></div>
+
+</body>
+
 </html>
-   

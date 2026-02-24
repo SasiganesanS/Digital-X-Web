@@ -15,8 +15,8 @@ import {
 // import logoLight from "../../assets/py.jpg"
 import pyLogo from "../../assets/py.png";
 import { motion, AnimatePresence } from "framer-motion";
-import Homesection3 from "../home/Homesection3";
 import { useState, useEffect } from "react";
+import Teams from "../Teams";
 
 const About = () => {
   const [index, setIndex] = useState(0)
@@ -444,252 +444,21 @@ const About = () => {
         </div>
       </div>
 
-      <Homesection3 />
+      {/* Our Team Section */}
+      <section className="relative overflow-hidden" style={{ background: "#080808" }}>
+        <Teams />
+      </section>
 
-      {/* Vision & Mission Section */}
+      {/* <Homesection3 /> */}
+
+      {/* Vision & Mission Section
       <div className="relative bg-white py-24 2xl:py-32 3xl:py-40 4xl:py-48">
-        <div className="w-[90%] max-w-[1280px] 2xl:max-w-[1920px] 3xl:max-w-[2560px] 4xl:max-w-[3440px] mx-auto">
-          {/* Section Title */}
-          <div className="text-center mb-16 2xl:mb-20 3xl:mb-24 4xl:mb-32">
-            <div className="inline-flex items-center border border-[#371445]/90 gap-2 px-3 py-1.5 2xl:px-4 2xl:py-2 3xl:px-5 3xl:py-2.5 4xl:px-6 4xl:py-3 bg-[#FFFFFF] rounded-full mb-6 2xl:mb-8 3xl:mb-10 4xl:mb-12">
-              <Sparkles className="w-4 h-4 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 4xl:w-7 4xl:h-7 text-[#4a1c5e]" />
-              <span className="text-sm 2xl:text-base 3xl:text-lg 4xl:text-xl font-semibold text-[#4a1c5e]">
-                Our Purpose
-              </span>
-            </div>
-            <h2 className="text-4xl md:text-5xl 2xl:text-6xl 3xl:text-7xl 4xl:text-8xl font-bold bg-gradient-to-br from-[#371445] via-[#4a1c5e] to-[#2a0e34] bg-clip-text text-transparent mb-3 2xl:mb-4 3xl:mb-6 4xl:mb-8 tracking-tight">
-              Vision & Mission
-            </h2>
-
-            <div className="h-1 2xl:h-1.5 3xl:h-2 4xl:h-2.5 w-24 2xl:w-28 3xl:w-32 4xl:w-36 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mx-auto" />
-          </div>
-
-          {/* Cards Container */}
-          <div className="space-y-8 2xl:space-y-10 3xl:space-y-12 4xl:space-y-16">
-            {/* Vision Card */}
-            <div className="group relative">
-              <div className="relative bg-gradient-to-bl from-pink-50/50 to-white rounded-3xl 2xl:rounded-4xl 3xl:rounded-5xl 4xl:rounded-6xl border-2 border-pink-100 overflow-hidden hover:border-purple-300 hover:shadow-2xl transition-all duration-500">
-                <div className="relative flex flex-col lg:flex-row items-center">
-                  {/* Left Content Section */}
-                  <div className="flex-1 p-10 md:p-14 lg:pr-8 2xl:p-16 3xl:p-20 4xl:p-24">
-                    <div className="mb-6 2xl:mb-8 3xl:mb-10 4xl:mb-12">
-                      <div className="inline-flex items-center gap-3 mb-4 2xl:mb-5 3xl:mb-6 4xl:mb-8">
-                        <div className="w-14 h-14 2xl:w-16 2xl:h-16 3xl:w-20 3xl:h-20 4xl:w-24 4xl:h-24 rounded-2xl 2xl:rounded-3xl 3xl:rounded-4xl 4xl:rounded-5xl bg-[#4a1c5e] flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-lg">
-                          <Eye
-                            className="w-7 h-7 2xl:w-8 2xl:h-8 3xl:w-10 3xl:h-10 4xl:w-12 4xl:h-12 text-white"
-                            strokeWidth={2.5}
-                          />
-                        </div>
-                        <h3 className="text-3xl md:text-4xl 2xl:text-5xl 3xl:text-6xl 4xl:text-7xl font-bold text-[#371445]">
-                          Powered by a Vision
-                        </h3>
-                      </div>
-                      <div className="h-1 2xl:h-1.5 3xl:h-2 4xl:h-2.5 w-20 2xl:w-24 3xl:w-28 4xl:w-32 bg-gradient-to-r from-[#7B2D9E] to-purple-400 rounded-full" />
-                    </div>
-
-                    <p className="text-gray-700 text-lg 2xl:text-xl 3xl:text-2xl 4xl:text-3xl leading-relaxed">
-                      To be a leading industry pioneer in software solutions and digital marketing within the next two
-                      years by delivering high-quality, innovative, and reliable technology services. We are committed
-                      to adopting sustainable green practices while empowering businesses with cutting-edge solutions
-                      that enhance their digital presence. Our goal is to establish ourselves as a trusted partner,
-                      ensuring long-term success for our clients and stakeholders through excellence, commitment, and
-                      environmental responsibility.
-                    </p>
-                  </div>
-
-                  {/* Right Decorative Section */}
-                  <div className="relative lg:w-[300px] 2xl:w-[400px] 3xl:w-[500px] 4xl:w-[600px] h-72 lg:h-auto lg:aspect-square p-8 lg:p-12 2xl:p-14 3xl:p-16 4xl:p-20">
-                    <div className="absolute inset-8 lg:inset-12 2xl:inset-14 3xl:inset-16 4xl:inset-20">
-                      <div className="absolute inset-0 rounded-full border-2 border-purple-300/40 animate-[spin_25s_linear_infinite]">
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 2xl:w-4 2xl:h-4 3xl:w-5 3xl:h-5 4xl:w-6 4xl:h-6 rounded-full bg-[#2a0e34]" />
-                      </div>
-                      <div className="absolute inset-6 rounded-full border-2 border-purple-200/40 animate-[spin_18s_linear_infinite_reverse]">
-                        <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-2 h-2 2xl:w-3 2xl:h-3 3xl:w-4 3xl:h-4 4xl:w-5 4xl:h-5 rounded-full bg-[#2a0e34]" />
-                      </div>
-                      <div className="absolute inset-12 rounded-full border border-purple-100/40 animate-[spin_12s_linear_infinite]" />
-
-                      {/* Center Orb */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="relative">
-                          <div className="absolute inset-0 bg-purple-400/20 rounded-full blur-2xl animate-[pulse_3s_ease-in-out_infinite]" />
-                          <div className="relative w-24 h-24 2xl:w-32 2xl:h-32 3xl:w-40 3xl:h-40 4xl:w-48 4xl:h-56 rounded-full bg-[#2a0e34] flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-700">
-                            <Eye
-                              className="w-12 h-12 2xl:w-14 2xl:h-14 3xl:w-16 3xl:h-16 4xl:w-20 4xl:h-20 text-white"
-                              strokeWidth={2}
-                            />
-                          </div>
-                          <div className="absolute inset-0 animate-[spin_8s_linear_infinite]">
-                            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2 h-2 2xl:w-3 2xl:h-3 3xl:w-4 3xl:h-4 4xl:w-5 4xl:h-5 rounded-full bg-[#2a0e34]" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Mission Card */}
-            <div className="group relative">
-              <div className="relative bg-gradient-to-bl from-pink-50/50 to-white rounded-3xl 2xl:rounded-4xl 3xl:rounded-5xl 4xl:rounded-6xl border-2 border-pink-100 overflow-hidden hover:border-pink-300 hover:shadow-2xl transition-all duration-500">
-                <div className="relative flex flex-col lg:flex-row-reverse items-center">
-                  {/* Right Content Section */}
-                  <div className="flex-1 p-10 md:p-14 lg:pl-8 2xl:p-16 3xl:p-20 4xl:p-24">
-                    <div className="mb-6 2xl:mb-8 3xl:mb-10 4xl:mb-12">
-                      <div className="inline-flex items-center gap-3 mb-4 2xl:mb-5 3xl:mb-6 4xl:mb-8">
-                        <div className="w-14 h-14 2xl:w-16 2xl:h-16 3xl:w-20 3xl:h-20 4xl:w-24 4xl:h-24 rounded-2xl 2xl:rounded-3xl 3xl:rounded-4xl 4xl:rounded-5xl bg-[#4a1c5e] flex items-center justify-center group-hover:scale-110 transition-transform duration-500 shadow-lg">
-                          <Target
-                            className="w-7 h-7 2xl:w-8 2xl:h-8 3xl:w-10 3xl:h-10 4xl:w-12 4xl:h-12 text-white"
-                            strokeWidth={2.5}
-                          />
-                        </div>
-                        <h3 className="text-3xl md:text-4xl 2xl:text-5xl 3xl:text-6xl 4xl:text-7xl font-bold text-[#371445]">
-                          Driven by a Mission
-                        </h3>
-                      </div>
-                      <div className="h-1 2xl:h-1.5 3xl:h-2 4xl:h-2.5 w-20 2xl:w-24 3xl:w-28 4xl:w-32 bg-gradient-to-r from-[#7B2D9E] to-purple-400 rounded-full" />
-                    </div>
-
-                    <p className="text-gray-700 text-lg 2xl:text-xl 3xl:text-2xl 4xl:text-3xl leading-relaxed">
-                      At Praskla Technology, our mission is to provide high-quality software solutions and result-driven
-                      digital marketing strategies that drive efficiency, innovation, and growth for businesses. We are
-                      dedicated to delivering value-driven technology that benefits all stakeholders while integrating
-                      sustainable green practices to reduce our environmental footprint. By continuously improving,
-                      prioritizing customer satisfaction, and helping our clients reach their consumers effectively, we
-                      aim to set new industry standards and build lasting relationships.
-                    </p>
-                  </div>
-
-                  {/* Left Decorative Section */}
-                  <div className="relative lg:w-[300px] 2xl:w-[400px] 3xl:w-[500px] 4xl:w-[600px] h-72 lg:h-auto lg:aspect-square p-8 lg:p-12 2xl:p-14 3xl:p-16 4xl:p-20">
-                    <div className="absolute inset-8 lg:inset-12 2xl:inset-14 3xl:inset-16 4xl:inset-20">
-                      <div className="absolute inset-0 rounded-full border-2 border-pink-300/40 animate-[spin_22s_linear_infinite_reverse]">
-                        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-3 h-3 2xl:w-4 2xl:h-4 3xl:w-5 3xl:h-5 4xl:w-6 4xl:h-6 rounded-full bg-[#2a0e34]" />
-                      </div>
-                      <div className="absolute inset-6 rounded-full border-2 border-pink-200/40 animate-[spin_16s_linear_infinite]">
-                        <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-2 h-2 2xl:w-3 2xl:h-3 3xl:w-4 3xl:h-4 4xl:w-5 4xl:h-5 rounded-full  bg-[#2a0e34]" />
-                      </div>
-                      <div className="absolute inset-12 rounded-full border border-pink-100/40 animate-[spin_10s_linear_infinite_reverse]" />
-
-                      {/* Center Orb */}
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="relative">
-                          <div
-                            className="absolute inset-0 bg-pink-400/20 rounded-full blur-2xl animate-[pulse_3s_ease-in-out_infinite]"
-                            style={{ animationDelay: "1s" }}
-                          />
-                          <div className="relative w-24 h-24 2xl:w-32 2xl:h-32 3xl:w-40 3xl:h-40 4xl:w-48 4xl:h-56 rounded-full bg-[#4a1c5e] flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-700">
-                            <Target
-                              className="w-12 h-12 2xl:w-14 2xl:h-14 3xl:w-16 3xl:h-16 4xl:w-20 4xl:h-20 text-white"
-                              strokeWidth={2}
-                            />
-                          </div>
-                          <div className="absolute inset-0 animate-[spin_7s_linear_infinite_reverse]">
-                            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-2 h-2 2xl:w-3 2xl:h-3 3xl:w-4 3xl:h-4 4xl:w-5 4xl:h-5 rounded-full  bg-[#2a0e34]" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Our Expertise */}
+        ... (commented out)
+      </div> */}
+      {/* Our Expertise
       <div className="relative bg-white py-20 2xl:py-28 3xl:py-36 4xl:py-44">
-        <div className="w-[90%] max-w-[1280px] 2xl:max-w-[1920px] 3xl:max-w-[2560px] 4xl:max-w-[3440px] mx-auto">
-          <div className="text-center mb-12 2xl:mb-16 3xl:mb-20 4xl:mb-24">
-            <div className="inline-flex items-center border border-[#371445]/90 gap-2 px-3 py-1.5 2xl:px-4 2xl:py-2 3xl:px-5 3xl:py-2.5 4xl:px-6 4xl:py-3 bg-[#FFFFFF] rounded-full mb-6 2xl:mb-8 3xl:mb-10 4xl:mb-12">
-              <Wrench className="w-4 h-4 2xl:w-5 2xl:h-5 3xl:w-6 3xl:h-6 4xl:w-7 4xl:h-7 text-[#4a1c5e]" />
-              <span className="text-sm 2xl:text-base 3xl:text-lg 4xl:text-xl font-semibold text-[#4a1c5e]">
-                Our Purpose
-              </span>
-            </div>
-            <h2 className="text-3xl md:text-4xl 2xl:text-5xl 3xl:text-6xl 4xl:text-7xl font-bold text-[#371445] mb-4 2xl:mb-6 3xl:mb-8 4xl:mb-10">
-              What we bring to the table
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 2xl:gap-8 3xl:gap-10 4xl:gap-12">
-            <div className="group relative bg-gradient-to-br from-white to-purple-50/30 rounded-3xl 2xl:rounded-4xl 3xl:rounded-5xl 4xl:rounded-6xl p-8 2xl:p-10 3xl:p-12 4xl:p-16 border border-gray-200 hover:border-[#371445]/30 transition-all duration-300 hover:shadow-2xl">
-              <div className="absolute top-6 right-6 text-6xl 2xl:text-7xl 3xl:text-8xl 4xl:text-9xl font-bold text-[#371445]/5">
-                01
-              </div>
-              <div className="relative mb-6 2xl:mb-8 3xl:mb-10 4xl:mb-12">
-                <div className="w-14 h-14 2xl:w-16 2xl:h-16 3xl:w-20 3xl:h-20 4xl:w-24 4xl:h-24 bg-gradient-to-br from-[#371445] via-[#4a1c5e] to-[purple] rounded-2xl 2xl:rounded-3xl 3xl:rounded-4xl 4xl:rounded-5xl flex items-center justify-center text-white mb-4 2xl:mb-5 3xl:mb-6 4xl:mb-8">
-                  <svg
-                    className="w-7 h-7 2xl:w-8 2xl:h-8 3xl:w-10 3xl:h-10 4xl:w-12 4xl:h-12"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl font-bold text-[#371445] mb-3 2xl:mb-4 3xl:mb-5 4xl:mb-6">
-                  Software Solutions
-                </h3>
-                <p className="text-gray-600 2xl:text-lg 3xl:text-xl 4xl:text-2xl leading-relaxed">
-                  High-quality mobile app development and website development that ensure seamless user experiences.
-                </p>
-              </div>
-            </div>
-
-            <div className="group relative bg-gradient-to-br from-white to-purple-50/30 rounded-3xl 2xl:rounded-4xl 3xl:rounded-5xl 4xl:rounded-6xl p-8 2xl:p-10 3xl:p-12 4xl:p-16 border border-gray-200 hover:border-[#371445]/30 transition-all duration-300 hover:shadow-2xl md:mt-8">
-              <div className="absolute top-6 right-6 text-6xl 2xl:text-7xl 3xl:text-8xl 4xl:text-9xl font-bold text-[#371445]/5">
-                02
-              </div>
-              <div className="relative mb-6 2xl:mb-8 3xl:mb-10 4xl:mb-12">
-                <div className="w-14 h-14 2xl:w-16 2xl:h-16 3xl:w-20 3xl:h-20 4xl:w-24 4xl:h-24 bg-gradient-to-br from-[#371445] via-[#4a1c5e] to-[purple] rounded-2xl 2xl:rounded-3xl 3xl:rounded-4xl 4xl:rounded-5xl flex items-center justify-center text-white mb-4 2xl:mb-5 3xl:mb-6 4xl:mb-8">
-                  <svg
-                    className="w-7 h-7 2xl:w-8 2xl:h-8 3xl:w-10 3xl:h-10 4xl:w-12 4xl:h-12"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl font-bold text-[#371445] mb-3 2xl:mb-4 3xl:mb-5 4xl:mb-6">
-                  Digital Marketing
-                </h3>
-                <p className="text-gray-600 2xl:text-lg 3xl:text-xl 4xl:text-2xl leading-relaxed">
-                  Strategic online marketing solutions, including SEO and social media management.
-                </p>
-              </div>
-            </div>
-
-            <div className="group relative bg-gradient-to-br from-white to-purple-50/30 rounded-3xl 2xl:rounded-4xl 3xl:rounded-5xl 4xl:rounded-6xl p-8 2xl:p-10 3xl:p-12 4xl:p-16 border border-gray-200 hover:border-[#371445]/30 transition-all duration-300 hover:shadow-2xl md:mt-16">
-              <div className="absolute top-6 right-6 text-6xl 2xl:text-7xl 3xl:text-8xl 4xl:text-9xl font-bold text-[#371445]/5">
-                03
-              </div>
-              <div className="relative mb-6 2xl:mb-8 3xl:mb-10 4xl:mb-12">
-                <div className="w-14 h-14 2xl:w-16 2xl:h-16 3xl:w-20 3xl:h-20 4xl:w-24 4xl:h-24 bg-gradient-to-br from-[#371445] via-[#4a1c5e] to-[purple] rounded-2xl 2xl:rounded-3xl 3xl:rounded-4xl 4xl:rounded-5xl flex items-center justify-center text-white mb-4 2xl:mb-5 3xl:mb-6 4xl:mb-8">
-                  <Shield className="w-7 h-7 2xl:w-8 2xl:h-8 3xl:w-10 3xl:h-10 4xl:w-12 4xl:h-12" />
-                </div>
-                <h3 className="text-xl 2xl:text-2xl 3xl:text-3xl 4xl:text-4xl font-bold text-[#371445] mb-3 2xl:mb-4 3xl:mb-5 4xl:mb-6">
-                  IT Security Solutions
-                </h3>
-                <p className="text-gray-600 2xl:text-lg 3xl:text-xl 4xl:text-2xl leading-relaxed">
-                  Advanced security services to safeguard businesses from cyber threats.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        ... (commented out)
+      </div> */}
     </div>
   );
 };
