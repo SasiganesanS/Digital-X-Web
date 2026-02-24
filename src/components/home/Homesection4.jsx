@@ -93,7 +93,7 @@ const OurServices = () => {
   return (
     <section
       id="services"
-      className="relative w-full overflow-hidden pt-0 pb-10 md:pb-16"
+      className="relative w-full overflow-hidden pt-0 pb-6 md:pb-10"
       style={{ background: "#0A0A0A" }}
     >
       {/* Background */}

@@ -183,7 +183,7 @@ const FeaturedWorks = () => {
   return (
     <section
       id="projects"
-      className="relative w-full overflow-hidden pt-12 md:pt-16 pb-7"
+      className="relative w-full overflow-hidden pt-8 md:pt-12 pb-2"
       style={{ background: "#080808" }}
     >
       {/* Background */}
@@ -233,10 +233,9 @@ const FeaturedWorks = () => {
         </motion.div>
       </div>
 
-      {/* Sticky scroll cards */}
       <div
         className="relative z-10"
-        style={{ height: `calc(${projects.length} * 40vh)` }}
+        style={{ height: `calc(${projects.length} * 41.75vh)` }}
       >
         {projects.map((project, index) => (
           <ProjectCard

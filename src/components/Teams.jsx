@@ -180,7 +180,7 @@ const Teams = () => {
   };
 
   return (
-    <div className="relative py-20 px-4 sm:px-6 lg:px-8 overflow-hidden" style={{ background: "#080808" }}>
+    <div className="relative py-12 px-4 sm:px-6 lg:px-8 overflow-hidden" style={{ background: "#080808" }}>
       {/* Background accents */}
       <div className="absolute inset-0 pointer-events-none">
         <div
