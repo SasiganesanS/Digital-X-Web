@@ -10,7 +10,7 @@ const ordered = [
     projects.find((p) => p.id === 2), // SkillBridge
 ].filter(Boolean);
 
-const accents = ["#E8192C", "#3B82F6", "#8B5CF6"];
+const accents = ["#E8192C", "#E8192C", "#E8192C"];
 
 const CaseStudy = () => {
     return (
@@ -73,7 +73,7 @@ const CaseStudy = () => {
                                 transition={{ duration: 0.55, delay: i * 0.12 }}
                             >
                                 <Link
-                                    to={`/projects/${project.id}`}
+                                    to={`/project/${project.id}`}
                                     className="group relative flex flex-col md:flex-row items-stretch rounded-2xl border border-white/6 overflow-hidden transition-all duration-300 hover:border-white/12"
                                     style={{ background: "#0F0F0F" }}
                                 >
@@ -95,7 +95,7 @@ const CaseStudy = () => {
                                         >
                                             <div
                                                 className="w-full transition-all duration-700 rounded-full group-hover:h-full"
-                                                style={{ background: accent, height: "0%" }}
+                                                style={{ background: accent, height: "100%" }}
                                             />
                                         </div>
                                         <span

@@ -267,7 +267,7 @@ const AppRoutes = () => {
 
       {/* --- Project Case Study Route --- */}
       <Route
-        path="/projects/:id"
+        path="/project/:id"
         element={
           <AnimatedPage>
             <ProjectCaseStudy />

@@ -10,7 +10,8 @@ const ProjectCaseStudy = () => {
 
   let project = location.state?.project;
   if (!project && id) {
-    project = projects.find((p) => p.id === parseInt(id));
+    // Try finding by numeric id first, then by slug
+    project = projects.find((p) => String(p.id) === id || p.slug === id);
   }
 
   if (!project) {
@@ -172,8 +173,8 @@ const ProjectCaseStudy = () => {
                     <ul className="space-y-3">
                       {project.overview.solutions.map((s, i) => (
                         <li key={i} className="flex items-start gap-3">
-                          <span className="flex-shrink-0 w-5 h-5 rounded-full bg-green-500/10 border border-green-500/25
-                                           text-green-400 text-[9px] font-black flex items-center justify-center mt-0.5">
+                          <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#E8192C]/10 border border-[#E8192C]/25
+                                           text-[#E8192C] text-[9px] font-black flex items-center justify-center mt-0.5">
                             ✓
                           </span>
                           <span className="text-white/45 text-sm leading-relaxed">{s}</span>

@@ -5,71 +5,71 @@ import thilaga from "../assets/clients/Thilaga-Impex.png";
 import capturever from "../assets/clients/Captureever.png";
 
 export const clientData = [
- {
-  id: 1,
-  name: "Vishnu Lakshmi School",
-  description: "Nurturing young minds with quality English-medium education since 1988.",
-  year: "Education Partner",
-  logo: vishnu,
-},
-{
-  id: 2,
-  name: "VILCET",
-  description: "Empowering India by shaping skilled and innovative engineers.",
-  year: "Education Partner",
-  logo: vilcet,
-},
-{
-  id: 3,
-  name: "JKK TEX",
-  description: "Leading ready-made textile brand known for quality and style.",
-  year: "Textile Partner",
-  logo: jkk_tex,
-},
-{
-  id: 4,
-  name: "Thilaga Impex",
-  description: "Manufacturers of premium export fabrics with global standards.",
-  year: "Export Partner",
-  logo: thilaga,
-},
-{
-  id: 5,
-  name: "Captureever",
-  description: "Fashion and photography redefined with creative storytelling.",
-  year: "Creative Partner",
-  logo: capturever,
-},
-{
-  id: 6,
-  name: "Vishnu Lakshmi School",
-  description: "Nurturing young minds with quality English-medium education since 1988.",
-  year: "Education Partner",
-  logo: vishnu,
-}
+  {
+    id: 1,
+    name: "Vishnu Lakshmi School",
+    description: "Nurturing young minds with quality English-medium education since 1988.",
+    year: "Education Partner",
+    logo: vishnu,
+  },
+  {
+    id: 2,
+    name: "VILCET",
+    description: "Empowering India by shaping skilled and innovative engineers.",
+    year: "Education Partner",
+    logo: vilcet,
+  },
+  {
+    id: 3,
+    name: "JKK TEX",
+    description: "Leading ready-made textile brand known for quality and style.",
+    year: "Textile Partner",
+    logo: jkk_tex,
+  },
+  {
+    id: 4,
+    name: "Thilaga Impex",
+    description: "Manufacturers of premium export fabrics with global standards.",
+    year: "Export Partner",
+    logo: thilaga,
+  },
+  {
+    id: 5,
+    name: "Captureever",
+    description: "Fashion and photography redefined with creative storytelling.",
+    year: "Creative Partner",
+    logo: capturever,
+  },
+  {
+    id: 6,
+    name: "Vishnu Lakshmi School",
+    description: "Nurturing young minds with quality English-medium education since 1988.",
+    year: "Education Partner",
+    logo: vishnu,
+  }
 ];
 
 export const data = [
- {
-  title: "Research & Discover",
-  desc: "Analyze business needs and user behavior to uncover insights that guide strategic innovation.",
-  code: "RSD",
-},
-{
-  title: "Design & Prototype",
-  desc: "Craft intuitive interfaces and seamless user experiences that align with brand identity and goals.",
-  code: "DSN",
-},
-{
-  title: "Build & Integrate",
-  desc: "Develop scalable, secure, and high-performance solutions with modern technologies and agile practices.",
-  code: "BLD",
-},
-{
-  title: "Deploy & Optimize",
-  desc: "Launch efficiently and continuously improve through monitoring, analytics, and real-world feedback.",
-  code: "DPL",
-},
+  {
+    title: "Research & Discover",
+    desc: "Analyze business needs and user behavior to uncover insights that guide strategic innovation.",
+    code: "RSD",
+  },
+  {
+    title: "Design & Prototype",
+    desc: "Craft intuitive interfaces and seamless user experiences that align with brand identity and goals.",
+    code: "DSN",
+  },
+  {
+    title: "Build & Integrate",
+    desc: "Develop scalable, secure, and high-performance solutions with modern technologies and agile practices.",
+    code: "BLD",
+  },
+  {
+    title: "Deploy & Optimize",
+    desc: "Launch efficiently and continuously improve through monitoring, analytics, and real-world feedback.",
+    code: "DPL",
+  },
 ];
 
 import mock1 from "../assets/pricing/mock1.png";
@@ -77,121 +77,113 @@ import mock2 from "../assets/pricing/mock2.png";
 import mock3 from "../assets/pricing/mock3.png";
 import mock4 from "../assets/pricing/mock4.png";
 import PHero1 from "../assets/P-Hero-1.jpg";
+import tipyImg from "../assets/tipy.png";
 import PHero3 from "../assets/P-Hero-3.jpg";
 import PHero4 from "../assets/P-Hero-4.jpg";
 import PHero5 from "../assets/P-Hero-5.jpg";
 export const ServiceHeroData = [
- {
-  title: "Web Development",
-  desc: "We design and develop fast, responsive, and visually engaging websites that elevate your brand presence and deliver an exceptional user experience across all devices.",
-  image: PHero4,
-},
-{
-  title: "App Development",
-  desc: "We build scalable, high-performance mobile applications that blend creativity and functionality, helping businesses connect seamlessly with users on Android and iOS platforms.",
-  image: PHero5,
-},
-{
-  title: "Cyber Security",
-  desc: "We protect your digital infrastructure through advanced security frameworks, proactive monitoring, and strategic risk management to ensure complete data integrity and trust.",
-  image: PHero3,
-},
-{
-  title: "Sustainability",
-  desc: "We leverage innovative technologies and green practices to help your organization grow responsibly, minimizing environmental impact while maximizing business value.",
-  image: PHero1,
-},
+  {
+    title: "Web Development",
+    desc: "We design and develop fast, responsive, and visually engaging websites that elevate your brand presence and deliver an exceptional user experience across all devices.",
+    image: PHero4,
+  },
+  {
+    title: "App Development",
+    desc: "We build scalable, high-performance mobile applications that blend creativity and functionality, helping businesses connect seamlessly with users on Android and iOS platforms.",
+    image: PHero5,
+  },
+  {
+    title: "Cyber Security",
+    desc: "We protect your digital infrastructure through advanced security frameworks, proactive monitoring, and strategic risk management to ensure complete data integrity and trust.",
+    image: PHero3,
+  },
+  {
+    title: "Sustainability",
+    desc: "We leverage innovative technologies and green practices to help your organization grow responsibly, minimizing environmental impact while maximizing business value.",
+    image: PHero1,
+  },
 
 ];
 
 export const blogPosts = [
   {
-    title: "A Complete Showcase of Our General Portfolio and Creative Projects",
+    title: "Our Portfolio & Creative Works",
     image: mock1,
     link: "#",
     overview: {
       headline: "Our Portfolio & Creative Works",
       paragraph:
-        "A curated selection of web, mobile, and design projects showcasing our range — from small business websites to enterprise-grade solutions. Highlights include responsive design, e-commerce builds, and UX-forward brand work.",
+        "A curated selection of web, mobile, and design projects that reflect our versatility—from agile small-business solutions to enterprise-grade digital platforms. Our work emphasizes clean design, robust engineering, and user-centric experiences across every build.",
       features: [
-        "Responsive websites",
-        "E-commerce & storefronts",
-        "Brand & UI design",
-        "Cross-platform compatibility",
-        "Performance-optimized builds",
-        "Modern tech stacks with SEO integration"
+        "Responsive, mobile-first websites",
+        "E-commerce platforms & custom storefronts",
+        "Brand identity, UI & UX design systems",
+        "Seamless cross-platform compatibility",
+        "Performance-optimized, scalable builds",
+        "Modern technology stacks with built-in SEO optimization"
       ],
-      caseStudy: "/projects/portfolio"
+      caseStudy: "/project/1"
     },
     valueAddition: [
       {
         id: "1",
-        text: "POS, Inventory, Resource management, Appointments, CRM, and E-commerce — integrated into a unified environment to reduce data silos and improve operations."
+        text: "Presented the individual’s skills, experience, and achievements through a clear and well-structured portfolio layout, making it easy for visitors to quickly understand their professional profile."
       },
       {
         id: "2",
-        text: "Conducted a detailed audit of their existing systems, mapping data flow and identifying integration opportunities to merge multiple tools via secure APIs."
+        text: "Designed a responsive and visually consistent interface that reflects the individual’s personal brand while ensuring accessibility across devices and screen sizes."
       },
       {
         id: "3",
-        text: "Delivered the solution within 12 months, ensuring scalable backend support and minimal downtime during migration."
+        text: "Highlighted key projects, expertise, and career milestones in a concise and engaging format, helping the individual stand out to recruiters, clients, and collaborators."
       },
       {
         id: "4",
-        text: "Over 30,000 customer records analyzed; advanced data analytics enabled personalized marketing and campaign optimization."
-      },
-      {
-        id: "5",
-        text: "Achieved 15% sales growth with improved engagement and reduced pilferage through intelligent tracking modules."
-      },
-      {
-        id: "6",
-        text: "Optimized supply chain visibility — all supplier payments and order processes were monitored and automated."
+        text: "Optimized the portfolio for performance and search visibility, improving loading speed and discoverability while maintaining a clean, modern user experience."
       }
     ]
   },
   {
-    title: "Exploring Our Premium and Advanced Design Portfolio for Modern Brands",
-    image: mock2,
+    title: "Tipy – Intelligent Textile CAD Software for Precision Manufacturing",
+    image: tipyImg,
     link: "#",
     overview: {
-      headline: "Premium Design & Brand Systems",
-      paragraph:
-        "Design systems and premium UI work crafted for modern brands — focused on conversion, accessibility, and performance. Includes case studies on identity, digital experiences, and product design.",
+      headline: "Textile Design & Production Management Tool",
+      paragraph: "Explore how we engineered a high-performance CAD solution. Built an intelligent CAD-driven production system to design fabrics, calculate yarn requirements, track manufacturing stages, and manage orders with complete production visibility.",
       features: [
-        "Design systems",
-        "Product UX",
-        "Accessible interfaces",
-        "Interactive prototypes & testing",
-        "Scalable brand guidelines",
-        "Pixel-perfect responsive layouts"
+        "Fabric design visualization",
+        "Warp & weft configuration control",
+        "Automated yarn and material calculations",
+        "Stage-wise production tracking",
+        "Wastage monitoring & yarn returns",
+        "Integrated order management & invoicing"
       ],
-      caseStudy: "/projects/design-portfolio"
+      caseStudy: "/project/1"
     },
     valueAddition: [
       {
         id: "1",
-        text: "Conducted extensive user research and usability testing to align digital experiences with target audience expectations."
+        text: "Unified fabric design, yarn calculation, and production planning into a single CAD-driven platform."
       },
       {
         id: "2",
-        text: "Created unified design systems to ensure consistency across multiple brand touchpoints and digital assets."
+        text: "Automated yarn quantity and color-wise material calculations, eliminating manual estimation errors."
       },
       {
         id: "3",
-        text: "Enhanced accessibility compliance by implementing WCAG standards and contrast-optimized color palettes."
+        text: "Enabled real-time stage-wise production tracking with clear visibility across manufacturing workflows."
       },
       {
         id: "4",
-        text: "Implemented heatmap tracking to monitor user behavior, improving conversion rates through informed design tweaks."
+        text: "Introduced systematic wastage recording and yarn return tracking at every production stage."
       },
       {
         id: "5",
-        text: "Reduced page load time by 28% using image optimization and lazy loading techniques."
+        text: "Streamlined order execution by integrating design sheets, production status, and invoicing."
       },
       {
         id: "6",
-        text: "Increased client retention by 20% through brand refresh strategies and better digital communication design."
+        text: "Improved operational accuracy and delivery timelines through centralized data and process automation."
       }
     ]
   },
@@ -201,87 +193,41 @@ export const blogPosts = [
     link: "#",
     overview: {
       headline: "E-commerce & Inventory",
-      paragraph:
-        "Implemented a full e-commerce storefront with inventory sync, order tracking, and supplier integrations to streamline sales operations.",
+      paragraph: "Discover how we designed and developed a fully secure, feature-rich eCommerce platform. Implemented a fully secure and scalable e-commerce ecosystem with real-time inventory synchronization, seamless order tracking, and robust customer management to ensure smooth and efficient sales operations.",
       features: [
-        "E-commerce storefront",
-        "Inventory sync",
-        "Order tracking",
-        "Secure online payments",
-        "Real-time product analytics",
-        "Customer account management"
+        "Full-featured e-commerce storefront",
+        "Real-time inventory synchronization",
+        "Order tracking and status management",
+        "Secure online payment processing",
+        "Real-time product and sales analytics",
+        "Customer account and profile management"
       ],
-      caseStudy: "/projects/jkk-tex"
+      caseStudy: "/project/1"
     },
     valueAddition: [
       {
         id: "1",
-        text: "Developed a centralized dashboard integrating inventory, sales, and customer analytics for real-time insights."
+        text: "Developed a centralized dashboard combining inventory, sales, and customer analytics to deliver real-time business insights."
       },
       {
         id: "2",
-        text: "Automated supplier updates and stock alerts, reducing manual errors by 30%."
+        text: "Automated supplier updates and stock alerts, reducing manual intervention and minimizing operational errors by 30%."
       },
       {
         id: "3",
-        text: "Enabled seamless multi-device shopping experiences with advanced cart persistence and secure payment flow."
+        text: "Enabled seamless multi-device shopping experiences with persistent carts and a secure, streamlined payment flow."
       },
       {
         id: "4",
-        text: "Used predictive analytics to track buying trends and improve upsell/cross-sell strategies."
+        text: "Leveraged predictive analytics to identify buying patterns and strengthen upsell and cross-sell strategies."
       },
       {
         id: "5",
-        text: "Optimized checkout flow, improving conversion rate by 18% within the first quarter of launch."
+        text: "Optimized the checkout journey, resulting in an 18% improvement in conversion rate within the first quarter after launch."
       },
       {
         id: "6",
-        text: "Reduced customer support tickets by integrating real-time order tracking and automated updates."
-      }
-    ]
-  },
-  {
-    title: "Thilaga Impex – A Premium Fabric Selling Business Website with Elegant Design",
-    image: mock4,
-    link: "#",
-    overview: {
-      headline: "Supply Chain & Inventory Tool",
-      paragraph:
-        "Built a real-time supply chain dashboard used to track shipments, manage inventory across warehouses, and automate reorder alerts.",
-      features: [
-        "Shipment tracking",
-        "Multi-warehouse inventory",
-        "Automated reorder alerts",
-        "Dynamic stock reports",
-        "Supplier integration & management",
-        "Data-driven decision dashboards"
-      ],
-      caseStudy: "/projects/thilaga-impex"
-    },
-    valueAddition: [
-      {
-        id: "1",
-        text: "Integrated all warehouses into one digital platform, providing a single-view inventory system."
-      },
-      {
-        id: "2",
-        text: "Implemented real-time stock movement tracking and supplier payment automation."
-      },
-      {
-        id: "3",
-        text: "Created a custom reporting module for order forecasting and material planning."
-      },
-      {
-        id: "4",
-        text: "Enabled 24/7 monitoring of over 25,000 SKU entries with automated alerts for low stock."
-      },
-      {
-        id: "5",
-        text: "Improved supplier coordination efficiency by 40% with transparent communication channels."
-      },
-      {
-        id: "6",
-        text: "Reduced pilferage and order delays by 10% using optimized logistics tracking and vendor validation."
+        text: "Reduced customer support requests by integrating real-time order tracking and automated customer notifications."
       }
     ]
   }
@@ -324,20 +270,20 @@ export const platforms = [
         price: 4000,
         icon: "MdRocketLaunch",
         availableDetails: [
-         "Semi-Custom",
-         "Responsive & Mobile-Friendly",
-         "5-7 Pages",
-         "Basic SEO Optimization",
-         "Advanced Contact Form",
-         "Blog Integration",
-         "Basic SSL",
-         "Basic Optimization",
-         "3-Months Tech Support"
+          "Semi-Custom",
+          "Responsive & Mobile-Friendly",
+          "5-7 Pages",
+          "Basic SEO Optimization",
+          "Advanced Contact Form",
+          "Blog Integration",
+          "Basic SSL",
+          "Basic Optimization",
+          "3-Months Tech Support"
         ],
         unavailabeDetails: [
-         "E-Commerce Support",
-         "Hosting & Domain",
-         "Custom Features (API, Integrations, etc.)"
+          "E-Commerce Support",
+          "Hosting & Domain",
+          "Custom Features (API, Integrations, etc.)"
         ]
       },
       {
@@ -458,7 +404,7 @@ export const platforms = [
         title: "Premium App",
         price: 12000,
         icon: "MdWorkspacePremium",
-        availableDetails:[
+        availableDetails: [
           "Full Platform Ecosystem",
           "Bespoke UI & Prototype",
           "Custom Onboarding",
@@ -509,13 +455,13 @@ export const platforms = [
         title: "Startup Software",
         price: 5000,
         icon: "MdRocketLaunch",
-        availableDetails:[
-         "Platform: Windows / Cross-platform (Electron/Qt)",
-         "UI: Multi-screen (Up to 5 screens)",
-         "Local Database: SQLite or JSON-based",
-         "Features: Basic CRUD, input forms, export options",
-         "Delivery: 10–14 days",
-         "1 Month Free Support"
+        availableDetails: [
+          "Platform: Windows / Cross-platform (Electron/Qt)",
+          "UI: Multi-screen (Up to 5 screens)",
+          "Local Database: SQLite or JSON-based",
+          "Features: Basic CRUD, input forms, export options",
+          "Delivery: 10–14 days",
+          "1 Month Free Support"
         ]
       },
       {
@@ -523,7 +469,7 @@ export const platforms = [
         title: "Standard Software",
         price: 8000,
         icon: "MdStars",
-        availableDetails:[
+        availableDetails: [
           "Platforms: Windows / macOS / Linux",
           "Tech Stack: Python, Java, C#, Electron, Qt",
           "UI: Modern with validation, animations",
@@ -546,18 +492,18 @@ export const platforms = [
         price: 11000,
         icon: "MdWorkspacePremium",
         availableDetails: [
-         "Platforms: Multi-OS with enhanced UX/UI",
-         "Remote Database Sync",
-         "Login System, Permissions, Encryption",
-         "API Integrations (Payment, Cloud, etc.)",
-         "Auto Updates, Notifications",
-         "Delivery: 4–6 weeks",
-         "3 Months Support & Optimization",
-         "Custom Branding",
-         "Advanced Reports & Analytics",
-         "Dedicated Project Manager",
-         "Technical Documentation",
-         "Performance Optimization"
+          "Platforms: Multi-OS with enhanced UX/UI",
+          "Remote Database Sync",
+          "Login System, Permissions, Encryption",
+          "API Integrations (Payment, Cloud, etc.)",
+          "Auto Updates, Notifications",
+          "Delivery: 4–6 weeks",
+          "3 Months Support & Optimization",
+          "Custom Branding",
+          "Advanced Reports & Analytics",
+          "Dedicated Project Manager",
+          "Technical Documentation",
+          "Performance Optimization"
         ]
       }
     ]
@@ -574,7 +520,7 @@ export const platforms = [
         title: "Basic Marketing",
         price: 2000,
         icon: "MdDiamond",
-        availableDetails:[
+        availableDetails: [
           "SEO Basics (On-page SEO only)",
           "Basic Social Media Management (2 Platforms - 3 posts/week)",
           "Basic Email Campaign (1 Campaign/Month)",
@@ -596,14 +542,14 @@ export const platforms = [
         title: "Startup Marketing",
         price: 4000,
         icon: "MdRocketLaunch",
-        availableDetails:[
-         "Full SEO (On-Page + Basic Off-Page)",
-         "Social Media Management (3 Platforms - 4 posts/week)",
-         "Email Marketing Campaigns (2 Campaigns/Month)",
-         "Conversion Rate Tracking (basic)",
-         "PPC Campaign Setup (Basic - Ad Budget Extra)",
-         "2-Month Reporting",
-         "3-Months Tech Support"
+        availableDetails: [
+          "Full SEO (On-Page + Basic Off-Page)",
+          "Social Media Management (3 Platforms - 4 posts/week)",
+          "Email Marketing Campaigns (2 Campaigns/Month)",
+          "Conversion Rate Tracking (basic)",
+          "PPC Campaign Setup (Basic - Ad Budget Extra)",
+          "2-Month Reporting",
+          "3-Months Tech Support"
         ],
         unavailableDetails: [
           "Video Production",
@@ -618,41 +564,41 @@ export const platforms = [
         title: "Standard Marketing",
         price: 6000,
         icon: "MdStars",
-        availableDetails:[
-         "Advanced SEO (Full On-Page + Off-Page)",
-         "Social Media Management (5 Platforms - Daily Posts)",
-         "Email Marketing Campaigns (4 Campaigns/Month)",
-         "Conversion Rate Optimization (Standard level)",
-         "Full PPC Ad Management (Google, Meta Ads)",
-         "Monthly Content Strategy Planning",
-         "Basic Marketing Video (1 Video/Month)",
-         "3-Month Reporting",
-         "6-Months Tech Support"
-       ],
-       unavailableDetails: [
-        "Email Marketing Automation",
-        "Advanced Data Analytics Integration",
-        "Custom Marketing Videos"
-      ]
-    },
-    {
-      id: "premium",
-      title: "Premium Marketing",
+        availableDetails: [
+          "Advanced SEO (Full On-Page + Off-Page)",
+          "Social Media Management (5 Platforms - Daily Posts)",
+          "Email Marketing Campaigns (4 Campaigns/Month)",
+          "Conversion Rate Optimization (Standard level)",
+          "Full PPC Ad Management (Google, Meta Ads)",
+          "Monthly Content Strategy Planning",
+          "Basic Marketing Video (1 Video/Month)",
+          "3-Month Reporting",
+          "6-Months Tech Support"
+        ],
+        unavailableDetails: [
+          "Email Marketing Automation",
+          "Advanced Data Analytics Integration",
+          "Custom Marketing Videos"
+        ]
+      },
+      {
+        id: "premium",
+        title: "Premium Marketing",
         price: 9000,
         icon: "MdWorkspacePremium",
-        availableDetails:[
-         "Advanced SEO (AI-powered Audits + Reporting)",
-         "Social Media Growth Campaigns (5+ Platforms + Paid Promotions)",
-         "Email Marketing Automation (Full Funnel Setup)",
-         "Full CRO (Advanced Data Analytics Integration)",
-         "Full PPC Campaign Management (Across Google, Meta, LinkedIn)",
-         "Content Strategy + Monthly Video Content (2 Videos/Month)",
-         "Custom Marketing Videos (Animated, Product Demos)",
-         "Bi-Weekly Reporting",
-         "1-Year Tech Support",
-         "Dedicated Account Manager",
-         "Custom Brand Strategy Development",
-         "Competitor Analysis & Tracking"
+        availableDetails: [
+          "Advanced SEO (AI-powered Audits + Reporting)",
+          "Social Media Growth Campaigns (5+ Platforms + Paid Promotions)",
+          "Email Marketing Automation (Full Funnel Setup)",
+          "Full CRO (Advanced Data Analytics Integration)",
+          "Full PPC Campaign Management (Across Google, Meta, LinkedIn)",
+          "Content Strategy + Monthly Video Content (2 Videos/Month)",
+          "Custom Marketing Videos (Animated, Product Demos)",
+          "Bi-Weekly Reporting",
+          "1-Year Tech Support",
+          "Dedicated Account Manager",
+          "Custom Brand Strategy Development",
+          "Competitor Analysis & Tracking"
         ]
       }
     ]
@@ -669,15 +615,15 @@ export const platforms = [
         title: "Basic Security",
         price: 2500,
         icon: "MdDiamond",
-        availableDetails:[
-         "Vulnerability assessments and penetration testing",
-         "Red team simulations with threat emulation",
-         "Web, mobile, and thick client security testing",
-         "ATM and virtualization environment assessments",
-         "Secure code reviews and configuration validation",
-         "CVSS-based risk scoring and monthly reports",
-         "Social engineering and physical security testing",
-         "Executive-level summary reports"
+        availableDetails: [
+          "Vulnerability assessments and penetration testing",
+          "Red team simulations with threat emulation",
+          "Web, mobile, and thick client security testing",
+          "ATM and virtualization environment assessments",
+          "Secure code reviews and configuration validation",
+          "CVSS-based risk scoring and monthly reports",
+          "Social engineering and physical security testing",
+          "Executive-level summary reports"
         ]
       },
       {
@@ -685,15 +631,15 @@ export const platforms = [
         title: "Startup Security",
         price: 5000,
         icon: "MdRocketLaunch",
-        availableDetails:[
-         "GDPR, HIPAA, and CCPA compliance consulting",
-         "Data Protection Officer (DPO) advisory",
-         "ISO 27001 alignment for privacy programs",
-         "Data flow mapping and consent management",
-         "Privacy policy evaluation and staff training",
-         "Third-party data sharing audits",
-         "Customized training for compliance",
-         "Comprehensive privacy implementation"
+        availableDetails: [
+          "GDPR, HIPAA, and CCPA compliance consulting",
+          "Data Protection Officer (DPO) advisory",
+          "ISO 27001 alignment for privacy programs",
+          "Data flow mapping and consent management",
+          "Privacy policy evaluation and staff training",
+          "Third-party data sharing audits",
+          "Customized training for compliance",
+          "Comprehensive privacy implementation"
         ]
       },
       {
@@ -701,15 +647,15 @@ export const platforms = [
         title: "Standard Security",
         price: 8000,
         icon: "MdStars",
-        availableDetails:[
-         "Development of risk-based security roadmaps",
-         "KPI setting and quarterly progress reviews",
-         "Tool selection and budget planning support",
-         "CISO advisory for strategic planning",
-         "Alignment with NIST, CIS frameworks",
-         "Milestone-based security maturity planning",
-         "Power BI CS analytics",
-         "Executive reporting and guidance"
+        availableDetails: [
+          "Development of risk-based security roadmaps",
+          "KPI setting and quarterly progress reviews",
+          "Tool selection and budget planning support",
+          "CISO advisory for strategic planning",
+          "Alignment with NIST, CIS frameworks",
+          "Milestone-based security maturity planning",
+          "Power BI CS analytics",
+          "Executive reporting and guidance"
         ]
       },
       {
@@ -717,15 +663,15 @@ export const platforms = [
         title: "Premium Security",
         price: 12000,
         icon: "MdWorkspacePremium",
-        availableDetails:[
-         "ISO 22301 business continuity implementation",
-         "Business Impact Analysis (BIA)",
-         "Crisis management and recovery planning",
-         "Cloud-based backup strategies",
-         "Simulation and testing of continuity plans",
-         "Crisis communication protocols",
-         "Regular resilience assessments",
-         "Stakeholder management planning"
+        availableDetails: [
+          "ISO 22301 business continuity implementation",
+          "Business Impact Analysis (BIA)",
+          "Crisis management and recovery planning",
+          "Cloud-based backup strategies",
+          "Simulation and testing of continuity plans",
+          "Crisis communication protocols",
+          "Regular resilience assessments",
+          "Stakeholder management planning"
         ]
       }
     ]
@@ -742,29 +688,29 @@ export const platforms = [
         title: "Basic Sustainability",
         price: 2000,
         icon: "MdDiamond",
-       availableDetails:[
-        "Energy Consumption Assessment",
-        "Basic Carbon Footprint Analysis",
-        "Green IT Recommendations",
-        "Energy-Efficient Hardware Suggestions",
-        "3-Month Support"
-       ],
-       unavailableDetails: [
-        "Sustainable Cloud Options",
-        "E-Waste Management Plan",
-        "ESG Reporting",
-        "Green Office Assessment",
-        "Renewable Energy Integration",
-        "Green Software Architecture",
-        "Sustainability Workshops"
-       ]
+        availableDetails: [
+          "Energy Consumption Assessment",
+          "Basic Carbon Footprint Analysis",
+          "Green IT Recommendations",
+          "Energy-Efficient Hardware Suggestions",
+          "3-Month Support"
+        ],
+        unavailableDetails: [
+          "Sustainable Cloud Options",
+          "E-Waste Management Plan",
+          "ESG Reporting",
+          "Green Office Assessment",
+          "Renewable Energy Integration",
+          "Green Software Architecture",
+          "Sustainability Workshops"
+        ]
       },
       {
         id: "startup",
         title: "Startup Sustainability",
         price: 4000,
         icon: "MdRocketLaunch",
-        availableDetails:[
+        availableDetails: [
           "Advanced Energy Consumption Analysis",
           "Detailed Carbon Footprint Reporting",
           "Comprehensive Green IT Strategy",
@@ -776,9 +722,9 @@ export const platforms = [
           "6-Month Support"
         ],
         unavailableDetails: [
-         "Renewable Energy Options",
-         "Green Software Principles",
-         "Sustainability Workshops"
+          "Renewable Energy Options",
+          "Green Software Principles",
+          "Sustainability Workshops"
         ]
       },
       {
@@ -786,19 +732,19 @@ export const platforms = [
         title: "Standard Sustainability",
         price: 7000,
         icon: "MdStars",
-        availableDetails:[
-         "Enterprise Energy Consumption Analysis",
-         "Advanced Carbon Footprint Management",
-         "Strategic Green IT Implementation",
-         "Complete Hardware Sustainability Plan",
-         "End-to-End Cloud Sustainability",
-         "Comprehensive E-Waste Strategy",
-         "Advanced ESG Reporting Framework",
-         "Complete Green Office Transformation",
-         "Renewable Energy Integration",
-         "Energy-Efficient Software Development",
-         "Sustainability Workshops & Training",
-         "1-Year Support"
+        availableDetails: [
+          "Enterprise Energy Consumption Analysis",
+          "Advanced Carbon Footprint Management",
+          "Strategic Green IT Implementation",
+          "Complete Hardware Sustainability Plan",
+          "End-to-End Cloud Sustainability",
+          "Comprehensive E-Waste Strategy",
+          "Advanced ESG Reporting Framework",
+          "Complete Green Office Transformation",
+          "Renewable Energy Integration",
+          "Energy-Efficient Software Development",
+          "Sustainability Workshops & Training",
+          "1-Year Support"
         ]
       },
       {
@@ -806,19 +752,19 @@ export const platforms = [
         title: "Premium Sustainability",
         price: 10000,
         icon: "MdWorkspacePremium",
-        availableDetails:[
-         "Global Energy Consumption Monitoring",
-         "Real-time Carbon Footprint Dashboard",
-         "Enterprise Green IT Transformation",
-         "Circular Economy Hardware Program",
-         "Multi-Cloud Sustainability Optimization",
-         "Circular E-Waste Management",
-         "Comprehensive ESG Program Development",
-         "Global Green Office Standards",
-         "On-Site Renewable Energy Solutions",
-         "Green Software Factory Implementation",
-         "Executive Sustainability Leadership Program",
-         "Dedicated Sustainability Team"
+        availableDetails: [
+          "Global Energy Consumption Monitoring",
+          "Real-time Carbon Footprint Dashboard",
+          "Enterprise Green IT Transformation",
+          "Circular Economy Hardware Program",
+          "Multi-Cloud Sustainability Optimization",
+          "Circular E-Waste Management",
+          "Comprehensive ESG Program Development",
+          "Global Green Office Standards",
+          "On-Site Renewable Energy Solutions",
+          "Green Software Factory Implementation",
+          "Executive Sustainability Leadership Program",
+          "Dedicated Sustainability Team"
         ]
       }
     ]

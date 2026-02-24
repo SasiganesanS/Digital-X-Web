@@ -41,13 +41,11 @@ function ProjectCardSticky({ project, index, range, targetScale, isMobile }) {
       style={{ scale, opacity, top: topOffset }}
     >
       <div
-        className={`relative w-full max-w-6xl ${
-          isMobile ? "h-[70vh]" : "h-[75vh]"
-        } rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden ${
-          index === 0
+        className={`relative w-full max-w-6xl ${isMobile ? "h-[70vh]" : "h-[75vh]"
+          } rounded-2xl md:rounded-3xl shadow-2xl overflow-hidden ${index === 0
             ? "bg-gradient-to-br from-violet-950 via-purple-900 to-indigo-950"
             : project.bgColor
-        } border-[3px] border-black`}
+          } border-[3px] border-black`}
       >
         <img
           src={project.image}
@@ -66,34 +64,30 @@ function ProjectCardSticky({ project, index, range, targetScale, isMobile }) {
         </div>
 
         <div
-          className={`absolute bottom-0 left-0 ${
-            isMobile ? "p-4 md:p-6" : "p-6 md:p-10"
-          } text-white max-w-2xl z-[4]`}
+          className={`absolute bottom-0 left-0 ${isMobile ? "p-4 md:p-6" : "p-6 md:p-10"
+            } text-white max-w-2xl z-[4]`}
         >
           <div className="mb-4">
             <span
-              className={`${
-                isMobile ? "text-xs" : "text-sm md:text-base lg:text-lg"
-              } font-medium bg-white/20 px-3 py-1 rounded-full text-white/70`}
+              className={`${isMobile ? "text-xs" : "text-sm md:text-base lg:text-lg"
+                } font-medium bg-white/20 px-3 py-1 rounded-full text-white/70`}
             >
               Project {String(index + 1).padStart(2, "0")}
             </span>
           </div>
           <h3
-            className={`${
-              isMobile
+            className={`${isMobile
                 ? "text-2xl md:text-[28px]"
                 : "text-2xl md:text-[28px] lg:text-[32px]"
-            } text-white font-bold mb-3 [text-shadow:0_2px_4px_rgba(0,0,0,0.3)]`}
+              } text-white font-bold mb-3 [text-shadow:0_2px_4px_rgba(0,0,0,0.3)]`}
           >
             {project.title}
           </h3>
           <p
-            className={`${
-              isMobile
+            className={`${isMobile
                 ? "text-sm md:text-[15px]"
                 : "text-sm md:text-[15px] lg:text-base"
-            } text-white mb-4 leading-relaxed [text-shadow:0_1px_2px_rgba(0,0,0,0.3)]`}
+              } text-white mb-4 leading-relaxed [text-shadow:0_1px_2px_rgba(0,0,0,0.3)]`}
           >
             {project.description}
           </p>
@@ -101,9 +95,8 @@ function ProjectCardSticky({ project, index, range, targetScale, isMobile }) {
             {project.tags.split(" + ").map((tag) => (
               <span
                 key={tag}
-                className={`bg-white/20 backdrop-blur-md ${
-                  isMobile ? "text-xs" : "text-sm"
-                } font-medium px-4 py-2 rounded-full border border-white/30 text-white`}
+                className={`bg-white/20 backdrop-blur-md ${isMobile ? "text-xs" : "text-sm"
+                  } font-medium px-4 py-2 rounded-full border border-white/30 text-white`}
               >
                 {tag}
               </span>
@@ -111,11 +104,10 @@ function ProjectCardSticky({ project, index, range, targetScale, isMobile }) {
           </div>
 
           <Link
-            to={`/projects/${project.id}`}
+            to={`/project/${project.id}`}
             state={{ project }}
-            className={`inline-flex items-center gap-2 font-semibold text-[#371445] bg-white hover:scale-105 transition-all ${
-              isMobile ? "px-6 py-2.5 text-sm" : "px-8 py-3 text-base"
-            } rounded-full hover:bg-gray-50`}
+            className={`inline-flex items-center gap-2 font-semibold text-[#371445] bg-white hover:scale-105 transition-all ${isMobile ? "px-6 py-2.5 text-sm" : "px-8 py-3 text-base"
+              } rounded-full hover:bg-gray-50`}
             style={{ boxShadow: "0 6px 20px rgba(0, 0, 0, 0.4)" }}
           >
             View Case Study

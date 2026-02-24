@@ -135,7 +135,7 @@ const ProjectCard = ({ project, index, total }) => {
 
             {/* CTA */}
             <Link
-              to={`/case-study/${project.slug}`}
+              to={`/project/${project.slug}`}
               className="inline-flex items-center gap-2.5 self-start group"
             >
               <span

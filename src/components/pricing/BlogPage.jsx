@@ -45,7 +45,7 @@ const BlogPage = () => {
             Please select a blog from the Projects page.
           </p>
           <button
-            className="bg-[#371445] text-white px-4 py-2 rounded text-sm sm:text-base"
+            className="bg-[#E8192C] text-white px-6 py-3 rounded-full text-sm sm:text-base font-bold hover:bg-[#ff2235] transition-colors"
             onClick={() => navigate("/projects")}
           >
             Back to Projects
@@ -84,17 +84,13 @@ const BlogPage = () => {
   const heroImage = post.heroImage || post.image || overview?.image;
 
   const getGradient = (title) => {
-    if (!title) return "from-[#003d8f] via-[#004aad]/90 to-transparent";
+    if (!title) return "from-[#080808] via-[#080808]/80 to-transparent";
     const lower = title.toLowerCase();
-    if (lower.includes("general portfolio"))
-      return "from-[#003d8f] via-[#004aad]/90 to-transparent";
-    if (lower.includes("premium and advanced"))
-      return "from-[#001f3f] via-[#003366]/90 to-transparent";
     if (lower.includes("jkk tex"))
-      return "from-[#661e19] via-[#a05252]/90 to-transparent";
-    if (lower.includes("thilaga impex"))
-      return "from-[#7a1c1c] via-[#a83232]/90 to-transparent";
-    return "from-[#003d8f] via-[#004aad]/90 to-transparent";
+      return "from-[#4a0a0a] via-[#080808]/90 to-transparent";
+    if (lower.includes("tipy"))
+      return "from-[#4a0a0a] via-[#080808]/90 to-transparent";
+    return "from-[#4a0a0a] via-[#080808]/90 to-transparent";
   };
 
   const gradientClass = getGradient(post.title || post.name);
@@ -114,74 +110,86 @@ const BlogPage = () => {
           className={`absolute inset-0 bg-gradient-to-r ${gradientClass}`}
         ></div>
 
-       <div className="relative z-10 px-4 sm:px-8 md:px-16 max-w-4xl text-center md:text-left text-white blog-hero-left">
-  <p className="text-[10px] sm:text-xs md:text-sm mb-4 opacity-90 blog-texts">
-    Blog / {post.title || post.name}
-  </p>
+        <div className="relative z-10 px-4 sm:px-8 md:px-16 max-w-4xl text-center md:text-left text-white blog-hero-left">
+          <p className="text-[10px] sm:text-xs md:text-sm mb-4 opacity-90 blog-texts">
+            Blog / {post.title || post.name}
+          </p>
 
-  <h1 className="text-2xl sm:text-3xl md:text-5xl font-semibold mb-6 blog-hero">
-    {post.title || post.name}
-  </h1>
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-semibold mb-6 blog-hero">
+            {post.title || post.name}
+          </h1>
 
-  <p className="text-sm sm:text-lg md:text-xl max-w-xl blog-desc">
-    {post.description ||
-      "Discover how we built impactful digital solutions for our clients."}
-  </p>
-</div>
+          <p className="text-sm sm:text-lg md:text-xl max-w-xl blog-desc">
+            {post.description ||
+              "Discover how we built impactful digital solutions for our clients."}
+          </p>
+        </div>
 
       </section>
 
       {/* OVERVIEW SECTION */}
       {overview ? (
-        <section className="w-full flex items-center justify-center bg-white px-4 sm:px-8 md:px-20 py-12 sm:py-20 md:py-32 blog-overview-4k">
-          <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 blog-overview-grid-4k">
+        <section className="w-full flex items-center justify-center bg-[#080808] px-4 sm:px-8 md:px-20 py-12 sm:py-20 md:py-32 border-t border-white/5">
+          <div className="max-w-7xl w-full grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12">
             {/* LEFT TEXT */}
             <div className="space-y-6 sm:space-y-8 md:space-y-10">
-              <h2 className="text-xl sm:text-3xl md:text-4xl  font-bold text-[#371445] blog-headline ">
+              <div className="inline-flex items-center gap-2 mb-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E8192C] animate-pulse" />
+                <span className="text-[#E8192C] text-xs font-bold tracking-[0.2em] uppercase">Overview</span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
                 {overview.headline || "Client Overview"}
               </h2>
-              <p className="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed blog-paragraph">
+              <p className="text-white/60 text-base md:text-lg leading-relaxed">
                 {overview.paragraph}
               </p>
 
               {overview.features && (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <ol className="list-decimal list-inside text-gray-700 space-y-2 text-sm sm:text-base blog-paragraph">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                  <ul className="space-y-3">
                     {featuresLeft.map((f, i) => (
-                      <li key={i}>{i + 1}. {f}</li>
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#E8192C]/10 border border-[#E8192C]/25 text-[#E8192C] text-[10px] font-black flex items-center justify-center mt-0.5">{i + 1}</span>
+                        <span className="text-white/50 text-sm md:text-base leading-relaxed">{f}</span>
+                      </li>
                     ))}
-                  </ol>
-                  <ol start={featuresLeft.length + 1} className="list-decimal list-inside text-gray-700 space-y-2 text-sm sm:text-base blog-paragraph">
+                  </ul>
+                  <ul className="space-y-3">
                     {featuresRight.map((f, i) => (
-                      <li key={i}>{i + featuresLeft.length + 1}. {f}</li>
+                      <li key={i} className="flex items-start gap-3">
+                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#E8192C]/10 border border-[#E8192C]/25 text-[#E8192C] text-[10px] font-black flex items-center justify-center mt-0.5">{i + featuresLeft.length + 1}</span>
+                        <span className="text-white/50 text-sm md:text-base leading-relaxed">{f}</span>
+                      </li>
                     ))}
-                  </ol>
+                  </ul>
                 </div>
               )}
 
               {overview.caseStudy && (
-                <a
-                  href={overview.caseStudy}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center border border-[#371445] text-[#371445] hover:bg-[#371445] px-4 py-2 rounded-md text-sm sm:text-base hover:text-white transition-all view-work-4k"
-                  style={{ justifyContent: 'space-between', minWidth: 0 }}
-                >
-                  <span>View Work</span>
-                  <span style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
-                    <ArrowUpRight className="w-4 h-4 view-work-icon-4k" />
-                  </span>
-                </a>
+                <div className="pt-6">
+                  <a
+                    href={overview.caseStudy}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 bg-[#E8192C] text-white px-8 py-4 rounded-full font-bold hover:bg-[#ff2235] transition-all duration-300 group"
+                  >
+                    <span>View Live Project</span>
+                    <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  </a>
+                </div>
               )}
             </div>
 
             {/* RIGHT IMAGE */}
             <div className="flex justify-center md:justify-end">
-              <img
-                src={overview.image || heroImage || DEFAULT_CLIENT_IMAGE}
-                alt={overview.headline || post.title || post.name}
-                className="rounded-xl shadow-xl w-full max-w-md sm:max-w-lg md:max-w-xl object-cover blog-image"
-              />
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-[#E8192C]/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <img
+                  src={overview.image || heroImage || DEFAULT_CLIENT_IMAGE}
+                  alt={overview.headline || post.title || post.name}
+                  className="relative rounded-2xl shadow-2xl border border-white/5 w-full max-w-md sm:max-w-lg md:max-w-xl object-cover"
+                />
+              </div>
             </div>
           </div>
         </section>
@@ -189,22 +197,26 @@ const BlogPage = () => {
 
       {/* VALUE ADDITION */}
       {post.valueAddition && post.valueAddition.length > 0 && (
-        <section className="w-full bg-white px-4 sm:px-8 md:px-20 pb-20 md:pb-32 blog-value-section-4k">
-          <div className="max-w-7xl mx-auto blog-value-container-4k">
-            <h2 className="text-2xl text-[#371445] sm:text-3xl md:text-4xl font-bold mb-10 blog-headline">
-              Value Addition
+        <section className="w-full bg-[#080808] px-4 sm:px-8 md:px-20 pb-20 md:pb-32 border-t border-white/5">
+          <div className="max-w-7xl mx-auto pt-20">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#E8192C] animate-pulse" />
+              <span className="text-[#E8192C] text-xs font-bold tracking-[0.2em] uppercase">Impact</span>
+            </div>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-16">
+              Value <span className="text-[#E8192C]">Addition</span>
             </h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10">
               {post.valueAddition.map((item, i) => (
                 <div
                   key={item.id || i}
-                  className="flex items-start gap-4 bg-white p-5 sm:p-6 rounded-lg shadow-md hover:shadow-xl transition-all blog-value-card"
+                  className="group flex items-start gap-6 bg-white/[0.02] p-8 rounded-3xl border border-white/5 hover:border-[#E8192C]/30 transition-all duration-500"
                 >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#553067] text-white flex items-center justify-center text-xs sm:text-sm font-semibold">
+                  <div className="w-12 h-12 rounded-full bg-[#E8192C]/10 text-[#E8192C] flex items-center justify-center text-lg font-black shrink-0 border border-[#E8192C]/20 group-hover:bg-[#E8192C] group-hover:text-white transition-all duration-300 italic">
                     {item.id}
                   </div>
-                  <p className="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed blog-paragraph">
+                  <p className="text-white/60 text-base md:text-lg leading-relaxed group-hover:text-white/90 transition-colors">
                     {item.text}
                   </p>
                 </div>
