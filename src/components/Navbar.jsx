@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import Logo from "../assets/praskla_logo.jpeg";
 
 const Navbar = ({ setShowContactForm }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,9 +51,10 @@ const Navbar = ({ setShowContactForm }) => {
 
   const navLinks = [
     { path: "home", to: "/", label: "Home" },
-    { path: "case-study", to: "/case-study", label: "Case Study" },
     { path: "about", to: "/about", label: "About" },
+    { path: "services", to: "/services", label: "Services" },
     { path: "projects", to: "/projects", label: "Projects" },
+    { path: "careers", to: "/careers", label: "Careers" },
   ];
 
   const navLinkClass = (path) =>
@@ -85,10 +87,9 @@ const Navbar = ({ setShowContactForm }) => {
           {/* ── Logo ── */}
           <Link to="/" className="flex items-center gap-2.5 group flex-shrink-0">
             {/* Icon mark */}
-            <div className="relative w-8 h-8 flex items-center justify-center">
-              <div className="absolute inset-0 bg-[#E8192C] rounded-lg opacity-90 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute inset-0 bg-[#E8192C] rounded-lg blur-md opacity-0 group-hover:opacity-60 transition-opacity duration-300" />
-              <span className="relative text-white font-black text-sm tracking-tighter select-none">DX</span>
+            <div className="relative w-10 h-10 flex items-center justify-center overflow-hidden rounded-lg">
+              <img src={Logo} alt="Praskla DigitalX" className="w-full h-full object-cover" />
+              <div className="absolute inset-0 bg-[#E8192C]/10 group-hover:bg-transparent transition-colors duration-300" />
             </div>
 
             {/* Brand text */}
@@ -96,10 +97,10 @@ const Navbar = ({ setShowContactForm }) => {
               <span
                 className="font-black text-white text-base tracking-tight transition-all duration-300 group-hover:tracking-wide whitespace-nowrap"
               >
-                Digital<span className="text-[#E8192C]">X</span>
+                Praskla Digital<span className="text-[#E8192C]">X</span>
               </span>
               <span className="text-white/30 text-[9px] font-medium tracking-[0.15em] uppercase select-none">
-                Marketing Agency
+                A Mindful Marketing and Production Firm
               </span>
             </div>
           </Link>

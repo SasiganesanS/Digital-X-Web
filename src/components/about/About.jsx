@@ -14,7 +14,7 @@ import {
   Award
 } from "lucide-react";
 // import logoLight from "../../assets/py.jpg"
-import pyLogo from "../../assets/py.png";
+import pyLogo from "../../assets/praskla_logo.jpeg";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import Teams from "../Teams";
@@ -252,7 +252,7 @@ const About = () => {
         </div>
       </div>
       {/* ═══════════════════════════════════════════════
-          WHO WE ARE — DigitalX identity section
+          WHO WE ARE — Praskla DigitalX identity section
       ═══════════════════════════════════════════════ */}
       <div
         className="relative py-12 lg:py-16 overflow-hidden"
@@ -293,7 +293,7 @@ const About = () => {
                 />
 
                 <p className="text-[#606060] text-xs font-semibold tracking-[0.2em] uppercase mb-3 pl-4">
-                  DigitalX — Who We Are
+                  Praskla DigitalX — Who We Are
                 </p>
                 <h3 className="text-white font-black text-2xl leading-snug mb-6 pl-4">
                   A mindful partner in<br />
@@ -404,7 +404,7 @@ const About = () => {
               {/* Body paragraphs */}
               <div className="space-y-5">
                 <p className="text-[#A0A0A0] text-lg leading-relaxed">
-                  DigitalX is a growth-focused digital marketing company delivering{" "}
+                  Praskla DigitalX is a growth-focused digital marketing company delivering{" "}
                   <span className="text-white font-medium">strategic branding</span>,{" "}
                   <span className="text-white font-medium">performance marketing</span>,{" "}
                   <span className="text-white font-medium">media production</span>, and{" "}

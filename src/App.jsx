@@ -34,6 +34,7 @@ import BlogPage from "./components/pricing/BlogPage";
 import MainBlogPage from "./components/MainBlogPage";
 import ProjectCaseStudy from "./components/ProjectCaseStudy";
 import CaseStudy from "./components/CaseStudy";
+import ServiceCalculator from "./components/ServiceCalculator";
 // MERGED: Added new imports from development
 import PlatformPlanPage from "./components/PlatformPlanPage";
 
@@ -124,7 +125,7 @@ const AppRoutes = () => {
         path="/services"
         element={
           <AnimatedPage>
-            <Services />
+            <ServiceCalculator />
           </AnimatedPage>
         }
       />
@@ -251,26 +252,6 @@ const AppRoutes = () => {
         element={
           <AnimatedPage>
             <BlogPage />
-          </AnimatedPage>
-        }
-      />
-
-      {/* --- Case Study Listing --- */}
-      <Route
-        path="/case-study"
-        element={
-          <AnimatedPage>
-            <CaseStudy />
-          </AnimatedPage>
-        }
-      />
-
-      {/* --- Project Case Study Route --- */}
-      <Route
-        path="/project/:id"
-        element={
-          <AnimatedPage>
-            <ProjectCaseStudy />
           </AnimatedPage>
         }
       />

@@ -3,11 +3,10 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { projects } from "../data/projects";
 
-/* Order: Tipy first, then Honeybee, SkillBridge */
+/* Order: 3D Studios first, then Adhithya Fashions */
 const ordered = [
-    projects.find((p) => p.id === 3), // Tipy
-    projects.find((p) => p.id === 1), // Honeybee
-    projects.find((p) => p.id === 2), // SkillBridge
+    projects.find((p) => p.slug === "3d-studios"),
+    projects.find((p) => p.slug === "adhithya-fashions"),
 ].filter(Boolean);
 
 const accents = ["#E8192C", "#E8192C", "#E8192C"];
@@ -73,7 +72,7 @@ const CaseStudy = () => {
                                 transition={{ duration: 0.55, delay: i * 0.12 }}
                             >
                                 <Link
-                                    to={`/project/${project.id}`}
+                                    to={`/project/${project.slug}`}
                                     className="group relative flex flex-col md:flex-row items-stretch rounded-2xl border border-white/6 overflow-hidden transition-all duration-300 hover:border-white/12"
                                     style={{ background: "#0F0F0F" }}
                                 >

@@ -3,13 +3,11 @@ import "./ServiceCalculator.css";
 import balajiPortraits from '../assets/tie/Balaji-Portraits.jpg';
 import ibodhiAcademy from '../assets/tie/ibodhi-academy-removebg.png';
 import vilcet from '../assets/tie/VILCET-removebg.png';
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   FaTimesCircle,
   FaCheckCircle,
-  FaShoppingCart,
-  FaChartLine,
   FaGlobe,
   FaMobileAlt,
   FaLaptopCode,
@@ -30,7 +28,7 @@ import { platforms } from "../constants/index";
 import ContactForm from "./ContactForm";
 import PlatformPlanModal from "./PlatformPlanModal";
 
-// Icon mapping object (string keys -> components)
+// Icon mapping object
 const iconMap = {
   FaGlobe,
   FaMobileAlt,
@@ -38,10 +36,8 @@ const iconMap = {
   FaBullhorn,
   FaShieldAlt,
   FaLeaf,
-  FaShoppingCart,
   FaTimesCircle,
   FaCheckCircle,
-  FaChartLine,
   MdDiamond,
   MdRocketLaunch,
   MdStars,
@@ -51,17 +47,14 @@ const iconMap = {
   HiLightningBolt,
 };
 
-// helper to resolve icon which may be a string key or already a component
 const resolveIcon = (icon) => {
   if (!icon) return null;
   if (typeof icon === "string") {
     return iconMap[icon] || null;
   }
-  // assume it's already a component
   return icon;
 };
 
-// Map JS constants data to include actual icon components (robust to string/component)
 const PLATFORMS = platforms.map((platform) => ({
   ...platform,
   icon: resolveIcon(platform.icon),
@@ -77,489 +70,311 @@ export default function ServiceCalculator() {
   const calculatorRef = useRef(null);
   const [selectedItems, setSelectedItems] = useState([]);
   const [modalPlatform, setModalPlatform] = useState(null);
-  const [selectedPlanInModal, setSelectedPlanInModal] = useState(null); // For showing details in modal
+  const [selectedPlanInModal, setSelectedPlanInModal] = useState(null);
   const [showContactForm, setShowContactForm] = useState(false);
   const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  // Detect mobile screen size and handle modal-to-page transition
   useEffect(() => {
     const checkMobile = () => {
       const newIsMobile = window.innerWidth < 768;
-      
-     
-      if (newIsMobile && !isMobile) {
-        if (modalPlatform) {
-  
-          setModalPlatform(null);
-          setSelectedPlanInModal(null);
-          sessionStorage.setItem('currentPlatformId', modalPlatform.id);
-          navigate('/platform-plan');
-        }
+      if (newIsMobile && !isMobile && modalPlatform) {
+        setModalPlatform(null);
+        setSelectedPlanInModal(null);
+        sessionStorage.setItem('currentPlatformId', modalPlatform.id);
+        navigate('/platform-plan');
       }
-      
       setIsMobile(newIsMobile);
     };
-    
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, [isMobile, modalPlatform, navigate]);
 
-  // Helper function to restore full objects from IDs
   const restoreFromIds = (items) => {
     return items.map(item => {
-     
       if (item.platformId && item.planId) {
         const platform = PLATFORMS.find(p => p.id === item.platformId);
         const plan = platform?.plans?.find(p => p.id === item.planId);
-        if (platform && plan) {
-          return { platform, plan };
-        }
-      }
-      // Handle legacy format (from desktop modals) - already has platform/plan objects
-      else if (item.platform) {
-        const platformWithIcons = PLATFORMS.find(p => p.id === item.platform.id);
-        if (platformWithIcons) {
-          const planWithIcons = platformWithIcons.plans?.find(p => p.id === item.plan?.id);
-          return {
-            platform: platformWithIcons,
-            plan: planWithIcons || item.plan
-          };
-        }
+        if (platform && plan) return { platform, plan };
       }
       return item;
-    }).filter(Boolean); 
+    }).filter(Boolean);
   };
 
+  useEffect(() => {
+    const storedItems = sessionStorage.getItem('serviceCalculatorItems');
+    if (storedItems) {
+      try {
+        const items = JSON.parse(storedItems);
+        setSelectedItems(restoreFromIds(items));
+      } catch (e) { }
+    }
+    setIsInitialLoad(false);
+  }, []);
 
   useEffect(() => {
-    const shouldScroll = sessionStorage.getItem('scrollToCalculator') === 'true';
-    
-    if (shouldScroll) {
-      // Backup scroll mechanism with multiple attempts
-      const attemptScroll = (attempt = 1) => {
-        if (calculatorRef.current) {
-          const elementPosition = calculatorRef.current.getBoundingClientRect().top + window.pageYOffset;
-          const offsetPosition = elementPosition - 80;
-          
-          // Use both methods
-          window.scrollTo({
-            top: offsetPosition,
-            behavior: 'smooth'
-          });
-          
-          calculatorRef.current.scrollIntoView({ 
-            behavior: 'smooth', 
-            block: 'start'
-          });
-          
-          // Only remove flag after successful scroll
-          if (attempt >= 3) {
-            sessionStorage.removeItem('scrollToCalculator');
-          }
-        } else if (attempt < 5) {
-          setTimeout(() => attemptScroll(attempt + 1), attempt * 300);
-        }
-      };
-      
-      // Start scrolling after delay
-      setTimeout(() => attemptScroll(1), 600);
+    if (!isInitialLoad) {
+      const itemsToSave = selectedItems.map(item => ({
+        platformId: item.platform.id,
+        planId: item.plan.id
+      }));
+      sessionStorage.setItem('serviceCalculatorItems', JSON.stringify(itemsToSave));
     }
-  }, [location.pathname, location.key]);
-
-
-  useEffect(() => {
-    const loadItemsFromStorage = () => {
-      const storedItems = sessionStorage.getItem('serviceCalculatorItems');
-      if (storedItems) {
-        try {
-          const items = JSON.parse(storedItems);
-          const restoredItems = restoreFromIds(items);
-          setSelectedItems(restoredItems);
-          setIsInitialLoad(false);
-        } catch (error) {
-          console.error('Failed to parse stored items:', error);
-        }
-      } else {
-        setIsInitialLoad(false);
-      }
-    };
-
-    // Load items when location changes (includes navigation back from mobile pages)
-    loadItemsFromStorage();
-
-    // Check if returning from mobile page on desktop - reopen modal
-    if (window.innerWidth >= 768) {
-      const platformId = sessionStorage.getItem('currentPlatformId');
-      const shouldScroll = sessionStorage.getItem('scrollToCalculator') === 'true';
-      
-  
-      const modalDelay = shouldScroll ? 900 : 300;
-      
-      if (platformId && !modalPlatform) {
-        const platform = PLATFORMS.find(p => p.id === platformId);
-        if (platform) {
-          // Delay modal opening to allow scroll to complete
-          setTimeout(() => {
-            setModalPlatform(platform);
-            setSelectedPlanInModal(platform.plans?.[0] || null);
-          }, modalDelay);
-        }
-      }
-    }
-
-  
-    const handleStorageUpdate = () => {
-      loadItemsFromStorage();
-    };
-
-    window.addEventListener('serviceCalculatorUpdate', handleStorageUpdate);
-
-    return () => {
-      window.removeEventListener('serviceCalculatorUpdate', handleStorageUpdate);
-      // Only clean up sessionStorage if not on mobile (to preserve for navigation)
-      // Mobile needs the currentPlatformId to navigate to PlatformPlanPage
-      if (window.innerWidth >= 768) {
-        sessionStorage.removeItem('currentPlatformId');
-      }
-    };
-  }, [location.pathname, location.key]);
-  useEffect(() => {
-    if (isInitialLoad) {
-      return;
-    }
-
-    const itemsToSave = selectedItems.map(item => {
-      if (item.platform && item.plan) {
-        return { platformId: item.platform.id, planId: item.plan.id };
-      }
-      return item;
-    });
-    sessionStorage.setItem('serviceCalculatorItems', JSON.stringify(itemsToSave));
   }, [selectedItems, isInitialLoad]);
 
   const handlePlatformClick = (platform, event) => {
-    // On mobile, navigate to dedicated page instead of opening modal
     if (isMobile) {
-     
       sessionStorage.setItem('currentPlatformId', platform.id);
       navigate('/platform-plan');
       return;
     }
-
-    // Desktop: use modal
     const rect = event.currentTarget.getBoundingClientRect();
-    setClickPosition({
-      x: rect.left + rect.width / 2,
-      y: rect.top + rect.height / 2,
-    });
-    sessionStorage.setItem('currentPlatformId', platform.id);
+    setClickPosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
     setModalPlatform(platform);
     setSelectedPlanInModal(null);
   };
 
-  const handleCloseModal = () => {
-    // Only clear sessionStorage on desktop (mobile needs it for navigation)
-    if (window.innerWidth >= 768) {
-      sessionStorage.removeItem('currentPlatformId');
-    }
-    setModalPlatform(null);
-    setSelectedPlanInModal(null);
-  };
-
   const applyPlan = (plan) => {
-    if (!modalPlatform || !plan) return;
-
-    setSelectedItems((prev) => {
-      const exists = prev.find(
-        (item) =>
-          item.platform?.id === modalPlatform.id && item.plan?.id === plan.id
-      );
-      if (exists) {
-        return prev;
-      }
+    setSelectedItems(prev => {
+      const exists = prev.find(i => i.platform.id === modalPlatform.id && i.plan.id === plan.id);
+      if (exists) return prev;
       return [...prev, { platform: modalPlatform, plan }];
     });
-
-    setSelectedPlanInModal(null);
-    sessionStorage.removeItem('currentPlatformId');
     setModalPlatform(null);
-  };
-
-  const removeItem = (index) => {
-    setSelectedItems((prev) => prev.filter((_, i) => i !== index));
   };
 
   const total = useMemo(() => {
     let sum = 5000;
-    selectedItems.forEach((item) => {
-      if (item.platform) sum += item.platform.price || 0;
-      if (item.plan) sum += item.plan.price || 0;
+    selectedItems.forEach(i => {
+      sum += (i.platform.price || 0) + (i.plan.price || 0);
     });
     return sum;
   }, [selectedItems]);
 
   const handleWhatsAppClick = () => {
-    // Generate WhatsApp message
-    let message = `Hello Praskla Technologies, I’m interested in your development services. Here's my requirement breakdown:\n\n`;
-    message += `📋 Base Price: ₹5,000\n\n`;
-
-    // Group selected items by platform
-    const platformItems = selectedItems.filter((item) => item.platform);
-
-    if (platformItems.length > 0) {
-      message += `🎯 Platform Selection:\n`;
-      platformItems.forEach((item) => {
-        message += `- ${item.platform.title}: ₹${(
-          item.platform.price || 0
-        ).toLocaleString()}\n`;
-        if (item.plan) {
-          message += `  └ ${item.plan.title}: ₹${(
-            item.plan.price || 0
-          ).toLocaleString()}\n`;
-        }
-      });
-      message += `\n`;
-    }
-
-    message += `💰 Total Estimated Cost: ₹${total.toLocaleString()}\n\n`;
-    message += `I'd like to discuss the development timeline and process.`;
-
-    const encodedMessage = encodeURIComponent(message);
-
-    // WhatsApp phone number
-    const whatsappNumber = "919876543210";
-
-    // Open WhatsApp with pre-filled message
-    const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-    window.open(whatsappURL, "_blank");
+    let message = `Hello Praskla DigitalX, I’m interested in your marketing services. Breakdown:\n\nBase Fee: ₹5,000\n`;
+    selectedItems.forEach(i => {
+      message += `- ${i.platform.title} (${i.plan.title}): ₹${((i.platform.price || 0) + (i.plan.price || 0)).toLocaleString()}\n`;
+    });
+    message += `\nTotal Estimate: ₹${total.toLocaleString()}`;
+    window.open(`https://wa.me/919591310740?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (
-    <div
-      ref={calculatorRef}
-      id="service-calculator"
-      className="service-calculator-4k dark-section relative min-h-screen bg-gradient-to-br  from-[#0f0418] via-[#1a0b2e] to-[#2d1b3d] pt-15 text-white px-6 py-8 animate-fadeIn overflow-hidden"
-    >
-      {/* Elegant decorative elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-300 to-transparent" />
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-300 to-transparent" />
-      </div>
-
-      {/* Sophisticated gradient orbs */}
-      <motion.div
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-20 left-10 w-96 h-96 rounded-full bg-purple-500 blur-[120px]"
-      />
-      <motion.div
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.1, 0.2, 0.1],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-        className="absolute bottom-20 right-10 w-[500px] h-[500px] rounded-full bg-indigo-600 blur-[140px]"
-      />
-
-      {/* Elegant geometric pattern */}
-      <div className="absolute inset-0 opacity-[0.03]"
-        style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255, 255, 255, 0.15) 1px, transparent 0)`,
-          backgroundSize: '48px 48px',
-        }}
-      />
-
-      {/* Floating decorative lines */}
-      {[...Array(6)].map((_, i) => (
-        <motion.div
-          key={`line-${i}`}
-          initial={{ opacity: 0, y: 100 }}
-          animate={{
-            opacity: [0, 0.3, 0],
-            y: [-100, -400],
-            rotate: [0, 360],
-          }}
-          transition={{
-            duration: 15 + i * 2,
-            repeat: Infinity,
-            delay: i * 3,
-            ease: "linear",
-          }}
-          className="absolute w-px h-32 bg-gradient-to-b from-transparent via-purple-400/40 to-transparent"
-          style={{
-            left: `${15 + i * 15}%`,
-            bottom: 0,
-          }}
-        />
-      ))}
-
-      <div className="relative z-10 max-w-7xl mx-auto mt-12 md:mt-20">
-        <header className="text-center mb-8 animate-slideDown">
-          <h1 className="text-4xl font-bold text-white">
-            <span>Service Pricing Calculator</span>
-          </h1>
-          <p
-            className="text-white/70 mt-2 animate-fadeIn"
-            style={{ animationDelay: "0.2s" }}
+    <div className="bg-[#080808] min-h-screen text-white pt-24 overflow-hidden font-outfit">
+      {/* ── Hero Section ── */}
+      <section className="relative px-6 md:px-[5%] pt-12 pb-16 overflow-hidden">
+        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#E8192C]/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
           >
-            Customize your platform and choose a plan
-          </p>
-         
-        </header>
+            <div className="inline-flex items-center border border-white/10 gap-2 px-3 py-1.5 bg-white/5 rounded-full mb-6 mx-auto">
+              <HiLightningBolt className="w-4 h-4 text-[#E8192C]" />
+              <span className="text-xs font-semibold text-white/70 uppercase tracking-wider">Our Services</span>
+            </div>
+            <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-black mb-8 leading-[1.1] tracking-tight text-white max-w-5xl mx-auto">
+              Transforming Brands into <br />
+              <span className="text-[#E8192C]">Digital Authority</span>
+            </h1>
+            <p className="text-white/40 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
+              Comprehensive branding, media, and performance marketing solutions designed to help your business grow strategically, creatively, and profitably.
+            </p>
+          </motion.div>
+        </div>
+      </section>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-          {/* Left Panels */}
-          <div className="lg:col-span-3 space-y-6">
-            <Panel title="Choose Platform">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                {PLATFORMS.map((p, index) => (
-                  <button
-                    key={p.id}
-                    onClick={(e) => handlePlatformClick(p, e)}
-                    className="group flex items-center gap-3 p-6 rounded-xl transition-all duration-300 bg-white/10 backdrop-blur-xl border border-white/20 hover:scale-[1.05] hover:shadow-2xl hover:shadow-purple-500/20 hover:bg-white/15 hover:border-white/40 hover:-translate-y-1 animate-fadeInUp min-h-[100px]"
-                    style={{ animationDelay: `${index * 0.1}s` }}
-                  >
-                    <div className="flex items-center justify-center p-3 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30">
-                      {p.icon ? (
-                        <p.icon className="text-white text-2xl" />
-                      ) : null}
-                    </div>
-                    <div className="text-left flex-1">
-                      <div className="font-semibold text-base text-white group-hover:text-purple-200 transition-colors">
-                        {p.title}
-                      </div>
-                      <div className="mt-0.5">
-                        <span className="text-purple-200/70 price-font text-xs font-medium">Starts at </span>
-                        <span className="text-purple-200 text-sm font-bold group-hover:scale-105 transition-transform inline-block starts-at-price-4k">
-                          ₹{(p.price || 0).toLocaleString()}
-                        </span>
-                      </div>
-                    </div>
-                  </button>
-                ))}
-              </div>
-            </Panel>
+      {/* ── Informational Services Grid ── */}
+      <section className="relative px-6 md:px-[5%] py-20 bg-white/[0.02] border-y border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16">
+            {[
+              {
+                icon: <FaGlobe />,
+                title: "Web Development",
+                desc: "We craft fast, responsive, and visually refined websites that strengthen brand presence and deliver seamless experiences across all devices."
+              },
+              {
+                icon: <FaLaptopCode />,
+                title: "Software Development",
+                desc: "We design and build reliable, scalable software solutions tailored to business needs, enabling efficiency, performance, and long-term growth."
+              },
+              {
+                icon: <FaMobileAlt />,
+                title: "App Development",
+                desc: "We develop high-performance mobile applications that combine intuitive design with robust functionality across Android and iOS platforms."
+              },
+              {
+                icon: <FaShieldAlt />,
+                title: "Cyber Security",
+                desc: "We secure digital ecosystems through advanced security architectures, continuous monitoring, and proactive risk management to safeguard data and build trust."
+              },
+              {
+                icon: <FaBullhorn />,
+                title: "Digital Marketing",
+                desc: "We deliver data-driven digital marketing strategies that enhance brand visibility, engage audiences, and drive measurable business results."
+              },
+              {
+                icon: <FaLeaf />,
+                title: "Sustainability",
+                desc: "We integrate smart technologies and sustainable practices to support responsible growth while reducing environmental impact and creating lasting value."
+              }
+            ].map((s, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="group p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-[#E8192C]/30 transition-all duration-500"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 transition-all duration-500 group-hover:bg-[#E8192C]/10 group-hover:border-[#E8192C]/40 group-hover:scale-110">
+                  <div className="text-white/30 text-2xl group-hover:text-[#E8192C] transition-colors duration-500">
+                    {s.icon}
+                  </div>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#E8192C] transition-colors">{s.title}</h3>
+                <p className="text-white/40 text-sm leading-relaxed">{s.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Pricing Calculator ── */}
+      <div
+        ref={calculatorRef}
+        className="relative px-6 md:px-[5%] py-24 md:py-32"
+      >
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E8192C]/5 rounded-full blur-[140px] pointer-events-none" />
+        <div className="relative z-10 max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4">Pricing Calculator</h2>
+            <p className="text-white/40 text-lg">Pick your pillars and plans to see an estimated growth investment.</p>
           </div>
 
-          {/* Right Panel - Sticky Price Summary */}
-          <div className="lg:col-span-2">
-            <div className="sticky top-6">
-              <Panel title="Price Summary">
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center p-3 bg-white/6 border border-white/10 rounded-lg animate-fadeIn">
-                    <span className="text-white/70 font-medium">
-                      Base Price
-                    </span>
-                    <span className="font-bold text-white">₹5,000</span>
-                  </div>
-
-                  {/* Selected Items */}
-                  {selectedItems.length > 0 && (
-                    <div className="space-y-2 animate-slideDown">
-                      <div className="text-white/70 text-sm font-semibold flex items-center gap-2">
-                        <span className="w-2 h-2 bg-purple-300 rounded-full animate-pulse"></span>
-                        Selected Items:
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            {/* Left Column: Pillars */}
+            <div className="lg:col-span-7 space-y-6">
+              <Panel title="Select Pillars">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {PLATFORMS.map((p, i) => (
+                    <button
+                      key={p.id}
+                      onClick={(e) => handlePlatformClick(p, e)}
+                      className="group flex items-center gap-4 p-6 rounded-2xl bg-white/5 border border-white/10 hover:border-[#E8192C]/40 hover:bg-[#E8192C]/5 transition-all duration-300"
+                    >
+                      <div className="w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center text-[#E8192C]/60 group-hover:text-[#E8192C] transition-colors">
+                        {p.icon && <p.icon className="text-xl" />}
                       </div>
-                      {selectedItems.map((item, index) => (
-                        <div
-                          key={index}
-                          className="pl-2 space-y-1 p-3 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/30 transition-all duration-300 animate-fadeInUp"
-                          style={{ animationDelay: `${index * 0.1}s` }}
-                        >
-                          {item.platform && (
-                            <div className="flex justify-between items-center">
-                              <div className="flex-1">
-                                <div className="text-white font-medium text-sm">
-                                  {item.platform.title}
-                                </div>
-                              </div>
-                              <span className="font-medium text-purple-200">
-                                +₹{(item.platform.price || 0).toLocaleString()}
-                              </span>
-                            </div>
-                          )}
-                          {item.plan && (
-                            <div className="flex justify-between items-center pl-3">
-                              <div className="flex-1">
-                                <div className="text-white/80 text-xs">
+                      <div className="text-left flex-1">
+                        <div className="font-bold text-white text-lg">{p.title}</div>
+                        <div className="text-[#E8192C] text-sm font-bold mt-0.5">
+                          ₹{(p.price || 0).toLocaleString()}
+                          <span className="text-white/20 font-normal text-xs ml-2">base</span>
+                        </div>
+                      </div>
+                      <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-[#E8192C]/40 transition-colors">
+                        <FaArrowRight className="text-white/20 text-xs group-hover:text-[#E8192C]" />
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </Panel>
+            </div>
+
+            {/* Right Column: Checkout */}
+            <div className="lg:col-span-5">
+              <div className="sticky top-28">
+                <Panel title="Plan Summary">
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center p-5 bg-white/5 rounded-2xl border border-white/5">
+                      <span className="text-white/40 font-semibold tracking-wide uppercase text-[11px]">Base Setup Fee</span>
+                      <span className="font-black text-white">₹5,000</span>
+                    </div>
+
+                    <div className="max-h-[350px] overflow-y-auto pr-1 space-y-3 custom-scrollbar">
+                      <AnimatePresence>
+                        {selectedItems.map((item, idx) => (
+                          <motion.div
+                            key={`${item.platform.id}-${item.plan.id}`}
+                            initial={{ opacity: 0, x: 20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            className="p-5 rounded-2xl bg-white/5 border border-white/10 space-y-3 group"
+                          >
+                            <div className="flex justify-between items-start">
+                              <div>
+                                <div className="text-sm font-black text-white uppercase tracking-tight">{item.platform.title}</div>
+                                <div className="text-[#E8192C] text-xs font-bold mt-1 inline-flex items-center gap-1">
+                                  <MdStars className="text-xs" />
                                   {item.plan.title}
                                 </div>
                               </div>
-                              <span className="font-medium text-purple-200 text-sm">
-                                +₹{(item.plan.price || 0).toLocaleString()}
-                              </span>
+                              <div className="text-right">
+                                <div className="text-sm font-black text-white">₹{((item.platform.price || 0) + (item.plan.price || 0)).toLocaleString()}</div>
+                                <button
+                                  onClick={() => setSelectedItems(prev => prev.filter((_, i) => i !== idx))}
+                                  className="text-white/20 hover:text-[#E8192C] text-[10px] uppercase font-black mt-2 tracking-tighter"
+                                >
+                                  Remove
+                                </button>
+                              </div>
                             </div>
-                          )}
-                          <button
-                            onClick={() => removeItem(index)}
-                            className="text-red-500 hover:text-red-700 transition-all text-xs flex items-center gap-1 mt-2"
-                          >
-                            <FaTimesCircle /> Remove
-                          </button>
+                          </motion.div>
+                        ))}
+                      </AnimatePresence>
+                    </div>
+
+                    <div className="pt-8 mt-4 border-t border-white/10">
+                      <div className="flex items-center justify-between mb-8">
+                        <span className="text-white/30 text-xs font-black uppercase tracking-[0.2em]">Investment Est.</span>
+                        <div className="text-4xl font-black text-white">
+                          <span className="text-[#E8192C] text-xl align-top mt-1 mr-1">₹</span>
+                          {total.toLocaleString()}
                         </div>
-                      ))}
-                    </div>
-                  )}
-
-                  <div className="border-t border-white/20 pt-4 animate-fadeIn">
-                    <div className="text-sm font-medium text-white/60 mb-1 flex items-center gap-2">
-                      <span>Estimated Project Cost</span>
-                    </div>
-                    <div className="flex items-baseline gap-2 mb-1">
-                      <span className="text-lg font-medium text-white/80">Starting from</span>
-                      <div className="text-3xl font-extrabold bg-gradient-to-r from-purple-200 via-pink-200 to-purple-300 bg-clip-text text-transparent">
-                        ₹{total.toLocaleString()}
                       </div>
-                    </div>
-                  </div>
 
-                  {/* Smart estimate disclaimer */}
-                  <div className="mt-3 mb-1 p-3 rounded-lg bg-yellow-900/40 border-2 border-yellow-500/20">
-                    <div className="flex items-start gap-2">
-                      <MdStars className="text-yellow-200 mt-0.5 flex-shrink-0" />
-                      <p className="text-sm text-white/80 leading-relaxed">
-                        <span className="font-semibold text-yellow-200 text-[17px]">Note: </span> Final pricing may vary based on project complexity, custom features, technical requirements, and development timeline.
+                      <button
+                        onClick={handleWhatsAppClick}
+                        className="w-full py-5 rounded-2xl bg-[#25D366] hover:bg-[#20BA5A] text-white font-black flex items-center justify-center gap-3 transition-all transform hover:scale-[1.02] shadow-[0_15px_40px_rgba(37,211,102,0.2)]"
+                      >
+                        <IoLogoWhatsapp className="text-2xl" />
+                        GET DETAILED PROPOSAL
+                      </button>
+
+                      <p className="text-center text-white/20 text-[10px] uppercase font-black tracking-widest mt-6">
+                        Final pricing subject to specific scope requirements
                       </p>
                     </div>
                   </div>
-
-                  <button
-                    onClick={handleWhatsAppClick}
-                    className="w-full mt-2 inline-flex items-center justify-center gap-2 sm:gap-3 bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold py-3 px-3 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300"
-                  >
-                    <IoLogoWhatsapp className="text-2xl flex-shrink-0" />
-                    <span className="text-sm sm:text-base leading-tight">Get Detailed Quote on WhatsApp</span>
-                  </button>
-                </div>
-              </Panel>
-
-              {/* Contact Form Section */}
-              {!showContactForm ? (
-                <p className="text-center text-white text-base py-4 animate-fadeInUp">
-                  Still not satisfied? Contact our team.{" "}
-                  <button
-                    onClick={() => setShowContactForm(true)}
-                    className="text-purple-200 font-bold hover:text-pink-200 transition-colors"
-                  >
-                    Click here
-                  </button>
-                </p>
-              ) : null}
+                </Panel>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Platform Modal - Shows Plans */}
+      {/* ── Partners ── */}
+      <section className="py-24 border-t border-white/5 bg-white/[0.01]">
+        <div className="max-w-7xl mx-auto px-6">
+          <h2 className="text-center text-white/10 font-black uppercase tracking-[0.4em] text-[10px] mb-16">Ecosystem Partners</h2>
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale hover:grayscale-0 transition-all duration-700">
+            <img src={balajiPortraits} alt="Partner" className="h-8 md:h-12 w-auto object-contain hover:scale-110 transition-transform" />
+            <img src={ibodhiAcademy} alt="Partner" className="h-8 md:h-12 w-auto object-contain hover:scale-110 transition-transform" />
+            <img src={vilcet} alt="Partner" className="h-8 md:h-12 w-auto object-contain hover:scale-110 transition-transform" />
+          </div>
+        </div>
+      </section>
+
       <PlatformPlanModal
         isOpen={!!modalPlatform}
-        onClose={handleCloseModal}
+        onClose={() => setModalPlatform(null)}
         clickPosition={clickPosition}
         platform={modalPlatform}
         selectedPlan={selectedPlanInModal}
@@ -567,128 +382,46 @@ export default function ServiceCalculator() {
         onApplyPlan={applyPlan}
       />
 
-      {/* Removed old inline modal fallback code - modal is now handled via PlatformPlanModal and PlatformPlanPage */}
-
       <ContactForm
         isOpen={showContactForm}
         onClose={() => setShowContactForm(false)}
       />
 
-      {/* Partners Section */}
-      <div className="mt-[100px] mb-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          {/* Simple Header */}
-          <div className="text-center mb-6">
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-5">
-              In Tie-up with
-            </h2>
-          </div>
-          
-          {/* Simple Marquee Container */}
-          <div className="relative">
-            <div className="marquee-container py-4" style={{
-              width: '100%',
-              overflow: 'hidden',
-            }}>
-              <div className="marquee-content grayscale  marquee-mobile" style={{
-                display: 'flex',
-                animation: 'marquee 25s linear infinite',
-                whiteSpace: 'nowrap',
-                gap: '5rem',
-                willChange: 'transform',
-              }}>
-                {/* Original set */}
-                {[
-                  { name: 'Balaji Portraits', logo: balajiPortraits },
-                  { name: 'IBODHI ACADEMY', logo: ibodhiAcademy },
-                  { name: 'VILCET', logo: vilcet },
-                ].map((partner, index) => (
-                  <motion.div 
-                    key={`logo-${index}`} 
-                    className="logo-item group"
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  >
-                    <img
-                      src={partner.logo}
-                      alt={partner.name}
-                      className="h-8 sm:h-12 md:h-14 lg:h-16 w-auto object-contain opacity-60 transition-all duration-500 filter drop-shadow-lg"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.style.opacity = 0.3;
-                        e.target.style.width = '60px';
-                      }}
-                      loading="lazy"
-                    />
-                  </motion.div>
-                ))}
-                {/* First copy */}
-                {[
-                  { name: 'Balaji Portraits', logo: balajiPortraits },
-                  { name: 'IBODHI ACADEMY', logo: ibodhiAcademy },
-                  { name: 'VILCET', logo: vilcet },
-                ].map((partner, index) => (
-                  <motion.div 
-                    key={`logo-copy1-${index}`} 
-                    className="logo-item group"
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  >
-                    <img
-                      src={partner.logo}
-                      alt={partner.name}
-                      className="h-8 sm:h-12 md:h-14 lg:h-16 w-auto object-contain opacity-60 transition-all duration-500 filter drop-shadow-lg"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.style.opacity = 0.3;
-                        e.target.style.width = '60px';
-                      }}
-                      loading="lazy"
-                    />
-                  </motion.div>
-                ))}
-                {/* Second copy */}
-                {[
-                  { name: 'Balaji Portraits', logo: balajiPortraits },
-                  { name: 'IBODHI ACADEMY', logo: ibodhiAcademy },
-                  { name: 'VILCET', logo: vilcet },
-                ].map((partner, index) => (
-                  <motion.div 
-                    key={`logo-copy2-${index}`} 
-                    className="logo-item group"
-                    whileHover={{ scale: 1.08 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  >
-                    <img
-                      src={partner.logo}
-                      alt={partner.name}
-                      className="h-8 sm:h-12 md:h-14 lg:h-16 w-auto object-contain opacity-60 transition-all duration-500 filter drop-shadow-lg"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.style.opacity = 0.3;
-                        e.target.style.width = '60px';
-                      }}
-                      loading="lazy"
-                    />
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: rgba(255, 255, 255, 0.05);
+          border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: rgba(232, 25, 44, 0.2);
+          border-radius: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+          background: rgba(232, 25, 44, 0.4);
+        }
+      `}</style>
     </div>
   );
 }
 
 function Panel({ title, children }) {
   return (
-    <div className="rounded-2xl p-6 bg-white/10 shadow-xl shadow-black/10 border border-white/10 transition-all duration-300 animate-fadeInUp">
-      <h3 className="text-xl font-bold mb-4 bg-gradient-to-r from-purple-200 via-pink-200 to-purple-300 bg-clip-text text-transparent flex items-center gap-2">
-        <span className="w-1.5 h-6 bg-gradient-to-b from-purple-300 to-pink-300 rounded-full"></span>
+    <div className="rounded-[40px] p-8 md:p-10 bg-white/[0.03] border border-white/10 backdrop-blur-xl">
+      <h3 className="text-sm font-black text-white/40 uppercase tracking-[0.3em] mb-10 flex items-center gap-4">
+        <span className="w-12 h-[1px] bg-white/10" />
         {title}
       </h3>
-      <div>{children}</div>
+      {children}
     </div>
   );
 }
+
+const FaArrowRight = ({ className }) => (
+  <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);

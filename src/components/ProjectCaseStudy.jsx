@@ -200,8 +200,8 @@ const ProjectCaseStudy = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-[#E8192C] text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">Features</span>
-              <h2 className="text-3xl md:text-4xl font-black text-white">Key Capabilities</h2>
+              <span className="text-[#E8192C] text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">{project.featuresLabel || "Features"}</span>
+              <h2 className="text-3xl md:text-4xl font-black text-white">{project.featuresTitle || "Key Capabilities"}</h2>
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -279,10 +279,10 @@ const ProjectCaseStudy = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-[#E8192C] text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">Technologies</span>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-3">Built With Modern Tools</h2>
+              <span className="text-[#E8192C] text-xs font-semibold tracking-[0.2em] uppercase mb-3 block">{project.techLabel || "Technologies"}</span>
+              <h2 className="text-3xl md:text-4xl font-black text-white mb-3">{project.techTitle || "Built With Modern Tools"}</h2>
               <p className="text-white/35 text-base">
-                Leveraging industry-leading technologies to deliver exceptional results
+                {project.techDesc || "Leveraging industry-leading technologies to deliver exceptional results"}
               </p>
             </motion.div>
 

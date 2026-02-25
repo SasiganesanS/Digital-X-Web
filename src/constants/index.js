@@ -51,24 +51,24 @@ export const clientData = [
 
 export const data = [
   {
-    title: "Research & Discover",
-    desc: "Analyze business needs and user behavior to uncover insights that guide strategic innovation.",
+    title: "Research & Strategize",
+    desc: "Analyze market trends, audience behavior, and brand positioning to uncover insights that drive impactful marketing decisions.",
     code: "RSD",
   },
   {
-    title: "Design & Prototype",
-    desc: "Craft intuitive interfaces and seamless user experiences that align with brand identity and goals.",
+    title: "Design & Create",
+    desc: "Craft compelling content, visual storytelling, and campaign creatives that align with brand identity and audience psychology",
     code: "DSN",
   },
   {
-    title: "Build & Integrate",
-    desc: "Develop scalable, secure, and high-performance solutions with modern technologies and agile practices.",
-    code: "BLD",
+    title: "Launch & Amplify",
+    desc: "Execute performance campaigns across social media, SEO, paid ads, and digital platforms to maximize reach and engagement.",
+    code: "LCH",
   },
   {
-    title: "Deploy & Optimize",
-    desc: "Launch efficiently and continuously improve through monitoring, analytics, and real-world feedback.",
-    code: "DPL",
+    title: "Optimize & Scale",
+    desc: "Continuously monitor data, refine strategies, and scale winning campaigns to improve ROI and long-term brand growth.",
+    code: "OPT",
   },
 ];
 
@@ -83,26 +83,30 @@ import PHero4 from "../assets/P-Hero-4.jpg";
 import PHero5 from "../assets/P-Hero-5.jpg";
 export const ServiceHeroData = [
   {
-    title: "Web Development",
-    desc: "We design and develop fast, responsive, and visually engaging websites that elevate your brand presence and deliver an exceptional user experience across all devices.",
+    title: "Content Creation",
+    desc: "Stories that convert through compelling copy, graphics, and high-impact video production.",
     image: PHero4,
   },
   {
-    title: "App Development",
-    desc: "We build scalable, high-performance mobile applications that blend creativity and functionality, helping businesses connect seamlessly with users on Android and iOS platforms.",
+    title: "Social Media Management",
+    desc: "Strategic community building and always-on brand presence across all major platforms.",
     image: PHero5,
   },
   {
-    title: "Cyber Security",
-    desc: "We protect your digital infrastructure through advanced security frameworks, proactive monitoring, and strategic risk management to ensure complete data integrity and trust.",
+    title: "Paid Advertising",
+    desc: "ROI-focused campaigns designed to reach your ideal audience and scale profitably.",
     image: PHero3,
   },
   {
-    title: "Sustainability",
-    desc: "We leverage innovative technologies and green practices to help your organization grow responsibly, minimizing environmental impact while maximizing business value.",
+    title: "SEO Optimization",
+    desc: "Organic visibility and authority building that drives consistent, high-intent traffic.",
     image: PHero1,
   },
-
+  {
+    title: "Sales Strategy",
+    desc: "Data-backed funnels and frameworks that systematically turn prospects into loyal clients.",
+    image: PHero4, // Reusing PHero4 for now
+  },
 ];
 
 export const blogPosts = [
@@ -235,536 +239,244 @@ export const blogPosts = [
 
 // --- Platforms Data (migrated from PricingData.json) ---
 export const platforms = [
-  // Web Development
+  // Content Creation
   {
-    id: "web",
-    title: "Web Development",
-    price: 10000,
-    icon: "FaGlobe",
+    id: "content",
+    title: "Content Creation",
+    price: 8000,
+    icon: "MdStars",
     plans: [
       {
-        id: "basic",
-        title: "Basic Web",
-        price: 2000,
+        id: "starter",
+        title: "Social Starter",
+        price: 2500,
         icon: "MdDiamond",
         availableDetails: [
-          "3-5 Pages",
-          "Responsive Design",
-          "Contact Form",
-          "1-Month Support"
+          "10 Graphic Designs / Month",
+          "4 Reel Edits (Short form)",
+          "Basic Copywriting",
+          "Brand Style Alignment"
         ],
         unavailableDetails: [
-          "Basic Template",
-          "SEO Optimization",
-          "E-Commerce Support",
-          "Blog Integration",
-          "Hosting & Domain",
-          "Security (SSL, Firewall)",
-          "Speed Optimization",
-          "Custom Features (API, Integrations, etc.)"
+          "Cinematic Video Production",
+          "Professional Scriptwriting",
+          "Motion Graphics",
+          "High-End Photography"
         ]
       },
       {
-        id: "startup",
-        title: "Startup Web",
-        price: 4000,
+        id: "growth",
+        title: "Growth Media",
+        price: 5500,
         icon: "MdRocketLaunch",
         availableDetails: [
-          "Semi-Custom",
-          "Responsive & Mobile-Friendly",
-          "5-7 Pages",
-          "Basic SEO Optimization",
-          "Advanced Contact Form",
-          "Blog Integration",
-          "Basic SSL",
-          "Basic Optimization",
-          "3-Months Tech Support"
+          "20 Graphic Designs / Month",
+          "8 Reel Edits (Advanced)",
+          "Professional Scriptwriting",
+          "Basic Motion Graphics",
+          "Photography Session (Local)"
         ],
-        unavailabeDetails: [
-          "E-Commerce Support",
-          "Hosting & Domain",
-          "Custom Features (API, Integrations, etc.)"
-        ]
-      },
-      {
-        id: "standard",
-        title: "Standard Web",
-        price: 6000,
-        icon: "MdStars",
-        details: [
-          "Fully Custom",
-          "Responsive & Mobile-Friendly",
-          "10-15 Pages",
-          "Standard SEO Optimization",
-          "Basic Store",
-          "Advanced Contact Form",
-          "Blog Integration",
-          "1-Year Free Hosting & Domain",
-          "Standard (SSL, Firewall)",
-          "Advanced Optimization",
-          "Basic Custom Features (API, Integrations, etc.)",
-          "6-Months Tech Support"
+        unavailableDetails: [
+          "Global Production Support",
+          "Full-Length Documentary Production"
         ]
       },
       {
         id: "premium",
-        title: "Premium Web",
-        price: 8000,
+        title: "Cinematic Pro",
+        price: 9500,
         icon: "MdWorkspacePremium",
-        details: [
-          "Premium Custom",
-          "Responsive & Mobile-Friendly",
-          "20+ Pages",
-          "Advanced SEO Optimization",
-          "Advanced Store",
-          "Multi-Step & CRM",
-          "Blog Integration",
-          "1-Year Free Hosting & Domain",
-          "Advanced (SSL, Firewall)",
-          "Ultra-Fast Optimization",
-          "Advanced Custom Features (API, Integrations, etc.)",
-          "1 Year Tech Support"
+        availableDetails: [
+          "Unlimited Daily Content",
+          "15+ High-Impact Reels",
+          "Professional Voiceovers",
+          "Premium Motion Graphics",
+          "Monthly Product/Brand Shoot",
+          "Dedicated Content Strategist"
         ]
       }
     ]
   },
-  // Mobile App Development
+  // Social Media Management
   {
-    id: "app",
-    title: "Mobile App Development",
-    price: 25000,
+    id: "social",
+    title: "Social Media Management",
+    price: 7000,
     icon: "FaMobileAlt",
     plans: [
       {
-        id: "basic",
-        title: "Basic App",
+        id: "essential",
+        title: "Essential Reach",
         price: 3000,
         icon: "MdDiamond",
         availableDetails: [
-          "Android/iOS Only",
-          "Basic UI & Prototype",
-          "Basic Onboarding",
-          "Basic Auth + SSL",
-          "Basic Analytics",
-          "Basic Store SEO",
-          "1 API Only",
-          "1-Month Support"
-        ],
-        unavailableDetails: [
-          "Payment Gateway",
-          "Offline/Real-Time Features",
-          "Loyalty Features",
-          "Admin Panel"
+          "Management of 2 Platforms",
+          "3 Posts per Week",
+          "Basic Community Management",
+          "Monthly Performance Report"
         ]
       },
       {
-        id: "startup",
-        title: "Startup App",
-        price: 6000,
-        icon: "MdRocketLaunch",
-        availableDetails: [
-          "Android + iOS + PWA",
-          "Custom UI & Prototype",
-          "Advanced Onboarding",
-          "Advanced Auth",
-          "Single Payment Gateway",
-          "Standard Analytics",
-          "Standard Optimization",
-          "3 APIs",
-          "Basic Loyalty",
-          "Basic Admin",
-          "3-Months + Strategy Support"
-        ],
-        unavailableDetails: [
-          "Offline/Real-Time Features"
-        ]
-      },
-      {
-        id: "standard",
-        title: "Standard App",
-        price: 9000,
+        id: "authority",
+        title: "Authority Suite",
+        price: 6500,
         icon: "MdStars",
         availableDetails: [
-          "Android + iOS + Web",
-          "Animated UI & Prototype",
-          "Premium Onboarding",
-          "Security Suite",
-          "Multiple Payment Gateways",
-          "BI + Advanced Insights",
-          "Premium Optimization",
-          "Chat + Offline",
-          "5 APIs",
-          "Gamification + Messaging",
-          "Full Admin + Scalable",
-          "6-Months + Reviews Support"
+          "Management of 4 Platforms",
+          "Daily Posting & Stories",
+          "Active Engagement & Growth",
+          "Competitor Analysis",
+          "Influencer Outreach (Basic)"
         ]
       },
       {
-        id: "premium",
-        title: "Premium App",
-        price: 12000,
-        icon: "MdWorkspacePremium",
-        availableDetails: [
-          "Full Platform Ecosystem",
-          "Bespoke UI & Prototype",
-          "Custom Onboarding",
-          "Enterprise Security",
-          "Wallet + Multi-Gateway",
-          "Executive BI Suite",
-          "Full Optimization Package",
-          "Full Real-Time + Offline",
-          "Unlimited APIs",
-          "Custom Rewards",
-          "Role-Based Admin Access",
-          "SLA Support + Launch Campaign"
-        ]
-      }
-    ]
-  },
-  // Software Development
-  {
-    id: "software",
-    title: "Software Development",
-    price: 7500,
-    icon: "FaLaptopCode",
-    plans: [
-      {
-        id: "basic",
-        title: "Basic Software",
-        price: 2500,
-        icon: "MdDiamond",
-        availableDetails: [
-          "Platform: Windows only",
-          "Language: Python / C# / Electron (Basic GUI)",
-          "UI: Simple (Up to 2–3 screens)",
-          "Function: Single-purpose tools",
-          "Delivery: 5–7 days",
-          "1 Week Free Bug Fix Support"
-        ],
-        unavailableDetails: [
-          "Database Integration",
-          "Multi-screen UI",
-          "Cross-platform Support",
-          "User Roles & Permissions",
-          "API Integrations",
-          "Remote Database Sync"
-        ]
-      },
-      {
-        id: "startup",
-        title: "Startup Software",
-        price: 5000,
-        icon: "MdRocketLaunch",
-        availableDetails: [
-          "Platform: Windows / Cross-platform (Electron/Qt)",
-          "UI: Multi-screen (Up to 5 screens)",
-          "Local Database: SQLite or JSON-based",
-          "Features: Basic CRUD, input forms, export options",
-          "Delivery: 10–14 days",
-          "1 Month Free Support"
-        ]
-      },
-      {
-        id: "standard",
-        title: "Standard Software",
-        price: 8000,
-        icon: "MdStars",
-        availableDetails: [
-          "Platforms: Windows / macOS / Linux",
-          "Tech Stack: Python, Java, C#, Electron, Qt",
-          "UI: Modern with validation, animations",
-          "Database: Integrated (SQLite/MySQL)",
-          "Features: User Roles, Search, Filters, Reporting",
-          "Delivery: 3–4 weeks",
-          "2 Months Bug Fix + Minor Upgrades",
-          "Login System & Permissions"
-        ],
-        unavailableDetails: [
-          "Remote Database Sync",
-          "Encryption",
-          "API Integrations (Payment, Cloud, etc.)",
-          "Auto Updates & Notifications"
-        ]
-      },
-      {
-        id: "premium",
-        title: "Premium Software",
+        id: "omni",
+        title: "Omni-Channel",
         price: 11000,
         icon: "MdWorkspacePremium",
         availableDetails: [
-          "Platforms: Multi-OS with enhanced UX/UI",
-          "Remote Database Sync",
-          "Login System, Permissions, Encryption",
-          "API Integrations (Payment, Cloud, etc.)",
-          "Auto Updates, Notifications",
-          "Delivery: 4–6 weeks",
-          "3 Months Support & Optimization",
-          "Custom Branding",
-          "Advanced Reports & Analytics",
-          "Dedicated Project Manager",
-          "Technical Documentation",
-          "Performance Optimization"
+          "Full Multi-Platform Presence",
+          "24/7 Community Management",
+          "Verified Account Strategy",
+          "PR & Influencer Integration",
+          "Deep Analytics Dashboard"
         ]
       }
     ]
   },
-  // Digital Marketing
+  // Paid Advertising
   {
-    id: "digital",
-    title: "Digital Marketing",
-    price: 7500,
+    id: "ads",
+    title: "Paid Advertising",
+    price: 9000,
     icon: "FaBullhorn",
     plans: [
       {
-        id: "basic",
-        title: "Basic Marketing",
-        price: 2000,
-        icon: "MdDiamond",
-        availableDetails: [
-          "SEO Basics (On-page SEO only)",
-          "Basic Social Media Management (2 Platforms - 3 posts/week)",
-          "Basic Email Campaign (1 Campaign/Month)",
-          "1-Month Reporting",
-          "1-Month Tech Support"
-        ],
-        unavailableDetails: [
-          "Video Production",
-          "Paid Ads (PPC)",
-          "Conversion Rate Tracking",
-          "Content Strategy Planning",
-          "Marketing Videos",
-          "CRO (Conversion Rate Optimization)",
-          "Advanced Data Analytics"
-        ]
-      },
-      {
-        id: "startup",
-        title: "Startup Marketing",
+        id: "launch",
+        title: "Campaign Launch",
         price: 4000,
         icon: "MdRocketLaunch",
         availableDetails: [
-          "Full SEO (On-Page + Basic Off-Page)",
-          "Social Media Management (3 Platforms - 4 posts/week)",
-          "Email Marketing Campaigns (2 Campaigns/Month)",
-          "Conversion Rate Tracking (basic)",
-          "PPC Campaign Setup (Basic - Ad Budget Extra)",
-          "2-Month Reporting",
-          "3-Months Tech Support"
-        ],
-        unavailableDetails: [
-          "Video Production",
-          "Content Strategy Planning",
-          "Marketing Videos",
-          "CRO (Advanced)",
-          "Advanced Data Analytics"
+          "Meta Ads Setup (FB/IG)",
+          "Audience Research",
+          "Basic Retargeting",
+          "Ad Copy & Creative Prep"
         ]
       },
       {
-        id: "standard",
-        title: "Standard Marketing",
-        price: 6000,
+        id: "scale",
+        title: "Performance Scale",
+        price: 8500,
         icon: "MdStars",
         availableDetails: [
-          "Advanced SEO (Full On-Page + Off-Page)",
-          "Social Media Management (5 Platforms - Daily Posts)",
-          "Email Marketing Campaigns (4 Campaigns/Month)",
-          "Conversion Rate Optimization (Standard level)",
-          "Full PPC Ad Management (Google, Meta Ads)",
-          "Monthly Content Strategy Planning",
-          "Basic Marketing Video (1 Video/Month)",
-          "3-Month Reporting",
-          "6-Months Tech Support"
-        ],
-        unavailableDetails: [
-          "Email Marketing Automation",
-          "Advanced Data Analytics Integration",
-          "Custom Marketing Videos"
+          "Meta + Google Ads",
+          "Advanced Pixel Setup",
+          "Lookalike Audience Creation",
+          "A/B Testing Framework",
+          "Weekly Optimization"
         ]
       },
       {
-        id: "premium",
-        title: "Premium Marketing",
-        price: 9000,
+        id: "enterprise",
+        title: "Global Ad Ops",
+        price: 14000,
         icon: "MdWorkspacePremium",
         availableDetails: [
-          "Advanced SEO (AI-powered Audits + Reporting)",
-          "Social Media Growth Campaigns (5+ Platforms + Paid Promotions)",
-          "Email Marketing Automation (Full Funnel Setup)",
-          "Full CRO (Advanced Data Analytics Integration)",
-          "Full PPC Campaign Management (Across Google, Meta, LinkedIn)",
-          "Content Strategy + Monthly Video Content (2 Videos/Month)",
-          "Custom Marketing Videos (Animated, Product Demos)",
-          "Bi-Weekly Reporting",
-          "1-Year Tech Support",
-          "Dedicated Account Manager",
-          "Custom Brand Strategy Development",
-          "Competitor Analysis & Tracking"
+          "Full Funnel Ad Management",
+          "Multi-Platform (Meta, Google, LinkedIn)",
+          "ROI / ROAS Focused Scaling",
+          "Custom Landing Page Design",
+          "Dedicated Media Buyer"
         ]
       }
     ]
   },
-  // Cyber Security
+  // SEO Optimization
   {
-    id: "cyber",
-    title: "Cyber Security",
-    price: 9000,
-    icon: "FaShieldAlt",
+    id: "seo",
+    title: "SEO Optimization",
+    price: 6000,
+    icon: "FaChartLine",
     plans: [
       {
-        id: "basic",
-        title: "Basic Security",
+        id: "audit",
+        title: "Visibility Audit",
         price: 2500,
         icon: "MdDiamond",
         availableDetails: [
-          "Vulnerability assessments and penetration testing",
-          "Red team simulations with threat emulation",
-          "Web, mobile, and thick client security testing",
-          "ATM and virtualization environment assessments",
-          "Secure code reviews and configuration validation",
-          "CVSS-based risk scoring and monthly reports",
-          "Social engineering and physical security testing",
-          "Executive-level summary reports"
+          "Technical Website Audit",
+          "Keyword Gap Analysis",
+          "On-Page Roadmap",
+          "Google My Business Setup"
         ]
       },
       {
-        id: "startup",
-        title: "Startup Security",
+        id: "organic",
+        title: "Organic Growth",
         price: 5000,
-        icon: "MdRocketLaunch",
-        availableDetails: [
-          "GDPR, HIPAA, and CCPA compliance consulting",
-          "Data Protection Officer (DPO) advisory",
-          "ISO 27001 alignment for privacy programs",
-          "Data flow mapping and consent management",
-          "Privacy policy evaluation and staff training",
-          "Third-party data sharing audits",
-          "Customized training for compliance",
-          "Comprehensive privacy implementation"
-        ]
-      },
-      {
-        id: "standard",
-        title: "Standard Security",
-        price: 8000,
         icon: "MdStars",
         availableDetails: [
-          "Development of risk-based security roadmaps",
-          "KPI setting and quarterly progress reviews",
-          "Tool selection and budget planning support",
-          "CISO advisory for strategic planning",
-          "Alignment with NIST, CIS frameworks",
-          "Milestone-based security maturity planning",
-          "Power BI CS analytics",
-          "Executive reporting and guidance"
+          "Monthly Content SEO",
+          "Backlink Strategy (Basic)",
+          "Competitor Tracking",
+          "Local SEO Domination"
         ]
       },
       {
-        id: "premium",
-        title: "Premium Security",
-        price: 12000,
+        id: "authority",
+        title: "Authority Builder",
+        price: 9000,
         icon: "MdWorkspacePremium",
         availableDetails: [
-          "ISO 22301 business continuity implementation",
-          "Business Impact Analysis (BIA)",
-          "Crisis management and recovery planning",
-          "Cloud-based backup strategies",
-          "Simulation and testing of continuity plans",
-          "Crisis communication protocols",
-          "Regular resilience assessments",
-          "Stakeholder management planning"
+          "Technical & Global SEO",
+          "PR & High-DA Link Building",
+          "Voice Search Optimization",
+          "Search Intent Funneling"
         ]
       }
     ]
   },
-  // Sustainability Solutions
+  // Sales Strategy
   {
-    id: "sustainability",
-    title: "Sustainability Solutions",
-    price: 8500,
-    icon: "FaLeaf",
+    id: "sales",
+    title: "Sales Strategy",
+    price: 10000,
+    icon: "MdIntegrationInstructions",
     plans: [
       {
-        id: "basic",
-        title: "Basic Sustainability",
-        price: 2000,
-        icon: "MdDiamond",
-        availableDetails: [
-          "Energy Consumption Assessment",
-          "Basic Carbon Footprint Analysis",
-          "Green IT Recommendations",
-          "Energy-Efficient Hardware Suggestions",
-          "3-Month Support"
-        ],
-        unavailableDetails: [
-          "Sustainable Cloud Options",
-          "E-Waste Management Plan",
-          "ESG Reporting",
-          "Green Office Assessment",
-          "Renewable Energy Integration",
-          "Green Software Architecture",
-          "Sustainability Workshops"
-        ]
-      },
-      {
-        id: "startup",
-        title: "Startup Sustainability",
-        price: 4000,
+        id: "funnel",
+        title: "Funnel Setup",
+        price: 4500,
         icon: "MdRocketLaunch",
         availableDetails: [
-          "Advanced Energy Consumption Analysis",
-          "Detailed Carbon Footprint Reporting",
-          "Comprehensive Green IT Strategy",
-          "Energy-Efficient Hardware Procurement",
-          "Sustainable Cloud Migration Plan",
-          "E-Waste Management Program",
-          "Basic ESG Reporting Framework",
-          "Green Office Assessment",
-          "6-Month Support"
-        ],
-        unavailableDetails: [
-          "Renewable Energy Options",
-          "Green Software Principles",
-          "Sustainability Workshops"
+          "Lead Magnet Strategy",
+          "Email Sequence Design",
+          "Basic CRM Selection/Setup",
+          "Automation Workflow"
         ]
       },
       {
-        id: "standard",
-        title: "Standard Sustainability",
-        price: 7000,
+        id: "conversion",
+        title: "Conversion Master",
+        price: 8000,
         icon: "MdStars",
         availableDetails: [
-          "Enterprise Energy Consumption Analysis",
-          "Advanced Carbon Footprint Management",
-          "Strategic Green IT Implementation",
-          "Complete Hardware Sustainability Plan",
-          "End-to-End Cloud Sustainability",
-          "Comprehensive E-Waste Strategy",
-          "Advanced ESG Reporting Framework",
-          "Complete Green Office Transformation",
-          "Renewable Energy Integration",
-          "Energy-Efficient Software Development",
-          "Sustainability Workshops & Training",
-          "1-Year Support"
+          "Full-Funnel CRO",
+          "Advanced Lead Scoring",
+          "Sales Pitch Deck Design",
+          "Appointment Setting Flow"
         ]
       },
       {
-        id: "premium",
-        title: "Premium Sustainability",
-        price: 10000,
+        id: "growth-lab",
+        title: "Strategic Growth Lab",
+        price: 15000,
         icon: "MdWorkspacePremium",
         availableDetails: [
-          "Global Energy Consumption Monitoring",
-          "Real-time Carbon Footprint Dashboard",
-          "Enterprise Green IT Transformation",
-          "Circular Economy Hardware Program",
-          "Multi-Cloud Sustainability Optimization",
-          "Circular E-Waste Management",
-          "Comprehensive ESG Program Development",
-          "Global Green Office Standards",
-          "On-Site Renewable Energy Solutions",
-          "Green Software Factory Implementation",
-          "Executive Sustainability Leadership Program",
-          "Dedicated Sustainability Team"
+          "End-to-End Sales Architecture",
+          "Revenue Modeling & Projection",
+          "Strategic Partnerships Advisory",
+          "Retention & Referral Engines"
         ]
       }
     ]

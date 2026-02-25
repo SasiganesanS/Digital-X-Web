@@ -6,37 +6,63 @@ import { Link } from "react-router-dom";
 const services = [
   {
     id: "01",
-    title: "Content Creation",
-    short: "Stories that convert.",
-    desc: "Compelling copy, graphics, and videos crafted to capture attention and communicate your brand story across every platform — from reels to blogs.",
-    tags: ["Copywriting", "Graphic Design", "Video Editing"],
-    stat: { num: "3x", label: "Avg. engagement lift" },
+    title: "Web Development",
+    short: "Fast & Responsive.",
+    desc: "We craft fast, responsive, and visually refined websites that strengthen brand presence and deliver seamless experiences across all devices.",
+    tags: ["React & Vite", "UI/UX Design", "Performance"],
+    stat: { num: "99%", label: "Core Web Vitals" },
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15.232 5.232l3.536 3.536M9 11l6-6 3 3-9 9H9v-3z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
       </svg>
     ),
   },
   {
     id: "02",
-    title: "Social Media Management",
-    short: "Always-on brand presence.",
-    desc: "End-to-end management of your social channels — content calendars, community engagement, performance analytics, and platform-specific strategy.",
-    tags: ["Scheduling", "Engagement", "Analytics"],
-    stat: { num: "85%", label: "Avg. follower growth" },
+    title: "Software Development",
+    short: "Scalable Solutions.",
+    desc: "We design and build reliable, scalable software solutions tailored to business needs, enabling efficiency, performance, and long-term growth.",
+    tags: ["Custom ERP", "API Integration", "Cloud Native"],
+    stat: { num: "40%", label: "Efficiency Gain" },
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8h2a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8a2 2 0 012-2h2M15 3H9a1 1 0 00-1 1v4a1 1 0 001 1h6a1 1 0 001-1V4a1 1 0 00-1-1z" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
       </svg>
     ),
   },
   {
     id: "03",
-    title: "Paid Advertising",
-    short: "ROI-focused campaigns.",
-    desc: "Precisely targeted ad campaigns across Meta, Google, and beyond — built to reach your ideal audience, maximise returns, and scale profitably.",
-    tags: ["Meta Ads", "Google Ads", "Retargeting"],
-    stat: { num: "4x", label: "Avg. ROAS delivered" },
+    title: "App Development",
+    short: "Native Performance.",
+    desc: "We develop high-performance mobile applications that combine intuitive design with robust functionality across Android and iOS platforms.",
+    tags: ["React Native", "iOS & Android", "App Store SEO"],
+    stat: { num: "4.8", label: "Avg. User Rating" },
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+      </svg>
+    ),
+  },
+  {
+    id: "04",
+    title: "Cyber Security",
+    short: "Digital Resilience.",
+    desc: "We secure digital ecosystems through advanced security architectures, continuous monitoring, and proactive risk management to safeguard data and build trust.",
+    tags: ["Encryption", "Cloud Security", "Auditing"],
+    stat: { num: "24/7", label: "Threat Monitoring" },
+    icon: (
+      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+      </svg>
+    ),
+  },
+  {
+    id: "05",
+    title: "Digital Marketing",
+    short: "Data-Driven Growth.",
+    desc: "We deliver data-driven digital marketing strategies that enhance brand visibility, engage audiences, and drive measurable business results.",
+    tags: ["Performance Marketing", "Social Ads", "Growth Hacking"],
+    stat: { num: "340%", label: "Avg. ROI Increase" },
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
@@ -45,41 +71,15 @@ const services = [
     ),
   },
   {
-    id: "04",
-    title: "SEO Optimization",
-    short: "Rank higher. Stay visible.",
-    desc: "Strategic on-page and technical SEO that drives organic visibility, improves rankings, and delivers a consistent stream of high-intent visitors.",
-    tags: ["On-Page SEO", "Technical SEO", "Keyword Research"],
-    stat: { num: "60%", label: "Avg. organic traffic boost" },
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-4.35-4.35M17 11A6 6 0 111 11a6 6 0 0116 0z" />
-      </svg>
-    ),
-  },
-  {
-    id: "05",
-    title: "Website Development",
-    short: "Built to convert visitors.",
-    desc: "Fast, modern, conversion-optimised websites and landing pages that represent your brand beautifully and turn visitors into paying customers.",
-    tags: ["React / Next.js", "CMS", "Performance"],
-    stat: { num: "2s", label: "Avg. load time target" },
-    icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
-    ),
-  },
-  {
     id: "06",
-    title: "Sales Strategy",
-    short: "Prospects into clients.",
-    desc: "Data-backed sales funnels, CRM setup, and conversion frameworks designed to systematically turn prospects into loyal, high-value clients.",
-    tags: ["Funnels", "CRM", "Lead Gen"],
-    stat: { num: "+40%", label: "Avg. conversion rate lift" },
+    title: "Sustainability",
+    short: "Responsible Growth.",
+    desc: "We integrate smart technologies and sustainable practices to support responsible growth while reducing environmental impact and creating lasting value.",
+    tags: ["Green Hosting", "Sustainable Tech", "Social Impact"],
+    stat: { num: "Zero", label: "Carbon Strategy" },
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+        <path strokeLinecap="round" strokeLinejoin="round" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
     ),
   },
@@ -124,8 +124,7 @@ const OurServices = () => {
               <span className="text-[#E8192C] text-xs font-semibold tracking-[0.2em] uppercase">Our Services</span>
             </div>
             <h2 className="text-[clamp(1.85rem,5.5vw,3.25rem)] font-black leading-tight tracking-tight text-white">
-              Everything you need to{" "}
-              <span className="text-[#E8192C]">grow</span>
+              Our <span className="text-[#E8192C]">Services</span>
             </h2>
           </motion.div>
 
@@ -136,9 +135,7 @@ const OurServices = () => {
             viewport={{ once: true, margin: "-50px" }}
             transition={{ duration: 0.6, delay: 0.15 }}
           >
-            We drive brand growth through thoughtful strategy, creative storytelling, and
-            performance-focused execution — delivering measurable{" "}
-            <span className="text-white/70 font-medium">visibility, engagement, and revenue</span>.
+            We drive brand growth through thoughtful strategy, creative storytelling, and performance-focused execution — continuously planning, refining, and optimizing every campaign to deliver measurable visibility, engagement, and revenue.
           </motion.p>
         </div>
 

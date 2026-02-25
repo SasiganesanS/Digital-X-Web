@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Logo from "../assets/praskla_logo.jpeg";
 import {
   FaLinkedinIn,
   FaInstagram,
@@ -91,16 +92,15 @@ const Footer = () => {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="flex items-center gap-2.5 mb-5 group w-fit"
             >
-              <div className="relative w-8 h-8 flex items-center justify-center">
-                <div className="absolute inset-0 bg-[#E8192C] rounded-lg opacity-90" />
-                <span className="relative text-white font-black text-sm tracking-tighter select-none">DX</span>
+              <div className="relative w-10 h-10 flex items-center justify-center overflow-hidden rounded-lg">
+                <img src={Logo} alt="Praskla DigitalX" className="w-full h-full object-cover" />
               </div>
               <div className="flex flex-col leading-none">
                 <span className="font-black text-white text-base tracking-tight">
-                  Digital<span className="text-[#E8192C]">X</span>
+                  Praskla Digital<span className="text-[#E8192C]">X</span>
                 </span>
                 <span className="text-white/20 text-[9px] font-medium tracking-[0.15em] uppercase">
-                  Marketing Agency
+                  A Mindful Marketing and Production Firm
                 </span>
               </div>
             </Link>
@@ -159,9 +159,10 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3">
               <FooterLink to="/">Home</FooterLink>
-              <FooterLink to="/case-study">Case Study</FooterLink>
               <FooterLink to="/about">About Us</FooterLink>
+              <FooterLink to="/services">Services</FooterLink>
               <FooterLink to="/projects">Projects</FooterLink>
+              <FooterLink to="/careers">Careers</FooterLink>
             </ul>
           </div>
 
@@ -175,7 +176,6 @@ const Footer = () => {
               <FooterLink to="/services">Social Media Management</FooterLink>
               <FooterLink to="/services">Paid Advertising</FooterLink>
               <FooterLink to="/services">SEO Optimization</FooterLink>
-              <FooterLink to="/services">Website Development</FooterLink>
               <FooterLink to="/services">Sales Strategy</FooterLink>
             </ul>
           </div>
@@ -222,7 +222,7 @@ const Footer = () => {
         {/* ── Bottom bar ── */}
         <div className="pt-8 border-t border-white/6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-white/20 text-xs text-center sm:text-left">
-            © 2020–{new Date().getFullYear()} DigitalX. All rights reserved.
+            © 2020–{new Date().getFullYear()} Praskla DigitalX. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
             <Link to="/terms" className="text-white/20 hover:text-white transition-colors text-xs">
