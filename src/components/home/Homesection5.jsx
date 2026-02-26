@@ -24,18 +24,18 @@ const ChevronRight = () => (
 // This is a new icon for the quote
 const QuoteIcon = () => (
   <svg className="w-12 h-12 md:w-16 md:h-16 text-[#301045] opacity-10 mb-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 14">
-    <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a2 2 0 0 0 2 2h2v-2H7a1 1 0 0 1-1-1V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a2 2 0 0 0 2 2h2v-2h-1a1 1 0 0 1-1-1V2a2 2 0 0 0-2-2Z"/>
+    <path d="M6 0H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a2 2 0 0 0 2 2h2v-2H7a1 1 0 0 1-1-1V2a2 2 0 0 0-2-2Zm10 0h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h4v1a2 2 0 0 0 2 2h2v-2h-1a1 1 0 0 1-1-1V2a2 2 0 0 0-2-2Z" />
   </svg>
 );
 
 const reviews = [
   {
     id: 1, name: "Vishnu Lakshmi School", role: "Management", image: vishnu,
-    review: "Praskla Technology has helped us strengthen our foundation. Their innovative digital solutions seamlessly integrated technology into our learning, enhancing student engagement and administrative efficiency."
+    review: "Praskla Digital X has helped us strengthen our foundation. Their innovative digital solutions seamlessly integrated technology into our learning, enhancing student engagement and administrative efficiency."
   },
   {
     id: 2, name: "VILCET", role: "Director", image: vilcet,
-    review: "Praskla Technology has been instrumental in bringing our vision to life. Their advanced digital tools and seamless automation have transformed our operations, ensuring efficiency and scalability."
+    review: "Praskla Digital X has been instrumental in bringing our vision to life. Their advanced digital tools and seamless automation have transformed our operations, ensuring efficiency and scalability."
   },
   {
     id: 3, name: "JKK TEX", role: "Founder", image: jkk,
@@ -47,7 +47,7 @@ const reviews = [
   },
   {
     id: 5, name: "Captureever", role: "Creative Director", image: capturever,
-    review: "Praskla Technology helped us bring our creative vision to a larger audience. Their digital solutions optimized our workflow, enhanced our online presence, and streamlined customer engagement. A perfect tech partner!"
+    review: "Praskla Digital X helped us bring our creative vision to a larger audience. Their digital solutions optimized our workflow, enhanced our online presence, and streamlined customer engagement. A perfect tech partner!"
   }
 ];
 
@@ -113,7 +113,7 @@ const Homesection5 = () => {
   }, [page]); // Re-run effect when page changes
 
   return (
-    <motion.section 
+    <motion.section
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
@@ -125,9 +125,9 @@ const Homesection5 = () => {
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-100 rounded-full filter blur-[100px] opacity-60 animate-blob animation-delay-4000"></div>
 
       <div className="w-[90%] max-w-6xl mx-auto relative z-10">
-        
+
         {/* Section Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-12 md:mb-16"
           initial={{ y: 50, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
@@ -146,7 +146,7 @@ const Homesection5 = () => {
         {/* New Slider Layout */}
         <div className="relative min-h-[400px]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
-            
+
             {/* Left Side: Text Content */}
             <div className="relative flex flex-col justify-center h-[350px] md:h-[400px]">
               <QuoteIcon />
@@ -211,32 +211,31 @@ const Homesection5 = () => {
 
           {/* Navigation Controls */}
           <div className="absolute -bottom-16 md:-bottom-8 left-1/2 -translate-x-1/2 w-full max-w-xs flex items-center justify-center space-x-4">
-            
+
             {/* Prev Button */}
-            <button 
+            <button
               onClick={() => paginate(-1)}
               className="p-2 rounded-full text-[#301045] bg-white shadow-md hover:bg-gray-100 transition-all"
               aria-label="Previous testimonial"
             >
               <ChevronLeft />
             </button>
-            
+
             {/* Dots */}
             <div className="flex justify-center space-x-2">
               {reviews.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setPage([index, index > page ? 1 : -1])}
-                  className={`transition-all duration-300 ${
-                    page === index ? 'w-6 bg-[#301045]' : 'w-3 bg-gray-300 hover:bg-gray-400'
-                  } h-3 rounded-full`}
+                  className={`transition-all duration-300 ${page === index ? 'w-6 bg-[#301045]' : 'w-3 bg-gray-300 hover:bg-gray-400'
+                    } h-3 rounded-full`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
             </div>
 
             {/* Next Button */}
-            <button 
+            <button
               onClick={() => paginate(1)}
               className="p-2 rounded-full text-[#301045] bg-white shadow-md hover:bg-gray-100 transition-all"
               aria-label="Next testimonial"

@@ -10,11 +10,11 @@ import capturever from "../assets/clients/Captureever.png";
 export const testimonials = [
   {
     id: 1, name: "Vishnu Lakshmi School", role: "Management", image: vishnu,
-    quote: "Praskla Technology has helped us strengthen our foundation. Their innovative digital solutions seamlessly integrated technology into our learning, enhancing student engagement and administrative efficiency."
+    quote: "Praskla Digital X has helped us strengthen our foundation. Their innovative digital solutions seamlessly integrated technology into our learning, enhancing student engagement and administrative efficiency."
   },
   {
     id: 2, name: "VILCET", role: "Director", image: vilcet,
-    quote: "Praskla Technology has been instrumental in bringing our vision to life. Their advanced digital tools and seamless automation have transformed our operations, ensuring efficiency and scalability."
+    quote: "Praskla Digital X has been instrumental in bringing our vision to life. Their advanced digital tools and seamless automation have transformed our operations, ensuring efficiency and scalability."
   },
   {
     id: 3, name: "JKK TEX", role: "Founder", image: jkk,
@@ -26,6 +26,6 @@ export const testimonials = [
   },
   {
     id: 5, name: "Captureever", role: "Creative Director", image: capturever,
-    quote: "Praskla Technology helped us bring our creative vision to a larger audience. Their digital solutions optimized our workflow, enhanced our online presence, and streamlined customer engagement. A perfect tech partner!"
+    quote: "Praskla Digital X helped us bring our creative vision to a larger audience. Their digital solutions optimized our workflow, enhanced our online presence, and streamlined customer engagement. A perfect tech partner!"
   }
 ];

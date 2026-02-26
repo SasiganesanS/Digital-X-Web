@@ -66,7 +66,7 @@ const EMAIL_TEMPLATES = {
   // Contact form notification to admin
   contactFormAdmin: (formData) => ({
     from: {
-      name: 'Praskla Technology',
+      name: 'Praskla Digital X',
       address: 'info@prasklatechnology.com',
     },
     to: 'info@prasklatechnology.com',
@@ -88,21 +88,21 @@ const EMAIL_TEMPLATES = {
   // Contact form confirmation to user
   contactFormConfirmation: (formData) => ({
     from: {
-      name: 'Praskla Technology',
+      name: 'Praskla Digital X',
       address: 'info@prasklatechnology.com',
     },
     to: formData.email,
-    subject: 'Thank you for contacting Praskla',
+    subject: 'Thank you for contacting Praskla Digital X',
     html: `
       <html>
         <body>
           <h2>Thank You for Reaching Out!</h2>
           <p>Dear ${formData.name},</p>
-          <p>Thank you for contacting Praskla. We have received your message and will get back to you shortly.</p>
+          <p>Thank you for contacting Praskla Digital X. We have received your message and will get back to you shortly.</p>
           <p>Here's a summary of your message:</p>
           <p><strong>Message:</strong> ${formData.message}</p>
           <p>Our team will review your inquiry and respond as soon as possible.</p>
-          <p>Best regards,<br>The Praskla Team</p>
+          <p>Best regards,<br>The Praskla Digital X Team</p>
         </body>
       </html>
     `,
@@ -111,7 +111,7 @@ const EMAIL_TEMPLATES = {
   // Job application notification to admin
   jobApplicationAdmin: (formData, job) => ({
     from: {
-      name: 'Praskla Technology',
+      name: 'Praskla Digital X',
       address: 'info@prasklatechnology.com',
     },
     to: 'info@prasklatechnology.com',
@@ -143,24 +143,24 @@ const EMAIL_TEMPLATES = {
   // Job application confirmation to applicant
   jobApplicationConfirmation: (formData, job) => ({
     from: {
-      name: 'Praskla Technology',
+      name: 'Praskla Digital X',
       address: 'info@prasklatechnology.com',
     },
     to: formData.email,
-    subject: 'Your Application to Praskla Technology has been received',
+    subject: 'Your Application to Praskla Digital X has been received',
     html: `
       <html>
         <body>
           <h2>Application Received</h2>
           <p>Dear ${formData.name},</p>
-          <p>Thank you for applying to the <strong>${job?.title || 'position'}</strong> at Praskla. We have received your application and will review it shortly.</p>
+          <p>Thank you for applying to the <strong>${job?.title || 'position'}</strong> at Praskla Digital X. We have received your application and will review it shortly.</p>
           <p>Here's a summary of your application:</p>
           <ul>
             <li><strong>Position:</strong> ${job?.title || 'Not specified'}</li>
             <li><strong>Submitted at:</strong> ${new Date().toLocaleString()}</li>
           </ul>
           <p>If your qualifications match our requirements, our hiring team will contact you for the next steps in the recruitment process.</p>
-          <p>Best regards,<br>The Praskla Recruiting Team</p>
+          <p>Best regards,<br>The Praskla Digital X Recruiting Team</p>
         </body>
       </html>
     `,
@@ -169,7 +169,7 @@ const EMAIL_TEMPLATES = {
   // Pricing quote request notification to admin
   pricingQuoteAdmin: (formData) => ({
     from: {
-      name: 'Praskla Technology',
+      name: 'Praskla Digital X',
       address: 'info@prasklatechnology.com',
     },
     to: 'info@prasklatechnology.com',
@@ -194,7 +194,7 @@ const EMAIL_TEMPLATES = {
   // Pricing quote confirmation to customer
   pricingQuoteConfirmation: (formData) => ({
     from: {
-      name: 'Praskla Technology',
+      name: 'Praskla Digital X',
       address: 'info@prasklatechnology.com',
     },
     to: formData.email,
@@ -212,7 +212,7 @@ const EMAIL_TEMPLATES = {
             <li><strong>Submitted at:</strong> ${new Date(formData.timestamp).toLocaleString()}</li>
           </ul>
           <p>Our team will review your requirements and get back to you within 24-48 hours with a detailed proposal.</p>
-          <p>Best regards,<br>The Praskla Sales Team</p>
+          <p>Best regards,<br>The Praskla Digital X Sales Team</p>
         </body>
       </html>
     `,

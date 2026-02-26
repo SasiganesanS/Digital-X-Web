@@ -88,7 +88,7 @@ const Navbar = ({ setShowContactForm }) => {
           <Link to="/" className="flex items-center gap-2.5 group flex-shrink-0">
             {/* Icon mark */}
             <div className="relative w-10 h-10 flex items-center justify-center overflow-hidden rounded-lg">
-              <img src={Logo} alt="Praskla DigitalX" className="w-full h-full object-cover" />
+              <img src={Logo} alt="Praskla Digital X" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-[#E8192C]/10 group-hover:bg-transparent transition-colors duration-300" />
             </div>
 
@@ -97,7 +97,7 @@ const Navbar = ({ setShowContactForm }) => {
               <span
                 className="font-black text-white text-base tracking-tight transition-all duration-300 group-hover:tracking-wide whitespace-nowrap"
               >
-                Praskla Digital<span className="text-[#E8192C]">X</span>
+                Praskla Digital <span className="text-[#E8192C]">X</span>
               </span>
               <span className="text-white/30 text-[9px] font-medium tracking-[0.15em] uppercase select-none">
                 A Mindful Marketing and Production Firm

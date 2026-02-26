@@ -15,9 +15,75 @@ import {
 } from "lucide-react";
 // import logoLight from "../../assets/py.jpg"
 import pyLogo from "../../assets/praskla_logo.jpeg";
-import { motion, AnimatePresence } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Teams from "../Teams";
+
+const UnifiedIdentityCard = ({ items }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.7 }}
+    whileHover={{ y: -5, borderColor: "rgba(192,20,28,0.3)" }}
+    className="relative w-full max-w-[650px] p-10 sm:p-12 rounded-[2.5rem] border border-[#2A2A2A] transition-all duration-500 overflow-hidden group cursor-default"
+    style={{ background: "#111111" }}
+  >
+    {/* Twinkling dots - Hero style reference */}
+    <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-40">
+      {[
+        { x: "10%", y: "15%", d: 0 },
+        { x: "90%", y: "20%", d: 0.5 },
+        { x: "20%", y: "85%", d: 1 },
+        { x: "80%", y: "80%", d: 1.5 },
+        { x: "50%", y: "50%", d: 2 },
+      ].map((pos, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-0.5 h-0.5 rounded-full bg-[#C0141C]"
+          style={{ left: pos.x, top: pos.y, boxShadow: "0 0 8px rgba(192,20,28,0.8)" }}
+          animate={{ opacity: [0.3, 1, 0.3], scale: [1, 1.4, 1] }}
+          transition={{ duration: 3, repeat: Infinity, delay: pos.d }}
+        />
+      ))}
+    </div>
+
+    {/* Brand Name inside the card */}
+    <div className="relative z-10 mb-12">
+      <h2 className="text-[#E8192C] text-2xl sm:text-3xl font-black uppercase tracking-[0.15em]">
+        Praskla DigitalX
+      </h2>
+      <div className="w-12 h-1 bg-[#E8192C] mt-2 rounded-full" />
+    </div>
+
+    {/* Features List within the single card */}
+    <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-12">
+      {items.map((item, i) => (
+        <div key={i} className="flex flex-col gap-4 group/item">
+          <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/5 group-hover/item:border-[#C0141C]/40 transition-all duration-300">
+            <item.icon className="w-6 h-6 text-[#E8192C]" />
+          </div>
+          <div className="space-y-2">
+            <h3 className="text-white font-bold text-sm sm:text-base uppercase tracking-[0.1em] group-hover/item:text-[#E8192C] transition-colors">
+              {item.title}
+            </h3>
+            <p className="text-[#808080] text-xs sm:text-sm leading-relaxed">
+              {item.desc}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </motion.div>
+);
+
+const featureData = [
+  { title: "Growth Focused", desc: "We target high-impact strategies to accelerate brand visibility and revenue growth.", icon: TrendingUp },
+  { title: "Client Centric", desc: "Our solutions are tailored to your unique challenges and specific business goals.", icon: Users },
+  { title: "Innovative Solutions", desc: "Leveraging cutting-edge tech and creative storytelling to stay ahead of market trends.", icon: Sparkles },
+  { title: "Secure & Reliable", desc: "Building digital ecosystems with robust security architectures and proactively managing risks.", icon: Shield },
+];
+
 
 const About = () => {
   const [index, setIndex] = useState(0)
@@ -37,15 +103,6 @@ const About = () => {
     "We Create Data-Driven Marketing Systems",
     "We Deliver High-Impact Digital Campaigns",
     "We Transform Businesses into Recognized Brands",
-  ];
-  const orbit1 = [
-    { icon: TrendingUp, label: "Growth Focused" },
-    { icon: Shield, label: "Secure & Reliable" },
-  ];
-
-  const orbit2 = [
-    { icon: Sparkles, label: "Innovative" },
-    { icon: Users, label: "Client Centric" },
   ];
 
   return (
@@ -186,7 +243,7 @@ const About = () => {
                       className="w-20 h-20 rounded-full flex items-center justify-center"
                       style={{ background: "rgba(192,20,28,0.12)", border: "1.5px solid rgba(192,20,28,0.3)" }}
                     >
-                      <img src={pyLogo} alt="Praskla" className="w-12 h-12 object-contain" />
+                      <img src={pyLogo} alt="Praskla Digital X" className="w-12 h-12 object-contain" />
                     </div>
                   </motion.div>
                 </div>
@@ -252,7 +309,7 @@ const About = () => {
         </div>
       </div>
       {/* ═══════════════════════════════════════════════
-          WHO WE ARE — Praskla DigitalX identity section
+          WHO WE ARE — Praskla Digital X identity section
       ═══════════════════════════════════════════════ */}
       <div
         className="relative py-12 lg:py-16 overflow-hidden"
@@ -267,105 +324,26 @@ const About = () => {
         <div className="relative z-10 w-[90%] max-w-[1280px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-            {/* ── LEFT: Decorative visual panel ── */}
             <motion.div
-              className="relative order-2 lg:order-1"
-              initial={{ opacity: 0, x: -40 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              className="relative order-2 lg:order-1 flex items-center justify-center"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
+              transition={{ duration: 0.8 }}
             >
-              {/* Main card */}
-              <div
-                className="relative rounded-2xl p-8 border border-[#2A2A2A] overflow-hidden"
-                style={{ background: "#111111" }}
-              >
-                {/* Red corner accent */}
-                <div
-                  className="absolute top-0 left-0 w-1 h-full rounded-l-2xl"
-                  style={{ background: "linear-gradient(180deg, #C0141C 0%, transparent 100%)" }}
-                />
+              <UnifiedIdentityCard items={featureData} />
 
-                {/* Floating red glow */}
-                <div
-                  className="absolute -top-16 -right-16 w-56 h-56 rounded-full pointer-events-none"
-                  style={{ background: "radial-gradient(circle, rgba(192,20,28,0.12) 0%, transparent 70%)" }}
-                />
-
-                <p className="text-[#606060] text-xs font-semibold tracking-[0.2em] uppercase mb-3 pl-4">
-                  Praskla DigitalX — Who We Are
-                </p>
-                <h3 className="text-white font-black text-2xl leading-snug mb-6 pl-4">
-                  A mindful partner in<br />
-                  <span style={{ color: "#C0141C" }}>digital growth</span> &amp; brand innovation
-                </h3>
-
-                {/* Stat row */}
-                <div className="grid grid-cols-3 gap-3 mt-2">
-                  {[
-                    { metric: "100+", label: "Brands Grown" },
-                    { metric: "5+", label: "Years Active" },
-                    { metric: "3x", label: "Avg. ROI" },
-                  ].map((s, i) => (
-                    <motion.div
-                      key={i}
-                      className="rounded-xl p-4 text-center border border-[#2A2A2A] hover:border-[#C0141C]/30 transition-all duration-300"
-                      style={{ background: "#0D0D0D" }}
-                      initial={{ opacity: 0, y: 16 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.45, delay: 0.2 + i * 0.1 }}
-                      whileHover={{ y: -3 }}
-                    >
-                      <p className="text-2xl font-black" style={{ color: "#C0141C" }}>{s.metric}</p>
-                      <p className="text-[#606060] text-xs mt-1">{s.label}</p>
-                    </motion.div>
-                  ))}
-                </div>
-
-                {/* Service tags */}
-                <div className="flex flex-wrap gap-2 mt-6 pl-1">
-                  {[
-                    "Strategic Branding",
-                    "Performance Marketing",
-                    "Media Production",
-                    "Sales-Driven Digital",
-                  ].map((tag, i) => (
-                    <span
-                      key={i}
-                      className="text-xs font-medium px-3 py-1.5 rounded-full border"
-                      style={{
-                        color: "#C0141C",
-                        borderColor: "rgba(192,20,28,0.25)",
-                        background: "rgba(192,20,28,0.07)",
-                      }}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {/* Floating bottom accent card */}
+              {/* Animated Decor */}
               <motion.div
-                className="absolute -bottom-5 -right-5 rounded-xl px-5 py-4 border border-[#2A2A2A] shadow-xl"
-                style={{ background: "#111111" }}
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <div className="flex items-center gap-3">
-                  <div
-                    className="w-9 h-9 rounded-full flex items-center justify-center text-base flex-shrink-0"
-                    style={{ background: "rgba(192,20,28,0.15)" }}
-                  >
-                    📈
-                  </div>
-                  <div>
-                    <p className="text-white text-xs font-bold">Measurable Results</p>
-                    <p className="text-[#606060] text-[10px]">Insight-led execution</p>
-                  </div>
-                </div>
-              </motion.div>
+                animate={{ translate: [0, 40, 0], opacity: [0.1, 0.2, 0.1] }}
+                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#C0141C]/10 rounded-full blur-[80px] -z-10"
+              />
+              <motion.div
+                animate={{ translate: [0, -40, 0], opacity: [0.1, 0.2, 0.1] }}
+                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+                className="absolute -bottom-10 -left-10 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"
+              />
             </motion.div>
 
             {/* ── RIGHT: Copy ── */}
@@ -404,7 +382,7 @@ const About = () => {
               {/* Body paragraphs */}
               <div className="space-y-5">
                 <p className="text-[#A0A0A0] text-lg leading-relaxed">
-                  Praskla DigitalX is a growth-focused digital marketing company delivering{" "}
+                  Praskla Digital X is a growth-focused digital marketing company delivering{" "}
                   <span className="text-white font-medium">strategic branding</span>,{" "}
                   <span className="text-white font-medium">performance marketing</span>,{" "}
                   <span className="text-white font-medium">media production</span>, and{" "}
@@ -610,7 +588,7 @@ const About = () => {
           </motion.div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 

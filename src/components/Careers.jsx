@@ -58,7 +58,7 @@ const Careers = () => {
       { id: 2, image: career02, alt: "Team collaboration illustration" },
       { id: 3, image: career03, alt: "Innovation and creativity illustration" },
       { id: 4, image: career04, alt: "Problem solving illustration" },
-      { id: 5, image: py, alt: "Praskla Technology logo" }, // center company logo
+      { id: 5, image: py, alt: "Praskla Digital X logo" }, // center company logo
       { id: 6, image: career05, alt: "Code development illustration" },
       { id: 7, image: career06, alt: "Team meeting illustration" },
       { id: 8, image: career07, alt: "Project management illustration" },
@@ -118,7 +118,7 @@ const Careers = () => {
   return (
     <>
       <section
-        className="min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-[#0f0418] via-[#1a0b2e] to-[#2d1b3d] flex items-center justify-center px-4 sm:px-8 py-14 lg:py-18 pt-28 sm:pt-32 md:pt-36 lg:pt-32 pb-10 sm:pb-12 relative overflow-hidden dark-section"
+        className="min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-black via-[#0a0a0a] to-[#1a0b12] flex items-center justify-center px-4 sm:px-8 py-14 lg:py-18 pt-28 sm:pt-32 md:pt-36 lg:pt-32 pb-10 sm:pb-12 relative overflow-hidden dark-section"
         aria-label="Careers hero section"
       >
         <div className="max-w-7xl w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 md:gap-8 lg:gap-20">
@@ -141,7 +141,7 @@ const Careers = () => {
                 <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-sm"></div>
               </div>
               <span className="text-white text-base sm:text-lg md:text-xl font-light">
-                Careers@Praskla
+                Careers @ Praskla Digital X
               </span>
             </div>
 
@@ -157,9 +157,9 @@ const Careers = () => {
             {/* CTA Button */}
             <button
               onClick={scrollToJobs}
-              className="bg-[#371445] text-white px-5 sm:px-6 md:px-7 lg:px-8 py-2.5 sm:py-3 md:py-3.5 lg:py-4 rounded-full text-xs sm:text-sm md:text-[15px] lg:text-base font-medium 
-                       hover:bg-[#4a1c5e] transition-all duration-300 ease-out border-2 border-transparent hover:border-[#4a1c5e]"
-              style={{ boxShadow: "0 6px 20px rgba(45, 27, 78, 0.3)" }}
+              className="bg-[#E8192C] text-white px-5 sm:px-6 md:px-7 lg:px-8 py-2.5 sm:py-3 md:py-3.5 lg:py-4 rounded-full text-xs sm:text-sm md:text-[15px] lg:text-base font-medium 
+                       hover:bg-[#C0141C] transition-all duration-300 ease-out border-2 border-transparent hover:border-[#C0141C]"
+              style={{ boxShadow: "0 6px 20px rgba(232, 25, 44, 0.2)" }}
               aria-label="Scroll to view open job positions"
             >
               View Open Roles
@@ -209,7 +209,7 @@ const Careers = () => {
                               fill="none"
                               stroke="currentColor"
                               strokeWidth="3"
-                              className="text-purple-900"
+                              className="text-[#E8192C]"
                             />
                           </svg>
                         ) : (
@@ -235,16 +235,16 @@ const Careers = () => {
       {/* Job search section */}
       <section
         ref={jobSearchRef}
-        className="bg-gray-50 py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8"
+        className="bg-[#080808] py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8"
         aria-label="Job search and filters"
       >
         <div className="max-w-7xl mx-auto">
           {/* Badge */}
           <div className="inline-block mb-4 sm:mb-6">
-            <div className="border-2 border-[#371445] rounded-full px-5 sm:px-6 py-2.5 sm:py-3">
+            <div className="border-2 border-[#E8192C] rounded-full px-5 sm:px-6 py-2.5 sm:py-3">
               <span
                 className="font-semibold text-sm sm:text-base lg:text-lg"
-                style={{ color: "rgba(55, 20, 69, 0.7)" }}
+                style={{ color: "rgba(232, 25, 44, 0.7)" }}
               >
                 We're growing our team
               </span>
@@ -252,7 +252,7 @@ const Careers = () => {
           </div>
 
           {/* Heading */}
-          <h2 className="text-[#371445] text-[32px] sm:text-[40px] lg:text-[48px] font-bold mb-6 sm:mb-8 max-w-3xl leading-tight">
+          <h2 className="text-white text-[32px] sm:text-[40px] lg:text-[48px] font-bold mb-6 sm:mb-8 max-w-3xl leading-tight">
             Find the position that fits your ambitions
           </h2>
 
@@ -269,11 +269,11 @@ const Careers = () => {
                 placeholder="Search for positions..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-5 sm:px-6 py-3.5 sm:py-4 border-2 border-[#371445] rounded-full text-gray-700 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#371445] focus:border-[#371445] text-sm sm:text-[15px] lg:text-base transition-all"
+                className="w-full px-5 sm:px-6 py-3.5 sm:py-4 bg-[#111111] border-2 border-[#2A2A2A] rounded-full text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#E8192C] focus:border-[#E8192C] text-sm sm:text-[15px] lg:text-base transition-all"
                 aria-label="Search for job positions"
               />
               <FiSearch
-                className="absolute right-5 sm:right-6 top-1/2 transform -translate-y-1/2 text-[#371445] w-5 h-5 pointer-events-none"
+                className="absolute right-5 sm:right-6 top-1/2 transform -translate-y-1/2 text-[#E8192C] w-5 h-5 pointer-events-none"
                 aria-hidden="true"
               />
             </div>
@@ -284,8 +284,8 @@ const Careers = () => {
                 <div key={filterName} className="relative filter-dropdown">
                   <button
                     onClick={() => toggleFilter(filterName)}
-                    className="w-full bg-[#371445] text-white px-4 sm:px-5 py-3 sm:py-3.5 rounded-full font-medium hover:bg-[#371445]/90 active:bg-[#371445] transition-colors flex items-center gap-2 capitalize justify-between text-sm sm:text-[15px] lg:text-base"
-                    style={{ boxShadow: "0 6px 20px rgba(45, 27, 78, 0.3)" }}
+                    className="w-full bg-[#111111] border border-[#2A2A2A] text-white px-4 sm:px-5 py-3 sm:py-3.5 rounded-full font-medium hover:bg-[#E8192C]/80 active:bg-[#C0141C] transition-colors flex items-center gap-2 capitalize justify-between text-sm sm:text-[15px] lg:text-base"
+                    style={{ boxShadow: "0 4px 15px rgba(0, 0, 0, 0.4)" }}
                     aria-expanded={openFilter === filterName}
                     aria-haspopup="listbox"
                     aria-label={`Filter by ${filterName}`}
@@ -294,9 +294,8 @@ const Careers = () => {
                       {filters[filterName] || filterName}
                     </span>
                     <FiChevronDown
-                      className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${
-                        openFilter === filterName ? "rotate-180" : ""
-                      }`}
+                      className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${openFilter === filterName ? "rotate-180" : ""
+                        }`}
                       aria-hidden="true"
                     />
                   </button>
@@ -304,7 +303,7 @@ const Careers = () => {
                   {/* Dropdown Menu */}
                   {openFilter === filterName && (
                     <div
-                      className="absolute top-full mt-2 left-0 right-0 bg-white border-2 border-[#371445] rounded-2xl shadow-2xl z-50 min-w-full overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+                      className="absolute top-full mt-2 left-0 right-0 bg-[#111111] border-2 border-[#2A2A2A] rounded-2xl shadow-2xl z-50 min-w-full overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
                       role="listbox"
                       aria-label={`${filterName} filter options`}
                     >
@@ -312,7 +311,7 @@ const Careers = () => {
                         {/* Clear option */}
                         <button
                           onClick={() => handleFilterChange(filterName, "")}
-                          className="w-full px-4 sm:px-5 py-2.5 text-left hover:bg-purple-50 active:bg-purple-100 transition-colors text-[#5F5F5F] font-medium text-sm sm:text-[15px] lg:text-base"
+                          className="w-full px-4 sm:px-5 py-2.5 text-left hover:bg-white/5 active:bg-white/10 transition-colors text-white/70 font-medium text-sm sm:text-[15px] lg:text-base"
                         >
                           All {filterName}s
                         </button>
@@ -322,11 +321,10 @@ const Careers = () => {
                             onClick={() =>
                               handleFilterChange(filterName, option)
                             }
-                            className={`w-full px-4 sm:px-5 py-2.5 text-left hover:bg-purple-50 active:bg-purple-100 transition-colors text-sm sm:text-[15px] lg:text-base ${
-                              filters[filterName] === option
-                                ? "bg-purple-100 text-[#371445] font-semibold"
-                                : "text-[#5F5F5F] font-medium"
-                            }`}
+                            className={`w-full px-4 sm:px-5 py-2.5 text-left hover:bg-white/5 active:bg-white/10 transition-colors text-sm sm:text-[15px] lg:text-base ${filters[filterName] === option
+                              ? "bg-red-500/10 text-[#E8192C] font-semibold"
+                              : "text-white/70 font-medium"
+                              }`}
                           >
                             {option}
                           </button>
@@ -344,7 +342,7 @@ const Careers = () => {
             <div className="mb-6 sm:mb-8">
               <button
                 onClick={clearAllFilters}
-                className="bg-gray-200 text-[#371445] px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-gray-300 active:bg-gray-400 transition-colors text-sm sm:text-[15px] lg:text-base"
+                className="bg-white/10 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white/20 active:bg-white/30 transition-colors text-sm sm:text-[15px] lg:text-base border border-white/10"
                 aria-label="Clear all filters and show all jobs"
               >
                 Clear Filters & Show All Jobs
@@ -353,13 +351,13 @@ const Careers = () => {
           )}
 
           {/* Info Box */}
-          <div className="border-2 border-blue-500 bg-blue-50 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-sm">
+          <div className="border border-red-500/20 bg-red-500/5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-sm">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
               <div className="flex-1">
-                <p className="text-[#5F5F5F] text-sm sm:text-[15px] lg:text-base leading-relaxed">
+                <p className="text-white/70 text-sm sm:text-[15px] lg:text-base leading-relaxed">
                   Don't see a role that matches your expertise? We're always
                   seeking exceptional talent with unique perspectives.
-                  <span className="font-semibold text-[#371445]">
+                  <span className="font-semibold text-white">
                     {" "}
                     Share your background and interests with us
                   </span>
@@ -376,7 +374,7 @@ const Careers = () => {
                     skills: [],
                   })
                 }
-                className="flex items-center gap-2 text-[#371445] font-semibold whitespace-nowrap hover:text-[#371445]/80 active:text-[#371445] transition-colors text-sm sm:text-[15px] lg:text-base group"
+                className="flex items-center gap-2 text-[#E8192C] font-semibold whitespace-nowrap hover:text-[#C0141C] active:text-[#E8192C] transition-colors text-sm sm:text-[15px] lg:text-base group"
                 aria-label="Submit a general application"
               >
                 Submit Application

@@ -93,11 +93,11 @@ const Footer = () => {
               className="flex items-center gap-2.5 mb-5 group w-fit"
             >
               <div className="relative w-10 h-10 flex items-center justify-center overflow-hidden rounded-lg">
-                <img src={Logo} alt="Praskla DigitalX" className="w-full h-full object-cover" />
+                <img src={Logo} alt="Praskla Digital X" className="w-full h-full object-cover" />
               </div>
               <div className="flex flex-col leading-none">
                 <span className="font-black text-white text-base tracking-tight">
-                  Praskla Digital<span className="text-[#E8192C]">X</span>
+                  Praskla Digital <span className="text-[#E8192C]">X</span>
                 </span>
                 <span className="text-white/20 text-[9px] font-medium tracking-[0.15em] uppercase">
                   A Mindful Marketing and Production Firm
@@ -222,7 +222,7 @@ const Footer = () => {
         {/* ── Bottom bar ── */}
         <div className="pt-8 border-t border-white/6 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-white/20 text-xs text-center sm:text-left">
-            © 2020–{new Date().getFullYear()} Praskla DigitalX. All rights reserved.
+            © 2020–{new Date().getFullYear()} Praskla Digital X. All rights reserved.
           </p>
           <div className="flex items-center gap-5">
             <Link to="/terms" className="text-white/20 hover:text-white transition-colors text-xs">

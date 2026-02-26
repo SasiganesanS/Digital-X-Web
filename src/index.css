@@ -13,18 +13,23 @@
   h1 {
     @apply text-primary-dark text-4xl font-bold;
   }
+
   h2 {
     @apply text-primary text-3xl font-semibold;
   }
+
   h3 {
     @apply text-primary-light text-2xl font-medium;
   }
+
   h4 {
     @apply text-primary text-xl font-medium;
   }
+
   h5 {
     @apply text-primary-dark text-lg font-medium;
   }
+
   h6 {
     @apply text-primary text-base font-medium;
   }
@@ -34,20 +39,16 @@
 .marquee-container {
   overflow: hidden;
   width: 100%;
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 15%,
-    black 85%,
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 15%,
-    black 85%,
-    transparent 100%
-  );
+  -webkit-mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 15%,
+      black 85%,
+      transparent 100%);
+  mask-image: linear-gradient(to right,
+      transparent 0%,
+      black 15%,
+      black 85%,
+      transparent 100%);
 }
 
 .marquee-content {
@@ -73,6 +74,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-100%);
   }
@@ -82,6 +84,7 @@
   0% {
     transform: translateX(0);
   }
+
   100% {
     transform: translateX(-33.33%);
   }
@@ -101,6 +104,22 @@
   .marquee-mobile {
     animation-duration: 10s !important;
     gap: 2.5rem !important;
+  }
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
   }
 }
 
@@ -185,13 +204,13 @@ html {
 }
 
 .testimonials-swiper .swiper-slide {
-  
+
   display: flex;
 }
 
-.testimonials-swiper .swiper-slide > div {
+.testimonials-swiper .swiper-slide>div {
   width: 900px;
-  
+
 }
 
 .testimonials-swiper .swiper-pagination-bullet {
@@ -221,12 +240,15 @@ html {
   0% {
     transform: translate(0px, 0px) scale(1);
   }
+
   33% {
     transform: translate(30px, -50px) scale(1.1);
   }
+
   66% {
     transform: translate(-20px, 20px) scale(0.9);
   }
+
   100% {
     transform: translate(0px, 0px) scale(1);
   }
@@ -307,8 +329,7 @@ html {
   inset: 0;
   border-radius: inherit;
   border: var(--border-width) solid transparent;
-  background: linear-gradient(var(--light-border-1), var(--light-border-2))
-    border-box;
+  background: linear-gradient(var(--light-border-1), var(--light-border-2)) border-box;
   mask: linear-gradient(black, black) border-box,
     linear-gradient(black, black) padding-box;
   mask-composite: subtract;

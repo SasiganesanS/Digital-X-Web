@@ -101,7 +101,7 @@ const ProjectCard = ({ project, index, total, onOpenModal }) => {
                 </svg>
               </span>
               <span className="text-white/60 text-xs md:text-sm font-medium group-hover:text-white transition-colors duration-300">
-                Explore Impact
+                Explore Case Study
               </span>
             </button>
           </div>

@@ -95,7 +95,7 @@ const AboutSection = () => {
                             variants={fadeUp}
                             className="text-white/55 text-base md:text-lg leading-relaxed mb-6"
                         >
-                            Praskla DigitalX is a mindful marketing firm built on the belief that true growth
+                            Praskla Digital X is a mindful marketing firm built on the belief that true growth
                             comes from <span className="text-white/80 font-medium">clarity, creativity, and collaboration</span>.
                             We partner with businesses and personal brands to transform their ideas into
                             measurable digital success.
