@@ -249,16 +249,20 @@ const Projects = () => {
                       </h3>
                     </div>
 
-                    {/* Hover State: Sub-content (Top-aligned) */}
-                    <div className="absolute inset-x-0 top-0 pt-12 px-8 flex flex-col items-center opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-8 group-hover:translate-y-0 pointer-events-none">
-                      <p className="text-white/70 text-sm sm:text-base leading-relaxed font-medium text-center mb-6">
+                    {/* Hover State: Sub-content (Flex distribution to prevent overlap) */}
+                    <div className="absolute inset-0 p-8 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-8 group-hover:translate-y-0 pointer-events-none">
+                      <p className={`text-white/70 leading-relaxed font-medium text-center ${index === 3 ? "text-[10px] sm:text-xs leading-tight" :
+                        index === 2 ? "text-sm" : "text-sm sm:text-base"
+                        }`}>
                         {item.desc}
                       </p>
-                      <span className={`font-black text-white/10 select-none italic tracking-tighter leading-none ${index === 0 || index === 1 ? "text-7xl" :
-                          index === 2 ? "text-6xl" : "text-5xl"
-                        }`}>
-                        {item.code}
-                      </span>
+                      <div className="flex justify-end w-full">
+                        <span className={`font-black text-white/10 select-none italic tracking-tighter leading-none ${index === 0 || index === 1 ? "text-7xl" :
+                          index === 2 ? "text-5xl" : "text-4xl"
+                          }`}>
+                          {item.code}
+                        </span>
+                      </div>
                     </div>
                   </div>
 
