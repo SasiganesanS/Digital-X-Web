@@ -69,7 +69,7 @@ const Navbar = ({ setShowContactForm }) => {
     <>
       <nav
         ref={navRef}
-        className={`fixed w-[92%] max-w-[1280px] z-50 top-4 left-1/2 -translate-x-1/2
+        className={`fixed w-[88%] max-w-[1280px] z-50 top-4 left-1/2 -translate-x-1/2
                     rounded-full border transition-all duration-500 transform px-5
                     ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}
                     ${scrolled
