@@ -123,7 +123,7 @@ const Careers = () => {
       >
         <div className="max-w-7xl w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 md:gap-8 lg:gap-20">
           {/* Left Content */}
-          <div className="z-10 w-full lg:max-w-xl text-center lg:text-left max-[1200px]:landscape:text-center max-[1200px]:landscape:max-w-2xl max-[1200px]:landscape:mx-auto min-[768px]:max-[1100px]:portrait:text-center min-[768px]:max-[1100px]:portrait:max-w-2xl min-[768px]:max-[1100px]:portrait:mx-auto">
+          <div className="z-10 w-full px-6 sm:px-0 lg:max-w-xl text-center lg:text-left max-[1200px]:landscape:text-center max-[1200px]:landscape:max-w-2xl max-[1200px]:landscape:mx-auto min-[768px]:max-[1100px]:portrait:text-center min-[768px]:max-[1100px]:portrait:max-w-2xl min-[768px]:max-[1100px]:portrait:mx-auto">
             {/* Logo/Brand */}
             <div
               className="flex items-center justify-center lg:justify-start max-[1200px]:landscape:justify-center min-[768px]:max-[1100px]:portrait:justify-center gap-3 mb-4 sm:mb-5 md:mb-6 lg:mt-8"
