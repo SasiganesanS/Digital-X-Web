@@ -11,15 +11,16 @@ import JobApplication from "./JobApplication";
 import JobListing from "./JobListing";
 
 // Vector illustration imports
-import career01 from "../assets/Careers/career01.png";
-import career02 from "../assets/Careers/career02.png";
-import career03 from "../assets/Careers/career03.png";
-import career04 from "../assets/Careers/career04.png";
-import career05 from "../assets/Careers/career05.png";
-import career06 from "../assets/Careers/career06.png";
-import career07 from "../assets/Careers/career07.png";
-import career08 from "../assets/Careers/career08.png";
-import py from "../assets/py.jpg";
+// Image paths for hero circles
+const career01 = "dist/assets/Conversion rate optimization-pana.png";
+const career02 = "dist/assets/Subscriptions-amico.png";
+const career03 = "dist/assets/Marketing-cuate.png";
+const career04 = "dist/assets/Marketing-pana.png";
+const career05 = "dist/assets/Generating new leads-pana.png";
+const career06 = "dist/assets/Digital lifestyle-pana.png";
+const career07 = "dist/assets/Customer relationship management-rafiki.png";
+const career08 = "dist/assets/Photo-amico.png";
+import py from "../assets/praskla_logo.jpeg";
 
 // Icon imports
 import { FiSearch, FiChevronDown, FiExternalLink } from "react-icons/fi";
@@ -54,15 +55,15 @@ const Careers = () => {
   // Memoize team members array to prevent re-creation on every render
   const teamMembers = useMemo(
     () => [
-      { id: 1, image: career01, alt: "Software development illustration" },
-      { id: 2, image: career02, alt: "Team collaboration illustration" },
-      { id: 3, image: career03, alt: "Innovation and creativity illustration" },
-      { id: 4, image: career04, alt: "Problem solving illustration" },
+      { id: 1, image: career01, alt: "Our Work" },
+      { id: 2, image: career02, alt: "Our Work" },
+      { id: 3, image: career03, alt: "Our Work" },
+      { id: 4, image: career04, alt: "Our Work" },
       { id: 5, image: py, alt: "Praskla Digital X logo" }, // center company logo
-      { id: 6, image: career05, alt: "Code development illustration" },
-      { id: 7, image: career06, alt: "Team meeting illustration" },
-      { id: 8, image: career07, alt: "Project management illustration" },
-      { id: 9, image: career08, alt: "Technology innovation illustration" },
+      { id: 6, image: career05, alt: "Our Work" },
+      { id: 7, image: career06, alt: "Our Work" },
+      { id: 8, image: career07, alt: "Our Work" },
+      { id: 9, image: career08, alt: "Our Work" },
     ],
     []
   );

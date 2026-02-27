@@ -445,44 +445,60 @@ const About = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-20 lg:gap-x-12 max-w-4xl mx-auto mt-12 md:mt-16">
-          {/* Vision Card Stack */}
-          <div className="group relative h-[280px] w-full">
-            {/* Front Card (Icon/Title) */}
-            <div className="absolute inset-0 z-20 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 group-hover:-translate-y-[50%] group-hover:bg-[#111] group-hover:border-[#E8192C]/30 shadow-2xl">
-              <div className="w-14 h-14 rounded-xl bg-[#E8192C]/10 border border-[#E8192C]/20 flex items-center justify-center mb-4 shadow-2xl">
-                <Eye className="w-7 h-7 text-[#E8192C]" />
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Powered by a Vision</h3>
-              <div className="w-8 h-0.5 bg-[#E8192C]/30 rounded-full" />
+        <div className="flex flex-col gap-10 max-w-5xl mx-auto mt-12 px-4">
+          {/* Vision Card */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="group relative flex flex-col md:flex-row items-center gap-8 bg-[#111111] p-8 md:p-12 rounded-[2.5rem] border border-white/5 hover:border-[#E8192C]/30 transition-all duration-500 shadow-2xl overflow-hidden"
+          >
+            {/* Background Decor */}
+            <div className="absolute top-0 right-0 w-32 h-32 bg-[#E8192C]/5 rounded-full blur-3xl group-hover:bg-[#E8192C]/10 transition-all duration-700" />
+
+            <div className="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#E8192C]/10 border border-[#E8192C]/20 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+              <Eye className="w-10 h-10 md:w-12 md:h-12 text-[#E8192C]" />
             </div>
 
-            {/* Back Card (Content) */}
-            <div className="absolute inset-0 z-10 bg-[#111] border border-white/5 rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 translate-y-[40%] opacity-0 group-hover:translate-y-[45%] group-hover:opacity-100 border-t-0 rounded-t-none">
-              <p className="text-white/70 text-sm md:text-base leading-relaxed">
+            <div className="flex-1 text-center md:text-left">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="w-2 h-0.5 bg-[#E8192C] rounded-full" />
+                <span className="text-[#E8192C] text-xs font-black uppercase tracking-[0.2em]">Our Vision</span>
+              </div>
+              <h3 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tight">Powered by a Vision</h3>
+              <p className="text-[#A0A0A0] text-base md:text-xl leading-relaxed font-medium">
                 To become a leading mindful marketing firm known for innovative strategies, measurable growth, and long-term brand impact.
               </p>
             </div>
-          </div>
+          </motion.div>
 
-          {/* Mission Card Stack */}
-          <div className="group relative h-[280px] w-full">
-            {/* Front Card (Icon/Title) */}
-            <div className="absolute inset-0 z-20 bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 group-hover:-translate-y-[50%] group-hover:bg-[#111] group-hover:border-[#E8192C]/30 shadow-2xl">
-              <div className="w-14 h-14 rounded-xl bg-[#E8192C]/10 border border-[#E8192C]/20 flex items-center justify-center mb-4 shadow-2xl">
-                <Target className="w-7 h-7 text-[#E8192C]" />
-              </div>
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-2">Driven by a Mission</h3>
-              <div className="w-8 h-0.5 bg-[#E8192C]/30 rounded-full" />
+          {/* Mission Card */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            className="group relative flex flex-col md:flex-row-reverse items-center gap-8 bg-[#111111] p-8 md:p-12 rounded-[2.5rem] border border-white/5 hover:border-[#E8192C]/30 transition-all duration-500 shadow-2xl overflow-hidden"
+          >
+            {/* Background Decor */}
+            <div className="absolute top-0 left-0 w-32 h-32 bg-[#E8192C]/5 rounded-full blur-3xl group-hover:bg-[#E8192C]/10 transition-all duration-700" />
+
+            <div className="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#E8192C]/10 border border-[#E8192C]/20 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
+              <Target className="w-10 h-10 md:w-12 md:h-12 text-[#E8192C]" />
             </div>
 
-            {/* Back Card (Content) */}
-            <div className="absolute inset-0 z-10 bg-[#111] border border-white/5 rounded-2xl p-8 flex flex-col items-center justify-center text-center transition-all duration-500 translate-y-[40%] opacity-0 group-hover:translate-y-[45%] group-hover:opacity-100 border-t-0 rounded-t-none">
-              <p className="text-white/70 text-sm md:text-base leading-relaxed">
+            <div className="flex-1 text-center md:text-right">
+              <div className="inline-flex items-center gap-2 mb-3">
+                <span className="text-[#E8192C] text-xs font-black uppercase tracking-[0.2em]">Our Mission</span>
+                <span className="w-2 h-0.5 bg-[#E8192C] rounded-full" />
+              </div>
+              <h3 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tight">Driven by a Mission</h3>
+              <p className="text-[#A0A0A0] text-base md:text-xl leading-relaxed font-medium">
                 Delivering performance-driven marketing and impactful brand experiences that accelerate visibility and revenue growth.
               </p>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
 
