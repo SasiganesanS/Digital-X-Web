@@ -11,15 +11,14 @@ import JobApplication from "./JobApplication";
 import JobListing from "./JobListing";
 
 // Vector illustration imports
-// Image paths for hero circles
-const career01 = "dist/assets/Conversion rate optimization-pana.png";
-const career02 = "dist/assets/Subscriptions-amico.png";
-const career03 = "dist/assets/Marketing-cuate.png";
-const career04 = "dist/assets/Marketing-pana.png";
-const career05 = "dist/assets/Generating new leads-pana.png";
-const career06 = "dist/assets/Digital lifestyle-pana.png";
-const career07 = "dist/assets/Customer relationship management-rafiki.png";
-const career08 = "dist/assets/Photo-amico.png";
+import career01 from "../../dist/assets/Conversion rate optimization-pana.png";
+import career02 from "../../dist/assets/Subscriptions-amico.png";
+import career03 from "../../dist/assets/Marketing-cuate.png";
+import career04 from "../../dist/assets/Marketing-pana.png";
+import career05 from "../../dist/assets/Generating new leads-pana.png";
+import career06 from "../../dist/assets/Digital lifestyle-pana.png";
+import career07 from "../../dist/assets/Customer relationship management-rafiki.png";
+import career08 from "../../dist/assets/Photo-amico.png";
 import py from "../assets/praskla_logo.jpeg";
 
 // Icon imports
