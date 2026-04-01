@@ -25,3 +25,5 @@ dist-ssr
 # gitignore
 .env
 .dist
+dist/
+node_modules/
