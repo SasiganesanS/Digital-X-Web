@@ -33,7 +33,6 @@ import MobileMarketingCombo from "./components/pricing/MobileMarketingCombo";
 import BlogPage from "./components/pricing/BlogPage";
 import MainBlogPage from "./components/MainBlogPage";
 import ProjectCaseStudy from "./components/ProjectCaseStudy";
-import CaseStudy from "./components/CaseStudy";
 import ServiceCalculator from "./components/ServiceCalculator";
 // MERGED: Added new imports from development
 import PlatformPlanPage from "./components/PlatformPlanPage";
@@ -258,6 +257,16 @@ const AppRoutes = () => {
 
       {/* MERGED: Added Mobile Plan Pages from development */}
       <Route path="/platform-plan" element={<PlatformPlanPage />} />
+
+
+      <Route
+        path="/project/:id"
+        element={
+          <AnimatedPage>
+            <ProjectCaseStudy />
+          </AnimatedPage>
+        }
+      />
 
       <Route path="*" element={<AnimatedPage><NotFound /></AnimatedPage>} />
     </Routes>

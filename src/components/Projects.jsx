@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import ContactForm from "./ContactForm";
 import { ArrowUpRight, Star, Check, TrendingUp } from "lucide-react";
 import "../index.css";
-import { clientData, data } from "../constants";
+import { clientData, data, blogPosts } from "../constants";
 import { projects as projectGridData } from "../data/projects";
 import ProjectDetailModal from "./ProjectDetailModal";
 import "./Projects.css"
@@ -146,41 +146,6 @@ const Projects = () => {
           <p className="text-white/80 text-center md:text-left mb-6 sm:mb-7 text-lg sm:text-xl md:text-[0.95rem] max-w-lg mx-auto md:mx-0 leading-relaxed md:ml-6">
             Strategic, creative, and performance-driven marketing solutions that accelerate visibility and revenue.
           </p>
-
-          <div className="grid grid-cols-3 gap-3 md:gap-4 mb-7 md:ml-6">
-            {[
-              { label: "Clients", value: counts.clients },
-              { label: "Projects", value: counts.projects },
-              { label: "Tie-ups", value: counts.tieups },
-            ].map((item, i) => (
-              <div
-                key={i}
-                className="bg-white/5 backdrop-blur-md py-2.5 md:py-3 rounded-xl flex flex-col items-center hover:bg-white/10 transition duration-300 border border-white/5"
-              >
-                <span className="text-white font-black text-xl md:text-2xl">
-                  {item.value}+
-                </span>
-                <span className="text-[#E8192C] text-[10px] uppercase font-black tracking-[0.2em]">
-                  {item.label}
-                </span>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex projects-cta sm:flex-row gap-4 sm:gap-4 w-full sm:w-auto justify-center md:justify-start pt-6 md:ml-6">
-            <button
-              className="bg-[#E8192C] text-white rounded-full font-bold px-8 py-4 shadow-lg shadow-[#E8192C]/20 hover:bg-[#ff2235] transition-all"
-              onClick={() => setShowContactForm(true)}
-            >
-              Contact Us
-            </button>
-            <button
-              className="bg-white/5 border border-white/10 text-white font-bold px-8 py-4 rounded-full hover:bg-white/10 transition-all"
-              onClick={() => navigate("/services")}
-            >
-              Start Your Plan
-            </button>
-          </div>
         </div>
 
         <div className="flex w-full md:w-1/2 items-center justify-center mt-6 md:mt-0">
@@ -225,56 +190,168 @@ const Projects = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 items-end">
-            {data.map((item, index) => {
-              const heights = ["h-[480px]", "h-[400px]", "h-[320px]", "h-[240px]"];
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className={`group relative p-10 ${heights[index]} rounded-[2rem] bg-gradient-to-br from-black/80 to-[#E8192C]/30 backdrop-blur-xl border border-white/10 hover:border-[#E8192C]/30 hover:shadow-2xl hover:shadow-[#E8192C]/10 transition-all duration-500 overflow-hidden cursor-default`}
-                >
-                  {/* Decorative corner accents */}
-                  <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-white/10 rounded-tl-lg group-hover:border-[#E8192C]/40 transition-colors" />
-                  <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-white/10 rounded-br-lg group-hover:border-[#E8192C]/40 transition-colors" />
+          <div className="relative w-full py-10 md:py-16 mt-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-end relative z-10">
+              {data.map((item, index) => {
+                // Shrinking heights to form a descending staircase when items are bottom-aligned
+                const heights = ["h-[450px]", "h-[400px]", "h-[350px]", "h-[320px]"];
+                
+                // Sparkle particles for inside the box
+                const sparkles = [
+                  { top: "20%", left: "15%", delay: 0 },
+                  { top: "45%", left: "30%", delay: 0.4 },
+                  { top: "30%", right: "25%", delay: 0.8 },
+                  { top: "65%", right: "15%", delay: 0.2 },
+                  { top: "15%", left: "65%", delay: 0.6 },
+                ];
 
-                  <div className="relative z-10 h-full">
-                    {/* Default State: Title (Centered) */}
-                    <div className="absolute inset-0 flex items-center justify-center p-6 transition-all duration-500 group-hover:opacity-0 group-hover:scale-90 group-hover:pointer-events-none">
-                      <h3 className="text-xl sm:text-2xl font-black text-white uppercase tracking-tighter text-center">
-                        {item.title}
-                      </h3>
-                    </div>
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                    className={`group relative p-8 rounded-[2rem] w-full ${heights[index]} bg-gradient-to-br from-black/80 to-[#E8192C]/30 backdrop-blur-xl border border-white/10 hover:border-[#E8192C]/40 hover:shadow-2xl hover:shadow-[#E8192C]/20 transition-all duration-500 overflow-hidden cursor-default`}
+                  >
+                    {/* Decorative corner accents */}
+                    <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-white/20 rounded-tl-lg group-hover:border-[#E8192C]/60 transition-colors duration-500" />
+                    <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-white/20 rounded-br-lg group-hover:border-[#E8192C]/60 transition-colors duration-500" />
 
-                    {/* Hover State: Sub-content (Flex distribution to prevent overlap) */}
-                    <div className="absolute inset-0 p-8 flex flex-col justify-between opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-8 group-hover:translate-y-0 pointer-events-none">
-                      <p className={`text-white/70 leading-relaxed font-medium text-center ${index === 3 ? "text-[10px] sm:text-xs leading-tight" :
-                        index === 2 ? "text-sm" : "text-sm sm:text-base"
-                        }`}>
-                        {item.desc}
-                      </p>
-                      <div className="flex justify-end w-full">
-                        <span className={`font-black text-white/10 select-none italic tracking-tighter leading-none ${index === 0 || index === 1 ? "text-7xl" :
-                          index === 2 ? "text-5xl" : "text-4xl"
-                          }`}>
+                    {/* Sparkles inside the box */}
+                    {sparkles.map((pos, i) => (
+                      <motion.span
+                        key={i}
+                        className="absolute w-[2.5px] h-[2.5px] rounded-full bg-white shadow-[0_0_8px_2px_rgba(232,25,44,0.6)]"
+                        style={{ top: pos.top, left: pos.left, right: pos.right }}
+                        animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }}
+                      />
+                    ))}
+
+                    {/* Content Container (Fully Visible, No Hover Hiding) */}
+                    <div className="relative z-10 w-full h-full flex flex-col justify-between pt-10 pb-2">
+                      <div className="flex flex-col gap-4">
+                        <h3 className="text-xl lg:text-2xl font-bold text-white tracking-wide">
+                          {item.title}
+                        </h3>
+                        <p className="text-white/60 leading-relaxed font-medium text-sm lg:text-base pr-2">
+                          {item.desc}
+                        </p>
+                      </div>
+
+                      {/* Large Watermark Code */}
+                      <div className="absolute bottom-4 right-4 translate-x-2 translate-y-2 pointer-events-none">
+                        <span className="font-black text-white/5 select-none tracking-tighter leading-none text-6xl md:text-7xl lg:text-8xl group-hover:text-white/10 transition-colors duration-500">
                           {item.code}
                         </span>
                       </div>
                     </div>
-                  </div>
 
-                  {/* Subtle Background Glow */}
-                  <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#E8192C]/5 rounded-full blur-3xl pointer-events-none transition-colors duration-500 group-hover:bg-[#E8192C]/15" />
+                    {/* Subtle Background Glow */}
+                    <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#E8192C]/10 rounded-full blur-3xl pointer-events-none transition-all duration-700 group-hover:bg-[#E8192C]/20" />
+                  </motion.div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* ------------------ Praskla Blogs Section ------------------ */}
+      <section className="relative bg-[#080808] px-6 md:px-[5%] py-24 md:py-32 border-t border-white/5 overflow-hidden">
+        {/* Background mesh/orbs */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full pointer-events-none"
+          style={{ background: "radial-gradient(ellipse, rgba(232,25,44,0.06) 0%, transparent 65%)" }} />
+        <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(circle, #ffffff 1px, transparent 1px)", backgroundSize: "44px 44px" }} />
+
+        <div className="relative z-10 max-w-7xl mx-auto">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="text-center mb-16"
+          >
+            <h3 className="text-white/60 text-sm md:text-base font-bold tracking-[0.2em] uppercase mb-3">
+              Praskla Blogs
+            </h3>
+            <h2 className="text-3xl md:text-5xl font-black text-white leading-tight mb-4">
+              Read <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E8192C] to-[#E8192C]">Praskla Technologies Works</span>
+            </h2>
+          </motion.div>
+
+          {/* Blog Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {blogPosts.map((post, index) => {
+              // Sparkle particles over the entire card
+              const sparkles = [
+                { top: "15%", left: "10%", delay: 0 },
+                { top: "45%", left: "80%", delay: 0.4 },
+                { top: "70%", right: "20%", delay: 0.8 },
+                { top: "85%", right: "80%", delay: 0.2 },
+                { top: "35%", left: "50%", delay: 0.6 },
+              ];
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                  onClick={() => navigate(`/blog/${index}`)}
+                  className="group relative flex flex-col rounded-[1.5rem] bg-[#080808] border border-white/10 hover:border-[#E8192C]/40 transition-all duration-500 overflow-hidden cursor-pointer hover:shadow-[0_10px_40px_rgba(232,25,44,0.15)]"
+                >
+                  {/* Global Card Sparkles */}
+                  {sparkles.map((pos, i) => (
+                    <motion.span
+                      key={i}
+                      className="absolute w-[2.5px] h-[2.5px] rounded-full bg-white shadow-[0_0_8px_2px_rgba(232,25,44,0.6)] z-30 pointer-events-none"
+                      style={{ top: pos.top, left: pos.left, right: pos.right }}
+                      animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }}
+                    />
+                  ))}
+
+                  {/* Image Area */}
+                  <div className="relative w-full aspect-[4/3] overflow-hidden">
+                    <div className="absolute inset-0 bg-[#080808] z-0 animate-pulse" />
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      className="relative z-10 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                    
+                  {/* Text / Title Area (Below the Image! Mixed Black & Red Background) */}
+                  <div className="p-6 md:p-8 flex flex-col justify-between flex-grow relative bg-gradient-to-br from-[#080808] via-black to-[#E8192C]/40">
+                    <div className="flex items-start justify-between gap-4 relative z-10 mb-6">
+                      <h4 className="text-xl md:text-[1.35rem] font-bold text-white leading-snug group-hover:text-[#E8192C] transition-colors duration-400">
+                        {post.title}
+                      </h4>
+                    </div>
+
+                    {/* View Live Project Button - The primary CTA */}
+                    <div className="relative z-10 mb-2">
+                      <div className="inline-flex items-center gap-2 bg-[#E8192C] text-white px-5 py-2.5 rounded-full hover:bg-[#b71422] transition-colors shadow-lg shadow-[#E8192C]/20 group/btn">
+                        <span className="text-[13px] font-black uppercase tracking-wider">View Live Project</span>
+                        <ArrowUpRight className="w-4 h-4 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                      </div>
+                    </div>
+                    
+                    {/* Bottom Accents */}
+                    <div className="absolute bottom-0 left-8 right-8 h-px bg-gradient-to-r from-transparent via-[#E8192C]/0 to-transparent group-hover:via-[#E8192C]/50 transition-all duration-500" />
+                  </div>
                 </motion.div>
               );
             })}
           </div>
         </div>
       </section>
-
 
       {/* Modal and Contact Form */}
       <ProjectDetailModal

@@ -19,72 +19,6 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Teams from "../Teams";
 
-const UnifiedIdentityCard = ({ items }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.7 }}
-    whileHover={{ y: -5, borderColor: "rgba(192,20,28,0.3)" }}
-    className="relative w-full max-w-[650px] p-10 sm:p-12 rounded-[2.5rem] border border-[#2A2A2A] transition-all duration-500 overflow-hidden group cursor-default"
-    style={{ background: "#111111" }}
-  >
-    {/* Twinkling dots - Hero style reference */}
-    <div className="absolute inset-0 pointer-events-none overflow-hidden opacity-40">
-      {[
-        { x: "10%", y: "15%", d: 0 },
-        { x: "90%", y: "20%", d: 0.5 },
-        { x: "20%", y: "85%", d: 1 },
-        { x: "80%", y: "80%", d: 1.5 },
-        { x: "50%", y: "50%", d: 2 },
-      ].map((pos, i) => (
-        <motion.div
-          key={i}
-          className="absolute w-0.5 h-0.5 rounded-full bg-[#C0141C]"
-          style={{ left: pos.x, top: pos.y, boxShadow: "0 0 8px rgba(192,20,28,0.8)" }}
-          animate={{ opacity: [0.3, 1, 0.3], scale: [1, 1.4, 1] }}
-          transition={{ duration: 3, repeat: Infinity, delay: pos.d }}
-        />
-      ))}
-    </div>
-
-    {/* Brand Name inside the card */}
-    <div className="relative z-10 mb-12">
-      <h2 className="text-[#E8192C] text-2xl sm:text-3xl font-black uppercase tracking-[0.15em]">
-        Praskla DigitalX
-      </h2>
-      <div className="w-12 h-1 bg-[#E8192C] mt-2 rounded-full" />
-    </div>
-
-    {/* Features List within the single card */}
-    <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-12">
-      {items.map((item, i) => (
-        <div key={i} className="flex flex-col gap-4 group/item">
-          <div className="w-12 h-12 rounded-2xl bg-white/5 flex items-center justify-center border border-white/5 group-hover/item:border-[#C0141C]/40 transition-all duration-300">
-            <item.icon className="w-6 h-6 text-[#E8192C]" />
-          </div>
-          <div className="space-y-2">
-            <h3 className="text-white font-bold text-sm sm:text-base uppercase tracking-[0.1em] group-hover/item:text-[#E8192C] transition-colors">
-              {item.title}
-            </h3>
-            <p className="text-[#808080] text-xs sm:text-sm leading-relaxed">
-              {item.desc}
-            </p>
-          </div>
-        </div>
-      ))}
-    </div>
-  </motion.div>
-);
-
-const featureData = [
-  { title: "Growth Focused", desc: "We target high-impact strategies to accelerate brand visibility and revenue growth.", icon: TrendingUp },
-  { title: "Client Centric", desc: "Our solutions are tailored to your unique challenges and specific business goals.", icon: Users },
-  { title: "Innovative Solutions", desc: "Leveraging cutting-edge tech and creative storytelling to stay ahead of market trends.", icon: Sparkles },
-  { title: "Secure & Reliable", desc: "Building digital ecosystems with robust security architectures and proactively managing risks.", icon: Shield },
-];
-
-
 const About = () => {
   const [index, setIndex] = useState(0)
   useEffect(() => {
@@ -137,12 +71,37 @@ const About = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.7, ease: "easeOut" }}
             >
-              {/* Eyebrow label */}
-              <div className="inline-flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C0141C] animate-pulse" />
-                <span className="text-[#C0141C] text-xs font-semibold tracking-[0.2em] uppercase">
-                  About Us
+              {/* Eyebrow label — glitter badge */}
+              <div
+                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full overflow-hidden"
+                style={{
+                  background: "linear-gradient(135deg, rgba(232,25,44,0.18) 0%, rgba(0,0,0,0.6) 50%, rgba(232,25,44,0.12) 100%)",
+                  border: "1px solid rgba(232,25,44,0.5)",
+                  boxShadow: "0 0 18px rgba(232,25,44,0.25), inset 0 1px 0 rgba(255,255,255,0.1)",
+                }}
+              >
+                <motion.span
+                  className="absolute inset-0 rounded-full"
+                  style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%)" }}
+                  animate={{ x: ["-100%", "100%"] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
+                />
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-px bg-gradient-to-r from-transparent via-[#E8192C]/80 to-transparent" />
+                {[{ top: "20%", left: "8%", delay: 0 }, { top: "70%", left: "15%", delay: 0.4 }, { top: "30%", right: "10%", delay: 0.8 }, { top: "65%", right: "18%", delay: 0.2 }, { top: "15%", left: "45%", delay: 0.6 }].map((pos, i) => (
+                  <motion.span key={i} className="absolute w-[3px] h-[3px] rounded-full bg-white"
+                    style={{ top: pos.top, left: pos.left, right: pos.right }}
+                    animate={{ opacity: [0, 1, 0], scale: [0.5, 1.4, 0.5] }}
+                    transition={{ duration: 1.5, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }} />
+                ))}
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8192C] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E8192C]" />
                 </span>
+                <span className="relative text-white text-xs sm:text-sm font-bold tracking-[0.3em] uppercase"
+                  style={{ textShadow: "0 0 10px rgba(232,25,44,0.7)" }}>About Us</span>
+                <motion.span className="relative text-[#E8192C] text-base leading-none"
+                  animate={{ rotate: [0, 180, 360], opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}>✦</motion.span>
               </div>
 
               {/* Headline */}
@@ -322,58 +281,55 @@ const About = () => {
         />
 
         <div className="relative z-10 w-[90%] max-w-[1280px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
+            {/* Left side text container */}
             <motion.div
-              className="relative order-2 lg:order-1 flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <UnifiedIdentityCard items={featureData} />
-
-              {/* Animated Decor */}
-              <motion.div
-                animate={{ translate: [0, 40, 0], opacity: [0.1, 0.2, 0.1] }}
-                transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#C0141C]/10 rounded-full blur-[80px] -z-10"
-              />
-              <motion.div
-                animate={{ translate: [0, -40, 0], opacity: [0.1, 0.2, 0.1] }}
-                transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                className="absolute -bottom-10 -left-10 w-48 h-48 bg-purple-600/10 rounded-full blur-3xl pointer-events-none"
-              />
-            </motion.div>
-
-            {/* ── RIGHT: Copy ── */}
-            <motion.div
-              className="order-1 lg:order-2 space-y-7"
+              className="space-y-7"
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
             >
-              {/* Eyebrow */}
-              <div className="inline-flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C0141C] animate-pulse" />
-                <span className="text-[#C0141C] text-xs font-semibold tracking-[0.2em] uppercase">
-                  Who We Are
+              {/* Eyebrow — glitter badge */}
+              <div
+                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full overflow-hidden"
+                style={{
+                  background: "linear-gradient(135deg, rgba(232,25,44,0.18) 0%, rgba(0,0,0,0.6) 50%, rgba(232,25,44,0.12) 100%)",
+                  border: "1px solid rgba(232,25,44,0.5)",
+                  boxShadow: "0 0 18px rgba(232,25,44,0.25), inset 0 1px 0 rgba(255,255,255,0.1)",
+                }}
+              >
+                <motion.span
+                  className="absolute inset-0 rounded-full"
+                  style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%)" }}
+                  animate={{ x: ["-100%", "100%"] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
+                />
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-px bg-gradient-to-r from-transparent via-[#E8192C]/80 to-transparent" />
+                {[{ top: "20%", left: "8%", delay: 0 }, { top: "70%", left: "15%", delay: 0.4 }, { top: "30%", right: "10%", delay: 0.8 }, { top: "65%", right: "18%", delay: 0.2 }, { top: "15%", left: "45%", delay: 0.6 }].map((pos, i) => (
+                  <motion.span key={i} className="absolute w-[3px] h-[3px] rounded-full bg-white"
+                    style={{ top: pos.top, left: pos.left, right: pos.right }}
+                    animate={{ opacity: [0, 1, 0], scale: [0.5, 1.4, 0.5] }}
+                    transition={{ duration: 1.5, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }} />
+                ))}
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8192C] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E8192C]" />
                 </span>
+                <span className="relative text-white text-xs sm:text-sm font-bold tracking-[0.3em] uppercase"
+                  style={{ textShadow: "0 0 10px rgba(232,25,44,0.7)" }}>Who We Are</span>
+                <motion.span className="relative text-[#E8192C] text-base leading-none"
+                  animate={{ rotate: [0, 180, 360], opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}>✦</motion.span>
               </div>
 
               {/* Heading */}
               <h2 className="text-4xl lg:text-5xl font-black leading-[1.1] tracking-tight text-white">
-                A growth-focused<br />
-                <span
-                  style={{
-                    background: "linear-gradient(135deg, #C0141C 0%, #E02020 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  digital marketing
-                </span>{" "}company
+                A mindful partner in{" "}
+                <span style={{ background: "linear-gradient(135deg, #C0141C 0%, #E02020 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                  digital growth
+                </span>{" "}and brand innovation.
               </h2>
 
               {/* Divider */}
@@ -382,7 +338,7 @@ const About = () => {
               {/* Body paragraphs */}
               <div className="space-y-5">
                 <p className="text-[#A0A0A0] text-lg leading-relaxed">
-                  Praskla Digital X is a growth-focused digital marketing company delivering{" "}
+                  DigitalX is a growth-focused digital marketing company delivering{" "}
                   <span className="text-white font-medium">strategic branding</span>,{" "}
                   <span className="text-white font-medium">performance marketing</span>,{" "}
                   <span className="text-white font-medium">media production</span>, and{" "}
@@ -394,29 +350,95 @@ const About = () => {
                   insight-led execution.
                 </p>
               </div>
+            </motion.div>
 
-              {/* Two feature rows */}
-              <div className="space-y-3 pt-2">
-                {[
-                  { icon: "🎯", label: "Businesses & brands of all scales" },
-                  { icon: "⚡", label: "Structured, insight-led execution" },
-                  { icon: "🔗", label: "End-to-end digital ecosystem delivery" },
-                ].map((item, i) => (
-                  <motion.div
-                    key={i}
-                    className="flex items-center gap-4 rounded-xl px-5 py-3.5 border border-[#2A2A2A] hover:border-[#C0141C]/30 transition-all duration-300"
-                    style={{ background: "#111111" }}
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: 0.3 + i * 0.1 }}
-                    whileHover={{ x: 4 }}
-                  >
-                    <span className="text-xl">{item.icon}</span>
-                    <span className="text-[#A0A0A0] text-sm font-medium">{item.label}</span>
-                  </motion.div>
-                ))}
+            {/* Right side Visual Container (Orbital 3D Cards) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative w-full aspect-square max-w-[500px] mx-auto flex items-center justify-center mt-10 lg:mt-0"
+            >
+              {/* Outer Glow behind the rings */}
+              <div className="absolute inset-0 bg-[#E8192C]/20 rounded-full blur-[100px] pointer-events-none" />
+
+              {/* 3D Rings */}
+              <motion.div
+                className="absolute w-[90%] h-[90%] rounded-full border border-white/20"
+                style={{ transform: "rotateX(65deg)", transformOrigin: "center" }}
+                animate={{ rotateZ: 360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+              >
+                <div className="absolute top-0 left-[20%] w-2 h-2 rounded-full bg-white shadow-[0_0_10px_3px_rgba(255,255,255,0.8)]" />
+              </motion.div>
+
+              <motion.div
+                className="absolute w-[100%] h-[100%] rounded-full border-[2px] border-[#E8192C]/30"
+                style={{ transform: "rotateX(65deg) rotateY(10deg)", transformOrigin: "center" }}
+                animate={{ rotateZ: -360 }}
+                transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
+              >
+                <div className="absolute bottom-0 right-[20%] w-2 h-2 rounded-full bg-[#E8192C] shadow-[0_0_10px_3px_rgba(232,25,44,0.8)]" />
+              </motion.div>
+
+              {/* Sparkles globally scattered */}
+              {[...Array(15)].map((_, i) => (
+                <motion.span
+                  key={i}
+                  className="absolute w-[2px] h-[2px] rounded-full bg-white z-0 pointer-events-none"
+                  style={{
+                    top: `${Math.random() * 100}%`,
+                    left: `${Math.random() * 100}%`,
+                    boxShadow: "0 0 8px 2px rgba(232,25,44,0.8)",
+                  }}
+                  animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }}
+                  transition={{ duration: 1.5 + Math.random() * 2, repeat: Infinity, delay: Math.random() * 2 }}
+                />
+              ))}
+
+              {/* Center Core: PRASKLA */}
+              <div className="relative z-10 w-32 h-32 md:w-36 md:h-36 rounded-2xl bg-gradient-to-br from-[#E8192C] to-[#400000] border border-white/20 shadow-[0_0_40px_rgba(232,25,44,0.6)] flex items-center justify-center transform -translate-y-4">
+                {/* Internal container glow */}
+                <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#ff6b7b]/30 to-transparent rounded-b-2xl" />
+                <span className="relative text-white font-black text-xl md:text-2xl tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+                  PRASKLA
+                </span>
               </div>
+
+              {/* Card 1: TOP (Growth Focused) */}
+              <motion.div
+                className="absolute z-20 -top-8 right-[5%] w-32 h-32 md:w-40 md:h-40 rounded-3xl bg-gradient-to-br from-[#1a0000]/90 to-[#E8192C]/40 backdrop-blur-xl border border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center p-4 gap-2 rotate-6"
+                animate={{ y: [-10, 10, -10], rotate: [6, 4, 6] }}
+                transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <div className="absolute inset-0 rounded-3xl border-t border-white/30 opacity-50" />
+                <TrendingUp className="w-8 h-8 md:w-10 md:h-10 text-white drop-shadow-md" />
+                <span className="text-white text-xs md:text-[13px] font-bold text-center tracking-wide mt-1">Growth Focused</span>
+              </motion.div>
+
+              {/* Card 2: BOTTOM LEFT (Client Centric) */}
+              <motion.div
+                className="absolute z-20 bottom-0 -left-[10%] md:-left-[5%] w-36 h-36 md:w-44 md:h-44 rounded-3xl bg-gradient-to-br from-[#1a0000]/90 to-[#E8192C]/40 backdrop-blur-xl border border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center p-4 gap-2 -rotate-12"
+                animate={{ y: [10, -10, 10], rotate: [-12, -10, -12] }}
+                transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <div className="absolute inset-0 rounded-3xl border-l border-white/30 opacity-50" />
+                <Users className="w-10 h-10 md:w-12 md:h-12 text-white drop-shadow-md" />
+                <span className="text-white text-xs md:text-sm font-bold text-center tracking-wide mt-1">Client Centric</span>
+              </motion.div>
+
+              {/* Card 3: BOTTOM RIGHT (Secure & Reliable) */}
+              <motion.div
+                className="absolute z-20 bottom-4 -right-[5%] md:right-[0%] w-36 h-36 md:w-44 md:h-44 rounded-3xl bg-gradient-to-br from-[#1a0000]/90 to-[#E8192C]/40 backdrop-blur-xl border border-white/10 shadow-[0_15px_30px_rgba(0,0,0,0.5)] flex flex-col items-center justify-center p-4 gap-2 rotate-12"
+                animate={{ y: [-8, 8, -8], rotate: [12, 14, 12] }}
+                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              >
+                <div className="absolute inset-0 rounded-3xl border-r border-[#E8192C]/30 opacity-50" />
+                <Shield className="w-10 h-10 md:w-12 md:h-12 text-white drop-shadow-md" />
+                <span className="text-white text-xs md:text-sm font-bold text-center tracking-wide mt-1">Secure & Reliable</span>
+              </motion.div>
+
             </motion.div>
 
           </div>
@@ -430,73 +452,123 @@ const About = () => {
 
       {/* <Homesection3 /> */}
 
-      {/* Vision & Mission Section — Compact Interactive Grid */}
+      {/* Vision & Mission Section */}
       <div className="relative py-12 md:py-16" style={{ background: "#080808" }}>
         <div className="relative z-10 w-[90%] max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-10 md:mb-12">
-            <div className="inline-flex items-center border border-white/10 gap-2 px-3 py-1.5 bg-white/5 rounded-full mb-4">
-              <Sparkles className="w-4 h-4 text-[#E8192C]" />
-              <span className="text-xs font-semibold text-white/70 uppercase tracking-wider">Vision & Mission</span>
+          <div className="text-center mb-12">
+            <div className="flex justify-center">
+              <div
+                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full overflow-hidden"
+                style={{
+                  background: "linear-gradient(135deg, rgba(232,25,44,0.18) 0%, rgba(0,0,0,0.6) 50%, rgba(232,25,44,0.12) 100%)",
+                  border: "1px solid rgba(232,25,44,0.5)",
+                  boxShadow: "0 0 18px rgba(232,25,44,0.25), inset 0 1px 0 rgba(255,255,255,0.1)",
+                }}
+              >
+                <motion.span
+                  className="absolute inset-0 rounded-full"
+                  style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%)" }}
+                  animate={{ x: ["-100%", "100%"] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
+                />
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-px bg-gradient-to-r from-transparent via-[#E8192C]/80 to-transparent" />
+                {[{ top: "20%", left: "8%", delay: 0 }, { top: "70%", left: "15%", delay: 0.4 }, { top: "30%", right: "10%", delay: 0.8 }, { top: "65%", right: "18%", delay: 0.2 }, { top: "15%", left: "45%", delay: 0.6 }].map((pos, i) => (
+                  <motion.span key={i} className="absolute w-[3px] h-[3px] rounded-full bg-white"
+                    style={{ top: pos.top, left: pos.left, right: pos.right }}
+                    animate={{ opacity: [0, 1, 0], scale: [0.5, 1.4, 0.5] }}
+                    transition={{ duration: 1.5, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }} />
+                ))}
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8192C] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E8192C]" />
+                </span>
+                <span className="relative text-white text-xs sm:text-sm font-bold tracking-[0.3em] uppercase"
+                  style={{ textShadow: "0 0 10px rgba(232,25,44,0.7)" }}>Vision & Mission</span>
+                <motion.span className="relative text-[#E8192C] text-base leading-none"
+                  animate={{ rotate: [0, 180, 360], opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}>✦</motion.span>
+              </div>
             </div>
-            <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight">
-              Vision & <span className="text-[#E8192C]">Mission</span>
-            </h2>
           </div>
         </div>
 
-        <div className="flex flex-col gap-10 max-w-5xl mx-auto mt-12 px-4">
+        <div className="flex flex-col gap-8 max-w-5xl mx-auto px-4">
           {/* Vision Card */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="group relative flex flex-col md:flex-row items-center gap-8 bg-[#111111] p-8 md:p-12 rounded-[2.5rem] border border-white/5 hover:border-[#E8192C]/30 transition-all duration-500 shadow-2xl overflow-hidden"
+            transition={{ duration: 0.7, ease: "easeOut" }}
+            className="relative rounded-[2rem] overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, rgba(232,25,44,0.07) 0%, rgba(12,12,12,0.98) 40%, rgba(232,25,44,0.04) 100%)",
+              border: "1px solid rgba(232,25,44,0.3)",
+              boxShadow: "0 0 60px rgba(232,25,44,0.1), 0 0 120px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.06)",
+            }}
           >
-            {/* Background Decor */}
-            <div className="absolute top-0 right-0 w-32 h-32 bg-[#E8192C]/5 rounded-full blur-3xl group-hover:bg-[#E8192C]/10 transition-all duration-700" />
-
-            <div className="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#E8192C]/10 border border-[#E8192C]/20 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
-              <Eye className="w-10 h-10 md:w-12 md:h-12 text-[#E8192C]" />
-            </div>
-
-            <div className="flex-1 text-center md:text-left">
-              <div className="inline-flex items-center gap-2 mb-3">
-                <span className="w-2 h-0.5 bg-[#E8192C] rounded-full" />
-                <span className="text-[#E8192C] text-xs font-black uppercase tracking-[0.2em]">Our Vision</span>
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-[#E8192C]/60 to-transparent" />
+            <div className="absolute top-0 left-0 w-40 h-40 opacity-20"
+              style={{ background: "radial-gradient(circle at top left, rgba(232,25,44,0.5), transparent 70%)" }} />
+            {[{ top: "15%", left: "5%", delay: 0 }, { top: "75%", left: "10%", delay: 0.5 }, { top: "20%", right: "8%", delay: 1 }, { top: "70%", right: "12%", delay: 0.3 }, { top: "45%", left: "50%", delay: 0.7 }].map((pos, i) => (
+              <motion.span key={i} className="absolute w-[2px] h-[2px] rounded-full bg-white/50 pointer-events-none"
+                style={{ top: pos.top, left: pos.left, right: pos.right }}
+                animate={{ opacity: [0, 0.8, 0], scale: [0.5, 1.3, 0.5] }}
+                transition={{ duration: 2.5, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }} />
+            ))}
+            <div className="relative z-10 flex flex-col md:flex-row items-start gap-8 p-8 md:p-12">
+              <div className="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center"
+                style={{ background: "rgba(232,25,44,0.12)", border: "1px solid rgba(232,25,44,0.35)", boxShadow: "0 0 20px rgba(232,25,44,0.2)" }}>
+                <Eye className="w-8 h-8 text-[#E8192C]" />
               </div>
-              <h3 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tight">Powered by a Vision</h3>
-              <p className="text-[#A0A0A0] text-base md:text-xl leading-relaxed font-medium">
-                To become a leading mindful marketing firm known for innovative strategies, measurable growth, and long-term brand impact.
-              </p>
+              <div className="flex-1">
+                <span className="text-[#E8192C] text-xs font-bold tracking-[0.25em] uppercase block mb-3"
+                  style={{ textShadow: "0 0 8px rgba(232,25,44,0.4)" }}>Our Vision</span>
+                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 tracking-tight">Powered by a Vision</h3>
+                <div className="w-12 h-0.5 rounded-full mb-5" style={{ background: "linear-gradient(90deg, #E8192C, transparent)" }} />
+                <p className="text-white/60 text-base md:text-lg leading-relaxed">
+                  To become a leading mindful marketing firm known for innovative strategies, measurable growth, and long-term brand impact. We envision building a collaborative ecosystem where businesses scale confidently through creative storytelling, data intelligence, and sustainable growth practices — becoming a trusted partner in every stage of their journey.
+                </p>
+              </div>
             </div>
           </motion.div>
 
           {/* Mission Card */}
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="group relative flex flex-col md:flex-row-reverse items-center gap-8 bg-[#111111] p-8 md:p-12 rounded-[2.5rem] border border-white/5 hover:border-[#E8192C]/30 transition-all duration-500 shadow-2xl overflow-hidden"
+            transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+            className="relative rounded-[2rem] overflow-hidden"
+            style={{
+              background: "linear-gradient(135deg, rgba(232,25,44,0.07) 0%, rgba(12,12,12,0.98) 40%, rgba(232,25,44,0.04) 100%)",
+              border: "1px solid rgba(232,25,44,0.3)",
+              boxShadow: "0 0 60px rgba(232,25,44,0.1), 0 0 120px rgba(0,0,0,0.8), inset 0 1px 0 rgba(255,255,255,0.06)",
+            }}
           >
-            {/* Background Decor */}
-            <div className="absolute top-0 left-0 w-32 h-32 bg-[#E8192C]/5 rounded-full blur-3xl group-hover:bg-[#E8192C]/10 transition-all duration-700" />
-
-            <div className="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl bg-[#E8192C]/10 border border-[#E8192C]/20 flex items-center justify-center transition-transform duration-500 group-hover:scale-110">
-              <Target className="w-10 h-10 md:w-12 md:h-12 text-[#E8192C]" />
-            </div>
-
-            <div className="flex-1 text-center md:text-right">
-              <div className="inline-flex items-center gap-2 mb-3">
-                <span className="text-[#E8192C] text-xs font-black uppercase tracking-[0.2em]">Our Mission</span>
-                <span className="w-2 h-0.5 bg-[#E8192C] rounded-full" />
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-[#E8192C]/60 to-transparent" />
+            <div className="absolute top-0 right-0 w-40 h-40 opacity-20"
+              style={{ background: "radial-gradient(circle at top right, rgba(232,25,44,0.5), transparent 70%)" }} />
+            {[{ top: "15%", left: "5%", delay: 0.2 }, { top: "75%", left: "10%", delay: 0.7 }, { top: "20%", right: "8%", delay: 1.2 }, { top: "70%", right: "12%", delay: 0.5 }, { top: "45%", left: "50%", delay: 0.9 }].map((pos, i) => (
+              <motion.span key={i} className="absolute w-[2px] h-[2px] rounded-full bg-white/50 pointer-events-none"
+                style={{ top: pos.top, left: pos.left, right: pos.right }}
+                animate={{ opacity: [0, 0.8, 0], scale: [0.5, 1.3, 0.5] }}
+                transition={{ duration: 2.5, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }} />
+            ))}
+            <div className="relative z-10 flex flex-col md:flex-row items-start gap-8 p-8 md:p-12">
+              <div className="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center"
+                style={{ background: "rgba(232,25,44,0.12)", border: "1px solid rgba(232,25,44,0.35)", boxShadow: "0 0 20px rgba(232,25,44,0.2)" }}>
+                <Target className="w-8 h-8 text-[#E8192C]" />
               </div>
-              <h3 className="text-2xl md:text-4xl font-black text-white mb-4 tracking-tight">Driven by a Mission</h3>
-              <p className="text-[#A0A0A0] text-base md:text-xl leading-relaxed font-medium">
-                Delivering performance-driven marketing and impactful brand experiences that accelerate visibility and revenue growth.
-              </p>
+              <div className="flex-1">
+                <span className="text-[#E8192C] text-xs font-bold tracking-[0.25em] uppercase block mb-3"
+                  style={{ textShadow: "0 0 8px rgba(232,25,44,0.4)" }}>Our Mission</span>
+                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 tracking-tight">Driven by a Mission</h3>
+                <div className="w-12 h-0.5 rounded-full mb-5" style={{ background: "linear-gradient(90deg, #E8192C, transparent)" }} />
+                <p className="text-white/60 text-base md:text-lg leading-relaxed">
+                  At DigitalX, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
+                </p>
+              </div>
             </div>
           </motion.div>
         </div>
@@ -504,16 +576,44 @@ const About = () => {
 
       {/* What We Bring to the Table — Expertise Section */}
       <div className="relative py-16 md:py-20 overflow-hidden" style={{ background: "#080808" }}>
-        {/* Subtle background glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl max-h-[500px] opacity-[0.03] pointer-events-none">
           <div className="w-full h-full bg-[#E8192C] rounded-full blur-[120px]" />
         </div>
 
         <div className="relative z-10 w-[90%] max-w-6xl mx-auto">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center border border-white/10 gap-2 px-3 py-1.5 bg-white/5 rounded-full mb-4">
-              <Sparkles className="w-4 h-4 text-[#E8192C]" />
-              <span className="text-xs font-semibold text-white/70 uppercase tracking-wider">Our Purpose</span>
+            <div className="flex justify-center mb-6">
+              <div
+                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full overflow-hidden"
+                style={{
+                  background: "linear-gradient(135deg, rgba(232,25,44,0.18) 0%, rgba(0,0,0,0.6) 50%, rgba(232,25,44,0.12) 100%)",
+                  border: "1px solid rgba(232,25,44,0.5)",
+                  boxShadow: "0 0 18px rgba(232,25,44,0.25), inset 0 1px 0 rgba(255,255,255,0.1)",
+                }}
+              >
+                <motion.span
+                  className="absolute inset-0 rounded-full"
+                  style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%)" }}
+                  animate={{ x: ["-100%", "100%"] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
+                />
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-px bg-gradient-to-r from-transparent via-[#E8192C]/80 to-transparent" />
+                {[{ top: "20%", left: "8%", delay: 0 }, { top: "70%", left: "15%", delay: 0.4 }, { top: "30%", right: "10%", delay: 0.8 }, { top: "65%", right: "18%", delay: 0.2 }, { top: "15%", left: "45%", delay: 0.6 }].map((pos, i) => (
+                  <motion.span key={i} className="absolute w-[3px] h-[3px] rounded-full bg-white"
+                    style={{ top: pos.top, left: pos.left, right: pos.right }}
+                    animate={{ opacity: [0, 1, 0], scale: [0.5, 1.4, 0.5] }}
+                    transition={{ duration: 1.5, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }} />
+                ))}
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8192C] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E8192C]" />
+                </span>
+                <span className="relative text-white text-xs sm:text-sm font-bold tracking-[0.3em] uppercase"
+                  style={{ textShadow: "0 0 10px rgba(232,25,44,0.7)" }}>Our Purpose</span>
+                <motion.span className="relative text-[#E8192C] text-base leading-none"
+                  animate={{ rotate: [0, 180, 360], opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}>✦</motion.span>
+              </div>
             </div>
             <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-4">
               What We <span className="text-[#E8192C]">Bring to the Table</span>
@@ -521,55 +621,90 @@ const About = () => {
             <div className="h-1 w-20 bg-[#E8192C] mx-auto rounded-full" />
           </div>
 
-          <div className="max-w-4xl mx-auto divide-y divide-white/5 border-t border-b border-white/5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-end relative z-10">
             {[
               {
                 id: "01",
+                code: "MBS",
                 title: "Mindful Brand Strategy",
                 desc: "Strategic brand positioning and content ecosystems designed to build authority, clarity, and long-term recognition."
               },
               {
                 id: "02",
+                code: "PM",
                 title: "Performance Marketing",
                 desc: "Data-driven campaigns including SEO, Meta Ads, PPC, and social media management focused on measurable growth and ROI."
               },
               {
                 id: "03",
+                code: "CMP",
                 title: "Creative Media & Production",
                 desc: "High-impact videography, photography, post-production, and digital storytelling that transform businesses into powerful visual brands."
               }
-            ].map((item, i) => (
-              <motion.div
-                key={i}
-                initial={false}
-                className="group py-8 md:py-10 transition-all duration-300"
-              >
-                <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12 cursor-pointer">
-                  {/* Number */}
-                  <span className="text-4xl md:text-5xl font-black text-white/5 group-hover:text-[#E8192C]/20 transition-colors duration-500 font-mono tracking-tighter">
-                    {item.id}
-                  </span>
+            ].map((item, index) => {
+              // Descending staircase effect for 3 items
+              const heights = ["h-[420px]", "h-[360px]", "h-[300px]"];
+              
+              // Internal sparkles
+              const sparkles = [
+                { top: "20%", left: "15%", delay: 0 },
+                { top: "45%", left: "30%", delay: 0.4 },
+                { top: "30%", right: "25%", delay: 0.8 },
+                { top: "65%", right: "15%", delay: 0.2 },
+                { top: "15%", left: "65%", delay: 0.6 },
+              ];
 
-                  {/* Title & Desc */}
-                  <div className="flex-1">
-                    <h3 className="text-2xl md:text-3xl font-bold text-white group-hover:text-[#E8192C] transition-colors duration-300 mb-2">
-                      {item.title}
-                    </h3>
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15, duration: 0.5 }}
+                  className={`group relative p-8 rounded-[2rem] w-full ${heights[index]} bg-gradient-to-br from-black/80 to-[#E8192C]/20 backdrop-blur-xl border border-white/10 hover:border-[#E8192C]/40 hover:shadow-2xl hover:shadow-[#E8192C]/20 transition-all duration-500 overflow-hidden cursor-default`}
+                >
+                  {/* Decorative corner accents */}
+                  <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-white/20 rounded-tl-lg group-hover:border-[#E8192C]/60 transition-colors duration-500" />
+                  <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-white/20 rounded-br-lg group-hover:border-[#E8192C]/60 transition-colors duration-500" />
 
-                    <div className="overflow-hidden max-h-0 group-hover:max-h-32 transition-all duration-500 ease-in-out">
-                      <p className="text-white/50 text-base md:text-lg leading-relaxed pt-2">
+                  {/* Sparkles inside the box */}
+                  {sparkles.map((pos, i) => (
+                    <motion.span
+                      key={i}
+                      className="absolute w-[2px] h-[2px] rounded-full bg-white shadow-[0_0_8px_2px_rgba(232,25,44,0.6)]"
+                      style={{ top: pos.top, left: pos.left, right: pos.right }}
+                      animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }}
+                      transition={{ duration: 2, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }}
+                    />
+                  ))}
+
+                  {/* Content Container */}
+                  <div className="relative z-10 w-full h-full flex flex-col justify-between pt-10 pb-2">
+                    <div className="flex flex-col gap-4 relative z-20">
+                      <div className="flex items-center gap-3">
+                        <span className="text-xl md:text-2xl font-black text-[#E8192C]">{item.id}.</span>
+                        <h3 className="text-xl lg:text-2xl font-bold text-white tracking-wide">
+                          {item.title}
+                        </h3>
+                      </div>
+                      <p className="text-white/60 leading-relaxed font-medium text-sm lg:text-base pr-2">
                         {item.desc}
                       </p>
                     </div>
+
+                    {/* Large Watermark Code */}
+                    <div className="absolute bottom-2 right-4 translate-x-4 translate-y-4 pointer-events-none z-0">
+                      <span className="font-black text-white/5 select-none tracking-tighter leading-none text-[5rem] md:text-[6rem] group-hover:text-[#E8192C]/10 transition-colors duration-500">
+                        {item.code}
+                      </span>
+                    </div>
                   </div>
 
-                  {/* Icon Indicator */}
-                  <div className="hidden md:flex w-12 h-12 rounded-full border border-white/10 items-center justify-center group-hover:bg-[#E8192C] group-hover:border-[#E8192C] transition-all duration-300">
-                    <Zap className="w-5 h-5 text-white/30 group-hover:text-white" />
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+                  {/* Subtle Background Glow */}
+                  <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#E8192C]/5 rounded-full blur-3xl pointer-events-none transition-all duration-700 group-hover:bg-[#E8192C]/15" />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </div>

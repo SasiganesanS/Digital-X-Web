@@ -99,9 +99,6 @@ const Navbar = ({ setShowContactForm }) => {
               >
                 Praskla Digital <span className="text-[#E8192C]">X</span>
               </span>
-              <span className="text-white/30 text-[9px] font-medium tracking-[0.15em] uppercase select-none leading-tight">
-                A Mindful Marketing and <br className="sm:hidden" /> Production Firm
-              </span>
             </div>
           </Link>
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, ArrowLeft } from "lucide-react";
 import { blogPosts, clientData } from "../../constants";
 import "../MainBlog.css";
 
@@ -99,6 +99,18 @@ const BlogPage = () => {
     <>
       {/* HERO SECTION */}
       <section className="relative dark-section w-full h-[100vh] md:h-[105vh] flex items-center justify-start overflow-hidden md:pl-20">
+        
+        {/* Universal Back Button */}
+        <div className="absolute top-24 md:top-32 left-4 md:left-20 z-50">
+          <button
+            onClick={() => navigate('/projects')}
+            className="flex items-center gap-2 px-5 py-2.5 bg-black/50 backdrop-blur-md text-white/80 hover:text-white rounded-full border border-white/10 hover:border-[#E8192C]/50 transition-all group shadow-xl"
+          >
+            <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+            <span className="text-xs sm:text-sm font-bold tracking-widest uppercase">Back to Projects</span>
+          </button>
+        </div>
+
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{

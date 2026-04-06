@@ -24,6 +24,7 @@ import {
 } from "react-icons/md";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { HiLightningBolt } from "react-icons/hi";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { platforms } from "../constants/index";
 import ContactForm from "./ContactForm";
 import PlatformPlanModal from "./PlatformPlanModal";
@@ -72,6 +73,8 @@ export default function ServiceCalculator() {
   const [modalPlatform, setModalPlatform] = useState(null);
   const [selectedPlanInModal, setSelectedPlanInModal] = useState(null);
   const [showContactForm, setShowContactForm] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef(null);
   const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
@@ -145,6 +148,56 @@ export default function ServiceCalculator() {
     setModalPlatform(null);
   };
 
+  const servicesData = [
+    {
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
+      title: "Web Development",
+      desc: "We craft fast, responsive, and visually refined websites that strengthen brand presence."
+    },
+    {
+      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80",
+      title: "Software Development",
+      desc: "Reliable solutions tailored to business needs, enabling performance and growth."
+    },
+    {
+      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&q=80",
+      title: "App Development",
+      desc: "High-performance applications that combine intuitive design with robustness."
+    },
+    {
+      image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=400&q=80",
+      title: "Cyber Security",
+      desc: "Securing systems through advanced architectures, monitoring, and proactive risk management."
+    },
+    {
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80",
+      title: "Digital Marketing",
+      desc: "Data-driven marketing strategies that enhance visibility and drive business results."
+    },
+    {
+      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80",
+      title: "Sustainability",
+      desc: "Integrating smart technologies and practices to support responsible digital scaling."
+    }
+  ];
+
+  const scrollLeft = () => {
+    if (scrollRef.current) scrollRef.current.scrollBy({ left: -350, behavior: "smooth" });
+  };
+  const scrollRight = () => {
+    if (scrollRef.current) scrollRef.current.scrollBy({ left: 350, behavior: "smooth" });
+  };
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const scrollX = scrollRef.current.scrollLeft;
+      const index = Math.min(
+        servicesData.length - 1,
+        Math.round((scrollX / scrollRef.current.scrollWidth) * servicesData.length)
+      );
+      setActiveIndex(index);
+    }
+  };
+
   const total = useMemo(() => {
     let sum = 5000;
     selectedItems.forEach(i => {
@@ -174,9 +227,39 @@ export default function ServiceCalculator() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <div className="inline-flex items-center border border-white/10 gap-2 px-3 py-1.5 bg-white/5 rounded-full mb-6 mx-auto">
-              <HiLightningBolt className="w-4 h-4 text-[#E8192C]" />
-              <span className="text-xs font-semibold text-white/70 uppercase tracking-wider">Our Services</span>
+            {/* Glitter badge */}
+            <div className="flex justify-center mb-8">
+              <div
+                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full overflow-hidden"
+                style={{
+                  background: "linear-gradient(135deg, rgba(232,25,44,0.18) 0%, rgba(0,0,0,0.6) 50%, rgba(232,25,44,0.12) 100%)",
+                  border: "1px solid rgba(232,25,44,0.5)",
+                  boxShadow: "0 0 18px rgba(232,25,44,0.25), inset 0 1px 0 rgba(255,255,255,0.1)",
+                }}
+              >
+                <motion.span
+                  className="absolute inset-0 rounded-full"
+                  style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%)" }}
+                  animate={{ x: ["-100%", "100%"] }}
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
+                />
+                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-px bg-gradient-to-r from-transparent via-[#E8192C]/80 to-transparent" />
+                {[{ top: "20%", left: "8%", delay: 0 }, { top: "70%", left: "15%", delay: 0.4 }, { top: "30%", right: "10%", delay: 0.8 }, { top: "65%", right: "18%", delay: 0.2 }, { top: "15%", left: "45%", delay: 0.6 }].map((pos, i) => (
+                  <motion.span key={i} className="absolute w-[3px] h-[3px] rounded-full bg-white"
+                    style={{ top: pos.top, left: pos.left, right: pos.right }}
+                    animate={{ opacity: [0, 1, 0], scale: [0.5, 1.4, 0.5] }}
+                    transition={{ duration: 1.5, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }} />
+                ))}
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8192C] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E8192C]" />
+                </span>
+                <span className="relative text-white text-xs sm:text-sm font-bold tracking-[0.3em] uppercase"
+                  style={{ textShadow: "0 0 10px rgba(232,25,44,0.7)" }}>Our Services</span>
+                <motion.span className="relative text-[#E8192C] text-base leading-none"
+                  animate={{ rotate: [0, 180, 360], opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}>✦</motion.span>
+              </div>
             </div>
             <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-black mb-8 leading-[1.1] tracking-tight text-white max-w-5xl mx-auto">
               Transforming Brands into <br />
@@ -189,60 +272,144 @@ export default function ServiceCalculator() {
         </div>
       </section>
 
-      {/* ── Informational Services Grid ── */}
-      <section className="relative px-6 md:px-[5%] py-20 bg-white/[0.02] border-y border-white/5">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-16">
-            {[
-              {
-                icon: <FaGlobe />,
-                title: "Web Development",
-                desc: "We craft fast, responsive, and visually refined websites that strengthen brand presence and deliver seamless experiences across all devices."
-              },
-              {
-                icon: <FaLaptopCode />,
-                title: "Software Development",
-                desc: "We design and build reliable, scalable software solutions tailored to business needs, enabling efficiency, performance, and long-term growth."
-              },
-              {
-                icon: <FaMobileAlt />,
-                title: "App Development",
-                desc: "We develop high-performance mobile applications that combine intuitive design with robust functionality across Android and iOS platforms."
-              },
-              {
-                icon: <FaShieldAlt />,
-                title: "Cyber Security",
-                desc: "We secure digital ecosystems through advanced security architectures, continuous monitoring, and proactive risk management to safeguard data and build trust."
-              },
-              {
-                icon: <FaBullhorn />,
-                title: "Digital Marketing",
-                desc: "We deliver data-driven digital marketing strategies that enhance brand visibility, engage audiences, and drive measurable business results."
-              },
-              {
-                icon: <FaLeaf />,
-                title: "Sustainability",
-                desc: "We integrate smart technologies and sustainable practices to support responsible growth while reducing environmental impact and creating lasting value."
-              }
-            ].map((s, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-[#E8192C]/30 transition-all duration-500"
-              >
-                <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 transition-all duration-500 group-hover:bg-[#E8192C]/10 group-hover:border-[#E8192C]/40 group-hover:scale-110">
-                  <div className="text-white/30 text-2xl group-hover:text-[#E8192C] transition-colors duration-500">
-                    {s.icon}
+      {/* ── Infinite Carousel Slider Section ── */}
+      <section className="relative w-full px-[5%] py-20 pb-32 overflow-hidden bg-[#080808]">
+        {/* Tilted Container with rich red/black mix and sparkles */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#080808] via-[#1a0000] to-[#250000] -rotate-3 scale-[1.2] shadow-2xl pointer-events-none" />
+        
+        {/* Animated Background Glows */}
+        <div className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-[#E8192C]/10 rounded-full blur-[120px] animate-pulse pointer-events-none" />
+        <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-[#E8192C]/5 rounded-full blur-[120px] animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
+
+        {/* Floating Sparkles in Background */}
+        {[...Array(12)].map((_, i) => (
+          <motion.div
+            key={`bg-sparkle-${i}`}
+            className="absolute w-1 h-1 bg-white rounded-full pointer-events-none z-0"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              boxShadow: "0 0 10px 2px rgba(232,25,44,0.6)",
+            }}
+            animate={{
+              opacity: [0, 0.8, 0],
+              scale: [0.5, 1.2, 0.5],
+              y: [0, -20, 0]
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+              ease: "easeInOut"
+            }}
+          />
+        ))}
+
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto min-h-[550px]">
+          
+          <div className="flex flex-col items-center justify-center gap-2 mb-16 transform -rotate-2">
+            <h2 className="text-4xl md:text-5xl font-black text-white text-center tracking-tight">
+              Our <span className="text-[#E8192C]">Core Expertise</span>
+            </h2>
+            <div className="h-1.5 w-24 bg-gradient-to-r from-[#E8192C] to-transparent rounded-full" />
+          </div>
+
+          <div className="relative w-full flex items-center justify-center transform -rotate-2">
+            
+            {/* Left Button */}
+            <button
+              onClick={scrollLeft}
+              className="absolute -left-2 md:-left-12 lg:-left-16 z-30 w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-[0_0_20px_rgba(232,25,44,0.3)] hover:scale-110 transition-transform active:scale-95"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+
+            {/* Slider Track Container */}
+            <div 
+              ref={scrollRef}
+              className="flex overflow-x-auto gap-6 sm:gap-8 overflow-y-hidden snap-x snap-mandatory px-4 md:px-10 py-10 w-full no-scrollbar"
+              onScroll={handleScroll}
+              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+            >
+              {servicesData.map((service, i) => (
+                <div
+                  key={i}
+                  className="w-[85vw] sm:w-[320px] md:w-[350px] lg:w-[380px] flex-shrink-0 snap-center"
+                >
+                  <div className="relative bg-gradient-to-br from-[#080808] via-black to-[#E8192C]/20 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-8 pt-10 flex flex-col items-center text-center h-[340px] md:h-[360px] cursor-pointer hover:-translate-y-4 hover:shadow-[0_30px_60px_rgba(232,25,44,0.2)] transition-all duration-700 group border border-white/5 hover:border-[#E8192C]/40 overflow-hidden">
+                    
+                    {/* Internal sparkles inside the card */}
+                    {[...Array(6)].map((_, si) => (
+                      <motion.div
+                        key={`card-sparkle-${si}`}
+                        className="absolute w-1 h-1 bg-white rounded-full pointer-events-none z-0"
+                        style={{
+                          top: `${Math.random() * 100}%`,
+                          left: `${Math.random() * 100}%`,
+                          boxShadow: "0 0 10px 2px rgba(232,25,44,0.6)",
+                        }}
+                        animate={{
+                          opacity: [0, 0.8, 0],
+                          scale: [0.5, 1.2, 0.5],
+                        }}
+                        transition={{
+                          duration: 2 + Math.random() * 2,
+                          repeat: Infinity,
+                          delay: Math.random() * 3,
+                          ease: "easeInOut"
+                        }}
+                      />
+                    ))}
+
+                    {/* Circle Image */}
+                    <div className="relative z-10 w-[110px] h-[110px] mb-8 rounded-full p-1.5 border-[3px] border-[#E8192C]/30 group-hover:border-[#E8192C] transition-all duration-500 flex items-center justify-center -mt-8 bg-black shadow-xl">
+                      <img
+                        src={service.image}
+                        alt={service.title}
+                        className="w-full h-full object-cover rounded-full"
+                      />
+                    </div>
+
+                    <h3 className="relative z-10 text-xl md:text-2xl font-black text-white mb-3 tracking-tight group-hover:text-[#E8192C] transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    <p className="relative z-10 text-white/50 font-medium text-sm md:text-base leading-relaxed px-2 group-hover:text-white/70 transition-colors duration-300">
+                      {service.desc}
+                    </p>
+
+                    {/* Bottom accent glow */}
+                    <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E8192C]/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold text-white mb-3 group-hover:text-[#E8192C] transition-colors">{s.title}</h3>
-                <p className="text-white/40 text-sm leading-relaxed">{s.desc}</p>
-              </motion.div>
+              ))}
+            </div>
+
+            {/* Right Button */}
+            <button
+              onClick={scrollRight}
+              className="absolute -right-2 md:-right-12 lg:-right-16 z-30 w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-[0_0_20px_rgba(232,25,44,0.3)] hover:scale-110 transition-transform active:scale-95"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
+
+          {/* Pagination Dots */}
+          <div className="flex justify-center gap-3 mt-12 transform -rotate-2">
+            {servicesData.map((_, i) => (
+              <div
+                key={i}
+                className={`transition-all duration-500 rounded-full cursor-pointer ${
+                  activeIndex % servicesData.length === i ? "w-8 h-2.5 bg-white scale-110" : "w-2.5 h-2.5 bg-white/30 hover:bg-white/50"
+                }`}
+                onClick={() => {
+                  if (scrollRef.current) {
+                    scrollRef.current.scrollTo({ left: i * 360, behavior: "smooth" });
+                  }
+                }}
+              />
             ))}
           </div>
+
         </div>
       </section>
 
