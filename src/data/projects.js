@@ -1,7 +1,8 @@
 // src/data/projects.js
-import honeybeeImg from "../assets/project-cover/honeybee1.jpeg";
-import skillbridgeImg from "../assets/project-cover/skillBridge1.jpeg";
-import tipyImg from "../assets/project-cover/tipy1.jpeg";
+import studiosImg from "../assets/project-cover/3D studios (2).png";
+import nofaImg from "../assets/project-cover/Nofa.png";
+import adhithyaImg from "../assets/project-cover/AF (2).png";
+import leafImg from "../assets/project-cover/Leaf world (3).png";
 
 export const projects = [
   {
@@ -11,7 +12,7 @@ export const projects = [
     description: "Event Photography & Videography studio",
     tags: "Post-Production + Social Media Strategy",
     result: "Reduced video delivery from 4 months to 5 days",
-    image: tipyImg,
+    image: studiosImg,
     services: ["Website Development", "Social Media Edits & Management", "Post Production"],
     featuresLabel: "Features",
     featuresTitle: "Growth & Performance Highlights",
@@ -57,7 +58,7 @@ export const projects = [
     description: "Premium beauty & wellness center",
     tags: "Social Media Strategy + Brand Growth",
     result: "Consistent brand presence across social platforms",
-    image: skillbridgeImg,
+    image: nofaImg,
     services: ["Social Media Edits & Management"],
     featuresLabel: "Features",
     featuresTitle: "Brand Visibility & Engagement Highlights",
@@ -103,7 +104,7 @@ export const projects = [
     description: "Men's Shirt Manufacturer, Wholesaler, and Retailer",
     tags: "Personal Branding + Digital Transformation",
     result: "4x Increase in Social Media Reach",
-    image: honeybeeImg,
+    image: adhithyaImg,
     services: ["Website Development", "SEO Optimization", "Map Integration", "Social Media Edits & Management"],
     featuresLabel: "Features",
     featuresTitle: "Brand Growth & Digital Expansion Highlights",
@@ -152,7 +153,7 @@ export const projects = [
     description: "Sustainable lifestyle & eco-products brand",
     tags: "Website + Social Media + Sales Strategy",
     result: "Structured digital presence with sales growth",
-    image: tipyImg,
+    image: leafImg,
     services: ["Website Development", "Social Media Edits & Management", "Sales Strategy"],
     featuresLabel: "Features",
     featuresTitle: "Growth & Sales Highlights",

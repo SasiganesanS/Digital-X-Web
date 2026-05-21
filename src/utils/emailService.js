@@ -67,9 +67,9 @@ const EMAIL_TEMPLATES = {
   contactFormAdmin: (formData) => ({
     from: {
       name: 'Praskla Digital X',
-      address: 'info@prasklatechnology.com',
+      address: 'praskladigitalx@gmail.com',
     },
-    to: 'info@prasklatechnology.com',
+    to: 'praskladigitalx@gmail.com',
     subject: 'New Contact Form Submission',
     html: `
       <html>
@@ -89,7 +89,7 @@ const EMAIL_TEMPLATES = {
   contactFormConfirmation: (formData) => ({
     from: {
       name: 'Praskla Digital X',
-      address: 'info@prasklatechnology.com',
+      address: 'praskladigitalx@gmail.com',
     },
     to: formData.email,
     subject: 'Thank you for contacting Praskla Digital X',
@@ -112,9 +112,9 @@ const EMAIL_TEMPLATES = {
   jobApplicationAdmin: (formData, job) => ({
     from: {
       name: 'Praskla Digital X',
-      address: 'info@prasklatechnology.com',
+      address: 'praskladigitalx@gmail.com',
     },
-    to: 'info@prasklatechnology.com',
+    to: 'praskladigitalx@gmail.com',
     subject: `New Job Application: ${job?.title || 'Position'}`,
     html: `
       <html>
@@ -144,7 +144,7 @@ const EMAIL_TEMPLATES = {
   jobApplicationConfirmation: (formData, job) => ({
     from: {
       name: 'Praskla Digital X',
-      address: 'info@prasklatechnology.com',
+      address: 'praskladigitalx@gmail.com',
     },
     to: formData.email,
     subject: 'Your Application to Praskla Digital X has been received',
@@ -170,9 +170,9 @@ const EMAIL_TEMPLATES = {
   pricingQuoteAdmin: (formData) => ({
     from: {
       name: 'Praskla Digital X',
-      address: 'info@prasklatechnology.com',
+      address: 'praskladigitalx@gmail.com',
     },
-    to: 'info@prasklatechnology.com',
+    to: 'praskladigitalx@gmail.com',
     subject: `New Quote Request: ${formData.service} - ${formData.selectedPlan} Plan`,
     html: `
       <html>
@@ -195,7 +195,7 @@ const EMAIL_TEMPLATES = {
   pricingQuoteConfirmation: (formData) => ({
     from: {
       name: 'Praskla Digital X',
-      address: 'info@prasklatechnology.com',
+      address: 'praskladigitalx@gmail.com',
     },
     to: formData.email,
     subject: `Your Quote Request for ${formData.service} has been received`,

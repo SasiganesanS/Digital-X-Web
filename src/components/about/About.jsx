@@ -14,7 +14,7 @@ import {
   Award
 } from "lucide-react";
 // import logoLight from "../../assets/py.jpg"
-import pyLogo from "../../assets/praskla_logo.jpeg";
+import pyLogo from "../../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from "framer-motion";
 import Teams from "../Teams";
@@ -41,10 +41,8 @@ const About = () => {
 
   return (
     <div className="min-h-screen" style={{ background: "#080808" }}>
-      {/* ═══════════════════════════════════════════════
-          BRAND MANIFESTO — About Page Hero Section
-      ═══════════════════════════════════════════════ */}
-      <div className="relative pt-24 pb-20 min-h-screen flex items-center overflow-hidden">
+      {/* ── About Hero Section ── */}
+      <section className="relative h-screen min-h-[100vh] max-h-[100vh] flex items-center overflow-hidden">
 
         {/* Background: dot grid + red glow blob */}
         <div className="absolute inset-0 pointer-events-none">
@@ -162,7 +160,7 @@ const About = () => {
             >
               {/* Cycling phrases card */}
               <div
-                className="relative rounded-2xl p-8 overflow-hidden border border-[#2A2A2A]"
+                className="relative rounded-2xl p-8 overflow-hidden border border-[#2A2A2A] transition-all duration-300 ease-out hover:-translate-y-[5px] hover:border-[#E8192C]/70 hover:shadow-[0_0_32px_rgba(232,25,44,0.35),0_0_0_1px_rgba(232,25,44,0.2)]"
                 style={{ background: "#111111" }}
               >
                 {/* Twinkling dots */}
@@ -202,7 +200,7 @@ const About = () => {
                       className="w-20 h-20 rounded-full flex items-center justify-center"
                       style={{ background: "rgba(192,20,28,0.12)", border: "1.5px solid rgba(192,20,28,0.3)" }}
                     >
-                      <img src={pyLogo} alt="Praskla Digital X" className="w-12 h-12 object-contain" />
+                      <img src={pyLogo} alt="Praskla Digital X" className="w-12 h-12 object-contain" style={{ filter: "url(#logo-dark-mode-filter)" }} />
                     </div>
                   </motion.div>
                 </div>
@@ -241,20 +239,18 @@ const About = () => {
               {/* Three value pillars below the card */}
               <div className="grid grid-cols-3 gap-4">
                 {[
-                  { icon: "🎯", title: "Clarity", desc: "Thoughtful strategies with defined direction" },
-                  { icon: "🤝", title: "Collaboration", desc: "Strong partnerships that grow together" },
-                  { icon: "💡", title: "Innovation", desc: "Creative, future-ready marketing solutions" },
+                  { title: "Clarity", desc: "Thoughtful strategies with defined direction" },
+                  { title: "Collaboration", desc: "Strong partnerships that grow together" },
+                  { title: "Innovation", desc: "Creative, future-ready marketing solutions" },
                 ].map((v, i) => (
                   <motion.div
                     key={i}
-                    className="rounded-xl p-4 text-center border border-[#2A2A2A] hover:border-[#C0141C]/40 transition-all duration-300 cursor-default group"
+                    className="rounded-xl p-4 text-center border border-[#2A2A2A] transition-all duration-300 ease-out cursor-default group hover:-translate-y-[5px] hover:border-[#E8192C]/70 hover:shadow-[0_0_28px_rgba(232,25,44,0.3),0_0_0_1px_rgba(232,25,44,0.15)]"
                     style={{ background: "#111111" }}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
-                    whileHover={{ y: -4 }}
                   >
-                    <div className="text-2xl mb-2">{v.icon}</div>
                     <h4 className="text-white font-bold text-sm mb-1 group-hover:text-[#C0141C] transition-colors duration-300">
                       {v.title}
                     </h4>
@@ -266,12 +262,12 @@ const About = () => {
 
           </div>
         </div>
-      </div>
+      </section>
       {/* ═══════════════════════════════════════════════
           WHO WE ARE — Praskla Digital X identity section
       ═══════════════════════════════════════════════ */}
       <div
-        className="relative py-12 lg:py-16 overflow-hidden"
+        className="relative py-12 lg:py-16 overflow-hidden mt-[200px]"
         style={{ background: "#080808" }}
       >
         {/* Subtle section divider glow */}
@@ -402,7 +398,7 @@ const About = () => {
                 {/* Internal container glow */}
                 <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#ff6b7b]/30 to-transparent rounded-b-2xl" />
                 <span className="relative text-white font-black text-xl md:text-2xl tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                  PRASKLA
+                  DIGITALX
                 </span>
               </div>
 
@@ -452,11 +448,11 @@ const About = () => {
 
       {/* <Homesection3 /> */}
 
-      {/* Vision & Mission Section */}
-      <div className="relative py-12 md:py-16" style={{ background: "#080808" }}>
+      {/* Vision & Mission Section — staggered steps */}
+      <section className="relative py-10 md:py-14 overflow-visible scroll-mt-24" style={{ background: "#080808" }}>
         <div className="relative z-10 w-[90%] max-w-6xl mx-auto">
           {/* Section Header */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8 md:mb-10">
             <div className="flex justify-center">
               <div
                 className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full overflow-hidden"
@@ -493,14 +489,14 @@ const About = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-8 max-w-5xl mx-auto px-4">
+        <div className="flex flex-col gap-5 md:gap-6 max-w-5xl mx-auto px-4 pb-6">
           {/* Vision Card */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative rounded-[2rem] overflow-hidden"
+            className="relative rounded-[2rem] overflow-hidden w-full md:max-w-[88%] md:mr-auto"
             style={{
               background: "linear-gradient(135deg, rgba(232,25,44,0.07) 0%, rgba(12,12,12,0.98) 40%, rgba(232,25,44,0.04) 100%)",
               border: "1px solid rgba(232,25,44,0.3)",
@@ -516,17 +512,20 @@ const About = () => {
                 animate={{ opacity: [0, 0.8, 0], scale: [0.5, 1.3, 0.5] }}
                 transition={{ duration: 2.5, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }} />
             ))}
-            <div className="relative z-10 flex flex-col md:flex-row items-start gap-8 p-8 md:p-12">
-              <div className="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center"
-                style={{ background: "rgba(232,25,44,0.12)", border: "1px solid rgba(232,25,44,0.35)", boxShadow: "0 0 20px rgba(232,25,44,0.2)" }}>
-                <Eye className="w-8 h-8 text-[#E8192C]" />
+            <div className="relative z-10 flex flex-col md:flex-row items-start gap-6 p-6 md:p-10">
+              <div className="flex flex-col gap-3 flex-shrink-0">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-[#E8192C]/20 border border-[#E8192C]/50 text-[#E8192C] text-sm font-black font-mono">01</span>
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center"
+                  style={{ background: "rgba(232,25,44,0.12)", border: "1px solid rgba(232,25,44,0.35)", boxShadow: "0 0 20px rgba(232,25,44,0.2)" }}>
+                  <Eye className="w-8 h-8 text-[#E8192C]" />
+                </div>
               </div>
-              <div className="flex-1">
-                <span className="text-[#E8192C] text-xs font-bold tracking-[0.25em] uppercase block mb-3"
+              <div className="flex-1 min-w-0">
+                <span className="text-[#E8192C] text-xs font-bold tracking-[0.25em] uppercase block mb-2"
                   style={{ textShadow: "0 0 8px rgba(232,25,44,0.4)" }}>Our Vision</span>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 tracking-tight">Powered by a Vision</h3>
-                <div className="w-12 h-0.5 rounded-full mb-5" style={{ background: "linear-gradient(90deg, #E8192C, transparent)" }} />
-                <p className="text-white/60 text-base md:text-lg leading-relaxed">
+                <h3 className="text-xl md:text-2xl font-black text-white mb-3 tracking-tight">Powered by a Vision</h3>
+                <div className="w-12 h-0.5 rounded-full mb-4" style={{ background: "linear-gradient(90deg, #E8192C, transparent)" }} />
+                <p className="text-white/60 text-sm md:text-base leading-relaxed">
                   To become a leading mindful marketing firm known for innovative strategies, measurable growth, and long-term brand impact. We envision building a collaborative ecosystem where businesses scale confidently through creative storytelling, data intelligence, and sustainable growth practices — becoming a trusted partner in every stage of their journey.
                 </p>
               </div>
@@ -539,7 +538,7 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-            className="relative rounded-[2rem] overflow-hidden"
+            className="relative rounded-[2rem] overflow-hidden w-full md:max-w-[88%] md:ml-auto"
             style={{
               background: "linear-gradient(135deg, rgba(232,25,44,0.07) 0%, rgba(12,12,12,0.98) 40%, rgba(232,25,44,0.04) 100%)",
               border: "1px solid rgba(232,25,44,0.3)",
@@ -555,159 +554,185 @@ const About = () => {
                 animate={{ opacity: [0, 0.8, 0], scale: [0.5, 1.3, 0.5] }}
                 transition={{ duration: 2.5, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }} />
             ))}
-            <div className="relative z-10 flex flex-col md:flex-row items-start gap-8 p-8 md:p-12">
-              <div className="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center"
-                style={{ background: "rgba(232,25,44,0.12)", border: "1px solid rgba(232,25,44,0.35)", boxShadow: "0 0 20px rgba(232,25,44,0.2)" }}>
-                <Target className="w-8 h-8 text-[#E8192C]" />
+            <div className="relative z-10 flex flex-col md:flex-row items-start gap-6 p-6 md:p-10">
+              <div className="flex flex-col gap-3 flex-shrink-0">
+                <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-[#E8192C]/20 border border-[#E8192C]/50 text-[#E8192C] text-sm font-black font-mono">02</span>
+                <div className="w-16 h-16 rounded-2xl flex items-center justify-center"
+                  style={{ background: "rgba(232,25,44,0.12)", border: "1px solid rgba(232,25,44,0.35)", boxShadow: "0 0 20px rgba(232,25,44,0.2)" }}>
+                  <Target className="w-8 h-8 text-[#E8192C]" />
+                </div>
               </div>
-              <div className="flex-1">
-                <span className="text-[#E8192C] text-xs font-bold tracking-[0.25em] uppercase block mb-3"
+              <div className="flex-1 min-w-0">
+                <span className="text-[#E8192C] text-xs font-bold tracking-[0.25em] uppercase block mb-2"
                   style={{ textShadow: "0 0 8px rgba(232,25,44,0.4)" }}>Our Mission</span>
-                <h3 className="text-2xl md:text-3xl font-black text-white mb-4 tracking-tight">Driven by a Mission</h3>
-                <div className="w-12 h-0.5 rounded-full mb-5" style={{ background: "linear-gradient(90deg, #E8192C, transparent)" }} />
-                <p className="text-white/60 text-base md:text-lg leading-relaxed">
+                <h3 className="text-xl md:text-2xl font-black text-white mb-3 tracking-tight">Driven by a Mission</h3>
+                <div className="w-12 h-0.5 rounded-full mb-4" style={{ background: "linear-gradient(90deg, #E8192C, transparent)" }} />
+                <p className="text-white/60 text-sm md:text-base leading-relaxed">
                   At DigitalX, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
                 </p>
               </div>
             </div>
           </motion.div>
         </div>
-      </div>
+      </section>
 
       {/* What We Bring to the Table — Expertise Section */}
-      <div className="relative py-16 md:py-20 overflow-hidden" style={{ background: "#080808" }}>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl max-h-[500px] opacity-[0.03] pointer-events-none">
-          <div className="w-full h-full bg-[#E8192C] rounded-full blur-[120px]" />
+      <section className="relative w-full py-24 md:py-32 bg-[#080808] overflow-hidden">
+        {/* Background glow */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full opacity-[0.05]"
+            style={{ background: "radial-gradient(circle, #E8192C 0%, transparent 70%)", filter: "blur(100px)" }} />
         </div>
 
-        <div className="relative z-10 w-[90%] max-w-6xl mx-auto">
-          <div className="text-center mb-12">
-            <div className="flex justify-center mb-6">
-              <div
-                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full overflow-hidden"
-                style={{
-                  background: "linear-gradient(135deg, rgba(232,25,44,0.18) 0%, rgba(0,0,0,0.6) 50%, rgba(232,25,44,0.12) 100%)",
-                  border: "1px solid rgba(232,25,44,0.5)",
-                  boxShadow: "0 0 18px rgba(232,25,44,0.25), inset 0 1px 0 rgba(255,255,255,0.1)",
-                }}
-              >
-                <motion.span
-                  className="absolute inset-0 rounded-full"
-                  style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%)" }}
-                  animate={{ x: ["-100%", "100%"] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
-                />
-                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-px bg-gradient-to-r from-transparent via-[#E8192C]/80 to-transparent" />
-                {[{ top: "20%", left: "8%", delay: 0 }, { top: "70%", left: "15%", delay: 0.4 }, { top: "30%", right: "10%", delay: 0.8 }, { top: "65%", right: "18%", delay: 0.2 }, { top: "15%", left: "45%", delay: 0.6 }].map((pos, i) => (
-                  <motion.span key={i} className="absolute w-[3px] h-[3px] rounded-full bg-white"
-                    style={{ top: pos.top, left: pos.left, right: pos.right }}
-                    animate={{ opacity: [0, 1, 0], scale: [0.5, 1.4, 0.5] }}
-                    transition={{ duration: 1.5, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }} />
-                ))}
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8192C] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E8192C]" />
-                </span>
-                <span className="relative text-white text-xs sm:text-sm font-bold tracking-[0.3em] uppercase"
-                  style={{ textShadow: "0 0 10px rgba(232,25,44,0.7)" }}>Our Purpose</span>
-                <motion.span className="relative text-[#E8192C] text-base leading-none"
-                  animate={{ rotate: [0, 180, 360], opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}>✦</motion.span>
+        <div className="relative z-10 w-[92%] max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <motion.div 
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="flex justify-center mb-6"
+            >
+              <div className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full border border-[#E8192C]/40 bg-[#E8192C]/5 backdrop-blur-sm">
+                <div className="w-2 h-2 rounded-full bg-[#E8192C] animate-pulse shadow-[0_0_8px_#E8192C]" />
+                <span className="text-white text-xs font-black tracking-[0.4em] uppercase">Our Expertise</span>
               </div>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight mb-4">
+            </motion.div>
+            
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-6xl font-black text-white"
+            >
               What We <span className="text-[#E8192C]">Bring to the Table</span>
-            </h2>
-            <div className="h-1 w-20 bg-[#E8192C] mx-auto rounded-full" />
+            </motion.h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 items-end relative z-10">
+          <div className="flex flex-col lg:flex-row items-stretch justify-center -space-y-4 lg:-space-y-0 lg:-space-x-12">
             {[
               {
                 id: "01",
-                code: "MBS",
+                icon: "🎯",
                 title: "Mindful Brand Strategy",
-                desc: "Strategic brand positioning and content ecosystems designed to build authority, clarity, and long-term recognition."
+                desc: "Strategic brand positioning and content ecosystems designed to build authority, clarity, and long-term recognition.",
+                type: "start"
               },
               {
                 id: "02",
-                code: "PM",
+                icon: "📈",
                 title: "Performance Marketing",
-                desc: "Data-driven campaigns including SEO, Meta Ads, PPC, and social media management focused on measurable growth and ROI."
+                desc: "Data-driven campaigns including SEO, Meta Ads, PPC, and social media management focused on measurable growth and ROI.",
+                type: "middle"
               },
               {
                 id: "03",
-                code: "CMP",
+                icon: "🎬",
                 title: "Creative Media & Production",
-                desc: "High-impact videography, photography, post-production, and digital storytelling that transform businesses into powerful visual brands."
+                desc: "High-impact videography, photography, post-production, and digital storytelling that transform businesses into powerful visual brands.",
+                type: "end"
               }
             ].map((item, index) => {
-              // Descending staircase effect for 3 items
-              const heights = ["h-[420px]", "h-[360px]", "h-[300px]"];
+              const [isHovered, setIsHovered] = useState(false);
               
-              // Internal sparkles
-              const sparkles = [
-                { top: "20%", left: "15%", delay: 0 },
-                { top: "45%", left: "30%", delay: 0.4 },
-                { top: "30%", right: "25%", delay: 0.8 },
-                { top: "65%", right: "15%", delay: 0.2 },
-                { top: "15%", left: "65%", delay: 0.6 },
-              ];
-
               return (
                 <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                  key={item.id}
+                  onMouseEnter={() => setIsHovered(index === 0 ? true : true)} // Force state for all
+                  onHoverStart={() => setIsHovered(true)}
+                  onHoverEnd={() => setIsHovered(false)}
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.15, duration: 0.5 }}
-                  className={`group relative p-8 rounded-[2rem] w-full ${heights[index]} bg-gradient-to-br from-black/80 to-[#E8192C]/20 backdrop-blur-xl border border-white/10 hover:border-[#E8192C]/40 hover:shadow-2xl hover:shadow-[#E8192C]/20 transition-all duration-500 overflow-hidden cursor-default`}
+                  transition={{ delay: index * 0.2 }}
+                  className="relative flex-1 group min-h-[350px] cursor-default"
+                  style={{ zIndex: isHovered ? 20 : index }}
                 >
-                  {/* Decorative corner accents */}
-                  <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-white/20 rounded-tl-lg group-hover:border-[#E8192C]/60 transition-colors duration-500" />
-                  <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-white/20 rounded-br-lg group-hover:border-[#E8192C]/60 transition-colors duration-500" />
+                  {/* Custom Thick Red Border (Outer Layer) */}
+                  <div 
+                    className={`absolute inset-0 transition-all duration-700 ease-out ${
+                      isHovered ? "bg-[#E8192C] shadow-[0_0_40px_rgba(232,25,44,0.5)]" : "bg-[#E8192C]/40"
+                    }`}
+                    style={{
+                      clipPath: item.type === "start" 
+                        ? "polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%)"
+                        : item.type === "middle"
+                        ? "polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%, 12% 50%)"
+                        : "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 12% 50%)",
+                    }}
+                  />
 
-                  {/* Sparkles inside the box */}
-                  {sparkles.map((pos, i) => (
-                    <motion.span
-                      key={i}
-                      className="absolute w-[2px] h-[2px] rounded-full bg-white shadow-[0_0_8px_2px_rgba(232,25,44,0.6)]"
-                      style={{ top: pos.top, left: pos.left, right: pos.right }}
-                      animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }}
-                    />
-                  ))}
+                  {/* Card Core (Inner Layer - Inset to create border effect) */}
+                  <div 
+                    className={`absolute inset-[2.5px] transition-all duration-700 ease-out ${
+                      isHovered ? "bg-[#B71422]" : "bg-[#111111]"
+                    }`}
+                    style={{
+                      clipPath: item.type === "start" 
+                        ? "polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%)"
+                        : item.type === "middle"
+                        ? "polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%, 12% 50%)"
+                        : "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 12% 50%)",
+                    }}
+                  />
 
-                  {/* Content Container */}
-                  <div className="relative z-10 w-full h-full flex flex-col justify-between pt-10 pb-2">
-                    <div className="flex flex-col gap-4 relative z-20">
-                      <div className="flex items-center gap-3">
-                        <span className="text-xl md:text-2xl font-black text-[#E8192C]">{item.id}.</span>
-                        <h3 className="text-xl lg:text-2xl font-bold text-white tracking-wide">
-                          {item.title}
-                        </h3>
-                      </div>
-                      <p className="text-white/60 leading-relaxed font-medium text-sm lg:text-base pr-2">
-                        {item.desc}
-                      </p>
-                    </div>
-
-                    {/* Large Watermark Code */}
-                    <div className="absolute bottom-2 right-4 translate-x-4 translate-y-4 pointer-events-none z-0">
-                      <span className="font-black text-white/5 select-none tracking-tighter leading-none text-[5rem] md:text-[6rem] group-hover:text-[#E8192C]/10 transition-colors duration-500">
-                        {item.code}
-                      </span>
-                    </div>
+                  {/* Sparkles (Appear on hover) */}
+                  <div className="absolute inset-0 overflow-hidden pointer-events-none z-10">
+                    {[...Array(10)].map((_, i) => (
+                      <motion.div
+                        key={i}
+                        className="absolute w-1 h-1 bg-white rounded-full"
+                        initial={{ opacity: 0 }}
+                        animate={isHovered ? {
+                          opacity: [0, 1, 0],
+                          scale: [0.5, 1.2, 0.5],
+                          y: ["0%", "-30%"]
+                        } : { opacity: 0 }}
+                        transition={{ duration: 1.5 + Math.random(), repeat: Infinity, delay: Math.random() }}
+                        style={{
+                          left: `${Math.random() * 80 + 10}%`,
+                          top: `${Math.random() * 80 + 10}%`,
+                        }}
+                      />
+                    ))}
                   </div>
 
-                  {/* Subtle Background Glow */}
-                  <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#E8192C]/5 rounded-full blur-3xl pointer-events-none transition-all duration-700 group-hover:bg-[#E8192C]/15" />
+                  {/* Content Area */}
+                  <div className="relative z-20 h-full p-10 md:p-14 flex flex-col justify-center items-start pr-16 lg:pr-20 pl-10 lg:pl-16">
+                    <div className="flex items-center gap-4 mb-6">
+                      <span className="text-3xl filter grayscale brightness-200">{item.icon}</span>
+                      <span className={`text-xl font-black ${isHovered ? "text-white/40" : "text-[#E8192C]/30"}`}>
+                        {item.id}
+                      </span>
+                    </div>
+                    
+                    <h3 className={`text-2xl md:text-3xl font-black mb-6 leading-tight transition-colors duration-500 ${
+                      isHovered ? "text-white" : "text-white/90"
+                    }`}>
+                      {item.title}
+                    </h3>
+                    
+                    <p className={`text-base md:text-lg leading-relaxed transition-all duration-500 ${
+                      isHovered ? "text-white/95 font-medium" : "text-white/40"
+                    }`}>
+                      {item.desc}
+                    </p>
+
+                    <motion.div 
+                      className="mt-10 flex items-center gap-3"
+                      animate={{ x: isHovered ? 10 : 0 }}
+                    >
+                      <div className={`w-8 h-px ${isHovered ? "bg-white" : "bg-[#E8192C]/40"}`} />
+                      <span className={`text-[10px] font-black uppercase tracking-[0.3em] ${
+                        isHovered ? "text-white" : "text-[#E8192C]/60"
+                      }`}>Explore</span>
+                    </motion.div>
+                  </div>
                 </motion.div>
               );
             })}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* Explore Our Services CTA */}
       <div className="relative py-16 md:py-24 overflow-hidden" style={{ background: "#080808" }}>

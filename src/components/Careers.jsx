@@ -11,15 +11,14 @@ import JobApplication from "./JobApplication";
 import JobListing from "./JobListing";
 
 // Vector illustration imports
-import career01 from "../../dist/assets/Conversion rate optimization-pana.png";
-import career02 from "../../dist/assets/Subscriptions-amico.png";
-import career03 from "../../dist/assets/Marketing-cuate.png";
-import career04 from "../../dist/assets/Marketing-pana.png";
-import career05 from "../../dist/assets/Generating new leads-pana.png";
-import career06 from "../../dist/assets/Digital lifestyle-pana.png";
-import career07 from "../../dist/assets/Customer relationship management-rafiki.png";
-import career08 from "../../dist/assets/Photo-amico.png";
-import py from "../assets/praskla_logo.jpeg";
+import career01 from "../assets/Careers/career01.png";
+import career02 from "../assets/Careers/career02.png";
+import career03 from "../assets/Careers/career03.png";
+import career04 from "../assets/Careers/career04.png";
+import career05 from "../assets/Careers/career05.png";
+import career06 from "../assets/Careers/career06.png";
+import career07 from "../assets/Careers/career07.png";
+import py from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
 
 // Icon imports
 import { FiSearch, FiChevronDown, FiExternalLink } from "react-icons/fi";
@@ -62,7 +61,7 @@ const Careers = () => {
       { id: 6, image: career05, alt: "Our Work" },
       { id: 7, image: career06, alt: "Our Work" },
       { id: 8, image: career07, alt: "Our Work" },
-      { id: 9, image: career08, alt: "Our Work" },
+      { id: 9, image: career07, alt: "Our Work" },
     ],
     []
   );
@@ -118,7 +117,7 @@ const Careers = () => {
   return (
     <>
       <section
-        className="min-h-screen w-full overflow-x-hidden bg-gradient-to-br from-black via-[#0a0a0a] to-[#1a0b12] flex items-center justify-center px-4 sm:px-8 py-14 lg:py-18 pt-28 sm:pt-32 md:pt-36 lg:pt-32 pb-10 sm:pb-12 relative overflow-hidden dark-section"
+        className="h-screen min-h-[100vh] max-h-[100vh] w-full overflow-x-hidden bg-gradient-to-br from-black via-[#0a0a0a] to-[#1a0b12] flex items-center justify-center px-4 sm:px-8 overflow-hidden dark-section"
         aria-label="Careers hero section"
       >
         <div className="max-w-7xl w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 md:gap-8 lg:gap-20">
@@ -179,7 +178,7 @@ const Careers = () => {
                 // Use a whitish, professional background for illustration circles. Center remains white for logo.
                 // Increase opacity for non-center circles so darker vectors remain clearly visible on the dark hero.
                 const bgColor = isCenter
-                  ? "bg-white"
+                  ? "bg-transparent border border-white/10"
                   : "bg-white/30 ring-1 ring-white/30 shadow-sm";
 
                 return (
@@ -195,6 +194,7 @@ const Careers = () => {
                         src={member.image}
                         alt={member.alt}
                         className="w-10/12 h-10/12 object-contain"
+                        style={isCenter ? { filter: "url(#logo-dark-mode-filter)" } : undefined}
                         loading="lazy"
                       />
                     ) : (
@@ -235,7 +235,7 @@ const Careers = () => {
       {/* Job search section */}
       <section
         ref={jobSearchRef}
-        className="bg-[#080808] py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8"
+        className="bg-[#080808] py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 mt-[200px]"
         aria-label="Job search and filters"
       >
         <div className="max-w-7xl mx-auto">

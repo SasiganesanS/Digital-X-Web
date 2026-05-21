@@ -106,8 +106,8 @@
 /* PERFECT 4K (2560px – 3840px) RESPONSIVENESS */
 @media (min-width: 2560px) {
 
-  /* Main section – more natural wide layout */
-  .hero-project-container section {
+  /* Main section – more natural wide layout (exclude empower cards band) */
+  .hero-project-container section:not(.projects-empower-section) {
     min-height: 90vh !important;
     padding-top: 6rem !important;
     padding-bottom: 6rem !important;
@@ -269,5 +269,32 @@
   }
 
 
+}
+
+/* "Empowering progress" — content-sized section; never force 90vh / clip */
+.hero-project-container section.projects-empower-section {
+  min-height: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  box-sizing: border-box !important;
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
+}
+
+/* Fix: ensure heading and all 4 boxes are fully visible */
+.hero-project-container section.projects-empower-section .max-w-7xl {
+  overflow: visible !important;
+}
+
+.hero-project-container section.projects-empower-section .text-center {
+  padding-top: 0 !important;
+  margin-bottom: 2.5rem !important;
+}
+
+/* Ensure the 4-card grid never clips */
+.hero-project-container section.projects-empower-section .grid {
+  overflow: visible !important;
+  padding-bottom: 1rem !important;
 }
   

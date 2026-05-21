@@ -1,204 +1,204 @@
-import React, { useState, useEffect, useRef } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-  Code2,
-  Terminal,
-  Smartphone,
-  ShieldCheck,
-  BarChart3,
-  Leaf,
-  Zap,
-  ArrowRight,
-  ChevronLeft,
-  ChevronRight
-} from "lucide-react";
+import { motion } from "framer-motion";
+import "./Services.css";
+
+import seoImg from "../assets/services-img/SEO (2).png";
+import smmImg from "../assets/services-img/SMM (2).png";
+import adsImg from "../assets/services-img/ADS (2).png";
+import contentImg from "../assets/services-img/content marketing (2).png";
+import emailImg from "../assets/services-img/Email marketing (2).png";
+import webDesignImg from "../assets/services-img/web desigh.png";
+import ormImg from "../assets/services-img/ORM (2).png";
+import influencerImg from "../assets/services-img/influencer marketing (2).png";
+import analyticsImg from "../assets/services-img/Analytics & report.png";
+import ecommerceImg from "../assets/services-img/Ecommerce marketing (2).png";
+
+const servicesData = [
+  {
+    image: seoImg,
+    title: "SEO",
+    desc: "SEO helps improve the website’s visibility in search engines.",
+  },
+  {
+    image: smmImg,
+    title: "SSM",
+    desc: "SSM (Social Media Management) is used to manage and grow social media presence.",
+  },
+  {
+    image: adsImg,
+    title: "ADS",
+    desc: "ADS include platforms like Google, Facebook, and Instagram for promotions.",
+  },
+  {
+    image: contentImg,
+    title: "Content Marketing",
+    desc: "Content marketing involves creating and sharing valuable content like videos and blogs.",
+  },
+  {
+    image: emailImg,
+    title: "Email Marketing",
+    desc: "Email marketing is used to communicate offers, updates, and build customer relationships.",
+  },
+  {
+    image: webDesignImg,
+    title: "Website Design",
+    desc: "Website design focuses on creating user-friendly and effective UI/UX websites.",
+  },
+  {
+    image: ormImg,
+    title: "ORM",
+    desc: "ORM (Online Reputation Management) helps in managing brand ratings, reviews, and customer feedback.",
+  },
+  {
+    image: influencerImg,
+    title: "Influencer Marketing",
+    desc: "Influencer marketing is used to promote the brand through popular personalities.",
+  },
+  {
+    image: analyticsImg,
+    title: "Analytics & Reporting",
+    desc: "Analytics and reporting help track performance and improve strategies.",
+  },
+  {
+    image: ecommerceImg,
+    title: "E-commerce Marketing",
+    desc: "E-commerce marketing focuses on promoting online stores and increasing sales.",
+  },
+];
+
+/** Stable sparkle positions (avoid Math.random() each render) */
+const SECTION_SPARKLES = Array.from({ length: 18 }, (_, i) => ({
+  top: `${(i * 17 + 7) % 92}%`,
+  left: `${(i * 23 + 11) % 92}%`,
+  delay: (i * 0.31) % 3,
+  dur: 2.5 + (i % 5) * 0.35,
+}));
 
 const Services = () => {
-  const scrollRef = useRef(null);
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  const servicesData = [
-    {
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
-      title: "Web Development",
-      desc: "We craft fast, responsive, and visually refined websites that strengthen brand presence."
-    },
-    {
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80",
-      title: "Software Development",
-      desc: "Reliable solutions tailored to business needs, enabling performance and growth."
-    },
-    {
-      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&q=80",
-      title: "App Development",
-      desc: "High-performance applications that combine intuitive design with robustness."
-    },
-    {
-      image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=400&q=80",
-      title: "Cyber Security",
-      desc: "Securing systems through advanced architectures, monitoring, and proactive risk management."
-    },
-    {
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80",
-      title: "Digital Marketing",
-      desc: "Data-driven marketing strategies that enhance visibility and drive business results."
-    },
-    {
-      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80",
-      title: "Sustainability",
-      desc: "Integrating smart technologies and practices to support responsible digital scaling."
-    }
-  ];
-
-  const scrollLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -350, behavior: "smooth" });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 350, behavior: "smooth" });
-    }
-  };
-
-  const handleScroll = () => {
-    if (scrollRef.current) {
-      // Calculate which dot to activate based on scroll position heavily factored by total scrolling children
-      const scrollX = scrollRef.current.scrollLeft;
-      const index = Math.min(
-        servicesData.length - 1,
-        Math.round((scrollX / scrollRef.current.scrollWidth) * servicesData.length)
-      );
-      setActiveIndex(index);
-    }
-  };
-
   return (
-    <div className="bg-[#080808] min-h-screen text-white pt-20 md:pt-24">
-      {/* Hero Section */}
-      <section className="relative px-[5%] pt-12 pb-10 md:pt-16 md:pb-12 overflow-hidden">
-        {/* Abstract background elements */}
-        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#E8192C]/5 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-[#E8192C]/3 rounded-full blur-[100px] pointer-events-none" />
+    <div className="bg-[#050505] min-h-screen text-white overflow-x-hidden">
+      {/* Unified: intro copy (left) + Core Expertise grid (right) + glitter */}
+      <section
+        id="services-main"
+        className="services-unified-section relative w-full min-h-[100svh] flex flex-col justify-center overflow-hidden px-[5%] py-16 md:py-24 scroll-mt-24"
+      >
+        <div className="absolute inset-0 bg-gradient-to-br from-[#050505] via-[#080808] to-[#1a0305] pointer-events-none" />
+        <div className="services-glitter-layer absolute inset-0 pointer-events-none z-[1]" aria-hidden />
+        <div className="absolute top-1/4 left-0 w-[420px] h-[420px] bg-[#E8192C]/10 rounded-full blur-[130px] pointer-events-none z-[1]" />
+        <div className="absolute bottom-0 right-0 w-[380px] h-[380px] bg-[#E8192C]/6 rounded-full blur-[100px] pointer-events-none z-[1]" />
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        {SECTION_SPARKLES.map((pos, i) => (
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl"
-          >
-            <div className="inline-flex items-center border border-white/10 gap-2 px-3 py-1.5 bg-white/5 rounded-full mb-6">
-              <Zap className="w-4 h-4 text-[#E8192C]" />
-              <span className="text-xs font-semibold text-white/70 uppercase tracking-wider">Our Services</span>
-            </div>
-
-            <h1 className="text-4xl md:text-7xl font-black mb-8 leading-[1.1] tracking-tight">
-              Transforming Brands into <br />
-              <span className="text-[#E8192C]">Digital Authority</span>
-            </h1>
-
-            <p className="text-white/50 text-xl md:text-2xl leading-relaxed max-w-3xl">
-              Comprehensive branding, media, and performance marketing solutions designed to help your business grow strategically, creatively, and profitably.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Infinite Carousel Slider Section */}
-      <section className="relative w-full px-[5%] py-20 pb-32 overflow-hidden bg-[#080808]">
-        {/* Tilted Container with rich red/black mix and sparkles */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#080808] via-[#1a0000] to-[#250000] -rotate-3 scale-[1.2] shadow-2xl pointer-events-none" />
-        
-        {/* Animated Background Glows */}
-        <div className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-[#E8192C]/10 rounded-full blur-[120px] animate-pulse pointer-events-none" />
-        <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-[#E8192C]/5 rounded-full blur-[120px] animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
-
-        {/* Floating Sparkles in Background */}
-        {[...Array(12)].map((_, i) => (
-          <motion.div
-            key={`bg-sparkle-${i}`}
-            className="absolute w-1 h-1 bg-white rounded-full pointer-events-none z-0"
+            key={`svc-bg-sparkle-${i}`}
+            className="absolute w-1 h-1 rounded-full bg-white pointer-events-none z-[2]"
             style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              boxShadow: "0 0 10px 2px rgba(232,25,44,0.6)",
+              top: pos.top,
+              left: pos.left,
+              boxShadow: "0 0 12px 2px rgba(232,25,44,0.55)",
             }}
             animate={{
-              opacity: [0, 0.8, 0],
-              scale: [0.5, 1.2, 0.5],
-              y: [0, -20, 0]
+              opacity: [0, 0.95, 0],
+              scale: [0.4, 1.15, 0.4],
+              y: [0, -12, 0],
             }}
             transition={{
-              duration: 3 + Math.random() * 2,
+              duration: pos.dur,
               repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "easeInOut"
+              delay: pos.delay,
+              ease: "easeInOut",
             }}
           />
         ))}
 
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto min-h-[550px]">
-          
-          <div className="flex flex-col items-center justify-center gap-2 mb-16 transform -rotate-2">
-            <h2 className="text-4xl md:text-5xl font-black text-white text-center tracking-tight">
-              Our <span className="text-[#E8192C]">Core Expertise</span>
-            </h2>
-            <div className="h-1.5 w-24 bg-gradient-to-r from-[#E8192C] to-transparent rounded-full" />
-          </div>
-
-          <div className="relative w-full flex items-center justify-center transform -rotate-2">
-            
-            {/* Left Button */}
-            <button
-              onClick={scrollLeft}
-              className="absolute -left-2 md:-left-12 lg:-left-16 z-30 w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-[0_0_20px_rgba(232,25,44,0.3)] hover:scale-110 transition-transform active:scale-95"
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-14 xl:gap-16 items-start lg:items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -28 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.75 }}
+              className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-xl mx-auto lg:mx-0"
             >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
+              <div className="inline-flex items-center border border-white/10 gap-2 px-4 py-1.5 bg-[#E8192C]/10 rounded-full mb-6 shadow-[0_0_15px_rgba(232,25,44,0.2)]">
+                <div className="w-2 h-2 rounded-full bg-[#E8192C] shadow-[0_0_8px_rgba(232,25,44,0.8)]" />
+                <span className="text-xs font-bold text-white uppercase tracking-[0.2em] ml-1">
+                  Our Services
+                </span>
+              </div>
 
-            {/* Slider Track Container */}
-            <div 
-              ref={scrollRef}
-              className="flex overflow-x-auto gap-6 sm:gap-8 overflow-y-hidden snap-x snap-mandatory px-4 md:px-10 py-10 w-full no-scrollbar"
-              onScroll={handleScroll}
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {/* Loop the array endlessly or map multiple times */}
-              {[...servicesData, ...servicesData].map((service, i) => (
-                <div
-                  key={i}
-                  className="w-[85vw] sm:w-[320px] md:w-[350px] lg:w-[380px] flex-shrink-0 snap-center"
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[1.05] tracking-tight text-white">
+                Transforming Brands into <br className="hidden sm:block" />
+                <span className="text-[#E8192C]">Digital Authority</span>
+              </h1>
+
+              <p className="text-white/50 text-base md:text-lg leading-relaxed font-medium mb-8">
+                Comprehensive branding, media, and performance marketing solutions designed to help
+                your business grow strategically, creatively, and profitably.
+              </p>
+
+              <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
+                <Link
+                  to="/projects"
+                  className="px-8 py-4 bg-gradient-to-r from-[#E8192C] to-red-800 text-white rounded-full font-bold hover:scale-105 transition-all shadow-[0_10px_30px_rgba(232,25,44,0.2)]"
                 >
-                  <div className="relative bg-gradient-to-br from-[#080808] via-black to-[#E8192C]/20 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-8 pt-10 flex flex-col items-center text-center h-[340px] md:h-[360px] cursor-pointer hover:-translate-y-4 hover:shadow-[0_30px_60px_rgba(232,25,44,0.2)] transition-all duration-700 group border border-white/5 hover:border-[#E8192C]/40 overflow-hidden">
-                    
-                    {/* Internal sparkles inside the card */}
-                    {[...Array(6)].map((_, si) => (
+                  View Our Portfolio
+                </Link>
+                <a
+                  href="#expertise"
+                  className="px-8 py-4 rounded-full font-bold border border-white/15 text-white/90 hover:border-[#E8192C]/50 hover:text-white transition-all"
+                >
+                  Core Expertise
+                </a>
+              </div>
+            </motion.div>
+
+            <motion.div
+              id="expertise"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.1 }}
+              className="w-full min-w-0"
+            >
+              <div className="flex flex-col gap-2 mb-8 text-center lg:text-left">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight">
+                  Our <span className="text-[#E8192C]">Core Expertise</span>
+                </h2>
+                <div className="h-1 w-24 bg-gradient-to-r from-transparent via-[#E8192C] to-transparent rounded-full mx-auto lg:mx-0" />
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 w-full">
+                {servicesData.map((service, i) => (
+                  <motion.div
+                    key={service.title}
+                    initial={{ opacity: 0, y: 22 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.06 }}
+                    className="relative bg-gradient-to-br from-[#080808] via-black to-[#E8192C]/20 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-5 md:p-6 pt-7 flex flex-col items-center text-center min-h-[260px] sm:min-h-[280px] cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_30px_60px_rgba(232,25,44,0.2)] transition-all duration-500 group border border-white/5 hover:border-[#E8192C]/40 overflow-hidden"
+                  >
+                    {[0, 1, 2].map((si) => (
                       <motion.div
-                        key={`card-sparkle-${si}`}
+                        key={si}
                         className="absolute w-1 h-1 bg-white rounded-full pointer-events-none z-0"
                         style={{
-                          top: `${Math.random() * 100}%`,
-                          left: `${Math.random() * 100}%`,
+                          top: `${(i * 11 + si * 27) % 88}%`,
+                          left: `${(i * 19 + si * 31) % 88}%`,
                           boxShadow: "0 0 10px 2px rgba(232,25,44,0.6)",
                         }}
                         animate={{
-                          opacity: [0, 0.8, 0],
+                          opacity: [0, 0.85, 0],
                           scale: [0.5, 1.2, 0.5],
                         }}
                         transition={{
-                          duration: 2 + Math.random() * 2,
+                          duration: 2.2 + si * 0.3,
                           repeat: Infinity,
-                          delay: Math.random() * 3,
-                          ease: "easeInOut"
+                          delay: (i * 0.2 + si * 0.4) % 2.5,
+                          ease: "easeInOut",
                         }}
                       />
                     ))}
 
-                    {/* Circle Image */}
-                    <div className="relative z-10 w-[110px] h-[110px] mb-8 rounded-full p-1.5 border-[3px] border-[#E8192C]/30 group-hover:border-[#E8192C] transition-all duration-500 flex items-center justify-center -mt-8 bg-black shadow-xl">
+                    <div className="relative z-10 w-[88px] h-[88px] md:w-[100px] md:h-[100px] mb-5 rounded-full p-1.5 border-[3px] border-[#E8192C]/30 group-hover:border-[#E8192C] transition-all duration-500 flex items-center justify-center -mt-1 bg-black shadow-xl">
                       <img
                         src={service.image}
                         alt={service.title}
@@ -206,51 +206,23 @@ const Services = () => {
                       />
                     </div>
 
-                    <h3 className="relative z-10 text-xl md:text-2xl font-black text-white mb-3 tracking-tight group-hover:text-[#E8192C] transition-colors duration-300">
+                    <h3 className="relative z-10 text-lg md:text-xl font-black text-white mb-2 tracking-tight group-hover:text-[#E8192C] transition-colors duration-300">
                       {service.title}
                     </h3>
-                    <p className="relative z-10 text-white/50 font-medium text-sm md:text-base leading-relaxed px-2 group-hover:text-white/70 transition-colors duration-300">
+                    <p className="relative z-10 text-white/50 font-medium text-sm leading-relaxed px-1 group-hover:text-white/70 transition-colors duration-300">
                       {service.desc}
                     </p>
 
-                    {/* Bottom accent glow */}
                     <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E8192C]/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Right Button */}
-            <button
-              onClick={scrollRight}
-              className="absolute -right-2 md:-right-12 lg:-right-16 z-30 w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-[0_0_20px_rgba(232,25,44,0.3)] hover:scale-110 transition-transform active:scale-95"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
-
-          {/* Pagination Dots */}
-          <div className="flex justify-center gap-3 mt-12 transform -rotate-2">
-            {servicesData.map((_, i) => (
-              <div
-                key={i}
-                className={`transition-all duration-500 rounded-full cursor-pointer ${
-                  activeIndex % servicesData.length === i ? "w-8 h-2.5 bg-white scale-110" : "w-2.5 h-2.5 bg-white/30 hover:bg-white/50"
-                }`}
-                onClick={() => {
-                  if (scrollRef.current) {
-                    scrollRef.current.scrollTo({ left: i * 360, behavior: "smooth" });
-                  }
-                }}
-              />
-            ))}
-          </div>
-
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="px-[5%] py-12 md:py-16 pb-20">
+      <section className="px-[5%] py-12 md:py-16 pb-20 bg-[#080808]">
         <div className="max-w-2xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -258,12 +230,17 @@ const Services = () => {
             viewport={{ once: true }}
             className="rounded-[2rem] bg-gradient-to-r from-[#E8192C] to-[#b71422] p-8 md:p-12 text-center relative overflow-hidden shadow-[0_0_50px_rgba(232,25,44,0.15)]"
           >
-            {/* Particles/Grain Overlay */}
-            <div className="absolute inset-0 opacity-10 pointer-events-none" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+            <div
+              className="absolute inset-0 opacity-10 pointer-events-none"
+              style={{
+                backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)",
+                backgroundSize: "30px 30px",
+              }}
+            />
 
             <h2 className="text-2xl md:text-3xl font-black text-white mb-6 relative z-10 leading-tight">
               See the Impact <br className="hidden md:block" />
-              We've Delivered
+              We&apos;ve Delivered
             </h2>
 
             <Link

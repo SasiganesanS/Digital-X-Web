@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import Logo from "../assets/praskla_logo.jpeg";
+import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
 
 const Navbar = ({ setShowContactForm }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -86,16 +86,23 @@ const Navbar = ({ setShowContactForm }) => {
 
           {/* ── Logo ── */}
           <Link to="/" className="flex items-center gap-2 sm:gap-2.5 group flex-shrink-0 min-w-0 pr-2">
-            {/* Icon mark */}
-            <div className="relative w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center overflow-hidden rounded-lg flex-shrink-0">
-              <img src={Logo} alt="Praskla Digital X" className="w-full h-full object-cover" />
-              <div className="absolute inset-0 bg-[#E8192C]/10 group-hover:bg-transparent transition-colors duration-300" />
+            {/* Icon mark — transparent background */}
+            <div
+              className="relative w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center overflow-hidden rounded-lg flex-shrink-0"
+              style={{ background: "transparent", border: "1.5px solid rgba(232,25,44,0.3)", boxShadow: "0 0 12px rgba(232,25,44,0.2)" }}
+            >
+              <img
+                src={Logo}
+                alt="Praskla Digital X"
+                className="w-full h-full object-cover"
+                style={{ filter: "url(#logo-dark-mode-filter)" }}
+              />
             </div>
 
             {/* Brand text */}
             <div className="flex flex-col leading-none min-w-0">
               <span
-                className="font-black text-white text-[13px] sm:text-base tracking-tight transition-all duration-300 group-hover:tracking-wide whitespace-nowrap overflow-hidden text-ellipsis"
+                className="font-black text-white text-[11px] sm:text-[13px] tracking-tight transition-all duration-300 group-hover:tracking-wide whitespace-nowrap overflow-hidden text-ellipsis"
               >
                 Praskla Digital <span className="text-[#E8192C]">X</span>
               </span>

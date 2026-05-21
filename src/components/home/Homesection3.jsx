@@ -17,7 +17,7 @@ const AboutSection = () => {
     return (
         <section
             id="about"
-            className="relative w-full overflow-hidden py-24 md:py-32"
+            className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden py-24"
             style={{ backgroundColor: "#040404" }}
         >
             {/* ── Background accents ── */}
@@ -150,9 +150,7 @@ const AboutSection = () => {
                                 DigitalX is a mindful marketing firm built on the belief that true growth
                                 comes from <span className="text-white font-bold">clarity, creativity, and collaboration</span>.
                                 We partner with businesses and personal brands to transform their ideas into
-                                measurable digital success. From content creation and media production to paid
-                                advertising, SEO, and sales strategy, we design structured marketing
-                                ecosystems tailored to modern market demands.
+                                measurable digital success.
                             </p>
                         </motion.div>
                         

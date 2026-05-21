@@ -291,7 +291,19 @@ const MainLayout = () => {
 
   // Regular pages: with navbar and footer
   return (
-    <div style={{ backgroundColor: "#080808", minHeight: "100vh" }}>
+    <div style={{ backgroundColor: "#080808", minHeight: "100vh", overflowX: "hidden", position: "relative", width: "100%" }}>
+      {/* SVG Filter for Logo Dark Mode Optimization */}
+      <svg style={{ position: "absolute", width: 0, height: 0, pointerEvents: "none" }} aria-hidden="true">
+        <filter id="logo-dark-mode-filter">
+          <feColorMatrix
+            type="matrix"
+            values="0 -1 -1  1  0
+                   -1  0 -1  1  0
+                   -1 -1  0  1  0
+                    0  0  0  1  0"
+          />
+        </filter>
+      </svg>
       <Navbar
         setShowContactForm={setShowContactForm}
       />

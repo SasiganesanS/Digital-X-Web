@@ -162,7 +162,7 @@ const ContactSection = () => {
       const emailData = {
         timestamp: new Date().toISOString(),
         name: "Call Request",
-        email: "info@prasklatechnology.com",
+        email: "praskladigitalx@gmail.com",
         phone: "",
         message: `Book a Call Request:\n\n${callMessage}`,
         targetGid: "528138283",
@@ -256,10 +256,10 @@ const ContactSection = () => {
                 Collaborate
               </h3>
               <a
-                href="mailto:info@prasklatechnology.com"
+                href="mailto:praskladigitalx@gmail.com"
                 className="text-[#371445] hover:text-[#4a1d5a] text-sm md:text-[15px] lg:text-base font-medium transition-colors"
               >
-                info@prasklatechnology.com
+                praskladigitalx@gmail.com
               </a>
               <div className="flex items-center gap-2 mt-3 text-xs md:text-sm text-[#5F5F5F]">
                 <span className="w-2 h-2 bg-green-500 rounded-full"></span>
@@ -882,10 +882,10 @@ const ContactSection = () => {
                             India Office
                           </p>
                           <a
-                            href="tel:+919591310740"
+                            href="tel:+919500690740"
                             className="text-[#371445] font-semibold hover:underline text-base md:text-lg"
                           >
-                            +91 95913 10740
+                            +91 95006 90740
                           </a>
                         </div>
                       </div>

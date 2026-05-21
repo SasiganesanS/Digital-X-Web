@@ -9,14 +9,12 @@ import { projects as projectGridData } from "../data/projects";
 import ProjectDetailModal from "./ProjectDetailModal";
 import "./Projects.css"
 // Import all images used in the sliding showcase
-import webImg from '../assets/services-img/web.jpg';
-import mobileImg from '../assets/services-img/mobile.jpg';
-import cloudImg from '../assets/services-img/cloud.jpg';
-import uiImg from '../assets/services-img/ui.jpg';
-import honeybeeImg from '../assets/project-cover/honeybee1.jpeg';
-import skillBridgeImg from '../assets/project-cover/skillBridge1.jpeg';
-import tipyImg from '../assets/project-cover/tipy1.jpeg';
-import customImg from '../assets/web.jpeg';
+import img1 from '../assets/project-cover/image 1.png';
+import img2 from '../assets/project-cover/image 2.png';
+import img3 from '../assets/project-cover/image 3.png';
+import img4 from '../assets/project-cover/image 4.png';
+import img5 from '../assets/project-cover/image 5.png';
+import img6 from '../assets/project-cover/image 6.png';
 
 const Projects = () => {
   const [active, setActive] = useState(null);
@@ -30,14 +28,12 @@ const Projects = () => {
 
   // Project images data - IT & Modern Tech focused
   const projectImages = [
-    { image: webImg, title: 'Web Development', desc: 'Responsive and fast-loading websites' },
-    { image: mobileImg, title: 'Mobile Application', desc: 'User-friendly interface with smooth navigation' },
-    { image: cloudImg, title: 'Cloud Solutions', desc: 'Scalable cloud infrastructure and services' },
-    { image: uiImg, title: 'UI/UX Design', desc: 'Intuitive designs that users love' },
-    { image: honeybeeImg, title: 'Honeybee Platform', desc: 'Modern e-commerce solution' },
-    { image: skillBridgeImg, title: 'SkillBridge', desc: 'Educational technology platform' },
-    { image: tipyImg, title: 'Tipy Application', desc: 'Innovative mobile app' },
-    { image: customImg, title: 'Custom Solutions', desc: 'Tailored development for unique needs' },
+    { image: img1, title: 'Web Development', desc: 'Responsive and fast-loading websites' },
+    { image: img2, title: 'Mobile Application', desc: 'User-friendly interface with smooth navigation' },
+    { image: img3, title: 'Cloud Solutions', desc: 'Scalable cloud infrastructure and services' },
+    { image: img4, title: 'UI/UX Design', desc: 'Intuitive designs that users love' },
+    { image: img5, title: 'Honeybee Platform', desc: 'Modern e-commerce solution' },
+    { image: img6, title: 'SkillBridge', desc: 'Educational technology platform' },
   ];
 
   // Auto-slide images
@@ -99,11 +95,11 @@ const Projects = () => {
   };
 
   return (
-    <div className="w-full hero-project-container text-white">
+    <div className="w-full hero-project-container text-white overflow-x-hidden">
       {/* ------------------ Hero Section ------------------ */}
       <section
         ref={sectionRef}
-        className="relative w-full dark-section bg-[#080808] min-h-screen flex flex-col md:flex-row items-center justify-center pt-32 pb-16 md:pt-0 md:pb-0 px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden projects-hero-4k"
+        className="relative w-full dark-section bg-[#080808] h-screen min-h-[100vh] max-h-[100vh] flex flex-col md:flex-row items-center justify-center px-4 sm:px-6 md:px-8 lg:px-12 overflow-hidden projects-hero-4k"
       >
         <motion.div
           animate={{
@@ -181,79 +177,118 @@ const Projects = () => {
       </section>
 
       {/* ------------------ Development Cards Section ------------------ */}
-      <section className="bg-[#080808] px-6 py-24 sm:py-32 border-t border-white/5">
+      <section className="projects-empower-section bg-[#080808] py-24 px-6 overflow-hidden">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <p className="text-[#E8192C] text-xs font-black uppercase tracking-[0.4em] mb-4">Empowering progress through mindful strategy and creative execution.</p>
-            <h2 className="text-3xl md:text-5xl font-black text-white leading-tight">
-              We research, create, launch, and optimize <span className="text-[#E8192C]">transformative brand experiences</span>
-            </h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-[#E8192C] text-xs font-black uppercase tracking-[0.4em] mb-4"
+            >
+              Our Workflow
+            </motion.p>
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-5xl font-black text-white leading-tight"
+            >
+              We research, create, launch, and optimize{" "}
+              <span className="text-[#E8192C]">transformative brand experiences</span>
+            </motion.h2>
           </div>
 
-          <div className="relative w-full py-10 md:py-16 mt-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 items-end relative z-10">
-              {data.map((item, index) => {
-                // Shrinking heights to form a descending staircase when items are bottom-aligned
-                const heights = ["h-[450px]", "h-[400px]", "h-[350px]", "h-[320px]"];
-                
-                // Sparkle particles for inside the box
-                const sparkles = [
-                  { top: "20%", left: "15%", delay: 0 },
-                  { top: "45%", left: "30%", delay: 0.4 },
-                  { top: "30%", right: "25%", delay: 0.8 },
-                  { top: "65%", right: "15%", delay: 0.2 },
-                  { top: "15%", left: "65%", delay: 0.6 },
-                ];
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+            {data.map((item, index) => {
+              const icons = [
+                <TrendingUp className="w-6 h-6 text-white" />,
+                <ArrowUpRight className="w-6 h-6 text-white" />,
+                <Star className="w-6 h-6 text-white" />,
+                <Check className="w-6 h-6 text-white" />
+              ];
 
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1, duration: 0.5 }}
-                    className={`group relative p-8 rounded-[2rem] w-full ${heights[index]} bg-gradient-to-br from-black/80 to-[#E8192C]/30 backdrop-blur-xl border border-white/10 hover:border-[#E8192C]/40 hover:shadow-2xl hover:shadow-[#E8192C]/20 transition-all duration-500 overflow-hidden cursor-default`}
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.15, duration: 0.6 }}
+                  className="relative group rounded-[2rem] p-10 min-h-[520px] flex flex-col overflow-hidden transition-all duration-500 bg-[#0c0c0c] border border-white/5 hover:border-[#E8192C]/40 hover:shadow-[0_0_30px_rgba(232,25,44,0.15)]"
+                >
+                  {/* Numeral with Red Underline */}
+                  <div className="absolute top-10 right-10 flex flex-col items-end">
+                    <span className="text-4xl font-black text-white/20 group-hover:text-[#E8192C]/30 transition-colors">
+                      0{index + 1}
+                    </span>
+                    <div className="w-8 h-[2px] mt-2 bg-[#E8192C]" />
+                  </div>
+
+                  {/* Icon Container with Red Theme */}
+                  <div className={`w-14 h-14 flex items-center justify-center mb-10 shadow-xl rounded-2xl ${
+                    index === 0 ? 'bg-gradient-to-br from-[#E8192C] to-black border border-white/10' :
+                    index === 1 ? 'bg-gradient-to-br from-[#1a1a1a] to-[#E8192C]/20 border border-[#E8192C]/30' :
+                    index === 2 ? 'bg-gradient-to-br from-[#1a1a1a] to-black border border-white/10' :
+                    'bg-[#E8192C] border border-white/20'
+                  }`}
+                  style={index === 3 ? { clipPath: "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)" } : {}}
                   >
-                    {/* Decorative corner accents */}
-                    <div className="absolute top-6 left-6 w-8 h-8 border-t-2 border-l-2 border-white/20 rounded-tl-lg group-hover:border-[#E8192C]/60 transition-colors duration-500" />
-                    <div className="absolute bottom-6 right-6 w-8 h-8 border-b-2 border-r-2 border-white/20 rounded-br-lg group-hover:border-[#E8192C]/60 transition-colors duration-500" />
+                    {icons[index]}
+                  </div>
 
-                    {/* Sparkles inside the box */}
-                    {sparkles.map((pos, i) => (
-                      <motion.span
-                        key={i}
-                        className="absolute w-[2.5px] h-[2.5px] rounded-full bg-white shadow-[0_0_8px_2px_rgba(232,25,44,0.6)]"
-                        style={{ top: pos.top, left: pos.left, right: pos.right }}
-                        animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }}
-                        transition={{ duration: 2, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }}
-                      />
-                    ))}
+                  {/* Content */}
+                  <div className="relative z-10 mb-8">
+                    <h3 className="text-2xl font-black mb-5 leading-tight text-white">
+                      {item.title.split(' & ').map((part, i) => (
+                        <React.Fragment key={i}>
+                          {part} {i === 0 && <br />}
+                        </React.Fragment>
+                      ))}
+                    </h3>
+                    <p className="text-sm leading-relaxed font-medium text-white/50 group-hover:text-white/70 transition-colors">
+                      {item.desc}
+                    </p>
+                  </div>
 
-                    {/* Content Container (Fully Visible, No Hover Hiding) */}
-                    <div className="relative z-10 w-full h-full flex flex-col justify-between pt-10 pb-2">
-                      <div className="flex flex-col gap-4">
-                        <h3 className="text-xl lg:text-2xl font-bold text-white tracking-wide">
-                          {item.title}
-                        </h3>
-                        <p className="text-white/60 leading-relaxed font-medium text-sm lg:text-base pr-2">
-                          {item.desc}
-                        </p>
+                  {/* Bottom Illustration (Red SVG Patterns - Increased Visibility) */}
+                  <div className="mt-auto relative w-full h-32 overflow-hidden pointer-events-none opacity-80">
+                    {index === 0 && (
+                      <div className="absolute bottom-0 w-full h-24 bg-gradient-to-t from-[#E8192C]/40 to-transparent" 
+                           style={{ clipPath: "polygon(0 80%, 20% 60%, 40% 90%, 60% 50%, 80% 85%, 100% 70%, 100% 100%, 0 100%)" }} />
+                    )}
+                    {index === 1 && (
+                      <div className="grid grid-cols-10 gap-2 absolute bottom-2 left-0 opacity-40">
+                        {[...Array(30)].map((_, i) => <div key={i} className="w-1.5 h-1.5 rounded-full bg-[#E8192C]" />)}
                       </div>
-
-                      {/* Large Watermark Code */}
-                      <div className="absolute bottom-4 right-4 translate-x-2 translate-y-2 pointer-events-none">
-                        <span className="font-black text-white/5 select-none tracking-tighter leading-none text-6xl md:text-7xl lg:text-8xl group-hover:text-white/10 transition-colors duration-500">
-                          {item.code}
-                        </span>
+                    )}
+                    {index === 2 && (
+                      <div className="absolute bottom-4 left-0 w-full h-full flex items-end">
+                        <div className="flex items-end gap-1 h-16 w-full px-2">
+                           {[...Array(8)].map((_, i) => <div key={i} className="flex-1 bg-[#E8192C]/20 rounded-t-sm" style={{ height: `${20 + i * 10}%` }} />)}
+                        </div>
+                        <svg className="absolute inset-0 w-full h-full" viewBox="0 0 200 100">
+                          <path d="M0,80 Q50,70 100,40 T200,10" fill="none" stroke="#E8192C" strokeWidth="3" strokeLinecap="round" />
+                          <circle cx="100" cy="40" r="4" fill="#E8192C" className="animate-pulse" />
+                        </svg>
                       </div>
-                    </div>
+                    )}
+                    {index === 3 && (
+                      <div className="absolute bottom-0 right-0 w-32 h-32 opacity-40">
+                        <div className="grid grid-cols-3 gap-2">
+                          {[...Array(6)].map((_, i) => (
+                            <div key={i} className="w-8 h-8 bg-[#E8192C]" style={{ clipPath: "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)" }} />
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
 
-                    {/* Subtle Background Glow */}
-                    <div className="absolute -bottom-20 -right-20 w-64 h-64 bg-[#E8192C]/10 rounded-full blur-3xl pointer-events-none transition-all duration-700 group-hover:bg-[#E8192C]/20" />
-                  </motion.div>
-                );
-              })}
-            </div>
+                  {/* Red Ambient Glow */}
+                  <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-[#E8192C]/5 rounded-full blur-[100px] pointer-events-none group-hover:bg-[#E8192C]/10 transition-all duration-700" />
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>

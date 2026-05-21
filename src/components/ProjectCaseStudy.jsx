@@ -53,8 +53,8 @@ const ProjectCaseStudy = () => {
       >
         {/* Background */}
         <div className="absolute inset-0">
-          <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-15" />
-          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #080808 35%, rgba(8,8,8,0.7) 100%)" }} />
+          <img src={project.image} alt={project.title} className="w-full h-full object-cover opacity-25" />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(to top, #080808 20%, rgba(8,8,8,0.5) 100%)" }} />
           {/* Red glow */}
           <div
             className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full pointer-events-none"
@@ -141,29 +141,57 @@ const ProjectCaseStudy = () => {
             <p className="text-white/50 text-lg md:text-xl mb-8 max-w-2xl">{project.description}</p>
 
             {/* Tags + result */}
-            <div className="flex flex-wrap gap-3 mb-10">
-              <span
-                className="px-4 py-1.5 rounded-full text-sm font-semibold"
-                style={{ color: "#E8192C", border: "1px solid rgba(232,25,44,0.35)", background: "rgba(232,25,44,0.08)" }}
+            <div className="flex flex-wrap gap-4 mb-10 items-center">
+              <motion.span
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+                className="px-6 py-2.5 rounded-xl text-sm font-black tracking-wide"
+                style={{ 
+                  color: "#fff", 
+                  border: "1px solid rgba(232,25,44,0.5)", 
+                  background: "linear-gradient(135deg, rgba(232,25,44,0.2) 0%, rgba(232,25,44,0.05) 100%)",
+                  boxShadow: "0 0 20px rgba(232,25,44,0.15), inset 0 0 10px rgba(232,25,44,0.1)"
+                }}
               >
                 {project.tags}
-              </span>
-              <span className="px-4 py-1.5 rounded-full border border-white/10 text-white/50 text-sm"
-                style={{ background: "rgba(255,255,255,0.04)" }}>
-                ✓ {project.result}
-              </span>
+              </motion.span>
+              <motion.span 
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.5 }}
+                className="px-6 py-2.5 rounded-xl text-sm font-bold flex items-center gap-3"
+                style={{ 
+                  color: "rgba(255,255,255,0.9)",
+                  border: "1px solid rgba(232,25,44,0.4)", 
+                  background: "rgba(232,25,44,0.1)", 
+                  backdropFilter: "blur(5px)",
+                  boxShadow: "0 0 15px rgba(232,25,44,0.1)"
+                }}
+              >
+                <div className="w-2 h-2 rounded-full bg-[#E8192C] shadow-[0_0_10px_#E8192C] animate-pulse" />
+                {project.result}
+              </motion.span>
             </div>
 
             {/* Services */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-3">
               {project.services.map((svc, i) => (
-                <span
+                <motion.span
                   key={i}
-                  className="text-xs font-semibold px-4 py-1.5 rounded-full"
-                  style={{ color: "rgba(255,255,255,0.7)", background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 + i * 0.1 }}
+                  className="text-[11px] font-black uppercase tracking-wider px-5 py-2.5 rounded-lg transition-all duration-300 hover:scale-105"
+                  style={{ 
+                    color: "rgba(255,255,255,0.8)", 
+                    background: "rgba(232,25,44,0.08)", 
+                    border: "1px solid rgba(232,25,44,0.3)",
+                    backdropFilter: "blur(4px)"
+                  }}
                 >
                   {svc}
-                </span>
+                </motion.span>
               ))}
             </div>
           </motion.div>
@@ -408,79 +436,109 @@ const ProjectCaseStudy = () => {
         </section>
       )}
 
-      {/* ── TECH STACK ── */}
-      {project.techStack?.length > 0 && (
-        <section className="w-full py-20 md:py-28" style={{ background: "#0A0A0A", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-          <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
-            <motion.div
-              className="text-center mb-14"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <span className="text-[#E8192C] text-base md:text-lg font-bold tracking-[0.2em] uppercase mb-3 block">
-                {project.techLabel || "Technologies"}
-              </span>
-              <h2 className="text-3xl md:text-4xl font-black text-white mb-3">
-                {project.techTitle || "Built With Modern Tools"}
-              </h2>
-              <p className="text-white/35 text-base max-w-xl mx-auto">
-                {project.techDesc || "Leveraging industry-leading tools to deliver exceptional results"}
-              </p>
-            </motion.div>
+      {/* ── UNIFIED TECH & FOOTER CTA SECTION ── */}
+      <section className="relative w-full py-20 md:py-28 overflow-hidden flex flex-col items-center justify-center" 
+        style={{ 
+          background: "#080808",
+          borderTop: "1px solid rgba(255,255,255,0.06)" 
+        }}
+      >
+        {/* Related Project Image Background */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <img 
+            src={project.image} 
+            alt="Background" 
+            className="w-full h-full object-cover opacity-20 scale-105 blur-lg" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#080808] via-transparent to-[#080808]" />
+          <div className="absolute inset-0 bg-red-950/20 mix-blend-overlay" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E8192C]/15 rounded-full blur-[140px]" />
+        </div>
 
-            <div className="flex flex-wrap justify-center gap-3">
-              {project.techStack.map((tech, i) => (
-                <motion.span
-                  key={i}
-                  className="px-5 py-2.5 rounded-full text-sm font-medium cursor-default"
-                  style={{
-                    background: "rgba(232,25,44,0.06)",
-                    border: "1px solid rgba(232,25,44,0.2)",
-                    color: "rgba(255,255,255,0.65)",
-                  }}
-                  initial={{ opacity: 0, scale: 0.85 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: i * 0.06 }}
-                  whileHover={{ y: -2, color: "#fff", borderColor: "rgba(232,25,44,0.5)" }}
-                >
-                  {tech}
-                </motion.span>
-              ))}
+        <div className="relative z-10 w-full max-w-4xl mx-auto px-6 text-center">
+          
+          {/* Technologies Sub-section */}
+          {project.techStack?.length > 0 && (
+            <div className="mb-14">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="mb-10"
+              >
+                <span className="text-[#E8192C] text-[11px] font-black tracking-[0.4em] uppercase mb-4 block">
+                  {project.techLabel || "Technologies"}
+                </span>
+                <h2 className="text-3xl md:text-5xl font-black text-white leading-tight mb-5">
+                  {project.techTitle || "Powered by Creative & Performance Tools"}
+                </h2>
+                <p className="text-white/35 text-sm md:text-base max-w-2xl mx-auto">
+                  {project.techDesc || "Leveraging industry-leading creative digital marketing platforms to deliver exceptional growth."}
+                </p>
+              </motion.div>
+
+              <div className="flex flex-wrap justify-center gap-3">
+                {project.techStack.map((tech, i) => (
+                  <motion.span
+                    key={i}
+                    className="relative px-6 py-3 rounded-xl text-[11px] font-black uppercase tracking-wider cursor-default transition-all duration-500 overflow-hidden group"
+                    style={{
+                      background: "rgba(255,255,255,0.02)",
+                      border: "1px solid rgba(232,25,44,0.25)",
+                      color: "rgba(255,255,255,0.5)",
+                      backdropFilter: "blur(10px)",
+                    }}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.04 }}
+                    whileHover={{ scale: 1.05, color: "#fff", borderColor: "rgba(232,25,44,0.7)" }}
+                  >
+                    {/* Hover Glow Effect */}
+                    <div className="absolute inset-0 bg-[#E8192C]/10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span className="relative z-10">{tech}</span>
+                  </motion.span>
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      )}
+          )}
 
-      {/* ── FOOTER CTA ── */}
-      <section className="w-full py-20 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
-        <div className="max-w-2xl mx-auto px-6">
-          <p className="text-white/25 text-xs tracking-widest uppercase mb-6">Next Step</p>
-          <h2 className="text-3xl md:text-4xl font-black text-white mb-8">
-            Ready to build something <span className="text-[#E8192C]">great?</span>
-          </h2>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              to="/"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full border border-white/10 text-white/60 text-sm font-semibold hover:text-white hover:border-white/30 transition-all duration-300"
-            >
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-              </svg>
-              Back to Home
-            </Link>
-            <Link
-              to="/projects"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-[#E8192C] text-white text-sm font-bold hover:bg-[#ff2235] hover:shadow-[0_0_25px_rgba(232,25,44,0.5)] transition-all duration-300"
-            >
-              View All Projects
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </Link>
-          </div>
+          {/* Divider line */}
+          <div className="w-20 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent mx-auto mb-14" />
+
+          {/* CTA Sub-section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <p className="text-white/25 text-[10px] font-black tracking-[0.5em] uppercase mb-5">Next Step</p>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-10">
+              Ready to build something <span className="text-[#E8192C]">great?</span>
+            </h2>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/"
+                className="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full border border-white/10 text-white/60 text-sm font-bold hover:text-white hover:border-white/30 transition-all duration-300 bg-white/5"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                </svg>
+                Back to Home
+              </Link>
+              <Link
+                to="/projects"
+                className="inline-flex items-center justify-center gap-3 px-10 py-4 rounded-full bg-[#E8192C] text-white text-sm font-black hover:bg-[#ff2235] hover:shadow-[0_0_30px_rgba(232,25,44,0.5)] transition-all duration-300"
+              >
+                View All Projects
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>

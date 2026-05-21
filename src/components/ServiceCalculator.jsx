@@ -3,6 +3,17 @@ import "./ServiceCalculator.css";
 import balajiPortraits from '../assets/tie/Balaji-Portraits.jpg';
 import ibodhiAcademy from '../assets/tie/ibodhi-academy-removebg.png';
 import vilcet from '../assets/tie/VILCET-removebg.png';
+import seoImg from "../assets/services-img/SEO.png";
+import smmImg from "../assets/services-img/SMM.png";
+import adsImg from "../assets/services-img/Ads.png";
+import contentImg from "../assets/services-img/Content marketing.png";
+import emailImg from "../assets/services-img/Email marketing.png";
+import webDesignImg from "../assets/services-img/Web design.png";
+import ormImg from "../assets/services-img/ORM.png";
+import influencerImg from "../assets/services-img/Influencer Marketing.png";
+import analyticsImg from "../assets/services-img/Report & Analytics.png";
+import ecommerceImg from "../assets/services-img/Ecommerce Marketing.png";
+import ourServicesImg from "../assets/services-img/our services.png";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -150,34 +161,54 @@ export default function ServiceCalculator() {
 
   const servicesData = [
     {
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=400&q=80",
-      title: "Web Development",
-      desc: "We craft fast, responsive, and visually refined websites that strengthen brand presence."
+      image: seoImg,
+      title: "SEO",
+      desc: "SEO helps improve the website’s visibility in search engines."
     },
     {
-      image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=400&q=80",
-      title: "Software Development",
-      desc: "Reliable solutions tailored to business needs, enabling performance and growth."
+      image: smmImg,
+      title: "SSM",
+      desc: "SSM (Social Media Management) is used to manage and grow social media presence."
     },
     {
-      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=400&q=80",
-      title: "App Development",
-      desc: "High-performance applications that combine intuitive design with robustness."
+      image: adsImg,
+      title: "ADS",
+      desc: "ADS include platforms like Google, Facebook, and Instagram for promotions."
     },
     {
-      image: "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?auto=format&fit=crop&w=400&q=80",
-      title: "Cyber Security",
-      desc: "Securing systems through advanced architectures, monitoring, and proactive risk management."
+      image: contentImg,
+      title: "Content Marketing",
+      desc: "Content marketing involves creating and sharing valuable content like videos and blogs."
     },
     {
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=400&q=80",
-      title: "Digital Marketing",
-      desc: "Data-driven marketing strategies that enhance visibility and drive business results."
+      image: emailImg,
+      title: "Email Marketing",
+      desc: "Email marketing is used to communicate offers, updates, and build customer relationships."
     },
     {
-      image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80",
-      title: "Sustainability",
-      desc: "Integrating smart technologies and practices to support responsible digital scaling."
+      image: webDesignImg,
+      title: "Website Design",
+      desc: "Website design focuses on creating user-friendly and effective UI/UX websites."
+    },
+    {
+      image: ormImg,
+      title: "ORM",
+      desc: "ORM (Online Reputation Management) helps in managing brand ratings, reviews, and customer feedback."
+    },
+    {
+      image: influencerImg,
+      title: "Influencer Marketing",
+      desc: "Influencer marketing is used to promote the brand through popular personalities."
+    },
+    {
+      image: analyticsImg,
+      title: "Analytics & Reporting",
+      desc: "Analytics and reporting help track performance and improve strategies."
+    },
+    {
+      image: ecommerceImg,
+      title: "E-commerce Marketing",
+      desc: "E-commerce marketing focuses on promoting online stores and increasing sales."
     }
   ];
 
@@ -212,38 +243,41 @@ export default function ServiceCalculator() {
       message += `- ${i.platform.title} (${i.plan.title}): ₹${((i.platform.price || 0) + (i.plan.price || 0)).toLocaleString()}\n`;
     });
     message += `\nTotal Estimate: ₹${total.toLocaleString()}`;
-    window.open(`https://wa.me/919591310740?text=${encodeURIComponent(message)}`, "_blank");
+    window.open(`https://wa.me/919500690740?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (
     <div className="bg-[#080808] min-h-screen text-white pt-24 overflow-hidden font-outfit">
-      {/* ── Hero Section ── */}
-      <section className="relative px-6 md:px-[5%] pt-12 pb-16 overflow-hidden">
-        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-[#E8192C]/5 rounded-full blur-[120px] pointer-events-none" />
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            {/* Glitter badge */}
-            <div className="flex justify-center mb-8">
-              <div
-                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full overflow-hidden"
+      {/* ── Hero Section — Split Layout: Text Left, Image Right ── */}
+      <section className="relative w-full min-h-[calc(100vh-6rem)] flex items-center overflow-hidden px-6 md:px-[5%]">
+        {/* Background glows */}
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#E8192C]/5 rounded-full blur-[140px] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#E8192C]/4 rounded-full blur-[120px] pointer-events-none" />
+        {/* Dot grid */}
+        <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(circle,#fff 1px,transparent 1px)", backgroundSize: "44px 44px" }} />
+
+        <div className="relative z-10 max-w-7xl mx-auto w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+            {/* LEFT — Text Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="flex flex-col items-start text-left"
+            >
+              {/* Badge */}
+              <div className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full overflow-hidden mb-8"
                 style={{
                   background: "linear-gradient(135deg, rgba(232,25,44,0.18) 0%, rgba(0,0,0,0.6) 50%, rgba(232,25,44,0.12) 100%)",
                   border: "1px solid rgba(232,25,44,0.5)",
                   boxShadow: "0 0 18px rgba(232,25,44,0.25), inset 0 1px 0 rgba(255,255,255,0.1)",
-                }}
-              >
-                <motion.span
-                  className="absolute inset-0 rounded-full"
-                  style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%)" }}
+                }}>
+                <motion.span className="absolute inset-0 rounded-full"
+                  style={{ background: "linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.08) 50%,transparent 100%)" }}
                   animate={{ x: ["-100%", "100%"] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
-                />
-                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-px bg-gradient-to-r from-transparent via-[#E8192C]/80 to-transparent" />
+                  transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }} />
                 {[{ top: "20%", left: "8%", delay: 0 }, { top: "70%", left: "15%", delay: 0.4 }, { top: "30%", right: "10%", delay: 0.8 }, { top: "65%", right: "18%", delay: 0.2 }, { top: "15%", left: "45%", delay: 0.6 }].map((pos, i) => (
                   <motion.span key={i} className="absolute w-[3px] h-[3px] rounded-full bg-white"
                     style={{ top: pos.top, left: pos.left, right: pos.right }}
@@ -260,20 +294,86 @@ export default function ServiceCalculator() {
                   animate={{ rotate: [0, 180, 360], opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 3, repeat: Infinity, ease: "linear" }}>✦</motion.span>
               </div>
-            </div>
-            <h1 className="text-[clamp(2.5rem,6vw,4rem)] font-black mb-8 leading-[1.1] tracking-tight text-white max-w-5xl mx-auto">
-              Transforming Brands into <br />
-              <span className="text-[#E8192C]">Digital Authority</span>
-            </h1>
-            <p className="text-white/40 text-lg md:text-xl leading-relaxed max-w-3xl mx-auto">
-              Comprehensive branding, media, and performance marketing solutions designed to help your business grow strategically, creatively, and profitably.
-            </p>
-          </motion.div>
+
+              {/* Heading */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[1.05] tracking-tight text-white">
+                Transforming Brands into <br />
+                <span className="text-[#E8192C]">Digital Authority</span>
+              </h1>
+
+              {/* Description */}
+              <p className="text-white/50 text-base md:text-lg leading-relaxed max-w-xl font-medium mb-10">
+                Comprehensive branding, media, and performance marketing solutions designed to help your business grow strategically, creatively, and profitably.
+              </p>
+
+              {/* Unique Stats Section - Redesigned to be more premium */}
+              <div className="flex flex-wrap gap-6 sm:gap-10 mt-4 relative">
+                {[{ num: "15+", label: "Clients" }, { num: "20+", label: "Projects" }, { num: "6", label: "Services" }].map((s, i) => (
+                  <div key={i} className="flex items-center gap-6 group">
+                    <div className="flex flex-col">
+                      <motion.span 
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.4 + i * 0.1 }}
+                        className="text-4xl md:text-5xl font-black text-white tracking-tighter" 
+                        style={{ textShadow: "0 0 30px rgba(232,25,44,0.3)" }}
+                      >
+                        {s.num}
+                      </motion.span>
+                      <span className="text-[#E8192C] text-[10px] font-black uppercase tracking-[0.3em] mt-1 opacity-80 group-hover:opacity-100 transition-opacity">
+                        {s.label}
+                      </span>
+                    </div>
+                    {i < 2 && (
+                      <div className="h-10 w-px bg-gradient-to-b from-transparent via-white/20 to-transparent hidden sm:block" />
+                    )}
+                  </div>
+                ))}
+                
+                {/* Subtle background glow for stats */}
+                <div className="absolute -inset-x-6 -inset-y-4 bg-white/[0.02] border border-white/5 rounded-3xl -z-10 backdrop-blur-sm" />
+              </div>
+            </motion.div>
+
+            {/* RIGHT — Image */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, x: 30 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 0.9, delay: 0.2 }}
+              className="relative hidden lg:block"
+            >
+              {/* Glow behind image */}
+              <div className="absolute -inset-4 bg-[#E8192C]/10 rounded-[3rem] blur-[40px] pointer-events-none" />
+              {/* Image frame */}
+              <div className="relative rounded-[2.5rem] overflow-hidden border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.6)]">
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#E8192C]/20 via-transparent to-transparent z-10 pointer-events-none" />
+                <img
+                  src={ourServicesImg}
+                  alt="Digital Marketing Strategy"
+                  className="w-full aspect-[4/3] object-cover"
+                />
+                {/* Overlay badge */}
+                <div className="absolute bottom-6 left-6 z-20 flex items-center gap-3 px-5 py-3 rounded-2xl"
+                  style={{ background: "rgba(0,0,0,0.7)", backdropFilter: "blur(12px)", border: "1px solid rgba(232,25,44,0.3)" }}>
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#E8192C] shadow-[0_0_8px_rgba(232,25,44,0.8)]" />
+                  <span className="text-white text-sm font-bold">Performance-Driven Growth</span>
+                </div>
+              </div>
+              {/* Floating sparkles */}
+              {[{ top: "10%", right: "8%", delay: 0 }, { top: "60%", right: "4%", delay: 0.8 }, { top: "30%", left: "4%", delay: 1.4 }].map((pos, i) => (
+                <motion.div key={i} className="absolute w-2 h-2 rounded-full bg-[#E8192C] pointer-events-none"
+                  style={{ top: pos.top, right: pos.right, left: pos.left, boxShadow: "0 0 12px 4px rgba(232,25,44,0.6)" }}
+                  animate={{ opacity: [0.3, 1, 0.3], scale: [0.8, 1.4, 0.8] }}
+                  transition={{ duration: 2, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }} />
+              ))}
+            </motion.div>
+
+          </div>
         </div>
       </section>
 
       {/* ── Infinite Carousel Slider Section ── */}
-      <section className="relative w-full px-[5%] py-20 pb-32 overflow-hidden bg-[#080808]">
+      <section id="expertise" className="relative w-full px-[5%] py-20 pb-32 overflow-hidden bg-[#080808]">
         {/* Tilted Container with rich red/black mix and sparkles */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#080808] via-[#1a0000] to-[#250000] -rotate-3 scale-[1.2] shadow-2xl pointer-events-none" />
         
@@ -530,11 +630,11 @@ export default function ServiceCalculator() {
       {/* ── Partners ── */}
       <section className="py-24 border-t border-white/5 bg-white/[0.01]">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-center text-white/10 font-black uppercase tracking-[0.4em] text-[10px] mb-16">Ecosystem Partners</h2>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-30 grayscale hover:grayscale-0 transition-all duration-700">
-            <img src={balajiPortraits} alt="Partner" className="h-8 md:h-12 w-auto object-contain hover:scale-110 transition-transform" />
-            <img src={ibodhiAcademy} alt="Partner" className="h-8 md:h-12 w-auto object-contain hover:scale-110 transition-transform" />
-            <img src={vilcet} alt="Partner" className="h-8 md:h-12 w-auto object-contain hover:scale-110 transition-transform" />
+          <h2 className="text-center text-white/50 font-black uppercase tracking-[0.4em] text-xs mb-16">Ecosystem Partners</h2>
+          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-80 hover:opacity-100 transition-all duration-700">
+            <img src={balajiPortraits} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
+            <img src={ibodhiAcademy} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
+            <img src={vilcet} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
           </div>
         </div>
       </section>

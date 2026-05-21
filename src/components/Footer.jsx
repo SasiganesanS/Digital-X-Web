@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../assets/praskla_logo.jpeg";
+import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
 import {
   FaLinkedinIn,
   FaInstagram,
@@ -111,9 +111,9 @@ const Footer = () => {
                 className="flex items-center gap-2.5 mb-5 group w-fit"
               >
                 <div className="relative w-10 h-10 flex items-center justify-center overflow-hidden rounded-lg">
-                  <img src={Logo} alt="Praskla Digital X" className="w-full h-full object-cover" />
+                  <img src={Logo} alt="Praskla Digital X" className="w-full h-full object-cover" style={{ filter: "url(#logo-dark-mode-filter)" }} />
                 </div>
-                <div className="flex flex-col leading-none">
+                <div className="flex flex-col leading-none gap-1.5">
                   <span className="font-black text-white text-base tracking-tight">
                     Praskla Digital <span className="text-[#E8192C]">X</span>
                   </span>
@@ -131,41 +131,35 @@ const Footer = () => {
               {/* Contact */}
               <div className="space-y-2.5 mb-6">
                 <a
-                  href="tel:+919591310740"
+                  href="tel:+919500690740"
                   className="flex items-center gap-2.5 text-white/35 hover:text-white transition-colors text-sm"
                 >
                   <FaPhone size={12} className="text-[#E8192C]/60 flex-shrink-0" />
-                  +91 95913 10740
+                  +91 95006 90740
                 </a>
                 <a
-                  href="mailto:info@praskla.com"
+                  href="mailto:praskladigitalx@gmail.com"
                   className="flex items-center gap-2.5 text-white/35 hover:text-white transition-colors text-sm"
                 >
                   <MdEmail size={13} className="text-[#E8192C]/60 flex-shrink-0" />
-                  info@praskla.com
+                  praskladigitalx@gmail.com
                 </a>
-                <div className="flex items-center gap-2.5 text-white/35 text-sm">
-                  <FaLocationDot size={12} className="text-[#E8192C]/60 flex-shrink-0" />
-                  Tamil Nadu, India
+                <div className="flex items-start gap-2.5 text-white/35 text-sm">
+                  <FaLocationDot size={12} className="text-[#E8192C]/60 flex-shrink-0 mt-1" />
+                  <span>3rd Floor, A-Block, KSRCE, KSR College Campus, Tiruchengode, Namakkal - 637215</span>
                 </div>
               </div>
 
               {/* Socials */}
               <div className="flex gap-2.5">
-                <SocialIcon href="https://www.linkedin.com/company/praskla-technology/" label="LinkedIn">
-                  <FaLinkedinIn size={15} />
-                </SocialIcon>
-                <SocialIcon href="https://www.instagram.com/praskla_technology/" label="Instagram">
+                <SocialIcon href="https://www.instagram.com/py.digitalx/" label="Instagram">
                   <FaInstagram size={15} />
                 </SocialIcon>
-                <SocialIcon href="https://wa.me/919591310740" label="WhatsApp">
+                <SocialIcon href="https://wa.me/9500690740" label="WhatsApp">
                   <FaWhatsapp size={15} />
                 </SocialIcon>
                 <SocialIcon href="https://facebook.com/praskla" label="Facebook">
                   <FaFacebookF size={15} />
-                </SocialIcon>
-                <SocialIcon href="https://twitter.com/praskla" label="X (Twitter)">
-                  <FaXTwitter size={15} />
                 </SocialIcon>
               </div>
             </div>
@@ -190,11 +184,16 @@ const Footer = () => {
                 Services
               </h4>
               <ul className="space-y-3">
-                <FooterLink to="/services">Content Creation</FooterLink>
-                <FooterLink to="/services">Social Media Management</FooterLink>
-                <FooterLink to="/services">Paid Advertising</FooterLink>
-                <FooterLink to="/services">SEO Optimization</FooterLink>
-                <FooterLink to="/services">Sales Strategy</FooterLink>
+                <FooterLink to="/services">SEO</FooterLink>
+                <FooterLink to="/services">SSM</FooterLink>
+                <FooterLink to="/services">ADS</FooterLink>
+                <FooterLink to="/services">Content marketing</FooterLink>
+                <FooterLink to="/services">Email marketing</FooterLink>
+                <FooterLink to="/services">Website design</FooterLink>
+                <FooterLink to="/services">ORM</FooterLink>
+                <FooterLink to="/services">Influencer marketing</FooterLink>
+                <FooterLink to="/services">Analytics and reporting</FooterLink>
+                <FooterLink to="/services">E-commerce marketing</FooterLink>
               </ul>
             </div>
 
@@ -240,7 +239,7 @@ const Footer = () => {
           {/* ── Bottom bar ── */}
           <div className="pt-8 border-t border-white/6 flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-white/20 text-xs text-center sm:text-left">
-              © 2020–{new Date().getFullYear()} Praskla Digital X. All rights reserved.
+              © {new Date().getFullYear()} Praskla Digital X. All rights reserved.
             </p>
             <div className="flex items-center gap-5">
               <Link to="/terms" className="text-white/20 hover:text-white transition-colors text-xs">
