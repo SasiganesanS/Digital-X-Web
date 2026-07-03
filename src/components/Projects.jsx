@@ -9,12 +9,11 @@ import { projects as projectGridData } from "../data/projects";
 import ProjectDetailModal from "./ProjectDetailModal";
 import "./Projects.css"
 // Import all images used in the sliding showcase
-import img1 from '../assets/project-cover/image 1.png';
-import img2 from '../assets/project-cover/image 2.png';
-import img3 from '../assets/project-cover/image 3.png';
-import img4 from '../assets/project-cover/image 4.png';
-import img5 from '../assets/project-cover/image 5.png';
-import img6 from '../assets/project-cover/image 6.png';
+import img1 from '../assets/project-cover/photo 1.png';
+import img2 from '../assets/project-cover/photo 2.png';
+import img3 from '../assets/project-cover/photo 3.png';
+import img4 from '../assets/project-cover/photo 4.png';
+import img5 from '../assets/project-cover/photo 5.png';
 
 const Projects = () => {
   const [active, setActive] = useState(null);
@@ -33,7 +32,6 @@ const Projects = () => {
     { image: img3, title: 'Cloud Solutions', desc: 'Scalable cloud infrastructure and services' },
     { image: img4, title: 'UI/UX Design', desc: 'Intuitive designs that users love' },
     { image: img5, title: 'Honeybee Platform', desc: 'Modern e-commerce solution' },
-    { image: img6, title: 'SkillBridge', desc: 'Educational technology platform' },
   ];
 
   // Auto-slide images
@@ -226,14 +224,7 @@ const Projects = () => {
                   </div>
 
                   {/* Icon Container with Red Theme */}
-                  <div className={`w-14 h-14 flex items-center justify-center mb-10 shadow-xl rounded-2xl ${
-                    index === 0 ? 'bg-gradient-to-br from-[#E8192C] to-black border border-white/10' :
-                    index === 1 ? 'bg-gradient-to-br from-[#1a1a1a] to-[#E8192C]/20 border border-[#E8192C]/30' :
-                    index === 2 ? 'bg-gradient-to-br from-[#1a1a1a] to-black border border-white/10' :
-                    'bg-[#E8192C] border border-white/20'
-                  }`}
-                  style={index === 3 ? { clipPath: "polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%)" } : {}}
-                  >
+                  <div className="w-14 h-14 flex items-center justify-center mb-10 shadow-xl rounded-2xl bg-gradient-to-br from-[#E8192C] to-black border border-white/10">
                     {icons[index]}
                   </div>
 
