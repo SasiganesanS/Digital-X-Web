@@ -334,7 +334,7 @@ const About = () => {
               {/* Body paragraphs */}
               <div className="space-y-5">
                 <p className="text-[#A0A0A0] text-lg leading-relaxed">
-                  DigitalX is a growth-focused digital marketing company delivering{" "}
+                  Praskla Digital X is a growth-focused digital marketing company delivering{" "}
                   <span className="text-white font-medium">strategic branding</span>,{" "}
                   <span className="text-white font-medium">performance marketing</span>,{" "}
                   <span className="text-white font-medium">media production</span>, and{" "}
@@ -397,9 +397,10 @@ const About = () => {
               <div className="relative z-10 w-32 h-32 md:w-36 md:h-36 rounded-2xl bg-gradient-to-br from-[#E8192C] to-[#400000] border border-white/20 shadow-[0_0_40px_rgba(232,25,44,0.6)] flex items-center justify-center transform -translate-y-4">
                 {/* Internal container glow */}
                 <span className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#ff6b7b]/30 to-transparent rounded-b-2xl" />
-                <span className="relative text-white font-black text-xl md:text-2xl tracking-widest drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-                  DIGITALX
-                </span>
+                <span className="relative text-white font-black text-lg md:text-xl tracking-wide text-center leading-tight drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+  PRASKLA <br />
+  DIGITAL X
+</span>
               </div>
 
               {/* Card 1: TOP (Growth Focused) */}
@@ -568,7 +569,7 @@ const About = () => {
                 <h3 className="text-xl md:text-2xl font-black text-white mb-3 tracking-tight">Driven by a Mission</h3>
                 <div className="w-12 h-0.5 rounded-full mb-4" style={{ background: "linear-gradient(90deg, #E8192C, transparent)" }} />
                 <p className="text-white/60 text-sm md:text-base leading-relaxed">
-                  At DigitalX, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
+                  At Praskla Digital X, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
                 </p>
               </div>
             </div>

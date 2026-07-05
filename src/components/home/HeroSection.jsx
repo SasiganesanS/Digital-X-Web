@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import pyLogo from "../../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
+import SolarSystemHero, { ToyAstronaut } from "./SolarSystemHero";
 
 const HeroSection = () => {
     const scrollTo = (id) => {
@@ -24,7 +25,7 @@ const HeroSection = () => {
         <section
             id="home"
             className="relative w-full h-screen min-h-[100vh] max-h-[100vh] overflow-hidden flex items-center justify-center"
-            style={{ backgroundColor: "#000000" }}
+            style={{ backgroundColor: "transparent" }}
         >
             {/* ── Background ── */}
             <div className="absolute inset-0 pointer-events-none z-0">
@@ -53,11 +54,12 @@ const HeroSection = () => {
             {/* ── Single unified content block ── */}
             <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16 pt-16">
 
-                {/* Two-column row: Left text | Right star */}
+                {/* Two-column row: Left text | Right star */}              
+                 
                 <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
 
                     {/* ── LEFT: ALL text content + stats ── */}
-                    <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl w-full">
+                    <div className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl w-full relative">
 
                         {/* Eyebrow badge */}
                         <motion.div
@@ -94,6 +96,13 @@ const HeroSection = () => {
                                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                             >✦</motion.span>
                         </motion.div>
+
+                        {/* Standing astronaut beside the badge on larger screens (repositioned) */}
+                        <ToyAstronaut
+                            className="hidden lg:block pointer-events-none"
+                            style={{ width: 110, height: 150, position: 'absolute', left: -100, top: -115 }}
+                        />
+
 
                         {/* Headline */}
                         <motion.h1
@@ -133,15 +142,16 @@ const HeroSection = () => {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8, delay: 0.6 }}
+                           
                             className="flex items-center gap-4 justify-center lg:justify-start mb-5"
-                        >
+                           >
                             <Link
                                 to="/projects"
                                 className="relative group flex items-center justify-center gap-2 text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest
                                border border-white/20 px-6 py-3 rounded-full
                                hover:border-white hover:bg-white/5 backdrop-blur-sm
                                transition-all duration-300 hover:-translate-y-1 active:scale-95"
-                            >
+                                >
                                 See Our Work
                                 <svg
                                     className="w-3.5 h-3.5 transition-transform group-hover:rotate-45" fill="none" viewBox="0 0 24 24"
@@ -188,94 +198,14 @@ const HeroSection = () => {
                         </motion.div>
                     </div>
 
-                    {/* ── RIGHT: Premium Logo Element ── */}
+                    {/* ── RIGHT: Interactive Solar System ── */}
                     <motion.div
-                        className="hidden lg:flex flex-shrink-0 items-center justify-center relative"
+                        className="w-full lg:w-[500px] flex-shrink-0 relative"
                         initial={{ opacity: 0, scale: 0.8, x: 40 }}
                         animate={{ opacity: 1, scale: 1, x: 0 }}
                         transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                        style={{ width: "400px", height: "400px" }}
                     >
-                        {/* Background glow */}
-                        <div
-                            className="absolute inset-0 rounded-full blur-[90px] pointer-events-none"
-                            style={{ background: "radial-gradient(circle, rgba(232,25,44,0.22) 0%, transparent 65%)" }}
-                        />
-
-                        {/* Floating sparkle dots */}
-                        {sparklePositions.map((pos, i) => (
-                            <motion.span
-                                key={i}
-                                className="absolute rounded-full bg-white pointer-events-none z-0"
-                                style={{
-                                    top: pos.top, left: pos.left, right: pos.right,
-                                    width: `${pos.size}px`, height: `${pos.size}px`,
-                                    boxShadow: "0 0 8px 2px rgba(232,25,44,0.6)",
-                                }}
-                                animate={{ opacity: [0, 1, 0], scale: [0.5, 1.5, 0.5] }}
-                                transition={{ duration: 2.5, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }}
-                            />
-                        ))}
-
-
-                        {/* 4-pointed star shape with logo */}
-                        <motion.div
-                            className="relative z-10 flex flex-col items-center gap-4"
-                        >
-                            <div className="relative">
-                                {/* Star Shape Background with brand red shadow offset */}
-                                <div
-                                    className="relative flex items-center justify-center pointer-events-none"
-                                    style={{
-                                        width: "280px",
-                                        height: "280px",
-                                    }}
-                                >
-                                    {/* Red Offset Shadow Background */}
-                                    <div
-                                        className="absolute inset-[8px] -bottom-[12px] -left-[12px] opacity-70"
-                                        style={{
-                                            clipPath: "polygon(50% 0%, 62% 32%, 100% 50%, 62% 68%, 50% 100%, 38% 68%, 0% 50%, 38% 32%)",
-                                            background: "#E8192C", 
-                                            filter: "blur(1px)",
-                                        }}
-                                    />
-                                    
-                                    {/* Outer Star Frame (Red Border) */}
-                                    <div
-                                        className="relative flex items-center justify-center p-[4px] w-full h-full pointer-events-auto"
-                                        style={{
-                                            clipPath: "polygon(50% 0%, 62% 32%, 100% 50%, 62% 68%, 50% 100%, 38% 68%, 0% 50%, 38% 32%)",
-                                            background: "#E8192C",
-                                        }}
-                                    >
-                                        {/* Inner Star - Dark Background */}
-                                        <div
-                                            className="relative flex items-center justify-center w-full h-full"
-                                            style={{
-                                                clipPath: "polygon(50% 0%, 62% 32%, 100% 50%, 62% 68%, 50% 100%, 38% 68%, 0% 50%, 38% 32%)",
-                                                background: "#080808",
-                                            }}
-                                        >
-                                            {/* Logo image (Static - no movement) inverted to show white-and-red symbol on dark background */}
-                                            <img
-                                                src={pyLogo}
-                                                alt="DigitalX"
-                                                className="w-[125px] h-[125px] object-contain"
-                                                style={{ filter: "url(#logo-dark-mode-filter)" }}
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <span
-                                className="text-white font-black text-sm tracking-[0.35em] uppercase mt-2"
-                                style={{ textShadow: "0 0 14px rgba(232,25,44,0.9)" }}
-                                >
-                                DigitalX
-                            </span>
-                        </motion.div>
+                        <SolarSystemHero />
                     </motion.div>
                 </div>
             </div>
