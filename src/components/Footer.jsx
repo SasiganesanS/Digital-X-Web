@@ -131,11 +131,11 @@ const Footer = () => {
               {/* Contact */}
               <div className="space-y-2.5 mb-6">
                 <a
-                  href="tel:+919500690740"
+                  href="tel:+919566880740"
                   className="flex items-center gap-2.5 text-white/35 hover:text-white transition-colors text-sm"
                 >
                   <FaPhone size={12} className="text-[#E8192C]/60 flex-shrink-0" />
-                  +91 95006 90740
+                  +91 9566880740
                 </a>
                 <a
                   href="mailto:praskladigitalx@gmail.com"
@@ -146,7 +146,7 @@ const Footer = () => {
                 </a>
                 <div className="flex items-start gap-2.5 text-white/35 text-sm">
                   <FaLocationDot size={12} className="text-[#E8192C]/60 flex-shrink-0 mt-1" />
-                  <span>3rd Floor, A-Block, KSRCE, KSR College Campus, Tiruchengode, Namakkal - 637215</span>
+                  <span>3rd Floor, A-Block, KSRCE, KSR Campus, Tiruchengode, Namakkal - 637215</span>
                 </div>
               </div>
 
@@ -187,13 +187,20 @@ const Footer = () => {
                 <FooterLink to="/services">SEO</FooterLink>
                 <FooterLink to="/services">SSM</FooterLink>
                 <FooterLink to="/services">ADS</FooterLink>
-                <FooterLink to="/services">Content marketing</FooterLink>
-                <FooterLink to="/services">Email marketing</FooterLink>
+                
                 <FooterLink to="/services">Website design</FooterLink>
-                <FooterLink to="/services">ORM</FooterLink>
-                <FooterLink to="/services">Influencer marketing</FooterLink>
-                <FooterLink to="/services">Analytics and reporting</FooterLink>
+                
+                <FooterLink to="/services">Video Production</FooterLink>
+                <FooterLink to="/services">Content marketing</FooterLink>
+                
                 <FooterLink to="/services">E-commerce marketing</FooterLink>
+                <FooterLink to="/services">Email marketing</FooterLink>
+                
+                <FooterLink to="/services">Influencer marketing</FooterLink>
+                
+                <FooterLink to="/services">Performance Marketing</FooterLink>
+                <FooterLink to="/services">ORM</FooterLink>
+                <FooterLink to="/services">Analytics and reporting</FooterLink>
               </ul>
             </div>
 
@@ -237,20 +244,37 @@ const Footer = () => {
           </div>
 
           {/* ── Bottom bar ── */}
-          <div className="pt-8 border-t border-white/6 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-white/20 text-xs text-center sm:text-left">
-              © {new Date().getFullYear()} Praskla Digital X. All rights reserved.
-            </p>
-            <div className="flex items-center gap-5">
-              <Link to="/terms" className="text-white/20 hover:text-white transition-colors text-xs">
-                Terms of Use
-              </Link>
-              <span className="text-white/10">|</span>
-              <Link to="/privacy" className="text-white/20 hover:text-white transition-colors text-xs">
-                Privacy Policy
-              </Link>
-            </div>
-          </div>
+         <div className="pt-8 border-t border-white/6 flex flex-col sm:flex-row justify-between items-center gap-4">
+  {/* Left */}
+  <p className="text-white/20 text-xs text-center sm:text-left">
+    © {new Date().getFullYear()} Praskla Digital X. All rights reserved.
+  </p>
+
+  {/* Center */}
+  <p className="text-white/20 text-xs flex items-center gap-2">
+    <span className="text-white/10">•</span>
+    <span>A Division of Praskla Technology</span>
+  </p>
+
+  {/* Right */}
+  <div className="flex items-center gap-5">
+    <Link
+      to="/terms"
+      className="text-white/20 hover:text-white transition-colors text-xs"
+    >
+      Terms of Use
+    </Link>
+
+    <span className="text-white/10">|</span>
+
+    <Link
+      to="/privacy"
+      className="text-white/20 hover:text-white transition-colors text-xs"
+    >
+      Privacy Policy
+    </Link>
+  </div>
+</div>
         </div>
       </div>
     </footer>

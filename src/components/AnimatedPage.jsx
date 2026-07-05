@@ -22,8 +22,8 @@ const AnimatedPage = ({ children }) => {
       exit="out"
       variants={pageVariants}
       transition={pageTransition}
-      // Always fill the viewport with the dark bg so no white shows through during fade
-      style={{ minHeight: "100vh", backgroundColor: "#080808" }}
+      // Always fill the viewport with a transparent bg so the universe background shows through
+      style={{ minHeight: "100vh", backgroundColor: "transparent" }}
     >
       {children}
     </motion.div>

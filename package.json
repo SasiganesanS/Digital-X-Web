@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@developer-hub/liquid-glass": "^1.2.3",
+    "@react-three/drei": "^9.122.0",
+    "@react-three/fiber": "^8.18.0",
     "axios": "^1.8.2",
     "framer-motion": "^10.18.0",
     "gsap": "^3.13.0",

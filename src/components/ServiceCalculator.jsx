@@ -3,17 +3,10 @@ import "./ServiceCalculator.css";
 import balajiPortraits from '../assets/tie/Balaji-Portraits.jpg';
 import ibodhiAcademy from '../assets/tie/ibodhi-academy-removebg.png';
 import vilcet from '../assets/tie/VILCET-removebg.png';
-import seoImg from "../assets/services-img/SEO (2).png";
-import smmImg from "../assets/services-img/SMM (2).png";
-import adsImg from "../assets/services-img/ADS (2).png";
-import contentImg from "../assets/services-img/content marketing (2).png";
-import emailImg from "../assets/services-img/Email marketing (2).png";
-import webDesignImg from "../assets/services-img/web desigh.png";
-import ormImg from "../assets/services-img/ORM (2).png";
-import influencerImg from "../assets/services-img/influencer marketing (2).png";
-import analyticsImg from "../assets/services-img/Analytics & report.png";
-import ecommerceImg from "../assets/services-img/Ecommerce marketing (2).png";
+import shipyon from '../assets/tie/Shipyon.png';
+import pt from '../assets/tie/pt.png';
 import ourServicesImg from "../assets/services-img/our services.png";
+import servicesData from "../data/servicesData";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -89,6 +82,39 @@ export default function ServiceCalculator() {
   const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
+  const [highlightedIndex, setHighlightedIndex] = useState(null);
+
+  useEffect(() => {
+    if (location.state?.highlightService) {
+      const targetService = location.state.highlightService;
+      const index = servicesData.findIndex(s => s.title.toLowerCase() === targetService.toLowerCase() || s.title.toLowerCase().includes(targetService.toLowerCase()));
+      if (index !== -1) {
+        // Scroll to the expertise section first
+        setTimeout(() => {
+          const expertiseSection = document.getElementById("expertise");
+          if (expertiseSection) {
+            expertiseSection.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        }, 150);
+
+        // Scroll inside the carousel
+        setTimeout(() => {
+          if (scrollRef.current) {
+            const cardWidth = 380 + 32; // card width + gap
+            scrollRef.current.scrollTo({ left: index * cardWidth, behavior: "smooth" });
+            setActiveIndex(index);
+          }
+          setHighlightedIndex(index);
+        }, 600);
+
+        // Turn off highlight after 4 seconds
+        const timer = setTimeout(() => {
+          setHighlightedIndex(null);
+        }, 4000);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [location.state]);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -159,65 +185,37 @@ export default function ServiceCalculator() {
     setModalPlatform(null);
   };
 
-  const servicesData = [
-    {
-      image: seoImg,
-      title: "SEO",
-      desc: "SEO helps improve the website’s visibility in search engines."
-    },
-    {
-      image: smmImg,
-      title: "SSM",
-      desc: "SSM (Social Media Management) is used to manage and grow social media presence."
-    },
-    {
-      image: adsImg,
-      title: "ADS",
-      desc: "ADS include platforms like Google, Facebook, and Instagram for promotions."
-    },
-    {
-      image: contentImg,
-      title: "Content Marketing",
-      desc: "Content marketing involves creating and sharing valuable content like videos and blogs."
-    },
-    {
-      image: emailImg,
-      title: "Email Marketing",
-      desc: "Email marketing is used to communicate offers, updates, and build customer relationships."
-    },
-    {
-      image: webDesignImg,
-      title: "Website Design",
-      desc: "Website design focuses on creating user-friendly and effective UI/UX websites."
-    },
-    {
-      image: ormImg,
-      title: "ORM",
-      desc: "ORM (Online Reputation Management) helps in managing brand ratings, reviews, and customer feedback."
-    },
-    {
-      image: influencerImg,
-      title: "Influencer Marketing",
-      desc: "Influencer marketing is used to promote the brand through popular personalities."
-    },
-    {
-      image: analyticsImg,
-      title: "Analytics & Reporting",
-      desc: "Analytics and reporting help track performance and improve strategies."
-    },
-    {
-      image: ecommerceImg,
-      title: "E-commerce Marketing",
-      desc: "E-commerce marketing focuses on promoting online stores and increasing sales."
+  // servicesData is imported from ../data/servicesData.js
+
+  const scrollToService = (index) => {
+    if (!scrollRef.current) return;
+
+    const safeIndex = Math.max(0, Math.min(servicesData.length - 1, index));
+    const card = scrollRef.current.children[safeIndex];
+
+    if (card) {
+      const left = card.offsetLeft - 24;
+      scrollRef.current.scrollTo({ left, behavior: "smooth" });
+    } else {
+      scrollRef.current.scrollTo({ left: safeIndex * 360, behavior: "smooth" });
     }
-  ];
+
+    setActiveIndex(safeIndex);
+    setHighlightedIndex(safeIndex);
+  };
 
   const scrollLeft = () => {
-    if (scrollRef.current) scrollRef.current.scrollBy({ left: -350, behavior: "smooth" });
+    if (!scrollRef.current) return;
+    const nextIndex = Math.max(0, activeIndex - 1);
+    scrollToService(nextIndex);
   };
+
   const scrollRight = () => {
-    if (scrollRef.current) scrollRef.current.scrollBy({ left: 350, behavior: "smooth" });
+    if (!scrollRef.current) return;
+    const nextIndex = Math.min(servicesData.length - 1, activeIndex + 1);
+    scrollToService(nextIndex);
   };
+
   const handleScroll = () => {
     if (scrollRef.current) {
       const scrollX = scrollRef.current.scrollLeft;
@@ -226,6 +224,7 @@ export default function ServiceCalculator() {
         Math.round((scrollX / scrollRef.current.scrollWidth) * servicesData.length)
       );
       setActiveIndex(index);
+      setHighlightedIndex(index);
     }
   };
 
@@ -436,7 +435,11 @@ export default function ServiceCalculator() {
                   key={i}
                   className="w-[85vw] sm:w-[320px] md:w-[350px] lg:w-[380px] flex-shrink-0 snap-center"
                 >
-                  <div className="relative bg-gradient-to-br from-[#080808] via-black to-[#E8192C]/20 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-8 pt-10 flex flex-col items-center text-center h-[340px] md:h-[360px] cursor-pointer hover:-translate-y-4 hover:shadow-[0_30px_60px_rgba(232,25,44,0.2)] transition-all duration-700 group border border-white/5 hover:border-[#E8192C]/40 overflow-hidden">
+                  <div className={`relative bg-gradient-to-br from-[#080808] via-black to-[#E8192C]/20 rounded-2xl p-8 pt-10 flex flex-col items-center text-center h-[340px] md:h-[360px] cursor-pointer hover:-translate-y-4 transition-all duration-700 group border overflow-hidden ${
+                    highlightedIndex === i 
+                      ? 'border-[#E8192C] shadow-[0_0_60px_rgba(232,25,44,0.6)] -translate-y-4 scale-[1.03]' 
+                      : 'border-white/5 hover:border-[#E8192C]/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)] hover:shadow-[0_30px_60px_rgba(232,25,44,0.2)]'
+                  }`}>
                     
                     {/* Internal sparkles inside the card */}
                     {[...Array(6)].map((_, si) => (
@@ -462,7 +465,9 @@ export default function ServiceCalculator() {
                     ))}
 
                     {/* Circle Image */}
-                    <div className="relative z-10 w-[110px] h-[110px] mb-8 rounded-full p-1.5 border-[3px] border-[#E8192C]/30 group-hover:border-[#E8192C] transition-all duration-500 flex items-center justify-center -mt-8 bg-black shadow-xl">
+                    <div className={`relative z-10 w-[110px] h-[110px] mb-8 rounded-full p-1.5 border-[3px] transition-all duration-500 flex items-center justify-center -mt-8 bg-black shadow-xl ${
+                      highlightedIndex === i ? 'border-[#E8192C]' : 'border-[#E8192C]/30 group-hover:border-[#E8192C]'
+                    }`}>
                       <img
                         src={service.image}
                         alt={service.title}
@@ -495,19 +500,22 @@ export default function ServiceCalculator() {
 
           {/* Pagination Dots */}
           <div className="flex justify-center gap-3 mt-12 transform -rotate-2">
-            {servicesData.map((_, i) => (
-              <div
-                key={i}
-                className={`transition-all duration-500 rounded-full cursor-pointer ${
-                  activeIndex % servicesData.length === i ? "w-8 h-2.5 bg-white scale-110" : "w-2.5 h-2.5 bg-white/30 hover:bg-white/50"
-                }`}
-                onClick={() => {
-                  if (scrollRef.current) {
-                    scrollRef.current.scrollTo({ left: i * 360, behavior: "smooth" });
-                  }
-                }}
-              />
-            ))}
+            {servicesData.map((_, i) => {
+              const isActive = highlightedIndex === i || activeIndex === i;
+              return (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Go to ${servicesData[i].title} service`}
+                  className={`transition-all duration-500 rounded-full cursor-pointer border border-transparent ${
+                    isActive
+                      ? "w-8 h-2.5 bg-[#E8192C] scale-110 shadow-[0_0_12px_rgba(232,25,44,0.7)]"
+                      : "w-2.5 h-2.5 bg-white/30 hover:bg-white/50"
+                  }`}
+                  onClick={() => scrollToService(i)}
+                />
+              );
+            })}
           </div>
 
         </div>
@@ -635,6 +643,9 @@ export default function ServiceCalculator() {
             <img src={balajiPortraits} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
             <img src={ibodhiAcademy} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
             <img src={vilcet} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
+            
+            <img src={pt} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
+            <img src={shipyon} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
           </div>
         </div>
       </section>

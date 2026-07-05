@@ -30,16 +30,16 @@ const Teams = () => {
     {
       id: 1,
       name: "Pranesh Kumar Baskaran",
-      role: "CEO",
+      role: "Founder",
       image: pranesh,
       bio: "Committed to delivering quality-assured software solutions that generate sustainable value for all stakeholders. With a strategic vision and a focus on long-term growth, the CEO leads the organization by empowering teams, fostering innovation, and steering the company toward enduring success.",
     },
     {
       id: 3,
       name: "Jaillesh Kathirvel",
-      role: "Director - Planning & Operations",
+      role: "Business head & Manager",
       image: Jaillesh,
-      bio: null,
+      bio: "hello",
     },
     {
       id: 7,

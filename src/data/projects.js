@@ -3,6 +3,8 @@ import studiosImg from "../assets/project-cover/3D studios (2).png";
 import nofaImg from "../assets/project-cover/Nofa.png";
 import adhithyaImg from "../assets/project-cover/AF (2).png";
 import leafImg from "../assets/project-cover/Leaf world (3).png";
+import tipyImg from "../assets/project-cover/tipy1.jpeg";
+import skillBridgeImg from "../assets/project-cover/skillBridge1.jpeg";
 
 export const projects = [
   {
@@ -191,5 +193,87 @@ export const projects = [
       { id: 4, metric: "Stronger Brand Identity", text: "Cohesive digital presence reinforced Leaf World's position as a trusted sustainable brand" },
     ],
     techStack: ["WordPress", "Adobe Photoshop", "Adobe Premiere Pro", "Google Analytics"],
+  },
+  {
+    id: 5,
+    slug: "tipy-collective",
+    title: "Tipy Collective",
+    description: "Lifestyle brand for premium streetwear and accessories.",
+    tags: "Brand Identity + Ecommerce Experience",
+    result: "Elevated brand perception and online purchase flow.",
+    image: tipyImg,
+    services: ["Brand Identity", "Ecommerce Website", "Creative Direction"],
+    featuresLabel: "Features",
+    featuresTitle: "Brand Clarity & Commerce Highlights",
+    techLabel: "Technologies",
+    techTitle: "Powered by Brand-First Commerce Tools",
+    techDesc: "A polished digital experience that pairs creative direction with fast ecommerce delivery.",
+    overview: {
+      headline: "Creating a premium lifestyle destination online",
+      paragraph: "Tipy Collective needed a visual identity that matched their bold product line. We rebuilt their ecommerce experience to give customers a seamless, premium shopping journey that reflects the brand’s modern aesthetic.",
+      challenges: [
+        "Inconsistent brand messaging across product lines",
+        "Low conversion rates from product pages",
+        "An outdated checkout experience causing abandoned carts",
+      ],
+      solutions: [
+        "Designed a strong visual system with refined typography and imagery",
+        "Optimized product page layouts for fast scanning and purchase decisions",
+        "Simplified checkout flow and added trust signals across the shopping experience",
+      ],
+    },
+    features: [
+      { id: 1, icon: "🛍️", title: "Premium Ecommerce Flow", description: "An intuitive shopping path designed to convert first-time visitors into buyers." },
+      { id: 2, icon: "🎨", title: "Brand System Refresh", description: "A cohesive identity that made the product range feel elevated and consistent." },
+      { id: 3, icon: "⚡", title: "Fast Visual Load", description: "Optimized imagery and layout for quick browsing across mobile and desktop." },
+      { id: 4, icon: "📦", title: "Conversion-First Product Pages", description: "Clear product storytelling that highlights value and reduces choice friction." },
+    ],
+    results: [
+      { id: 1, metric: "35% Higher Conversion", text: "Boosted purchase rate through a refined product experience." },
+      { id: 2, metric: "2x Faster Checkout", text: "Streamlined transaction flow reduced time to complete a purchase." },
+      { id: 3, metric: "Strong Brand Recall", text: "Users reported the site as more premium and memorable." },
+    ],
+    techStack: ["Shopify", "Figma", "Adobe Photoshop", "Google Analytics"],
+  },
+  {
+    id: 6,
+    slug: "skillbridge-academy",
+    title: "SkillBridge Academy",
+    description: "Online learning platform for skill-building and entrepreneurship.",
+    tags: "Growth Marketing + UX Optimization",
+    result: "Boosted engagement and signups with smarter lead flow.",
+    image: skillBridgeImg,
+    services: ["Growth Marketing", "UX Strategy", "Content Systems"],
+    featuresLabel: "Features",
+    featuresTitle: "Learning Growth & UX Highlights",
+    techLabel: "Technologies",
+    techTitle: "Powered by Learning Experience Tools",
+    techDesc: "A conversion-focused platform built to attract learners and support retention.",
+    overview: {
+      headline: "Building a better pathway from visitor to learner",
+      paragraph: "SkillBridge Academy required a platform that felt accessible and trustworthy. We mapped the user journey from discovery to enrollment and delivered a growth-ready experience for their education audience.",
+      challenges: [
+        "Visitors dropping off before exploring course offerings",
+        "Weak onboarding messaging for new learners",
+        "Low retention from first-time registrants",
+      ],
+      solutions: [
+        "Created a clear course discovery layout with strong CTA placement",
+        "Designed onboarding content that explained value quickly",
+        "Built a continuous engagement system for returning learners.",
+      ],
+    },
+    features: [
+      { id: 1, icon: "📚", title: "Clear Learning Path", description: "Simplified course discovery making it easy to find the right program." },
+      { id: 2, icon: "📈", title: "Growth Funnels", description: "Marketing flows designed to convert visitors into course signups." },
+      { id: 3, icon: "🧭", title: "UX Retention Workflows", description: "Experience design focused on keeping learners engaged after signup." },
+      { id: 4, icon: "💡", title: "Content Strategy", description: "High-value lead magnets and onboarding content that earns trust." },
+    ],
+    results: [
+      { id: 1, metric: "180% More Signups", text: "Improved lead capture and course enrollment through better page design." },
+      { id: 2, metric: "3x Engagement", text: "New UX flows encouraged learners to explore more content." },
+      { id: 3, metric: "Clear Brand Positioning", text: "A more credible presence for the academy in its target market." },
+    ],
+    techStack: ["React", "Typeform", "Google Analytics", "Mailchimp"],
   },
 ];

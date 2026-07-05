@@ -62,7 +62,7 @@ const Navbar = ({ setShowContactForm }) => {
      overflow-hidden group
      ${activeTab === path
       ? "bg-[#E8192C] text-white shadow-[0_0_20px_rgba(232,25,44,0.4)]"
-      : "text-white/80 hover:text-white"
+      : "text-black/80 hover:text-black"
     }`;
 
   return (
@@ -77,7 +77,7 @@ const Navbar = ({ setShowContactForm }) => {
             : "border-white/5 shadow-[0_4px_20px_rgba(0,0,0,0.3)]"
           }`}
         style={{
-          background: "rgba(8, 8, 8, 0.75)",
+          background: "white",
           backdropFilter: "blur(20px) saturate(180%)",
           WebkitBackdropFilter: "blur(20px) saturate(180%)",
         }}
@@ -89,23 +89,29 @@ const Navbar = ({ setShowContactForm }) => {
             {/* Icon mark — transparent background */}
             <div
               className="relative w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center overflow-hidden rounded-lg flex-shrink-0"
-              style={{ background: "transparent", border: "1.5px solid rgba(232,25,44,0.3)", boxShadow: "0 0 12px rgba(232,25,44,0.2)" }}
+              style={{ background: "", border: "1.7px solid rgba(232,25,44,0.3)", boxShadow: "0 0 12px rgba(232,25,44,0.2)" }}
             >
               <img
                 src={Logo}
                 alt="Praskla Digital X"
+                
                 className="w-full h-full object-cover"
-                style={{ filter: "url(#logo-dark-mode-filter)" }}
               />
+        
             </div>
 
             {/* Brand text */}
-            <div className="flex flex-col leading-none min-w-0">
+           <div className="flex flex-col justify-center min-w-0 pl-1">
               <span
-                className="font-black text-white text-[11px] sm:text-[13px] tracking-tight transition-all duration-300 group-hover:tracking-wide whitespace-nowrap overflow-hidden text-ellipsis"
+                className="font-black text- text-[11px] sm:text-[13px] tracking-tight transition-all duration-300 group-hover:tracking-wide whitespace-nowrap overflow-hidden text-ellipsis"
               >
                 Praskla Digital <span className="text-[#E8192C]">X</span>
               </span>
+              <span
+  className="mt-0.2 text-[8px] sm:text-[9px] text-gray-600 font-light tracking-[1.5px] uppercase whitespace-nowrap"
+>
+  A Mindful Marketing AND Production Firm
+</span>
             </div>
           </Link>
 

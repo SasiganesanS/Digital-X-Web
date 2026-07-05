@@ -2,70 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./Services.css";
+import servicesData from "../data/servicesData";
 
-import seoImg from "../assets/services-img/SEO (2).png";
-import smmImg from "../assets/services-img/SMM (2).png";
-import adsImg from "../assets/services-img/ADS (2).png";
-import contentImg from "../assets/services-img/content marketing (2).png";
-import emailImg from "../assets/services-img/Email marketing (2).png";
-import webDesignImg from "../assets/services-img/web desigh.png";
-import ormImg from "../assets/services-img/ORM (2).png";
-import influencerImg from "../assets/services-img/influencer marketing (2).png";
-import analyticsImg from "../assets/services-img/Analytics & report.png";
-import ecommerceImg from "../assets/services-img/Ecommerce marketing (2).png";
-
-const servicesData = [
-  {
-    image: seoImg,
-    title: "SEO",
-    desc: "SEO helps improve the website’s visibility in search engines.",
-  },
-  {
-    image: smmImg,
-    title: "SSM",
-    desc: "SSM (Social Media Management) is used to manage and grow social media presence.",
-  },
-  {
-    image: adsImg,
-    title: "ADS",
-    desc: "ADS include platforms like Google, Facebook, and Instagram for promotions.",
-  },
-  {
-    image: contentImg,
-    title: "Content Marketing",
-    desc: "Content marketing involves creating and sharing valuable content like videos and blogs.",
-  },
-  {
-    image: emailImg,
-    title: "Email Marketing",
-    desc: "Email marketing is used to communicate offers, updates, and build customer relationships.",
-  },
-  {
-    image: webDesignImg,
-    title: "Website Design",
-    desc: "Website design focuses on creating user-friendly and effective UI/UX websites.",
-  },
-  {
-    image: ormImg,
-    title: "ORM",
-    desc: "ORM (Online Reputation Management) helps in managing brand ratings, reviews, and customer feedback.",
-  },
-  {
-    image: influencerImg,
-    title: "Influencer Marketing",
-    desc: "Influencer marketing is used to promote the brand through popular personalities.",
-  },
-  {
-    image: analyticsImg,
-    title: "Analytics & Reporting",
-    desc: "Analytics and reporting help track performance and improve strategies.",
-  },
-  {
-    image: ecommerceImg,
-    title: "E-commerce Marketing",
-    desc: "E-commerce marketing focuses on promoting online stores and increasing sales.",
-  },
-];
 
 /** Stable sparkle positions (avoid Math.random() each render) */
 const SECTION_SPARKLES = Array.from({ length: 18 }, (_, i) => ({

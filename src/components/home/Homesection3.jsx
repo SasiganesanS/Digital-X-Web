@@ -147,7 +147,7 @@ const AboutSection = () => {
                         <motion.div variants={fadeUp} className="relative">
                             <div className="absolute -left-6 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#E8192C] to-transparent opacity-50 rounded-full" />
                             <p className="text-white/70 text-lg md:text-xl leading-relaxed font-medium">
-                                DigitalX is a mindful marketing firm built on the belief that true growth
+                               PRASKLA Digital X is a mindful marketing firm built on the belief that true growth
                                 comes from <span className="text-white font-bold">clarity, creativity, and collaboration</span>.
                                 We partner with businesses and personal brands to transform their ideas into
                                 measurable digital success.

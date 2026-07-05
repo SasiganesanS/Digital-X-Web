@@ -36,6 +36,7 @@ import ProjectCaseStudy from "./components/ProjectCaseStudy";
 import ServiceCalculator from "./components/ServiceCalculator";
 // MERGED: Added new imports from development
 import PlatformPlanPage from "./components/PlatformPlanPage";
+import CinematicUniverse from "./components/CinematicUniverse";
 
 // Test Home Components
 import Hero from "./components/test-home/Hero";
@@ -291,7 +292,9 @@ const MainLayout = () => {
 
   // Regular pages: with navbar and footer
   return (
-    <div style={{ backgroundColor: "#080808", minHeight: "100vh", overflowX: "hidden", position: "relative", width: "100%" }}>
+    <div style={{ minHeight: "100vh", overflowX: "hidden", position: "relative", width: "100%" }}>
+      <CinematicUniverse />
+      <div style={{ position: "relative", zIndex: 1 }}>
       {/* SVG Filter for Logo Dark Mode Optimization */}
       <svg style={{ position: "absolute", width: 0, height: 0, pointerEvents: "none" }} aria-hidden="true">
         <filter id="logo-dark-mode-filter">
@@ -313,6 +316,7 @@ const MainLayout = () => {
       />
       <AppRoutes />
       <Footer setShowContactForm={setShowContactForm} />
+      </div>
     </div>
   );
 };
