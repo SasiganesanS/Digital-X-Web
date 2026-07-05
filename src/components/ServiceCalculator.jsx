@@ -3,7 +3,7 @@ import "./ServiceCalculator.css";
 import balajiPortraits from '../assets/tie/Balaji-Portraits.jpg';
 import ibodhiAcademy from '../assets/tie/ibodhi-academy-removebg.png';
 import vilcet from '../assets/tie/VILCET-removebg.png';
-import shipyon from '../assets/tie/shipyon.png';
+import shipyon from '../assets/tie/Shipyon.png';
 import pt from '../assets/tie/pt.png';
 import ourServicesImg from "../assets/services-img/our services.png";
 import servicesData from "../data/servicesData";
