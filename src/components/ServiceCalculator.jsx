@@ -3,9 +3,8 @@ import "./ServiceCalculator.css";
 import balajiPortraits from '../assets/tie/Balaji-Portraits.jpg';
 import ibodhiAcademy from '../assets/tie/ibodhi-academy-removebg.png';
 import vilcet from '../assets/tie/VILCET-removebg.png';
-
+import shipyon from '../assets/tie/shipyon.png';
 import pt from '../assets/tie/pt.png';
-import sy from '../assets/tie/shipyon.png';
 import ourServicesImg from "../assets/services-img/our services.png";
 import servicesData from "../data/servicesData";
 import { motion, AnimatePresence } from "framer-motion";
@@ -646,8 +645,7 @@ export default function ServiceCalculator() {
             <img src={vilcet} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
             
             <img src={pt} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
-            
-            <img src={sy} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
+            <img src={shipyon} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
           </div>
         </div>
       </section>
