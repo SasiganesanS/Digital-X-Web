@@ -5,7 +5,7 @@ import ibodhiAcademy from '../assets/tie/ibodhi-academy-removebg.png';
 import vilcet from '../assets/tie/VILCET-removebg.png';
 
 import pt from '../assets/tie/pt.png';
-import shipyon from '../assets/tie/Shipyon.png';
+import sy from '../assets/tie/shipyon.png';
 import ourServicesImg from "../assets/services-img/our services.png";
 import servicesData from "../data/servicesData";
 import { motion, AnimatePresence } from "framer-motion";
@@ -647,7 +647,7 @@ export default function ServiceCalculator() {
             
             <img src={pt} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
             
-            <img src={shipyon} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
+            <img src={sy} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
           </div>
         </div>
       </section>
