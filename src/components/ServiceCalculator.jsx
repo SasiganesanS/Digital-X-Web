@@ -5,9 +5,15 @@ import ibodhiAcademy from '../assets/tie/ibodhi-academy-removebg.png';
 import vilcet from '../assets/tie/VILCET-removebg.png';
 import shipyon from '../assets/tie/Shipyon.png';
 import pt from '../assets/tie/pt.png';
-import ourServicesImg from "../assets/services-img/our services.png";
+import ourServicesImg from "../assets/services-img/digital.jpeg";
 import servicesData from "../data/servicesData";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useAnimationFrame,
+  animate,
+} from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
   FaTimesCircle,
@@ -69,6 +75,19 @@ const PLATFORMS = platforms.map((platform) => ({
   })),
 }));
 
+// Duplicated service list so the marquee track can loop seamlessly
+const LOOPED_SERVICES = [...servicesData, ...servicesData];
+
+// Partner logos for the auto-scrolling "Ecosystem Partners" strip
+const PARTNERS = [
+  { src: balajiPortraits, alt: "Balaji Portraits" },
+  { src: ibodhiAcademy, alt: "iBodhi Academy" },
+  { src: vilcet, alt: "VILCET" },
+  { src: pt, alt: "Praskla Technology" },
+  { src: shipyon, alt: "Shipyon" },
+];
+const LOOPED_PARTNERS = [...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS];
+
 export default function ServiceCalculator() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -77,12 +96,73 @@ export default function ServiceCalculator() {
   const [modalPlatform, setModalPlatform] = useState(null);
   const [selectedPlanInModal, setSelectedPlanInModal] = useState(null);
   const [showContactForm, setShowContactForm] = useState(false);
-  const [activeIndex, setActiveIndex] = useState(0);
-  const scrollRef = useRef(null);
   const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
-  const [highlightedIndex, setHighlightedIndex] = useState(null);
+
+  // ── Marquee state ──
+  const trackRef = useRef(null);
+  const x = useMotionValue(0);
+  const hoverRef = useRef(false);
+  const interactingRef = useRef(false);
+  const resumeTimeoutRef = useRef(null);
+  const cardStepRef = useRef(360);
+  const halfWidthRef = useRef(360 * servicesData.length);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Measure actual rendered card width + gap so navigation lands exactly on a card,
+  // no matter the responsive card size.
+  useEffect(() => {
+    const measure = () => {
+      const track = trackRef.current;
+      if (!track || track.children.length < 2) return;
+      const first = track.children[0];
+      const second = track.children[1];
+      const step = second.offsetLeft - first.offsetLeft;
+      if (step > 0) {
+        cardStepRef.current = step;
+        halfWidthRef.current = step * servicesData.length;
+      }
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, []);
+
+  // Continuous auto-scroll — pauses while hovered or while the user is
+  // actively interacting via an arrow/dot click.
+  useAnimationFrame((t, delta) => {
+    if (hoverRef.current || interactingRef.current) return;
+    const speed = 0.045; // px per ms
+    let next = x.get() - speed * delta;
+    const half = halfWidthRef.current || 1;
+    if (next <= -half) next += half;
+    x.set(next);
+
+    const step = cardStepRef.current || 1;
+    const rawIndex = Math.round(-next / step);
+    const normalized = ((rawIndex % servicesData.length) + servicesData.length) % servicesData.length;
+    setActiveIndex((prev) => (prev === normalized ? prev : normalized));
+  });
+
+  const pauseThenResume = (delay = 3000) => {
+    interactingRef.current = true;
+    clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => {
+      interactingRef.current = false;
+    }, delay);
+  };
+
+  const goToIndex = (index, resumeDelay = 3000) => {
+    const normalized = ((index % servicesData.length) + servicesData.length) % servicesData.length;
+    const target = -(normalized * cardStepRef.current);
+    pauseThenResume(resumeDelay);
+    animate(x, target, { duration: 0.6, ease: "easeInOut" });
+    setActiveIndex(normalized);
+  };
+
+  const goNext = () => goToIndex(activeIndex + 1);
+  const goPrev = () => goToIndex(activeIndex - 1);
 
   useEffect(() => {
     if (location.state?.highlightService) {
@@ -97,23 +177,13 @@ export default function ServiceCalculator() {
           }
         }, 150);
 
-        // Scroll inside the carousel
+        // Jump the marquee to that card and hold it a little longer than usual
         setTimeout(() => {
-          if (scrollRef.current) {
-            const cardWidth = 380 + 32; // card width + gap
-            scrollRef.current.scrollTo({ left: index * cardWidth, behavior: "smooth" });
-            setActiveIndex(index);
-          }
-          setHighlightedIndex(index);
+          goToIndex(index, 4500);
         }, 600);
-
-        // Turn off highlight after 4 seconds
-        const timer = setTimeout(() => {
-          setHighlightedIndex(null);
-        }, 4000);
-        return () => clearTimeout(timer);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.state]);
 
   useEffect(() => {
@@ -186,47 +256,6 @@ export default function ServiceCalculator() {
   };
 
   // servicesData is imported from ../data/servicesData.js
-
-  const scrollToService = (index) => {
-    if (!scrollRef.current) return;
-
-    const safeIndex = Math.max(0, Math.min(servicesData.length - 1, index));
-    const card = scrollRef.current.children[safeIndex];
-
-    if (card) {
-      const left = card.offsetLeft - 24;
-      scrollRef.current.scrollTo({ left, behavior: "smooth" });
-    } else {
-      scrollRef.current.scrollTo({ left: safeIndex * 360, behavior: "smooth" });
-    }
-
-    setActiveIndex(safeIndex);
-    setHighlightedIndex(safeIndex);
-  };
-
-  const scrollLeft = () => {
-    if (!scrollRef.current) return;
-    const nextIndex = Math.max(0, activeIndex - 1);
-    scrollToService(nextIndex);
-  };
-
-  const scrollRight = () => {
-    if (!scrollRef.current) return;
-    const nextIndex = Math.min(servicesData.length - 1, activeIndex + 1);
-    scrollToService(nextIndex);
-  };
-
-  const handleScroll = () => {
-    if (scrollRef.current) {
-      const scrollX = scrollRef.current.scrollLeft;
-      const index = Math.min(
-        servicesData.length - 1,
-        Math.round((scrollX / scrollRef.current.scrollWidth) * servicesData.length)
-      );
-      setActiveIndex(index);
-      setHighlightedIndex(index);
-    }
-  };
 
   const total = useMemo(() => {
     let sum = 5000;
@@ -371,7 +400,7 @@ export default function ServiceCalculator() {
         </div>
       </section>
 
-      {/* ── Infinite Carousel Slider Section ── */}
+      {/* ── Auto-Scrolling Marquee Section with manual arrow/dot control ── */}
       <section id="expertise" className="relative w-full px-[5%] py-20 pb-32 overflow-hidden bg-[#080808]">
         {/* Tilted Container with rich red/black mix and sparkles */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#080808] via-[#1a0000] to-[#250000] -rotate-3 scale-[1.2] shadow-2xl pointer-events-none" />
@@ -414,94 +443,107 @@ export default function ServiceCalculator() {
           </div>
 
           <div className="relative w-full flex items-center justify-center transform -rotate-2">
-            
-            {/* Left Button */}
+
+            {/* Left Button — nudges to the previous card, pauses auto-scroll briefly */}
             <button
-              onClick={scrollLeft}
+              onClick={goPrev}
+              aria-label="Previous service"
               className="absolute -left-2 md:-left-12 lg:-left-16 z-30 w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-[0_0_20px_rgba(232,25,44,0.3)] hover:scale-110 transition-transform active:scale-95"
             >
               <ChevronLeft className="w-6 h-6" />
             </button>
 
-            {/* Slider Track Container */}
-            <div 
-              ref={scrollRef}
-              className="flex overflow-x-auto gap-6 sm:gap-8 overflow-y-hidden snap-x snap-mandatory px-4 md:px-10 py-10 w-full no-scrollbar"
-              onScroll={handleScroll}
-              style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-            >
-              {servicesData.map((service, i) => (
-                <div
-                  key={i}
-                  className="w-[85vw] sm:w-[320px] md:w-[350px] lg:w-[380px] flex-shrink-0 snap-center"
-                >
-                  <div className={`relative bg-gradient-to-br from-[#080808] via-black to-[#E8192C]/20 rounded-2xl p-8 pt-10 flex flex-col items-center text-center h-[340px] md:h-[360px] cursor-pointer hover:-translate-y-4 transition-all duration-700 group border overflow-hidden ${
-                    highlightedIndex === i 
-                      ? 'border-[#E8192C] shadow-[0_0_60px_rgba(232,25,44,0.6)] -translate-y-4 scale-[1.03]' 
-                      : 'border-white/5 hover:border-[#E8192C]/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)] hover:shadow-[0_30px_60px_rgba(232,25,44,0.2)]'
-                  }`}>
-                    
-                    {/* Internal sparkles inside the card */}
-                    {[...Array(6)].map((_, si) => (
-                      <motion.div
-                        key={`card-sparkle-${si}`}
-                        className="absolute w-1 h-1 bg-white rounded-full pointer-events-none z-0"
-                        style={{
-                          top: `${Math.random() * 100}%`,
-                          left: `${Math.random() * 100}%`,
-                          boxShadow: "0 0 10px 2px rgba(232,25,44,0.6)",
-                        }}
-                        animate={{
-                          opacity: [0, 0.8, 0],
-                          scale: [0.5, 1.2, 0.5],
-                        }}
-                        transition={{
-                          duration: 2 + Math.random() * 2,
-                          repeat: Infinity,
-                          delay: Math.random() * 3,
-                          ease: "easeInOut"
-                        }}
-                      />
-                    ))}
+            {/* Marquee viewport */}
+            <div className="relative w-full overflow-hidden">
+              {/* Left/right fade masks so cards don't hard-cut at the edges */}
+              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-r from-[#080808] to-transparent" />
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-l from-[#080808] to-transparent" />
 
-                    {/* Circle Image */}
-                    <div className={`relative z-10 w-[110px] h-[110px] mb-8 rounded-full p-1.5 border-[3px] transition-all duration-500 flex items-center justify-center -mt-8 bg-black shadow-xl ${
-                      highlightedIndex === i ? 'border-[#E8192C]' : 'border-[#E8192C]/30 group-hover:border-[#E8192C]'
-                    }`}>
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="w-full h-full object-cover rounded-full"
-                      />
+              <motion.div
+                ref={trackRef}
+                className="flex gap-6 sm:gap-8 py-10"
+                style={{ x, width: "max-content" }}
+                onMouseEnter={() => { hoverRef.current = true; }}
+                onMouseLeave={() => { hoverRef.current = false; }}
+              >
+                {LOOPED_SERVICES.map((service, i) => {
+                  const originalIndex = i % servicesData.length;
+                  const isHighlighted = activeIndex === originalIndex;
+                  return (
+                    <div
+                      key={`${service.title}-${i}`}
+                      className="w-[85vw] sm:w-[320px] md:w-[350px] lg:w-[380px] flex-shrink-0"
+                    >
+                      <div className={`relative bg-gradient-to-br from-[#080808] via-black to-[#E8192C]/20 rounded-2xl p-8 pt-10 flex flex-col items-center text-center h-[340px] md:h-[360px] cursor-pointer hover:-translate-y-4 transition-all duration-700 group border overflow-hidden ${
+                        isHighlighted
+                          ? 'border-[#E8192C] shadow-[0_0_60px_rgba(232,25,44,0.6)] -translate-y-4 scale-[1.03]'
+                          : 'border-white/5 hover:border-[#E8192C]/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)] hover:shadow-[0_30px_60px_rgba(232,25,44,0.2)]'
+                      }`}>
+                        
+                        {/* Internal sparkles inside the card */}
+                        {[...Array(6)].map((_, si) => (
+                          <motion.div
+                            key={`card-sparkle-${i}-${si}`}
+                            className="absolute w-1 h-1 bg-white rounded-full pointer-events-none z-0"
+                            style={{
+                              top: `${Math.random() * 100}%`,
+                              left: `${Math.random() * 100}%`,
+                              boxShadow: "0 0 10px 2px rgba(232,25,44,0.6)",
+                            }}
+                            animate={{
+                              opacity: [0, 0.8, 0],
+                              scale: [0.5, 1.2, 0.5],
+                            }}
+                            transition={{
+                              duration: 2 + Math.random() * 2,
+                              repeat: Infinity,
+                              delay: Math.random() * 3,
+                              ease: "easeInOut"
+                            }}
+                          />
+                        ))}
+
+                        {/* Circle Image */}
+                        <div className={`relative z-10 w-[110px] h-[110px] mb-8 rounded-full p-1.5 border-[3px] transition-all duration-500 flex items-center justify-center -mt-8 bg-black shadow-xl ${
+                          isHighlighted ? 'border-[#E8192C]' : 'border-[#E8192C]/30 group-hover:border-[#E8192C]'
+                        }`}>
+                          <img
+                            src={service.image}
+                            alt={service.title}
+                            className="w-full h-full object-cover rounded-full"
+                          />
+                        </div>
+
+                        <h3 className="relative z-10 text-xl md:text-2xl font-black text-white mb-3 tracking-tight group-hover:text-[#E8192C] transition-colors duration-300">
+                          {service.title}
+                        </h3>
+                        <p className="relative z-10 text-white/50 font-medium text-sm md:text-base leading-relaxed px-2 group-hover:text-white/70 transition-colors duration-300">
+                          {service.desc}
+                        </p>
+
+                        {/* Bottom accent glow */}
+                        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E8192C]/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                      </div>
                     </div>
-
-                    <h3 className="relative z-10 text-xl md:text-2xl font-black text-white mb-3 tracking-tight group-hover:text-[#E8192C] transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p className="relative z-10 text-white/50 font-medium text-sm md:text-base leading-relaxed px-2 group-hover:text-white/70 transition-colors duration-300">
-                      {service.desc}
-                    </p>
-
-                    {/* Bottom accent glow */}
-                    <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E8192C]/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
-                  </div>
-                </div>
-              ))}
+                  );
+                })}
+              </motion.div>
             </div>
 
-            {/* Right Button */}
+            {/* Right Button — nudges to the next card, pauses auto-scroll briefly */}
             <button
-              onClick={scrollRight}
+              onClick={goNext}
+              aria-label="Next service"
               className="absolute -right-2 md:-right-12 lg:-right-16 z-30 w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-[0_0_20px_rgba(232,25,44,0.3)] hover:scale-110 transition-transform active:scale-95"
             >
               <ChevronRight className="w-6 h-6" />
             </button>
           </div>
 
-          {/* Pagination Dots */}
+          {/* Pagination Dots — click to jump straight to a service */}
           <div className="flex justify-center gap-3 mt-12 transform -rotate-2">
             {servicesData.map((_, i) => {
-              const isActive = highlightedIndex === i || activeIndex === i;
+              const isActive = activeIndex === i;
               return (
                 <button
                   key={i}
@@ -512,7 +554,7 @@ export default function ServiceCalculator() {
                       ? "w-8 h-2.5 bg-[#E8192C] scale-110 shadow-[0_0_12px_rgba(232,25,44,0.7)]"
                       : "w-2.5 h-2.5 bg-white/30 hover:bg-white/50"
                   }`}
-                  onClick={() => scrollToService(i)}
+                  onClick={() => goToIndex(i)}
                 />
               );
             })}
@@ -636,16 +678,33 @@ export default function ServiceCalculator() {
       </div>
 
       {/* ── Partners ── */}
-      <section className="py-24 border-t border-white/5 bg-white/[0.01]">
+      <section className="py-24 border-t border-white/5 bg-white/[0.01] overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-center text-white/50 font-black uppercase tracking-[0.4em] text-xs mb-16">Ecosystem Partners</h2>
-          <div className="flex flex-wrap justify-center items-center gap-12 md:gap-24 opacity-80 hover:opacity-100 transition-all duration-700">
-            <img src={balajiPortraits} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
-            <img src={ibodhiAcademy} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
-            <img src={vilcet} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
-            
-            <img src={pt} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
-            <img src={shipyon} alt="Partner" className="h-10 md:h-16 w-auto object-contain hover:scale-110 transition-transform" />
+        </div>
+
+        <div className="relative w-full overflow-hidden">
+          {/* Fade masks so logos don't hard-cut at the edges */}
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-32 z-20 bg-gradient-to-r from-[#080808] to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-32 z-20 bg-gradient-to-l from-[#080808] to-transparent" />
+
+          <div className="flex partners-marquee-track w-max py-2">
+            {LOOPED_PARTNERS.map((partner, i) => (
+              <div
+                key={`${partner.alt}-${i}`}
+                className="flex-shrink-0 mr-6 md:mr-8 w-[160px] h-[96px] md:w-[190px] md:h-[110px] rounded-2xl
+                           bg-gradient-to-br from-[#E8192C]/10 via-white/[0.04] to-transparent
+                           border border-white/10 flex items-center justify-center p-5
+                           hover:border-[#E8192C]/40 hover:shadow-[0_10px_35px_rgba(232,25,44,0.18)]
+                           hover:scale-105 transition-all duration-500"
+              >
+                <img
+                  src={partner.src}
+                  alt={partner.alt}
+                  className="max-w-full max-h-full w-auto h-auto object-contain"
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -679,6 +738,21 @@ export default function ServiceCalculator() {
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
           background: rgba(232, 25, 44, 0.4);
+        }
+
+        @keyframes partners-scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-25%);
+          }
+        }
+        .partners-marquee-track {
+          animation: partners-scroll 28s linear infinite;
+        }
+        .partners-marquee-track:hover {
+          animation-play-state: paused;
         }
       `}</style>
     </div>

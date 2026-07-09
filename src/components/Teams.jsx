@@ -3,7 +3,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import pranesh from "../assets/team/Pranesh.png";
 import Jaillesh from "../assets/team/Jaillesh-Kathirvel.png";
-import naveen from "../assets/team/Naveen.png";
+import naveen from "../assets/team/Naveen.webp";
 import sathya from "../assets/team/Satya.jpg";
 import Bright from "../assets/team/Bright.png";
 import janarathanan from "../assets/team/Janarthanan.png";
@@ -20,8 +20,8 @@ const glitterParticles = [
   { top: "15%", left: "45%", delay: 0.6 },
 ];
 
-// Only these 4 members show a bio popup
-const BIO_MEMBERS = new Set([1, 21, 22, 2]);
+// Only these members show a bio popup — must match the `id` used in teamMembers below
+const BIO_MEMBERS = new Set([1, 3, 7]);
 
 const Teams = () => {
   const [selectedMember, setSelectedMember] = useState(null);
@@ -39,14 +39,14 @@ const Teams = () => {
       name: "Jaillesh Kathirvel",
       role: "Business head & Manager",
       image: Jaillesh,
-      bio: "hello",
+      bio: "Drives business growth and client partnerships with a sharp eye for opportunity and execution. As Business Head & Manager, Jaillesh bridges strategy and day-to-day operations, ensuring every engagement is handled with precision, accountability, and a genuine commitment to client success.",
     },
     {
       id: 7,
       name: "Naveen",
       role: "Team Lead",
       image: naveen,
-      bio: null,
+      bio: "Leads the team with a hands-on approach, balancing creative direction with operational discipline. Naveen ensures projects move smoothly from concept to delivery, mentoring the team while keeping quality and deadlines front and center.",
     },
   ];
 

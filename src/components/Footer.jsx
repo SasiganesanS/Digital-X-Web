@@ -12,12 +12,14 @@ import { FaLocationDot, FaPhone, FaArrowRight } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 
 /* ─── Helper: nav link ─── */
-const FooterLink = ({ to, children, onClick }) => (
+const FooterLink = ({ to, children, onClick, nowrap }) => (
   <li>
     <Link
       to={to}
       onClick={onClick}
-      className="text-white/40 hover:text-white transition-colors duration-200 text-sm"
+      className={`text-white/40 hover:text-white transition-colors duration-200 text-sm ${
+        nowrap ? "whitespace-nowrap" : ""
+      }`}
     >
       {children}
     </Link>
@@ -25,16 +27,29 @@ const FooterLink = ({ to, children, onClick }) => (
 );
 
 /* ─── Helper: social icon ─── */
-const SocialIcon = ({ href, label, children }) => (
+const SOCIAL_VARIANTS = {
+  instagram:
+    "hover:border-transparent hover:text-white hover:bg-gradient-to-tr hover:from-[#feda75] hover:via-[#d62976] hover:to-[#4f5bd5]",
+  whatsapp:
+    "hover:border-[#25D366] hover:text-white hover:bg-[#25D366]",
+  facebook:
+    "hover:border-[#1877F2] hover:text-white hover:bg-[#1877F2]",
+  twitter:
+    "hover:border-black hover:text-white hover:bg-black",
+  linkedin:
+    "hover:border-[#0A66C2] hover:text-white hover:bg-[#0A66C2]",
+};
+
+const SocialIcon = ({ href, label, children, variant }) => (
   <a
     href={href}
     target="_blank"
     rel="noopener noreferrer"
     aria-label={label}
-    className="w-9 h-9 rounded-full border border-white/8 bg-white/4
+    className={`w-9 h-9 rounded-full border border-white/8 bg-white/4
                flex items-center justify-center text-white/40
-               hover:text-white hover:border-[#E8192C]/50 hover:bg-[#E8192C]/10
-               transition-all duration-300 hover:scale-110"
+               transition-all duration-300 hover:scale-110
+               ${SOCIAL_VARIANTS[variant] || "hover:text-white hover:border-[#E8192C]/50 hover:bg-[#E8192C]/10"}`}
   >
     {children}
   </a>
@@ -100,39 +115,64 @@ const Footer = () => {
           ))}
 
           {/* ── Main grid ── */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-14">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_0.7fr_1.6fr_0.9fr] gap-10 lg:gap-8 mb-14">
 
             {/* Col 1 — Brand */}
-            <div className="flex flex-col lg:col-span-1">
-              {/* Logo / wordmark */}
-              <Link
-                to="/"
-                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                className="flex items-center gap-2.5 mb-5 group w-fit"
-              >
-                <div className="relative w-10 h-10 flex items-center justify-center overflow-hidden rounded-lg">
-                  <img src={Logo} alt="Praskla Digital X" className="w-full h-full object-cover" style={{ filter: "url(#logo-dark-mode-filter)" }} />
-                </div>
-                <div className="flex flex-col leading-none gap-1.5">
-                  <span className="font-black text-white text-base tracking-tight">
-                    Praskla Digital <span className="text-[#E8192C]">X</span>
-                  </span>
-                  <span className="text-white/20 text-[9px] font-medium tracking-[0.15em] uppercase">
-                    A Mindful Marketing and Production Firm
-                  </span>
-                </div>
-              </Link>
+            <div className="flex flex-col lg:col-span-1 ">
+              {/* Logo + wordmark + tagline + division, all beside the logo */}
+              <div className="flex items-center gap-3 mb-5">
+  {/* Logo */}
+  <Link
+    to="/"
+    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    className="group"
+  >
+    <div
+      className="relative w-20 h-20 flex-shrink-0 rounded-xl bg-white p-1.5 overflow-hidden
+                 ring-1 ring-white/10 shadow-[0_4px_14px_rgba(232,25,44,0.15)]
+                 transition-all duration-500 ease-out
+                 group-hover:scale-110 group-hover:ring-[#E8192C]/50
+                 group-hover:shadow-[0_6px_24px_rgba(232,25,44,0.45)]"
+    >
+      <img
+        src={Logo}
+        alt="Praskla Digital X"
+        className="w-full h-full object-contain transition-transform duration-500 ease-out group-hover:rotate-[10deg]"
+      />
+    </div>
+  </Link>
 
-              <p className="text-white/35 text-sm leading-relaxed mb-6">
-                A mindful marketing firm empowering brands through clarity, creativity,
-                and performance-driven growth.
-              </p>
+  {/* Text */}
+  <div className="flex flex-col leading-tight gap-1">
+    <Link
+      to="/"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      className="group"
+    >
+      <span className="font-black text-white text-base tracking-tight transition-colors duration-300">
+        Praskla Digital <span className="text-[#E8192C]">X</span>
+      </span>
 
+      <span className="block text-white/25 text-[9px] font-medium tracking-[0.15em]">
+        A Mindful Marketing and Production Firm
+      </span>
+    </Link>
+
+    <div
+      onClick={() => window.open("https://www.prasklatechnology.com/", "_blank")}
+      className="text-[#E8192C] text-[9px] font-medium cursor-pointer hover:text-red-400 transition-colors duration-300"
+    >
+      A Division of Praskla Technology
+    </div>
+  </div>
+</div>
+
+             
               {/* Contact */}
-              <div className="space-y-2.5 mb-6">
+              <div className="space-y-3.5 mb-8">
                 <a
                   href="tel:+919566880740"
-                  className="flex items-center gap-2.5 text-white/35 hover:text-white transition-colors text-sm"
+                  className="flex items-center gap-2.5 text-white/35 hover:text-white transition-colors text-sm mt-4"
                 >
                   <FaPhone size={12} className="text-[#E8192C]/60 flex-shrink-0" />
                   +91 9566880740
@@ -142,23 +182,23 @@ const Footer = () => {
                   className="flex items-center gap-2.5 text-white/35 hover:text-white transition-colors text-sm"
                 >
                   <MdEmail size={13} className="text-[#E8192C]/60 flex-shrink-0" />
-                  praskladigitalx@gmail.com
+                  marketing@prasklatechnology.com
                 </a>
                 <div className="flex items-start gap-2.5 text-white/35 text-sm">
                   <FaLocationDot size={12} className="text-[#E8192C]/60 flex-shrink-0 mt-1" />
-                  <span>3rd Floor, A-Block, KSRCE, KSR Campus, Tiruchengode, Namakkal - 637215</span>
+                  <span>3rd Floor, A-Block, KSRCE, KSR College Campus, Tiruchengode, Namakkal - 637215</span>
                 </div>
               </div>
 
               {/* Socials */}
               <div className="flex gap-2.5">
-                <SocialIcon href="https://www.instagram.com/py.digitalx/" label="Instagram">
+                <SocialIcon href="https://www.instagram.com/py.digitalx/" label="Instagram" variant="instagram">
                   <FaInstagram size={15} />
                 </SocialIcon>
-                <SocialIcon href="https://wa.me/9500690740" label="WhatsApp">
+                <SocialIcon href="https://wa.me/9566880740" label="WhatsApp" variant="whatsapp">
                   <FaWhatsapp size={15} />
                 </SocialIcon>
-                <SocialIcon href="https://facebook.com/praskla" label="Facebook">
+                <SocialIcon href="https://facebook.com/praskla" label="Facebook" variant="facebook">
                   <FaFacebookF size={15} />
                 </SocialIcon>
               </div>
@@ -166,7 +206,7 @@ const Footer = () => {
 
             {/* Col 2 — Quick links */}
             <div>
-              <h4 className="text-white font-semibold text-sm tracking-wide mb-5 uppercase">
+              <h4 className="flex items-center h-10 mb-5 text-white font-semibold text-sm tracking-wide uppercase">
                 Quick Links
               </h4>
               <ul className="space-y-3">
@@ -180,33 +220,32 @@ const Footer = () => {
 
             {/* Col 3 — Services */}
             <div>
-              <h4 className="text-white font-semibold text-sm tracking-wide mb-5 uppercase">
+              <h4 className="flex items-center justify-center h-10 mb-5 text-white font-semibold text-sm tracking-wide uppercase">
                 Services
               </h4>
-              <ul className="space-y-3">
-                <FooterLink to="/services">SEO</FooterLink>
-                <FooterLink to="/services">SSM</FooterLink>
-                <FooterLink to="/services">ADS</FooterLink>
-                
-                <FooterLink to="/services">Website design</FooterLink>
-                
-                <FooterLink to="/services">Video Production</FooterLink>
-                <FooterLink to="/services">Content marketing</FooterLink>
-                
-                <FooterLink to="/services">E-commerce marketing</FooterLink>
-                <FooterLink to="/services">Email marketing</FooterLink>
-                
-                <FooterLink to="/services">Influencer marketing</FooterLink>
-                
-                <FooterLink to="/services">Performance Marketing</FooterLink>
-                <FooterLink to="/services">ORM</FooterLink>
-                <FooterLink to="/services">Analytics and reporting</FooterLink>
-              </ul>
+              <div className="grid grid-cols-2 gap-x-4 sm:gap-x-8">
+                <ul className="space-y-3">
+                  <FooterLink to="/services" nowrap>SEO</FooterLink>
+                  <FooterLink to="/services" nowrap>SSM</FooterLink>
+                  <FooterLink to="/services" nowrap>ADS</FooterLink>
+                  <FooterLink to="/services" nowrap>Website design</FooterLink>
+                  <FooterLink to="/services" nowrap>Video Production</FooterLink>
+                  <FooterLink to="/services" nowrap>Content marketing</FooterLink>
+                </ul>
+                <ul className="space-y-3">
+                  <FooterLink to="/services" nowrap>E-commerce marketing</FooterLink>
+                  <FooterLink to="/services" nowrap>Email marketing</FooterLink>
+                  <FooterLink to="/services" nowrap>Influencer marketing</FooterLink>
+                  <FooterLink to="/services" nowrap>Performance Marketing</FooterLink>
+                  <FooterLink to="/services" nowrap>ORM</FooterLink>
+                  <FooterLink to="/services" nowrap>Analytics and reporting</FooterLink>
+                </ul>
+              </div>
             </div>
 
             {/* Col 4 — Newsletter */}
             <div>
-              <h4 className="text-white font-semibold text-sm tracking-wide mb-2 uppercase">
+              <h4 className="flex items-center h-10 mb-2 text-white font-semibold text-sm tracking-wide uppercase">
                 Stay in the loop
               </h4>
               <p className="text-white/35 text-sm mb-5 leading-relaxed">
@@ -251,10 +290,17 @@ const Footer = () => {
   </p>
 
   {/* Center */}
-  <p className="text-white/20 text-xs flex items-center gap-2">
-    <span className="text-white/10">•</span>
+ <a
+  href="https://www.prasklatechnology.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block"
+>
+  <p className="text-white/20 text-xs flex items-center gap-2 hover:text-white/50 transition-colors duration-300 cursor-pointer">
+   
     <span>A Division of Praskla Technology</span>
   </p>
+</a>
 
   {/* Right */}
   <div className="flex items-center gap-5">

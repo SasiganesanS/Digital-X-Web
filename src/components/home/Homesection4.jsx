@@ -1,9 +1,6 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ArrowRight, Code2, Terminal, Smartphone, ShieldCheck, BarChart3, Leaf } from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-
-import ourServicesImg from "../../assets/services-img/our services.png";
 
 const Homesection4 = () => {
   const servicesData = [
@@ -64,7 +61,7 @@ const Homesection4 = () => {
       {/* ── Our Services Section (Split Layout) ── */}
       <section
         id="services"
-        className="relative w-full h-[100vh] flex flex-col justify-center overflow-hidden"
+        className="relative w-full min-h-screen flex flex-col justify-center overflow-visible lg:overflow-hidden"
         style={{ background: "#080808", zIndex: 1 }}
       >
         {/* Background Elements */}
@@ -106,21 +103,39 @@ const Homesection4 = () => {
               </Link>
             </motion.div>
 
-            {/* Right Image */}
+            {/* Right Visual */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, x: 30 }}
+              initial={{ opacity: 0, scale: 0.95, x: 30 }}
               whileInView={{ opacity: 1, scale: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative group hidden lg:block"
+              className="relative block lg:block"
             >
-              <div className="relative rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#E8192C]/20 to-transparent mix-blend-overlay z-10" />
-                <img
-                  src={ourServicesImg}
-                  alt="Digital Strategy"
-                  className="w-full aspect-square object-cover group-hover:scale-110 transition-transform duration-1000"
-                />
+              <div className="relative mx-auto w-full max-w-[560px] overflow-hidden rounded-[2.5rem] border border-white/10 bg-white/[0.03] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl md:p-8 lg:p-10">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(232,25,44,0.16),_transparent_45%)]" />
+                <div className="relative z-10 space-y-5">
+                  <div className="rounded-[1.4rem] border border-red-500 bg-black/20 p-5">
+                    <p className="text-[10px] uppercase tracking-[0.35em] text-white/40">What we deliver</p>
+                    <h3 className="mt-2 text-2xl font-semibold text-white">A premium digital growth system</h3>
+                    <p className="mt-3 text-sm leading-7 text-white/65">
+                      From brand positioning to performance marketing, every service is built to elevate visibility, trust, and conversion.
+                    </p>
+                  </div>
+
+                  <div className="grid gap-3 sm:grid-cols-2">
+                    {[
+                      ["Brand Strategy", "Thoughtful positioning, visual identity, and messaging that feels intentional."],
+                      ["Performance Marketing", "Paid campaigns and conversion-focused systems designed for measurable growth."],
+                      ["Content & Media", "Creative storytelling and high-impact digital content that strengthens your presence."],
+                      ["Growth Consulting", "Clear direction, planning, and execution support for long-term scale."],
+                    ].map(([title, text]) => (
+                      <div key={title} className="rounded-[1.2rem] border border-red-500 bg-black/20 p-4">
+                        <p className="text-sm font-semibold text-white">{title}</p>
+                        <p className="mt-2 text-sm leading-6 text-white/60">{text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#E8192C]/20 blur-[60px] rounded-full" />
             </motion.div>

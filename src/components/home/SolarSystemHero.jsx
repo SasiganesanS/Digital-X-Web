@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import servicesData from "../../data/servicesData";
 
@@ -140,9 +141,9 @@ const ToyAstronaut = ({ style, className = "", seated = false }) => (
    ───────────────────────────────────────────────────── */
 const ServiceBubble = ({ service, index, onHover, onLeave, isHovered, onClick }) => (
   <motion.div
-    className="relative flex-shrink-0 flex flex-col items-center gap-2 cursor-pointer group"
+    className="relative flex-shrink-0 mr-6 flex flex-col items-center gap-2 cursor-pointer group"
     style={{ width: 100 }}
-    onMouseEnter={() => onHover(index)}
+    onMouseEnter={(e) => onHover(index, e.currentTarget.getBoundingClientRect())}
     onMouseLeave={onLeave}
     onClick={onClick}
     whileHover={{ scale: 1.15, y: -6 }}
@@ -190,11 +191,21 @@ const ServiceBubble = ({ service, index, onHover, onLeave, isHovered, onClick })
 const SolarSystemHero = () => {
   const navigate = useNavigate();
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [hoveredRect, setHoveredRect] = useState(null);
   const [isPaused, setIsPaused] = useState(false);
-  const marqueeRef = useRef(null);
 
   const handleServiceClick = (title) => {
     navigate("/services", { state: { highlightService: title } });
+  };
+
+  const handleBubbleHover = (index, rect) => {
+    setHoveredIndex(index);
+    setHoveredRect(rect);
+  };
+
+  const handleBubbleLeave = () => {
+    setHoveredIndex(null);
+    setHoveredRect(null);
   };
 
   // Double the array for seamless infinite scroll
@@ -254,7 +265,7 @@ const SolarSystemHero = () => {
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
+        transition={{ delay: 0.3, duration: 0.6 }}
         className="flex items-center gap-2 mb-6"
       >
         <div className="w-2 h-2 rounded-full bg-[#E8192C] shadow-[0_0_8px_rgba(232,25,44,0.8)]" />
@@ -272,20 +283,20 @@ const SolarSystemHero = () => {
 
       {/* ── TOP marquee row — scrolls LEFT ── */}
       <div
-        className="relative w-full overflow-hidden mb-4"
+        className="relative w-full overflow-hidden pt-6 pb-4 mb-4"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => {
           setIsPaused(false);
-          setHoveredIndex(null);
+          handleBubbleLeave();
         }}
       >
-        <motion.div
-          className="flex gap-6 py-3"
-          animate={{ x: isPaused ? undefined : ["0%", "-50%"] }}
-          transition={{
-            x: { duration: 30, repeat: Infinity, ease: "linear" },
+        <div
+          className="flex py-3 orbit-track"
+          style={{
+            width: "max-content",
+            animationDirection: "normal",
+            animationPlayState: isPaused ? "paused" : "running",
           }}
-          style={{ width: "max-content" }}
         >
           {doubledServices.map((service, i) => (
             <ServiceBubble
@@ -293,30 +304,29 @@ const SolarSystemHero = () => {
               service={service}
               index={i}
               isHovered={hoveredIndex === i}
-              onHover={setHoveredIndex}
-              onLeave={() => setHoveredIndex(null)}
+              onHover={handleBubbleHover}
+              onLeave={handleBubbleLeave}
               onClick={() => handleServiceClick(service.title)}
             />
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* ── BOTTOM marquee row — scrolls RIGHT (reversed) ── */}
       <div
-        className="relative w-full overflow-hidden"
+        className="relative w-full overflow-hidden pt-6 pb-4 mb-4"
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => {
           setIsPaused(false);
-          setHoveredIndex(null);
+          handleBubbleLeave();
         }}
       >
-        <motion.div
-          className="flex gap-6 py-3"
-          animate={{ x: isPaused ? undefined : ["-50%", "0%"] }}
-          transition={{
-            x: { duration: 35, repeat: Infinity, ease: "linear" },
+        <div
+          className="flex py-3 orbit-track orbit-track-reverse"
+          style={{
+            width: "max-content",
+            animationPlayState: isPaused ? "paused" : "running",
           }}
-          style={{ width: "max-content" }}
         >
           {[...doubledServices].reverse().map((service, i) => {
             const realIndex = servicesData.length * 2 + i;
@@ -326,61 +336,109 @@ const SolarSystemHero = () => {
                 service={service}
                 index={realIndex}
                 isHovered={hoveredIndex === realIndex}
-                onHover={setHoveredIndex}
-                onLeave={() => setHoveredIndex(null)}
+                onHover={handleBubbleHover}
+                onLeave={handleBubbleLeave}
                 onClick={() => handleServiceClick(service.title)}
               />
             );
           })}
-        </motion.div>
+        </div>
       </div>
 
-      {/* ── Tooltip Card — glassmorphism popup ── */}
-      <AnimatePresence>
-        {hoveredService && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 8, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="absolute bottom-4 left-1/2 -translate-x-1/2 z-30 px-5 py-4 rounded-2xl max-w-xs w-full text-center pointer-events-none"
-            style={{
-              background: "rgba(10,10,10,0.8)",
-              backdropFilter: "blur(20px)",
-              border: "1px solid rgba(232,25,44,0.3)",
-              boxShadow:
-                "0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(232,25,44,0.1)",
-            }}
-          >
-            <p className="text-white font-black text-sm uppercase tracking-wider mb-1">
-              {hoveredService.title}
-            </p>
-            <p className="text-white/50 text-[11px] leading-relaxed font-medium">
-              {hoveredService.desc}
-            </p>
-            <div className="mt-2">
-              <span className="text-[8px] font-black uppercase tracking-widest text-[#E8192C]">
-                Click to explore →
-              </span>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* ── Tooltip Card — opens directly above the hovered bubble, escapes clipping via portal ── */}
+      {createPortal(
+        <AnimatePresence>
+          {hoveredService && hoveredRect && (
+            <motion.div
+              initial={{ opacity: 0, y: 8, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 8, scale: 0.95 }}
+              transition={{ duration: 0.18 }}
+              className="fixed z-[9999] px-5 py-4 rounded-2xl w-max max-w-[260px] text-center pointer-events-none"
+              style={{
+                top: hoveredRect.top - 14,
+                left: hoveredRect.left + hoveredRect.width / 2,
+                transform: "translate(-50%, -100%)",
+                background:
+                  "linear-gradient(160deg, rgba(232,25,44,0.18) 0%, rgba(10,10,10,0.94) 45%, rgba(232,25,44,0.1) 100%)",
+                backdropFilter: "blur(20px)",
+                border: "1px solid rgba(232,25,44,0.35)",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.6), 0 0 30px rgba(232,25,44,0.18)",
+              }}
+            >
+              <p className="text-white font-black text-sm uppercase tracking-wider mb-1">
+                {hoveredService.title}
+              </p>
+              <p className="text-white/60 text-[11px] leading-relaxed font-medium">
+                {hoveredService.desc}
+              </p>
+              <div className="mt-2">
+                <span className="text-[8px] font-black uppercase tracking-widest text-[#E8192C]">
+                  Click to explore →
+                </span>
+              </div>
+
+              {/* Pointer arrow — anchors the card visually to the bubble below it */}
+              <div
+                className="absolute left-1/2 -translate-x-1/2 -bottom-[7px] w-3.5 h-3.5 rotate-45"
+                style={{
+                  background: "rgba(10,10,10,0.94)",
+                  borderRight: "1px solid rgba(232,25,44,0.35)",
+                  borderBottom: "1px solid rgba(232,25,44,0.35)",
+                }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
 
       {/* ── Bottom CTA ── */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1 }}
-        className="mt-6 z-10"
-      >
-        <button
-          onClick={() => navigate("/services")}
-          className="text-[9px] font-black uppercase tracking-[0.25em] text-white/50 hover:text-white border border-white/10 hover:border-[#E8192C]/50 px-6 py-2 rounded-full transition-all duration-300 hover:bg-white/5"
-        >
-          View All {servicesData.length} Services
-        </button>
-      </motion.div>
+     <motion.div
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ delay: 1 }}
+  className="mt-6 z-10"
+>
+  <button
+    onClick={() => navigate("/services")}
+    className="
+      text-[9px] font-black uppercase tracking-[0.25em]
+      text-[#E8192C]
+      border border-[#E8192C]
+      bg-[#E8192C]/10
+      px-6 py-2 rounded-full
+      transition-all duration-300
+      shadow-[0_0_15px_rgba(232,25,44,0.35)]
+      hover:scale-110
+      hover:bg-[#E8192C]
+      hover:text-white
+      hover:border-[#ff4d5d]
+      hover:shadow-[0_0_35px_rgba(232,25,44,0.8)]
+    "
+  >
+    View All {servicesData.length} Services
+  </button>
+</motion.div>
+
+      <style jsx>{`
+        @keyframes orbit-scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .orbit-track {
+          animation: orbit-scroll 30s linear infinite;
+        }
+        .orbit-track-reverse {
+          animation-name: orbit-scroll;
+          animation-duration: 35s;
+          animation-direction: reverse;
+        }
+      `}</style>
     </div>
   );
 };

@@ -89,7 +89,7 @@ const Navbar = ({ setShowContactForm }) => {
             {/* Icon mark — transparent background */}
             <div
               className="relative w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center overflow-hidden rounded-lg flex-shrink-0"
-              style={{ background: "", border: "1.7px solid rgba(232,25,44,0.3)", boxShadow: "0 0 12px rgba(232,25,44,0.2)" }}
+              style={{ background: "", boxShadow: "0 0 12px rgba(232,25,44,0.2)" }}
             >
               <img
                 src={Logo}
@@ -102,15 +102,15 @@ const Navbar = ({ setShowContactForm }) => {
 
             {/* Brand text */}
            <div className="flex flex-col justify-center min-w-0 pl-1">
-              <span
-                className="font-black text- text-[11px] sm:text-[13px] tracking-tight transition-all duration-300 group-hover:tracking-wide whitespace-nowrap overflow-hidden text-ellipsis"
-              >
-                Praskla Digital <span className="text-[#E8192C]">X</span>
-              </span>
-              <span
-  className="mt-0.2 text-[8px] sm:text-[9px] text-gray-600 font-light tracking-[1.5px] uppercase whitespace-nowrap"
+             <span
+  className="font-semibold text-[11px] sm:text-[13px] tracking-normal text-black transition-all duration-300 group-hover:tracking-wide"
 >
-  A Mindful Marketing AND Production Firm
+  Praskla Digital <span className="text-[#E8192C]">X</span>
+</span>
+              <span
+  className="mt-0.2 text-[8px] sm:text-[9px] text-gray-600 font-light tracking-[1.5px]  whitespace-nowrap"
+>
+  A Mindful Marketing and Production Firm
 </span>
             </div>
           </Link>
@@ -133,7 +133,7 @@ const Navbar = ({ setShowContactForm }) => {
             ))}
           </div>
 
-          {/* ── CTA Button (desktop) ── */}
+          {/* ── CTA Button (desktop) ── */} 
           <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
             <button
               onClick={() => setShowContactForm(true)}
