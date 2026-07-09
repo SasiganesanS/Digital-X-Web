@@ -18,6 +18,8 @@ import career04 from "../assets/Careers/career04.png";
 import career05 from "../assets/Careers/career05.png";
 import career06 from "../assets/Careers/career06.png";
 import career07 from "../assets/Careers/career07.png";
+
+import career08 from "../assets/Careers/career08.png";
 import py from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
 
 // Icon imports
@@ -41,8 +43,15 @@ const Careers = () => {
   // Memoize filter options to prevent unnecessary re-renders
   const filterOptions = useMemo(
     () => ({
-      role: ["Software Engineer"],
-      department: ["Engineering"],
+      role: [
+        "Jr. Video Editor/ Motion Graphic Designer",
+        "Client Acquisition Executive",
+        "SEO Specialist",
+        "Videography/Photography",
+        "Social Media Executive",
+        "Content Creator",
+      ],
+      department: ["VISCOM"],
       type: ["Full-time", "Internship"],
       level: ["Intern", "Entry Level", "Mid Level"],
       location: ["On-site", "Hybrid"],
@@ -61,7 +70,7 @@ const Careers = () => {
       { id: 6, image: career05, alt: "Our Work" },
       { id: 7, image: career06, alt: "Our Work" },
       { id: 8, image: career07, alt: "Our Work" },
-      { id: 9, image: career07, alt: "Our Work" },
+      { id: 9, image: career08, alt: "Our Work" },
     ],
     []
   );
@@ -193,7 +202,11 @@ const Careers = () => {
                       <img
                         src={member.image}
                         alt={member.alt}
-                        className="w-10/12 h-10/12 object-contain"
+                        className={
+                          isCenter
+                            ? "w-8/12 h-8/12 object-contain"
+                            : "w-full h-full object-cover rounded-full"
+                        }
                         style={isCenter ? { filter: "url(#logo-dark-mode-filter)" } : undefined}
                         loading="lazy"
                       />

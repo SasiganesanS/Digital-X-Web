@@ -96,12 +96,18 @@ const HeroSection = () => {
                                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                             >✦</motion.span>
                         </motion.div>
-
-                        {/* Standing astronaut beside the badge on larger screens (repositioned) */}
-                        <ToyAstronaut
-                            className="hidden lg:block pointer-events-none"
-                            style={{ width: 110, height: 150, position: 'absolute', left: -100, top: -115 }}
-                        />
+<div
+  className="
+    absolute pointer-events-none
+    hidden md:block
+    -top-16 -left-24
+    lg:-top-28 lg:-left-28
+    sm:top-20 left-1/2
+    w-24 h-32
+  "
+>
+  <ToyAstronaut className="w-full h-full" />
+</div>
 
 
                         {/* Headline */}
@@ -145,21 +151,38 @@ const HeroSection = () => {
                            
                             className="flex items-center gap-4 justify-center lg:justify-start mb-5"
                            >
-                            <Link
-                                to="/projects"
-                                className="relative group flex items-center justify-center gap-2 text-white text-[10px] sm:text-xs font-bold uppercase tracking-widest
-                               border border-white/20 px-6 py-3 rounded-full
-                               hover:border-white hover:bg-white/5 backdrop-blur-sm
-                               transition-all duration-300 hover:-translate-y-1 active:scale-95"
-                                >
-                                See Our Work
-                                <svg
-                                    className="w-3.5 h-3.5 transition-transform group-hover:rotate-45" fill="none" viewBox="0 0 24 24"
-                                    stroke="currentColor" strokeWidth={2.5}
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
-                            </Link>
+                           <Link
+  to="/projects"
+  className="group relative inline-flex items-center justify-center gap-3
+  overflow-hidden rounded-full
+  bg-gradient-to-r from-[#E8192C] via-[#ff3b4d] to-[#E8192C]
+  px-8 py-4
+  text-sm font-bold uppercase tracking-[0.18em] text-white
+  shadow-[0_12px_35px_rgba(232,25,44,0.45)]
+  transition-all duration-500
+  hover:scale-105
+  hover:-translate-y-1
+  hover:shadow-[0_18px_50px_rgba(232,25,44,0.7)]
+  active:scale-95"
+>
+  <span className="absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+  <span className="relative z-10">See Our Work</span>
+
+  <svg
+    className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-rotate-45"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    strokeWidth={2.5}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M17 8l4 4m0 0l-4 4m4-4H3"
+    />
+  </svg>
+</Link>
                         </motion.div>
 
                         {/* ── Stats boxes — fully inside hero ── */}

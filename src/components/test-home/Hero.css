@@ -73,16 +73,16 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(48, 16, 69, 0.1);
+  background: red;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(48, 16, 69, 0.3);
+  background: red;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(48, 16, 69, 0.5);
+  background: red
 }
 
 /* Enhanced button hover effects */
