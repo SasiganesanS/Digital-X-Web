@@ -4,7 +4,7 @@ import { AnimatePresence } from "framer-motion";
 
 // --- All component imports ---
 import Navbar from "./components/Navbar";
-import FavIcon from "./assets/fav.png";
+import FavIcon from "/src/assets/fav.jpeg";
 import Home from "./components/home/Home";
 import Homesection2 from "./components/home/Homesection2";
 import Homesection3 from "./components/home/Homesection3";

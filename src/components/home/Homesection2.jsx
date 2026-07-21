@@ -2,12 +2,28 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { projects } from "../../data/projects";
-import { ArrowUpRight, Sparkles } from "lucide-react";
+import { ArrowUpRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 
 const fadeSlide = {
   hidden: { opacity: 0, y: 32 },
   visible: { opacity: 1, y: 0 },
   exit: { opacity: 0, y: -24 },
+};
+
+// Staggered entrance for the content stacked on top of the image —
+// each block (badge, heading, stats, services, footer) animates in
+// slightly after the previous one, so the whole card feels alive
+// together instead of only the photo moving.
+const contentContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.09, delayChildren: 0.15 },
+  },
+};
+
+const contentItem = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
 const PROJECTS_PER_PAGE = 4;
@@ -24,57 +40,25 @@ function ProjectPreview({ project }) {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="relative flex h-[560px] flex-col overflow-hidden rounded-[36px] border border-white/15 bg-white/5 bg-clip-padding shadow-[0_30px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:h-[600px] lg:h-[640px]"
       >
-        {/* Fixed-size image layer: every project image is forced into the same
-            box via object-cover, regardless of its original dimensions. */}
+        {/* Image layer — fills the rectangle cleanly, no shifting/padding.
+            A slow, gentle Ken Burns zoom (scale only, no drift) so it
+            never breaks alignment with the content sitting on top. */}
         <div className="absolute inset-0 overflow-hidden">
           <img
             src={project.image}
             alt={project.title}
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-[1800ms] ease-out hover:scale-110"
+            className="absolute inset-0 h-full w-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-950/95 via-slate-950/50 to-transparent" />
         </div>
 
-        <div className="relative z-10 flex h-full flex-col justify-between gap-8 overflow-y-auto p-8 sm:p-10 lg:p-12">
-          <div className="max-w-3xl space-y-5">
-            <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-[11px] uppercase tracking-[0.35em] text-[#E8192C] shadow-[0_0_20px_rgba(232,25,44,0.08)]">
-              <Sparkles className="w-3 h-3" />
-              {project.tags}
-            </div>
-            <div>
-              <h3 className="text-4xl font-black uppercase tracking-tight text-white sm:text-5xl lg:text-6xl">
-                {project.title}
-              </h3>
-              <p className="mt-5 max-w-2xl text-lg leading-8 text-white/80">
-                {project.description}
-              </p>
-            </div>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {project.results.slice(0, 3).map((result) => (
-              <div key={result.id} className="rounded-[28px] border border-white/15 bg-white/10 p-5 backdrop-blur-sm">
-                <p className="text-sm uppercase tracking-[0.32em] text-white/50">{result.metric}</p>
-                <p className="mt-4 text-sm leading-6 text-white/70">{result.text}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-  {project.services.slice(0, 4).map((service, index) => (
-    <span
-      key={index}
-      className="rounded-full border border-white/15 bg-white/10 px-4 py-3 text-[15px] font-smalltext-white/80"
-    >
-      {service}
-    </span>
-  ))}
-</div>
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="text-xs uppercase tracking-[0.35em] text-white/40">Featured case study</p>
-              <p className="mt-2 text-xl font-black text-white sm:text-2xl">{project.title}</p>
-            </div>
+        <motion.div
+          variants={contentContainer}
+          initial="hidden"
+          animate="visible"
+          className="relative z-10 flex h-full flex-col justify-end p-8 sm:p-10 lg:p-12"
+        >
+          <motion.div variants={contentItem} className="flex justify-end">
             <Link
               to={`/project/${project.slug}`}
               className="inline-flex items-center gap-2 rounded-full bg-[#E8192C] px-5 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-white shadow-[0_20px_50px_rgba(232,25,44,0.24)] transition-all duration-300 hover:-translate-y-0.5"
@@ -82,8 +66,8 @@ function ProjectPreview({ project }) {
               View Case Study
               <ArrowUpRight className="w-4 h-4" />
             </Link>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </motion.div>
     </AnimatePresence>
   );
@@ -145,6 +129,24 @@ const handlePageChange = (pageNumber) => {
     setPage((prev) => prev - 1);
     setActiveIndex(0);
   };
+
+  const handleNextProject = () => {
+    if (activeIndex < featuredProjects.length - 1) {
+      setActiveIndex((prev) => prev + 1);
+    } else if (hasNextPage) {
+      setPage((prev) => prev + 1);
+      setActiveIndex(0);
+    }
+  };
+
+  const handlePrevProject = () => {
+    if (activeIndex > 0) {
+      setActiveIndex((prev) => prev - 1);
+    } else if (hasPrevPage) {
+      setPage((prev) => prev - 1);
+      setActiveIndex(PROJECTS_PER_PAGE - 1);
+    }
+  };
   
 const getVisiblePages = () => {
   let start = Math.max(0, page - 1);
@@ -169,42 +171,21 @@ const getVisiblePages = () => {
       </div>
 
       <div className="relative mx-auto w-full max-w-[1240px] px-6 sm:px-8 lg:px-12">
-        <div className="mb-12 max-w-3xl space-y-5">
+        <div className="mb-12 max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-3 rounded-full border border-[#E8192C]/20 bg-white/5 px-4 py-2 text-[11px] uppercase tracking-[0.34em] text-[#E8192C] shadow-[0_0_20px_rgba(232,25,44,0.12)]">
             <span className="h-2.5 w-2.5 rounded-full bg-[#E8192C] animate-pulse" />
-            Featured Works
+            Case Studies
           </div>
-          {/* Same column template (xl:grid-cols-[1.5fr_0.9fr]) and gap as the
-              cards grid below, so this right-hand block lines up with the
-              nav cards column exactly. */}
-          <div className="grid gap-8 xl:grid-cols-[1.5fr_0.9fr] xl:items-start">
-            <div>
-              <h2 className="text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
-                Spotlight your best work with a{" "}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E8192C] to-[#E8192C]">
-                                     story-driven
-                                </span> selector.
-              </h2>
-              <p className="mt-5 max-w-none text-base leading-7 text-white/65 sm:text-lg">
-                A curated collection of our most compelling cases. Use the selector to explore the top work, or view the full portfolio if you want every project.
-              </p>
-            </div>
-           <div className="space-y-5 xl:translate-x-[300px] translate-y-6">
-              <div className="rounded-[32px] border border-white/10 bg-[#0c0c0c] p-6 shadow-[0_30px_80px_rgba(0,0,0,0.25)]">
-                <p className="text-sm uppercase tracking-[0.34em] text-[#E8192C]">Choose a case study</p>
-                <p className="mt-4 text-2xl font-black text-white">Tap any project to preview its story.</p>
-              </div>
-             <Link
-  to="/projects"
-  className="inline-flex w-fit items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-[#E8192C] px-6 py-3 text-sm font-bold uppercase tracking-[0.24em] text-white transition-all duration-300 hover:bg-red-600 hover:scale-105"
->
-  <span>View All Projects</span>
-  <ArrowUpRight className="w-4 h-4 flex-shrink-0" />
-</Link>
-            </div>
-          </div>
+          <h2 className="text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
+  Explore our{" "}
+  <span className="text-[#E8192C]">
+    Featured Work
+  </span>.
+</h2>
+          <p className="max-w-xl text-base leading-7 text-white/65 sm:text-lg">
+            A curated collection of our most compelling cases and success stories.
+          </p>
         </div>
-
         <div className="grid gap-8 xl:grid-cols-[1.5fr_0.9fr]">
           <div>
             <ProjectPreview project={activeProject} />
@@ -223,45 +204,59 @@ const getVisiblePages = () => {
             </div>
 
             <div className="flex items-center justify-center gap-3 mt-6">
+              {/* Previous */}
+              <button
+                type="button"
+                onClick={handlePrevProject}
+                disabled={page === 0 && activeIndex === 0}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E8192C] text-white shadow-[0_4px_14px_rgba(232,25,44,0.3)] transition-all duration-300 hover:bg-red-600 hover:scale-110 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
 
-  {/* Previous */}
-  <button
-    type="button"
-    onClick={handlePrevProjects}
-    disabled={!hasPrevPage}
-    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold uppercase tracking-[0.24em] text-white/80 transition-all duration-300 hover:border-[#E8192C] hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
-  >
-    <ArrowUpRight className="w-4 h-4 rotate-[225deg]" />
-    Previous
-  </button>
+              {/* Project Numbers */}
+              <div className="flex items-center gap-1 rounded-full border border-white/15 bg-white/5 px-2 py-1">
+                
+                {featuredProjects.map((project, index) => {
+                  const projectNum = pageStart + index + 1;
+                  const isActive = index === activeIndex;
+                  return (
+                    <button
+                      key={project.id}
+                      type="button"
+                      onClick={() => setActiveIndex(index)}
+                      className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold transition-all ${
+                        isActive
+                          ? "bg-[#E8192C] text-white shadow-[0_0_15px_rgba(232,25,44,0.4)]"
+                          : "text-white/60 hover:bg-white/10 hover:text-white"
+                      }`}
+                    >
+                      {projectNum}
+                    </button>
+                  );
+                })}
+                
+                {hasNextPage && (
+                  <button
+                    type="button"
+                    onClick={handleNextProjects}
+                    className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white/50 transition-all hover:bg-white/10 hover:text-white"
+                  >
+                    ...
+                  </button>
+                )}
+              </div>
 
-  
- {/* Page Numbers */}
-<div className="flex items-center justify-center">
-  <div className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-bold tracking-[0.2em] text-white">
-    <span className="text-[#E8192C]">
-      {(page + 1).toString().padStart(2, "0")}
-    </span>
-
-    <span className="mx-2 text-white/40">/</span>
-
-    <span className="text-white/70">
-      {totalPages.toString().padStart(2, "0")}
-    </span>
-  </div>
-</div>
-  {/* Next */}
-  <button
-    type="button"
-    onClick={handleNextProjects}
-    disabled={!hasNextPage}
-    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold uppercase tracking-[0.24em] text-white/80 transition-all duration-300 hover:border-[#E8192C] hover:bg-white/10 hover:text-white disabled:cursor-not-allowed disabled:opacity-30"
-  >
-    Next
-    <ArrowUpRight className="w-4 h-4" />
-  </button>
-
-</div>
+              {/* Next */}
+              <button
+                type="button"
+                onClick={handleNextProject}
+                disabled={!hasNextPage && activeIndex === featuredProjects.length - 1}
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E8192C] text-white shadow-[0_4px_14px_rgba(232,25,44,0.3)] transition-all duration-300 hover:bg-red-600 hover:scale-110 disabled:cursor-not-allowed disabled:opacity-30 disabled:hover:scale-100"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

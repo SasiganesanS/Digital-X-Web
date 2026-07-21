@@ -47,6 +47,18 @@ const Navbar = ({ setShowContactForm }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, [isOpen]);
 
+  // Close the mobile menu automatically if the viewport is resized up to
+  // desktop width (e.g. rotating a tablet or resizing a browser window).
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024 && isOpen) {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isOpen]);
+
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const navLinks = [
@@ -58,8 +70,8 @@ const Navbar = ({ setShowContactForm }) => {
   ];
 
   const navLinkClass = (path) =>
-    `relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
-     overflow-hidden group
+    `relative px-3 xl:px-4 py-2 rounded-full text-sm font-medium transition-all duration-300
+     overflow-hidden group whitespace-nowrap
      ${activeTab === path
       ? "bg-[#E8192C] text-white shadow-[0_0_20px_rgba(232,25,44,0.4)]"
       : "text-black/80 hover:text-black"
@@ -69,8 +81,8 @@ const Navbar = ({ setShowContactForm }) => {
     <>
       <nav
         ref={navRef}
-        className={`fixed w-[94%] sm:w-[88%] max-w-[1280px] z-50 top-4 left-1/2 -translate-x-1/2
-                    rounded-full border transition-all duration-500 transform px-4 sm:px-5
+        className={`fixed w-[92%] sm:w-[90%] md:w-[88%] max-w-[1280px] z-50 top-3 sm:top-4 left-1/2 -translate-x-1/2
+                    rounded-full border transition-all duration-500 transform px-3 sm:px-4 lg:px-5
                     ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0"}
                     ${scrolled
             ? "border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.6),0_0_80px_rgba(232,25,44,0.08)]"
@@ -82,13 +94,13 @@ const Navbar = ({ setShowContactForm }) => {
           WebkitBackdropFilter: "blur(20px) saturate(180%)",
         }}
       >
-        <div className="flex items-center justify-between h-[60px]">
+        <div className="flex items-center justify-between h-[56px] sm:h-[60px]">
 
           {/* ── Logo ── */}
           <Link to="/" className="flex items-center gap-2 sm:gap-2.5 group flex-shrink-0 min-w-0 pr-2">
             {/* Icon mark — transparent background */}
             <div
-              className="relative w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center overflow-hidden rounded-lg flex-shrink-0"
+              className="relative w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center overflow-hidden rounded-lg flex-shrink-0"
               style={{ background: "", boxShadow: "0 0 12px rgba(232,25,44,0.2)" }}
             >
               <img
@@ -103,12 +115,12 @@ const Navbar = ({ setShowContactForm }) => {
             {/* Brand text */}
            <div className="flex flex-col justify-center min-w-0 pl-1">
              <span
-  className="font-semibold text-[11px] sm:text-[13px] tracking-normal text-black transition-all duration-300 group-hover:tracking-wide"
+  className="font-semibold text-[10px] sm:text-[13px] tracking-normal text-black transition-all duration-300 group-hover:tracking-wide truncate"
 >
   Praskla Digital <span className="text-[#E8192C]">X</span>
 </span>
               <span
-  className="mt-0.2 text-[8px] sm:text-[9px] text-gray-600 font-light tracking-[1.5px]  whitespace-nowrap"
+  className="mt-0.2 text-[7px] sm:text-[9px] text-gray-600 font-light tracking-[1px] sm:tracking-[1.5px] whitespace-nowrap truncate"
 >
   A Mindful Marketing and Production Firm
 </span>
@@ -116,7 +128,7 @@ const Navbar = ({ setShowContactForm }) => {
           </Link>
 
           {/* ── Desktop Nav Links ── */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-0.5 xl:gap-1">
             {navLinks.map(({ path, to, label }) => (
               <Link
                 key={path}
@@ -138,10 +150,10 @@ const Navbar = ({ setShowContactForm }) => {
             <button
               onClick={() => setShowContactForm(true)}
               className="relative group flex items-center gap-2 bg-[#E8192C] text-white
-                         px-5 py-2 rounded-full text-sm font-semibold
+                         px-4 xl:px-5 py-2 rounded-full text-sm font-semibold
                          transition-all duration-300
                          hover:bg-[#ff2235] hover:shadow-[0_0_25px_rgba(232,25,44,0.5)]
-                         hover:scale-105 active:scale-95 overflow-hidden"
+                         hover:scale-105 active:scale-95 overflow-hidden whitespace-nowrap"
             >
               {/* Shine sweep */}
               <span className="absolute inset-0 rounded-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700 -skew-x-12" />
@@ -164,20 +176,29 @@ const Navbar = ({ setShowContactForm }) => {
 
           {/* ── Mobile Hamburger ── */}
           <button
+            type="button"
             onClick={toggleMenu}
-            className="lg:hidden flex flex-col justify-center items-center w-9 h-9 gap-[5px] group"
+            className="lg:hidden relative z-10 flex flex-col justify-center items-center
+                       w-10 h-10 sm:w-11 sm:h-11 gap-[5px] flex-shrink-0 ml-2
+                       rounded-full hover:bg-[#E8192C]/10 active:bg-[#E8192C]/15 transition-colors duration-200"
             aria-label="Toggle menu"
+            aria-expanded={isOpen}
           >
+            {/* Lines use the brand red so they stay clearly visible
+                against the white navbar on every screen size. */}
             <span
-              className={`block w-5 h-0.5 bg-white rounded-full transition-all duration-300 origin-center
+              style={{ backgroundColor: "#E8192C" }}
+              className={`block w-5 h-[2px] rounded-full transition-all duration-300 origin-center
                 ${isOpen ? "rotate-45 translate-y-[7px]" : ""}`}
             />
             <span
-              className={`block h-0.5 bg-white rounded-full transition-all duration-300
-                ${isOpen ? "w-0 opacity-0" : "w-4"}`}
+              style={{ backgroundColor: "#E8192C" }}
+              className={`block h-[2px] rounded-full transition-all duration-300
+                ${isOpen ? "w-0 opacity-0" : "w-5"}`}
             />
             <span
-              className={`block w-5 h-0.5 bg-white rounded-full transition-all duration-300 origin-center
+              style={{ backgroundColor: "#E8192C" }}
+              className={`block w-5 h-[2px] rounded-full transition-all duration-300 origin-center
                 ${isOpen ? "-rotate-45 -translate-y-[7px]" : ""}`}
             />
           </button>
@@ -194,8 +215,9 @@ const Navbar = ({ setShowContactForm }) => {
 
       {/* ── Mobile Menu ── */}
       <div
-        className={`lg:hidden fixed top-[80px] left-4 right-4 z-[9999] rounded-2xl border border-white/10
+        className={`lg:hidden fixed top-[76px] sm:top-[80px] left-3 right-3 sm:left-4 sm:right-4 z-[9999] rounded-2xl border border-white/10
                     transition-[opacity,transform] duration-300 ease-out overflow-hidden
+                    max-h-[calc(100vh-96px)] overflow-y-auto
                     ${isOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-3 pointer-events-none"}`}
         style={{
           background: "rgba(10, 10, 10, 0.97)",

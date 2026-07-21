@@ -131,9 +131,9 @@ const AboutSection = () => {
                         >
                             Empowering Brands through{" "}
                             <span className="relative inline-block mt-2">
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E8192C] to-[#E8192C]">
-                                    Mindful
-                                </span>
+                               <span className="text-[#E8192C]">
+    Mindful
+</span>
                             </span>{" "}
                             Marketing.
                         </motion.h2>

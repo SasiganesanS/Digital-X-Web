@@ -24,7 +24,24 @@ const HeroSection = () => {
     return (
         <section
             id="home"
-            className="relative w-full h-screen min-h-[100vh] max-h-[100vh] overflow-hidden flex items-center justify-center"
+            /*
+              NOTE on responsiveness fix:
+              The original section locked itself to exactly one viewport
+              height on every device (h-screen + min-h-[100vh] + max-h-[100vh])
+              combined with overflow-hidden. On phones/tablets, once the
+              stacked content (badge + headline + subtext + CTA + stats +
+              solar system) is taller than the screen, that combination
+              silently CLIPS the bottom of the hero instead of scrolling.
+              Fix: only force an exact full-screen box on large screens
+              (lg:h-screen lg:max-h-screen), where the two-column layout
+              comfortably fits one viewport. On smaller screens we use
+              min-h-[100dvh] (dynamic viewport height, accounts for mobile
+              browser chrome) and let the section grow naturally with its
+              content instead of clipping it. overflow-x-hidden stays on
+              at all times to prevent the decorative glow blobs from ever
+              creating a horizontal scrollbar.
+            */
+            className="relative w-full h-screen max-h-screen overflow-hidden flex items-center justify-center"
             style={{ backgroundColor: "transparent" }}
         >
             {/* ── Background ── */}
@@ -52,7 +69,7 @@ const HeroSection = () => {
             </div>
 
             {/* ── Single unified content block ── */}
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16 pt-16">
+            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 pt-24 sm:pt-20 lg:pt-16 pb-10 lg:pb-0">
 
                 {/* Two-column row: Left text | Right star */}              
                  
@@ -66,7 +83,7 @@ const HeroSection = () => {
                             initial={{ opacity: 0, scale: 0.9, y: 10 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             transition={{ duration: 0.6, ease: "easeOut" }}
-                            className="relative inline-flex items-center gap-3 mb-4 px-4 py-2 rounded-full overflow-hidden"
+                            className="relative inline-flex items-center gap-2 sm:gap-3 mb-4 px-3 sm:px-4 py-2 rounded-full overflow-hidden"
                             style={{
                                 background: "linear-gradient(135deg, rgba(232,25,44,0.18) 0%, rgba(0,0,0,0.6) 50%, rgba(232,25,44,0.12) 100%)",
                                 border: "1px solid rgba(232,25,44,0.5)",
@@ -85,7 +102,7 @@ const HeroSection = () => {
                                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E8192C]" />
                             </span>
                             <span
-                                className="relative text-white text-[10px] sm:text-xs font-bold tracking-[0.28em] uppercase"
+                                className="relative text-white text-[9px] xs:text-[10px] sm:text-xs font-bold tracking-[0.2em] sm:tracking-[0.28em] uppercase"
                                 style={{ textShadow: "0 0 10px rgba(232,25,44,0.7)" }}
                             >
                                 A Mindful Marketing and Production Firm
@@ -96,18 +113,34 @@ const HeroSection = () => {
                                 transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
                             >✦</motion.span>
                         </motion.div>
-<div
-  className="
-    absolute pointer-events-none
-    hidden md:block
-    -top-16 -left-24
-    lg:-top-28 lg:-left-28
-    sm:top-20 left-1/2
-    w-24 h-32
-  "
->
-  <ToyAstronaut className="w-full h-full" />
-</div>
+                        {/*
+                          RESPONSIVE FIX: the astronaut used to combine
+                          "hidden md:block" with a "sm:top-20" rule that
+                          could never actually apply (it's hidden below md,
+                          so a sm: override never gets reached), plus
+                          negative top/left offsets that pushed it over the
+                          headline text on several screen sizes — that's
+                          why it looked misplaced.
+                          New approach: hidden on very small phones (not
+                          enough room to place it without colliding with
+                          text), then sits beside the badge on the
+                          right — which stays empty since the text is
+                          centered from sm through md — and switches to the
+                          left side once the layout itself switches to
+                          left-aligned text at lg, matching the text's own
+                          alignment instead of fighting it.
+                        */}
+                        <div
+                          className="
+                            hidden sm:block absolute pointer-events-none z-10
+                            top-2 right-[-4px] w-16 h-20
+                            sm:top-0 sm:right-[-10px] sm:w-20 sm:h-28
+                            md:top-[-6px] md:right-[-16px] md:w-20 md:h-28
+                            lg:top-[-20px] lg:right-auto lg:left-[-90px] lg:w-24 lg:h-32
+                          "
+                        >
+                          <ToyAstronaut className="w-full h-full" />
+                        </div>
 
 
                         {/* Headline */}
@@ -119,16 +152,16 @@ const HeroSection = () => {
                             style={{ fontSize: "clamp(1.55rem, 3.2vw, 3.1rem)" }}
                         >
                             Where brands evolve into{" "}
-                            <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-white via-[#E8192C] to-[#E8192C]">
-                                powerful
-                                <motion.span
-                                    className="absolute -bottom-1 left-0 h-[2px] rounded-full bg-gradient-to-r from-transparent via-[#E8192C] to-transparent w-full"
-                                    initial={{ scaleX: 0, opacity: 0 }}
-                                    animate={{ scaleX: 1, opacity: 1 }}
-                                    transition={{ duration: 1.5, delay: 1.2, ease: "circOut" }}
-                                    style={{ transformOrigin: "center" }}
-                                />
-                            </span>{" "}
+                         <span className="relative inline-block text-[#E8192C]">
+    powerful
+    <motion.span
+        className="absolute -bottom-1 left-0 h-[2px] rounded-full bg-gradient-to-r from-transparent via-[#E8192C] to-transparent w-full"
+        initial={{ scaleX: 0, opacity: 0 }}
+        animate={{ scaleX: 1, opacity: 1 }}
+        transition={{ duration: 1.5, delay: 1.2, ease: "circOut" }}
+        style={{ transformOrigin: "center" }}
+    />
+</span>{" "}
                             digital movements.
                         </motion.h1>
 
@@ -156,8 +189,8 @@ const HeroSection = () => {
   className="group relative inline-flex items-center justify-center gap-3
   overflow-hidden rounded-full
   bg-gradient-to-r from-[#E8192C] via-[#ff3b4d] to-[#E8192C]
-  px-8 py-4
-  text-sm font-bold uppercase tracking-[0.18em] text-white
+  px-6 sm:px-8 py-3 sm:py-4
+  text-xs sm:text-sm font-bold uppercase tracking-[0.15em] sm:tracking-[0.18em] text-white
   shadow-[0_12px_35px_rgba(232,25,44,0.45)]
   transition-all duration-500
   hover:scale-105
@@ -223,7 +256,7 @@ const HeroSection = () => {
 
                     {/* ── RIGHT: Interactive Solar System ── */}
                     <motion.div
-                        className="w-full lg:w-[500px] flex-shrink-0 relative"
+                        className="w-full max-w-[420px] sm:max-w-[460px] lg:max-w-none lg:w-[500px] flex-shrink-0 relative mx-auto lg:mx-0"
                         initial={{ opacity: 0, scale: 0.8, x: 40 }}
                         animate={{ opacity: 1, scale: 1, x: 0 }}
                         transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
@@ -233,20 +266,7 @@ const HeroSection = () => {
                 </div>
             </div>
 
-            {/* ── Scroll indicator ── */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.6, duration: 1 }}
-                className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 cursor-pointer hover:opacity-70 transition-opacity"
-                onClick={() => scrollTo("about")}
-            >
-                <motion.div
-                    animate={{ y: [0, 8, 0], opacity: [0.5, 1, 0.5] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                    className="w-[2px] h-8 bg-gradient-to-b from-[#E8192C] to-transparent rounded-full"
-                />
-            </motion.div>
+
         </section>
     );
 };

@@ -13,6 +13,7 @@ import {
   useMotionValue,
   useAnimationFrame,
   animate,
+  useTransform,
 } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -34,7 +35,6 @@ import {
 } from "react-icons/md";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { HiLightningBolt } from "react-icons/hi";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { platforms } from "../constants/index";
 import ContactForm from "./ContactForm";
 import PlatformPlanModal from "./PlatformPlanModal";
@@ -160,9 +160,6 @@ export default function ServiceCalculator() {
     animate(x, target, { duration: 0.6, ease: "easeInOut" });
     setActiveIndex(normalized);
   };
-
-  const goNext = () => goToIndex(activeIndex + 1);
-  const goPrev = () => goToIndex(activeIndex - 1);
 
   useEffect(() => {
     if (location.state?.highlightService) {
@@ -402,9 +399,6 @@ export default function ServiceCalculator() {
 
       {/* ── Auto-Scrolling Marquee Section with manual arrow/dot control ── */}
       <section id="expertise" className="relative w-full px-[5%] py-20 pb-32 overflow-hidden bg-[#080808]">
-        {/* Tilted Container with rich red/black mix and sparkles */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#080808] via-[#1a0000] to-[#250000] -rotate-3 scale-[1.2] shadow-2xl pointer-events-none" />
-        
         {/* Animated Background Glows */}
         <div className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-[#E8192C]/10 rounded-full blur-[120px] animate-pulse pointer-events-none" />
         <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-[#E8192C]/5 rounded-full blur-[120px] animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
@@ -433,29 +427,27 @@ export default function ServiceCalculator() {
           />
         ))}
 
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto min-h-[550px]">
+        <div className="relative z-10 w-full max-w-[1400px] mx-auto min-h-[520px]">
           
-          <div className="flex flex-col items-center justify-center gap-2 mb-16 transform -rotate-2">
+          <div className="flex flex-col items-center justify-center gap-2 mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-white text-center tracking-tight">
               Our <span className="text-[#E8192C]">Core Expertise</span>
             </h2>
             <div className="h-1.5 w-24 bg-gradient-to-r from-[#E8192C] to-transparent rounded-full" />
           </div>
 
-          <div className="relative w-full flex items-center justify-center transform -rotate-2">
-
-            {/* Left Button — nudges to the previous card, pauses auto-scroll briefly */}
-            <button
-              onClick={goPrev}
-              aria-label="Previous service"
-              className="absolute -left-2 md:-left-12 lg:-left-16 z-30 w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-[0_0_20px_rgba(232,25,44,0.3)] hover:scale-110 transition-transform active:scale-95"
-            >
-              <ChevronLeft className="w-6 h-6" />
-            </button>
+          <div className="relative w-full flex items-center justify-center">
 
             {/* Marquee viewport */}
-            <div className="relative w-full overflow-hidden">
-              {/* Left/right fade masks so cards don't hard-cut at the edges */}
+           <div
+  className="relative w-full overflow-hidden"
+  style={{
+    WebkitMaskImage:
+      "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+    maskImage:
+      "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+  }}
+>     {/* Left/right fade masks so cards don't hard-cut at the edges */}
               <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-r from-[#080808] to-transparent" />
               <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-l from-[#080808] to-transparent" />
 
@@ -469,16 +461,19 @@ export default function ServiceCalculator() {
                 {LOOPED_SERVICES.map((service, i) => {
                   const originalIndex = i % servicesData.length;
                   const isHighlighted = activeIndex === originalIndex;
+
                   return (
                     <div
                       key={`${service.title}-${i}`}
-                      className="w-[85vw] sm:w-[320px] md:w-[350px] lg:w-[380px] flex-shrink-0"
+                      className="w-[85vw] sm:w-[300px] md:w-[320px] lg:w-[340px] flex-shrink-0"
                     >
-                      <div className={`relative bg-gradient-to-br from-[#080808] via-black to-[#E8192C]/20 rounded-2xl p-8 pt-10 flex flex-col items-center text-center h-[340px] md:h-[360px] cursor-pointer hover:-translate-y-4 transition-all duration-700 group border overflow-hidden ${
-                        isHighlighted
-                          ? 'border-[#E8192C] shadow-[0_0_60px_rgba(232,25,44,0.6)] -translate-y-4 scale-[1.03]'
-                          : 'border-white/5 hover:border-[#E8192C]/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)] hover:shadow-[0_30px_60px_rgba(232,25,44,0.2)]'
-                      }`}>
+                      <div
+                        className={`relative bg-gradient-to-br from-[#080808] via-black to-[#E8192C]/20 rounded-2xl p-8 pt-10 flex flex-col items-center text-center h-[340px] md:h-[360px] cursor-pointer transition-all duration-500 ease-out group border overflow-hidden ${
+                          isHighlighted
+                            ? 'border-[#E8192C] shadow-[0_0_60px_rgba(232,25,44,0.6)] -translate-y-4 scale-[1.03]'
+                            : 'border-white/5 hover:border-[#E8192C]/40 shadow-[0_20px_50px_rgba(0,0,0,0.8)]'
+                        }`}
+                      >
                         
                         {/* Internal sparkles inside the card */}
                         {[...Array(6)].map((_, si) => (
@@ -530,18 +525,10 @@ export default function ServiceCalculator() {
               </motion.div>
             </div>
 
-            {/* Right Button — nudges to the next card, pauses auto-scroll briefly */}
-            <button
-              onClick={goNext}
-              aria-label="Next service"
-              className="absolute -right-2 md:-right-12 lg:-right-16 z-30 w-12 h-12 rounded-full bg-white text-black flex items-center justify-center shadow-[0_0_20px_rgba(232,25,44,0.3)] hover:scale-110 transition-transform active:scale-95"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
           </div>
 
           {/* Pagination Dots — click to jump straight to a service */}
-          <div className="flex justify-center gap-3 mt-12 transform -rotate-2">
+          <div className="flex justify-center gap-3 mt-12">
             {servicesData.map((_, i) => {
               const isActive = activeIndex === i;
               return (
