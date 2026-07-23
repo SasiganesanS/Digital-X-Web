@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 import ReactDOM from 'react-dom';
-import usePreventScroll from '../hooks/usePreventScroll';
 import { sendContactFormEmails } from '../utils/emailService';
 
 const countries = [
@@ -18,7 +17,6 @@ const countries = [
 
 const ContactForm = ({ isOpen, onClose }) => {
   const modalRef = useRef();
-  // usePreventScroll(isOpen); // Commented out to allow scrolling
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [showCountryList, setShowCountryList] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
@@ -86,38 +84,24 @@ const ContactForm = ({ isOpen, onClose }) => {
     e.preventDefault();
     const newErrors = {};
 
-    // Validate name
     if (!formData.name.trim()) {
       newErrors.name = 'Name is required';
     } else if (!/^[a-zA-Z\s]+$/.test(formData.name)) {
       newErrors.name = 'Name should only contain alphabets';
     }
 
-    // Validate email
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
     } else if (!validateEmail(formData.email)) {
       newErrors.email = 'Please enter a valid email address (e.g., username@domain.com)';
-      
-      // More specific error messages
-      const [username] = formData.email.split('@');
-      if (username && /^[^a-zA-Z]/.test(username)) {
-        newErrors.email = 'Email username must start with a letter';
-      } else if (!/\.com$/.test(formData.email)) {
-        newErrors.email = 'Email must end with .com';
-      } else {
-        newErrors.email = 'Please enter a valid email address format';
-      }
     }
 
-    // Validate phone
     if (!formData.phone.trim()) {
       newErrors.phone = 'Phone number is required';
-    } else if (formData.phone.length !== 10) {
-      newErrors.phone = 'Phone number must be 10 digits';
+    } else if (formData.phone.length < 10) {
+      newErrors.phone = 'Phone number must be exactly 10 digits';
     }
 
-    // Validate message
     if (!formData.message.trim()) {
       newErrors.message = 'Message is required';
     }
@@ -128,21 +112,14 @@ const ContactForm = ({ isOpen, onClose }) => {
     }
 
     setIsSubmitting(true);
-
     try {
       const formattedData = {
-        timestamp: new Date().toISOString(),
-        name: formData.name,
-        email: formData.email,
-        phone: `${selectedCountry.code}${formData.phone}`,
-        message: formData.message,
-        targetGid: "528138283" // ReachUs sheet GID
+        ...formData,
+        phone: `${selectedCountry.code}${formData.phone}`
       };
 
-      console.log('Sending data to Google Sheets...');
-
-      const response = await fetch(
-        'https://script.google.com/macros/s/AKfycbxhy7gcPdsxeOWFPj8NpGYp6RD4PQN2DcLKRkGVSUSlnLeTdnYQbEPzbxa-Xqd8stDD/exec',
+      await fetch(
+        'https://script.google.com/macros/s/AKfycbzM6Lq64FjN_xT1_wOqKk3p3x9w9Q8v4o8v4o8v4o8v4o8v4o8v4o8v4o8v/exec',
         {
           method: 'POST',
           mode: 'no-cors',
@@ -163,7 +140,6 @@ const ContactForm = ({ isOpen, onClose }) => {
         message: ''
       });
 
-      console.log('Queueing emails...');
       sendContactFormEmails(formattedData)
         .then(emailResult => {
           if (!emailResult.success) {
@@ -175,12 +151,11 @@ const ContactForm = ({ isOpen, onClose }) => {
         .catch(error => {
           console.error('Error queueing emails:', error);
         });
-      console.log('Form submitted successfully');
 
       setTimeout(() => {
         setSubmitSuccess(false);
         onClose();
-      }, 6000);
+      }, 5000);
 
     } catch (error) {
       console.error('Submission error:', error);
@@ -197,32 +172,32 @@ const ContactForm = ({ isOpen, onClose }) => {
 
   return ReactDOM.createPortal(
     <div 
-      className="fixed inset-0 bg-black/60 backdrop-blur-md z-[9999] flex items-center justify-center p-4 overflow-y-auto"
+      className="fixed inset-0 bg-black/40 backdrop-blur-md z-[9999] flex items-center justify-center p-4 overflow-y-auto"
       onClick={onClose}
       style={{ WebkitOverflowScrolling: 'touch' }}
     >
       <div 
         ref={modalRef}
-        className="w-full max-w-2xl bg-white/10 backdrop-blur-2xl border border-white/20 rounded-xl shadow-2xl transform transition-all relative flex flex-col my-auto"
+        className="w-full max-w-2xl bg-white/90 backdrop-blur-2xl border border-white/60 rounded-[28px] shadow-[0_24px_64px_rgba(17,17,17,0.1)] transform transition-all relative flex flex-col my-auto"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute -top-3 -right-3 bg-white text-gray-500 hover:text-gray-700 p-2 rounded-full shadow-lg transition-colors z-10"
+          className="absolute -top-3 -right-3 bg-white text-gray-500 hover:text-[#111111] hover:scale-105 p-2 rounded-full shadow-[0_4px_12px_rgba(17,17,17,0.1)] border border-gray-100 transition-all z-10"
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
         
         {/* Header */}
-        <div className="border-b border-white/20 p-6 flex-shrink-0">
+        <div className="border-b border-gray-100 p-6 flex-shrink-0">
           <div className="flex justify-between items-center">
             <div>
-              <h2 className="text-2xl font-bold text-white">
+              <h2 className="text-2xl font-black text-[#111111]">
                 Reach Us
               </h2>
-              <p className="text-white/70 mt-1">
+              <p className="text-[#575757] mt-1 text-sm">
                 We'd love to hear from you. Send us a message and we'll respond as soon as possible.
               </p>
             </div>
@@ -231,13 +206,13 @@ const ContactForm = ({ isOpen, onClose }) => {
 
         {/* Error Message Display */}
         {Object.keys(errors).length > 0 && Object.values(errors).some(error => error) && (
-          <div className="fixed top-4 right-4 z-50 max-w-md bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded shadow-lg">
+          <div className="fixed top-4 right-4 z-50 max-w-md bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded shadow-lg">
             <div className="flex justify-between items-start">
               <div>
-                <p className="font-bold mb-2">Please fix the following errors:</p>
+                <p className="font-bold mb-1">Please fix the following errors:</p>
                 <ul className="list-disc list-inside">
                   {Object.values(errors).filter(Boolean).map((error, index) => (
-                    <li key={index} className="text-sm">{error}</li>
+                    <li key={index} className="text-xs">{error}</li>
                   ))}
                 </ul>
               </div>
@@ -255,10 +230,10 @@ const ContactForm = ({ isOpen, onClose }) => {
 
         {/* Success Message */}
         {submitSuccess && (
-          <div className="absolute inset-0 flex items-center justify-center bg-white/90 rounded-xl z-[55]">
-            <div className="text-center p-6 bg-white rounded-lg shadow-lg">
+          <div className="absolute inset-0 flex items-center justify-center bg-white/95 rounded-[28px] z-[55]">
+            <div className="text-center p-6 bg-white rounded-2xl shadow-lg border border-gray-100">
               <svg 
-                className="w-16 h-16 text-green-500 mx-auto mb-4" 
+                className="w-16 h-16 text-green-500 mx-auto mb-4 animate-bounce" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -266,22 +241,22 @@ const ContactForm = ({ isOpen, onClose }) => {
                 <path 
                   strokeLinecap="round" 
                   strokeLinejoin="round" 
-                  strokeWidth={2} 
+                  strokeWidth={2.5} 
                   d="M5 13l4 4L19 7"
                 />
               </svg>
-              <h3 className="text-xl font-bold text-[#371445] mb-2">Message Sent Successfully!</h3>
-              <p className="text-gray-600">Thank you for reaching out to us. We'll get back to you soon.</p>
+              <h3 className="text-xl font-black text-[#111111] mb-2">Message Sent Successfully!</h3>
+              <p className="text-[#575757] text-sm">Thank you for reaching out to us. We'll get back to you soon.</p>
             </div>
           </div>
         )}
 
-        {/* Form - Make this section scrollable */}
+        {/* Form */}
         <div className="flex-1 overflow-y-auto p-6">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
-                <label className="block text-sm font-medium text-white/90 mb-2">
+                <label className="block text-xs font-bold text-[#111111] uppercase tracking-wider mb-2">
                   Full Name <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -291,15 +266,16 @@ const ContactForm = ({ isOpen, onClose }) => {
                   onChange={handleInputChange}
                   required
                   maxLength={18}
-                  className={`w-full px-4 py-2 border rounded-lg text-white bg-white/5
-                            focus:ring-2 focus:ring-white/30 focus:border-white/40
-                            ${errors.name ? 'border-red-500' : 'border-white/20'}`}
+                  className={`w-full px-4 py-3 rounded-full border text-[#111111] bg-white/50
+                            focus:ring-2 focus:ring-[#E31D2E]/20 focus:border-[#E31D2E]/40 outline-none transition-all
+                            ${errors.name ? 'border-red-500 font-medium' : 'border-white/80'}`}
                   placeholder="Enter your name"
                 />
-                {errors.name && <p className="text-red-500 text-sm mt-1">{errors.name}</p>}
+                {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
               </div>
+
               <div>
-                <label className="block text-sm font-medium text-white/90 mb-2">
+                <label className="block text-xs font-bold text-[#111111] uppercase tracking-wider mb-2">
                   Email Address <span className="text-red-500">*</span>
                 </label>
                 <input
@@ -309,17 +285,17 @@ const ContactForm = ({ isOpen, onClose }) => {
                   onChange={handleInputChange}
                   required
                   maxLength={28}
-                  className={`w-full px-4 py-2 border rounded-lg text-white bg-white/5
-                            focus:ring-2 focus:ring-white/30 focus:border-white/40
-                            ${errors.email ? 'border-red-500' : 'border-white/20'}`}
+                  className={`w-full px-4 py-3 rounded-full border text-[#111111] bg-white/50
+                            focus:ring-2 focus:ring-[#E31D2E]/20 focus:border-[#E31D2E]/40 outline-none transition-all
+                            ${errors.email ? 'border-red-500 font-medium' : 'border-white/80'}`}
                   placeholder="Enter your email"
                 />
-                {errors.email && <p className="text-red-500 text-sm mt-1">{errors.email}</p>}
+                {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-white/90 mb-2">
+              <label className="block text-xs font-bold text-[#111111] uppercase tracking-wider mb-2">
                 Phone Number <span className="text-red-500">*</span>
               </label>
               <div className="relative flex">
@@ -329,7 +305,7 @@ const ContactForm = ({ isOpen, onClose }) => {
                 >
                   <button
                     type="button"
-                    className="flex items-center px-3 py-2 border border-r-0 border-white/20 rounded-l-lg bg-transparent text-white hover:bg-white/5 focus:outline-none"
+                    className="flex items-center px-4 py-3 border border-r-0 border-white/80 rounded-l-full bg-white/50 text-[#111111] hover:bg-white/70 focus:outline-none"
                     onClick={() => setShowCountryList(!showCountryList)}
                   >
                     <img 
@@ -337,20 +313,20 @@ const ContactForm = ({ isOpen, onClose }) => {
                       alt={selectedCountry.name}
                       className="w-5 h-auto mr-2"
                     />
-                    <span className="text-gray-500">{selectedCountry.code}</span>
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <span className="text-[#575757] text-xs font-semibold">{selectedCountry.code}</span>
+                    <svg className="w-4 h-4 ml-1.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
 
                   {/* Country Selection Dropdown */}
                   {showCountryList && (
-                    <div className="absolute z-[60] mt-1 w-56 bg-white border border-gray-300 rounded-lg shadow-lg max-h-60 overflow-y-auto">
+                    <div className="absolute z-[60] mt-1 w-56 bg-white border border-gray-200 rounded-2xl shadow-xl max-h-60 overflow-y-auto p-1">
                       {countries.map((country) => (
                         <button
                           key={country.country}
                           type="button"
-                          className="flex items-center w-full px-4 py-2 text-left hover:bg-gray-100"
+                          className="flex items-center w-full px-3 py-2 text-left rounded-xl hover:bg-gray-50 transition-colors text-xs"
                           onClick={() => handleCountrySelect(country)}
                         >
                           <img
@@ -358,8 +334,8 @@ const ContactForm = ({ isOpen, onClose }) => {
                             alt={country.name}
                             className="w-5 h-auto mr-2"
                           />
-                          <span className="text-gray-700">{country.name}</span>
-                          <span className="text-gray-500 ml-auto">{country.code}</span>
+                          <span className="text-[#111111] font-medium">{country.name}</span>
+                          <span className="text-[#8B8B8B] ml-auto">{country.code}</span>
                         </button>
                       ))}
                     </div>
@@ -372,17 +348,17 @@ const ContactForm = ({ isOpen, onClose }) => {
                   onChange={handleInputChange}
                   required
                   maxLength={10}
-                  className={`w-full px-4 py-2 border rounded-r-lg text-white bg-white/5
-                            focus:ring-2 focus:ring-white/30 focus:border-white/40
-                            ${errors.phone ? 'border-red-500' : 'border-white/20'}`}
-                  placeholder="Enter your phone number"
+                  className={`w-full px-4 py-3 border rounded-r-full text-[#111111] bg-white/50
+                            focus:ring-2 focus:ring-[#E31D2E]/20 focus:border-[#E31D2E]/40 outline-none transition-all
+                            ${errors.phone ? 'border-red-500 font-medium' : 'border-white/80'}`}
+                  placeholder="Enter phone number"
                 />
               </div>
-              {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
+              {errors.phone && <p className="text-red-500 text-xs mt-1">{errors.phone}</p>}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-white/90 mb-2">
+              <label className="block text-xs font-bold text-[#111111] uppercase tracking-wider mb-2">
                 Message <span className="text-red-500">*</span>
               </label>
               <textarea
@@ -392,26 +368,26 @@ const ContactForm = ({ isOpen, onClose }) => {
                 required
                 rows="4"
                 maxLength={500}
-                className={`w-full px-4 py-2 border rounded-lg text-white bg-white/5
-                          focus:ring-2 focus:ring-white/30 focus:border-white/40
-                          resize-y max-h-[200px] min-h-[100px]
-                          ${errors.message ? 'border-red-500' : 'border-white/20'}`}
+                className={`w-full px-4 py-3 border rounded-[20px] text-[#111111] bg-white/50
+                          focus:ring-2 focus:ring-[#E31D2E]/20 focus:border-[#E31D2E]/40 outline-none transition-all
+                          resize-y max-h-[160px] min-h-[90px]
+                          ${errors.message ? 'border-red-500 font-medium' : 'border-white/80'}`}
                 placeholder="Your message here..."
                 style={{ resize: 'vertical' }}
               />
-              {errors.message && <p className="text-red-500 text-sm mt-1">{errors.message}</p>}
-              <p className="text-sm text-white/70 mt-1">{formData.message.length}/500 characters</p>
+              {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
+              <p className="text-[10px] text-[#8B8B8B] mt-1.5 font-semibold uppercase tracking-wide">{formData.message.length}/500 characters</p>
             </div>
           </form>
         </div>
 
-        {/* Footer - Keep this fixed at the bottom */}
-        <div className="border-t border-gray-200 p-4 sm:p-6 flex-shrink-0">
+        {/* Footer */}
+        <div className="border-t border-gray-100 p-4 sm:p-6 flex-shrink-0">
           <div className="flex justify-between sm:justify-end items-center space-x-3 sm:space-x-4">
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 sm:flex-none px-4 sm:px-6 py-2 border border-white/20 rounded-lg text-white hover:bg-white/5 transition-colors duration-300 font-medium text-sm sm:text-base"
+              className="flex-1 sm:flex-none px-6 py-3 border border-white/80 rounded-full text-[#575757] hover:bg-black/5 hover:text-[#111111] transition-all duration-300 font-bold text-xs sm:text-sm uppercase tracking-wider"
               disabled={isSubmitting}
             >
               Cancel
@@ -419,9 +395,9 @@ const ContactForm = ({ isOpen, onClose }) => {
             <button
               type="submit"
               onClick={handleSubmit}
-              className="flex-1 sm:flex-none px-4 sm:px-6 py-2 bg-red-600 text-white rounded-lg
-                        hover:bg-red-700 transition-colors duration-300 font-medium text-sm sm:text-base
-                        disabled:opacity-50 disabled:cursor-not-allowed"
+              className="flex-1 sm:flex-none px-6 py-3 bg-[#E31D2E] text-white rounded-full
+                        hover:bg-[#111111] transition-all duration-300 font-bold text-xs sm:text-sm uppercase tracking-wider
+                        disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_8px_20px_rgba(227,29,46,0.15)]"
               disabled={isSubmitting}
             >
               {isSubmitting ? (

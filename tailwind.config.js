@@ -8,50 +8,44 @@ module.exports = {
       },
       backdropBlur: {
         lg: "16px",
-        "2xl": "40px", // The new, higher-quality blur
+        "2xl": "40px",
       },
       blur: {
         "2xl": "40px",
-        "3xl": "64px", // Default blur-3xl
-        "[100px]": "100px", // The new, ultra-soft blob blur
+        "3xl": "64px",
+        "[100px]": "100px",
       },
       borderRadius: {
-        "4xl": "2rem", // You used rounded-4xl
+        "3xl": "1.5rem",
+        "4xl": "2rem",
+        "5xl": "3rem",
       },
       colors: {
-        // Professional Brand Colors
         primary: {
-          DEFAULT: "#371445", // Praskla Purple - Brand/CTAs
-          light: "#4a1c5e",
-          dark: "#2a0e34",
+          DEFAULT: "#E31D2E", // Brand Red
+          light: "#ff3b4d",
+          dark: "#991A23",
         },
         secondary: {
-          DEFAULT: "#10B981", // Emerald Green - Accent/Success
-          light: "#34D399",
-          dark: "#059669",
+          DEFAULT: "#111111", // Primary text / black color
+          light: "#575757",
+          dark: "#000000",
         },
         background: {
-          DEFAULT: "#FFFFFF", // White - Main background
+          DEFAULT: "#F3E9E9", // Light primary background
         },
+        "brand-red": "#E31D2E",
+        "dark-red": "#991A23",
+        "dark-surface": "#1B1B1B",
         text: {
-          DEFAULT: "#333333", // Dark Grey - Body text
-          light: "#666666",
-          lighter: "#999999",
+          DEFAULT: "#111111",
+          light: "#575757",
+          lighter: "#8B8B8B",
         },
         ui: {
-          DEFAULT: "#D1D1D1", // Silver - UI/Borders
+          DEFAULT: "#D1D1D1",
           light: "#E5E5E5",
           dark: "#BEBEBE",
-        },
-        highlight: {
-          purple: "#F3E8FF", // Light Purple - Background blobs
-          mint: "#A7F3D0", // Light Mint - Background blobs
-        },
-        // Keep existing colors for compatibility
-        tertiary: {
-          DEFAULT: "#10B981", // Emerald green as tertiary color
-          light: "#34D399",
-          dark: "#059669",
         },
       },
       animation: {

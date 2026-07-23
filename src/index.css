@@ -241,31 +241,36 @@ body {
 /* Professional Color Palette CSS Variables */
 :root {
   /* Brand Colors */
-  --color-primary: #371445;
-  --color-primary-light: #4a1c5e;
-  --color-primary-dark: #2a0e34;
+  --color-bg-primary: #F3E9E9;
+  --color-white: #FFFFFF;
+  --color-text-primary: #111111;
+  --color-text-secondary: #575757;
+  --color-text-muted: #8B8B8B;
+  --color-brand-red: #E31D2E;
+  --color-dark-red: #991A23;
+  --color-dark-surface: #1B1B1B;
+
+  --color-primary: #E31D2E;
+  --color-primary-light: #ff3b4d;
+  --color-primary-dark: #991A23;
 
   /* Secondary/Accent Colors */
-  --color-secondary: #10b981;
-  --color-secondary-light: #34d399;
-  --color-secondary-dark: #059669;
+  --color-secondary: #111111;
+  --color-secondary-light: #575757;
+  --color-secondary-dark: #000000;
 
   /* Background */
-  --color-background: #ffffff;
+  --color-background: #F3E9E9;
 
   /* Text Colors */
-  --color-text: #333333;
-  --color-text-light: #666666;
-  --color-text-lighter: #999999;
+  --color-text: #111111;
+  --color-text-light: #575757;
+  --color-text-lighter: #8B8B8B;
 
   /* UI/Border Colors */
-  --color-ui: #d1d1d1;
-  --color-ui-light: #e5e5e5;
-  --color-ui-dark: #bebebe;
-
-  /* Highlight/Blob Colors */
-  --color-highlight-purple: #f3e8ff;
-  --color-highlight-mint: #a7f3d0;
+  --color-ui: #D1D1D1;
+  --color-ui-light: #E5E5E5;
+  --color-ui-dark: #BEBEBE;
 }
 
 /* Enhanced gradient utilities for new colors */
@@ -274,78 +279,15 @@ body {
 }
 
 /* Light Frosted Glass Navbar Styles */
-:root {
-  --light-primary-50: hsl(240, 50%, 98%);
-  --light-primary-100: hsl(240, 45%, 96%);
-  --light-primary-200: hsl(240, 35%, 88%);
-  --light-primary-300: hsl(240, 25%, 75%);
-  --light-primary-400: hsl(240, 15%, 65%);
-  --light-primary-500: hsl(240, 10%, 55%);
-  --light-surface-1: var(--light-primary-50);
-  --light-surface-2: var(--light-primary-100);
-  --light-surface-3: var(--light-primary-200);
-  --light-border-1: hsl(240, 20%, 85%);
-  --light-border-2: hsl(240, 15%, 90%);
-}
-
 .light-frosted-nav {
-  --border-width: 1px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(12px);
-}
-
-.light-frosted-nav::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  border-radius: inherit;
-  border: var(--border-width) solid transparent;
-  background: linear-gradient(var(--light-border-1), var(--light-border-2)) border-box;
-  mask: linear-gradient(black, black) border-box,
-    linear-gradient(black, black) padding-box;
-  mask-composite: subtract;
-}
-
-/* Dark Frosted Glass Navbar Styles */
-:root {
-  --primary-900: hsl(256, 43%, 7%);
-  --primary-800: hsl(240, 24%, 13%);
-  --primary-700: hsl(243, 26%, 15%);
-  --primary-600: hsl(252, 9%, 22%);
-  --primary-500: hsl(259, 13%, 28%);
-  --primary-400: hsl(254, 22%, 32%);
-  --primary-300: hsl(251, 13%, 68%);
-  --primary-200: hsl(240, 15%, 76%);
-  --primary-100: hsl(240, 21%, 88%);
-  --neutral-100: hsl(0, 0%, 100%);
-  --text-1: var(--neutral-100);
-  --text-2: var(--primary-100);
-  --text-3: var(--primary-200);
-  --surface-1: var(--primary-900);
-  --surface-2: var(--primary-800);
-  --surface-3: var(--primary-700);
-  --border-1: var(--primary-500);
-  --border-2: var(--primary-600);
-}
-
-.dark-frosted-nav {
-  --border-width: 1px;
-  background: hsl(from var(--surface-3) h s l / 0.25);
-  backdrop-filter: blur(12px);
-}
-
-.dark-frosted-nav::before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  border-radius: inherit;
-  border: var(--border-width) solid transparent;
-  background: linear-gradient(var(--border-1), var(--border-2)) border-box;
-  mask: linear-gradient(black, black) border-box,
-    linear-gradient(black, black) padding-box;
-  mask-composite: subtract;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(24px) saturate(120%);
+  -webkit-backdrop-filter: blur(24px) saturate(120%);
+  box-shadow: 
+    0 10px 30px rgba(17, 17, 17, 0.03),
+    0 1px 8px rgba(17, 17, 17, 0.01),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
 /* Global overrides to make the Cinematic Universe background visible across all pages */
@@ -382,14 +324,162 @@ section,
   background: transparent !important;
 }
 
-/* Maintain readability for cards/modals/gradients inside wrappers */
-.bg-gradient-to-br,
-.content-card,
-[class*="from-"],
-[class*="via-"],
-[class*="to-"] {
-  /* Ensure inner elements can still render gradients */
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
-div.bg-gradient-to-br:not(.min-h-screen):not(.h-screen):not(section) {
-  background-image: linear-gradient(var(--tw-gradient-stops)) !important;
+::-webkit-scrollbar-track {
+  background: #F3E9E9;
+}
+::-webkit-scrollbar-thumb {
+  background: #E31D2E;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #991A23;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #E31D2E #F3E9E9;
+}
+
+/* Systemic overrides for text colors on light background */
+.text-white:not(.dark-surface *) {
+  color: var(--color-text-primary) !important;
+}
+.text-white\/90:not(.dark-surface *) {
+  color: rgba(17, 17, 17, 0.9) !important;
+}
+.text-white\/80:not(.dark-surface *) {
+  color: rgba(17, 17, 17, 0.8) !important;
+}
+.text-white\/75:not(.dark-surface *) {
+  color: rgba(17, 17, 17, 0.75) !important;
+}
+.text-white\/70:not(.dark-surface *) {
+  color: rgba(17, 17, 17, 0.7) !important;
+}
+.text-white\/60:not(.dark-surface *), .text-white\/65:not(.dark-surface *) {
+  color: var(--color-text-secondary) !important;
+}
+.text-white\/50:not(.dark-surface *), .text-white\/55:not(.dark-surface *) {
+  color: var(--color-text-secondary) !important;
+}
+.text-white\/40:not(.dark-surface *), .text-white\/45:not(.dark-surface *) {
+  color: var(--color-text-muted) !important;
+}
+.text-white\/20:not(.dark-surface *), .text-white\/25:not(.dark-surface *), .text-white\/30:not(.dark-surface *) {
+  color: rgba(17, 17, 17, 0.25) !important;
+}
+
+.text-gray-100:not(.dark-surface *), .text-gray-200:not(.dark-surface *), .text-gray-300:not(.dark-surface *), .text-slate-200:not(.dark-surface *), .text-slate-300:not(.dark-surface *) {
+  color: var(--color-text-secondary) !important;
+}
+.text-gray-400:not(.dark-surface *), .text-slate-400:not(.dark-surface *) {
+  color: var(--color-text-muted) !important;
+}
+.text-gray-500:not(.dark-surface *) {
+  color: var(--color-text-muted) !important;
+}
+
+/* Systemic overrides for purple color classes text-[#371445], bg-[#371445], etc. */
+.text-\[\#371445\], .text-primary-dark {
+  color: var(--color-brand-red) !important;
+}
+.bg-\[\#371445\], .bg-primary-dark {
+  background-color: var(--color-brand-red) !important;
+}
+.border-\[\#371445\] {
+  border-color: var(--color-brand-red) !important;
+}
+.bg-\[\#371445\]\/10 {
+  background-color: rgba(227, 29, 46, 0.1) !important;
+}
+.bg-\[\#371445\]\/20 {
+  background-color: rgba(227, 29, 46, 0.2) !important;
+}
+.bg-\[\#371445\]\/90 {
+  background-color: rgba(227, 29, 46, 0.9) !important;
+}
+.focus\:ring-\[\#371445\]:focus {
+  --tw-ring-color: var(--color-brand-red) !important;
+}
+.focus\:border-\[\#371445\]:focus {
+  border-color: var(--color-brand-red) !important;
+}
+.stroke-\[\#371445\] {
+  stroke: var(--color-brand-red) !important;
+}
+
+/* Dark surface overrides */
+.dark-surface {
+  background-color: var(--color-dark-surface) !important;
+  color: #FFFFFF !important;
+}
+.dark-surface .text-white {
+  color: #FFFFFF !important;
+}
+.dark-surface .text-white\/90 {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+.dark-surface .text-white\/80 {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+.dark-surface .text-white\/75 {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+.dark-surface .text-white\/70 {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+.dark-surface .text-white\/60, .dark-surface .text-white\/65 {
+  color: rgba(255, 255, 255, 0.65) !important;
+}
+.dark-surface .text-white\/50, .dark-surface .text-white\/55 {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+.dark-surface .text-white\/40, .dark-surface .text-white\/45 {
+  color: rgba(255, 255, 255, 0.45) !important;
+}
+.dark-surface .text-white\/20, .dark-surface .text-white\/25, .dark-surface .text-white\/30 {
+  color: rgba(255, 255, 255, 0.25) !important;
+}
+.dark-surface .text-gray-200, .dark-surface .text-gray-300 {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Claymorphic Utility Styling */
+.clay-card {
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(20px) saturate(120%);
+  -webkit-backdrop-filter: blur(20px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  box-shadow: 
+    0 12px 32px rgba(17, 17, 17, 0.04),
+    0 2px 8px rgba(17, 17, 17, 0.02),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border-radius: 2rem !important;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clay-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255, 255, 255, 0.75);
+  box-shadow: 
+    0 20px 40px rgba(17, 17, 17, 0.07),
+    0 4px 12px rgba(17, 17, 17, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Dark surface clay card */
+.clay-card-dark {
+  background: rgba(27, 27, 27, 0.8);
+  backdrop-filter: blur(24px) saturate(140%);
+  -webkit-backdrop-filter: blur(24px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 
+    0 24px 50px rgba(0, 0, 0, 0.3),
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  border-radius: 2rem;
 }

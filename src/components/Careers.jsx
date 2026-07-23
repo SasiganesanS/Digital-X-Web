@@ -126,7 +126,7 @@ const Careers = () => {
   return (
     <>
       <section
-        className="h-screen min-h-[100vh] max-h-[100vh] w-full overflow-x-hidden bg-gradient-to-br from-black via-[#0a0a0a] to-[#1a0b12] flex items-center justify-center px-4 sm:px-8 overflow-hidden dark-section"
+        className="h-screen min-h-[100vh] max-h-[100vh] w-full overflow-x-hidden bg-transparent flex items-center justify-center px-4 sm:px-8 overflow-hidden"
         aria-label="Careers hero section"
       >
         <div className="max-w-7xl w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 md:gap-8 lg:gap-20">
@@ -134,40 +134,31 @@ const Careers = () => {
           <div className="z-10 w-full px-6 sm:px-0 lg:max-w-xl text-center lg:text-left max-[1200px]:landscape:text-center max-[1200px]:landscape:max-w-2xl max-[1200px]:landscape:mx-auto min-[768px]:max-[1100px]:portrait:text-center min-[768px]:max-[1100px]:portrait:max-w-2xl min-[768px]:max-[1100px]:portrait:mx-auto">
             {/* Logo/Brand */}
             <div
-              className="flex items-center justify-center lg:justify-start max-[1200px]:landscape:justify-center min-[768px]:max-[1100px]:portrait:justify-center gap-3 mb-4 sm:mb-5 md:mb-6 lg:mt-8"
+              className="flex items-center justify-center lg:justify-start max-[1200px]:landscape:justify-center min-[768px]:max-[1100px]:portrait:justify-center gap-3 mb-6"
               role="banner"
             >
-              <div className="grid grid-cols-3 gap-1" aria-hidden="true">
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-sm"></div>
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-sm"></div>
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-sm"></div>
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-sm"></div>
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-sm"></div>
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-sm"></div>
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-sm"></div>
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-sm"></div>
-                <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 bg-white rounded-sm"></div>
+              <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+                </span>
+                <span className="relative text-[#111111] text-xs font-bold tracking-[0.25em] uppercase">Careers @ Praskla Digital X</span>
               </div>
-              <span className="text-white text-base sm:text-lg md:text-xl font-light">
-                Careers @ Praskla Digital X
-              </span>
             </div>
 
             {/* Heading */}
-            <h1 className="text-white text-[24px] sm:text-[28px] md:text-[36px] lg:text-[48px] font-bold leading-tight mb-4 sm:mb-5 md:mb-6 lg:mb-8">
+            <h1 className="text-[#111111] text-[36px] sm:text-[44px] lg:text-[56px] font-black leading-tight mb-8">
               Join us in creating
               <br />
               software that drives
               <br />
-              innovation
+              <span className="text-[#E31D2E]">innovation</span>
             </h1>
 
             {/* CTA Button */}
             <button
               onClick={scrollToJobs}
-              className="bg-[#E8192C] text-white px-5 sm:px-6 md:px-7 lg:px-8 py-2.5 sm:py-3 md:py-3.5 lg:py-4 rounded-full text-xs sm:text-sm md:text-[15px] lg:text-base font-medium 
-                       hover:bg-[#C0141C] transition-all duration-300 ease-out border-2 border-transparent hover:border-[#C0141C]"
-              style={{ boxShadow: "0 6px 20px rgba(232, 25, 44, 0.2)" }}
+              className="bg-[#E31D2E] text-white px-8 py-4 rounded-full font-bold text-sm sm:text-base transition-all duration-300 hover:bg-[#111111] hover:scale-105 active:scale-95 shadow-[0_8px_20px_rgba(227,29,46,0.15)]"
               aria-label="Scroll to view open job positions"
             >
               View Open Roles
@@ -182,13 +173,10 @@ const Careers = () => {
             <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-8 w-full max-w-[280px] sm:max-w-[320px] md:max-w-sm lg:max-w-xl mx-auto items-center justify-items-center max-[1200px]:landscape:flex max-[1200px]:landscape:justify-center max-[1200px]:landscape:max-w-md min-[768px]:max-[1100px]:portrait:flex min-[768px]:max-[1100px]:portrait:justify-center min-[768px]:max-[1100px]:portrait:max-w-md">
               {teamMembers.map((member, index) => {
                 const isCenter = index === 4;
-                // Hide all circles except center (index 4) on landscape iPad and portrait iPad Pro
                 const hideOnTablet = index !== 4;
-                // Use a whitish, professional background for illustration circles. Center remains white for logo.
-                // Increase opacity for non-center circles so darker vectors remain clearly visible on the dark hero.
                 const bgColor = isCenter
-                  ? "bg-transparent border border-white/10"
-                  : "bg-white/30 ring-1 ring-white/30 shadow-sm";
+                  ? "bg-white border border-gray-100 shadow-sm"
+                  : "bg-white/60 border border-white/80 shadow-md";
 
                 return (
                   <div
@@ -207,7 +195,6 @@ const Careers = () => {
                             ? "w-8/12 h-8/12 object-contain"
                             : "w-full h-full object-cover rounded-full"
                         }
-                        style={isCenter ? { filter: "url(#logo-dark-mode-filter)" } : undefined}
                         loading="lazy"
                       />
                     ) : (
@@ -222,15 +209,15 @@ const Careers = () => {
                               fill="none"
                               stroke="currentColor"
                               strokeWidth="3"
-                              className="text-[#E8192C]"
+                              className="text-[#E31D2E]"
                             />
                           </svg>
                         ) : (
                           <>
-                            <div className="text-white text-xs sm:text-sm lg:text-lg font-medium">
+                            <div className="text-[#111111] text-xs sm:text-sm lg:text-lg font-medium">
                               Employee
                             </div>
-                            <div className="text-white text-xs sm:text-sm lg:text-lg font-medium">
+                            <div className="text-[#111111] text-xs sm:text-sm lg:text-lg font-medium">
                               Image
                             </div>
                           </>
@@ -248,24 +235,21 @@ const Careers = () => {
       {/* Job search section */}
       <section
         ref={jobSearchRef}
-        className="bg-[#080808] py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 mt-[200px]"
+        className="bg-transparent py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 mt-[100px]"
         aria-label="Job search and filters"
       >
         <div className="max-w-7xl mx-auto">
           {/* Badge */}
-          <div className="inline-block mb-4 sm:mb-6">
-            <div className="border-2 border-[#E8192C] rounded-full px-5 sm:px-6 py-2.5 sm:py-3">
-              <span
-                className="font-semibold text-sm sm:text-base lg:text-lg"
-                style={{ color: "rgba(232, 25, 44, 0.7)" }}
-              >
+          <div className="inline-block mb-6">
+            <div className="border border-[#E31D2E]/20 bg-white/60 px-5 py-2.5 rounded-full shadow-sm">
+              <span className="font-bold text-xs sm:text-sm uppercase tracking-wider text-[#E31D2E]">
                 We're growing our team
               </span>
             </div>
           </div>
 
           {/* Heading */}
-          <h2 className="text-white text-[32px] sm:text-[40px] lg:text-[48px] font-bold mb-6 sm:mb-8 max-w-3xl leading-tight">
+          <h2 className="text-[#111111] text-[32px] sm:text-[40px] lg:text-[48px] font-black mb-6 sm:mb-8 max-w-3xl leading-tight">
             Find the position that fits your ambitions
           </h2>
 
@@ -282,11 +266,11 @@ const Careers = () => {
                 placeholder="Search for positions..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-5 sm:px-6 py-3.5 sm:py-4 bg-[#111111] border-2 border-[#2A2A2A] rounded-full text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-[#E8192C] focus:border-[#E8192C] text-sm sm:text-[15px] lg:text-base transition-all"
+                className="w-full px-6 py-4 bg-white/50 border border-white/80 rounded-full text-[#111111] placeholder:text-[#8B8B8B] focus:ring-2 focus:ring-[#E31D2E]/20 focus:border-[#E31D2E]/40 outline-none text-sm sm:text-[15px] lg:text-base transition-all shadow-sm"
                 aria-label="Search for job positions"
               />
               <FiSearch
-                className="absolute right-5 sm:right-6 top-1/2 transform -translate-y-1/2 text-[#E8192C] w-5 h-5 pointer-events-none"
+                className="absolute right-6 top-1/2 transform -translate-y-1/2 text-[#E31D2E] w-5 h-5 pointer-events-none"
                 aria-hidden="true"
               />
             </div>
@@ -297,13 +281,12 @@ const Careers = () => {
                 <div key={filterName} className="relative filter-dropdown">
                   <button
                     onClick={() => toggleFilter(filterName)}
-                    className="w-full bg-[#111111] border border-[#2A2A2A] text-white px-4 sm:px-5 py-3 sm:py-3.5 rounded-full font-medium hover:bg-[#E8192C]/80 active:bg-[#C0141C] transition-colors flex items-center gap-2 capitalize justify-between text-sm sm:text-[15px] lg:text-base"
-                    style={{ boxShadow: "0 4px 15px rgba(0, 0, 0, 0.4)" }}
+                    className="w-full bg-white/50 border border-white/80 text-[#111111] px-5 py-3 rounded-full font-bold hover:bg-white/80 active:bg-gray-100 transition-colors flex items-center gap-2 capitalize justify-between text-sm sm:text-[15px] lg:text-base shadow-sm"
                     aria-expanded={openFilter === filterName}
                     aria-haspopup="listbox"
                     aria-label={`Filter by ${filterName}`}
                   >
-                    <span className="truncate text-left">
+                    <span className="truncate text-left font-semibold">
                       {filters[filterName] || filterName}
                     </span>
                     <FiChevronDown
@@ -316,15 +299,15 @@ const Careers = () => {
                   {/* Dropdown Menu */}
                   {openFilter === filterName && (
                     <div
-                      className="absolute top-full mt-2 left-0 right-0 bg-[#111111] border-2 border-[#2A2A2A] rounded-2xl shadow-2xl z-50 min-w-full overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200"
+                      className="absolute top-full mt-2 left-0 right-0 bg-white border border-gray-200 rounded-2xl shadow-xl z-50 min-w-full overflow-hidden p-1"
                       role="listbox"
                       aria-label={`${filterName} filter options`}
                     >
-                      <div className="py-2 max-h-64 overflow-y-auto">
+                      <div className="py-1 max-h-64 overflow-y-auto">
                         {/* Clear option */}
                         <button
                           onClick={() => handleFilterChange(filterName, "")}
-                          className="w-full px-4 sm:px-5 py-2.5 text-left hover:bg-white/5 active:bg-white/10 transition-colors text-white/70 font-medium text-sm sm:text-[15px] lg:text-base"
+                          className="w-full px-4 py-2.5 text-left rounded-xl hover:bg-gray-50 transition-colors text-[#575757] font-semibold text-xs sm:text-sm"
                         >
                           All {filterName}s
                         </button>
@@ -334,9 +317,9 @@ const Careers = () => {
                             onClick={() =>
                               handleFilterChange(filterName, option)
                             }
-                            className={`w-full px-4 sm:px-5 py-2.5 text-left hover:bg-white/5 active:bg-white/10 transition-colors text-sm sm:text-[15px] lg:text-base ${filters[filterName] === option
-                              ? "bg-red-500/10 text-[#E8192C] font-semibold"
-                              : "text-white/70 font-medium"
+                            className={`w-full px-4 py-2.5 text-left rounded-xl hover:bg-gray-50 transition-colors text-xs sm:text-sm ${filters[filterName] === option
+                              ? "bg-[#E31D2E]/10 text-[#E31D2E] font-bold"
+                              : "text-[#575757] font-semibold"
                               }`}
                           >
                             {option}
@@ -355,7 +338,7 @@ const Careers = () => {
             <div className="mb-6 sm:mb-8">
               <button
                 onClick={clearAllFilters}
-                className="bg-white/10 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full font-semibold hover:bg-white/20 active:bg-white/30 transition-colors text-sm sm:text-[15px] lg:text-base border border-white/10"
+                className="bg-[#E31D2E]/10 text-[#E31D2E] px-6 py-3 rounded-full font-bold hover:bg-[#111111] hover:text-white transition-all text-xs sm:text-sm border border-[#E31D2E]/20 shadow-sm"
                 aria-label="Clear all filters and show all jobs"
               >
                 Clear Filters & Show All Jobs
@@ -364,36 +347,34 @@ const Careers = () => {
           )}
 
           {/* Info Box */}
-          <div className="border border-red-500/20 bg-red-500/5 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 shadow-sm">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6">
-              <div className="flex-1">
-                <p className="text-white/70 text-sm sm:text-[15px] lg:text-base leading-relaxed">
-                  Don't see a role that matches your expertise? We're always
-                  seeking exceptional talent with unique perspectives.
-                  <span className="font-semibold text-white">
-                    {" "}
-                    Share your background and interests with us
-                  </span>
-                  , and our team will reach out if there's a potential fit.
-                </p>
-              </div>
-              <button
-                onClick={() =>
-                  setSelectedJob({
-                    title: "General Application",
-                    description:
-                      "Apply for future opportunities at Praskla Technology",
-                    requirements: ["Share your skills and experience with us"],
-                    skills: [],
-                  })
-                }
-                className="flex items-center gap-2 text-[#E8192C] font-semibold whitespace-nowrap hover:text-[#C0141C] active:text-[#E8192C] transition-colors text-sm sm:text-[15px] lg:text-base group"
-                aria-label="Submit a general application"
-              >
-                Submit Application
-                <FiExternalLink className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </button>
+          <div className="clay-card p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div className="flex-1">
+              <p className="text-[#575757] text-sm sm:text-base leading-relaxed font-medium">
+                Don't see a role that matches your expertise? We're always
+                seeking exceptional talent with unique perspectives.
+                <span className="font-black text-[#111111]">
+                  {" "}
+                  Share your background and interests with us
+                </span>
+                , and our team will reach out if there's a potential fit.
+              </p>
             </div>
+            <button
+              onClick={() =>
+                setSelectedJob({
+                  title: "General Application",
+                  description:
+                    "Apply for future opportunities at Praskla Technology",
+                  requirements: ["Share your skills and experience with us"],
+                  skills: [],
+                })
+              }
+              className="flex items-center gap-2 text-[#E31D2E] font-bold whitespace-nowrap hover:text-[#111111] transition-colors text-xs sm:text-sm uppercase tracking-wider group"
+              aria-label="Submit a general application"
+            >
+              Submit Application
+              <FiExternalLink className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </button>
           </div>
         </div>
       </section>

@@ -45,44 +45,38 @@ const clientData = [
 
 const Clients = () => {
   return (
-    <section className=" pt-24 pb-16 bg-gradient-to-b from-white to-gray-50">
-      <div className="container mx-auto px-4">
-        <div className="text-center mb-20">
-          <h2 className="text-5xl font-bold text-[#371445] mb-4">
-          Our Trusted Clients
+    <section className="pt-32 pb-20 bg-transparent">
+      <div className="container mx-auto px-4 max-w-6xl">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl sm:text-5xl font-black text-[#111111] mb-4">
+            Our Trusted Clients
           </h2>
-          <div className="w-24 h-1 bg-[#371445] mx-auto mb-8 rounded-full"></div>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-            Trusted Clients who have been with us for years and have been a part of our journey.
+          <div className="w-20 h-1 bg-[#E31D2E] mx-auto mb-6 rounded-full"></div>
+          <p className="text-[#575757] text-base sm:text-lg max-w-xl mx-auto font-medium">
+            Partners and organizations who have trusted us with their brand identity and growth systems.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {clientData.map((client) => (
             <div 
               key={client.id} 
-              className="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              className="clay-card relative flex flex-col justify-between overflow-hidden p-8 hover:-translate-y-2 transition-all duration-300"
             >
-              <div className="absolute top-0 left-0 w-full h-1 bg-[#371445]"></div>
-              <div className="p-8">
-                
-                <div className="space-y-4">
-                  <div className="flex flex-col items-center">
-                    <div className="w-32 h-32 mb-6 flex items-center justify-center">
-                      <img
-                        src={client.logo}
-                        alt={`${client.name} logo`}
-                        className={`max-w-full max-h-full object-contain ${client.name === "VILCET" ? "rounded-xl" : ""}`}
-                      />
-                    </div>
-                    <h3 className="text-2xl font-semibold text-gray-800 mb-2 text-center">
-                      {client.name}
-                    </h3>
-                  </div>
-                  <p className="text-gray-600 leading-relaxed text-center">
-                    {client.description}
-                  </p>
+              <div className="flex flex-col items-center">
+                <div className="w-32 h-32 mb-6 flex items-center justify-center bg-white/40 rounded-2xl p-3 border border-white/60">
+                  <img
+                    src={client.logo}
+                    alt={`${client.name} logo`}
+                    className={`max-w-full max-h-full object-contain ${client.name === "VILCET" ? "rounded-xl" : ""}`}
+                  />
                 </div>
+                <h3 className="text-xl font-black text-[#111111] mb-3 text-center">
+                  {client.name}
+                </h3>
+                <p className="text-[#575757] text-sm leading-relaxed text-center font-normal">
+                  {client.description}
+                </p>
               </div>
             </div>
           ))}
