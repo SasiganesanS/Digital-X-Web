@@ -395,9 +395,7 @@ const ContactForm = ({ isOpen, onClose }) => {
             <button
               type="submit"
               onClick={handleSubmit}
-              className="flex-1 sm:flex-none px-6 py-3 bg-[#E31D2E] text-white rounded-full
-                        hover:bg-[#111111] transition-all duration-300 font-bold text-xs sm:text-sm uppercase tracking-wider
-                        disabled:opacity-50 disabled:cursor-not-allowed shadow-[0_8px_20px_rgba(227,29,46,0.15)]"
+              className="primary-btn flex-1 sm:flex-none px-6 py-3 text-white rounded-full font-bold text-xs sm:text-sm uppercase tracking-wider disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={isSubmitting}
             >
               {isSubmitting ? (

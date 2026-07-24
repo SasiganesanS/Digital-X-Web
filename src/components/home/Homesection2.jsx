@@ -55,7 +55,7 @@ function ProjectPreview({ project }) {
           <motion.div variants={contentItem} className="flex justify-end">
             <Link
               to={`/project/${project.slug}`}
-              className="inline-flex items-center gap-2 rounded-full bg-[#E31D2E] px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-white shadow-[0_8px_20px_rgba(227,29,46,0.2)] transition-all duration-300 hover:bg-[#111111] hover:-translate-y-0.5 active:scale-95"
+              className="primary-btn inline-flex items-center gap-2 rounded-full px-6 py-3 text-[11px] font-bold uppercase tracking-[0.25em] text-white"
             >
               View Case Study
               <ArrowUpRight className="w-4 h-4 text-white" />

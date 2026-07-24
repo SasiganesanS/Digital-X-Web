@@ -487,9 +487,9 @@ const About = () => {
 
             <Link
               to="/services"
-              className="inline-flex items-center gap-3 bg-[#E31D2E] hover:bg-[#111111] text-white px-8 py-4 rounded-full font-bold text-lg transition-all duration-300 hover:scale-105 active:scale-95 shadow-[0_8px_20px_rgba(227,29,46,0.15)]"
+              className="primary-btn inline-flex items-center gap-3 text-white px-8 py-4 rounded-full font-bold text-lg"
             >
-              <span className="text-white">Explore Our Services</span>
+              Explore Our Services
             </Link>
           </motion.div>
         </div>

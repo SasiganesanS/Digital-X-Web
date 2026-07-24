@@ -256,9 +256,9 @@ const Projects = () => {
 
                     {/* View Live Project Button */}
                     <div className="relative">
-                      <div className="inline-flex items-center gap-2 bg-[#E31D2E] text-white px-5 py-2.5 rounded-full hover:bg-[#111111] transition-all duration-300 shadow-md group/btn active:scale-95">
+                      <div className="primary-btn inline-flex items-center gap-2 px-5 py-2.5 rounded-full group/btn">
                         <span className="text-[11px] font-black uppercase tracking-wider text-white">View Live Project</span>
-                        <ArrowUpRight className="w-4 h-4 text-white group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
+                        <ArrowUpRight className="w-4 h-4 text-white" />
                       </div>
                     </div>
                   </div>

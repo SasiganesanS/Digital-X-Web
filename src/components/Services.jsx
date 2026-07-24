@@ -77,7 +77,7 @@ const Services = () => {
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                 <Link
                   to="/projects"
-                  className="px-8 py-4 bg-gradient-to-r from-[#E8192C] to-red-800 text-white rounded-full font-bold hover:scale-105 transition-all shadow-[0_10px_30px_rgba(232,25,44,0.2)]"
+                  className="primary-btn px-8 py-4 text-white rounded-full font-bold"
                 >
                   View Our Portfolio
                 </Link>

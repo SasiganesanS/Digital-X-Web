@@ -68,7 +68,7 @@ const Footer = ({ setShowContactForm }) => {
           {setShowContactForm && (
             <button
               onClick={() => setShowContactForm(true)}
-              className="mt-2 w-fit px-4 py-2 bg-[#E31D2E] hover:bg-white hover:text-black text-white text-xs font-semibold rounded-full transition-all duration-300 shadow-[0_4px_12px_rgba(227,29,46,0.2)]"
+              className="primary-btn mt-2 w-fit px-4 py-2 text-white text-xs font-semibold rounded-full"
             >
               Get in Touch
             </button>

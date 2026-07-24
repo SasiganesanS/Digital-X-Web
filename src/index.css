@@ -344,32 +344,37 @@ section,
   scrollbar-color: #E31D2E #F3E9E9;
 }
 
-/* Systemic overrides for text colors on light background */
-.text-white:not(.dark-surface *) {
+/* Systemic overrides for text colors on light background - excluding all primary red CTA buttons and their children */
+.text-white:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]) {
   color: var(--color-text-primary) !important;
 }
-.text-white\/90:not(.dark-surface *) {
+.text-white\/90:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]) {
   color: rgba(17, 17, 17, 0.9) !important;
 }
-.text-white\/80:not(.dark-surface *) {
+.text-white\/80:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]) {
   color: rgba(17, 17, 17, 0.8) !important;
 }
-.text-white\/75:not(.dark-surface *) {
+.text-white\/75:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]) {
   color: rgba(17, 17, 17, 0.75) !important;
 }
-.text-white\/70:not(.dark-surface *) {
+.text-white\/70:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]) {
   color: rgba(17, 17, 17, 0.7) !important;
 }
-.text-white\/60:not(.dark-surface *), .text-white\/65:not(.dark-surface *) {
+.text-white\/60:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]),
+.text-white\/65:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]) {
   color: var(--color-text-secondary) !important;
 }
-.text-white\/50:not(.dark-surface *), .text-white\/55:not(.dark-surface *) {
+.text-white\/50:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]),
+.text-white\/55:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]) {
   color: var(--color-text-secondary) !important;
 }
-.text-white\/40:not(.dark-surface *), .text-white\/45:not(.dark-surface *) {
+.text-white\/40:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]),
+.text-white\/45:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]) {
   color: var(--color-text-muted) !important;
 }
-.text-white\/20:not(.dark-surface *), .text-white\/25:not(.dark-surface *), .text-white\/30:not(.dark-surface *) {
+.text-white\/20:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]),
+.text-white\/25:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]),
+.text-white\/30:not(.dark-surface *):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]) {
   color: rgba(17, 17, 17, 0.25) !important;
 }
 
@@ -482,4 +487,269 @@ section,
     0 4px 12px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.05);
   border-radius: 2rem;
+}
+
+/* Reusable Primary Button styling for premium hover interaction */
+.primary-btn,
+button.primary-btn,
+a.primary-btn,
+button[class*="bg-[#E31D2E]"],
+a[class*="bg-[#E31D2E]"],
+button[class*="bg-[#E8192C]"],
+a[class*="bg-[#E8192C]"],
+button[class*="bg-[#ef2029]"],
+a[class*="bg-[#ef2029]"],
+button[class*="bg-[#371445]"],
+a[class*="bg-[#371445]"],
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"],
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"] {
+  background-color: #EF2029 !important;
+  background-image: none !important;
+  color: #FFFFFF !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: transform 300ms cubic-bezier(.22,.61,.36,1), 
+              background-color 300ms cubic-bezier(.22,.61,.36,1), 
+              color 300ms cubic-bezier(.22,.61,.36,1), 
+              box-shadow 300ms cubic-bezier(.22,.61,.36,1) !important;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none !important;
+}
+
+.primary-btn,
+.primary-btn *,
+button.primary-btn,
+a.primary-btn,
+button.primary-btn *,
+a.primary-btn *,
+button[class*="bg-[#E31D2E]"],
+button[class*="bg-[#E31D2E]"] *,
+a[class*="bg-[#E31D2E]"],
+a[class*="bg-[#E31D2E]"] *,
+button[class*="bg-[#E8192C]"],
+button[class*="bg-[#E8192C]"] *,
+a[class*="bg-[#E8192C]"],
+a[class*="bg-[#E8192C]"] *,
+button[class*="bg-[#ef2029]"],
+button[class*="bg-[#ef2029]"] *,
+a[class*="bg-[#ef2029]"],
+a[class*="bg-[#ef2029]"] *,
+button[class*="bg-[#371445]"],
+button[class*="bg-[#371445]"] *,
+a[class*="bg-[#371445]"],
+a[class*="bg-[#371445]"] *,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"],
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"] *,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"],
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"] *,
+button.primary-btn[class*="text-white"],
+a.primary-btn[class*="text-white"],
+button.primary-btn [class*="text-white"],
+a.primary-btn [class*="text-white"],
+button[class*="bg-[#E31D2E]"][class*="text-white"],
+a[class*="bg-[#E31D2E]"][class*="text-white"],
+button[class*="bg-[#E31D2E]"] [class*="text-white"],
+a[class*="bg-[#E31D2E]"] [class*="text-white"],
+button[class*="bg-[#E8192C]"][class*="text-white"],
+a[class*="bg-[#E8192C]"][class*="text-white"],
+button[class*="bg-[#E8192C]"] [class*="text-white"],
+a[class*="bg-[#E8192C]"] [class*="text-white"],
+button[class*="bg-[#ef2029]"][class*="text-white"],
+a[class*="bg-[#ef2029]"][class*="text-white"],
+button[class*="bg-[#ef2029]"] [class*="text-white"],
+a[class*="bg-[#ef2029]"] [class*="text-white"],
+button[class*="bg-[#371445]"][class*="text-white"],
+a[class*="bg-[#371445]"][class*="text-white"],
+button[class*="bg-[#371445]"] [class*="text-white"],
+a[class*="bg-[#371445]"] [class*="text-white"],
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"][class*="text-white"],
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"][class*="text-white"],
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"] [class*="text-white"],
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"] [class*="text-white"] {
+  color: #FFFFFF !important;
+  transition: color 300ms cubic-bezier(.22,.61,.36,1) !important;
+}
+
+.primary-btn:hover,
+button[class*="bg-[#E31D2E]"]:hover,
+a[class*="bg-[#E31D2E]"]:hover,
+button[class*="bg-[#E8192C]"]:hover,
+a[class*="bg-[#E8192C]"]:hover,
+button[class*="bg-[#ef2029]"]:hover,
+a[class*="bg-[#ef2029]"]:hover,
+button[class*="bg-[#371445]"]:hover,
+a[class*="bg-[#371445]"]:hover,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover {
+  transform: translateY(-4px) scale(1.03) !important;
+  background-color: #D91B27 !important;
+  background-image: none !important;
+  box-shadow: none !important;
+}
+
+.primary-btn:hover,
+.primary-btn:hover *,
+button.primary-btn:hover,
+a.primary-btn:hover,
+button.primary-btn:hover *,
+a.primary-btn:hover *,
+button[class*="bg-[#E31D2E]"]:hover,
+button[class*="bg-[#E31D2E]"]:hover *,
+a[class*="bg-[#E31D2E]"]:hover,
+a[class*="bg-[#E31D2E]"]:hover *,
+button[class*="bg-[#E8192C]"]:hover,
+button[class*="bg-[#E8192C]"]:hover *,
+a[class*="bg-[#E8192C]"]:hover,
+a[class*="bg-[#E8192C]"]:hover *,
+button[class*="bg-[#ef2029]"]:hover,
+button[class*="bg-[#ef2029]"]:hover *,
+a[class*="bg-[#ef2029]"]:hover,
+a[class*="bg-[#ef2029]"]:hover *,
+button[class*="bg-[#371445]"]:hover,
+button[class*="bg-[#371445]"]:hover *,
+a[class*="bg-[#371445]"]:hover,
+a[class*="bg-[#371445]"]:hover *,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover *,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover *,
+button.primary-btn[class*="text-white"]:hover,
+a.primary-btn[class*="text-white"]:hover,
+button.primary-btn:hover [class*="text-white"],
+a.primary-btn:hover [class*="text-white"],
+button[class*="bg-[#E31D2E]"][class*="text-white"]:hover,
+a[class*="bg-[#E31D2E]"][class*="text-white"]:hover,
+button[class*="bg-[#E31D2E]"]:hover [class*="text-white"],
+a[class*="bg-[#E31D2E]"]:hover [class*="text-white"],
+button[class*="bg-[#E8192C]"][class*="text-white"]:hover,
+a[class*="bg-[#E8192C]"][class*="text-white"]:hover,
+button[class*="bg-[#E8192C]"]:hover [class*="text-white"],
+a[class*="bg-[#E8192C]"]:hover [class*="text-white"],
+button[class*="bg-[#ef2029]"][class*="text-white"]:hover,
+a[class*="bg-[#ef2029]"][class*="text-white"]:hover,
+button[class*="bg-[#ef2029]"]:hover [class*="text-white"],
+a[class*="bg-[#ef2029]"]:hover [class*="text-white"],
+button[class*="bg-[#371445]"][class*="text-white"]:hover,
+a[class*="bg-[#371445]"][class*="text-white"]:hover,
+button[class*="bg-[#371445]"]:hover [class*="text-white"],
+a[class*="bg-[#371445]"]:hover [class*="text-white"],
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"][class*="text-white"]:hover,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"][class*="text-white"]:hover,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover [class*="text-white"],
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover [class*="text-white"] {
+  color: #FFFFFF !important;
+}
+
+/* Subtle highlight on the top edge on hover */
+.primary-btn::after,
+button[class*="bg-[#E31D2E]"]::after,
+a[class*="bg-[#E31D2E]"]::after,
+button[class*="bg-[#E8192C]"]::after,
+a[class*="bg-[#E8192C]"]::after,
+button[class*="bg-[#ef2029]"]::after,
+a[class*="bg-[#ef2029]"]::after,
+button[class*="bg-[#371445]"]::after,
+a[class*="bg-[#371445]"]::after,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]::after,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.4);
+  opacity: 0;
+  transition: opacity 300ms cubic-bezier(.22,.61,.36,1);
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.primary-btn:hover::after,
+button[class*="bg-[#E31D2E]"]:hover::after,
+a[class*="bg-[#E31D2E]"]:hover::after,
+button[class*="bg-[#E8192C]"]:hover::after,
+a[class*="bg-[#E8192C]"]:hover::after,
+button[class*="bg-[#ef2029]"]:hover::after,
+a[class*="bg-[#ef2029]"]:hover::after,
+button[class*="bg-[#371445]"]:hover::after,
+a[class*="bg-[#371445]"]:hover::after,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover::after,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover::after {
+  opacity: 1;
+}
+
+/* Active State compression */
+.primary-btn:active,
+button[class*="bg-[#E31D2E]"]:active,
+a[class*="bg-[#E31D2E]"]:active,
+button[class*="bg-[#E8192C]"]:active,
+a[class*="bg-[#E8192C]"]:active,
+button[class*="bg-[#ef2029]"]:active,
+a[class*="bg-[#ef2029]"]:active,
+button[class*="bg-[#371445]"]:active,
+a[class*="bg-[#371445]"]:active,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:active,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:active {
+  transform: translateY(0px) scale(0.97) !important;
+  transition: transform 100ms ease-out !important;
+}
+
+/* Focus state text color */
+.primary-btn:focus,
+.primary-btn:focus *,
+button[class*="bg-[#E31D2E]"]:focus,
+button[class*="bg-[#E31D2E]"]:focus *,
+a[class*="bg-[#E31D2E]"]:focus,
+a[class*="bg-[#E31D2E]"]:focus *,
+button[class*="bg-[#E8192C]"]:focus,
+button[class*="bg-[#E8192C]"]:focus *,
+a[class*="bg-[#E8192C]"]:focus,
+a[class*="bg-[#E8192C]"]:focus *,
+button[class*="bg-[#ef2029]"]:focus,
+button[class*="bg-[#ef2029]"]:focus *,
+a[class*="bg-[#ef2029]"]:focus,
+a[class*="bg-[#ef2029]"]:focus *,
+button[class*="bg-[#371445]"]:focus,
+button[class*="bg-[#371445]"]:focus *,
+a[class*="bg-[#371445]"]:focus,
+a[class*="bg-[#371445]"]:focus *,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:focus,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:focus *,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:focus,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:focus * {
+  color: #FFFFFF !important;
+}
+
+/* Animate any child svg/icon inside */
+.primary-btn svg,
+button[class*="bg-[#E31D2E]"] svg,
+a[class*="bg-[#E31D2E]"] svg,
+button[class*="bg-[#E8192C]"] svg,
+a[class*="bg-[#E8192C]"] svg,
+button[class*="bg-[#ef2029]"] svg,
+a[class*="bg-[#ef2029]"] svg,
+button[class*="bg-[#371445]"] svg,
+a[class*="bg-[#371445]"] svg,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"] svg,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"] svg {
+  transition: transform 300ms cubic-bezier(.22,.61,.36,1) !important;
+}
+
+.primary-btn:hover svg,
+button[class*="bg-[#E31D2E]"]:hover svg,
+a[class*="bg-[#E31D2E]"]:hover svg,
+button[class*="bg-[#E8192C]"]:hover svg,
+a[class*="bg-[#E8192C]"]:hover svg,
+button[class*="bg-[#ef2029]"]:hover svg,
+a[class*="bg-[#ef2029]"]:hover svg,
+button[class*="bg-[#371445]"]:hover svg,
+a[class*="bg-[#371445]"]:hover svg,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg {
+  transform: translateX(6px) !important;
 }

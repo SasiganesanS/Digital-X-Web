@@ -36,7 +36,7 @@ const Homesection4 = () => {
               </p>
 
               <Link to="/services">
-                <button className="px-8 py-4 bg-[#E31D2E] text-white rounded-full font-bold transition-all duration-300 hover:bg-[#111111] hover:scale-105 active:scale-95 shadow-[0_8px_20px_rgba(227,29,46,0.15)]">
+                <button className="primary-btn px-8 py-4 text-white rounded-full font-bold">
                   Explore All Services
                 </button>
               </Link>

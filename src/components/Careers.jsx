@@ -158,7 +158,7 @@ const Careers = () => {
             {/* CTA Button */}
             <button
               onClick={scrollToJobs}
-              className="bg-[#E31D2E] text-white px-8 py-4 rounded-full font-bold text-sm sm:text-base transition-all duration-300 hover:bg-[#111111] hover:scale-105 active:scale-95 shadow-[0_8px_20px_rgba(227,29,46,0.15)]"
+              className="primary-btn px-8 py-4 rounded-full font-bold text-sm sm:text-base"
               aria-label="Scroll to view open job positions"
             >
               View Open Roles

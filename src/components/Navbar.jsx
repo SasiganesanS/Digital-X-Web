@@ -1,394 +1,612 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { gsap } from 'gsap';
 import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
 
-const MagneticWrapper = ({ children, disabled = false }) => {
-  const ref = useRef(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+const navItemsList = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Services", href: "/services" },
+  { label: "Projects", href: "/projects" },
+  { label: "Careers", href: "/careers" }
+];
 
-  if (disabled) return children;
+const navStyles = `
+.pill-nav-container {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1350px;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+}
 
-  const handleMouseMove = (e) => {
-    if (!ref.current) return;
-    const { clientX, clientY } = e;
-    const { left, top, width, height } = ref.current.getBoundingClientRect();
-    // 0.15 pull factor for subtle magnetic effect
-    const x = (clientX - (left + width / 2)) * 0.15;
-    const y = (clientY - (top + height / 2)) * 0.15;
-    setPosition({ x, y });
-  };
+@media (max-width: 768px) {
+  .pill-nav-container {
+    width: 100%;
+    left: 0;
+    transform: none;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    display: block;
+  }
+}
 
-  const handleMouseLeave = () => {
-    setPosition({ x: 0, y: 0 });
-  };
+.pill-nav {
+  --nav-h: 42px;
+  --logo: 36px;
+  --pill-pad-x: 18px;
+  --pill-gap: 3px;
+  width: max-content;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
 
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      animate={{ x: position.x, y: position.y }}
-      whileHover={{ y: -3 }}
-      transition={{ type: "spring", stiffness: 200, damping: 20, mass: 0.1 }}
-      className="relative flex items-center justify-center"
-    >
-      {children}
-    </motion.div>
-  );
-};
+@media (max-width: 768px) {
+  .pill-nav {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0;
+    background: transparent;
+  }
+}
+
+.pill-nav-items {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--nav-h);
+  background: var(--base, #000);
+  border-radius: 9999px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+}
+
+.pill-logo {
+  width: var(--nav-h);
+  height: var(--nav-h);
+  border-radius: 50%;
+  background: var(--base, #000);
+  padding: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-right: 12px;
+}
+
+.pill-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.pill-list {
+  list-style: none;
+  display: flex;
+  align-items: stretch;
+  gap: var(--pill-gap);
+  margin: 0;
+  padding: 3px;
+  height: 100%;
+}
+
+.pill-list > li {
+  display: flex;
+  height: 100%;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 var(--pill-pad-x);
+  background: var(--base, #fff);
+  color: var(--pill-text, var(--base, #000));
+  text-decoration: none;
+  border-radius: 9999px;
+  box-sizing: border-box;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.pill .hover-circle {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  border-radius: 50%;
+  background: var(--pill-bg, #ef2029);
+  z-index: 1;
+  display: block;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.pill .label-stack {
+  position: relative;
+  display: inline-block;
+  line-height: 1;
+  z-index: 2;
+}
+
+.pill .pill-label {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  line-height: 1;
+  will-change: transform;
+}
+
+.pill .pill-label-hover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--hover-text, #fff);
+  z-index: 3;
+  display: inline-block;
+  will-change: transform, opacity;
+}
+
+.pill.is-active {
+  background: var(--pill-bg, #ef2029) !important;
+  color: var(--hover-text, #ffffff) !important;
+}
+
+.pill.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 12px;
+  background: var(--base, #000);
+  border-radius: 50px;
+  z-index: 4;
+}
+
+.desktop-only {
+  display: block;
+}
+
+.mobile-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-only {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+}
+
+.mobile-menu-button {
+  width: var(--nav-h);
+  height: var(--nav-h);
+  border-radius: 50%;
+  background: var(--base, #000);
+  border: none;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    display: flex;
+  }
+}
+
+.hamburger-line {
+  width: 16px;
+  height: 2px;
+  background: var(--pill-bg, #fff);
+  border-radius: 1px;
+  transition: all 0.01s ease;
+  transform-origin: center;
+}
+
+.mobile-menu-popover {
+  position: absolute;
+  top: 3em;
+  left: 1rem;
+  right: 1rem;
+  background: var(--base, #f0f0f0);
+  border-radius: 27px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  z-index: 998;
+  opacity: 0;
+  transform-origin: top center;
+  visibility: hidden;
+}
+
+.mobile-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.mobile-menu-popover .mobile-menu-link {
+  display: block;
+  padding: 12px 16px;
+  color: var(--pill-text, #fff);
+  background-color: var(--pill-bg, #fff);
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-popover .mobile-menu-link:hover {
+  cursor: pointer;
+  background-color: var(--base);
+  color: var(--hover-text, #fff);
+}
+`;
 
 const Navbar = ({ setShowContactForm }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [scrolled, setScrolled] = useState(false);
-  const [lastScrollTop, setLastScrollTop] = useState(0);
-  const [width, setWidth] = useState("92%");
   const location = useLocation();
-  const navigate = useNavigate();
-  const navRef = useRef(null);
-  const shouldReduceMotion = useReducedMotion();
+  const activeHref = location.pathname;
 
-  const activeTab =
-    location.pathname === "/" ? "home" : location.pathname.slice(1).split("/")[0];
+  const ease = 'power3.easeOut';
+  const baseColor = '#ffffff';
+  const pillColor = '#ef2029';
+  const hoveredPillTextColor = '#ffffff';
+  const pillTextColor = '#111111';
+  const initialLoadAnimation = false;
+
+  const resolvedPillTextColor = pillTextColor ?? baseColor;
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const circleRefs = useRef([]);
+  const tlRefs = useRef([]);
+  const activeTweenRefs = useRef([]);
+  const logoImgRef = useRef(null);
+  const logoTweenRef = useRef(null);
+  const hamburgerRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+  const navItemsRef = useRef(null);
+  const logoRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollTop =
-        window.pageYOffset || document.documentElement.scrollTop;
+    const layout = () => {
+      circleRefs.current.forEach(circle => {
+        if (!circle?.parentElement) return;
 
-      setScrolled(currentScrollTop > 20);
+        const pill = circle.parentElement;
+        const rect = pill.getBoundingClientRect();
+        const { width: w, height: h } = rect;
+        const R = ((w * w) / 4 + h * h) / (2 * h);
+        const D = Math.ceil(2 * R) + 2;
+        const delta = Math.ceil(R - Math.sqrt(Math.max(0, R * R - (w * w) / 4))) + 1;
+        const originY = D - delta;
 
-      if (currentScrollTop > lastScrollTop && currentScrollTop > 80) {
-        setIsVisible(false);
+        circle.style.width = `${D}px`;
+        circle.style.height = `${D}px`;
+        circle.style.bottom = `-${delta}px`;
+
+        gsap.set(circle, {
+          xPercent: -50,
+          scale: 0,
+          transformOrigin: `50% ${originY}px`
+        });
+
+        const label = pill.querySelector('.pill-label');
+        const white = pill.querySelector('.pill-label-hover');
+
+        if (label) gsap.set(label, { y: 0 });
+        if (white) gsap.set(white, { y: h + 12, opacity: 0 });
+
+        const index = circleRefs.current.indexOf(circle);
+        if (index === -1) return;
+
+        tlRefs.current[index]?.kill();
+        const tl = gsap.timeline({ paused: true });
+
+        tl.to(circle, { scale: 1.2, xPercent: -50, duration: 2, ease, overwrite: 'auto' }, 0);
+
+        if (label) {
+          tl.to(label, { y: -(h + 8), duration: 2, ease, overwrite: 'auto' }, 0);
+        }
+
+        if (white) {
+          gsap.set(white, { y: Math.ceil(h + 100), opacity: 0 });
+          tl.to(white, { y: 0, opacity: 1, duration: 2, ease, overwrite: 'auto' }, 0);
+        }
+
+        tlRefs.current[index] = tl;
+      });
+    };
+
+    layout();
+
+    const onResize = () => layout();
+    window.addEventListener('resize', onResize);
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(layout).catch(() => {});
+    }
+
+    const menu = mobileMenuRef.current;
+    if (menu) {
+      gsap.set(menu, { visibility: 'hidden', opacity: 0, scaleY: 1 });
+    }
+
+    if (initialLoadAnimation) {
+      const logo = logoRef.current;
+      const navItems = navItemsRef.current;
+
+      if (logo) {
+        gsap.set(logo, { scale: 0 });
+        gsap.to(logo, {
+          scale: 1,
+          duration: 0.6,
+          ease
+        });
+      }
+
+      if (navItems) {
+        gsap.set(navItems, { width: 0, overflow: 'hidden' });
+        gsap.to(navItems, {
+          width: 'auto',
+          duration: 0.6,
+          ease
+        });
+      }
+    }
+
+    return () => window.removeEventListener('resize', onResize);
+  }, [ease, initialLoadAnimation]);
+
+  const handleEnter = i => {
+    const tl = tlRefs.current[i];
+    if (!tl) return;
+    activeTweenRefs.current[i]?.kill();
+    activeTweenRefs.current[i] = tl.tweenTo(tl.duration(), {
+      duration: 0.3,
+      ease,
+      overwrite: 'auto'
+    });
+  };
+
+  const handleLeave = i => {
+    const tl = tlRefs.current[i];
+    if (!tl) return;
+    activeTweenRefs.current[i]?.kill();
+    activeTweenRefs.current[i] = tl.tweenTo(0, {
+      duration: 0.2,
+      ease,
+      overwrite: 'auto'
+    });
+  };
+
+  const handleLogoEnter = () => {
+    const img = logoImgRef.current;
+    if (!img) return;
+    logoTweenRef.current?.kill();
+    gsap.set(img, { rotate: 0 });
+    logoTweenRef.current = gsap.to(img, {
+      rotate: 360,
+      duration: 0.2,
+      ease,
+      overwrite: 'auto'
+    });
+  };
+
+  const toggleMobileMenu = () => {
+    const newState = !isMobileMenuOpen;
+    setIsMobileMenuOpen(newState);
+
+    const hamburger = hamburgerRef.current;
+    const menu = mobileMenuRef.current;
+
+    if (hamburger) {
+      const lines = hamburger.querySelectorAll('.hamburger-line');
+      if (newState) {
+        gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease });
+        gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease });
       } else {
-        setIsVisible(true);
+        gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease });
+        gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3, ease });
       }
-      setLastScrollTop(currentScrollTop <= 0 ? 0 : currentScrollTop);
-    };
+    }
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [lastScrollTop]);
-
-  // Dynamically calculate target width based on scroll state & viewport
-  useEffect(() => {
-    const handleWidth = () => {
-      const isSmall = window.innerWidth < 768;
-      if (scrolled) {
-        setWidth(isSmall ? "90%" : "80%");
+    if (menu) {
+      if (newState) {
+        gsap.set(menu, { visibility: 'visible' });
+        gsap.fromTo(
+          menu,
+          { opacity: 0, y: 10, scaleY: 1 },
+          {
+            opacity: 1,
+            y: 0,
+            scaleY: 1,
+            duration: 0.3,
+            ease,
+            transformOrigin: 'top center'
+          }
+        );
       } else {
-        setWidth("92%");
+        gsap.to(menu, {
+          opacity: 0,
+          y: 10,
+          scaleY: 1,
+          duration: 0.2,
+          ease,
+          transformOrigin: 'top center',
+          onComplete: () => {
+            gsap.set(menu, { visibility: 'hidden' });
+          }
+        });
       }
-    };
-    handleWidth();
-    window.addEventListener("resize", handleWidth);
-    return () => window.removeEventListener("resize", handleWidth);
-  }, [scrolled]);
+    }
+  };
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [location]);
+  const isExternalLink = href =>
+    href.startsWith('http://') ||
+    href.startsWith('https://') ||
+    href.startsWith('//') ||
+    href.startsWith('mailto:') ||
+    href.startsWith('tel:') ||
+    href.startsWith('#');
 
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (navRef.current && !navRef.current.contains(event.target) && isOpen) {
-        setIsOpen(false);
-      }
-    };
-    if (isOpen) document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isOpen]);
+  const isRouterLink = href => href && !isExternalLink(href);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1024 && isOpen) {
-        setIsOpen(false);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [isOpen]);
-
-  const toggleMenu = () => setIsOpen(!isOpen);
-
-  const navLinks = [
-    { path: "home", to: "/", label: "Home" },
-    { path: "about", to: "/about", label: "About" },
-    { path: "services", to: "/services", label: "Services" },
-    { path: "projects", to: "/projects", label: "Projects" },
-    { path: "careers", to: "/careers", label: "Careers" },
-  ];
+  const cssVars = {
+    ['--base']: baseColor,
+    ['--pill-bg']: pillColor,
+    ['--hover-text']: hoveredPillTextColor,
+    ['--pill-text']: resolvedPillTextColor
+  };
 
   return (
     <>
-      <motion.nav
-        ref={navRef}
-        initial={{ width: "92%", height: 80, y: 0, x: "-50%", opacity: 1 }}
-        animate={{
-          width: width,
-          height: scrolled ? 64 : 80,
-          y: isVisible ? 16 : -120, // 16px matches top-4
-          x: "-50%",
-          opacity: isVisible ? 1 : 0,
-          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.90)" : "rgba(255, 255, 255, 0.82)",
-          boxShadow: scrolled
-            ? "0 20px 40px rgba(0, 0, 0, 0.08), inset 0 -4px 8px rgba(0, 0, 0, 0.03), inset 0 4px 8px rgba(255, 255, 255, 0.6)"
-            : "0 10px 25px rgba(0, 0, 0, 0.04), inset 0 -4px 8px rgba(0, 0, 0, 0.02), inset 0 4px 8px rgba(255, 255, 255, 0.5)",
-        }}
-        transition={
-          shouldReduceMotion
-            ? { duration: 0 }
-            : { type: "spring", stiffness: 220, damping: 26 }
-        }
-        className="fixed z-50 left-1/2 rounded-full border border-white/40 flex items-center justify-between px-6 md:px-8 max-w-[1000px]"
-        style={{
-          backdropFilter: "blur(28px) saturate(120%)",
-          WebkitBackdropFilter: "blur(28px) saturate(120%)",
-        }}
-      >
-        <div className="flex items-center justify-between w-full h-full">
-          {/* ── Logo ── */}
-          <Link to="/" className="flex items-center gap-2 sm:gap-2.5 group flex-shrink-0 min-w-0 pr-2">
-            <motion.div
-              initial={{ scale: 0.95 }}
-              animate={{ scale: 1 }}
-              whileHover={{ rotate: 2 }}
-              transition={{
-                scale: { duration: 0.5, ease: "easeOut" },
-                rotate: { type: "spring", stiffness: 300, damping: 15 }
+      <style dangerouslySetInnerHTML={{ __html: navStyles }} />
+      <div className="pill-nav-container">
+        <nav className="pill-nav" aria-label="Primary" style={cssVars}>
+          {isRouterLink(navItemsList?.[0]?.href) ? (
+            <Link
+              className="pill-logo"
+              to={navItemsList[0].href}
+              aria-label="Home"
+              onMouseEnter={handleLogoEnter}
+              role="menuitem"
+              ref={el => {
+                logoRef.current = el;
               }}
-              className="flex items-center gap-2 sm:gap-2.5"
             >
-              {/* Icon mark — transparent background */}
-              <div
-                className="relative w-7 h-7 sm:w-9 sm:h-9 flex items-center justify-center overflow-hidden rounded-lg flex-shrink-0"
-                style={{ boxShadow: "0 0 12px rgba(232,25,44,0.15)" }}
-              >
-                <img
-                  src={Logo}
-                  alt="Praskla Digital X"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              <img src={Logo} alt="Praskla Digital X Logo" ref={logoImgRef} />
+            </Link>
+          ) : (
+            <a
+              className="pill-logo"
+              href={navItemsList?.[0]?.href || '#'}
+              aria-label="Home"
+              onMouseEnter={handleLogoEnter}
+              ref={el => {
+                logoRef.current = el;
+              }}
+            >
+              <img src={Logo} alt="Praskla Digital X Logo" ref={logoImgRef} />
+            </a>
+          )}
 
-              {/* Brand text */}
-              <div className="flex flex-col justify-center min-w-0 pl-1">
-                <span className="font-semibold text-[10px] sm:text-[13px] tracking-normal text-black transition-all duration-300 group-hover:tracking-wide truncate">
-                  Praskla Digital <span className="text-[#E31D2E]">X</span>
-                </span>
-                <span className="mt-0.2 text-[7px] sm:text-[9px] text-gray-600 font-light tracking-[1px] sm:tracking-[1.5px] whitespace-nowrap truncate">
-                  A Mindful Marketing and Production Firm
-                </span>
-              </div>
-            </motion.div>
-          </Link>
-
-          {/* ── Desktop Nav Links ── */}
-          <div className="hidden lg:flex items-center gap-1.5">
-            {navLinks.map(({ path, to, label }) => {
-              const isActive = activeTab === path;
-              return (
-                <MagneticWrapper key={path} disabled={shouldReduceMotion}>
-                  <Link
-                    to={to}
-                    onClick={() => setIsOpen(false)}
-                    className="relative px-4 py-2 rounded-full text-sm font-semibold transition-colors duration-300 whitespace-nowrap z-10 outline-none focus-visible:ring-2 focus-visible:ring-[#E31D2E]"
-                    style={{
-                      color: isActive ? "#ffffff" : "#575757",
-                    }}
-                  >
-                    {isActive && (
-                      <motion.div
-                        layoutId="activeNavBackground"
-                        className="absolute inset-0 bg-[#E31D2E] rounded-full -z-10"
-                        transition={
-                          shouldReduceMotion
-                            ? { duration: 0 }
-                            : { type: "spring", stiffness: 350, damping: 28 }
-                        }
-                        style={{
-                          boxShadow: "0 6px 12px rgba(227,29,46,0.25), inset 0 2px 4px rgba(255,255,255,0.3)"
+          <div className="pill-nav-items desktop-only" ref={navItemsRef}>
+            <ul className="pill-list" role="menubar">
+              {navItemsList.map((item, i) => (
+                <li key={item.href || `item-${i}`} role="none">
+                  {isRouterLink(item.href) ? (
+                    <Link
+                      role="menuitem"
+                      to={item.href}
+                      className={`pill${activeHref === item.href ? ' is-active' : ''}`}
+                      aria-label={item.label}
+                      onMouseEnter={() => handleEnter(i)}
+                      onMouseLeave={() => handleLeave(i)}
+                    >
+                      <span
+                        className="hover-circle"
+                        aria-hidden="true"
+                        ref={el => {
+                          circleRefs.current[i] = el;
                         }}
                       />
-                    )}
-                    {label}
-                  </Link>
-                </MagneticWrapper>
-              );
-            })}
-          </div>
-
-          {/* ── CTA Button & Optional Icon (desktop) ── */}
-          <div className="hidden lg:flex items-center gap-3 flex-shrink-0">
-            {/* Optional Language / Theme Icon */}
-            <motion.div
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 rounded-full flex items-center justify-center text-gray-500 hover:text-black border border-white/40 cursor-pointer"
-              style={{
-                background: "rgba(255, 255, 255, 0.8)",
-                boxShadow: "inset 0 2px 4px rgba(255,255,255,0.6), 0 4px 8px rgba(0,0,0,0.03)",
-                backdropFilter: "blur(10px)"
-              }}
-              title="Language / Theme"
-            >
-              <svg
-                className="w-5 h-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-              </svg>
-            </motion.div>
-
-            {/* Claymorphic CTA Button */}
-            <motion.button
-              onClick={() => setShowContactForm(true)}
-              whileHover="hover"
-              className="relative flex items-center gap-2 text-white font-semibold text-sm rounded-full overflow-hidden px-5 py-2.5 whitespace-nowrap cursor-pointer outline-none focus-visible:ring-2 focus-visible:ring-[#E31D2E] focus-visible:ring-offset-2"
-              style={{
-                backgroundColor: "#E31D2E",
-              }}
-              variants={{
-                default: {
-                  y: 0,
-                  backgroundColor: "#E31D2E",
-                  boxShadow: "0 8px 16px rgba(227, 29, 46, 0.2), inset 0 3px 6px rgba(255,255,255,0.4), inset 0 -3px 6px rgba(0,0,0,0.25)"
-                },
-                hover: {
-                  y: -2,
-                  backgroundColor: "#000000",
-                  boxShadow: "0 12px 24px rgba(0, 0, 0, 0.3), inset 0 3px 6px rgba(255,255,255,0.2), inset 0 -3px 6px rgba(0,0,0,0.5)"
-                }
-              }}
-              initial="default"
-              animate="default"
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <span className="relative z-10">Start Your Project</span>
-              <motion.svg
-                className="relative z-10 w-4 h-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2.5}
-                variants={{
-                  default: { x: 0 },
-                  hover: { x: 4 }
-                }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </motion.svg>
-            </motion.button>
-          </div>
-
-          {/* ── Mobile Hamburger ── */}
-          <button
-            type="button"
-            onClick={toggleMenu}
-            className="lg:hidden relative z-10 flex flex-col justify-center items-center
-                       w-10 h-10 sm:w-11 sm:h-11 gap-[5px] flex-shrink-0 ml-2
-                       rounded-full hover:bg-[#E31D2E]/10 active:bg-[#E31D2E]/15 transition-colors duration-200"
-            aria-label="Toggle menu"
-            aria-expanded={isOpen}
-          >
-            <span
-              style={{ backgroundColor: "#E31D2E" }}
-              className={`block w-5 h-[2px] rounded-full transition-all duration-300 origin-center
-                ${isOpen ? "rotate-45 translate-y-[7px]" : ""}`}
-            />
-            <span
-              style={{ backgroundColor: "#E31D2E" }}
-              className={`block h-[2px] rounded-full transition-all duration-300
-                ${isOpen ? "w-0 opacity-0" : "w-5"}`}
-            />
-            <span
-              style={{ backgroundColor: "#E31D2E" }}
-              className={`block w-5 h-[2px] rounded-full transition-all duration-300 origin-center
-                ${isOpen ? "-rotate-45 -translate-y-[7px]" : ""}`}
-            />
-          </button>
-        </div>
-      </motion.nav>
-
-      {/* ── Mobile Menu Backdrop & Floating Bottom Sheet ── */}
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-              className="lg:hidden fixed inset-0 z-[9998] bg-black/40 backdrop-blur-[2px]"
-            />
-            {/* Bottom Sheet */}
-            <motion.div
-              initial={{ y: "100%", opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: "100%", opacity: 0 }}
-              transition={
-                shouldReduceMotion
-                  ? { duration: 0 }
-                  : { type: "spring", damping: 25, stiffness: 200 }
-              }
-              className="lg:hidden fixed bottom-4 left-4 right-4 z-[9999] rounded-[28px] border border-white/40 p-6 flex flex-col gap-3 max-w-[500px] mx-auto shadow-[0_-12px_36px_rgba(0,0,0,0.12),inset 0 4px 8px rgba(255,255,255,0.6),inset 0 -4px 8px rgba(0,0,0,0.03)]"
-              style={{
-                background: "rgba(255, 255, 255, 0.88)",
-                backdropFilter: "blur(28px)",
-                WebkitBackdropFilter: "blur(28px)",
-              }}
-            >
-              {/* Drag handle decoration */}
-              <div className="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-4" />
-
-              <div className="flex flex-col gap-2">
-                {navLinks.map(({ path, to, label }) => {
-                  const isActive = activeTab === path;
-                  return (
-                    <button
-                      key={path}
-                      style={{ touchAction: "manipulation", cursor: "pointer" }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setIsOpen(false);
-                        setIsVisible(true);
-                        navigate(to);
-                      }}
-                      className={`flex items-center justify-center w-full py-4 rounded-2xl text-base font-semibold transition-all duration-300
-                        ${isActive
-                          ? "bg-[#E31D2E] text-white shadow-[0_8px_16px_rgba(227,29,46,0.2),inset 0 2px 4px rgba(255,255,255,0.3)]"
-                          : "text-[#444444] hover:text-[#111111] hover:bg-black/5"
-                        }`}
+                      <span className="label-stack">
+                        <span className="pill-label">{item.label}</span>
+                        <span className="pill-label-hover" aria-hidden="true">
+                          {item.label}
+                        </span>
+                      </span>
+                    </Link>
+                  ) : (
+                    <a
+                      role="menuitem"
+                      href={item.href}
+                      className={`pill${activeHref === item.href ? ' is-active' : ''}`}
+                      aria-label={item.label}
+                      onMouseEnter={() => handleEnter(i)}
+                      onMouseLeave={() => handleLeave(i)}
                     >
-                      {label}
-                    </button>
-                  );
-                })}
+                      <span
+                        className="hover-circle"
+                        aria-hidden="true"
+                        ref={el => {
+                          circleRefs.current[i] = el;
+                        }}
+                      />
+                      <span className="label-stack">
+                        <span className="pill-label">{item.label}</span>
+                        <span className="pill-label-hover" aria-hidden="true">
+                          {item.label}
+                        </span>
+                      </span>
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-                {/* Mobile CTA Button */}
-                <button
-                  style={{ touchAction: "manipulation", cursor: "pointer" }}
-                  onClick={() => {
-                    setShowContactForm(true);
-                    setIsOpen(false);
-                  }}
-                  className="mt-2 w-full py-4 rounded-2xl bg-black text-white font-bold text-base
-                             hover:bg-[#111111] active:bg-gray-900 transition-all duration-300
-                             shadow-[0_8px_20px_rgba(0,0,0,0.15)] flex items-center justify-center gap-2"
-                >
-                  Start Your Project
-                </button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+          <button
+            className="mobile-menu-button mobile-only"
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+            ref={hamburgerRef}
+          >
+            <span className="hamburger-line" />
+            <span className="hamburger-line" />
+          </button>
+        </nav>
+
+        <div className="mobile-menu-popover mobile-only" ref={mobileMenuRef} style={cssVars}>
+          <ul className="mobile-menu-list">
+            {navItemsList.map((item, i) => (
+              <li key={item.href || `mobile-item-${i}`}>
+                {isRouterLink(item.href) ? (
+                  <Link
+                    to={item.href}
+                    className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={item.href}
+                    className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.label}
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </>
   );
 };

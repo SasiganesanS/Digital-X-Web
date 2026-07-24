@@ -79,17 +79,11 @@ const HeroSection = () => {
                         >
                             <Link
                                 to="/projects"
-                                className="group relative inline-flex items-center justify-center gap-3
-                                overflow-hidden rounded-full bg-[#E31D2E]
-                                px-8 py-4
-                                text-xs sm:text-sm font-bold uppercase tracking-[0.15em] sm:tracking-[0.18em] text-white
-                                shadow-[0_8px_20px_rgba(227,29,46,0.2)]
-                                transition-all duration-300
-                                hover:bg-[#111111] hover:scale-105 active:scale-95"
+                                className="primary-btn group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full px-8 py-4 text-xs sm:text-sm font-bold uppercase tracking-[0.15em] sm:tracking-[0.18em] text-white"
                             >
                                 <span className="relative z-10">See Our Work</span>
                                 <svg
-                                    className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-rotate-45"
+                                    className="relative z-10 w-4 h-4 transition-transform duration-300"
                                     fill="none"
                                     viewBox="0 0 24 24"
                                     stroke="currentColor"

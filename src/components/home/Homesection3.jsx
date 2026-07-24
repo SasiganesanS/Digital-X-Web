@@ -89,12 +89,10 @@ const AboutSection = () => {
                         <motion.div variants={fadeUp} className="mt-4">
                             <Link
                                 to="/about"
-                                className="group inline-flex items-center gap-3 text-white text-xs font-bold uppercase tracking-widest
-                               bg-[#E31D2E] px-8 py-4 rounded-full shadow-[0_8px_20px_rgba(227,29,46,0.15)]
-                               hover:bg-[#111111] transition-all duration-300 active:scale-95"
+                                className="primary-btn group inline-flex items-center gap-3 text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full"
                             >
                                 Learn more about us
-                                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                                <svg className="w-4 h-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                                 </svg>
                             </Link>
