@@ -27,6 +27,17 @@ const JobApplication = ({ job, onClose }) => {
   const [selectedCountry, setSelectedCountry] = useState(countries[0]); // Default to India
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Close modal on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [onClose]);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',

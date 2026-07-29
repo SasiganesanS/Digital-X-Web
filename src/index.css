@@ -809,3 +809,32 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg {
   max-height: none !important;
 }
 
+/* ===================================================================
+   Global Standardized Section Vertical Spacing System
+   Optimizes space between consecutive sections across the entire site.
+   Creates a compact, balanced, and premium vertical rhythm.
+   =================================================================== */
+:root {
+  --section-py-desktop: 4rem;      /* 64px on desktop */
+  --section-py-tablet: 3.5rem;     /* 56px on tablet */
+  --section-py-mobile: 3rem;        /* 48px on mobile */
+}
+
+.section-vertical-spacing {
+  padding-top: var(--section-py-mobile) !important;
+  padding-bottom: var(--section-py-mobile) !important;
+}
+
+@media (min-width: 640px) {
+  .section-vertical-spacing {
+    padding-top: var(--section-py-tablet) !important;
+    padding-bottom: var(--section-py-tablet) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-vertical-spacing {
+    padding-top: var(--section-py-desktop) !important;
+    padding-bottom: var(--section-py-desktop) !important;
+  }
+}

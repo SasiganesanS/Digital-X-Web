@@ -1,4 +1,5 @@
 import React from 'react';
+import HeroLayout from "./common/HeroLayout";
 import vishnu from "../assets/clients/School.jpg"
 import vilcet from "../assets/clients/VILCET.png"
 import jkk from "../assets/clients/jkk.png"
@@ -45,19 +46,25 @@ const clientData = [
 
 const Clients = () => {
   return (
-    <section className="pt-4 pb-20 bg-transparent">
-      <div className="container mx-auto px-4 max-w-6xl">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl sm:text-5xl font-black text-[#111111] mb-4">
-            Our Trusted Clients
-          </h2>
-          <div className="w-20 h-1 bg-[#E31D2E] mx-auto mb-6 rounded-full"></div>
-          <p className="text-[#575757] text-base sm:text-lg max-w-xl mx-auto font-medium">
-            Partners and organizations who have trusted us with their brand identity and growth systems.
-          </p>
+    <HeroLayout
+      badge={
+        <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+          </span>
+          <span className="relative text-[#111111] text-xs font-bold tracking-[0.25em] uppercase">Trusted Partners</span>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      }
+      title={
+        <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black text-[#111111]">
+          Our Trusted <span className="text-[#E31D2E]">Clients</span>
+        </h1>
+      }
+      description="Partners and organizations who have trusted us with their brand identity and growth systems."
+    >
+      <div className="py-6 sm:py-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto w-full text-left">
           {clientData.map((client) => (
             <div 
               key={client.id} 
@@ -82,7 +89,7 @@ const Clients = () => {
           ))}
         </div>
       </div>
-    </section>
+    </HeroLayout>
   );
 };
 

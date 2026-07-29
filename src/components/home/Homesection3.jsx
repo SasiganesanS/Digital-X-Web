@@ -16,7 +16,7 @@ const AboutSection = () => {
   return (
     <section
       id="about"
-      className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden py-24 bg-transparent"
+      className="relative w-full flex flex-col justify-center overflow-hidden py-12 sm:py-14 lg:py-16 bg-transparent"
     >
       {/* Background Soft Glow */}
       <div className="absolute inset-0 pointer-events-none z-0">

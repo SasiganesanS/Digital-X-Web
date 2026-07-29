@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import HeroLayout from "./common/HeroLayout";
 import ContactForm from "./ContactForm";
 import { ArrowUpRight, Star, Check, TrendingUp } from "lucide-react";
 import "../index.css";
@@ -242,93 +243,73 @@ const Projects = () => {
     <div className="w-full hero-project-container bg-transparent text-[#111111] overflow-x-hidden">
       
       {/* ------------------ Hero Section ------------------ */}
-      <section
-        ref={sectionRef}
-        className="relative w-full min-h-[calc(100vh-5rem)] flex items-center justify-center px-6 md:px-[5%] pb-12 lg:pb-20 pt-2 lg:pt-4 overflow-hidden bg-transparent"
-      >
-        {/* Subtle Decorative Background Elements */}
-        <div className="absolute top-1/4 left-0 w-[550px] h-[550px] bg-[#E31D2E]/5 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-10 right-0 w-[450px] h-[450px] bg-[#E31D2E]/4 rounded-full blur-[130px] pointer-events-none" />
-        <div
-          className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{ backgroundImage: "radial-gradient(circle,#111 1.2px,transparent 1.2px)", backgroundSize: "44px 44px" }}
-        />
-
-        <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-
-            {/* LEFT — Text & Metric Cards Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-7 flex flex-col items-start text-left z-10"
-            >
-              {/* Premium Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-[#E31D2E]/25 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md mb-8"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
-                </span>
-                <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
-                  OUR PORTFOLIO
-                </span>
-              </motion.div>
-
-              {/* Heading with Animated Underline */}
-              <motion.h1
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-4xl sm:text-5xl md:text-6xl xl:text-[4.25rem] font-black leading-[1.08] mb-6 tracking-tight text-[#111111]"
-              >
-                Collaborate <br />
-                <span className="relative inline-block text-[#E31D2E]">
-                  for meaningful brand growth
-                  <motion.span
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute bottom-1 left-0 w-full h-[3px] bg-gradient-to-r from-[#E31D2E] via-[#E31D2E]/80 to-transparent origin-left rounded-full"
-                  />
-                </span>
-              </motion.h1>
-
-              {/* Description Paragraph */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.75, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                className="text-[#575757] text-base md:text-lg leading-relaxed max-w-xl font-medium mb-10"
-              >
-                Strategic, creative, and performance-driven marketing solutions that accelerate visibility and revenue.
-              </motion.p>
-
-              {/* Floating Metric Cards */}
-              <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 mt-2 relative z-10 w-full">
-                <ProjectCounter targetNum="50" suffix="+" label="Projects Delivered" delay={0} />
-                <ProjectCounter targetNum="15" suffix="+" label="Brands" delay={0.1} />
-                <ProjectCounter targetNum="98" suffix="%" label="Client Satisfaction" delay={0.2} />
-                <ProjectCounter targetNum="5" suffix="+" label="Years Experience" delay={0.3} />
-              </div>
-            </motion.div>
-
-            {/* RIGHT — Interactive Showcase Frame */}
-            <div className="lg:col-span-5 w-full flex justify-center lg:justify-end z-20">
-              <ProjectShowcase projectImages={projectImages} imageIndex={imageIndex} />
-            </div>
-
+      <HeroLayout
+        bgElements={
+          <>
+            <div className="absolute top-1/4 left-0 w-[550px] h-[550px] bg-[#E31D2E]/5 rounded-full blur-[140px] pointer-events-none" />
+            <div className="absolute bottom-10 right-0 w-[450px] h-[450px] bg-[#E31D2E]/4 rounded-full blur-[130px] pointer-events-none" />
+            <div
+              className="absolute inset-0 opacity-[0.03] pointer-events-none"
+              style={{ backgroundImage: "radial-gradient(circle,#111 1.2px,transparent 1.2px)", backgroundSize: "44px 44px" }}
+            />
+          </>
+        }
+        badge={
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-[#E31D2E]/25 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+            </span>
+            <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
+              OUR PORTFOLIO
+            </span>
+          </motion.div>
+        }
+        title={
+          <motion.h1
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.08] tracking-tight text-[#111111]"
+          >
+            Collaborate <br />
+            <span className="relative inline-block text-[#E31D2E]">
+              for meaningful brand growth
+            </span>
+          </motion.h1>
+        }
+        description={
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium"
+          >
+            Strategic, creative, and performance-driven marketing solutions that accelerate visibility and revenue.
+          </motion.p>
+        }
+        actions={
+          <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 relative z-10 w-full justify-center lg:justify-start">
+            <ProjectCounter targetNum="50" suffix="+" label="Projects Delivered" delay={0} />
+            <ProjectCounter targetNum="15" suffix="+" label="Brands" delay={0.1} />
+            <ProjectCounter targetNum="98" suffix="%" label="Client Satisfaction" delay={0.2} />
+            <ProjectCounter targetNum="5" suffix="+" label="Years Experience" delay={0.3} />
           </div>
-        </div>
-      </section>
+        }
+        media={
+          <div className="w-full flex justify-center lg:justify-end z-20">
+            <ProjectShowcase projectImages={projectImages} imageIndex={imageIndex} />
+          </div>
+        }
+      />
 
       {/* ------------------ Our Workflow Process Section ------------------ */}
-      <section className="projects-empower-section relative bg-transparent py-24 px-6 md:px-[5%] overflow-hidden">
+      <section className="projects-empower-section relative bg-transparent py-12 sm:py-14 lg:py-16 px-6 md:px-[5%] overflow-hidden">
         {/* Subtle Decorative Background Elements */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#E31D2E]/4 rounded-full blur-[160px] pointer-events-none" />
         <div
@@ -361,13 +342,6 @@ const Projects = () => {
               We research, create, launch, and optimize{" "}
               <span className="relative inline-block text-[#E31D2E]">
                 transformative brand experiences
-                <motion.span
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute bottom-1 left-0 w-full h-[3px] bg-gradient-to-r from-[#E31D2E] via-[#E31D2E]/80 to-transparent origin-left rounded-full"
-                />
               </span>
             </h2>
           </motion.div>
@@ -464,7 +438,7 @@ const Projects = () => {
       </section>
 
       {/* ------------------ Featured Case Studies Section ------------------ */}
-      <section className="relative bg-transparent px-6 md:px-[5%] py-24 md:py-32 overflow-hidden">
+      <section className="relative bg-transparent px-6 md:px-[5%] py-12 sm:py-14 lg:py-16 overflow-hidden">
         {/* Decorative Background Elements */}
         <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#E31D2E]/4 rounded-full blur-[150px] pointer-events-none" />
         <div
@@ -497,13 +471,6 @@ const Projects = () => {
               Building Brands That{" "}
               <span className="relative inline-block text-[#E31D2E]">
                 Perform
-                <motion.span
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                  className="absolute bottom-1 left-0 w-full h-[3px] bg-gradient-to-r from-[#E31D2E] via-[#E31D2E]/80 to-transparent origin-left rounded-full"
-                />
               </span>
             </h2>
           </motion.div>

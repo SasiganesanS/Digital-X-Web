@@ -118,7 +118,7 @@ const Homesection5 = () => {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="py-16 md:py-24 bg-white min-h-[90vh] relative overflow-hidden flex items-center"
+      className="py-12 sm:py-14 lg:py-16 bg-white relative overflow-hidden flex items-center"
     >
       {/* Background Blobs (using the custom blur from config) */}
       <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-100 rounded-full filter blur-[100px] opacity-60 animate-blob"></div>

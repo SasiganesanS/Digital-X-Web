@@ -19,7 +19,7 @@ const Services = () => {
       {/* Unified: intro copy (left) + Core Expertise grid (right) + glitter */}
       <section
         id="services-main"
-        className="services-unified-section relative w-full min-h-[100svh] flex flex-col justify-center overflow-hidden px-[5%] py-16 md:py-24 scroll-mt-24"
+        className="services-unified-section relative w-full flex flex-col justify-center overflow-hidden px-[5%] py-12 sm:py-14 lg:py-16 scroll-mt-24"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-[#050505] via-[#080808] to-[#1a0305] pointer-events-none" />
         <div className="services-glitter-layer absolute inset-0 pointer-events-none z-[1]" aria-hidden />

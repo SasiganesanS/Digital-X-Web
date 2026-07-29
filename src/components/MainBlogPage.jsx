@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { FaCalendar, FaUser, FaArrowRight, FaClock } from "react-icons/fa";
 import "./MainBlog.css";
 
+import HeroLayout from "./common/HeroLayout";
+
 export default function BlogPage() {
   const [hoveredCard, setHoveredCard] = useState(null);
 
@@ -58,25 +60,13 @@ export default function BlogPage() {
     },
     {
       id: 5,
-      title: "Web Development Best Practices",
-      category: "Development",
-      date: "Oct 20, 2024",
-      author: "Dev Team",
-      readTime: "8 min read",
-      description:
-        "Learn about modern web development practices that ensure scalability and performance.",
-      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800",
-      gradient: "from-teal-600 to-green-600",
-    },
-    {
-      id: 6,
-      title: "Cybersecurity Essentials",
+      title: "Cybersecurity Best Practices",
       category: "Security",
-      date: "Oct 15, 2024",
+      date: "Oct 20, 2024",
       author: "Security Team",
-      readTime: "6 min read",
+      readTime: "5 min read",
       description:
-        "Essential security practices every business needs to implement in today's digital landscape.",
+        "Essential cybersecurity strategies to protect digital assets and infrastructure.",
       image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800",
       gradient: "from-green-600 to-emerald-600",
     },
@@ -85,99 +75,75 @@ export default function BlogPage() {
   return (
     <div className="w-full min-h-screen bg-[#080808]">
       {/* HERO SECTION */}
-      <section
-        className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-4 bg-white"
-        style={{
-          backgroundImage: `url(${PHero})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        {/* Background Effects */}
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
-          <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
-        </div>
-
-        <motion.div
-          animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-20 left-10 w-96 h-96 rounded-full bg-[#E8192C] blur-[120px]"
-        />
-
-        <motion.div
-          animate={{ scale: [1, 1.3, 1], opacity: [0.03, 0.08, 0.03] }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2,
-          }}
-          className="absolute bottom-20 right-10 w-[500px] h-[500px] rounded-full bg-[#E8192C]/30 blur-[140px]"
-        />
-
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, #ffffff 1px, transparent 0)`,
-            backgroundSize: "48px 48px",
-          }}
-        />
-
-        {/* Hero Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-6 py-32 text-center">
-          <motion.div
-            initial={{ width: 0 }}
-            animate={{ width: "80px" }}
-            transition={{ duration: 1, delay: 0.3 }}
-            className="h-[2px] bg-gradient-to-r from-purple-400 to-transparent mb-6 mx-auto"
-          />
-
+      <HeroLayout
+        className="bg-white"
+        bgElements={
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: `url(${PHero})`,
+            }}
+          >
+            <div className="absolute inset-0 opacity-20">
+              <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
+              <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
+            </div>
+            <motion.div
+              animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-20 left-10 w-96 h-96 rounded-full bg-[#E8192C] blur-[120px]"
+            />
+          </div>
+        }
+        badge={
+          <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+            </span>
+            <span className="relative text-[#111111] text-xs font-bold tracking-[0.25em] uppercase">Latest Insights</span>
+          </div>
+        }
+        title={
           <motion.h1
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-5xl md:text-7xl font-black text-white leading-tight mb-8"
+            className="text-4xl sm:text-5xl lg:text-[52px] font-black text-white leading-tight"
           >
             Latest Updates & <br />
             <span className="text-[#E8192C]">
               Insights
             </span>
           </motion.h1>
-
+        }
+        description={
           <motion.p
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.7 }}
-            className="text-lg md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed font-light mb-8 blog-desc"
+            className="text-base sm:text-lg text-white/80 max-w-2xl leading-relaxed font-light blog-desc"
           >
-            Stay updated with the latest news, events, and insights from the tech
-            world.
+            Stay updated with the latest news, events, and insights from the tech world.
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
+        }
+        actions={
+          <button
+            onClick={() =>
+              document
+                .getElementById("blog-posts")
+                .scrollIntoView({ behavior: "smooth" })
+            }
+            className="group relative inline-flex items-center justify-center gap-3 bg-[#E8192C] text-white px-8 py-4 rounded-full font-bold transition-all hover:bg-[#ff2235] hover:scale-105"
           >
-            <button
-              onClick={() =>
-                document
-                  .getElementById("blog-posts")
-                  .scrollIntoView({ behavior: "smooth" })
-              }
-              className="group relative inline-flex items-center justify-center gap-3 bg-[#E8192C] text-white px-10 py-5 rounded-full font-bold transition-all hover:bg-[#ff2235] hover:scale-105"
-            >
-              Explore Posts
-              <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-            </button>
-          </motion.div>
-        </div>
-      </section>
+            Explore Posts
+            <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+          </button>
+        }
+      />
 
       {/* CONTENT SECTIONS */}
-      <section className="max-w-7xl mx-auto py-24 px-6 bg-[#080808]">
+      <section className="max-w-7xl mx-auto py-12 sm:py-14 lg:py-16 px-6 bg-[#080808]">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -253,7 +219,7 @@ export default function BlogPage() {
       </section>
 
       {/* CONTENT SECTION 2 */}
-      <section className="max-w-7xl mx-auto py-24 px-6 bg-[#080808]">
+      <section className="max-w-7xl mx-auto py-12 sm:py-14 lg:py-16 px-6 bg-[#080808]">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -300,7 +266,7 @@ export default function BlogPage() {
       </section>
 
       {/* BLOG POSTS GRID */}
-      <section id="blog-posts" className="bg-[#080808] py-24 px-6 border-t border-white/5">
+      <section id="blog-posts" className="bg-[#080808] py-12 sm:py-14 lg:py-16 px-6 border-t border-white/5">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

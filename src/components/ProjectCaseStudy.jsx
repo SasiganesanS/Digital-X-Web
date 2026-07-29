@@ -186,7 +186,7 @@ const ProjectCaseStudy = () => {
 
       {/* ── OVERVIEW ── */}
       {project.overview && (
-        <section className="w-full py-20 md:py-28" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <section className="w-full py-12 sm:py-14 lg:py-16" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
             <div 
               className="relative rounded-3xl p-8 md:p-12 lg:p-16 overflow-hidden" 
@@ -264,7 +264,7 @@ const ProjectCaseStudy = () => {
 
       {/* ── FEATURES ── */}
       {project.features?.length > 0 && (
-        <section className="w-full py-20 md:py-28" style={{ background: "#0A0A0A", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <section className="w-full py-12 sm:py-14 lg:py-16" style={{ background: "#0A0A0A", borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
             <motion.div
               className="text-center mb-14"
@@ -313,7 +313,7 @@ const ProjectCaseStudy = () => {
 
       {/* ── RESULTS ── */}
       {project.results?.length > 0 && (
-        <section className="w-full py-20 md:py-28" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+        <section className="w-full py-12 sm:py-14 lg:py-16" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
           <div className="max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
             <motion.div
               className="text-center mb-14"
@@ -406,7 +406,7 @@ const ProjectCaseStudy = () => {
       )}
 
       {/* ── UNIFIED TECH & FOOTER CTA SECTION ── */}
-      <section className="relative w-full py-20 md:py-28 overflow-hidden flex flex-col items-center justify-center" 
+      <section className="relative w-full py-12 sm:py-14 lg:py-16 overflow-hidden flex flex-col items-center justify-center" 
         style={{ 
           background: "#080808",
           borderTop: "1px solid rgba(255,255,255,0.06)" 

@@ -81,7 +81,7 @@ export default function FeaturedWorks() {
   };
 
   return (
-    <section id="projects" className="relative overflow-hidden bg-transparent py-16 sm:py-20 lg:py-24">
+    <section id="projects" className="relative overflow-hidden bg-transparent py-12 sm:py-14 lg:py-16">
       <div className="relative mx-auto w-full max-w-[1280px] px-6 sm:px-8 lg:px-12">
         {/* Section Header */}
         <div className="mb-8 max-w-3xl space-y-2.5">

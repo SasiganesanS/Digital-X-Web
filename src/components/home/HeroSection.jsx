@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SolarSystemHero from "./SolarSystemHero";
+import HeroLayout from "../common/HeroLayout";
 
 function AnimatedStat({ targetNum, suffix = "+", label }) {
   const [count, setCount] = useState(0);
@@ -50,23 +51,16 @@ const HeroSection = () => {
     setMousePos({ x, y });
   };
 
-  return (
-    <section
-      id="home"
-      onMouseMove={handleMouseMove}
-      className="relative w-full h-screen min-h-[100vh] max-h-screen overflow-hidden flex items-center justify-center bg-transparent"
-    >
+  const bgElements = (
+    <>
       {/* ── Background Layer 1: Ambient Glows & Noise Grid ── */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        {/* Soft Radial Glow */}
         <div
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full"
           style={{
             background: "radial-gradient(circle, rgba(227,29,46,0.05) 0%, transparent 70%)",
           }}
         />
-
-        {/* Floating Gradient Blob Left */}
         <motion.div
           animate={{
             y: [0, -15, 0],
@@ -78,8 +72,6 @@ const HeroSection = () => {
           }}
           className="absolute -top-20 left-10 w-[450px] h-[450px] rounded-full bg-[#E31D2E]/5 blur-[120px]"
         />
-
-        {/* Floating Gradient Blob Right */}
         <motion.div
           animate={{
             y: [0, 15, 0],
@@ -91,8 +83,6 @@ const HeroSection = () => {
           }}
           className="absolute bottom-0 right-10 w-[500px] h-[500px] rounded-full bg-[#E31D2E]/4 blur-[140px]"
         />
-
-        {/* Subtle Noise / Dot Mesh Layer */}
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -100,143 +90,6 @@ const HeroSection = () => {
             backgroundSize: "36px 36px",
           }}
         />
-      </div>
-
-      {/* ── Content Block Layer ── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 pt-2 sm:pt-4 pb-10 lg:pb-0">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
-
-          {/* ── LEFT: Text content + stats ── */}
-          <div
-            className="flex-1 flex flex-col items-center lg:items-start text-center lg:text-left max-w-2xl w-full relative transition-transform duration-300 ease-out"
-            style={{
-              transform: `translate3d(${mousePos.x * 0.4}px, ${mousePos.y * 0.4}px, 0)`,
-            }}
-          >
-            {/* Eyebrow badge with slow ambient float */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: [0, -4, 0] }}
-              transition={{
-                opacity: { duration: 0.6, ease: "easeOut" },
-                scale: { duration: 0.6, ease: "easeOut" },
-                y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-              }}
-              className="relative inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full overflow-hidden border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)] backdrop-blur-sm"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
-              </span>
-              <span className="relative text-[#111111] text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-                A Mindful Marketing and Production Firm
-              </span>
-            </motion.div>
-
-            {/* Headline Entrance Sequence */}
-            <h1
-              className="font-black leading-[1.08] tracking-tight text-[#111111] mb-4 w-full"
-              style={{ fontSize: "clamp(2.0rem, 4.8vw, 4.0rem)" }}
-            >
-              <motion.span
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-                className="inline-block"
-              >
-                Where brands evolve into
-              </motion.span>{" "}
-              <motion.span
-                initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.45, ease: "easeOut" }}
-                className="relative inline-block text-[#E31D2E]"
-              >
-                powerful
-                <motion.span
-                  className="absolute -bottom-1 left-0 h-[3px] rounded-full bg-[#E31D2E] w-full"
-                  initial={{ scaleX: 0, opacity: 0 }}
-                  animate={{ scaleX: 1, opacity: 1 }}
-                  transition={{ duration: 1.2, delay: 0.85, ease: "easeInOut" }}
-                  style={{ transformOrigin: "left" }}
-                />
-              </motion.span>{" "}
-              <motion.span
-                initial={{ opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.65, ease: "easeOut" }}
-                className="inline-block"
-              >
-                digital movements.
-              </motion.span>
-            </h1>
-
-            {/* Subtext */}
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-              className="text-[#575757] text-sm sm:text-base font-medium leading-relaxed mb-6 max-w-lg"
-            >
-              Your strategic growth partner for branding, performance marketing,
-              and long-term digital scale. We don't just create campaigns; we build legacies.
-            </motion.p>
-
-            {/* CTA Button */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.95 }}
-              className="flex items-center gap-4 justify-center lg:justify-start mb-6"
-            >
-              <Link
-                to="/projects"
-                className="primary-btn group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full px-8 py-4 text-xs sm:text-sm font-bold uppercase tracking-[0.15em] sm:tracking-[0.18em] text-white shadow-md hover:scale-102 transition-all"
-              >
-                <span className="relative z-10">See Our Work</span>
-                <svg
-                  className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2.5}
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </Link>
-            </motion.div>
-
-            {/* Animated Stats Cards */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.1 }}
-              className="grid grid-cols-3 gap-3 w-full max-w-[280px] sm:max-w-xs lg:max-w-sm"
-            >
-              <AnimatedStat targetNum="15" suffix="+" label="Clients" />
-              <AnimatedStat targetNum="20" suffix="+" label="Projects" />
-              <AnimatedStat targetNum="20" suffix="+" label="Tie-ups" />
-            </motion.div>
-          </div>
-
-          {/* ── RIGHT: Interactive Services coverflow ── */}
-          <motion.div
-            className="w-full max-w-[420px] sm:max-w-[460px] lg:max-w-none lg:w-[500px] flex-shrink-0 relative mx-auto lg:mx-0 transition-transform duration-300 ease-out"
-            style={{
-              transform: `translate3d(${mousePos.x * -0.5}px, ${mousePos.y * -0.5}px, 0)`,
-            }}
-            initial={{ opacity: 0, scale: 0.8, x: 40 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-          >
-            <SolarSystemHero />
-          </motion.div>
-
-        </div>
       </div>
 
       {/* ── Scroll Indicator ── */}
@@ -261,8 +114,139 @@ const HeroSection = () => {
           <span className="w-1 h-1.5 rounded-full bg-[#E31D2E]" />
         </motion.div>
       </motion.div>
+    </>
+  );
 
-    </section>
+  const badge = (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9, y: 10 }}
+      animate={{ opacity: 1, scale: 1, y: [0, -4, 0] }}
+      transition={{
+        opacity: { duration: 0.6, ease: "easeOut" },
+        scale: { duration: 0.6, ease: "easeOut" },
+        y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+      }}
+      className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full overflow-hidden border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)] backdrop-blur-sm"
+    >
+      <span className="relative flex h-2 w-2">
+        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+      </span>
+      <span className="relative text-[#111111] text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
+        A Mindful Marketing and Production Firm
+      </span>
+    </motion.div>
+  );
+
+  const title = (
+    <h1
+      className="font-black leading-[1.08] tracking-tight text-[#111111] w-full text-4xl sm:text-5xl lg:text-[52px]"
+    >
+      <motion.span
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+        className="inline-block"
+      >
+        Where brands evolve into
+      </motion.span>{" "}
+      <motion.span
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.45, ease: "easeOut" }}
+        className="relative inline-block text-[#E31D2E]"
+      >
+        powerful
+      </motion.span>{" "}
+      <motion.span
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.65, ease: "easeOut" }}
+        className="inline-block"
+      >
+        digital movements.
+      </motion.span>
+    </h1>
+  );
+
+  const description = (
+    <motion.p
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+      className="text-[#575757] text-sm sm:text-base font-medium leading-relaxed max-w-lg"
+    >
+      Your strategic growth partner for branding, performance marketing,
+      and long-term digital scale. We don't just create campaigns; we build legacies.
+    </motion.p>
+  );
+
+  const actions = (
+    <div className="flex flex-col items-center lg:items-start gap-6 w-full">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.95 }}
+      >
+        <Link
+          to="/projects"
+          className="primary-btn group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full px-8 py-4 text-xs sm:text-sm font-bold uppercase tracking-[0.15em] sm:tracking-[0.18em] text-white shadow-md hover:scale-102 transition-all"
+        >
+          <span className="relative z-10">See Our Work</span>
+          <svg
+            className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2.5}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M17 8l4 4m0 0l-4 4m4-4H3"
+            />
+          </svg>
+        </Link>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.1 }}
+        className="grid grid-cols-3 gap-3 w-full max-w-[280px] sm:max-w-xs lg:max-w-sm"
+      >
+        <AnimatedStat targetNum="15" suffix="+" label="Clients" />
+        <AnimatedStat targetNum="20" suffix="+" label="Projects" />
+        <AnimatedStat targetNum="20" suffix="+" label="Tie-ups" />
+      </motion.div>
+    </div>
+  );
+
+  const media = (
+    <motion.div
+      className="w-full max-w-[420px] sm:max-w-[460px] lg:max-w-none lg:w-[500px] flex-shrink-0 relative mx-auto lg:mx-0 transition-transform duration-300 ease-out"
+      style={{
+        transform: `translate3d(${mousePos.x * -0.5}px, ${mousePos.y * -0.5}px, 0)`,
+      }}
+      initial={{ opacity: 0, scale: 0.8, x: 40 }}
+      animate={{ opacity: 1, scale: 1, x: 0 }}
+      transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+    >
+      <SolarSystemHero />
+    </motion.div>
+  );
+
+  return (
+    <HeroLayout
+      sectionId="home"
+      onMouseMove={handleMouseMove}
+      bgElements={bgElements}
+      badge={badge}
+      title={title}
+      description={description}
+      actions={actions}
+      media={media}
+    />
   );
 };
 

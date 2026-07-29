@@ -5,167 +5,267 @@ import {
   FiArrowUpRight,
   FiChevronLeft,
   FiChevronRight,
+  FiSearch,
+  FiX,
 } from "react-icons/fi";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 
 // component imports
 import JobApplication from "./JobApplication";
 
-function JobListing({ searchQuery = "", filters = {} }) {
+function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilters }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedJob, setSelectedJob] = useState(null);
   const jobsPerPage = 5;
 
-  const allJobs = [
-    {
-      id: 1,
-      title: "Jr. Video Editor/ Motion Graphic Designer",
-      description:
-        "Bring our brand stories to life through compelling edits and motion graphics. Work on reels, brand videos, and campaign content for a range of clients.",
-      location: "On-site",
-      type: "Full-time",
-      role: "Jr. Video Editor/ Motion Graphic Designer",
-      department: "VISCOM",
-      level: "Entry Level",
-      skills: [
-        "Adobe Premiere Pro",
-        "After Effects",
-        "CapCut",
-        "Motion Graphics",
-        "Video Editing"
-      ],
-      requirements: [
-        "Hands-on experience with Premiere Pro and After Effects",
-        "Strong sense of pacing, storytelling, and visual rhythm",
-        "Ability to work across multiple projects and deadlines",
-      ],
-    },
-    {
-      id: 2,
-      title: "Client Acquisition Executive",
-      description:
-        "Drive new business growth by identifying, pitching, and onboarding clients. Build lasting relationships and help expand our client portfolio.",
-      location: "On-site",
-      type: "Full-time",
-      role: "Client Acquisition Executive",
-      department: "VISCOM",
-      level: "Entry Level",
-      skills: ["Lead Generation", "Cold Calling", "CRM", "Sales Pitching", "Client Communication"],
-      requirements: [
-        "Strong communication and interpersonal skills",
-        "Comfortable with cold outreach and client pitching",
-        "Prior experience in sales or business development is a plus",
-      ],
-    },
-    {
-      id: 3,
-      title: "Videography/Photography",
-      description:
-        "Capture high-quality photo and video content for brand shoots, events, and campaigns. Collaborate closely with the creative team to bring concepts to life on set.",
-      location: "On-site",
-      type: "Full-time",
-      role: "Videography/Photography",
-      department: "VISCOM",
-      level: "Entry Level",
-      skills: ["DSLR Camera", "Adobe Lightroom", "Adobe Photoshop", "Cinematography", "Photo Editing"],
-      requirements: [
-        "Solid understanding of camera equipment, lighting, and composition",
-        "Portfolio showcasing photography and/or videography work",
-        "Willingness to travel for shoots when required",
-      ],
-    },
-    {
-      id: 4,
-      title: "SEO Specialist",
-      description:
-        "Learn and apply on-page and off-page SEO techniques to improve client search rankings. Assist with keyword research, audits, and performance tracking.",
-      location: "Hybrid",
-      type: "Internship",
-      role: "SEO Specialist",
-      department: "VISCOM",
-      level: "Intern",
-      skills: [
-        "Google Search Console",
-        "Google Analytics",
-        "Keyword Research",
-        "On-Page SEO",
-        "Technical SEO"
-      ],
-      requirements: [
-        "Basic understanding of SEO principles",
-        "Eagerness to learn and analyze data",
-        "Duration: 6m to 1yr",
-      ],
-    },
-    {
-      id: 5,
-      title: "Social Media Executive",
-      description:
-        "Support the planning, scheduling, and posting of content across client social media channels. Help track engagement and stay on top of platform trends.",
-      location: "Hybrid",
-      type: "Internship",
-      role: "Social Media Executive",
-      department: "VISCOM",
-      level: "Intern",
-      skills: ["Meta Business Suite", "Canva", "Content Planning", "Instagram Marketing", "Social Media Strategy"],
-      requirements: [
-        "Active understanding of social media platforms and trends",
-        "Good written communication skills",
-        "Duration: 6m to 1yr",
-      ],
-    },
-    {
-      id: 6,
-      title: "Content Creator",
-      description:
-        "Ideate and create engaging content for brand and client social channels, including short-form video, captions, and campaign concepts.",
-      location: "Hybrid",
-      type: "Internship",
-      role: "Content Creator",
-      department: "VISCOM",
-      level: "Intern",
-      skills: [
-        "Copywriting",
-        "Canva",
-        "Content Writing",
-        "Storytelling",
-        "Creative Thinking"
-      ],
-      requirements: [
-        "A creative eye and strong storytelling instinct",
-        "Comfortable being on camera or scripting for others",
-        "Duration: 6m to 1yr",
-      ],
-    },
-  ];
+  const allJobs = useMemo(
+    () => [
+      {
+        id: 1,
+        title: "Jr. Video Editor / Motion Graphic Designer",
+        description:
+          "Bring our brand stories to life through compelling edits and motion graphics. Work on reels, brand videos, and campaign content for a range of clients.",
+        location: "On-site",
+        type: "Full-time",
+        role: "Jr. Video Editor / Motion Graphic Designer",
+        department: "VISCOM",
+        level: "Entry Level",
+        skills: [
+          "Adobe Premiere Pro",
+          "After Effects",
+          "CapCut",
+          "Motion Graphics",
+          "Video Editing",
+          "Designer",
+        ],
+        requirements: [
+          "Hands-on experience with Premiere Pro and After Effects",
+          "Strong sense of pacing, storytelling, and visual rhythm",
+          "Ability to work across multiple projects and deadlines",
+        ],
+      },
+      {
+        id: 2,
+        title: "React / Frontend Developer",
+        description:
+          "Build modern, high-performance web applications using React, Next.js, and modern frontend tools. Collaborate with designers to craft seamless digital experiences.",
+        location: "Remote",
+        type: "Full-time",
+        role: "React / Frontend Developer",
+        department: "Engineering",
+        level: "Mid Level",
+        skills: [
+          "React",
+          "Frontend",
+          "JavaScript",
+          "Tailwind CSS",
+          "TypeScript",
+          "UI/UX",
+        ],
+        requirements: [
+          "Strong proficiency in React.js and modern JavaScript (ES6+)",
+          "Experience with responsive layouts and Tailwind CSS",
+          "Familiarity with REST APIs and state management",
+        ],
+      },
+      {
+        id: 3,
+        title: "UI/UX & Product Designer",
+        description:
+          "Design intuitive user interfaces and experiences for web and mobile platforms. Craft design systems, user flows, and interactive prototypes.",
+        location: "Remote",
+        type: "Full-time",
+        role: "UI/UX Designer",
+        department: "Design",
+        level: "Mid Level",
+        skills: [
+          "UI/UX",
+          "Figma",
+          "Product Design",
+          "Wireframing",
+          "Prototyping",
+          "Designer",
+        ],
+        requirements: [
+          "Strong portfolio demonstrating UI/UX and web design skills",
+          "Expertise in Figma and design system architecture",
+          "Understanding of responsive design principles",
+        ],
+      },
+      {
+        id: 4,
+        title: "SEO & Performance Marketing Specialist",
+        description:
+          "Lead search engine optimization strategies, conduct technical SEO audits, and optimize organic performance to drive scalable traffic and leads.",
+        location: "Hybrid",
+        type: "Full-time",
+        role: "SEO Specialist",
+        department: "Marketing",
+        level: "Mid Level",
+        skills: [
+          "SEO",
+          "Marketing",
+          "Google Search Console",
+          "Google Analytics",
+          "Digital Marketing",
+          "Keyword Research",
+        ],
+        requirements: [
+          "Proven track record of improving organic search rankings",
+          "Hands-on experience with SEMrush, Ahrefs, and Google Search Console",
+          "Knowledge of technical, on-page, and off-page SEO strategies",
+        ],
+      },
+      {
+        id: 5,
+        title: "Social Media Executive",
+        description:
+          "Manage social media channels, create engaging campaign posts, analyze engagement metrics, and track digital marketing trends.",
+        location: "Hybrid",
+        type: "Internship",
+        role: "Social Media Executive",
+        department: "Marketing",
+        level: "Intern",
+        skills: [
+          "Marketing",
+          "Meta Business Suite",
+          "Canva",
+          "Content Planning",
+          "Instagram Marketing",
+          "Social Media Strategy",
+        ],
+        requirements: [
+          "Active understanding of social media platforms and trends",
+          "Good written communication skills",
+          "Duration: 6m to 1yr",
+        ],
+      },
+      {
+        id: 6,
+        title: "Client Acquisition Executive",
+        description:
+          "Drive new business growth by identifying, pitching, and onboarding clients. Build lasting relationships and help expand our client portfolio.",
+        location: "On-site",
+        type: "Full-time",
+        role: "Client Acquisition Executive",
+        department: "Sales",
+        level: "Entry Level",
+        skills: [
+          "Lead Generation",
+          "Cold Calling",
+          "CRM",
+          "Sales Pitching",
+          "Client Communication",
+        ],
+        requirements: [
+          "Strong communication and interpersonal skills",
+          "Comfortable with cold outreach and client pitching",
+          "Prior experience in sales or business development is a plus",
+        ],
+      },
+      {
+        id: 7,
+        title: "Videography / Photography Specialist",
+        description:
+          "Capture high-quality photo and video content for brand shoots, events, and campaigns. Collaborate closely with the creative team to bring concepts to life on set.",
+        location: "On-site",
+        type: "Full-time",
+        role: "Videography/Photography",
+        department: "VISCOM",
+        level: "Entry Level",
+        skills: [
+          "DSLR Camera",
+          "Adobe Lightroom",
+          "Adobe Photoshop",
+          "Cinematography",
+          "Photo Editing",
+          "Photography",
+        ],
+        requirements: [
+          "Solid understanding of camera equipment, lighting, and composition",
+          "Portfolio showcasing photography and/or videography work",
+          "Willingness to travel for shoots when required",
+        ],
+      },
+      {
+        id: 8,
+        title: "Content Creator & Strategist",
+        description:
+          "Ideate and create engaging content for brand and client social channels, including short-form video, captions, and campaign concepts.",
+        location: "Hybrid",
+        type: "Internship",
+        role: "Content Creator",
+        department: "Marketing",
+        level: "Intern",
+        skills: [
+          "Copywriting",
+          "Canva",
+          "Content Creation",
+          "Storytelling",
+          "Branding",
+          "Marketing",
+        ],
+        requirements: [
+          "A creative eye and strong storytelling instinct",
+          "Comfortable being on camera or scripting for others",
+          "Duration: 6m to 1yr",
+        ],
+      },
+    ],
+    []
+  );
 
   // Filter jobs based on search query and filters
-  const jobs = allJobs.filter((job) => {
-    const searchLower = searchQuery.toLowerCase();
-    const matchesSearch =
-      !searchQuery ||
-      job.title.toLowerCase().includes(searchLower) ||
-      job.description.toLowerCase().includes(searchLower) ||
-      job.skills.some((skill) => skill.toLowerCase().includes(searchLower));
+  const jobs = useMemo(() => {
+    const searchLower = searchQuery.trim().toLowerCase();
 
-    const matchesRole = !filters.role || job.role === filters.role;
-    const matchesDepartment =
-      !filters.department || job.department === filters.department;
-    const matchesType = !filters.type || job.type === filters.type;
-    const matchesLevel = !filters.level || job.level === filters.level;
-    const matchesLocation =
-      !filters.location || job.location === filters.location;
+    return allJobs.filter((job) => {
+      // Search matching across all relevant fields
+      const matchesSearch =
+        !searchLower ||
+        job.title.toLowerCase().includes(searchLower) ||
+        job.description.toLowerCase().includes(searchLower) ||
+        job.role.toLowerCase().includes(searchLower) ||
+        job.department.toLowerCase().includes(searchLower) ||
+        job.location.toLowerCase().includes(searchLower) ||
+        job.type.toLowerCase().includes(searchLower) ||
+        job.level.toLowerCase().includes(searchLower) ||
+        job.skills.some((skill) => skill.toLowerCase().includes(searchLower)) ||
+        job.requirements.some((req) => req.toLowerCase().includes(searchLower));
 
-    return (
-      matchesSearch &&
-      matchesRole &&
-      matchesDepartment &&
-      matchesType &&
-      matchesLevel &&
-      matchesLocation
-    );
-  });
+      // Filter matching
+      const matchesRole =
+        !filters.role ||
+        job.role.toLowerCase() === filters.role.toLowerCase() ||
+        job.title.toLowerCase().includes(filters.role.toLowerCase());
+
+      const matchesDepartment =
+        !filters.department ||
+        job.department.toLowerCase() === filters.department.toLowerCase();
+
+      const matchesType =
+        !filters.type ||
+        job.type.toLowerCase() === filters.type.toLowerCase();
+
+      const matchesLevel =
+        !filters.level ||
+        job.level.toLowerCase() === filters.level.toLowerCase();
+
+      const matchesLocation =
+        !filters.location ||
+        job.location.toLowerCase() === filters.location.toLowerCase();
+
+      return (
+        matchesSearch &&
+        matchesRole &&
+        matchesDepartment &&
+        matchesType &&
+        matchesLevel &&
+        matchesLocation
+      );
+    });
+  }, [allJobs, searchQuery, filters]);
 
   // Reset to page 1 when filters change
   useEffect(() => {
@@ -180,6 +280,14 @@ function JobListing({ searchQuery = "", filters = {} }) {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+
+  const handleJobClick = (job) => {
+    if (onSelectJob) {
+      onSelectJob(job);
+    } else {
+      setSelectedJob(job);
+    }
   };
 
   const renderPageNumbers = () => {
@@ -199,8 +307,8 @@ function JobListing({ searchQuery = "", filters = {} }) {
           onClick={() => handlePageChange(i)}
           className={`px-3 sm:px-4 py-2 rounded-full font-medium transition-colors text-sm sm:text-[15px] lg:text-base ${
             currentPage === i
-              ? 'bg-[#E31D2E] text-white shadow-sm font-bold'
-              : 'bg-white/80 text-neutral-700 hover:bg-neutral-100 border border-neutral-200'
+              ? "bg-[#E31D2E] text-white shadow-sm font-bold"
+              : "bg-white/80 text-neutral-700 hover:bg-neutral-100 border border-neutral-200"
           }`}
         >
           {i}
@@ -238,9 +346,23 @@ function JobListing({ searchQuery = "", filters = {} }) {
           </div>
 
           {jobs.length === 0 ? (
-            <div className="text-center py-12 sm:py-16 bg-white/60 border border-neutral-200/80 rounded-[22px] shadow-xs">
-              <p className="text-neutral-600 text-base sm:text-lg lg:text-xl font-medium">No jobs found matching your criteria.</p>
-              <p className="text-neutral-400 mt-2 text-sm sm:text-[15px] lg:text-base">Try adjusting your search or filters.</p>
+            <div className="text-center py-12 sm:py-16 bg-white/60 border border-neutral-200/80 rounded-[22px] shadow-xs px-6">
+              <div className="w-12 h-12 rounded-full bg-[#E31D2E]/10 text-[#E31D2E] flex items-center justify-center mx-auto mb-4">
+                <FiSearch className="w-6 h-6" />
+              </div>
+              <p className="text-[#111111] text-lg sm:text-xl font-bold mb-2">No jobs match your search.</p>
+              <p className="text-neutral-500 text-sm sm:text-base font-normal max-w-md mx-auto mb-6">
+                We couldn't find any positions matching your search criteria. Try searching for another keyword or clear your filters.
+              </p>
+              {onClearFilters && (
+                <button
+                  onClick={onClearFilters}
+                  className="primary-btn px-6 py-3 rounded-full font-bold text-xs sm:text-sm inline-flex items-center gap-2"
+                >
+                  <FiX className="w-4 h-4" />
+                  <span>Clear Search & Filters</span>
+                </button>
+              )}
             </div>
           ) : (
             <>
@@ -252,7 +374,8 @@ function JobListing({ searchQuery = "", filters = {} }) {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.07, ease: "easeOut" }}
                     whileHover={{ y: -5, scale: 1.015 }}
-                    className="group relative rounded-[22px] bg-white border border-neutral-200/80 p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-[#E31D2E]/40 transition-all duration-300 flex flex-col justify-between"
+                    onClick={() => handleJobClick(job)}
+                    className="group relative rounded-[22px] bg-white border border-neutral-200/80 p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-[#E31D2E]/40 transition-all duration-300 flex flex-col justify-between cursor-pointer"
                   >
                     <div>
                       {/* Title Header */}
@@ -267,7 +390,7 @@ function JobListing({ searchQuery = "", filters = {} }) {
                         {job.description}
                       </p>
 
-                      {/* Metadata Pills with minimal line icons */}
+                      {/* Metadata Pills */}
                       <div className="flex gap-2.5 sm:gap-3 flex-wrap mb-6">
                         <div className="flex items-center gap-2 border border-neutral-200/80 bg-neutral-50 rounded-full px-3.5 py-1.5 shadow-xs">
                           <FiMapPin className="text-[#E31D2E] w-3.5 h-3.5" />
@@ -306,7 +429,10 @@ function JobListing({ searchQuery = "", filters = {} }) {
 
                       {/* Primary CTA Button */}
                       <button
-                        onClick={() => setSelectedJob(job)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleJobClick(job);
+                        }}
                         className="primary-btn px-6 py-3 rounded-full font-bold text-sm sm:text-base flex items-center justify-center gap-2 group/btn shadow-sm hover:scale-102 transition-all flex-shrink-0"
                       >
                         <span>Apply Now</span>
@@ -326,8 +452,8 @@ function JobListing({ searchQuery = "", filters = {} }) {
                     disabled={currentPage === 1}
                     className={`px-4 py-2 rounded-full font-medium transition-colors flex items-center gap-1 sm:gap-2 text-sm sm:text-[15px] ${
                       currentPage === 1
-                        ? 'bg-neutral-100 text-neutral-400 cursor-not-allowed border border-neutral-200'
-                        : 'bg-white text-neutral-700 hover:bg-neutral-100 border border-neutral-200 shadow-xs'
+                        ? "bg-neutral-100 text-neutral-400 cursor-not-allowed border border-neutral-200"
+                        : "bg-white text-neutral-700 hover:bg-neutral-100 border border-neutral-200 shadow-xs"
                     }`}
                   >
                     <FiChevronLeft className="w-4 h-4" />
@@ -343,8 +469,8 @@ function JobListing({ searchQuery = "", filters = {} }) {
                     disabled={currentPage === totalPages}
                     className={`px-4 py-2 rounded-full font-medium transition-colors flex items-center gap-1 sm:gap-2 text-sm sm:text-[15px] ${
                       currentPage === totalPages
-                        ? 'bg-neutral-100 text-neutral-400 cursor-not-allowed border border-neutral-200'
-                        : 'bg-white text-neutral-700 hover:bg-neutral-100 border border-neutral-200 shadow-xs'
+                        ? "bg-neutral-100 text-neutral-400 cursor-not-allowed border border-neutral-200"
+                        : "bg-white text-neutral-700 hover:bg-neutral-100 border border-neutral-200 shadow-xs"
                     }`}
                   >
                     <span>Next</span>
@@ -357,8 +483,8 @@ function JobListing({ searchQuery = "", filters = {} }) {
         </div>
       </div>
 
-      {/* Job Application Modal */}
-      {selectedJob && (
+      {/* Job Application Modal (used when JobListing rendered standalone) */}
+      {!onSelectJob && selectedJob && (
         <JobApplication job={selectedJob} onClose={() => setSelectedJob(null)} />
       )}
     </>

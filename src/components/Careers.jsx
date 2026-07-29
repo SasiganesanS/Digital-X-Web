@@ -6,6 +6,7 @@ import React, {
   useCallback,
 } from "react";
 import { motion } from "framer-motion";
+import HeroLayout from "./common/HeroLayout";
 
 // Component imports
 import JobApplication from "./JobApplication";
@@ -75,20 +76,34 @@ const Careers = () => {
   const filterOptions = useMemo(
     () => ({
       role: [
-        "Jr. Video Editor/ Motion Graphic Designer",
-        "Client Acquisition Executive",
+        "React / Frontend Developer",
+        "UI/UX Designer",
+        "Jr. Video Editor / Motion Graphic Designer",
         "SEO Specialist",
-        "Videography/Photography",
         "Social Media Executive",
+        "Client Acquisition Executive",
+        "Videography/Photography",
         "Content Creator",
       ],
-      department: ["VISCOM"],
-      type: ["Full-time", "Internship"],
-      level: ["Intern", "Entry Level", "Mid Level"],
-      location: ["On-site", "Hybrid"],
+      department: ["Engineering", "Design", "Marketing", "VISCOM", "Sales"],
+      type: ["Full-time", "Internship", "Part-time", "Contract"],
+      level: ["Intern", "Entry Level", "Mid Level", "Senior Level"],
+      location: ["Remote", "Hybrid", "On-site"],
     }),
     []
   );
+
+  // Keyboard accessibility: close dropdowns and modals on Escape
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        setOpenFilter(null);
+        setSelectedJob(null);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   // Memoize team members array to prevent re-creation on every render
   const teamMembers = useMemo(
@@ -156,37 +171,26 @@ const Careers = () => {
 
   return (
     <>
-      <section
-        className="h-screen min-h-[100vh] max-h-[100vh] w-full overflow-x-hidden bg-transparent flex items-center justify-center px-4 sm:px-8 overflow-hidden"
-        aria-label="Careers hero section"
-      >
-        <div className="max-w-7xl w-full mx-auto flex flex-col lg:flex-row items-center justify-between gap-6 sm:gap-8 md:gap-8 lg:gap-20">
-          {/* Left Content */}
-          <div className="z-10 w-full px-6 sm:px-0 lg:max-w-xl text-center lg:text-left max-[1200px]:landscape:text-center max-[1200px]:landscape:max-w-2xl max-[1200px]:landscape:mx-auto min-[768px]:max-[1100px]:portrait:text-center min-[768px]:max-[1100px]:portrait:max-w-2xl min-[768px]:max-[1100px]:portrait:mx-auto">
-            {/* Logo/Brand */}
-            <div
-              className="flex items-center justify-center lg:justify-start max-[1200px]:landscape:justify-center min-[768px]:max-[1100px]:portrait:justify-center gap-3 mb-6"
-              role="banner"
-            >
-              <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
-                </span>
-                <span className="relative text-[#111111] text-xs font-bold tracking-[0.25em] uppercase">Careers @ Praskla Digital X</span>
-              </div>
-            </div>
-
-            {/* Heading */}
-            <h1 className="text-[#111111] text-[36px] sm:text-[44px] lg:text-[56px] font-black leading-tight mb-8">
-              Join us in creating
-              <br />
-              software that drives
-              <br />
-              <span className="text-[#E31D2E]">innovation</span>
-            </h1>
-
-            {/* CTA Button */}
+      <HeroLayout
+        badge={
+          <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+            </span>
+            <span className="relative text-[#111111] text-xs font-bold tracking-[0.25em] uppercase">Careers @ Praskla Digital X</span>
+          </div>
+        }
+        title={
+          <h1 className="text-[#111111] text-[36px] sm:text-[44px] lg:text-[52px] font-black leading-tight">
+            Join us in creating <br />
+            software that drives <br />
+            <span className="text-[#E31D2E]">innovation</span>
+          </h1>
+        }
+        description="Build high-impact digital experiences and grow with a team of strategic, creative, and engineering minds."
+        actions={
+          <div className="flex justify-center lg:justify-start w-full">
             <button
               onClick={scrollToJobs}
               className="primary-btn px-8 py-4 rounded-full font-bold text-sm sm:text-base"
@@ -195,21 +199,21 @@ const Careers = () => {
               View Open Roles
             </button>
           </div>
-
-          {/* Right Side - Team Illustrations Grid */}
+        }
+        media={
           <div
-            className="relative w-full lg:w-1/2 flex justify-center"
+            className="relative w-full flex justify-center"
             aria-label="Team culture illustrations"
           >
             <CareersImageGrid teamMembers={teamMembers} />
           </div>
-        </div>
-      </section>
+        }
+      />
 
       {/* Job search section */}
       <section
         ref={jobSearchRef}
-        className="relative bg-transparent py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 mt-[60px] sm:mt-[100px] overflow-hidden"
+        className="relative bg-transparent py-12 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
         aria-label="Job search and filters"
       >
         {/* Soft background ambient radial gradients & blurred circles */}
@@ -500,7 +504,12 @@ const Careers = () => {
         </div>
       </section>
 
-      <JobListing searchQuery={searchQuery} filters={filters} />
+      <JobListing
+        searchQuery={searchQuery}
+        filters={filters}
+        onSelectJob={(job) => setSelectedJob(job)}
+        onClearFilters={clearAllFilters}
+      />
 
       {/* General Application Modal */}
       {selectedJob && (

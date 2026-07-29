@@ -1,4 +1,5 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
+import HeroLayout from "./common/HeroLayout";
 import "./ServiceCalculator.css";
 import balajiPortraits from '../assets/tie/Balaji-Portraits.jpg';
 import ibodhiAcademy from '../assets/tie/ibodhi-academy-removebg.png';
@@ -540,111 +541,92 @@ export default function ServiceCalculator() {
 
   return (
     <div className="bg-[#080808] min-h-screen text-white pt-0 overflow-hidden font-outfit">
-      {/* ── Hero Section — Elevated Split Layout: Text Left, Interactive Showcase Right ── */}
-      <section className="relative w-full min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden px-6 md:px-[5%] py-12 lg:py-20">
-        {/* Subtle Decorative Background Elements (Section only) */}
-        <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-[#E31D2E]/6 rounded-full blur-[150px] pointer-events-none" />
-        <div className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-[#E31D2E]/5 rounded-full blur-[140px] pointer-events-none" />
-
-        {/* Ambient Pulsing Circles */}
-        <motion.div
-          animate={{ scale: [1, 1.15, 1], opacity: [0.25, 0.5, 0.25] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-[#E31D2E]/3 blur-[120px] pointer-events-none"
-        />
-
-        {/* Abstract Micro Grid Layer */}
-        <div
-          className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
-          style={{
-            backgroundImage: "radial-gradient(circle, #fff 1.2px, transparent 1.2px)",
-            backgroundSize: "44px 44px",
-          }}
-        />
-
-        <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
-
-            {/* LEFT — Text & Metric Cards Content (span 7 cols on large screens) */}
+      {/* ── Hero Section — Shared HeroLayout baseline and vertical rhythm ── */}
+      <HeroLayout
+        bgElements={
+          <>
+            <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-[#E31D2E]/6 rounded-full blur-[150px] pointer-events-none" />
+            <div className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-[#E31D2E]/5 rounded-full blur-[140px] pointer-events-none" />
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-7 flex flex-col items-start text-left z-10"
-            >
-              {/* Premium Badge */}
-              <motion.div
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
-                className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-[#E31D2E]/25 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md mb-8"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
-                </span>
-                <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
-                  Our Services
-                </span>
-              </motion.div>
-
-              {/* Elevating Heading Hierarchy */}
-              <motion.h1
-                initial={{ opacity: 0, y: 25 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="text-4xl md:text-5xl lg:text-6xl xl:text-[4.25rem] font-black mb-6 leading-[1.06] tracking-tight text-[#111111]"
-              >
-                Transforming Brands into <br className="hidden sm:block" />
-                <span className="text-[#E31D2E] relative inline-block">
-                  Digital Authority
-                </span>
-              </motion.h1>
-
-              {/* Description Paragraph */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="text-[#575757] text-base md:text-lg leading-relaxed max-w-xl font-medium mb-10"
-              >
-                Comprehensive branding, media, and performance marketing solutions designed to help your business grow strategically, creatively, and profitably.
-              </motion.p>
-
-              {/* Premium Floating Metric Cards */}
-              <div className="flex flex-wrap items-center gap-4 sm:gap-5 mt-2 relative z-10 w-full">
-                <HeroAnimatedStat
-                  targetNum="15"
-                  suffix="+"
-                  label="Clients"
-                  icon={FiUsers}
-                  delay={0}
-                />
-                <HeroAnimatedStat
-                  targetNum="20"
-                  suffix="+"
-                  label="Projects"
-                  icon={FiBriefcase}
-                  delay={0.1}
-                />
-                <HeroAnimatedStat
-                  targetNum="6"
-                  suffix=""
-                  label="Services"
-                  icon={FiLayers}
-                  delay={0.2}
-                />
-              </div>
-            </motion.div>
-
-            {/* RIGHT — Interactive Showcase Frame (span 5 cols on large screens) */}
-            <div className="lg:col-span-5 w-full flex justify-center lg:justify-end z-20">
-              <HeroShowcase ourServicesImg={ourServicesImg} />
-            </div>
-
+              animate={{ scale: [1, 1.15, 1], opacity: [0.25, 0.5, 0.25] }}
+              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-[#E31D2E]/3 blur-[120px] pointer-events-none"
+            />
+            <div
+              className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
+              style={{
+                backgroundImage: "radial-gradient(circle, #fff 1.2px, transparent 1.2px)",
+                backgroundSize: "44px 44px",
+              }}
+            />
+          </>
+        }
+        badge={
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-[#E31D2E]/25 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+            </span>
+            <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
+              Our Services
+            </span>
+          </motion.div>
+        }
+        title={
+          <motion.h1
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.08] tracking-tight text-[#111111]"
+          >
+            Transforming Brands into <br className="hidden sm:block" />
+            <span className="text-[#E31D2E] relative inline-block">
+              Digital Authority
+            </span>
+          </motion.h1>
+        }
+        description={
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium"
+          >
+            Comprehensive branding, media, and performance marketing solutions designed to help your business grow strategically, creatively, and profitably.
+          </motion.p>
+        }
+        actions={
+          <div className="flex flex-wrap items-center gap-4 sm:gap-5 relative z-10 w-full justify-center lg:justify-start">
+            <HeroAnimatedStat
+              targetNum="15"
+              suffix="+"
+              label="Clients"
+              icon={FiUsers}
+              delay={0}
+            />
+            <HeroAnimatedStat
+              targetNum="20"
+              suffix="+"
+              label="Projects"
+              icon={FiBriefcase}
+              delay={0.1}
+            />
+            <HeroAnimatedStat
+              targetNum="6"
+              suffix=""
+              label="Services"
+              icon={FiLayers}
+              delay={0.2}
+            />
           </div>
-        </div>
-      </section>
+        }
+        media={<HeroShowcase ourServicesImg={ourServicesImg} />}
+      />
 
       {/* ── Auto-Scrolling Marquee Section with manual arrow/dot control ── */}
       <section id="expertise" className="relative w-full px-[5%] py-20 pb-32 overflow-hidden bg-transparent">
@@ -800,7 +782,7 @@ export default function ServiceCalculator() {
       {/* ── Pricing Calculator / Growth Package Estimator ── */}
       <div
         ref={calculatorRef}
-        className="relative px-6 md:px-[5%] py-24 md:py-32 overflow-hidden bg-transparent"
+        className="relative px-6 md:px-[5%] py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent"
       >
         {/* Subtle Decorative Background Elements */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#E31D2E]/4 rounded-full blur-[160px] pointer-events-none" />
@@ -1037,7 +1019,7 @@ export default function ServiceCalculator() {
       </div>
 
       {/* ── Partners ── */}
-      <section className="py-24 border-t border-gray-200 bg-transparent overflow-hidden">
+      <section className="py-12 sm:py-14 lg:py-16 border-t border-gray-200 bg-transparent overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-center text-[#575757] font-black uppercase tracking-[0.4em] text-xs mb-16">Ecosystem Partners</h2>
         </div>
