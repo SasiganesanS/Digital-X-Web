@@ -606,7 +606,7 @@ const Navbar = ({ setShowContactForm }) => {
         {/* DEDICATED BRAND BLOCK */}
         <Link
           to="/"
-          className="brand-block flex items-center gap-[11px] mr-8 sm:mr-10 lg:mr-[56px] shrink-0 text-left group no-underline select-none"
+          className="brand-block flex items-center gap-3 sm:gap-4 mr-6 md:mr-8 shrink-0 text-left group no-underline select-none"
           aria-label="Praskla Digital X Home"
           onMouseEnter={handleLogoEnter}
           ref={el => {
@@ -625,7 +625,7 @@ const Navbar = ({ setShowContactForm }) => {
             <span className="text-[18px] sm:text-[19px] lg:text-[20px] font-bold text-[#111111] leading-none tracking-tight">
               Praskla Digital <span className="text-[#E31D2E]">X</span>
             </span>
-            <span className="hidden md:block text-[11px] sm:text-[12px] font-medium text-[#6B7280] tracking-[0.08em] mt-[2px] leading-none">
+            <span className="hidden md:block text-[11px] sm:text-[12px] font-medium text-[#6B7280] tracking-[0.08em] mt-[8px] leading-none">
               A Mindful Marketing & Production Firm
             </span>
           </motion.div>
