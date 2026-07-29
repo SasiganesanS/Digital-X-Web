@@ -15,13 +15,24 @@ import { motion, AnimatePresence } from "framer-motion";
 import Teams from "../Teams";
 
 const About = () => {
-  const [index, setIndex] = useState(0)
+  const [index, setIndex] = useState(0);
+  const [panelMouse, setPanelMouse] = useState({ x: 0, y: 0 });
+
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prev) => (prev + 1) % phrases.length);
     }, 2200);
     return () => clearInterval(interval);
   }, []);
+
+  const handlePanelMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
+    const y = ((e.clientY - rect.top) / rect.height - 0.5) * 14;
+    setPanelMouse({ x, y });
+  };
+
+  const handlePanelMouseLeave = () => setPanelMouse({ x: 0, y: 0 });
 
   const phrases = [
     "We Build Powerful Brand Identities",
@@ -30,100 +41,137 @@ const About = () => {
     "We Transform Businesses into Recognized Brands",
   ];
 
+  const fadeUp = {
+    hidden: { opacity: 0, y: 24 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
+
   return (
     <div className="min-h-screen bg-transparent" style={{ backgroundColor: "transparent" }}>
       {/* ── About Hero Section ── */}
-      <section className="relative h-screen min-h-[100vh] max-h-[100vh] flex items-center overflow-hidden bg-transparent">
+      <section className="relative h-screen min-h-[100vh] max-h-[100vh] flex items-center overflow-hidden bg-transparent py-16">
+        {/* Soft Background Glows */}
+        <div className="absolute inset-0 pointer-events-none z-0">
+          <div
+            className="absolute top-1/3 left-10 w-[500px] h-[500px] rounded-full"
+            style={{
+              background: "radial-gradient(circle, rgba(227,29,46,0.04) 0%, transparent 70%)",
+            }}
+          />
+        </div>
 
         <div className="relative z-10 w-[90%] max-w-[1280px] mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
             {/* ── LEFT: Main Content ── */}
             <motion.div
-              className="space-y-8"
-              initial={{ opacity: 0, x: -32 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="space-y-6"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              transition={{ staggerChildren: 0.12 }}
             >
-              {/* Eyebrow label */}
-              <div
-                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full overflow-hidden border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]"
+              {/* Eyebrow badge */}
+              <motion.div
+                variants={fadeUp}
+                className="relative inline-flex items-center gap-3 px-5 py-2.5 rounded-full overflow-hidden border border-[#E31D2E]/20 bg-white/80 shadow-[0_8px_16px_rgba(17,17,17,0.03)] backdrop-blur-sm"
               >
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E31D2E]" />
                 </span>
                 <span className="relative text-[#111111] text-xs sm:text-sm font-bold tracking-[0.3em] uppercase">About Us</span>
-              </div>
+              </motion.div>
 
               {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.1] tracking-tight text-[#111111]">
+              <motion.h1 variants={fadeUp} className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.1] tracking-tight text-[#111111]">
                 Where Mindful Strategy{" "}
                 <span className="inline-block text-[#E31D2E]">
                   Meets Scalable Growth
                 </span>
-              </h1>
+              </motion.h1>
 
               {/* Sub-copy */}
-              <p className="text-[#575757] text-lg leading-relaxed max-w-xl font-medium">
+              <motion.p variants={fadeUp} className="text-neutral-600 text-lg leading-relaxed max-w-xl font-normal">
                 A trusted marketing partner delivering brand transformation, performance campaigns,
                 and high-impact digital ecosystems that accelerate business growth.
-              </p>
+              </motion.p>
 
-              {/* Three bullet points */}
-              <div className="space-y-4 pt-2">
+              {/* 3 Premium Feature Cards */}
+              <div className="space-y-3.5 pt-2">
                 {[
-                  "Growth-driven strategies designed for real-world market challenges",
-                  "Proven execution across diverse industries and personal brands",
-                  "A dedicated team of creative, analytical, and performance-focused professionals",
-                ].map((point, i) => (
+                  {
+                    icon: <TrendingUp />,
+                    title: "Growth-Driven Strategy",
+                    desc: "Designed for real-world market challenges",
+                  },
+                  {
+                    icon: <Award />,
+                    title: "Proven Execution",
+                    desc: "Across diverse industries and personal brands",
+                  },
+                  {
+                    icon: <Users />,
+                    title: "Dedicated Team",
+                    desc: "Creative, analytical, and performance-focused professionals",
+                  },
+                ].map((item, i) => (
                   <motion.div
                     key={i}
-                    className="flex items-start gap-3"
-                    initial={{ opacity: 0, x: -16 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 + i * 0.12 }}
+                    variants={fadeUp}
+                    whileHover={{ y: -3, scale: 1.01 }}
+                    className="group flex items-center gap-4 bg-white/80 border border-neutral-200/80 rounded-[20px] p-4 shadow-xs hover:border-[#E31D2E]/40 hover:shadow-[0_12px_28px_rgba(0,0,0,0.05)] transition-all duration-300"
                   >
-                    <span
-                      className="flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5"
-                      style={{ background: "rgba(227,29,46,0.1)", color: "#E31D2E" }}
-                    >
-                      <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                      </svg>
-                    </span>
-                    <span className="text-[#575757] text-sm leading-relaxed font-semibold">{point}</span>
+                    <div className="w-10 h-10 rounded-xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#E31D2E] transition-colors duration-300">
+                      {React.cloneElement(item.icon, {
+                        className: "w-5 h-5 text-[#E31D2E] group-hover:text-white transition-colors duration-300",
+                      })}
+                    </div>
+                    <div>
+                      <h4 className="text-sm font-black text-[#111111] group-hover:text-[#E31D2E] transition-colors duration-300">
+                        {item.title}
+                      </h4>
+                      <p className="text-xs text-neutral-500 font-normal mt-0.5">
+                        {item.desc}
+                      </p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
             </motion.div>
 
-            {/* ── RIGHT: Side Card + Values ── */}
+            {/* ── RIGHT: Interactive Brand Philosophy Panel ── */}
             <motion.div
-              className="space-y-5"
               initial={{ opacity: 0, x: 32 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
             >
-              {/* Cycling phrases card */}
-              <div
-                className="relative rounded-3xl p-8 overflow-hidden border border-white/50 transition-all duration-300 ease-out shadow-[0_12px_32px_rgba(17,17,17,0.04)] bg-white/60"
+              <motion.div
+                onMouseMove={handlePanelMouseMove}
+                onMouseLeave={handlePanelMouseLeave}
+                animate={{
+                  x: panelMouse.x,
+                  y: panelMouse.y,
+                }}
+                transition={{ type: "spring", stiffness: 200, damping: 20 }}
+                className="group relative rounded-[36px] p-8 sm:p-10 overflow-hidden border border-neutral-200/80 bg-white/80 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.07)] hover:border-[#E31D2E]/30 transition-all duration-500"
               >
-                {/* Logo orb */}
+                {/* Soft Background Radial Glow */}
+                <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-[#E31D2E]/5 blur-[80px] pointer-events-none" />
+
+                {/* Centered Logo Orb */}
                 <div className="flex justify-center mb-6">
                   <motion.div
-                    animate={{ y: [0, -6, 0] }}
-                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                    animate={{ y: [0, -5, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                   >
-                    <div
-                      className="w-20 h-20 rounded-full flex items-center justify-center bg-white border border-gray-100 shadow-sm"
-                    >
+                    <div className="w-20 h-20 rounded-full flex items-center justify-center bg-white border border-neutral-200 shadow-sm group-hover:rotate-6 transition-transform duration-500">
                       <img src={pyLogo} alt="Praskla Digital X" className="w-12 h-12 object-contain" />
                     </div>
                   </motion.div>
                 </div>
 
-                {/* Animated cycling text */}
+                {/* Cycling phrase headline */}
                 <div className="relative flex items-center justify-center min-h-[36px] mb-4">
                   <AnimatePresence mode="wait">
                     <motion.p
@@ -140,41 +188,48 @@ const About = () => {
                 </div>
 
                 {/* Progress dots */}
-                <div className="flex gap-2 justify-center">
+                <div className="flex gap-2 justify-center mb-8">
                   {phrases.map((_, idx) => (
                     <div
                       key={idx}
                       className="h-1 rounded-full transition-all duration-300"
                       style={{
                         width: idx === index ? "24px" : "8px",
-                        background: idx === index ? "#E31D2E" : "rgba(17,17,17,0.1)",
+                        background: idx === index ? "#E31D2E" : "rgba(17,17,17,0.12)",
                       }}
                     />
                   ))}
                 </div>
-              </div>
 
-              {/* Three value pillars below the card */}
-              <div className="grid grid-cols-3 gap-4">
-                {[
-                  { title: "Clarity", desc: "Thoughtful strategies with defined direction" },
-                  { title: "Collaboration", desc: "Strong partnerships that grow together" },
-                  { title: "Innovation", desc: "Creative, future-ready marketing solutions" },
-                ].map((v, i) => (
-                  <motion.div
-                    key={i}
-                    className="clay-card rounded-xl p-4 text-center transition-all duration-300 ease-out cursor-default group hover:-translate-y-[5px]"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.4 + i * 0.1 }}
-                  >
-                    <h4 className="text-[#111111] font-bold text-sm mb-1 group-hover:text-[#E31D2E] transition-colors duration-300">
-                      {v.title}
-                    </h4>
-                    <p className="text-[#8B8B8B] text-[10px] leading-snug font-medium">{v.desc}</p>
-                  </motion.div>
-                ))}
-              </div>
+                {/* Connected Core Value Nodes */}
+                <div className="relative pt-2">
+                  {/* Animated Connector Line */}
+                  <div className="absolute top-1/2 left-4 right-4 h-0.5 bg-gradient-to-r from-transparent via-[#E31D2E]/30 to-transparent -translate-y-1/2 pointer-events-none" />
+
+                  <div className="grid grid-cols-3 gap-3 relative z-10">
+                    {[
+                      { title: "Clarity", desc: "Defined direction" },
+                      { title: "Collaboration", desc: "Growing together" },
+                      { title: "Innovation", desc: "Future-ready solutions" },
+                    ].map((v, i) => (
+                      <motion.div
+                        key={i}
+                        whileHover={{ y: -4, scale: 1.02 }}
+                        transition={{ type: "spring", stiffness: 300 }}
+                        className="bg-white border border-neutral-200/80 rounded-[20px] p-3.5 text-center shadow-xs hover:border-[#E31D2E]/40 hover:shadow-md transition-all cursor-default group/node"
+                      >
+                        <div className="w-2.5 h-2.5 rounded-full bg-white border-2 border-[#E31D2E] mx-auto mb-2 group-hover/node:scale-125 transition-transform" />
+                        <h4 className="text-[#111111] font-black text-xs sm:text-sm mb-0.5 group-hover/node:text-[#E31D2E] transition-colors">
+                          {v.title}
+                        </h4>
+                        <p className="text-neutral-500 text-[10px] leading-snug font-normal">
+                          {v.desc}
+                        </p>
+                      </motion.div>
+                    ))}
+                  </div>
+                </div>
+              </motion.div>
             </motion.div>
 
           </div>

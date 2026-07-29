@@ -5,6 +5,7 @@ import React, {
   useMemo,
   useCallback,
 } from "react";
+import { motion } from "framer-motion";
 
 // Component imports
 import JobApplication from "./JobApplication";
@@ -23,12 +24,27 @@ import career08 from "../assets/Careers/career08.png";
 import py from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
 
 // Icon imports
-import { FiSearch, FiChevronDown, FiExternalLink } from "react-icons/fi";
+import {
+  FiSearch,
+  FiChevronDown,
+  FiExternalLink,
+  FiBriefcase,
+  FiLayers,
+  FiClock,
+  FiTrendingUp,
+  FiMapPin,
+  FiX,
+  FiFilter,
+} from "react-icons/fi";
+import { Sparkles } from "lucide-react";
+
+import CareersImageGrid from "./CareersImageGrid";
 
 const Careers = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [openFilter, setOpenFilter] = useState(null);
+  const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [filters, setFilters] = useState({
     role: "",
     department: "",
@@ -39,6 +55,21 @@ const Careers = () => {
 
   // Ref for job search section
   const jobSearchRef = useRef(null);
+
+  // Quick search suggestion chips
+  const quickSearchOptions = useMemo(
+    () => [
+      "UI/UX",
+      "Marketing",
+      "React",
+      "SEO",
+      "Video Editing",
+      "Branding",
+      "Content Creation",
+      "Photography",
+    ],
+    []
+  );
 
   // Memoize filter options to prevent unnecessary re-renders
   const filterOptions = useMemo(
@@ -170,64 +201,7 @@ const Careers = () => {
             className="relative w-full lg:w-1/2 flex justify-center"
             aria-label="Team culture illustrations"
           >
-            <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-8 w-full max-w-[280px] sm:max-w-[320px] md:max-w-sm lg:max-w-xl mx-auto items-center justify-items-center max-[1200px]:landscape:flex max-[1200px]:landscape:justify-center max-[1200px]:landscape:max-w-md min-[768px]:max-[1100px]:portrait:flex min-[768px]:max-[1100px]:portrait:justify-center min-[768px]:max-[1100px]:portrait:max-w-md">
-              {teamMembers.map((member, index) => {
-                const isCenter = index === 4;
-                const hideOnTablet = index !== 4;
-                const bgColor = isCenter
-                  ? "bg-white border border-gray-100 shadow-sm"
-                  : "bg-white/60 border border-white/80 shadow-md";
-
-                return (
-                  <div
-                    key={member.id}
-                    className={`w-16 h-16 sm:w-[72px] sm:h-[72px] md:w-24 md:h-24 lg:w-40 lg:h-40 rounded-full ${bgColor} flex items-center justify-center overflow-hidden backdrop-blur-sm
-                            hover:scale-105 hover:shadow-xl
-                            transition-all duration-300 ease-out
-                            cursor-pointer ${hideOnTablet ? 'max-[1200px]:landscape:hidden min-[768px]:max-[1100px]:portrait:hidden' : 'max-[1200px]:landscape:!w-48 max-[1200px]:landscape:!h-48 min-[768px]:max-[1100px]:portrait:!w-48 min-[768px]:max-[1100px]:portrait:!h-48'}`}
-                  >
-                    {member.image ? (
-                      <img
-                        src={member.image}
-                        alt={member.alt}
-                        className={
-                          isCenter
-                            ? "w-8/12 h-8/12 object-contain"
-                            : "w-full h-full object-cover rounded-full"
-                        }
-                        loading="lazy"
-                      />
-                    ) : (
-                      <div className="text-center">
-                        {isCenter ? (
-                          <svg
-                            viewBox="0 0 100 100"
-                            className="w-8 h-8 sm:w-10 sm:h-10 md:w-14 md:h-14 lg:w-24 lg:h-24"
-                          >
-                            <path
-                              d="M30 50 Q50 30 70 50 Q50 70 30 50 M50 30 Q70 50 50 70 Q30 50 50 30"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="3"
-                              className="text-[#E31D2E]"
-                            />
-                          </svg>
-                        ) : (
-                          <>
-                            <div className="text-[#111111] text-xs sm:text-sm lg:text-lg font-medium">
-                              Employee
-                            </div>
-                            <div className="text-[#111111] text-xs sm:text-sm lg:text-lg font-medium">
-                              Image
-                            </div>
-                          </>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+            <CareersImageGrid teamMembers={teamMembers} />
           </div>
         </div>
       </section>
@@ -235,147 +209,294 @@ const Careers = () => {
       {/* Job search section */}
       <section
         ref={jobSearchRef}
-        className="bg-transparent py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 mt-[100px]"
+        className="relative bg-transparent py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 mt-[60px] sm:mt-[100px] overflow-hidden"
         aria-label="Job search and filters"
       >
-        <div className="max-w-7xl mx-auto">
-          {/* Badge */}
-          <div className="inline-block mb-6">
-            <div className="border border-[#E31D2E]/20 bg-white/60 px-5 py-2.5 rounded-full shadow-sm">
-              <span className="font-bold text-xs sm:text-sm uppercase tracking-wider text-[#E31D2E]">
-                We're growing our team
-              </span>
+        {/* Soft background ambient radial gradients & blurred circles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
+          {/* Subtle dot pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.035]"
+            style={{
+              backgroundImage: `radial-gradient(#111111 1px, transparent 1px)`,
+              backgroundSize: "24px 24px",
+            }}
+          />
+          {/* Soft radial gradients & blurred ambient circles */}
+          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-gradient-to-tr from-[#E31D2E]/10 via-[#E31D2E]/3 to-transparent blur-3xl rounded-full" />
+          <div className="absolute top-10 left-10 w-72 h-72 bg-[#E31D2E]/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#E31D2E]/4 rounded-full blur-3xl" />
+        </div>
+
+        <div className="max-w-5xl mx-auto space-y-10 sm:space-y-12">
+          {/* Section Heading Block */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-3xl mx-auto space-y-4"
+          >
+            <div className="inline-block">
+              <div className="border border-[#E31D2E]/20 bg-white/70 backdrop-blur-md px-5 py-2 rounded-full shadow-xs">
+                <span className="font-bold text-xs sm:text-sm uppercase tracking-widest text-[#E31D2E]">
+                  We're growing our team
+                </span>
+              </div>
             </div>
-          </div>
+            <h2 className="text-[#111111] text-[32px] sm:text-[44px] lg:text-[50px] font-black leading-tight tracking-tight">
+              Find the position that fits your ambitions
+            </h2>
+          </motion.div>
 
-          {/* Heading */}
-          <h2 className="text-[#111111] text-[32px] sm:text-[40px] lg:text-[48px] font-black mb-6 sm:mb-8 max-w-3xl leading-tight">
-            Find the position that fits your ambitions
-          </h2>
-
-          {/* Search and Filters */}
-          <div className="space-y-4 mb-6 sm:mb-8">
-            {/* Search Bar */}
-            <div className="relative w-full">
+          {/* Search Bar Block */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative w-full max-w-4xl mx-auto space-y-4"
+          >
+            {/* Primary Focal Point Search Bar */}
+            <div
+              className={`relative flex items-center h-[72px] w-full rounded-full bg-white transition-all duration-300 ${
+                isSearchFocused
+                  ? "border-2 border-[#E31D2E] shadow-[0_0_25px_rgba(227,29,46,0.18)] scale-[1.01]"
+                  : "border border-neutral-200/80 hover:border-neutral-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03),_0_12px_32px_rgba(0,0,0,0.05)]"
+              }`}
+            >
               <label htmlFor="job-search" className="sr-only">
-                Search for jobs
+                Search by role, skill or department
               </label>
+              <div className="pl-6 text-[#E31D2E] flex items-center justify-center">
+                <FiSearch className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" />
+              </div>
               <input
                 id="job-search"
                 type="search"
-                placeholder="Search for positions..."
+                placeholder="Search by role, skill or department..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full px-6 py-4 bg-white/50 border border-white/80 rounded-full text-[#111111] placeholder:text-[#8B8B8B] focus:ring-2 focus:ring-[#E31D2E]/20 focus:border-[#E31D2E]/40 outline-none text-sm sm:text-[15px] lg:text-base transition-all shadow-sm"
+                onFocus={() => setIsSearchFocused(true)}
+                onBlur={() => setIsSearchFocused(false)}
+                className="w-full h-full px-4 bg-transparent text-[#111111] placeholder:text-neutral-400 focus:outline-none text-base sm:text-lg font-medium rounded-full"
                 aria-label="Search for job positions"
               />
-              <FiSearch
-                className="absolute right-6 top-1/2 transform -translate-y-1/2 text-[#E31D2E] w-5 h-5 pointer-events-none"
-                aria-hidden="true"
-              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="pr-6 text-neutral-400 hover:text-[#111111] transition-colors"
+                  aria-label="Clear search input"
+                >
+                  <FiX className="w-5 h-5" />
+                </button>
+              )}
             </div>
 
-            {/* Filter Dropdowns - Grid Layout */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-              {Object.keys(filterOptions).map((filterName) => (
-                <div key={filterName} className="relative filter-dropdown">
-                  <button
-                    onClick={() => toggleFilter(filterName)}
-                    className="w-full bg-white/50 border border-white/80 text-[#111111] px-5 py-3 rounded-full font-bold hover:bg-white/80 active:bg-gray-100 transition-colors flex items-center gap-2 capitalize justify-between text-sm sm:text-[15px] lg:text-base shadow-sm"
-                    aria-expanded={openFilter === filterName}
-                    aria-haspopup="listbox"
-                    aria-label={`Filter by ${filterName}`}
-                  >
-                    <span className="truncate text-left font-semibold">
-                      {filters[filterName] || filterName}
-                    </span>
-                    <FiChevronDown
-                      className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${openFilter === filterName ? "rotate-180" : ""
-                        }`}
-                      aria-hidden="true"
-                    />
-                  </button>
-
-                  {/* Dropdown Menu */}
-                  {openFilter === filterName && (
-                    <div
-                      className="absolute top-full mt-2 left-0 right-0 bg-white border border-gray-200 rounded-2xl shadow-xl z-50 min-w-full overflow-hidden p-1"
-                      role="listbox"
-                      aria-label={`${filterName} filter options`}
-                    >
-                      <div className="py-1 max-h-64 overflow-y-auto">
-                        {/* Clear option */}
-                        <button
-                          onClick={() => handleFilterChange(filterName, "")}
-                          className="w-full px-4 py-2.5 text-left rounded-xl hover:bg-gray-50 transition-colors text-[#575757] font-semibold text-xs sm:text-sm"
-                        >
-                          All {filterName}s
-                        </button>
-                        {filterOptions[filterName].map((option) => (
-                          <button
-                            key={option}
-                            onClick={() =>
-                              handleFilterChange(filterName, option)
-                            }
-                            className={`w-full px-4 py-2.5 text-left rounded-xl hover:bg-gray-50 transition-colors text-xs sm:text-sm ${filters[filterName] === option
-                              ? "bg-[#E31D2E]/10 text-[#E31D2E] font-bold"
-                              : "text-[#575757] font-semibold"
-                              }`}
-                          >
-                            {option}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Show All Button*/}
-          {hasActiveFilters && (
-            <div className="mb-6 sm:mb-8">
-              <button
-                onClick={clearAllFilters}
-                className="bg-[#E31D2E]/10 text-[#E31D2E] px-6 py-3 rounded-full font-bold hover:bg-[#111111] hover:text-white transition-all text-xs sm:text-sm border border-[#E31D2E]/20 shadow-sm"
-                aria-label="Clear all filters and show all jobs"
-              >
-                Clear Filters & Show All Jobs
-              </button>
-            </div>
-          )}
-
-          {/* Info Box */}
-          <div className="clay-card p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-            <div className="flex-1">
-              <p className="text-[#575757] text-sm sm:text-base leading-relaxed font-medium">
-                Don't see a role that matches your expertise? We're always
-                seeking exceptional talent with unique perspectives.
-                <span className="font-black text-[#111111]">
-                  {" "}
-                  Share your background and interests with us
-                </span>
-                , and our team will reach out if there's a potential fit.
-              </p>
-            </div>
-            <button
-              onClick={() =>
-                setSelectedJob({
-                  title: "General Application",
-                  description:
-                    "Apply for future opportunities at Praskla Technology",
-                  requirements: ["Share your skills and experience with us"],
-                  skills: [],
-                })
-              }
-              className="flex items-center gap-2 text-[#E31D2E] font-bold whitespace-nowrap hover:text-[#111111] transition-colors text-xs sm:text-sm uppercase tracking-wider group"
-              aria-label="Submit a general application"
+            {/* Quick Search Chips */}
+            <motion.div
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={{
+                hidden: {},
+                show: {
+                  transition: {
+                    staggerChildren: 0.05,
+                  },
+                },
+              }}
+              className="flex flex-wrap items-center justify-center gap-2 sm:gap-2.5 pt-2"
             >
-              Submit Application
-              <FiExternalLink className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-            </button>
-          </div>
+              <span className="text-xs uppercase tracking-wider text-neutral-400 font-bold mr-1">
+                Popular:
+              </span>
+              {quickSearchOptions.map((chip) => {
+                const isActive = searchQuery.toLowerCase() === chip.toLowerCase();
+                return (
+                  <motion.button
+                    key={chip}
+                    variants={{
+                      hidden: { opacity: 0, y: 8 },
+                      show: { opacity: 1, y: 0 },
+                    }}
+                    onClick={() =>
+                      setSearchQuery(isActive ? "" : chip)
+                    }
+                    className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                      isActive
+                        ? "bg-[#E31D2E] text-white shadow-md shadow-[#E31D2E]/25 scale-105"
+                        : "bg-white text-neutral-700 border border-neutral-200/80 hover:-translate-y-1 hover:border-[#E31D2E] hover:bg-[#E31D2E]/5 hover:text-[#E31D2E] shadow-xs"
+                    }`}
+                  >
+                    {chip}
+                  </motion.button>
+                );
+              })}
+            </motion.div>
+          </motion.div>
+
+          {/* Unified Filter Bar Container */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="bg-white/80 backdrop-blur-xl border border-white/80 rounded-[28px] p-3.5 sm:p-4 shadow-[0_16px_40px_rgba(0,0,0,0.04)]">
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
+                {Object.keys(filterOptions).map((filterName) => {
+                  const icons = {
+                    role: FiBriefcase,
+                    department: FiLayers,
+                    type: FiClock,
+                    level: FiTrendingUp,
+                    location: FiMapPin,
+                  };
+                  const FilterIcon = icons[filterName] || FiFilter;
+                  const selectedVal = filters[filterName];
+
+                  return (
+                    <div key={filterName} className="relative filter-dropdown">
+                      <button
+                        onClick={() => toggleFilter(filterName)}
+                        className={`w-full h-12 px-4 rounded-full font-bold flex items-center justify-between gap-2 text-xs sm:text-sm transition-all duration-200 ${
+                          selectedVal
+                            ? "bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/30 shadow-xs"
+                            : "bg-white text-neutral-700 border border-neutral-200/80 hover:-translate-y-0.5 hover:border-[#E31D2E]/40 hover:shadow-sm"
+                        }`}
+                        aria-expanded={openFilter === filterName}
+                        aria-haspopup="listbox"
+                        aria-label={`Filter by ${filterName}`}
+                      >
+                        <div className="flex items-center gap-2 min-w-0">
+                          <FilterIcon
+                            className={`w-3.5 h-3.5 flex-shrink-0 ${
+                              selectedVal ? "text-[#E31D2E]" : "text-neutral-400"
+                            }`}
+                          />
+                          <span className="truncate text-left font-bold capitalize">
+                            {selectedVal || filterName}
+                          </span>
+                        </div>
+                        <FiChevronDown
+                          className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${
+                            openFilter === filterName
+                              ? "rotate-180 text-[#E31D2E]"
+                              : "text-neutral-400"
+                          }`}
+                          aria-hidden="true"
+                        />
+                      </button>
+
+                      {/* Dropdown Menu */}
+                      {openFilter === filterName && (
+                        <div
+                          className="absolute top-full mt-2 left-0 right-0 bg-white/95 backdrop-blur-md border border-neutral-200/80 rounded-2xl shadow-xl z-50 min-w-[200px] overflow-hidden p-1.5"
+                          role="listbox"
+                          aria-label={`${filterName} filter options`}
+                        >
+                          <div className="py-1 max-h-60 overflow-y-auto">
+                            <button
+                              onClick={() => handleFilterChange(filterName, "")}
+                              className={`w-full px-3.5 py-2.5 text-left rounded-xl transition-colors font-bold text-xs flex items-center justify-between ${
+                                !selectedVal
+                                  ? "bg-[#E31D2E]/10 text-[#E31D2E]"
+                                  : "hover:bg-neutral-50 text-neutral-500"
+                              }`}
+                            >
+                              <span>All {filterName}s</span>
+                            </button>
+                            {filterOptions[filterName].map((option) => (
+                              <button
+                                key={option}
+                                onClick={() =>
+                                  handleFilterChange(filterName, option)
+                                }
+                                className={`w-full px-3.5 py-2.5 text-left rounded-xl transition-colors text-xs font-semibold ${
+                                  selectedVal === option
+                                    ? "bg-[#E31D2E] text-white font-bold"
+                                    : "hover:bg-neutral-50 text-neutral-700"
+                                }`}
+                              >
+                                {option}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Clear active filters button */}
+              {hasActiveFilters && (
+                <div className="mt-3 pt-3 border-t border-neutral-100 flex justify-center">
+                  <button
+                    onClick={clearAllFilters}
+                    className="text-xs font-bold text-[#E31D2E] hover:text-[#111111] flex items-center gap-1.5 py-1 px-3.5 rounded-full hover:bg-neutral-100 transition-all"
+                    aria-label="Clear all active filters"
+                  >
+                    <FiX className="w-3.5 h-3.5" />
+                    Clear All Filters
+                  </button>
+                </div>
+              )}
+            </div>
+          </motion.div>
+
+          {/* Premium Information Callout Banner */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            className="max-w-4xl mx-auto"
+          >
+            <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-r from-white via-white to-red-50/30 border border-neutral-200/80 p-6 sm:p-8 md:p-10 shadow-[0_12px_36px_rgba(0,0,0,0.04)] flex flex-col md:flex-row items-start md:items-center justify-between gap-6 sm:gap-8 group">
+              {/* Soft decorative background glow */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-[#E31D2E]/5 rounded-full blur-2xl pointer-events-none group-hover:bg-[#E31D2E]/10 transition-all duration-500" />
+
+              {/* Left Side: Icon + Headline + Subtext */}
+              <div className="flex items-start gap-4 sm:gap-6 flex-1 z-10">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 text-[#E31D2E] flex items-center justify-center flex-shrink-0 shadow-xs">
+                  <Sparkles className="w-6 h-6 sm:w-7 sm:h-7" />
+                </div>
+                <div className="space-y-1.5">
+                  <h3 className="text-[#111111] text-lg sm:text-xl md:text-2xl font-black tracking-tight">
+                    Can't find your perfect role?
+                  </h3>
+                  <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-medium max-w-xl">
+                    We're always seeking exceptional talent with unique perspectives. Share your background and interests with us, and our team will reach out if there's a potential fit.
+                  </p>
+                </div>
+              </div>
+
+              {/* Right Side: Outlined Button with Arrow */}
+              <div className="z-10 w-full md:w-auto flex-shrink-0">
+                <button
+                  onClick={() =>
+                    setSelectedJob({
+                      title: "General Application",
+                      description:
+                        "Apply for future opportunities at Praskla Technology",
+                      requirements: [
+                        "Share your skills and experience with us",
+                      ],
+                      skills: [],
+                    })
+                  }
+                  className="w-full md:w-auto px-7 py-4 rounded-full font-bold text-sm sm:text-base border-2 border-[#E31D2E] text-[#E31D2E] bg-transparent hover:bg-[#E31D2E] hover:text-white transition-all duration-300 flex items-center justify-center gap-2.5 shadow-sm hover:-translate-y-1 hover:shadow-lg hover:shadow-[#E31D2E]/20 group/btn"
+                  aria-label="Submit a general application"
+                >
+                  <span>Submit Application</span>
+                  <FiExternalLink className="w-4 h-4 sm:w-5 sm:h-5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300" />
+                </button>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 

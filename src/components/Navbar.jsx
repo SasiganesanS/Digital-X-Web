@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
+import { ArrowRight } from 'lucide-react';
 import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
 
 const navItemsList = [
@@ -16,22 +18,79 @@ const navStyles = `
   position: fixed;
   top: 1.5rem;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
   width: 90%;
   max-width: 1350px;
   z-index: 50;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: transform 0.35s ease-out, opacity 0.35s ease-out;
+  will-change: transform, opacity;
+}
+
+.nav-cta-btn {
+  height: 44px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #FF2D2D 0%, #E61C24 100%);
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
+  gap: 10px;
+  box-shadow: 0 12px 30px rgba(255, 40, 40, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: transform 250ms ease-out, box-shadow 250ms ease-out, background 250ms ease-out;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.nav-cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 36px rgba(255, 40, 40, 0.38);
+  background: linear-gradient(135deg, #FF3D3D 0%, #F5232B 100%);
+}
+
+.nav-cta-btn .cta-arrow {
+  transition: transform 250ms ease-out;
+  display: inline-block;
+}
+
+.nav-cta-btn:hover .cta-arrow {
+  transform: translateX(4px);
 }
 
 @media (max-width: 768px) {
   .pill-nav-container {
     width: 100%;
     left: 0;
-    transform: none;
+    transform: translateY(0);
     padding: 0 1rem;
     box-sizing: border-box;
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.pill-nav-container.nav-hidden {
+  transform: translateX(-50%) translateY(-120%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .pill-nav-container.nav-hidden {
+    transform: translateY(-120%);
+    opacity: 0;
   }
 }
 
@@ -48,8 +107,8 @@ const navStyles = `
 
 @media (max-width: 768px) {
   .pill-nav {
-    width: 100%;
-    justify-content: space-between;
+    width: auto;
+    justify-content: flex-end;
     padding: 0;
     background: transparent;
   }
@@ -66,21 +125,18 @@ const navStyles = `
 }
 
 .pill-logo {
-  width: var(--nav-h);
-  height: var(--nav-h);
-  border-radius: 50%;
-  background: var(--base, #000);
-  padding: 8px;
+  height: 38px;
+  width: auto;
+  background: transparent;
+  padding: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
-  margin-right: 12px;
 }
 
 .pill-logo img {
-  width: 100%;
-  height: 100%;
+  height: 38px;
+  width: auto;
   object-fit: contain;
   display: block;
 }
@@ -281,6 +337,8 @@ const Navbar = ({ setShowContactForm }) => {
 
   const resolvedPillTextColor = pillTextColor ?? baseColor;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
   const circleRefs = useRef([]);
   const tlRefs = useRef([]);
   const activeTweenRefs = useRef([]);
@@ -290,6 +348,42 @@ const Navbar = ({ setShowContactForm }) => {
   const mobileMenuRef = useRef(null);
   const navItemsRef = useRef(null);
   const logoRef = useRef(null);
+
+  useEffect(() => {
+    let ticking = false;
+
+    const updateNavbarVisibility = () => {
+      const currentScrollY = window.scrollY;
+      const scrollDelta = currentScrollY - lastScrollY.current;
+
+      if (currentScrollY <= 20) {
+        setIsVisible(true);
+      } else if (Math.abs(scrollDelta) >= 8) {
+        if (scrollDelta > 0 && currentScrollY > 80) {
+          setIsVisible(false);
+        } else if (scrollDelta < 0) {
+          setIsVisible(true);
+        }
+      }
+
+      lastScrollY.current = currentScrollY;
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateNavbarVisibility);
+        ticking = true;
+      }
+    };
+
+    lastScrollY.current = window.scrollY;
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
 
   useEffect(() => {
     const layout = () => {
@@ -465,6 +559,29 @@ const Navbar = ({ setShowContactForm }) => {
     }
   };
 
+  const handleCtaClick = (e) => {
+    if (e) e.preventDefault();
+    if (isMobileMenuOpen) {
+      toggleMobileMenu();
+    }
+
+    const contactElem = document.getElementById('contact') || document.querySelector('footer');
+    if (contactElem) {
+      const navbarOffset = 90;
+      const elementPosition = contactElem.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - navbarOffset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+
+    if (setShowContactForm) {
+      setShowContactForm(true);
+    }
+  };
+
   const isExternalLink = href =>
     href.startsWith('http://') ||
     href.startsWith('https://') ||
@@ -485,35 +602,36 @@ const Navbar = ({ setShowContactForm }) => {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: navStyles }} />
-      <div className="pill-nav-container">
-        <nav className="pill-nav" aria-label="Primary" style={cssVars}>
-          {isRouterLink(navItemsList?.[0]?.href) ? (
-            <Link
-              className="pill-logo"
-              to={navItemsList[0].href}
-              aria-label="Home"
-              onMouseEnter={handleLogoEnter}
-              role="menuitem"
-              ref={el => {
-                logoRef.current = el;
-              }}
-            >
-              <img src={Logo} alt="Praskla Digital X Logo" ref={logoImgRef} />
-            </Link>
-          ) : (
-            <a
-              className="pill-logo"
-              href={navItemsList?.[0]?.href || '#'}
-              aria-label="Home"
-              onMouseEnter={handleLogoEnter}
-              ref={el => {
-                logoRef.current = el;
-              }}
-            >
-              <img src={Logo} alt="Praskla Digital X Logo" ref={logoImgRef} />
-            </a>
-          )}
+      <div className={`pill-nav-container${!isVisible && !isMobileMenuOpen ? ' nav-hidden' : ''}`}>
+        {/* DEDICATED BRAND BLOCK */}
+        <Link
+          to="/"
+          className="brand-block flex items-center gap-[11px] mr-8 sm:mr-10 lg:mr-[56px] shrink-0 text-left group no-underline select-none"
+          aria-label="Praskla Digital X Home"
+          onMouseEnter={handleLogoEnter}
+          ref={el => {
+            logoRef.current = el;
+          }}
+        >
+          <div className="pill-logo shrink-0">
+            <img src={Logo} alt="Praskla Digital X Logo" ref={logoImgRef} className="h-[38px] sm:h-[40px] w-auto object-contain" />
+          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeOut" }}
+            className="flex flex-col justify-center"
+          >
+            <span className="text-[18px] sm:text-[19px] lg:text-[20px] font-bold text-[#111111] leading-none tracking-tight">
+              Praskla Digital <span className="text-[#E31D2E]">X</span>
+            </span>
+            <span className="hidden md:block text-[11px] sm:text-[12px] font-medium text-[#6B7280] tracking-[0.08em] mt-[2px] leading-none">
+              A Mindful Marketing & Production Firm
+            </span>
+          </motion.div>
+        </Link>
 
+        <nav className="pill-nav" aria-label="Primary" style={cssVars}>
           <div className="pill-nav-items desktop-only" ref={navItemsRef}>
             <ul className="pill-list" role="menubar">
               {navItemsList.map((item, i) => (
@@ -581,6 +699,17 @@ const Navbar = ({ setShowContactForm }) => {
           </button>
         </nav>
 
+        {/* DESKTOP CTA BUTTON */}
+        <button
+          type="button"
+          onClick={handleCtaClick}
+          className="nav-cta-btn desktop-only"
+          aria-label="Let's Talk"
+        >
+          <span>Let's Talk</span>
+          <ArrowRight className="w-4 h-4 cta-arrow" />
+        </button>
+
         <div className="mobile-menu-popover mobile-only" ref={mobileMenuRef} style={cssVars}>
           <ul className="mobile-menu-list">
             {navItemsList.map((item, i) => (
@@ -604,6 +733,17 @@ const Navbar = ({ setShowContactForm }) => {
                 )}
               </li>
             ))}
+            <li className="pt-2 pb-1 px-1">
+              <button
+                type="button"
+                onClick={handleCtaClick}
+                className="nav-cta-btn w-full justify-center"
+                aria-label="Let's Talk"
+              >
+                <span>Let's Talk</span>
+                <ArrowRight className="w-4 h-4 cta-arrow" />
+              </button>
+            </li>
           </ul>
         </div>
       </div>

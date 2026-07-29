@@ -167,7 +167,7 @@ const ContactForm = ({ isOpen, onClose }) => {
 
   if (!isOpen) return null;
 
-  const portalRoot = document.getElementById('portal-root');
+  const portalRoot = typeof document !== 'undefined' ? (document.getElementById('portal-root') || document.body) : null;
   if (!portalRoot) return null;
 
   return ReactDOM.createPortal(

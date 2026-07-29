@@ -5,9 +5,8 @@ import { FaCheckCircle, FaTimesCircle } from "react-icons/fa";
 import { MdStars } from "react-icons/md";
 
 /**
- * Platform Plan Selection Modal
- * Shows available plans for a selected platform with detailed features
- * Responsive: Full page on mobile, modal on desktop
+ * Platform Plan Selection Modal (NEW UI Design System)
+ * Clean white cards, soft contrast, crisp typography & premium accent styling.
  */
 export default function PlatformPlanModal({
   isOpen,
@@ -20,8 +19,13 @@ export default function PlatformPlanModal({
 }) {
   if (!platform) return null;
 
-  const portalRoot = document.getElementById('portal-root');
+  const portalRoot = typeof document !== 'undefined' ? (document.getElementById('portal-root') || document.body) : null;
   if (!portalRoot) return null;
+
+  const PlatformIcon = typeof platform.icon === 'function' || typeof platform.icon === 'object' ? platform.icon : null;
+  const platformPrice = typeof platform.price === 'number' ? platform.price : 0;
+  const platformTitle = platform.title || 'Service Pillar';
+  const plansList = Array.isArray(platform.plans) ? platform.plans : [];
 
   return ReactDOM.createPortal(
     <Modal
@@ -30,20 +34,20 @@ export default function PlatformPlanModal({
       clickPosition={clickPosition}
       maxWidth="max-w-5xl"
     >
-      <div className="bg-[#080808] text-white p-2">
+      <div className="bg-white text-[#111111] p-2">
         {/* Platform Header */}
         <div className="flex items-center gap-4 mb-8">
-          <div className="flex items-center justify-center p-3 rounded-2xl bg-white/5 border border-white/10">
-            {platform.icon ? (
-              <platform.icon className="text-3xl text-[#E8192C]" />
+          <div className="flex items-center justify-center p-3 rounded-2xl bg-neutral-100 border border-neutral-200 shadow-sm">
+            {PlatformIcon ? (
+              <PlatformIcon className="text-3xl text-[#E31D2E]" />
             ) : null}
           </div>
           <div className="flex-1 min-w-0">
-            <h2 className="text-2xl font-black text-white tracking-tight">{platform.title}</h2>
+            <h2 className="text-2xl font-black text-[#111111] tracking-tight">{platformTitle}</h2>
             <div className="flex items-baseline gap-2 mt-1">
-              <span className="text-white/20 text-xs font-bold uppercase tracking-widest">Base Pillar Fee</span>
-              <span className="text-[#E8192C] font-black text-lg">
-                ₹{(platform.price || 0).toLocaleString()}
+              <span className="text-neutral-500 text-xs font-bold uppercase tracking-widest">Base Pillar Fee</span>
+              <span className="text-[#E31D2E] font-black text-lg">
+                ₹{platformPrice.toLocaleString()}
               </span>
             </div>
           </div>
@@ -52,141 +56,109 @@ export default function PlatformPlanModal({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Plans List */}
           <div>
-            <h3 className="text-xs font-black text-white/40 uppercase tracking-[0.2em] mb-4">
+            <h3 className="text-xs font-black text-neutral-400 uppercase tracking-[0.2em] mb-4">
               Available Plans
             </h3>
             <div className="space-y-3">
-              {(platform.plans || []).map((plan) => (
-                <button
-                  key={plan.id}
-                  onClick={() => onSelectPlan(plan)}
-                  className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border-2 text-left ${selectedPlan?.id === plan.id
-                      ? "bg-[#E8192C]/10 border-[#E8192C]/40 shadow-[0_10px_30px_rgba(232,25,44,0.1)]"
-                      : "bg-white/5 border-white/5 hover:border-white/10 hover:bg-white/10"
+              {plansList.map((plan) => {
+                if (!plan) return null;
+                const PlanIcon = typeof plan.icon === 'function' || typeof plan.icon === 'object' ? plan.icon : null;
+                const planPrice = typeof plan.price === 'number' ? plan.price : 0;
+                const isSelected = selectedPlan?.id === plan.id;
+
+                return (
+                  <button
+                    key={plan.id || plan.title}
+                    onClick={() => onSelectPlan && onSelectPlan(plan)}
+                    className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border text-left ${
+                      isSelected
+                        ? "bg-[#E31D2E]/5 border-[#E31D2E] shadow-[0_4px_16px_rgba(227,29,46,0.1)]"
+                        : "bg-neutral-50 border-neutral-200/80 hover:border-neutral-300 hover:bg-neutral-100/80"
                     }`}
-                >
-                  <div
-                    className={`flex items-center justify-center p-2.5 rounded-xl border transition-all duration-300 ${selectedPlan?.id === plan.id
-                        ? "bg-[#E8192C] border-transparent shadow-lg"
-                        : "bg-white/5 border-white/10"
-                      }`}
                   >
-                    {plan.icon ? (
-                      <plan.icon className={`${selectedPlan?.id === plan.id ? "text-white" : "text-[#E8192C]/60"} text-xl`} />
-                    ) : null}
-                  </div>
-                  <div className="flex-1">
-                    <div className="font-black text-sm uppercase tracking-tight text-white">
-                      {plan.title}
+                    <div
+                      className={`flex items-center justify-center p-2.5 rounded-xl border transition-all duration-300 ${
+                        isSelected
+                          ? "bg-[#E31D2E] border-transparent shadow-md"
+                          : "bg-white border-neutral-200 shadow-xs"
+                      }`}
+                    >
+                      {PlanIcon ? (
+                        <PlanIcon className={`${isSelected ? "text-white" : "text-[#E31D2E]"} text-xl`} />
+                      ) : null}
                     </div>
-                    <div className="flex items-baseline gap-1 mt-0.5">
-                      <span className="text-[10px] font-bold text-white/20 uppercase tracking-tighter">
-                        Starts at
-                      </span>
-                      <span className={`text-sm font-black ${selectedPlan?.id === plan.id ? "text-white" : "text-[#E8192C]"}`}>
-                        ₹{(plan.price || 0).toLocaleString()}
-                      </span>
+                    <div className="flex-1">
+                      <div className="font-black text-sm uppercase tracking-tight text-[#111111]">
+                        {plan.title || "Plan"}
+                      </div>
+                      <div className="flex items-baseline gap-1 mt-0.5">
+                        <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-tighter">
+                          Starts at
+                        </span>
+                        <span className={`text-sm font-black ${isSelected ? "text-[#E31D2E]" : "text-neutral-700"}`}>
+                          ₹{planPrice.toLocaleString()}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </button>
-              ))}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
           {/* Plan Details */}
-          <div className="bg-white/[0.03] border border-white/10 rounded-[32px] p-6 lg:p-8">
+          <div className="bg-neutral-50 border border-neutral-200/80 rounded-[24px] p-6 lg:p-8">
             {selectedPlan ? (
-              <div className="h-full flex flex-col">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="p-3 rounded-2xl bg-[#E8192C]/10 border border-[#E8192C]/20">
-                    {selectedPlan.icon ? (
-                      <selectedPlan.icon className="text-2xl text-[#E8192C]" />
-                    ) : null}
-                  </div>
-                  <h3 className="text-2xl font-black text-white uppercase tracking-tighter">
-                    {selectedPlan.title}
-                  </h3>
-                </div>
+              (() => {
+                const SelectedPlanIcon = typeof selectedPlan.icon === 'function' || typeof selectedPlan.icon === 'object' ? selectedPlan.icon : null;
+                const featuresList = Array.isArray(selectedPlan.availableDetails) ? selectedPlan.availableDetails : Array.isArray(selectedPlan.features) ? selectedPlan.features : [];
+                const planPrice = typeof selectedPlan.price === 'number' ? selectedPlan.price : 0;
 
-                <div className="mb-8 p-5 bg-white/5 rounded-2xl border border-white/5">
-                  <span className="text-[10px] text-white/30 font-black uppercase tracking-widest block mb-1">Estimated Investment</span>
-                  <span className="text-3xl font-black text-white">₹{(selectedPlan.price || 0).toLocaleString()}</span>
-                </div>
-
-                {/* Features Section */}
-                <div className="flex-1 space-y-6 mb-8 overflow-y-auto max-h-[300px] pr-2 custom-scrollbar">
-                  {(() => {
-                    const availableFeatures = selectedPlan.availableDetails || selectedPlan.details || [];
-                    const unavailableFeatures = selectedPlan.unavailableDetails || [];
-
-                    return (
-                      <div className="space-y-6">
-                        <div>
-                          <h4 className="text-[10px] font-black text-[#E8192C] uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                            <span className="w-1.5 h-1.5 rounded-full bg-[#E8192C]" />
-                            Included Perks
-                          </h4>
-                          <ul className="space-y-3">
-                            {availableFeatures.map((d, i) => (
-                              <li key={i} className="flex items-start gap-3 text-white/60 text-xs font-medium leading-relaxed">
-                                <FaCheckCircle className="text-[#E8192C] mt-0.5 flex-shrink-0" />
-                                <span>{d}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        {unavailableFeatures.length > 0 && (
-                          <div>
-                            <h4 className="text-[10px] font-black text-white/20 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
-                              <span className="w-1.5 h-1.5 rounded-full bg-white/10" />
-                              Exclusions
-                            </h4>
-                            <ul className="space-y-3">
-                              {unavailableFeatures.map((d, i) => (
-                                <li key={i} className="flex items-start gap-3 text-white/20 text-xs font-medium leading-relaxed">
-                                  <FaTimesCircle className="text-white/10 mt-0.5 flex-shrink-0" />
-                                  <span>{d}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
+                return (
+                  <div className="h-full flex flex-col">
+                    <div className="flex items-center gap-3 mb-6">
+                      <div className="p-2 rounded-xl bg-white border border-neutral-200 text-[#E31D2E] shadow-sm">
+                        {SelectedPlanIcon ? <SelectedPlanIcon className="text-2xl" /> : <MdStars className="text-2xl" />}
                       </div>
-                    );
-                  })()}
-                </div>
+                      <div>
+                        <h4 className="font-black text-lg text-[#111111]">{selectedPlan.title || 'Plan Details'}</h4>
+                        <span className="text-xs text-neutral-500 font-medium">Included Features</span>
+                      </div>
+                    </div>
 
-                <button
-                  onClick={() => onApplyPlan(selectedPlan)}
-                  className="w-full py-4 rounded-xl bg-white text-[#080808] font-black uppercase tracking-widest text-xs hover:bg-[#E8192C] hover:text-white transition-all shadow-xl"
-                >
-                  Apply to Selection
-                </button>
-              </div>
+                    <div className="flex-1 space-y-3 mb-6 overflow-y-auto max-h-[220px] pr-2">
+                      {featuresList.map((feat, idx) => (
+                        <div key={idx} className="flex items-start gap-3 text-sm text-neutral-700">
+                          <FaCheckCircle className="text-[#E31D2E] mt-0.5 flex-shrink-0 text-base" />
+                          <span>{typeof feat === 'string' ? feat : feat?.name || String(feat)}</span>
+                        </div>
+                      ))}
+                    </div>
+
+                    <div className="pt-4 border-t border-neutral-200/80 flex items-center justify-between mt-auto">
+                      <div>
+                        <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider block">Plan Investment</span>
+                        <span className="text-xl font-black text-[#111111]">₹{planPrice.toLocaleString()}</span>
+                      </div>
+                      <button
+                        onClick={() => onApplyPlan && onApplyPlan(selectedPlan)}
+                        className="px-6 py-3 rounded-full bg-[#E31D2E] text-white font-bold text-sm hover:bg-[#c01726] transition-all shadow-[0_4px_16px_rgba(227,29,46,0.25)] hover:shadow-lg hover:scale-102"
+                      >
+                        Select & Apply
+                      </button>
+                    </div>
+                  </div>
+                );
+              })()
             ) : (
-              <div className="flex flex-col items-center justify-center h-full text-white/10 text-center space-y-4">
-                <MdStars className="text-6xl opacity-20" />
-                <p className="text-sm font-black uppercase tracking-widest">Select a plan <br /> to see the impact</p>
+              <div className="h-full flex flex-col items-center justify-center text-center p-6 text-neutral-400">
+                <MdStars className="text-4xl text-neutral-300 mb-2" />
+                <p className="text-sm font-medium">Select a plan on the left to view features</p>
               </div>
             )}
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.05);
-          border-radius: 10px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(232, 25, 44, 0.2);
-          border-radius: 10px;
-        }
-      `}</style>
     </Modal>,
     portalRoot
   );

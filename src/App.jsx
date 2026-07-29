@@ -34,9 +34,9 @@ import BlogPage from "./components/pricing/BlogPage";
 import MainBlogPage from "./components/MainBlogPage";
 import ProjectCaseStudy from "./components/ProjectCaseStudy";
 import ServiceCalculator from "./components/ServiceCalculator";
-// MERGED: Added new imports from development
 import PlatformPlanPage from "./components/PlatformPlanPage";
 import CinematicUniverse from "./components/CinematicUniverse";
+import ScrollToTop from "./components/ScrollToTop";
 
 // Test Home Components
 import Hero from "./components/test-home/Hero";
@@ -275,6 +275,38 @@ const AppRoutes = () => {
 };
 
 // ===================================================================
+// Global Scroll Restoration On Route Change
+// ===================================================================
+const ScrollToTopOnNavigate = () => {
+  const { pathname, hash, state } = useLocation();
+
+  useEffect(() => {
+    // If state specifies scrolling to a specific section (e.g. projects section)
+    if (state?.scrollToProjects) {
+      return;
+    }
+
+    // If navigating with a hash tag, handle section scroll
+    if (hash) {
+      const element = document.getElementById(hash.replace("#", ""));
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+    }
+
+    // Reset scroll position to top instantly on full page navigation
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant"
+    });
+  }, [pathname]);
+
+  return null;
+};
+
+// ===================================================================
 // MERGED: This MainLayout component now contains logic from BOTH branches
 // ===================================================================
 const MainLayout = () => {
@@ -287,12 +319,18 @@ const MainLayout = () => {
   // MERGED: Return logic from development's AppLayout
   if (isMobilePlanPage) {
     // Mobile plan pages: no navbar, no footer, no contact form
-    return <AppRoutes />;
+    return (
+      <>
+        <ScrollToTopOnNavigate />
+        <AppRoutes />
+      </>
+    );
   }
 
   // Regular pages: with navbar and footer
   return (
     <div style={{ minHeight: "100vh", overflowX: "hidden", position: "relative", width: "100%" }}>
+      <ScrollToTopOnNavigate />
       <CinematicUniverse />
       <div style={{ position: "relative", zIndex: 1 }}>
       {/* SVG Filter for Logo Dark Mode Optimization */}
@@ -316,10 +354,13 @@ const MainLayout = () => {
       />
       <AppRoutes />
       <Footer setShowContactForm={setShowContactForm} />
+      <ScrollToTop />
       </div>
     </div>
   );
 };
+
+import ErrorBoundary from "./components/ErrorBoundary";
 
 // ===================================================================
 // App component (renders the merged MainLayout)
@@ -327,7 +368,9 @@ const MainLayout = () => {
 function App() {
   return (
     <HashRouter>
-      <MainLayout />
+      <ErrorBoundary>
+        <MainLayout />
+      </ErrorBoundary>
     </HashRouter>
   );
 }

@@ -25,7 +25,19 @@ import {
   FaBullhorn,
   FaShieldAlt,
   FaLeaf,
+  FaPalette,
 } from "react-icons/fa";
+import {
+  FiUsers,
+  FiBriefcase,
+  FiLayers,
+  FiSearch,
+  FiTrendingUp,
+  FiShare2,
+  FiBarChart2,
+  FiCode,
+  FiCheckCircle,
+} from "react-icons/fi";
 import {
   MdDiamond,
   MdRocketLaunch,
@@ -78,6 +90,24 @@ const PLATFORMS = platforms.map((platform) => ({
 // Duplicated service list so the marquee track can loop seamlessly
 const LOOPED_SERVICES = [...servicesData, ...servicesData];
 
+// Category tag mapping for services
+const getServiceCategoryTag = (title = "") => {
+  const t = title.toLowerCase();
+  if (t.includes("seo")) return "Strategy";
+  if (t.includes("ssm") || t.includes("social")) return "Marketing";
+  if (t.includes("ads")) return "Paid Media";
+  if (t.includes("web") || t.includes("design")) return "Creative";
+  if (t.includes("video") || t.includes("production")) return "Production";
+  if (t.includes("analytics") || t.includes("report")) return "Analytics";
+  if (t.includes("content")) return "Creative";
+  if (t.includes("e-commerce") || t.includes("ecommerce")) return "Performance";
+  if (t.includes("email")) return "Marketing";
+  if (t.includes("influencer")) return "Strategy";
+  if (t.includes("performance")) return "Performance";
+  if (t.includes("orm")) return "Reputation";
+  return "Marketing";
+};
+
 // Partner logos for the auto-scrolling "Ecosystem Partners" strip
 const PARTNERS = [
   { src: balajiPortraits, alt: "Balaji Portraits" },
@@ -87,6 +117,218 @@ const PARTNERS = [
   { src: shipyon, alt: "Shipyon" },
 ];
 const LOOPED_PARTNERS = [...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS];
+
+// ── Services Hero Helper Components ──
+function AnimatedPriceDisplay({ value }) {
+  const [displayValue, setDisplayValue] = useState(value);
+
+  useEffect(() => {
+    let startTimestamp = null;
+    const duration = 800; // ms
+    const startValue = displayValue;
+    const endValue = value;
+    let animFrameId = null;
+
+    if (startValue === endValue) return;
+
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      setDisplayValue(Math.floor(startValue + (endValue - startValue) * easeOut));
+      if (progress < 1) {
+        animFrameId = requestAnimationFrame(step);
+      } else {
+        setDisplayValue(endValue);
+      }
+    };
+
+    animFrameId = requestAnimationFrame(step);
+
+    return () => {
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+    };
+  }, [value]);
+
+  return (
+    <div className="flex items-baseline gap-1 text-4xl sm:text-[2.75rem] font-black text-[#111111] tracking-tight">
+      <span className="text-[#E31D2E] text-2xl sm:text-3xl font-black">₹</span>
+      <span>{displayValue.toLocaleString()}</span>
+    </div>
+  );
+}
+
+function HeroAnimatedStat({ targetNum, suffix = "+", label, icon: Icon, delay = 0 }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const duration = 1800; // ms
+    const numVal = parseInt(targetNum, 10) || 0;
+    let start = null;
+
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      // Smooth easeOutCubic
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(easeOut * numVal));
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        setCount(numVal);
+      }
+    };
+
+    const timer = setTimeout(() => {
+      requestAnimationFrame(step);
+    }, delay * 1000);
+
+    return () => clearTimeout(timer);
+  }, [targetNum, delay]);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20, scale: 0.92 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.6, delay: 0.3 + delay, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ y: -6, scale: 1.03 }}
+      className="clay-card relative flex items-center gap-3.5 p-4 px-5 sm:px-6 rounded-[1.75rem] border border-white/70 shadow-[0_10px_28px_rgba(17,17,17,0.03)] backdrop-blur-xl bg-white/75 hover:bg-white/90 cursor-default group transition-all duration-300 min-w-[135px] sm:min-w-[160px]"
+    >
+      {/* Light glass highlight overlay */}
+      <div className="absolute inset-0 rounded-[1.75rem] bg-gradient-to-br from-white/70 via-transparent to-transparent pointer-events-none" />
+
+      {/* Icon container */}
+      {Icon && (
+        <div className="relative z-10 p-2.5 rounded-2xl bg-[#E31D2E]/10 text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white transition-colors duration-300 flex items-center justify-center shrink-0">
+          <Icon className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:scale-110" />
+        </div>
+      )}
+
+      {/* Content */}
+      <div className="relative z-10 flex flex-col">
+        <span className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight group-hover:text-[#E31D2E] transition-colors duration-300">
+          {count}{suffix}
+        </span>
+        <span className="text-[#575757] text-[10px] font-bold uppercase tracking-[0.2em] mt-0.5">
+          {label}
+        </span>
+      </div>
+    </motion.div>
+  );
+}
+
+function HeroShowcase({ ourServicesImg }) {
+  const [tilt, setTilt] = useState({ x: 0, y: 0, px: 0, py: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+
+  const handleMouseMove = (e) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    // Normalized coordinates (-0.5 to 0.5)
+    const xPct = (mouseX / width) - 0.5;
+    const yPct = (mouseY / height) - 0.5;
+
+    // Smooth tilt angles and parallax offset
+    setTilt({
+      x: yPct * -10,
+      y: xPct * 10,
+      px: xPct * -14,
+      py: yPct * -14,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    setTilt({ x: 0, y: 0, px: 0, py: 0 });
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      className="relative w-full max-w-xl mx-auto lg:max-w-none perspective-[1000px] select-none"
+    >
+      {/* 3D Container Wrapper */}
+      <div
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        className="relative transition-transform duration-300 ease-out transform-gpu cursor-pointer"
+        style={{
+          transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
+          transformStyle: "preserve-3d",
+        }}
+      >
+        {/* Claymorphic Outer Showcase Frame */}
+        <div className={`relative rounded-[2.5rem] p-3.5 sm:p-4 bg-white/50 backdrop-blur-2xl border border-white/60 shadow-[0_20px_50px_rgba(17,17,17,0.06)] transition-all duration-500 overflow-visible ${
+          isHovered ? "border-[#E31D2E]/40 shadow-[0_25px_60px_rgba(227,29,46,0.16)] bg-white/70" : ""
+        }`}>
+          
+          {/* Inner Light Highlight Reflection */}
+          <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-tr from-white/80 via-transparent to-white/40 pointer-events-none z-10" />
+
+          {/* Image Container with Parallax Effect */}
+          <div className="relative rounded-[2rem] overflow-hidden aspect-[4/3]">
+            <img
+              src={ourServicesImg}
+              alt="Digital Marketing Strategy"
+              className="w-full h-full object-cover transition-transform duration-500 ease-out scale-[1.06]"
+              style={{
+                transform: isHovered
+                  ? `scale(1.12) translate(${tilt.px}px, ${tilt.py}px)`
+                  : "scale(1.06)",
+              }}
+            />
+
+            {/* Subtle Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none z-10" />
+          </div>
+
+          {/* SERVICE HIGHLIGHT PANEL — Floating Glass Overlay overlapping bottom of image by ~20% */}
+          <motion.div
+            initial={{ opacity: 0, y: 15, scale: 0.92 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="absolute -bottom-5 left-6 sm:-bottom-6 sm:left-8 z-30 p-4 sm:p-5 rounded-2xl bg-white/90 backdrop-blur-2xl border border-white/80 shadow-[0_20px_45px_rgba(17,17,17,0.12)] max-w-[240px] sm:max-w-[280px]"
+          >
+            {/* Panel Header */}
+            <div className="flex items-center gap-2 mb-3">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E31D2E]" />
+              </span>
+              <span className="text-[#111111] text-[11px] sm:text-xs font-black uppercase tracking-wider">
+                Performance-Driven Growth
+              </span>
+            </div>
+
+            {/* Panel Check Items */}
+            <div className="grid grid-cols-2 gap-2 pt-2 border-t border-black/5">
+              {[
+                { name: "SEO" },
+                { name: "Branding" },
+                { name: "Content" },
+                { name: "Paid Ads" },
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-1.5 text-left">
+                  <FiCheckCircle className="w-3.5 h-3.5 text-[#E31D2E] shrink-0" />
+                  <span className="text-[#333333] text-[11px] font-bold tracking-tight">
+                    {item.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 export default function ServiceCalculator() {
   const navigate = useNavigate();
@@ -200,13 +442,16 @@ export default function ServiceCalculator() {
   }, [isMobile, modalPlatform, navigate]);
 
   const restoreFromIds = (items) => {
+    if (!Array.isArray(items)) return [];
     return items.map(item => {
+      if (!item || typeof item !== 'object') return null;
+      if (item.platform && item.plan) return item;
       if (item.platformId && item.planId) {
-        const platform = PLATFORMS.find(p => p.id === item.platformId);
-        const plan = platform?.plans?.find(p => p.id === item.planId);
+        const platform = PLATFORMS.find(p => p && p.id === item.platformId);
+        const plan = platform?.plans?.find(p => p && p.id === item.planId);
         if (platform && plan) return { platform, plan };
       }
-      return item;
+      return null;
     }).filter(Boolean);
   };
 
@@ -223,31 +468,40 @@ export default function ServiceCalculator() {
 
   useEffect(() => {
     if (!isInitialLoad) {
-      const itemsToSave = selectedItems.map(item => ({
-        platformId: item.platform.id,
-        planId: item.plan.id
-      }));
-      sessionStorage.setItem('serviceCalculatorItems', JSON.stringify(itemsToSave));
+      try {
+        const itemsToSave = (selectedItems || [])
+          .filter(item => item && item.platform && item.plan)
+          .map(item => ({
+            platformId: item.platform.id,
+            planId: item.plan.id
+          }));
+        sessionStorage.setItem('serviceCalculatorItems', JSON.stringify(itemsToSave));
+      } catch (e) {
+        console.error('Failed to save serviceCalculatorItems:', e);
+      }
     }
   }, [selectedItems, isInitialLoad]);
 
   const handlePlatformClick = (platform, event) => {
+    if (!platform) return;
     if (isMobile) {
       sessionStorage.setItem('currentPlatformId', platform.id);
       navigate('/platform-plan');
       return;
     }
-    const rect = event.currentTarget.getBoundingClientRect();
+    const rect = event?.currentTarget ? event.currentTarget.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
     setClickPosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
     setModalPlatform(platform);
     setSelectedPlanInModal(null);
   };
 
   const applyPlan = (plan) => {
+    if (!modalPlatform || !plan) return;
     setSelectedItems(prev => {
-      const exists = prev.find(i => i.platform.id === modalPlatform.id && i.plan.id === plan.id);
-      if (exists) return prev;
-      return [...prev, { platform: modalPlatform, plan }];
+      const current = Array.isArray(prev) ? prev : [];
+      const exists = current.find(i => i?.platform?.id === modalPlatform.id && i?.plan?.id === plan.id);
+      if (exists) return current;
+      return [...current, { platform: modalPlatform, plan }];
     });
     setModalPlatform(null);
   };
@@ -256,156 +510,185 @@ export default function ServiceCalculator() {
 
   const total = useMemo(() => {
     let sum = 5000;
-    selectedItems.forEach(i => {
-      sum += (i.platform.price || 0) + (i.plan.price || 0);
-    });
+    if (Array.isArray(selectedItems)) {
+      selectedItems.forEach(i => {
+        if (i && typeof i === 'object') {
+          const platformPrice = typeof i.platform?.price === 'number' ? i.platform.price : 0;
+          const planPrice = typeof i.plan?.price === 'number' ? i.plan.price : 0;
+          sum += platformPrice + planPrice;
+        }
+      });
+    }
     return sum;
   }, [selectedItems]);
 
   const handleWhatsAppClick = () => {
     let message = `Hello Praskla DigitalX, I’m interested in your marketing services. Breakdown:\n\nBase Fee: ₹5,000\n`;
-    selectedItems.forEach(i => {
-      message += `- ${i.platform.title} (${i.plan.title}): ₹${((i.platform.price || 0) + (i.plan.price || 0)).toLocaleString()}\n`;
-    });
-    message += `\nTotal Estimate: ₹${total.toLocaleString()}`;
+    if (Array.isArray(selectedItems)) {
+      selectedItems.forEach(i => {
+        if (i && i.platform && i.plan) {
+          const pTitle = i.platform.title || 'Service Pillar';
+          const planTitle = i.plan.title || 'Plan';
+          const cost = (i.platform.price || 0) + (i.plan.price || 0);
+          message += `- ${pTitle} (${planTitle}): ₹${cost.toLocaleString()}\n`;
+        }
+      });
+    }
+    message += `\nTotal Estimate: ₹${(total || 0).toLocaleString()}`;
     window.open(`https://wa.me/919500690740?text=${encodeURIComponent(message)}`, "_blank");
   };
 
   return (
     <div className="bg-[#080808] min-h-screen text-white pt-24 overflow-hidden font-outfit">
-      {/* ── Hero Section — Split Layout: Text Left, Image Right ── */}
-      <section className="relative w-full min-h-[calc(100vh-6rem)] flex items-center overflow-hidden px-6 md:px-[5%]">
-        {/* Background glows */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#E8192C]/5 rounded-full blur-[140px] pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#E8192C]/4 rounded-full blur-[120px] pointer-events-none" />
-        {/* Dot grid */}
-        <div className="absolute inset-0 opacity-[0.02] pointer-events-none"
-          style={{ backgroundImage: "radial-gradient(circle,#fff 1px,transparent 1px)", backgroundSize: "44px 44px" }} />
+      {/* ── Hero Section — Elevated Split Layout: Text Left, Interactive Showcase Right ── */}
+      <section className="relative w-full min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden px-6 md:px-[5%] py-12 lg:py-20">
+        {/* Subtle Decorative Background Elements (Section only) */}
+        <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-[#E31D2E]/6 rounded-full blur-[150px] pointer-events-none" />
+        <div className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-[#E31D2E]/5 rounded-full blur-[140px] pointer-events-none" />
+
+        {/* Ambient Pulsing Circles */}
+        <motion.div
+          animate={{ scale: [1, 1.15, 1], opacity: [0.25, 0.5, 0.25] }}
+          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-[#E31D2E]/3 blur-[120px] pointer-events-none"
+        />
+
+        {/* Abstract Micro Grid Layer */}
+        <div
+          className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
+          style={{
+            backgroundImage: "radial-gradient(circle, #fff 1.2px, transparent 1.2px)",
+            backgroundSize: "44px 44px",
+          }}
+        />
 
         <div className="relative z-10 max-w-7xl mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
 
-            {/* LEFT — Text Content */}
+            {/* LEFT — Text & Metric Cards Content (span 7 cols on large screens) */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="flex flex-col items-start text-left"
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-7 flex flex-col items-start text-left z-10"
             >
-              {/* Badge */}
-              <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full overflow-hidden mb-8 border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
+              {/* Premium Badge */}
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-[#E31D2E]/25 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md mb-8"
+              >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
                 </span>
-                <span className="relative text-[#111111] text-xs font-bold tracking-[0.25em] uppercase">Our Services</span>
-              </div>
+                <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
+                  Our Services
+                </span>
+              </motion.div>
 
-              {/* Heading */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[1.05] tracking-tight text-[#111111]">
-                Transforming Brands into <br />
-                <span className="text-[#E31D2E]">Digital Authority</span>
-              </h1>
+              {/* Elevating Heading Hierarchy */}
+              <motion.h1
+                initial={{ opacity: 0, y: 25 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl md:text-5xl lg:text-6xl xl:text-[4.25rem] font-black mb-6 leading-[1.06] tracking-tight text-[#111111]"
+              >
+                Transforming Brands into <br className="hidden sm:block" />
+                <span className="text-[#E31D2E] relative inline-block">
+                  Digital Authority
+                </span>
+              </motion.h1>
 
-              {/* Description */}
-              <p className="text-[#575757] text-base md:text-lg leading-relaxed max-w-xl font-medium mb-10">
+              {/* Description Paragraph */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="text-[#575757] text-base md:text-lg leading-relaxed max-w-xl font-medium mb-10"
+              >
                 Comprehensive branding, media, and performance marketing solutions designed to help your business grow strategically, creatively, and profitably.
-              </p>
+              </motion.p>
 
-              {/* Unique Stats Section - Redesigned as clean clay pills */}
-              <div className="flex flex-wrap gap-4 mt-6 relative z-10">
-                {[{ num: "15+", label: "Clients" }, { num: "20+", label: "Projects" }, { num: "6", label: "Services" }].map((s, i) => (
-                  <div key={i} className="clay-card relative flex flex-col items-center justify-center p-4 px-6 min-w-[100px]">
-                    <span className="text-3xl font-black text-[#E31D2E] tracking-tighter">
-                      {s.num}
-                    </span>
-                    <span className="text-[#575757] text-[9px] font-bold uppercase tracking-[0.25em] mt-1">
-                      {s.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* RIGHT — Image */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, x: 30 }}
-              animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ duration: 0.9, delay: 0.2 }}
-              className="relative hidden lg:block"
-            >
-              {/* Image frame */}
-              <div className="relative rounded-[2.5rem] overflow-hidden border border-white/50 bg-white/45 shadow-[0_12px_32px_rgba(17,17,17,0.04)] p-3">
-                <img
-                  src={ourServicesImg}
-                  alt="Digital Marketing Strategy"
-                  className="w-full aspect-[4/3] object-cover rounded-[2rem] border border-white/50"
+              {/* Premium Floating Metric Cards */}
+              <div className="flex flex-wrap items-center gap-4 sm:gap-5 mt-2 relative z-10 w-full">
+                <HeroAnimatedStat
+                  targetNum="15"
+                  suffix="+"
+                  label="Clients"
+                  icon={FiUsers}
+                  delay={0}
                 />
-                {/* Overlay badge */}
-                <div className="absolute bottom-10 left-10 z-20 flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-[#E31D2E]/20 bg-white/80 shadow-md backdrop-blur-md">
-                  <span className="w-2.5 h-2.5 rounded-full bg-[#E31D2E] shadow-[0_0_8px_rgba(227,29,46,0.5)] animate-pulse" />
-                  <span className="text-[#111111] text-xs font-bold uppercase tracking-wider">Performance-Driven Growth</span>
-                </div>
+                <HeroAnimatedStat
+                  targetNum="20"
+                  suffix="+"
+                  label="Projects"
+                  icon={FiBriefcase}
+                  delay={0.1}
+                />
+                <HeroAnimatedStat
+                  targetNum="6"
+                  suffix=""
+                  label="Services"
+                  icon={FiLayers}
+                  delay={0.2}
+                />
               </div>
             </motion.div>
+
+            {/* RIGHT — Interactive Showcase Frame (span 5 cols on large screens) */}
+            <div className="lg:col-span-5 w-full flex justify-center lg:justify-end z-20">
+              <HeroShowcase ourServicesImg={ourServicesImg} />
+            </div>
 
           </div>
         </div>
       </section>
 
       {/* ── Auto-Scrolling Marquee Section with manual arrow/dot control ── */}
-      <section id="expertise" className="relative w-full px-[5%] py-20 pb-32 overflow-hidden bg-[#080808]">
-        {/* Animated Background Glows */}
-        <div className="absolute top-1/4 left-0 w-[400px] h-[400px] bg-[#E8192C]/10 rounded-full blur-[120px] animate-pulse pointer-events-none" />
-        <div className="absolute bottom-1/4 right-0 w-[400px] h-[400px] bg-[#E8192C]/5 rounded-full blur-[120px] animate-pulse pointer-events-none" style={{ animationDelay: '2s' }} />
-
-        {/* Floating Sparkles in Background */}
-        {[...Array(12)].map((_, i) => (
-          <motion.div
-            key={`bg-sparkle-${i}`}
-            className="absolute w-1 h-1 bg-white rounded-full pointer-events-none z-0"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              boxShadow: "0 0 10px 2px rgba(232,25,44,0.6)",
-            }}
-            animate={{
-              opacity: [0, 0.8, 0],
-              scale: [0.5, 1.2, 0.5],
-              y: [0, -20, 0]
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 5,
-              ease: "easeInOut"
-            }}
-          />
-        ))}
+      <section id="expertise" className="relative w-full px-[5%] py-20 pb-32 overflow-hidden bg-transparent">
+        {/* Subtle Decorative Background Elements (Section only) */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#E31D2E]/4 rounded-full blur-[160px] pointer-events-none" />
+        <div
+          className="absolute inset-0 opacity-[0.025] pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(circle,#111 1px,transparent 1px)", backgroundSize: "40px 40px" }}
+        />
 
         <div className="relative z-10 w-full max-w-[1400px] mx-auto min-h-[520px]">
           
-          <div className="flex flex-col items-center justify-center gap-2 mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white text-center tracking-tight">
-              Our <span className="text-[#E8192C]">Core Expertise</span>
+          {/* Section Heading & Subtitle */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center justify-center text-center gap-2 mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#111111] tracking-tight">
+              Our <span className="text-[#E31D2E]">Core Expertise</span>
             </h2>
-            <div className="h-1.5 w-24 bg-gradient-to-r from-[#E8192C] to-transparent rounded-full" />
-          </div>
+            <div className="h-1.5 w-24 bg-gradient-to-r from-[#E31D2E] to-transparent rounded-full mb-1" />
+            <p className="text-[#575757] text-sm md:text-base font-medium max-w-md tracking-wide">
+              Strategic services designed to accelerate modern brands.
+            </p>
+          </motion.div>
 
           <div className="relative w-full flex items-center justify-center">
 
             {/* Marquee viewport */}
-           <div
-  className="relative w-full overflow-hidden"
-  style={{
-    WebkitMaskImage:
-      "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
-    maskImage:
-      "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
-  }}
->     {/* Left/right fade masks so cards don't hard-cut at the edges */}
-              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-r from-[#080808] to-transparent" />
-              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-l from-[#080808] to-transparent" />
+            <div
+              className="relative w-full overflow-hidden"
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+              }}
+            >
+              {/* Left/right fade masks */}
+              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-r from-[#f1eaeaff] to-transparent opacity-80" />
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-l from-[#f1eaeaff] to-transparent opacity-80" />
 
               <motion.div
                 ref={trackRef}
@@ -421,36 +704,67 @@ export default function ServiceCalculator() {
                   return (
                     <div
                       key={`${service.title}-${i}`}
-                      className="w-[85vw] sm:w-[300px] md:w-[320px] lg:w-[340px] flex-shrink-0"
+                      className="w-[85vw] sm:w-[320px] md:w-[340px] lg:w-[360px] flex-shrink-0"
                     >
                       <div
-                        className={`relative rounded-[2rem] p-8 pt-10 flex flex-col items-center text-center h-[340px] md:h-[360px] cursor-pointer transition-all duration-500 ease-out group border overflow-hidden ${
+                        className={`relative rounded-[2.25rem] md:rounded-[2.5rem] p-7 md:p-8 pt-9 md:pt-10 flex flex-col justify-between items-start text-left min-h-[420px] md:min-h-[440px] cursor-pointer transition-all duration-500 ease-out group border overflow-hidden select-none ${
                           isHighlighted
-                            ? 'border-[#E31D2E] bg-white/80 shadow-[0_12px_32px_rgba(227,29,46,0.08)] -translate-y-4 scale-[1.03]'
-                            : 'border-white/60 bg-white/45 shadow-[0_8px_24px_rgba(17,17,17,0.02)] hover:border-[#E31D2E]/40'
+                            ? 'border-[#E31D2E]/70 bg-white shadow-[0_20px_50px_rgba(227,29,46,0.14)] -translate-y-4 scale-[1.03] opacity-100 z-10'
+                            : 'border-neutral-200/80 bg-white/75 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-[#E31D2E]/50 hover:bg-white hover:-translate-y-2 opacity-90 hover:opacity-100'
                         }`}
                       >
+                        {/* Light Inner Glass Highlight */}
+                        <div className="absolute inset-0 rounded-[2.25rem] md:rounded-[2.5rem] bg-gradient-to-br from-white/80 via-transparent to-transparent pointer-events-none" />
                         
-                        {/* Circle Image */}
-                        <div className={`relative z-10 w-[110px] h-[110px] mb-8 rounded-full p-1.5 border-[3px] transition-all duration-500 flex items-center justify-center -mt-8 bg-white shadow-md ${
-                          isHighlighted ? 'border-[#E31D2E]' : 'border-[#E31D2E]/20 group-hover:border-[#E31D2E]'
-                        }`}>
-                          <img
-                            src={service.image}
-                            alt={service.title}
-                            className="w-full h-full object-cover rounded-full"
-                          />
+                        {/* Top Area — Floating Icon Container */}
+                        <div className="relative mb-6">
+                          {/* Outer Glow Ring */}
+                          <div className={`absolute inset-0 rounded-full blur-md transition-all duration-500 ${
+                            isHighlighted ? 'bg-[#E31D2E]/25 scale-110' : 'bg-[#E31D2E]/10 group-hover:bg-[#E31D2E]/20 group-hover:scale-110'
+                          }`} />
+
+                          {/* Glass Icon Capsule */}
+                          <div className={`relative z-10 w-20 h-20 sm:w-22 sm:h-22 rounded-full p-2 border transition-all duration-500 flex items-center justify-center bg-gradient-to-br from-white via-white/95 to-white/70 shadow-[0_10px_25px_rgba(17,17,17,0.06)] group-hover:-translate-y-1.5 group-hover:rotate-[6deg] ${
+                            isHighlighted ? 'border-[#E31D2E] shadow-[0_0_25px_rgba(227,29,46,0.25)]' : 'border-[#E31D2E]/20 group-hover:border-[#E31D2E]'
+                          }`}>
+                            <img
+                              src={service.image}
+                              alt={service.title}
+                              className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105"
+                            />
+                          </div>
                         </div>
 
-                        <h3 className="relative z-10 text-xl md:text-2xl font-black text-[#111111] mb-3 tracking-tight group-hover:text-[#E31D2E] transition-colors duration-300">
-                          {service.title}
-                        </h3>
-                        <p className="relative z-10 text-[#575757] font-medium text-sm md:text-base leading-relaxed px-2 transition-colors duration-300">
-                          {service.desc}
-                        </p>
+                        {/* Content Hierarchy */}
+                        <div className="relative z-10 flex flex-col items-start w-full">
+                          {/* Category Tag */}
+                          <span className="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-[0.2em] bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/15 mb-3 inline-flex items-center gap-1.5">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
+                            {getServiceCategoryTag(service.title)}
+                          </span>
 
-                        {/* Bottom accent line */}
-                        <div className="absolute bottom-0 left-0 w-full h-1 bg-[#E31D2E]/50 scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                          {/* Title */}
+                          <h3 className="text-xl md:text-2xl font-black text-[#111111] mb-2.5 tracking-tight group-hover:text-[#E31D2E] transition-colors duration-300">
+                            {service.title}
+                          </h3>
+
+                          {/* Description */}
+                          <p className="text-[#575757] font-medium text-xs sm:text-sm leading-relaxed line-clamp-3 mb-6 transition-colors duration-300">
+                            {service.desc}
+                          </p>
+                        </div>
+
+                        {/* Bottom Action — Inline CTA */}
+                        <div className="relative z-10 flex items-center gap-2 pt-2 text-[#111111] font-bold text-xs uppercase tracking-wider group-hover:text-[#E31D2E] transition-colors duration-300">
+                          <span className="relative">
+                            Learn More
+                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
+                          </span>
+                          <span className="transition-transform duration-300 group-hover:translate-x-1.5 text-[#E31D2E]">→</span>
+                        </div>
+
+                        {/* Bottom Hover Accent Glow Line */}
+                        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E31D2E] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
                       </div>
                     </div>
                   );
@@ -460,8 +774,8 @@ export default function ServiceCalculator() {
 
           </div>
 
-          {/* Pagination Dots — click to jump straight to a service */}
-          <div className="flex justify-center gap-3 mt-12">
+          {/* Premium Pagination Dots */}
+          <div className="flex justify-center items-center gap-3 mt-14">
             {servicesData.map((_, i) => {
               const isActive = activeIndex === i;
               return (
@@ -469,10 +783,10 @@ export default function ServiceCalculator() {
                   key={i}
                   type="button"
                   aria-label={`Go to ${servicesData[i].title} service`}
-                  className={`transition-all duration-500 rounded-full cursor-pointer border border-transparent ${
+                  className={`transition-all duration-500 cursor-pointer border border-transparent ${
                     isActive
-                      ? "w-8 h-2.5 bg-[#E8192C] scale-110 shadow-[0_0_12px_rgba(232,25,44,0.7)]"
-                      : "w-2.5 h-2.5 bg-white/30 hover:bg-white/50"
+                      ? "w-9 h-2.5 bg-[#E31D2E] rounded-full scale-105 shadow-[0_2px_10px_rgba(227,29,46,0.4)]"
+                      : "w-2.5 h-2.5 bg-neutral-300 hover:bg-neutral-400 rounded-full"
                   }`}
                   onClick={() => goToIndex(i)}
                 />
@@ -483,114 +797,239 @@ export default function ServiceCalculator() {
         </div>
       </section>
 
-      {/* ── Pricing Calculator ── */}
+      {/* ── Pricing Calculator / Growth Package Estimator ── */}
       <div
         ref={calculatorRef}
-        className="relative px-6 md:px-[5%] py-24 md:py-32"
+        className="relative px-6 md:px-[5%] py-24 md:py-32 overflow-hidden bg-transparent"
       >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#E8192C]/5 rounded-full blur-[140px] pointer-events-none" />
-        <div className="relative z-10 max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-4">Pricing Calculator</h2>
-            <p className="text-white/40 text-lg">Pick your pillars and plans to see an estimated growth investment.</p>
-          </div>
+        {/* Subtle Decorative Background Elements */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#E31D2E]/4 rounded-full blur-[160px] pointer-events-none" />
+        <div
+          className="absolute inset-0 opacity-[0.025] pointer-events-none"
+          style={{ backgroundImage: "radial-gradient(circle,#111 1px,transparent 1px)", backgroundSize: "40px 40px" }}
+        />
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            {/* Left Column: Pillars */}
-            <div className="lg:col-span-7 space-y-6">
-              <Panel title="Select Pillars">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {PLATFORMS.map((p, i) => (
-                    <button
-                      key={p.id}
-                      onClick={(e) => handlePlatformClick(p, e)}
-                      className="group flex items-center gap-4 p-6 rounded-2xl bg-white/50 border border-white/80 hover:border-[#E31D2E]/40 hover:bg-white/80 transition-all duration-300 shadow-sm"
-                    >
-                      <div className="w-12 h-12 rounded-xl bg-white/60 flex items-center justify-center text-[#E31D2E]/60 group-hover:text-[#E31D2E] transition-colors border border-white/50 shadow-sm">
-                        {p.icon && <p.icon className="text-xl" />}
-                      </div>
-                      <div className="text-left flex-1">
-                        <div className="font-bold text-[#111111] text-lg">{p.title}</div>
-                        <div className="text-[#E31D2E] text-sm font-bold mt-0.5">
-                          ₹{(p.price || 0).toLocaleString()}
-                          <span className="text-[#8B8B8B] font-normal text-xs ml-2">base</span>
-                        </div>
-                      </div>
-                      <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-[#E31D2E] transition-colors bg-white shadow-sm">
-                        <FaArrowRight className="text-[#8B8B8B] text-xs group-hover:text-[#E31D2E]" />
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              </Panel>
+        <div className="relative z-10 max-w-7xl mx-auto">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-center justify-center text-center mb-16"
+          >
+            {/* Small Badge */}
+            <div className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-[#E31D2E]/25 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md mb-6">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+              </span>
+              <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
+                BUILD YOUR PLAN
+              </span>
             </div>
 
-            {/* Right Column: Checkout */}
+            {/* Large Heading */}
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#111111] tracking-tight mb-4">
+              Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
+            </h2>
+
+            {/* Small Supporting Paragraph */}
+            <p className="text-[#575757] text-base md:text-lg max-w-xl font-medium">
+              Select the services you need and instantly preview your estimated investment.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            {/* Left Column: Pillars */}
+            <div className="lg:col-span-7 space-y-6">
+              <div className="clay-card p-6 sm:p-8 md:p-10 rounded-[2.25rem]">
+                <h3 className="text-xs font-black text-[#575757] uppercase tracking-[0.2em] mb-8 flex items-center gap-3">
+                  <span className="w-8 h-[1.5px] bg-[#E31D2E]" />
+                  Select Service Pillars
+                </h3>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4.5">
+                  {PLATFORMS.map((p) => {
+                    if (!p) return null;
+                    const isSelected = Array.isArray(selectedItems) && selectedItems.some((item) => item?.platform?.id === p.id);
+                    const PlatformIcon = typeof p.icon === 'function' || typeof p.icon === 'object' ? p.icon : null;
+                    const pPrice = typeof p.price === 'number' ? p.price : 0;
+                    const pTitle = p.title || 'Service Pillar';
+
+                    return (
+                      <button
+                        key={p.id || pTitle}
+                        onClick={(e) => handlePlatformClick(p, e)}
+                        className={`group relative p-5 sm:p-6 rounded-[2rem] bg-white/75 backdrop-blur-xl border transition-all duration-500 text-left overflow-hidden flex items-center justify-between cursor-pointer min-h-[110px] ${
+                          isSelected
+                            ? "border-[#E31D2E] bg-white shadow-[0_16px_40px_rgba(227,29,46,0.14)] scale-[1.02] -translate-y-1"
+                            : "border-white/80 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-[#E31D2E]/50 hover:bg-white hover:-translate-y-1 hover:scale-[1.02]"
+                        }`}
+                      >
+                        {/* Light Inner Glass Highlight */}
+                        <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/80 via-transparent to-transparent pointer-events-none" />
+
+                        <div className="relative z-10 flex items-center gap-4">
+                          {/* Floating Layered Icon Container */}
+                          <div className={`relative w-12 h-12 rounded-2xl flex items-center justify-center border transition-all duration-500 shadow-sm ${
+                            isSelected
+                              ? "bg-[#E31D2E] text-white border-[#E31D2E] shadow-[0_0_15px_rgba(227,29,46,0.4)]"
+                              : "bg-gradient-to-br from-white via-white/95 to-white/70 text-[#E31D2E] border-white/90 group-hover:rotate-[8deg] group-hover:scale-110"
+                          }`}>
+                            {PlatformIcon ? <PlatformIcon className="text-xl transition-transform duration-300" /> : null}
+                          </div>
+
+                          {/* Content */}
+                          <div>
+                            <div className="font-black text-[#111111] text-base sm:text-lg group-hover:text-[#E31D2E] transition-colors duration-300">
+                              {pTitle}
+                            </div>
+                            <div className="text-[#E31D2E] text-xs sm:text-sm font-black mt-0.5 inline-flex items-center gap-1.5">
+                              <span>₹{pPrice.toLocaleString()}</span>
+                              <span className="text-[#8B8B8B] font-bold text-[10px] uppercase tracking-wider">base</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Right Indicator (Check or Arrow) */}
+                        <div className="relative z-10">
+                          {isSelected ? (
+                            <div className="w-8 h-8 rounded-full bg-[#E31D2E] text-white flex items-center justify-center shadow-md animate-pulse">
+                              <FaCheckCircle className="text-sm" />
+                            </div>
+                          ) : (
+                            <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-[#E31D2E] group-hover:bg-[#E31D2E]/10 transition-all bg-white shadow-sm">
+                              <FaArrowRight className="text-[#8B8B8B] text-xs group-hover:text-[#E31D2E] transition-colors" />
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Bottom Glow Line on hover/selected */}
+                        <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E31D2E] to-transparent transition-transform duration-500 ${
+                          isSelected ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                        }`} />
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Sticky Summary Card */}
             <div className="lg:col-span-5">
               <div className="sticky top-28">
-                <Panel title="Plan Summary">
-                  <div className="space-y-4">
-                    <div className="flex justify-between items-center p-5 bg-white/60 rounded-2xl border border-white/80 shadow-sm">
-                      <span className="text-[#575757] font-semibold tracking-wide uppercase text-[11px]">Base Setup Fee</span>
-                      <span className="font-black text-[#111111]">₹5,000</span>
+                <div className="clay-card p-6 sm:p-8 rounded-[2.25rem] border border-white/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] relative overflow-hidden">
+                  {/* Light Inner Highlight */}
+                  <div className="absolute inset-0 rounded-[2.25rem] bg-gradient-to-br from-white/90 via-transparent to-transparent pointer-events-none" />
+
+                  <div className="relative z-10 space-y-6">
+                    {/* Header */}
+                    <div className="flex items-center justify-between pb-4 border-b border-black/5">
+                      <h3 className="text-xs font-black text-[#575757] uppercase tracking-[0.2em] flex items-center gap-2">
+                        <span className="w-6 h-[1.5px] bg-[#E31D2E]" />
+                        Plan Summary
+                      </h3>
+                      <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/15">
+                        {Array.isArray(selectedItems) ? selectedItems.length : 0} {selectedItems?.length === 1 ? "Pillar" : "Pillars"}
+                      </span>
                     </div>
 
-                    <div className="max-h-[350px] overflow-y-auto pr-1 space-y-3 custom-scrollbar">
+                    {/* Base Setup Fee */}
+                    <div className="flex justify-between items-center p-4 px-5 bg-white/70 rounded-2xl border border-white/90 shadow-sm">
+                      <span className="text-[#575757] font-bold tracking-wider uppercase text-[10px] sm:text-xs">Base Setup Fee</span>
+                      <span className="font-black text-[#111111] text-sm sm:text-base">₹5,000</span>
+                    </div>
+
+                    {/* Selected Item Chips / Cards */}
+                    <div className="max-h-[340px] overflow-y-auto pr-1 space-y-3 custom-scrollbar">
                       <AnimatePresence>
-                        {selectedItems.map((item, idx) => (
-                          <motion.div
-                            key={`${item.platform.id}-${item.plan.id}`}
-                            initial={{ opacity: 0, x: 20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            exit={{ opacity: 0, scale: 0.95 }}
-                            className="p-5 rounded-2xl bg-white/50 border border-white/80 space-y-3 group shadow-sm"
-                          >
-                            <div className="flex justify-between items-start">
-                              <div>
-                                <div className="text-sm font-black text-[#111111] uppercase tracking-tight">{item.platform.title}</div>
-                                <div className="text-[#E31D2E] text-xs font-bold mt-1 inline-flex items-center gap-1">
-                                  <MdStars className="text-xs" />
-                                  {item.plan.title}
+                        {!Array.isArray(selectedItems) || selectedItems.length === 0 ? (
+                          <div className="py-8 text-center text-[#8B8B8B] text-xs font-medium border border-dashed border-gray-300/60 rounded-2xl p-4">
+                            No service pillars selected yet. Click any pillar to customize your plan.
+                          </div>
+                        ) : (
+                          selectedItems.map((item, idx) => {
+                            if (!item || !item.platform || !item.plan) return null;
+                            const platformTitle = item.platform.title || "Service";
+                            const planTitle = item.plan.title || "Plan";
+                            const itemPrice = (item.platform.price || 0) + (item.plan.price || 0);
+
+                            return (
+                              <motion.div
+                                key={`${item.platform.id || idx}-${item.plan.id || idx}`}
+                                initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                transition={{ duration: 0.3 }}
+                                className="p-4.5 rounded-2xl bg-white/80 border border-white/90 space-y-2 group shadow-sm hover:border-[#E31D2E]/30 transition-all"
+                              >
+                                <div className="flex justify-between items-start">
+                                  <div>
+                                    <div className="text-xs sm:text-sm font-black text-[#111111] uppercase tracking-tight">{platformTitle}</div>
+                                    <div className="text-[#E31D2E] text-[11px] font-extrabold mt-1 inline-flex items-center gap-1">
+                                      <MdStars className="text-xs" />
+                                      {planTitle}
+                                    </div>
+                                  </div>
+                                  <div className="text-right">
+                                    <div className="text-xs sm:text-sm font-black text-[#111111]">₹{itemPrice.toLocaleString()}</div>
+                                    <button
+                                      onClick={() => setSelectedItems(prev => prev.filter((_, i) => i !== idx))}
+                                      className="text-[#8B8B8B] hover:text-[#E31D2E] text-[10px] uppercase font-black mt-1 tracking-wider transition-colors"
+                                    >
+                                      Remove
+                                    </button>
+                                  </div>
                                 </div>
-                              </div>
-                              <div className="text-right">
-                                <div className="text-sm font-black text-[#111111]">₹{((item.platform.price || 0) + (item.plan.price || 0)).toLocaleString()}</div>
-                                <button
-                                  onClick={() => setSelectedItems(prev => prev.filter((_, i) => i !== idx))}
-                                  className="text-[#8B8B8B] hover:text-[#E31D2E] text-[10px] uppercase font-black mt-2 tracking-tighter"
-                                >
-                                  Remove
-                                </button>
-                              </div>
-                            </div>
-                          </motion.div>
-                        ))}
+                              </motion.div>
+                            );
+                          })
+                        )}
                       </AnimatePresence>
                     </div>
 
-                    <div className="pt-8 mt-4 border-t border-gray-200">
-                      <div className="flex items-center justify-between mb-8">
-                        <span className="text-[#575757] text-xs font-black uppercase tracking-[0.2em]">Investment Est.</span>
-                        <div className="text-4xl font-black text-[#111111]">
-                          <span className="text-[#E31D2E] text-xl align-top mt-1 mr-1">₹</span>
-                          {total.toLocaleString()}
+                    {/* Included Deliverables Quick Highlights */}
+                    <div className="pt-2">
+                      <div className="grid grid-cols-2 gap-2 text-[10px] font-bold text-[#575757]">
+                        <div className="flex items-center gap-1.5">
+                          <FiCheckCircle className="text-[#E31D2E] shrink-0" />
+                          <span>Dedicated Support</span>
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <FiCheckCircle className="text-[#E31D2E] shrink-0" />
+                          <span>Strategy & Audits</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Price Focal Point & Proposal CTA */}
+                    <div className="pt-6 border-t border-black/5 space-y-6">
+                      <div>
+                        <div className="text-[#575757] text-[10px] font-black uppercase tracking-[0.25em] mb-1">
+                          Investment Est.
+                        </div>
+                        <AnimatedPriceDisplay value={total} />
+                        <div className="text-[#8B8B8B] text-[10px] font-bold uppercase tracking-wider mt-1">
+                          Estimated project investment
                         </div>
                       </div>
 
                       <button
                         onClick={handleWhatsAppClick}
-                        className="w-full py-5 rounded-full bg-[#25D366] hover:bg-[#111111] text-white font-black flex items-center justify-center gap-3 transition-all duration-300 transform hover:scale-[1.02] shadow-[0_8px_20px_rgba(37,211,102,0.15)] active:scale-95 text-sm sm:text-base uppercase tracking-wider"
+                        className="w-full py-4.5 sm:py-5 rounded-full bg-[#25D366] hover:bg-[#111111] text-white font-black flex items-center justify-center gap-3 transition-all duration-300 shadow-[0_10px_25px_rgba(37,211,102,0.22)] hover:shadow-[0_15px_35px_rgba(17,17,17,0.2)] hover:-translate-y-1 hover:scale-[1.01] active:scale-95 text-xs sm:text-sm uppercase tracking-wider group"
                       >
-                        <IoLogoWhatsapp className="text-2xl" />
-                        GET DETAILED PROPOSAL
+                        <IoLogoWhatsapp className="text-xl sm:text-2xl" />
+                        <span>GET DETAILED PROPOSAL</span>
+                        <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                       </button>
 
-                      <p className="text-center text-[#8B8B8B] text-[10px] uppercase font-black tracking-widest mt-6">
+                      <p className="text-center text-[#8B8B8B] text-[10px] uppercase font-black tracking-widest">
                         Final pricing subject to specific scope requirements
                       </p>
                     </div>
                   </div>
-                </Panel>
+                </div>
               </div>
             </div>
           </div>

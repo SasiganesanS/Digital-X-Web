@@ -12,7 +12,7 @@ const CinematicUniverse = () => {
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: #F3E9E9;
+            background-color: #f7f0f0ff;
             z-index: -9999 !important;
             pointer-events: none;
             overflow: hidden;

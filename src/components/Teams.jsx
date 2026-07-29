@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { createPortal } from "react-dom";
+import TiltedCard from "./TiltedCard";
 import pranesh from "../assets/team/Pranesh.png";
 import Jaillesh from "../assets/team/Jaillesh-Kathirvel.png";
 import naveen from "../assets/team/Naveen.webp";
@@ -11,14 +12,6 @@ import yogech from "../assets/team/Yogech.png";
 import ram from "../assets/team/Ramachandran.png";
 import Balaji from "../assets/team/balaji.jpg";
 import BaskaranK from "../assets/team/Baskaran-Krishnaswamy.png";
-
-const glitterParticles = [
-  { top: "20%", left: "8%", delay: 0 },
-  { top: "70%", left: "15%", delay: 0.4 },
-  { top: "30%", right: "10%", delay: 0.8 },
-  { top: "65%", right: "18%", delay: 0.2 },
-  { top: "15%", left: "45%", delay: 0.6 },
-];
 
 // Only these members show a bio popup — must match the `id` used in teamMembers below
 const BIO_MEMBERS = new Set([1, 3, 7]);
@@ -63,15 +56,7 @@ const Teams = () => {
 
   return (
     <>
-      <div className="relative py-12 px-4 sm:px-6 lg:px-8 overflow-hidden" style={{ background: "#080808" }}>
-        {/* Background accents */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-[clamp(300px,50vw,600px)] h-[clamp(300px,50vw,600px)] rounded-full"
-            style={{ background: "radial-gradient(circle, rgba(232,25,44,0.08) 0%, transparent 65%)", transform: "translate(20%, -20%)" }} />
-          <div className="absolute bottom-0 left-0 w-[clamp(300px,50vw,500px)] h-[clamp(300px,50vw,500px)] rounded-full"
-            style={{ background: "radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 65%)", transform: "translate(-20%, 20%)" }} />
-        </div>
-
+      <div className="relative py-12 px-4 sm:px-6 lg:px-8 overflow-hidden bg-transparent">
         <div className="relative z-10 max-w-7xl mx-auto">
 
           {/* ── Header ── */}
@@ -81,45 +66,23 @@ const Teams = () => {
             transition={{ duration: 0.6 }}
             className="text-center mb-16"
           >
-            {/* Glitter badge */}
+            {/* New UI Badge */}
             <div className="flex justify-center mb-6">
-              <div
-                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full overflow-hidden"
-                style={{
-                  background: "linear-gradient(135deg, rgba(232,25,44,0.18) 0%, rgba(0,0,0,0.6) 50%, rgba(232,25,44,0.12) 100%)",
-                  border: "1px solid rgba(232,25,44,0.5)",
-                  boxShadow: "0 0 18px rgba(232,25,44,0.25), inset 0 1px 0 rgba(255,255,255,0.1)",
-                }}
-              >
-                <motion.span
-                  className="absolute inset-0 rounded-full"
-                  style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%)" }}
-                  animate={{ x: ["-100%", "100%"] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
-                />
-                <span className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-px bg-gradient-to-r from-transparent via-[#E8192C]/80 to-transparent" />
-                {glitterParticles.map((pos, i) => (
-                  <motion.span key={i} className="absolute w-[3px] h-[3px] rounded-full bg-white"
-                    style={{ top: pos.top, left: pos.left, right: pos.right }}
-                    animate={{ opacity: [0, 1, 0], scale: [0.5, 1.4, 0.5] }}
-                    transition={{ duration: 1.5, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }} />
-                ))}
+              <div className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full overflow-hidden border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
                 <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8192C] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E8192C]" />
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E31D2E]" />
                 </span>
-                <span className="relative text-white text-xs sm:text-sm font-bold tracking-[0.3em] uppercase"
-                  style={{ textShadow: "0 0 10px rgba(232,25,44,0.7)" }}>Our Team</span>
-                <motion.span className="relative text-[#E8192C] text-base leading-none"
-                  animate={{ rotate: [0, 180, 360], opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "linear" }}>✦</motion.span>
+                <span className="relative text-[#111111] text-xs sm:text-sm font-bold tracking-[0.3em] uppercase">
+                  Our Team
+                </span>
               </div>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-black text-white mb-6 tracking-tight">
+            <h1 className="text-4xl md:text-5xl font-black text-[#111111] mb-6 tracking-tight">
               Division Champions
             </h1>
-            <p className="text-lg text-white/40 max-w-2xl mx-auto">
+            <p className="text-lg text-[#111111]/60 max-w-2xl mx-auto font-medium">
               We're building the future of technology and marketing through focused leadership and expert execution.
             </p>
           </motion.div>
@@ -134,64 +97,36 @@ const Teams = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  whileHover={{ y: -8 }}
-                  className="group"
+                  className="flex flex-col items-center group text-center"
                 >
                   <div
-                    className={`relative rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 ${clickable ? "cursor-pointer" : ""}`}
-                    style={{
-                      background: "linear-gradient(160deg, rgba(232,25,44,0.13) 0%, rgba(12,12,12,1) 45%, rgba(232,25,44,0.07) 100%)",
-                      border: clickable ? "1px solid rgba(232,25,44,0.45)" : "1px solid rgba(232,25,44,0.18)",
-                      boxShadow: clickable
-                        ? "0 0 40px rgba(232,25,44,0.18), 0 12px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.08)"
-                        : "0 0 20px rgba(232,25,44,0.08), 0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.05)",
-                    }}
+                    className={`relative flex justify-center w-full max-w-[330px] ${clickable ? "cursor-pointer" : ""}`}
                     onClick={() => handleCardClick(member)}
                   >
-                    {/* top glow line — all cards */}
-                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-[#E8192C]/60 to-transparent z-10" />
-                    {/* bottom glow line */}
-                    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-px bg-gradient-to-r from-transparent via-[#E8192C]/20 to-transparent z-10" />
-                    {/* left accent bar */}
-                    <div className="absolute left-0 top-1/4 bottom-1/4 w-[2px] rounded-full bg-gradient-to-b from-transparent via-[#E8192C]/50 to-transparent" />
+                    <TiltedCard
+                      imageSrc={member.image}
+                      altText={member.name}
+                      captionText={member.name}
+                      containerHeight="420px"
+                      containerWidth="100%"
+                      imageHeight="420px"
+                      imageWidth="100%"
+                      rotateAmplitude={12}
+                      scaleOnHover={1.06}
+                      showTooltip={false}
+                      displayOverlayContent={false}
+                      showMobileWarning={false}
+                    />
+                  </div>
 
-                    {/* Image */}
-                    <div className="relative w-full aspect-square overflow-hidden bg-[#0c0c0c]">
-                      {member.image ? (
-                        <img src={member.image} alt={member.name}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center">
-                          <span className="text-6xl text-white/5 font-black uppercase">{member.name.charAt(0)}</span>
-                        </div>
-                      )}
-                      {/* red tint overlay always subtle */}
-                      <div className="absolute inset-0 pointer-events-none"
-                        style={{ background: "linear-gradient(to bottom, rgba(232,25,44,0.04) 0%, transparent 40%, rgba(0,0,0,0.75) 100%)" }} />
-                      {/* hover overlay */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none"
-                        style={{ background: "linear-gradient(to top, rgba(232,25,44,0.35) 0%, rgba(0,0,0,0.5) 50%, transparent 100%)" }} />
-                      {/* corner red glow on image */}
-                      <div className="absolute top-0 right-0 w-20 h-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                        style={{ background: "radial-gradient(circle at top right, rgba(232,25,44,0.4), transparent 70%)" }} />
-                    </div>
-
-
-                    {/* Info */}
-                    <div className="relative p-5 text-center">
-                      {/* subtle red glow behind info */}
-                      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                        style={{ background: "radial-gradient(ellipse at 50% 0%, rgba(232,25,44,0.12), transparent 70%)" }} />
-                      <h3 className="relative text-base font-bold text-white mb-1 group-hover:text-white transition-colors">{member.name}</h3>
-                      <p className="relative text-sm font-bold tracking-wide"
-                        style={{ color: "#E8192C", textShadow: "0 0 10px rgba(232,25,44,0.4)" }}>
-                        {member.role}
-                      </p>
-                    </div>
-
-                    {/* corner accent top-right */}
-                    <div className="absolute top-0 right-0 w-24 h-24 rounded-bl-full opacity-30 group-hover:opacity-60 transition-opacity duration-300"
-                      style={{ background: "radial-gradient(circle at top right, rgba(232,25,44,0.4), transparent 70%)" }} />
+                  <div
+                    className={`mt-4 ${clickable ? "cursor-pointer" : ""}`}
+                    onClick={() => handleCardClick(member)}
+                  >
+                    <h3 className="text-lg font-bold text-[#111111] mb-1 tracking-tight">{member.name}</h3>
+                    <p className="text-sm font-semibold tracking-wide" style={{ color: "#E31D2E" }}>
+                      {member.role}
+                    </p>
                   </div>
                 </motion.div>
               );
@@ -212,44 +147,25 @@ const Teams = () => {
               exit={{ opacity: 0 }}
               onClick={closeModal}
             >
-              {/* Backdrop */}
-              <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.85)", backdropFilter: "blur(8px)" }} />
+              {/* Subtle backdrop overlay */}
+              <div className="absolute inset-0" style={{ background: "rgba(0,0,0,0.4)", backdropFilter: "blur(6px)" }} />
 
-              {/* Modal box */}
+              {/* Clean Apple / Linear Style Modal Box */}
               <motion.div
-                className="relative w-full max-w-lg rounded-[2rem] overflow-hidden z-10"
-                style={{
-                  background: "linear-gradient(135deg, rgba(232,25,44,0.08) 0%, rgba(12,12,12,0.98) 40%, rgba(232,25,44,0.05) 100%)",
-                  border: "1px solid rgba(232,25,44,0.35)",
-                  boxShadow: "0 0 80px rgba(232,25,44,0.15), 0 0 160px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.07)",
-                }}
+                className="relative w-full max-w-lg rounded-[28px] overflow-hidden z-10 bg-white border border-neutral-200/80 shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)] text-[#111111]"
                 initial={{ opacity: 0, scale: 0.9, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.9, y: 20 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
                 onClick={(e) => e.stopPropagation()}
               >
-                {/* top glow line */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2/3 h-px bg-gradient-to-r from-transparent via-[#E8192C]/70 to-transparent" />
-                {/* corner accent */}
-                <div className="absolute top-0 left-0 w-32 h-32 opacity-20"
-                  style={{ background: "radial-gradient(circle at top left, rgba(232,25,44,0.6), transparent 70%)" }} />
-                {/* glitter particles */}
-                {glitterParticles.map((pos, i) => (
-                  <motion.span key={i} className="absolute w-[2px] h-[2px] rounded-full bg-white/60 pointer-events-none"
-                    style={{ top: pos.top, left: pos.left, right: pos.right }}
-                    animate={{ opacity: [0, 0.8, 0], scale: [0.5, 1.2, 0.5] }}
-                    transition={{ duration: 2.5, repeat: Infinity, delay: pos.delay + 0.3, ease: "easeInOut" }} />
-                ))}
-
                 <div className="relative z-10 p-8 md:p-10">
                   {/* Close button */}
                   <button
                     onClick={closeModal}
-                    className="absolute top-5 right-5 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
-                    style={{ background: "rgba(232,25,44,0.15)", border: "1px solid rgba(232,25,44,0.3)" }}
+                    className="absolute top-5 right-5 w-9 h-9 rounded-full flex items-center justify-center bg-neutral-100 border border-neutral-200 text-neutral-600 hover:bg-neutral-200 transition-all duration-200 hover:scale-105"
                   >
-                    <svg className="w-4 h-4 text-[#E8192C]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                    <svg className="w-4 h-4 text-neutral-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                   </button>
@@ -259,33 +175,29 @@ const Teams = () => {
                     <div className="relative flex-shrink-0">
                       {selectedMember.image ? (
                         <img src={selectedMember.image} alt={selectedMember.name}
-                          className="w-16 h-16 rounded-2xl object-cover"
-                          style={{ border: "2px solid rgba(232,25,44,0.4)", boxShadow: "0 0 20px rgba(232,25,44,0.2)" }} />
+                          className="w-16 h-16 rounded-2xl object-cover border border-neutral-200 shadow-md" />
                       ) : (
-                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-[#0c0c0c]"
-                          style={{ border: "2px solid rgba(232,25,44,0.4)", boxShadow: "0 0 20px rgba(232,25,44,0.2)" }}>
-                          <span className="text-2xl text-white/30 font-black uppercase">{selectedMember.name.charAt(0)}</span>
+                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-neutral-100 border border-neutral-200 shadow-md">
+                          <span className="text-2xl text-neutral-400 font-black uppercase">{selectedMember.name.charAt(0)}</span>
                         </div>
                       )}
-                      <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center"
-                        style={{ background: "#E8192C", boxShadow: "0 0 8px rgba(232,25,44,0.6)" }}>
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center bg-[#E31D2E] shadow-sm">
                         <span className="text-white text-[8px] font-black">✓</span>
                       </div>
                     </div>
                     <div>
-                      <h3 className="text-white font-black text-xl leading-tight">{selectedMember.name}</h3>
-                      <span className="text-xs font-bold px-3 py-1 rounded-full mt-1 inline-block"
-                        style={{ color: "#E8192C", background: "rgba(232,25,44,0.1)", border: "1px solid rgba(232,25,44,0.3)" }}>
+                      <h3 className="text-[#111111] font-black text-xl md:text-2xl leading-tight">{selectedMember.name}</h3>
+                      <span className="text-xs font-bold px-3 py-1 rounded-full mt-1.5 inline-block text-[#E31D2E] bg-[#E31D2E]/10 border border-[#E31D2E]/20">
                         {selectedMember.role}
                       </span>
                     </div>
                   </div>
 
                   {/* Divider */}
-                  <div className="w-full h-px mb-6 bg-gradient-to-r from-[#E8192C]/30 via-white/5 to-transparent" />
+                  <div className="w-full h-px mb-6 bg-neutral-200/80" />
 
                   {/* Bio text */}
-                  <p className="text-white/70 text-sm md:text-base leading-relaxed">
+                  <p className="text-neutral-600 text-sm md:text-base leading-relaxed font-normal">
                     {selectedMember.bio}
                   </p>
                 </div>

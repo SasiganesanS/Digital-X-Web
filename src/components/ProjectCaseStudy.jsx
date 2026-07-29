@@ -93,47 +93,16 @@ const ProjectCaseStudy = () => {
                 </div>
                 <span className="text-sm font-bold uppercase tracking-widest">Back to Home</span>
               </Link>
-            </div>
-
-            {/* Eyebrow badge */}
-            <div
-              className="relative inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full overflow-hidden"
-              style={{
-                background: "linear-gradient(135deg, rgba(232,25,44,0.18) 0%, rgba(0,0,0,0.6) 50%, rgba(232,25,44,0.12) 100%)",
-                border: "1px solid rgba(232,25,44,0.5)",
-                boxShadow: "0 0 18px rgba(232,25,44,0.25), inset 0 1px 0 rgba(255,255,255,0.1)",
-              }}
-            >
-              <motion.span
-                className="absolute inset-0 rounded-full"
-                style={{ background: "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%)" }}
-                animate={{ x: ["-100%", "100%"] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "linear", repeatDelay: 1.5 }}
-              />
-              <span className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-px bg-gradient-to-r from-transparent via-[#E8192C]/80 to-transparent" />
-              {glitterParticles.map((pos, i) => (
-                <motion.span
-                  key={i}
-                  className="absolute w-[3px] h-[3px] rounded-full bg-white"
-                  style={{ top: pos.top, left: pos.left, right: pos.right }}
-                  animate={{ opacity: [0, 1, 0], scale: [0.5, 1.4, 0.5] }}
-                  transition={{ duration: 1.5, repeat: Infinity, delay: pos.delay, ease: "easeInOut" }}
-                />
-              ))}
+                      {/* Eyebrow badge (NEW UI) */}
+            <div className="relative inline-flex items-center gap-3 mb-8 px-6 py-3 rounded-full overflow-hidden border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
               <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E8192C] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E8192C]" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E31D2E]" />
               </span>
-              <span className="relative text-white text-xs sm:text-sm font-bold tracking-[0.3em] uppercase"
-                style={{ textShadow: "0 0 10px rgba(232,25,44,0.7)" }}>
+              <span className="relative text-[#111111] text-xs sm:text-sm font-bold tracking-[0.3em] uppercase">
                 Case Study
               </span>
-              <motion.span
-                className="relative text-[#E8192C] text-base leading-none"
-                animate={{ rotate: [0, 180, 360], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-              >✦</motion.span>
-            </div>
+            </div>      </div>
 
             <h1 className="text-5xl md:text-7xl font-black text-white mb-4 leading-none tracking-tight">
               {project.title}

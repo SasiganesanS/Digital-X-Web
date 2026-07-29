@@ -2,8 +2,53 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <link rel="icon" type="image/png" href="./src/assets/fav.jpeg" />
+  <!-- Adaptive Favicons for Light & Dark Mode -->
+  <link rel="icon" type="image/png" href="/favicon-light.png" media="(prefers-color-scheme: light)" />
+  <link rel="icon" type="image/png" href="/favicon-dark.png" media="(prefers-color-scheme: dark)" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-light-32x32.png" media="(prefers-color-scheme: light)" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-dark-32x32.png" media="(prefers-color-scheme: dark)" />
+
+  <!-- Touch Icons -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon-light.png" media="(prefers-color-scheme: light)" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon-dark.png" media="(prefers-color-scheme: dark)" />
+
+  <!-- Adaptive Theme Color -->
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)" />
+
+  <!-- Dynamic Realtime Favicon Switcher -->
+  <script>
+    (function() {
+      function updateFavicon() {
+        const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const icon = isDark ? '/favicon-dark.png' : '/favicon-light.png';
+        const appleIcon = isDark ? '/apple-touch-icon-dark.png' : '/apple-touch-icon-light.png';
+        
+        let link = document.querySelector('link[rel="icon"]:not([media])');
+        if (!link) {
+          link = document.createElement('link');
+          link.rel = 'icon';
+          link.type = 'image/png';
+          document.head.appendChild(link);
+        }
+        link.href = icon;
+
+        let appleLink = document.querySelector('link[rel="apple-touch-icon"]:not([media])');
+        if (!appleLink) {
+          appleLink = document.createElement('link');
+          appleLink.rel = 'apple-touch-icon';
+          document.head.appendChild(appleLink);
+        }
+        appleLink.href = appleIcon;
+      }
+
+      updateFavicon();
+      if (window.matchMedia) {
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
+      }
+    })();
+  </script>
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Praskla Digital X - A Mindful Marketing and Production Firm</title>
   <style>
@@ -12,11 +57,6 @@
     #root {
       background-color: #080808;
       min-height: 100%;
-    }
-
-    link[rel="icon"] {
-      border-radius: 50%;
-      overflow: hidden;
     }
   </style>
 </head>

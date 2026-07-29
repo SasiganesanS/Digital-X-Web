@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import ErrorBoundary from './ErrorBoundary';
 
 // Pure opacity crossfade — no Y-slide to avoid layout gaps that expose the background
 const pageVariants = {
@@ -25,7 +26,9 @@ const AnimatedPage = ({ children }) => {
       // Always fill the viewport with a transparent bg so the universe background shows through
       style={{ minHeight: "100vh", backgroundColor: "transparent" }}
     >
-      {children}
+      <ErrorBoundary>
+        {children}
+      </ErrorBoundary>
     </motion.div>
   );
 };

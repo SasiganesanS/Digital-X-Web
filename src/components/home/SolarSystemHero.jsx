@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import servicesData from "../../data/servicesData";
@@ -39,15 +39,48 @@ const ServicesCoverflow = () => {
   const navigate = useNavigate();
   const total = servicesData.length;
   const [active, setActive] = useState(0);
+  const [dragX, setDragX] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const resumeTimerRef = useRef(null);
 
   // Auto-rotate
-  const DOCK_MS = 3500;
+  const DOCK_MS = 2000;
   useEffect(() => {
-    if (isHovered) return;
+    if (isHovered || isDragging || isPaused) return;
     const id = setInterval(() => setActive((p) => (p + 1) % total), DOCK_MS);
     return () => clearInterval(id);
-  }, [isHovered, total]);
+  }, [isHovered, isDragging, isPaused, total]);
+
+  // Handle 3-second delay after user interaction before resuming auto-rotation
+  const triggerResumeTimer = useCallback(() => {
+    if (resumeTimerRef.current) clearTimeout(resumeTimerRef.current);
+    resumeTimerRef.current = setTimeout(() => {
+      setIsHovered(false);
+      setIsPaused(false);
+    }, 3000);
+  }, []);
+
+  // Keyboard navigation: ArrowLeft, ArrowRight, Space (pause/resume)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "ArrowLeft") {
+        setActive((p) => (p - 1 + total) % total);
+        triggerResumeTimer();
+      } else if (e.key === "ArrowRight") {
+        setActive((p) => (p + 1) % total);
+        triggerResumeTimer();
+      } else if (e.key === " " || e.code === "Space") {
+        if (document.activeElement === document.body || document.activeElement?.getAttribute('role') === 'region') {
+          e.preventDefault();
+        }
+        setIsPaused((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [total, triggerResumeTimer]);
 
   const goTo = useCallback(
     (i) => setActive(((i % total) + total) % total),
@@ -55,13 +88,34 @@ const ServicesCoverflow = () => {
   );
 
   const handleCardClick = (index) => {
+    if (isDragging) return;
     if (index === active) {
-      navigate("/services", {
-        state: { highlightService: servicesData[index].title },
-      });
+      if (servicesData[index]?.title) {
+        navigate("/services", {
+          state: { highlightService: servicesData[index].title },
+        });
+      } else {
+        navigate("/services");
+      }
     } else {
       setActive(index);
     }
+  };
+
+  const handleDragEnd = (event, info) => {
+    const offset = info.offset.x;
+    const velocity = info.velocity.x;
+    const STEP_PX = 180;
+
+    // Calculate exact continuous card shift based on drag distance & velocity momentum
+    const totalShift = -(offset + velocity * 0.25) / STEP_PX;
+    const targetFloat = active + totalShift;
+    const finalIndex = ((Math.round(targetFloat) % total) + total) % total;
+
+    setActive(finalIndex);
+    setDragX(0);
+    setTimeout(() => setIsDragging(false), 50);
+    triggerResumeTimer();
   };
 
   /* ── Compute each card's 3D position in the circular ring ── */
@@ -69,44 +123,61 @@ const ServicesCoverflow = () => {
   const radius = 360; 
 
   const getCardStyle = (index) => {
-    const offset = ((index - active + total) % total);
-    const angle = offset * angleStep;
-    const rad = (angle * Math.PI) / 180;
+    const STEP_PX = 180;
+    const activePos = isDragging
+      ? (((active - dragX / STEP_PX) % total) + total) % total
+      : active;
 
-    const distance = Math.min(
-      Math.abs(index - active),
-      total - Math.abs(index - active)
-    );
+    let rawOffset = index - activePos;
+    while (rawOffset > total / 2) rawOffset -= total;
+    while (rawOffset < -total / 2) rawOffset += total;
+
+    const angle = rawOffset * angleStep;
+    const rad = (angle * Math.PI) / 180;
+    const distance = Math.abs(rawOffset);
 
     const x = Math.sin(rad) * radius;
     const z = Math.cos(rad) * radius;
-    const y = Math.abs(Math.sin(rad)) * 10; 
+    const y = Math.abs(Math.sin(rad)) * 10;
 
     let scale = 1;
     let opacity = 1;
     let blur = 0;
     let zIndex = 100;
+    let mask = "none";
 
-    if (distance === 0) {
+    if (distance < 0.2) {
       scale = 1;
       opacity = 1;
       blur = 0;
       zIndex = 100;
-    } else if (distance === 1) {
-      scale = 0.82;
-      opacity = 0.35;
-      blur = 3;
-      zIndex = 50;
-    } else if (distance === 2) {
-      scale = 0.70;
-      opacity = 0.12;
-      blur = 5;
-      zIndex = 20;
+      mask = "none";
+    } else if (distance < 1.2) {
+      const t = distance - 0.2;
+      scale = 1 - t * 0.18;
+      opacity = 1 - t * 0.45;
+      blur = t * 1.5;
+      zIndex = Math.round(100 - t * 50);
+      const innerStop = Math.round(30 - t * 10);
+      const midStop = Math.round(65 - t * 10);
+      const outerStop = Math.round(85 - t * 8);
+      mask = `radial-gradient(ellipse 88% 88% at center, rgba(0,0,0,1) ${innerStop}%, rgba(0,0,0,0.6) ${midStop}%, rgba(0,0,0,0.2) ${outerStop}%, rgba(0,0,0,0) 100%)`;
+    } else if (distance < 2.2) {
+      const t = distance - 1.2;
+      scale = 0.82 - t * 0.12;
+      opacity = 0.55 - t * 0.35;
+      blur = 1.5 + t * 1.5;
+      zIndex = Math.round(50 - t * 30);
+      const innerStop = Math.round(20 - t * 8);
+      const midStop = Math.round(55 - t * 10);
+      const outerStop = Math.round(77 - t * 8);
+      mask = `radial-gradient(ellipse 78% 78% at center, rgba(0,0,0,1) ${innerStop}%, rgba(0,0,0,0.5) ${midStop}%, rgba(0,0,0,0.15) ${outerStop}%, rgba(0,0,0,0) 98%)`;
     } else {
       scale = 0.60;
-      opacity = 0.02;
-      blur = 8;
+      opacity = 0.08;
+      blur = 3;
       zIndex = 10;
+      mask = "radial-gradient(ellipse 65% 65% at center, rgba(0,0,0,1) 10%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 65%, rgba(0,0,0,0) 95%)";
     }
 
     return {
@@ -117,16 +188,25 @@ const ServicesCoverflow = () => {
       opacity,
       blur,
       zIndex,
-      isFront: offset === 0,
+      mask,
+      isFront: distance < 0.3,
     };
   };
 
   return (
     <div
-      className="relative w-full flex flex-col items-center justify-center select-none overflow-hidden"
+      className={`relative w-full flex flex-col items-center justify-center select-none overflow-hidden ${
+        isDragging ? "cursor-grabbing" : "cursor-grab"
+      }`}
       style={{ minHeight: 460 }}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={() => {
+        setIsHovered(true);
+        triggerResumeTimer();
+      }}
+      tabIndex={0}
+      role="region"
+      aria-label="Services Carousel"
     >
       {/* Soft clay-like background glow highlight */}
       <div
@@ -167,9 +247,16 @@ const ServicesCoverflow = () => {
       </motion.p>
 
       {/* ── 3D Carousel Stage ── */}
-      <div
+      <motion.div
         className="relative w-full flex items-center justify-center"
         style={{ height: 380, perspective: 1200, perspectiveOrigin: "50% 45%" }}
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        dragElastic={0.18}
+        dragMomentum={false}
+        onDragStart={() => setIsDragging(true)}
+        onDrag={(e, info) => setDragX(info.offset.x)}
+        onDragEnd={handleDragEnd}
       >
         {/* Soft shadow ellipse under the front card */}
         <div
@@ -205,6 +292,8 @@ const ServicesCoverflow = () => {
                   height: CARD_H,
                   zIndex: s.zIndex,
                   transformStyle: "preserve-3d",
+                  WebkitMaskImage: s.mask,
+                  maskImage: s.mask,
                 }}
                 animate={{
                   x: s.x,
@@ -216,13 +305,11 @@ const ServicesCoverflow = () => {
                 whileHover={s.isFront ? {
                   y: s.y - 8,
                   scale: 1.03,
-                  transition: { type: "spring", stiffness: 300, damping: 20 }
+                  transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] }
                 } : {}}
                 transition={{
-                  type: "spring",
-                  stiffness: 150,
-                  damping: 25,
-                  mass: 0.75,
+                  duration: 0.65,
+                  ease: [0.22, 1, 0.36, 1],
                 }}
                 onClick={() => handleCardClick(i)}
               >
@@ -230,11 +317,13 @@ const ServicesCoverflow = () => {
                   className="relative w-full h-full overflow-hidden flex flex-col p-3"
                   style={{
                     background: "#ffffff",
-                    border: "1px solid rgba(255, 255, 255, 0.85)",
+                    border: s.isFront
+                      ? "1px solid rgba(255, 255, 255, 0.85)"
+                      : "none",
                     borderRadius: "30px",
                     boxShadow: s.isFront
                       ? "0 20px 48px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(255, 255, 255, 0.9) inset"
-                      : "0 12px 40px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(255, 255, 255, 0.9) inset",
+                      : "none",
                   }}
                 >
                   {/* Image container frame */}
@@ -280,7 +369,7 @@ const ServicesCoverflow = () => {
             );
           })}
         </div>
-      </div>
+      </motion.div>
 
       {/* Pagination dots */}
       <div className="flex items-center gap-2 mt-4 z-10 flex-wrap justify-center max-w-md px-4">

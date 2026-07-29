@@ -129,10 +129,13 @@ export default function PlatformPlanPage() {
         {/* Platform Hero */}
         <div className="flex items-center gap-4 mb-10">
           <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-            {platform.icon ? <platform.icon className="text-3xl text-[#E8192C]" /> : null}
+            {(() => {
+              const PlatformIcon = typeof platform.icon === 'function' || typeof platform.icon === 'object' ? platform.icon : null;
+              return PlatformIcon ? <PlatformIcon className="text-3xl text-[#E8192C]" /> : null;
+            })()}
           </div>
           <div>
-            <h2 className="text-2xl font-black uppercase tracking-tighter">{platform.title}</h2>
+            <h2 className="text-2xl font-black uppercase tracking-tighter">{platform.title || 'Platform'}</h2>
             <div className="flex items-baseline gap-2 mt-1">
               <span className="text-[10px] font-bold text-white/20 uppercase">Initial Pillar Fee</span>
               <span className="text-[#E8192C] font-black">₹{(platform.price || 0).toLocaleString()}</span>
@@ -143,24 +146,29 @@ export default function PlatformPlanPage() {
         {/* Plans List */}
         <h3 className="text-[10px] font-black text-white/20 uppercase tracking-[0.3em] mb-4">Select Scale</h3>
         <div className="grid grid-cols-1 gap-3 mb-12">
-          {platform.plans.map(plan => (
-            <button
-              key={plan.id}
-              onClick={() => setSelectedPlan(plan)}
-              className={`flex items-center gap-4 p-5 rounded-3xl border-2 transition-all duration-300 ${selectedPlan?.id === plan.id
-                  ? "bg-[#E8192C]/10 border-[#E8192C]/40"
-                  : "bg-white/5 border-white/5"
-                }`}
-            >
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${selectedPlan?.id === plan.id ? "bg-[#E8192C] text-white" : "bg-white/5 text-[#E8192C]/60"}`}>
-                {plan.icon ? <plan.icon className="text-lg" /> : null}
-              </div>
-              <div className="text-left flex-1">
-                <div className="text-sm font-black uppercase tracking-tight">{plan.title}</div>
-                <div className={`text-xs font-bold mt-0.5 ${selectedPlan?.id === plan.id ? "text-white" : "text-[#E8192C]"}`}>₹{(plan.price || 0).toLocaleString()}</div>
-              </div>
-            </button>
-          ))}
+          {(platform.plans || []).map(plan => {
+            if (!plan) return null;
+            const PlanIcon = typeof plan.icon === 'function' || typeof plan.icon === 'object' ? plan.icon : null;
+
+            return (
+              <button
+                key={plan.id || plan.title}
+                onClick={() => setSelectedPlan(plan)}
+                className={`flex items-center gap-4 p-5 rounded-3xl border-2 transition-all duration-300 ${selectedPlan?.id === plan.id
+                    ? "bg-[#E8192C]/10 border-[#E8192C]/40"
+                    : "bg-white/5 border-white/5"
+                  }`}
+              >
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${selectedPlan?.id === plan.id ? "bg-[#E8192C] text-[#ffffff]" : "bg-white/5 text-[#E8192C]/60"}`}>
+                  {PlanIcon ? <PlanIcon className="text-lg" /> : null}
+                </div>
+                <div className="text-left flex-1">
+                  <div className="text-sm font-black uppercase tracking-tight">{plan.title || "Plan"}</div>
+                  <div className={`text-xs font-bold mt-0.5 ${selectedPlan?.id === plan.id ? "text-white" : "text-[#E8192C]"}`}>₹{(plan.price || 0).toLocaleString()}</div>
+                </div>
+              </button>
+            );
+          })}
         </div>
 
         {/* Plan Features */}

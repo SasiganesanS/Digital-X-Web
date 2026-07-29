@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
 import {
   FaInstagram,
+  FaLinkedinIn,
   FaWhatsapp,
   FaFacebookF,
-  FaPhone,
-  FaArrowRight,
 } from "react-icons/fa6";
-import { MdEmail } from "react-icons/md";
+import {
+  FiSearch,
+  FiTrendingUp,
+  FiCode,
+  FiLayers,
+  FiVideo,
+  FiFileText,
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiArrowRight,
+} from "react-icons/fi";
 
 const QUICK_LINKS = [
   { to: "/", label: "Home" },
@@ -18,179 +29,277 @@ const QUICK_LINKS = [
   { to: "/careers", label: "Careers" },
 ];
 
-const SERVICES_ALL = [
-  "SEO", "SSM", "ADS", "Website design", "Video Production", 
-  "Content marketing", "E-commerce marketing", "Email marketing", 
-  "Influencer marketing", "Performance Marketing", "ORM", "Analytics and reporting"
+const SERVICES_LIST = [
+  { name: "SEO", icon: FiSearch },
+  { name: "Performance Marketing", icon: FiTrendingUp },
+  { name: "Website Design", icon: FiCode },
+  { name: "Brand Identity", icon: FiLayers },
+  { name: "Video Production", icon: FiVideo },
+  { name: "Content Marketing", icon: FiFileText },
 ];
 
 const Footer = ({ setShowContactForm }) => {
-  const [email, setEmail] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [message, setMessage] = useState("");
-
-  const handleNewsletterSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setMessage("");
-    setTimeout(() => {
-      setMessage("Thanks for subscribing! 🎉");
-      setEmail("");
-      setIsSubmitting(false);
-      setTimeout(() => setMessage(""), 3000);
-    }, 1000);
-  };
-
   return (
-    <footer className="relative w-[92%] sm:w-[90%] md:w-[88%] max-w-[1280px] mx-auto my-16 z-10 dark-surface rounded-[2rem] border border-white/10 shadow-[0_24px_50px_rgba(0,0,0,0.3)] overflow-hidden">
-      {/* Soft overlay gradient in the footer block */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#1b1b1b] via-[#151515] to-[#121212] pointer-events-none" />
-      
-      {/* 5-Column Grid */}
-      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 p-8 sm:p-12 lg:p-16">
-        
-        {/* Column 1: Brand & Logo */}
-        <div className="lg:col-span-1 flex flex-col gap-4">
-          <Link to="/" className="flex items-center gap-2 group">
-            <img src={Logo} alt="Praskla Digital X" className="w-10 h-10 object-cover" />
+    <footer id="contact" className="relative w-[92%] sm:w-[90%] md:w-[88%] max-w-[1280px] mx-auto mt-20 mb-16 z-10 bg-[#0B0B0B] bg-gradient-to-b from-[#171717] via-[#121212] to-[#0B0B0B] rounded-[32px] border border-white/[0.06] shadow-[0_30px_70px_rgba(0,0,0,0.6)] overflow-hidden p-8 sm:p-12 lg:p-16 text-white dark-surface">
+      {/* Background ambient red glow & soft vignette */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#E31D2E]/8 blur-[140px] pointer-events-none rounded-full" />
+      <div className="absolute bottom-0 right-0 w-[450px] h-[450px] bg-[#E31D2E]/5 blur-[120px] pointer-events-none rounded-full" />
+
+      {/* TOP CTA: Two-Column Agency Composition */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center pt-2 sm:pt-4 pb-10 sm:pb-12 border-b border-white/[0.06]"
+      >
+        {/* LEFT COLUMN (60% / 7 cols) */}
+        <div className="lg:col-span-7 space-y-5">
+          {/* Small badge */}
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[#E31D2E]/50 bg-[#E31D2E]/15 backdrop-blur-md">
+            <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
+            <span className="font-bold text-[11px] sm:text-xs uppercase tracking-widest text-white">
+              LET'S BUILD SOMETHING AMAZING
+            </span>
+          </div>
+
+          {/* Large heading */}
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#FFFFFF] leading-[1.15] tracking-tight">
+            Ready to Grow Your Brand?
+          </h2>
+
+          {/* Short paragraph */}
+          <p className="text-[#B5B5B5] text-sm sm:text-base leading-relaxed font-medium max-w-xl">
+            We help ambitious businesses build memorable digital experiences through strategy, creativity and technology.
+          </p>
+        </div>
+
+        {/* RIGHT COLUMN (40% / 5 cols) */}
+        <div className="lg:col-span-5 flex flex-col items-start lg:items-end justify-center space-y-6">
+          {/* Vertically stacked buttons */}
+          <div className="flex flex-col gap-3.5 w-full sm:w-[280px]">
+            <motion.button
+              animate={{ scale: [1, 1.02, 1] }}
+              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+              onClick={() => setShowContactForm && setShowContactForm(true)}
+              className="w-full px-7 py-4 rounded-[18px] font-bold text-sm bg-[#E31D2E] !text-white hover:bg-[#ff2d3f] transition-all duration-300 flex items-center justify-center gap-2.5 shadow-[0_10px_30px_rgba(227,29,46,0.35)] hover:-translate-y-1 hover:shadow-[0_15px_40px_rgba(227,29,46,0.5)] group"
+              style={{ color: "#FFFFFF", opacity: 1 }}
+            >
+              <span className="!text-white text-white font-bold" style={{ color: "#FFFFFF", opacity: 1 }}>Start Your Project</span>
+              <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform !text-white" style={{ color: "#FFFFFF" }} />
+            </motion.button>
+
+            <a
+              href="https://wa.me/919566880740"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full px-7 py-4 rounded-[18px] font-bold text-sm border border-white/20 !text-white bg-[#1F1F1F] hover:bg-[#2A2A2A] hover:border-white/40 transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-1 shadow-sm text-center"
+              style={{ color: "#FFFFFF", opacity: 1 }}
+            >
+              <span className="!text-white text-white font-bold" style={{ color: "#FFFFFF", opacity: 1 }}>
+                Book a Free Consultation
+              </span>
+            </a>
+          </div>
+
+          {/* Direct contact info below buttons */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-xs font-semibold text-[#B5B5B5] pt-1">
+            <a
+              href="mailto:hello@praskla.com"
+              className="flex items-center gap-2 hover:text-white transition-colors group"
+            >
+              <FiMail className="w-3.5 h-3.5 text-[#E31D2E]" />
+              <span>hello@praskla.com</span>
+            </a>
+            <span className="hidden sm:inline text-white/30">•</span>
+            <a
+              href="tel:+919566880740"
+              className="flex items-center gap-2 hover:text-white transition-colors group"
+            >
+              <FiPhone className="w-3.5 h-3.5 text-[#E31D2E]" />
+              <span>+91 95668 80740</span>
+            </a>
+          </div>
+        </div>
+      </motion.div>
+
+      {/* MAIN FOOTER: 4 Columns */}
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        variants={{
+          hidden: {},
+          show: { transition: { staggerChildren: 0.08 } },
+        }}
+        className="relative z-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 py-12 lg:py-16 items-start"
+      >
+        {/* COLUMN 1: Logo & Description */}
+        <motion.div
+          variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+          className="space-y-4"
+        >
+          <Link to="/" className="flex items-center gap-[18px] group w-fit">
+            <div
+              className="w-[52px] h-[52px] rounded-[14px] bg-[#FFFFFF] p-[8px] flex items-center justify-center border border-black/[0.06] shadow-[0_10px_30px_rgba(0,0,0,0.18)] shrink-0 transition-transform duration-300 group-hover:scale-105"
+            >
+              <img
+                src={Logo}
+                alt="Praskla Digital X"
+                className="w-full h-full object-contain"
+              />
+            </div>
             <div className="flex flex-col">
-              <span className="font-semibold text-sm tracking-wide text-white">
+              <span className="font-black text-lg tracking-tight text-white">
                 Praskla Digital <span className="text-[#E31D2E]">X</span>
               </span>
-              <span className="text-[8px] text-white/50 tracking-wider font-light">
-                A Mindful Marketing and Production Firm
+              <span className="text-[10px] text-[#9CA3AF] tracking-wider font-semibold uppercase">
+                A Mindful Marketing Firm
               </span>
             </div>
           </Link>
-          <p className="text-xs text-white/60 leading-relaxed mt-2">
-            Elevating personal and corporate brands into powerful digital movements through strategic design and conversion-focused media campaigns.
+          <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed font-medium">
+            Helping ambitious brands grow through strategy, design, technology, and marketing.
           </p>
+
           {setShowContactForm && (
             <button
               onClick={() => setShowContactForm(true)}
-              className="primary-btn mt-2 w-fit px-4 py-2 text-white text-xs font-semibold rounded-full"
+              className="mt-2 px-6 py-3 rounded-[18px] bg-[#E31D2E] text-white text-xs font-bold hover:bg-[#ff2d3f] transition-all duration-300 hover:-translate-y-1 shadow-md shadow-[#E31D2E]/25"
             >
-              Get in Touch
+              Get In Touch
             </button>
           )}
-        </div>
+        </motion.div>
 
-        {/* Column 2: Quick Links */}
-        <div className="flex flex-col gap-4">
-          <h4 className="text-white font-bold text-xs tracking-[0.2em] uppercase">Quick Links</h4>
-          <ul className="flex flex-col gap-2.5">
+        {/* COLUMN 2: Navigation */}
+        <motion.div
+          variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+          className="space-y-4"
+        >
+          <h4 className="text-white font-bold text-xs tracking-[0.2em] uppercase">Navigation</h4>
+          <ul className="flex flex-col gap-3">
             {QUICK_LINKS.map((link) => (
               <li key={link.to}>
-                <Link to={link.to} className="text-white/60 hover:text-white transition-colors text-xs">
-                  {link.label}
+                <Link
+                  to={link.to}
+                  className="group relative inline-flex items-center text-xs sm:text-sm font-semibold text-[#9CA3AF] hover:text-white transition-all duration-200 hover:translate-x-1"
+                >
+                  <span>{link.label}</span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
                 </Link>
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
 
-        {/* Column 3: Services */}
-        <div className="flex flex-col gap-4">
+        {/* COLUMN 3: Services */}
+        <motion.div
+          variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+          className="space-y-4"
+        >
           <h4 className="text-white font-bold text-xs tracking-[0.2em] uppercase">Services</h4>
-          <ul className="grid grid-cols-1 gap-2.5">
-            {SERVICES_ALL.slice(0, 6).map((s) => (
-              <li key={s}>
-                <Link to="/services" className="text-white/60 hover:text-white transition-colors text-xs">
-                  {s}
-                </Link>
-              </li>
-            ))}
+          <ul className="flex flex-col gap-3">
+            {SERVICES_LIST.map((service) => {
+              const Icon = service.icon;
+              return (
+                <li key={service.name}>
+                  <Link
+                    to="/services"
+                    className="group inline-flex items-center gap-2.5 text-xs sm:text-sm font-semibold text-[#9CA3AF] hover:text-white transition-all duration-200 hover:-translate-y-0.5"
+                  >
+                    <div className="w-6 h-6 rounded-md bg-[#141414] border border-white/[0.06] flex items-center justify-center text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white transition-all duration-300 shrink-0">
+                      <Icon className="w-3 h-3" />
+                    </div>
+                    <span className="group-hover:translate-x-1 transition-transform">{service.name}</span>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
-        </div>
+        </motion.div>
 
-        {/* Column 4: Stay in the Loop (Newsletter) */}
-        <div className="flex flex-col gap-4 lg:col-span-1">
-          <h4 className="text-white font-bold text-xs tracking-[0.2em] uppercase">Stay in the Loop</h4>
-          <p className="text-white/50 text-xs leading-relaxed">
-            Get the latest marketing insights and case studies delivered directly to your inbox.
-          </p>
-          <form onSubmit={handleNewsletterSubmit} className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 rounded-full border border-white/10 px-3.5 py-2 bg-[#111111]">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
-                required
-                className="flex-1 min-w-0 bg-transparent text-white text-xs placeholder:text-white/20 outline-none"
-              />
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                aria-label="Subscribe"
-                className="w-6 h-6 rounded-full bg-[#E31D2E] flex items-center justify-center flex-shrink-0 hover:bg-[#ff3b4d] hover:scale-110 transition-all duration-300 disabled:opacity-50"
-              >
-                <FaArrowRight size={10} className="text-white" />
-              </button>
+        {/* COLUMN 4: Contact & Socials */}
+        <motion.div
+          variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0 } }}
+          className="space-y-4"
+        >
+          <h4 className="text-white font-bold text-xs tracking-[0.2em] uppercase">Contact</h4>
+          <div className="flex flex-col gap-3 text-xs sm:text-sm font-semibold text-[#9CA3AF]">
+            <a href="mailto:hello@praskla.com" className="flex items-center gap-3 hover:text-white transition-colors group p-2 rounded-xl bg-[#141414]/50 border border-white/[0.04] hover:border-white/[0.12]">
+              <div className="w-7 h-7 rounded-full bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] shrink-0 group-hover:bg-[#E31D2E] group-hover:text-white transition-colors">
+                <FiMail size={13} />
+              </div>
+              <span className="truncate">hello@praskla.com</span>
+            </a>
+            <a href="tel:+919566880740" className="flex items-center gap-3 hover:text-white transition-colors group p-2 rounded-xl bg-[#141414]/50 border border-white/[0.04] hover:border-white/[0.12]">
+              <div className="w-7 h-7 rounded-full bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] shrink-0 group-hover:bg-[#E31D2E] group-hover:text-white transition-colors">
+                <FiPhone size={13} />
+              </div>
+              <span>+91 95668 80740</span>
+            </a>
+            <div className="flex items-center gap-3 text-[#9CA3AF] p-2">
+              <div className="w-7 h-7 rounded-full bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] shrink-0">
+                <FiMapPin size={13} />
+              </div>
+              <span>Coimbatore, Tamil Nadu, India</span>
             </div>
-            {message && <p className="text-[#E31D2E] text-[10px]">{message}</p>}
-          </form>
-        </div>
-
-        {/* Column 5: Contact & Socials */}
-        <div className="flex flex-col gap-4">
-          <h4 className="text-white font-bold text-xs tracking-[0.2em] uppercase">Connect With Us</h4>
-          <div className="flex flex-col gap-2 text-xs text-white/70">
-            <a href="mailto:hello@praskla.com" className="flex items-center gap-2 hover:text-white transition-colors">
-              <MdEmail size={14} className="text-[#E31D2E]" />
-              hello@praskla.com
-            </a>
-            <a href="tel:+919566880740" className="flex items-center gap-2 hover:text-white transition-colors">
-              <FaPhone size={12} className="text-[#E31D2E]" />
-              +91 95668 80740
-            </a>
           </div>
-          <div className="flex gap-3 mt-1">
-            <a
-              href="https://www.instagram.com/py.digitalx/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-white/50 hover:text-white hover:border-[#E31D2E] hover:bg-[#E31D2E]/20 transition-all duration-300 hover:scale-110"
-            >
-              <FaInstagram size={14} />
-            </a>
-            <a
-              href="https://wa.me/9566880740"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-white/50 hover:text-white hover:border-[#E31D2E] hover:bg-[#E31D2E]/20 transition-all duration-300 hover:scale-110"
-            >
-              <FaWhatsapp size={14} />
-            </a>
-            <a
-              href="https://facebook.com/praskla"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-white/50 hover:text-white hover:border-[#E31D2E] hover:bg-[#E31D2E]/20 transition-all duration-300 hover:scale-110"
-            >
-              <FaFacebookF size={14} />
-            </a>
+
+          {/* Circular Social Buttons */}
+          <div className="flex items-center gap-3 pt-2">
+            {[
+              { href: "https://www.instagram.com/py.digitalx/", icon: FaInstagram, label: "Instagram" },
+              { href: "https://www.linkedin.com/company/praskla", icon: FaLinkedinIn, label: "LinkedIn" },
+              { href: "https://wa.me/919566880740", icon: FaWhatsapp, label: "WhatsApp" },
+              { href: "https://facebook.com/praskla", icon: FaFacebookF, label: "Facebook" },
+            ].map((social) => {
+              const SocialIcon = social.icon;
+              return (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="w-10 h-10 rounded-full border border-white/[0.08] bg-[#141414] flex items-center justify-center text-[#9CA3AF] hover:text-white hover:border-[#E31D2E] hover:bg-[#E31D2E]/20 hover:-translate-y-1 hover:scale-105 hover:rotate-6 hover:shadow-[0_8px_25px_rgba(227,29,46,0.3)] transition-all duration-300"
+                >
+                  <SocialIcon size={15} />
+                </a>
+              );
+            })}
           </div>
-        </div>
+        </motion.div>
+      </motion.div>
 
-      </div>
-
-      {/* Bottom Legal Bar */}
-      <div className="relative z-10 border-t border-white/10 px-8 sm:px-12 py-6">
-        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left text-xs text-white/40">
+      {/* BOTTOM BAR */}
+      <div className="relative z-10 border-t border-white/[0.06] pt-8 pb-2">
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-4 text-center sm:text-left text-xs font-semibold text-[#9CA3AF]">
           <p>© {new Date().getFullYear()} Praskla Digital X. All rights reserved.</p>
           <a
             href="https://www.prasklatechnology.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white/70 transition-colors"
+            className="group relative hover:text-white transition-colors"
           >
-            A Division of Praskla Technology
+            <span>Crafted with ❤️ by Praskla Technology</span>
+            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
           </a>
-          <div className="flex gap-4">
-            <Link to="/terms" className="hover:text-white/70 transition-colors">Terms of Use</Link>
-            <span>|</span>
-            <Link to="/privacy" className="hover:text-white/70 transition-colors">Privacy Policy</Link>
+          <div className="flex items-center gap-3">
+            <Link to="/privacy" className="group relative hover:text-white transition-colors">
+              <span>Privacy Policy</span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
+            </Link>
+            <span className="text-white/20">•</span>
+            <Link to="/terms" className="group relative hover:text-white transition-colors">
+              <span>Terms</span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
+            </Link>
+            <span className="text-white/20">•</span>
+            <Link to="/terms" className="group relative hover:text-white transition-colors">
+              <span>Cookies</span>
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
+            </Link>
           </div>
         </div>
       </div>

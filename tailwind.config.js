@@ -32,7 +32,7 @@ module.exports = {
           dark: "#000000",
         },
         background: {
-          DEFAULT: "#F3E9E9", // Light primary background
+          DEFAULT: "#f1eaeaff", // Light primary background
         },
         "brand-red": "#E31D2E",
         "dark-red": "#991A23",
@@ -43,7 +43,7 @@ module.exports = {
           lighter: "#8B8B8B",
         },
         ui: {
-          DEFAULT: "#D1D1D1",
+          DEFAULT: "#f7f3f3ff",
           light: "#E5E5E5",
           dark: "#BEBEBE",
         },
