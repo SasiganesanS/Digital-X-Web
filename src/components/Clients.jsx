@@ -45,7 +45,7 @@ const clientData = [
 
 const Clients = () => {
   return (
-    <section className="pt-32 pb-20 bg-transparent">
+    <section className="pt-4 pb-20 bg-transparent">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-black text-[#111111] mb-4">

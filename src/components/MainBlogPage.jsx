@@ -86,7 +86,7 @@ export default function BlogPage() {
     <div className="w-full min-h-screen bg-[#080808]">
       {/* HERO SECTION */}
       <section
-        className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20 bg-white"
+        className="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-4 bg-white"
         style={{
           backgroundImage: `url(${PHero})`,
           backgroundSize: 'cover',

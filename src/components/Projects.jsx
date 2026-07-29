@@ -244,7 +244,7 @@ const Projects = () => {
       {/* ------------------ Hero Section ------------------ */}
       <section
         ref={sectionRef}
-        className="relative w-full min-h-[calc(100vh-5rem)] flex items-center justify-center px-6 md:px-[5%] py-12 lg:py-20 overflow-hidden bg-transparent"
+        className="relative w-full min-h-[calc(100vh-5rem)] flex items-center justify-center px-6 md:px-[5%] pb-12 lg:pb-20 pt-2 lg:pt-4 overflow-hidden bg-transparent"
       >
         {/* Subtle Decorative Background Elements */}
         <div className="absolute top-1/4 left-0 w-[550px] h-[550px] bg-[#E31D2E]/5 rounded-full blur-[140px] pointer-events-none" />

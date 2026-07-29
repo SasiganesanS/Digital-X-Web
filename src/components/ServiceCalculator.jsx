@@ -539,7 +539,7 @@ export default function ServiceCalculator() {
   };
 
   return (
-    <div className="bg-[#080808] min-h-screen text-white pt-24 overflow-hidden font-outfit">
+    <div className="bg-[#080808] min-h-screen text-white pt-0 overflow-hidden font-outfit">
       {/* ── Hero Section — Elevated Split Layout: Text Left, Interactive Showcase Right ── */}
       <section className="relative w-full min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden px-6 md:px-[5%] py-12 lg:py-20">
         {/* Subtle Decorative Background Elements (Section only) */}

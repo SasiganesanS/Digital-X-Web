@@ -251,7 +251,7 @@ const SoftwareMarketingCombo = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-24 pb-10">
+    <div className="min-h-screen bg-gray-50 pt-4 pb-10">
       <div className="w-[90%] max-w-[1280px] mx-auto">
         {/* Header */}
         <div className="text-center mb-16">

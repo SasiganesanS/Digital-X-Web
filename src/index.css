@@ -753,3 +753,59 @@ button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg,
 a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg {
   transform: translateX(6px) !important;
 }
+
+/* ===================================================================
+   Global Page & Hero Layout Spacing System
+   Ensures consistent, premium top spacing between the fixed navbar
+   and the first hero/banner section across all pages.
+   =================================================================== */
+:root {
+  /* 
+    Fixed Navbar top position: 1.5rem (24px) + pill height ~44px = ~68px bottom edge.
+    Desktop: ~48px gap below navbar -> 68px + 48px = 116px top offset.
+  */
+  --nav-bottom-edge: 68px;
+  --hero-top-offset: 116px;
+}
+
+@media (max-width: 1023px) {
+  :root {
+    /* Tablet: ~34px gap below navbar -> 66px + 34px = 100px top offset */
+    --nav-bottom-edge: 66px;
+    --hero-top-offset: 100px;
+  }
+}
+
+@media (max-width: 767px) {
+  :root {
+    /* Mobile: ~24px gap below navbar -> 60px + 24px = 84px top offset */
+    --nav-bottom-edge: 60px;
+    --hero-top-offset: 84px;
+  }
+}
+
+/* ── Global Reusable Page Container / Wrapper ── */
+.page-layout-wrapper {
+  padding-top: var(--hero-top-offset) !important;
+  min-height: 100vh;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* Adapt first hero sections to fill remaining viewport height gracefully */
+.page-layout-wrapper > section:first-of-type,
+.page-layout-wrapper > div:first-child > section:first-of-type,
+.page-layout-wrapper > main:first-child > section:first-of-type {
+  min-height: calc(100vh - var(--hero-top-offset));
+}
+
+.page-layout-wrapper section:first-of-type.h-screen,
+.page-layout-wrapper section:first-of-type.max-h-screen,
+.page-layout-wrapper section:first-of-type.max-h-\[100vh\],
+.page-layout-wrapper > div:first-child > section:first-of-type.h-screen,
+.page-layout-wrapper > div:first-child > section:first-of-type.max-h-screen,
+.page-layout-wrapper > div:first-child > section:first-of-type.max-h-\[100vh\] {
+  height: auto !important;
+  max-height: none !important;
+}
+

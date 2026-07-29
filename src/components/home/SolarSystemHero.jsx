@@ -120,7 +120,7 @@ const ServicesCoverflow = () => {
 
   /* ── Compute each card's 3D position in the circular ring ── */
   const angleStep = 360 / total;
-  const radius = 360; 
+  const radius = 360;
 
   const getCardStyle = (index) => {
     const STEP_PX = 180;
@@ -195,9 +195,8 @@ const ServicesCoverflow = () => {
 
   return (
     <div
-      className={`relative w-full flex flex-col items-center justify-center select-none overflow-hidden ${
-        isDragging ? "cursor-grabbing" : "cursor-grab"
-      }`}
+      className={`relative w-full flex flex-col items-center justify-center select-none overflow-hidden ${isDragging ? "cursor-grabbing" : "cursor-grab"
+        }`}
       style={{ minHeight: 460 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
@@ -337,11 +336,11 @@ const ServicesCoverflow = () => {
                   </div>
 
                   {/* Text (Only visible on active card) */}
-                  <div 
+                  <div
                     className="relative flex-1 flex flex-col justify-between px-3 py-2.5 transition-opacity duration-300"
-                    style={{ 
-                      opacity: s.isFront ? 1 : 0, 
-                      pointerEvents: s.isFront ? "auto" : "none" 
+                    style={{
+                      opacity: s.isFront ? 1 : 0,
+                      pointerEvents: s.isFront ? "auto" : "none"
                     }}
                   >
                     <div className="flex flex-col gap-1.5">

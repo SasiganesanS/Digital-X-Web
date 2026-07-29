@@ -49,7 +49,7 @@ const About = () => {
   return (
     <div className="min-h-screen bg-transparent" style={{ backgroundColor: "transparent" }}>
       {/* ── About Hero Section ── */}
-      <section className="relative h-screen min-h-[100vh] max-h-[100vh] flex items-center overflow-hidden bg-transparent py-16">
+      <section className="relative h-screen min-h-[100vh] max-h-[100vh] flex items-center overflow-hidden bg-transparent pb-16 pt-2 sm:pt-4">
         {/* Soft Background Glows */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <div

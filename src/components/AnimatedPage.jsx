@@ -23,6 +23,7 @@ const AnimatedPage = ({ children }) => {
       exit="out"
       variants={pageVariants}
       transition={pageTransition}
+      className="page-layout-wrapper"
       // Always fill the viewport with a transparent bg so the universe background shows through
       style={{ minHeight: "100vh", backgroundColor: "transparent" }}
     >

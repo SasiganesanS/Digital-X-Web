@@ -103,7 +103,7 @@ const HeroSection = () => {
       </div>
 
       {/* ── Content Block Layer ── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 pt-24 sm:pt-20 lg:pt-16 pb-10 lg:pb-0">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 pt-2 sm:pt-4 pb-10 lg:pb-0">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
 
           {/* ── LEFT: Text content + stats ── */}
