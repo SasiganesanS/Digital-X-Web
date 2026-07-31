@@ -644,18 +644,18 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover [class*="text-white"
   color: #FFFFFF !important;
 }
 
-/* Subtle highlight on the top edge on hover */
+/* Subtle highlight on the top edge on hover - excluded for rounded icon buttons & footer social links */
 .primary-btn::after,
-button[class*="bg-[#E31D2E]"]::after,
-a[class*="bg-[#E31D2E]"]::after,
-button[class*="bg-[#E8192C]"]::after,
-a[class*="bg-[#E8192C]"]::after,
-button[class*="bg-[#ef2029]"]::after,
-a[class*="bg-[#ef2029]"]::after,
-button[class*="bg-[#371445]"]::after,
-a[class*="bg-[#371445]"]::after,
-button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]::after,
-a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]::after {
+button[class*="bg-[#E31D2E]"]:not(footer *):not([class*="rounded-full"])::after,
+a[class*="bg-[#E31D2E]"]:not(footer *):not([class*="rounded-full"])::after,
+button[class*="bg-[#E8192C]"]:not(footer *):not([class*="rounded-full"])::after,
+a[class*="bg-[#E8192C]"]:not(footer *):not([class*="rounded-full"])::after,
+button[class*="bg-[#ef2029]"]:not(footer *):not([class*="rounded-full"])::after,
+a[class*="bg-[#ef2029]"]:not(footer *):not([class*="rounded-full"])::after,
+button[class*="bg-[#371445]"]:not(footer *):not([class*="rounded-full"])::after,
+a[class*="bg-[#371445]"]:not(footer *):not([class*="rounded-full"])::after,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:not(footer *):not([class*="rounded-full"])::after,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:not(footer *):not([class*="rounded-full"])::after {
   content: "";
   position: absolute;
   top: 0;
@@ -670,17 +670,28 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]::after {
 }
 
 .primary-btn:hover::after,
-button[class*="bg-[#E31D2E]"]:hover::after,
-a[class*="bg-[#E31D2E]"]:hover::after,
-button[class*="bg-[#E8192C]"]:hover::after,
-a[class*="bg-[#E8192C]"]:hover::after,
-button[class*="bg-[#ef2029]"]:hover::after,
-a[class*="bg-[#ef2029]"]:hover::after,
-button[class*="bg-[#371445]"]:hover::after,
-a[class*="bg-[#371445]"]:hover::after,
-button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover::after,
-a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover::after {
+button[class*="bg-[#E31D2E]"]:not(footer *):not([class*="rounded-full"]):hover::after,
+a[class*="bg-[#E31D2E]"]:not(footer *):not([class*="rounded-full"]):hover::after,
+button[class*="bg-[#E8192C]"]:not(footer *):not([class*="rounded-full"]):hover::after,
+a[class*="bg-[#E8192C]"]:not(footer *):not([class*="rounded-full"]):hover::after,
+button[class*="bg-[#ef2029]"]:not(footer *):not([class*="rounded-full"]):hover::after,
+a[class*="bg-[#ef2029]"]:not(footer *):not([class*="rounded-full"]):hover::after,
+button[class*="bg-[#371445]"]:not(footer *):not([class*="rounded-full"]):hover::after,
+a[class*="bg-[#371445]"]:not(footer *):not([class*="rounded-full"]):hover::after,
+button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:not(footer *):not([class*="rounded-full"]):hover::after,
+a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:not(footer *):not([class*="rounded-full"]):hover::after {
   opacity: 1;
+}
+
+/* Explicit Reset: Remove any pseudo-element top lines or artifacts on footer social media icons */
+footer a[class*="rounded-full"]::after,
+footer a[class*="rounded-full"]::before,
+footer .social-icon-link::after,
+footer .social-icon-link::before {
+  content: none !important;
+  display: none !important;
+  opacity: 0 !important;
+  background: none !important;
 }
 
 /* Active State compression */

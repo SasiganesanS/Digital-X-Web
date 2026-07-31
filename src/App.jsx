@@ -38,6 +38,11 @@ import PlatformPlanPage from "./components/PlatformPlanPage";
 import CinematicUniverse from "./components/CinematicUniverse";
 import ScrollToTop from "./components/ScrollToTop";
 
+// Legal Page Imports
+import PrivacyPolicy from "./components/legal/PrivacyPolicy";
+import TermsAndConditions from "./components/legal/TermsAndConditions";
+import CookiePolicy from "./components/legal/CookiePolicy";
+
 // Test Home Components
 import Hero from "./components/test-home/Hero";
 import TrustedBy from "./components/test-home/TrustedBy";
@@ -265,6 +270,56 @@ const AppRoutes = () => {
         element={
           <AnimatedPage>
             <ProjectCaseStudy />
+          </AnimatedPage>
+        }
+      />
+
+      {/* --- Legal Pages --- */}
+      <Route
+        path="/privacy-policy"
+        element={
+          <AnimatedPage>
+            <PrivacyPolicy />
+          </AnimatedPage>
+        }
+      />
+      <Route
+        path="/privacy"
+        element={
+          <AnimatedPage>
+            <PrivacyPolicy />
+          </AnimatedPage>
+        }
+      />
+      <Route
+        path="/terms-and-conditions"
+        element={
+          <AnimatedPage>
+            <TermsAndConditions />
+          </AnimatedPage>
+        }
+      />
+      <Route
+        path="/terms"
+        element={
+          <AnimatedPage>
+            <TermsAndConditions />
+          </AnimatedPage>
+        }
+      />
+      <Route
+        path="/cookie-policy"
+        element={
+          <AnimatedPage>
+            <CookiePolicy />
+          </AnimatedPage>
+        }
+      />
+      <Route
+        path="/cookies"
+        element={
+          <AnimatedPage>
+            <CookiePolicy />
           </AnimatedPage>
         }
       />

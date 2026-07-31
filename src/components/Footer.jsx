@@ -264,7 +264,7 @@ const Footer = ({ setShowContactForm }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={social.label}
-                  className="w-10 h-10 rounded-full border border-white/[0.08] bg-[#141414] flex items-center justify-center text-[#9CA3AF] hover:text-white hover:border-[#E31D2E] hover:bg-[#E31D2E]/20 hover:-translate-y-1 hover:scale-105 hover:rotate-6 hover:shadow-[0_8px_25px_rgba(227,29,46,0.3)] transition-all duration-300"
+                  className="social-icon-link w-10 h-10 rounded-full border border-white/[0.08] bg-[#141414] flex items-center justify-center text-[#9CA3AF] hover:text-white hover:border-[#E31D2E] hover:bg-[#E31D2E]/20 hover:-translate-y-1 hover:scale-105 hover:rotate-6 hover:shadow-[0_8px_25px_rgba(227,29,46,0.3)] transition-all duration-300 relative overflow-hidden"
                 >
                   <SocialIcon size={15} />
                 </a>
@@ -288,18 +288,18 @@ const Footer = ({ setShowContactForm }) => {
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
           </a>
           <div className="flex items-center gap-3">
-            <Link to="/privacy" className="group relative hover:text-white transition-colors">
+            <Link to="/privacy-policy" className="group relative hover:text-white transition-colors">
               <span>Privacy Policy</span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
             </Link>
             <span className="text-white/20">•</span>
-            <Link to="/terms" className="group relative hover:text-white transition-colors">
-              <span>Terms</span>
+            <Link to="/terms-and-conditions" className="group relative hover:text-white transition-colors">
+              <span>Terms & Conditions</span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
             </Link>
             <span className="text-white/20">•</span>
-            <Link to="/terms" className="group relative hover:text-white transition-colors">
-              <span>Cookies</span>
+            <Link to="/cookie-policy" className="group relative hover:text-white transition-colors">
+              <span>Cookie Policy</span>
               <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
             </Link>
           </div>
