@@ -120,14 +120,15 @@ const PARTNERS = [
 const LOOPED_PARTNERS = [...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS];
 
 // ── Services Hero Helper Components ──
-function AnimatedPriceDisplay({ value }) {
-  const [displayValue, setDisplayValue] = useState(value);
+function AnimatedPriceDisplay({ value = 5000 }) {
+  const safeEndValue = typeof value === 'number' && !isNaN(value) ? value : 5000;
+  const [displayValue, setDisplayValue] = useState(safeEndValue);
 
   useEffect(() => {
     let startTimestamp = null;
-    const duration = 800; // ms
-    const startValue = displayValue;
-    const endValue = value;
+    const duration = 800;
+    const startValue = typeof displayValue === 'number' && !isNaN(displayValue) ? displayValue : safeEndValue;
+    const endValue = safeEndValue;
     let animFrameId = null;
 
     if (startValue === endValue) return;
@@ -136,7 +137,8 @@ function AnimatedPriceDisplay({ value }) {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / duration, 1);
       const easeOut = 1 - Math.pow(1 - progress, 3);
-      setDisplayValue(Math.floor(startValue + (endValue - startValue) * easeOut));
+      const current = Math.floor(startValue + (endValue - startValue) * easeOut);
+      setDisplayValue(isNaN(current) ? endValue : current);
       if (progress < 1) {
         animFrameId = requestAnimationFrame(step);
       } else {
@@ -149,12 +151,14 @@ function AnimatedPriceDisplay({ value }) {
     return () => {
       if (animFrameId) cancelAnimationFrame(animFrameId);
     };
-  }, [value]);
+  }, [safeEndValue]);
+
+  const numToFormat = typeof displayValue === 'number' && !isNaN(displayValue) ? displayValue : 5000;
 
   return (
     <div className="flex items-baseline gap-1 text-4xl sm:text-[2.75rem] font-black text-[#111111] tracking-tight">
       <span className="text-[#E31D2E] text-2xl sm:text-3xl font-black">₹</span>
-      <span>{displayValue.toLocaleString()}</span>
+      <span>{numToFormat.toLocaleString()}</span>
     </div>
   );
 }
@@ -523,21 +527,37 @@ export default function ServiceCalculator() {
     return sum;
   }, [selectedItems]);
 
-  const handleWhatsAppClick = () => {
-    let message = `Hello Praskla DigitalX, I’m interested in your marketing services. Breakdown:\n\nBase Fee: ₹5,000\n`;
-    if (Array.isArray(selectedItems)) {
+  const handleGetProposalClick = () => {
+    let message = `Hello Praskla DigitalX, I’m interested in your marketing services proposal.\n\n`;
+    message += `📋 *PLAN SUMMARY*\n`;
+    message += `• Base Setup Fee: ₹5,000\n`;
+    
+    if (Array.isArray(selectedItems) && selectedItems.length > 0) {
+      message += `\n*Selected Pillars (${selectedItems.length}):*\n`;
       selectedItems.forEach(i => {
         if (i && i.platform && i.plan) {
           const pTitle = i.platform.title || 'Service Pillar';
           const planTitle = i.plan.title || 'Plan';
           const cost = (i.platform.price || 0) + (i.plan.price || 0);
-          message += `- ${pTitle} (${planTitle}): ₹${cost.toLocaleString()}\n`;
+          message += `• ${pTitle} — ${planTitle}: ₹${cost.toLocaleString()}\n`;
         }
       });
+    } else {
+      message += `• Custom Plan Inquiry\n`;
     }
-    message += `\nTotal Estimate: ₹${(total || 0).toLocaleString()}`;
-    window.open(`https://wa.me/919500690740?text=${encodeURIComponent(message)}`, "_blank");
+    
+    message += `\n💰 *Total Investment Est.:* ₹${(total || 0).toLocaleString()}\n`;
+    message += `\nPlease provide a detailed proposal and scope breakdown for my project.`;
+
+    try {
+      window.open(`https://wa.me/919500690740?text=${encodeURIComponent(message)}`, "_blank");
+    } catch (err) {
+      console.error('WhatsApp open error:', err);
+    }
+    setShowContactForm(true);
   };
+
+  const handleWhatsAppClick = handleGetProposalClick;
 
   return (
     <div className="bg-[#080808] min-h-screen text-white pt-0 overflow-hidden font-outfit">
@@ -813,12 +833,12 @@ export default function ServiceCalculator() {
 
             {/* Large Heading */}
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#111111] tracking-tight mb-4">
-              Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
+Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
             </h2>
 
             {/* Small Supporting Paragraph */}
             <p className="text-[#575757] text-base md:text-lg max-w-xl font-medium">
-              Select the services you need and instantly preview your estimated investment.
+              Select the services you need and instantly preview your investment.
             </p>
           </motion.div>
 
@@ -898,38 +918,60 @@ export default function ServiceCalculator() {
               </div>
             </div>
 
-            {/* Right Column: Sticky Summary Card */}
+            {/* Right Column: Redesigned Dashboard-Style Sticky Summary Card */}
             <div className="lg:col-span-5">
               <div className="sticky top-28">
-                <div className="clay-card p-6 sm:p-8 rounded-[2.25rem] border border-white/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] relative overflow-hidden">
-                  {/* Light Inner Highlight */}
-                  <div className="absolute inset-0 rounded-[2.25rem] bg-gradient-to-br from-white/90 via-transparent to-transparent pointer-events-none" />
+                <div className="bg-white p-6 sm:p-7 rounded-[2.25rem] border border-gray-200/80 shadow-[0_20px_50px_rgba(17,17,17,0.06)] relative overflow-hidden">
+                  
+                  {/* Subtle top accent gradient */}
+                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#E31D2E] via-red-400 to-[#E31D2E]" />
 
-                  <div className="relative z-10 space-y-6">
-                    {/* Header */}
-                    <div className="flex items-center justify-between pb-4 border-b border-black/5">
-                      <h3 className="text-xs font-black text-[#575757] uppercase tracking-[0.2em] flex items-center gap-2">
-                        <span className="w-6 h-[1.5px] bg-[#E31D2E]" />
-                        Plan Summary
+                  <div className="relative z-10 space-y-5">
+                    {/* Header with Inline Status Badge */}
+                    <div className="flex items-center justify-between pb-4 border-b border-gray-100">
+                      <h3 className="text-xs font-black text-[#111111] uppercase tracking-[0.2em] flex items-center gap-2">
+                        <span className="w-2 h-2 rounded-full bg-[#E31D2E]" />
+                        PLAN SUMMARY
                       </h3>
-                      <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/15">
-                        {Array.isArray(selectedItems) ? selectedItems.length : 0} {selectedItems?.length === 1 ? "Pillar" : "Pillars"}
+                      <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-red-50 text-[#E31D2E] border border-red-100 shadow-2xs">
+                        {Array.isArray(selectedItems) ? selectedItems.length : 0} {selectedItems?.length === 1 ? "Selected Pillar" : "Selected Pillars"}
                       </span>
                     </div>
 
-                    {/* Base Setup Fee */}
-                    <div className="flex justify-between items-center p-4 px-5 bg-white/70 rounded-2xl border border-white/90 shadow-sm">
-                      <span className="text-[#575757] font-bold tracking-wider uppercase text-[10px] sm:text-xs">Base Setup Fee</span>
-                      <span className="font-black text-[#111111] text-sm sm:text-base">₹5,000</span>
+                    {/* Premium Base Setup Fee Card */}
+                    <div className="flex justify-between items-center p-4 px-4.5 bg-gray-50/80 rounded-2xl border border-gray-100/90 shadow-2xs">
+                      <div>
+                        <div className="text-[#111111] font-extrabold text-xs sm:text-sm tracking-tight">
+                          Base Setup Fee
+                        </div>
+                        <div className="text-[#6B7280] text-[11px] font-normal mt-0.5">
+                          One-time onboarding & planning fee
+                        </div>
+                      </div>
+                      <span className="font-black text-[#111111] text-base sm:text-lg">₹5,000</span>
                     </div>
 
-                    {/* Selected Item Chips / Cards */}
-                    <div className="max-h-[340px] overflow-y-auto pr-1 space-y-3 custom-scrollbar">
-                      <AnimatePresence>
+                    {/* Selected Services Area with Elegant Empty State */}
+                    <div className="max-h-[320px] overflow-y-auto pr-1 space-y-2.5 custom-scrollbar">
+                      <AnimatePresence mode="popLayout">
                         {!Array.isArray(selectedItems) || selectedItems.length === 0 ? (
-                          <div className="py-8 text-center text-[#8B8B8B] text-xs font-medium border border-dashed border-gray-300/60 rounded-2xl p-4">
-                            No service pillars selected yet. Click any pillar to customize your plan.
-                          </div>
+                          <motion.div
+                            key="empty-state"
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.95 }}
+                            className="py-8 px-4 text-center border border-dashed border-gray-200 rounded-2xl bg-gray-50/40 flex flex-col items-center justify-center space-y-2"
+                          >
+                            <div className="w-11 h-11 rounded-full bg-red-50/80 border border-red-100 flex items-center justify-center text-[#E31D2E] shadow-2xs">
+                              <FiLayers className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <h4 className="text-xs font-bold text-[#111111]">No services selected yet</h4>
+                              <p className="text-[11px] text-[#6B7280] font-normal mt-1 leading-relaxed max-w-[240px] mx-auto">
+                                Choose one or more service pillars from the left to build your custom proposal.
+                              </p>
+                            </div>
+                          </motion.div>
                         ) : (
                           selectedItems.map((item, idx) => {
                             if (!item || !item.platform || !item.plan) return null;
@@ -940,29 +982,34 @@ export default function ServiceCalculator() {
                             return (
                               <motion.div
                                 key={`${item.platform.id || idx}-${item.plan.id || idx}`}
-                                initial={{ opacity: 0, y: 15, scale: 0.95 }}
+                                initial={{ opacity: 0, y: 12, scale: 0.96 }}
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                                exit={{ opacity: 0, scale: 0.9 }}
-                                transition={{ duration: 0.3 }}
-                                className="p-4.5 rounded-2xl bg-white/80 border border-white/90 space-y-2 group shadow-sm hover:border-[#E31D2E]/30 transition-all"
+                                exit={{ opacity: 0, scale: 0.9, y: -10 }}
+                                transition={{ duration: 0.2 }}
+                                className="p-3.5 px-4 rounded-xl bg-gray-50/80 border border-gray-100 shadow-2xs hover:border-red-200 transition-all flex items-center justify-between group"
                               >
-                                <div className="flex justify-between items-start">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-8 h-8 rounded-lg bg-red-50 border border-red-100 flex items-center justify-center text-[#E31D2E] shrink-0 font-bold">
+                                    <FiCheckCircle className="w-4 h-4" />
+                                  </div>
                                   <div>
-                                    <div className="text-xs sm:text-sm font-black text-[#111111] uppercase tracking-tight">{platformTitle}</div>
-                                    <div className="text-[#E31D2E] text-[11px] font-extrabold mt-1 inline-flex items-center gap-1">
+                                    <div className="text-xs sm:text-sm font-extrabold text-[#111111] tracking-tight">{platformTitle}</div>
+                                    <div className="text-[#E31D2E] text-[10px] font-bold mt-0.5 inline-flex items-center gap-1">
                                       <MdStars className="text-xs" />
                                       {planTitle}
                                     </div>
                                   </div>
-                                  <div className="text-right">
-                                    <div className="text-xs sm:text-sm font-black text-[#111111]">₹{itemPrice.toLocaleString()}</div>
-                                    <button
-                                      onClick={() => setSelectedItems(prev => prev.filter((_, i) => i !== idx))}
-                                      className="text-[#8B8B8B] hover:text-[#E31D2E] text-[10px] uppercase font-black mt-1 tracking-wider transition-colors"
-                                    >
-                                      Remove
-                                    </button>
-                                  </div>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                  <span className="text-xs sm:text-sm font-black text-[#111111]">₹{itemPrice.toLocaleString()}</span>
+                                  <button
+                                    type="button"
+                                    onClick={() => setSelectedItems(prev => prev.filter((_, i) => i !== idx))}
+                                    className="w-7 h-7 rounded-full bg-gray-200/60 hover:bg-red-50 text-gray-400 hover:text-[#E31D2E] flex items-center justify-center transition-colors"
+                                    title="Remove service"
+                                  >
+                                    <FaTimesCircle className="text-xs" />
+                                  </button>
                                 </div>
                               </motion.div>
                             );
@@ -971,42 +1018,52 @@ export default function ServiceCalculator() {
                       </AnimatePresence>
                     </div>
 
-                    {/* Included Deliverables Quick Highlights */}
-                    <div className="pt-2">
-                      <div className="grid grid-cols-2 gap-2 text-[10px] font-bold text-[#575757]">
+                    {/* Included Benefits Two-Column Checklist */}
+                    <div className="p-3.5 bg-gray-50/70 rounded-2xl border border-gray-100">
+                      <div className="grid grid-cols-2 gap-2 text-[11px] font-semibold text-[#374151]">
                         <div className="flex items-center gap-1.5">
-                          <FiCheckCircle className="text-[#E31D2E] shrink-0" />
+                          <FiCheckCircle className="text-[#E31D2E] shrink-0 w-3.5 h-3.5" />
                           <span>Dedicated Support</span>
                         </div>
-                        <div className="flex items-center gap-1.5">
-                          <FiCheckCircle className="text-[#E31D2E] shrink-0" />
+                        <div className="flex items-center gap-2">
+                          <FiCheckCircle className="text-[#E31D2E] shrink-0 w-3.5 h-3.5" />
                           <span>Strategy & Audits</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <FiCheckCircle className="text-[#E31D2E] shrink-0 w-3.5 h-3.5" />
+                          <span>Timeline Planning</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <FiCheckCircle className="text-[#E31D2E] shrink-0 w-3.5 h-3.5" />
+                          <span>Monthly Reporting</span>
                         </div>
                       </div>
                     </div>
 
-                    {/* Price Focal Point & Proposal CTA */}
-                    <div className="pt-6 border-t border-black/5 space-y-6">
-                      <div>
-                        <div className="text-[#575757] text-[10px] font-black uppercase tracking-[0.25em] mb-1">
-                          Investment Est.
+                    {/* Investment Estimate & Proposal CTA */}
+                    <div className="pt-4 border-t border-gray-100 space-y-4">
+                      <div className="bg-gray-50/90 p-4 rounded-2xl border border-gray-100">
+                        <div className="text-[#6B7280] text-[10px] font-bold uppercase tracking-[0.2em] mb-1">
+                          Estimated Investment
                         </div>
                         <AnimatedPriceDisplay value={total} />
-                        <div className="text-[#8B8B8B] text-[10px] font-bold uppercase tracking-wider mt-1">
-                          Estimated project investment
+                        <div className="text-[#9CA3AF] text-[10px] font-medium mt-1">
+                          Includes base setup fee & selected pillars
                         </div>
                       </div>
 
+                      {/* CTA Button: STAYS GREEN ON HOVER */}
                       <button
-                        onClick={handleWhatsAppClick}
-                        className="w-full py-4.5 sm:py-5 rounded-full bg-[#25D366] hover:bg-[#111111] text-white font-black flex items-center justify-center gap-3 transition-all duration-300 shadow-[0_10px_25px_rgba(37,211,102,0.22)] hover:shadow-[0_15px_35px_rgba(17,17,17,0.2)] hover:-translate-y-1 hover:scale-[1.01] active:scale-95 text-xs sm:text-sm uppercase tracking-wider group"
+                        type="button"
+                        onClick={handleGetProposalClick}
+                        className="w-full py-3.5 sm:py-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] active:bg-[#1eb757] text-white font-extrabold flex items-center justify-center gap-2.5 transition-all duration-200 shadow-[0_10px_25px_rgba(37,211,102,0.25)] hover:shadow-[0_14px_32px_rgba(37,211,102,0.4)] hover:-translate-y-0.5 hover:scale-[1.005] active:scale-[0.98] text-xs sm:text-sm uppercase tracking-wider group"
                       >
                         <IoLogoWhatsapp className="text-xl sm:text-2xl" />
                         <span>GET DETAILED PROPOSAL</span>
-                        <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
+                        <span className="transition-transform duration-200 group-hover:translate-x-1 font-bold">→</span>
                       </button>
 
-                      <p className="text-center text-[#8B8B8B] text-[10px] uppercase font-black tracking-widest">
+                      <p className="text-center text-[#9CA3AF] text-[10px] font-semibold uppercase tracking-widest pt-1">
                         Final pricing subject to specific scope requirements
                       </p>
                     </div>
@@ -1016,9 +1073,9 @@ export default function ServiceCalculator() {
             </div>
           </div>
         </div>
-      </div>
+        </div>
 
-      {/* ── Partners ── */}
+      {/* ── Ecosystem Partners ── */}
       <section className="py-12 sm:py-14 lg:py-16 border-t border-gray-200 bg-transparent overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
           <h2 className="text-center text-[#575757] font-black uppercase tracking-[0.4em] text-xs mb-16">Ecosystem Partners</h2>

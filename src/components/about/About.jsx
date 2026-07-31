@@ -236,80 +236,6 @@ const About = () => {
         media={media}
       />
 
-      {/* ═══════════════════════════════════════════════
-          WHO WE ARE — Praskla Digital X identity section
-      ═══════════════════════════════════════════════ */}
-      <div
-        className="relative py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent"
-      >
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
-
-            {/* Left side text container */}
-            <motion.div
-              className="space-y-7"
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            >
-              {/* Eyebrow badge */}
-              <div
-                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]"
-              >
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E31D2E]" />
-                </span>
-                <span className="relative text-[#111111] text-xs sm:text-sm font-bold tracking-[0.3em] uppercase">Who we are</span>
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#111111] leading-tight">
-                A Team Built for{" "}
-                <span className="text-[#E31D2E]">Impact and Scale</span>
-              </h2>
-
-              <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium">
-                At PRASKLA Digital X, we bring together creative visual creators, copywriting experts,
-                ad strategists, and performance analytics professionals.
-              </p>
-
-              <p className="text-[#575757] text-base leading-relaxed">
-                By bridging strategy, visual production, and media buying, we eliminate the friction 
-                between branding and ROI — making campaign scale faster and more predictable for your company.
-              </p>
-            </motion.div>
-
-            {/* Right side metric grid */}
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { count: "15+", text: "Happy Brands Reached" },
-                { count: "20+", text: "Successful Projects Executed" },
-                { count: "20+", text: "Ecosystem Collaborations" },
-                { count: "98%", text: "Client Partnership Retention" },
-              ].map((metric, i) => (
-                <motion.div
-                  key={i}
-                  className="clay-card rounded-2xl p-6 md:p-8 flex flex-col justify-center items-center text-center"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
-                  <span className="text-[#E31D2E] text-3xl sm:text-4xl font-black mb-2">{metric.count}</span>
-                  <span className="text-[#575757] text-xs sm:text-sm leading-relaxed font-bold">{metric.text}</span>
-                </motion.div>
-              ))}
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <section className="relative overflow-hidden bg-transparent">
-        <Teams />
-      </section>
-
       {/* Vision & Mission Section */}
       <section className="relative py-16 overflow-visible bg-transparent">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
@@ -390,6 +316,80 @@ const About = () => {
             </div>
           </motion.div>
         </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
+          WHO WE ARE — Praskla Digital X identity section
+      ═══════════════════════════════════════════════ */}
+      <div
+        className="relative py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent"
+      >
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+
+            {/* Left side text container */}
+            <motion.div
+              className="space-y-7"
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
+            >
+              {/* Eyebrow badge */}
+              <div
+                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]"
+              >
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E31D2E]" />
+                </span>
+                <span className="relative text-[#111111] text-xs sm:text-sm font-bold tracking-[0.3em] uppercase">Who we are</span>
+              </div>
+
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#111111] leading-tight">
+                A Team Built for{" "}
+                <span className="text-[#E31D2E]">Impact and Scale</span>
+              </h2>
+
+              <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium">
+                At PRASKLA Digital X, we bring together creative visual creators, copywriting experts,
+                ad strategists, and performance analytics professionals.
+              </p>
+
+              <p className="text-[#575757] text-base leading-relaxed">
+                By bridging strategy, visual production, and media buying, we eliminate the friction 
+                between branding and ROI — making campaign scale faster and more predictable for your company.
+              </p>
+            </motion.div>
+
+            {/* Right side metric grid */}
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { count: "15+", text: "Happy Brands Reached" },
+                { count: "20+", text: "Successful Projects Executed" },
+                { count: "20+", text: "Ecosystem Collaborations" },
+                { count: "98%", text: "Client Partnership Retention" },
+              ].map((metric, i) => (
+                <motion.div
+                  key={i}
+                  className="clay-card rounded-2xl p-6 md:p-8 flex flex-col justify-center items-center text-center"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                >
+                  <span className="text-[#E31D2E] text-3xl sm:text-4xl font-black mb-2">{metric.count}</span>
+                  <span className="text-[#575757] text-xs sm:text-sm leading-relaxed font-bold">{metric.text}</span>
+                </motion.div>
+              ))}
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <section className="relative overflow-hidden bg-transparent">
+        <Teams />
       </section>
 
       {/* What We Bring to the Table — Expertise Section */}
