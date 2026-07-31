@@ -838,3 +838,37 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg {
     padding-bottom: var(--section-py-desktop) !important;
   }
 }
+
+/* ===================================================================
+   Global Standardized Content Container & Grid Alignment System
+   Enforces identical left/right boundaries & grid alignment across all sections.
+   =================================================================== */
+.site-container {
+  width: 100%;
+  max-width: 80rem; /* 1280px / max-w-7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;       /* px-4 (16px) */
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .site-container {
+    padding-left: 1.5rem;   /* sm:px-6 (24px) */
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .site-container {
+    padding-left: 2.5rem;   /* md:px-10 (40px) */
+    padding-right: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .site-container {
+    padding-left: 4rem;      /* lg:px-16 (64px) */
+    padding-right: 4rem;
+  }
+}

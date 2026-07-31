@@ -40,7 +40,9 @@ const SERVICES_LIST = [
 
 const Footer = ({ setShowContactForm }) => {
   return (
-    <footer id="contact" className="relative w-[92%] sm:w-[90%] md:w-[88%] max-w-[1280px] mx-auto mt-20 mb-16 z-10 bg-[#0B0B0B] bg-gradient-to-b from-[#171717] via-[#121212] to-[#0B0B0B] rounded-[32px] border border-white/[0.06] shadow-[0_30px_70px_rgba(0,0,0,0.6)] overflow-hidden p-8 sm:p-12 lg:p-16 text-white dark-surface">
+    <footer id="contact" className="relative w-full py-10 sm:py-12 z-10">
+      <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
+        <div className="relative w-full bg-[#0B0B0B] bg-gradient-to-b from-[#171717] via-[#121212] to-[#0B0B0B] rounded-[32px] border border-white/[0.06] shadow-[0_30px_70px_rgba(0,0,0,0.6)] overflow-hidden p-8 sm:p-12 lg:p-16 text-white dark-surface">
       {/* Background ambient red glow & soft vignette */}
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#E31D2E]/8 blur-[140px] pointer-events-none rounded-full" />
       <div className="absolute bottom-0 right-0 w-[450px] h-[450px] bg-[#E31D2E]/5 blur-[120px] pointer-events-none rounded-full" />
@@ -303,7 +305,9 @@ const Footer = ({ setShowContactForm }) => {
           </div>
         </div>
       </div>
-    </footer>
+    </div>
+  </div>
+</footer>
   );
 };
 

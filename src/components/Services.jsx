@@ -19,7 +19,7 @@ const Services = () => {
       {/* Unified: intro copy (left) + Core Expertise grid (right) + glitter */}
       <section
         id="services-main"
-        className="services-unified-section relative w-full flex flex-col justify-center overflow-hidden px-[5%] py-12 sm:py-14 lg:py-16 scroll-mt-24"
+        className="services-unified-section relative w-full flex flex-col justify-center overflow-hidden py-12 sm:py-14 lg:py-16 scroll-mt-24"
       >
         <div className="absolute inset-0 bg-gradient-to-br from-[#050505] via-[#080808] to-[#1a0305] pointer-events-none" />
         <div className="services-glitter-layer absolute inset-0 pointer-events-none z-[1]" aria-hidden />
@@ -49,7 +49,7 @@ const Services = () => {
           />
         ))}
 
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-14 xl:gap-16 items-start lg:items-center">
             <motion.div
               initial={{ opacity: 0, x: -28 }}
@@ -160,8 +160,8 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="px-[5%] py-12 md:py-16 pb-20 bg-[#080808]">
-        <div className="max-w-2xl mx-auto">
+      <section className="py-12 sm:py-14 lg:py-16 bg-[#080808]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

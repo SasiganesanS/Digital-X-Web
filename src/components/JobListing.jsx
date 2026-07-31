@@ -320,8 +320,8 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
 
   return (
     <>
-      <div className="bg-transparent py-4 sm:py-6 px-4 sm:px-8">
-        <div className="max-w-5xl mx-auto">
+      <div className="bg-transparent py-4 sm:py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Dynamic Animated Job Count Header */}
           <div className="flex items-center justify-between mb-6 sm:mb-8 pb-4 border-b border-neutral-200/60">
             <div className="flex items-center gap-3">

@@ -213,7 +213,7 @@ const Careers = () => {
       {/* Job search section */}
       <section
         ref={jobSearchRef}
-        className="relative bg-transparent py-12 sm:py-14 lg:py-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+        className="relative bg-transparent py-12 sm:py-14 lg:py-16 overflow-hidden"
         aria-label="Job search and filters"
       >
         {/* Soft background ambient radial gradients & blurred circles */}
@@ -232,7 +232,7 @@ const Careers = () => {
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#E31D2E]/4 rounded-full blur-3xl" />
         </div>
 
-        <div className="max-w-5xl mx-auto space-y-10 sm:space-y-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 space-y-10 sm:space-y-12">
           {/* Section Heading Block */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

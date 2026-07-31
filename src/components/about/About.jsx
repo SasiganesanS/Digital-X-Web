@@ -242,7 +242,7 @@ const About = () => {
       <div
         className="relative py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent"
       >
-        <div className="relative z-10 w-[90%] max-w-[1280px] mx-auto">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
 
             {/* Left side text container */}
@@ -312,7 +312,7 @@ const About = () => {
 
       {/* Vision & Mission Section */}
       <section className="relative py-16 overflow-visible bg-transparent">
-        <div className="relative z-10 w-[90%] max-w-6xl mx-auto">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Section Header */}
           <div className="text-center mb-12">
             <div className="flex justify-center">
@@ -394,7 +394,7 @@ const About = () => {
 
       {/* What We Bring to the Table — Expertise Section */}
       <section className="relative w-full py-12 sm:py-14 lg:py-16 bg-transparent overflow-hidden">
-        <div className="relative z-10 w-[92%] max-w-7xl mx-auto px-6">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="text-center mb-16">
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
@@ -525,7 +525,7 @@ const About = () => {
 
       {/* Explore Our Services CTA */}
       <div className="relative py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent">
-        <div className="relative z-10 w-[90%] max-w-4xl mx-auto text-center">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}

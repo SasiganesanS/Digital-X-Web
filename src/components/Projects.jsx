@@ -309,7 +309,7 @@ const Projects = () => {
       />
 
       {/* ------------------ Our Workflow Process Section ------------------ */}
-      <section className="projects-empower-section relative bg-transparent py-12 sm:py-14 lg:py-16 px-6 md:px-[5%] overflow-hidden">
+      <section className="projects-empower-section relative bg-transparent py-12 sm:py-14 lg:py-16 overflow-hidden">
         {/* Subtle Decorative Background Elements */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#E31D2E]/4 rounded-full blur-[160px] pointer-events-none" />
         <div
@@ -317,7 +317,7 @@ const Projects = () => {
           style={{ backgroundImage: "radial-gradient(circle,#111 1px,transparent 1px)", backgroundSize: "40px 40px" }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -438,7 +438,7 @@ const Projects = () => {
       </section>
 
       {/* ------------------ Featured Case Studies Section ------------------ */}
-      <section className="relative bg-transparent px-6 md:px-[5%] py-12 sm:py-14 lg:py-16 overflow-hidden">
+      <section className="relative bg-transparent py-12 sm:py-14 lg:py-16 overflow-hidden">
         {/* Decorative Background Elements */}
         <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#E31D2E]/4 rounded-full blur-[150px] pointer-events-none" />
         <div
@@ -446,7 +446,7 @@ const Projects = () => {
           style={{ backgroundImage: "radial-gradient(circle,#111 1px,transparent 1px)", backgroundSize: "40px 40px" }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}

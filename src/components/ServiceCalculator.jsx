@@ -629,7 +629,7 @@ export default function ServiceCalculator() {
       />
 
       {/* ── Auto-Scrolling Marquee Section with manual arrow/dot control ── */}
-      <section id="expertise" className="relative w-full px-[5%] py-20 pb-32 overflow-hidden bg-transparent">
+      <section id="expertise" className="relative w-full py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent">
         {/* Subtle Decorative Background Elements (Section only) */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#E31D2E]/4 rounded-full blur-[160px] pointer-events-none" />
         <div
@@ -637,7 +637,7 @@ export default function ServiceCalculator() {
           style={{ backgroundImage: "radial-gradient(circle,#111 1px,transparent 1px)", backgroundSize: "40px 40px" }}
         />
 
-        <div className="relative z-10 w-full max-w-[1400px] mx-auto min-h-[520px]">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 min-h-[520px]">
           
           {/* Section Heading & Subtitle */}
           <motion.div
@@ -782,7 +782,7 @@ export default function ServiceCalculator() {
       {/* ── Pricing Calculator / Growth Package Estimator ── */}
       <div
         ref={calculatorRef}
-        className="relative px-6 md:px-[5%] py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent"
+        className="relative py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent"
       >
         {/* Subtle Decorative Background Elements */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#E31D2E]/4 rounded-full blur-[160px] pointer-events-none" />
@@ -791,7 +791,7 @@ export default function ServiceCalculator() {
           style={{ backgroundImage: "radial-gradient(circle,#111 1px,transparent 1px)", backgroundSize: "40px 40px" }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
