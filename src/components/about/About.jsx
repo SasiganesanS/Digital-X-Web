@@ -7,7 +7,9 @@ import {
   TrendingUp,
   Eye,
   Target,
-  Award
+  Award,
+  Video,
+  ArrowRight
 } from "lucide-react";
 import pyLogo from "../../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
 import { useState, useEffect } from "react";
@@ -393,18 +395,23 @@ const About = () => {
       </section>
 
       {/* What We Bring to the Table — Expertise Section */}
-      <section className="relative w-full py-12 sm:py-14 lg:py-16 bg-transparent overflow-hidden">
+      <section className="relative w-full py-16 sm:py-20 lg:py-24 bg-transparent overflow-hidden">
+        {/* Subtle Ambient Radial Red Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#E31D2E]/6 blur-[130px] pointer-events-none rounded-full" />
+
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-          <div className="text-center mb-16">
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
             <motion.div 
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="flex justify-center mb-6"
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="flex justify-center mb-4"
             >
-              <div className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full border border-[#E31D2E]/20 bg-white/60">
-                <div className="w-2 h-2 rounded-full bg-[#E31D2E] shadow-[0_0_8px_#E31D2E]" />
-                <span className="text-[#111111] text-xs font-black tracking-[0.3em] uppercase">Our Expertise</span>
+              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#E31D2E]/20 bg-white/70 backdrop-blur-md shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
+                <span className="text-[#111111] text-xs font-bold tracking-[0.25em] uppercase">Our Core Expertise</span>
               </div>
             </motion.div>
             
@@ -412,109 +419,92 @@ const About = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-6xl font-black text-[#111111]"
+              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
+              className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111111] leading-tight tracking-tight"
             >
               What We <span className="text-[#E31D2E]">Bring to the Table</span>
             </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+              className="text-neutral-500 text-sm sm:text-base font-medium leading-relaxed mt-4 max-w-xl mx-auto"
+            >
+              Strategic brand positioning, growth marketing, and visual production engineered to scale your business.
+            </motion.p>
           </div>
 
-          <div className="flex flex-col lg:flex-row items-stretch justify-center -space-y-4 lg:-space-y-0 lg:-space-x-12">
+          {/* Cards Grid: Desktop 3 col, Tablet 2+1, Mobile 1 col */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
             {[
               {
                 id: "01",
-                icon: "🎯",
+                icon: Target,
                 title: "Mindful Brand Strategy",
-                desc: "Strategic brand positioning and content ecosystems designed to build authority, clarity, and long-term recognition.",
-                type: "start"
+                desc: "Strategic brand positioning, identity frameworks, and content ecosystems designed to build authority, clarity, and long-term market recognition.",
+                link: "/services"
               },
               {
                 id: "02",
-                icon: "📈",
+                icon: TrendingUp,
                 title: "Performance Marketing",
-                desc: "Data-driven campaigns including SEO, Meta Ads, PPC, and social media management focused on measurable growth and ROI.",
-                type: "middle"
+                desc: "Data-driven growth campaigns including technical SEO, Meta Ads, targeted PPC, and conversion optimization focused on measurable ROI.",
+                link: "/services"
               },
               {
                 id: "03",
-                icon: "🎬",
+                icon: Video,
                 title: "Creative Media & Production",
-                desc: "High-impact videography, photography, post-production, and digital storytelling that transform businesses into powerful visual brands.",
-                type: "end"
+                desc: "High-impact brand videography, photography, motion graphics, and digital storytelling that transform businesses into visual powerhouses.",
+                link: "/services"
               }
             ].map((item, index) => {
-              const [isHovered, setIsHovered] = useState(false);
-              
+              const IconComponent = item.icon;
               return (
                 <motion.div
                   key={item.id}
-                  onMouseEnter={() => setIsHovered(true)}
-                  onHoverStart={() => setIsHovered(true)}
-                  onHoverEnd={() => setIsHovered(false)}
-                  initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.2 }}
-                  className="relative flex-1 group min-h-[350px] cursor-default"
-                  style={{ zIndex: isHovered ? 20 : index }}
+                  transition={{ duration: 0.5, delay: index * 0.12, ease: "easeOut" }}
+                  className="group relative"
                 >
-                  {/* Outer layer border */}
-                  <div 
-                    className={`absolute inset-0 transition-all duration-700 ease-out ${
-                      isHovered ? "bg-[#991A23] shadow-md" : "bg-white/60"
-                    }`}
-                    style={{
-                      clipPath: item.type === "start" 
-                        ? "polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%)"
-                        : item.type === "middle"
-                        ? "polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%, 12% 50%)"
-                        : "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 12% 50%)",
-                    }}
-                  />
+                  <div className="h-full bg-white border border-neutral-200/80 rounded-[28px] p-7 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_45px_rgba(227,29,46,0.12)] hover:border-[#E31D2E]/40 hover:-translate-y-2.5 hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between cursor-pointer relative overflow-hidden">
+                    
+                    {/* Top Row: Icon Container + Category Number */}
+                    <div>
+                      <div className="flex items-center justify-between gap-4 mb-6">
+                        <div className="w-14 h-14 rounded-2xl bg-red-50/80 border border-red-100 flex items-center justify-center text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white group-hover:border-[#E31D2E] transition-all duration-300 shrink-0 shadow-xs group-hover:-translate-y-1">
+                          <IconComponent className="w-7 h-7 stroke-[2.2]" />
+                        </div>
+                        <span className="font-space-grotesk text-sm font-bold text-[#E31D2E] tracking-wider bg-red-50/60 px-3 py-1 rounded-full border border-red-100/60">
+                          {item.id}
+                        </span>
+                      </div>
 
-                  {/* Core Inner Layer */}
-                  <div 
-                    className={`absolute inset-[2.5px] transition-all duration-700 ease-out ${
-                      isHovered ? "bg-[#E31D2E]" : "bg-white"
-                    }`}
-                    style={{
-                      clipPath: item.type === "start" 
-                        ? "polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%)"
-                        : item.type === "middle"
-                        ? "polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%, 12% 50%)"
-                        : "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 12% 50%)",
-                    }}
-                  />
+                      {/* Headline */}
+                      <h3 className="text-xl sm:text-2xl font-black text-[#111111] mb-3 leading-snug group-hover:text-[#E31D2E] transition-colors duration-300">
+                        {item.title}
+                      </h3>
 
-                  {/* Content Area */}
-                  <div className="relative z-20 h-full p-10 md:p-14 flex flex-col justify-center items-start pr-16 lg:pr-20 pl-10 lg:pl-16">
-                    <div className="flex items-center gap-4 mb-6">
-                      <span className="text-3xl filter grayscale brightness-200">{item.icon}</span>
-                      <span className={`text-xl font-black ${isHovered ? "text-white/40" : "text-[#E31D2E]/30"}`}>
-                        {item.id}
-                      </span>
+                      {/* Description */}
+                      <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal mb-8">
+                        {item.desc}
+                      </p>
                     </div>
-                    
-                    <h3 className={`text-2xl md:text-3xl font-black mb-6 leading-tight transition-colors duration-500 ${
-                      isHovered ? "text-white" : "text-[#111111]"
-                    }`}>
-                      {item.title}
-                    </h3>
-                    
-                    <p className={`text-base md:text-lg leading-relaxed transition-all duration-500 ${
-                      isHovered ? "text-white/95 font-medium" : "text-[#575757]"
-                    }`}>
-                      {item.desc}
-                    </p>
 
-                    <motion.div 
-                      className="mt-10 flex items-center gap-3"
-                      animate={{ x: isHovered ? 10 : 0 }}
-                    >
-                      <div className={`w-8 h-px ${isHovered ? "bg-white" : "bg-[#E31D2E]/40"}`} />
-                      <span className={`text-[10px] font-black uppercase tracking-[0.3em] ${
-                        isHovered ? "text-white" : "text-[#E31D2E]/60"
-                      }`}>Explore</span>
-                    </motion.div>
+                    {/* Bottom Row: CTA Button */}
+                    <div className="pt-4 border-t border-neutral-100 flex items-center justify-between">
+                      <Link
+                        to={item.link}
+                        className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#111111] group-hover:text-[#E31D2E] transition-colors duration-300"
+                      >
+                        <span>Learn More</span>
+                        <ArrowRight className="w-4 h-4 text-[#E31D2E] group-hover:translate-x-1.5 transition-transform duration-300" />
+                      </Link>
+                    </div>
+
                   </div>
                 </motion.div>
               );

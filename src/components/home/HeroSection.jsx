@@ -133,7 +133,7 @@ const HeroSection = () => {
         <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
       </span>
       <span className="relative text-[#111111] text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
-        A Mindful Marketing and Production Firm
+        Where Strategy Meets Performance
       </span>
     </motion.div>
   );

@@ -441,7 +441,7 @@ const Navbar = ({ setShowContactForm }) => {
     window.addEventListener('resize', onResize);
 
     if (document.fonts?.ready) {
-      document.fonts.ready.then(layout).catch(() => {});
+      document.fonts.ready.then(layout).catch(() => { });
     }
 
     const menu = mobileMenuRef.current;
@@ -501,11 +501,24 @@ const Navbar = ({ setShowContactForm }) => {
     const img = logoImgRef.current;
     if (!img) return;
     logoTweenRef.current?.kill();
-    gsap.set(img, { rotate: 0 });
     logoTweenRef.current = gsap.to(img, {
-      rotate: 360,
-      duration: 0.2,
-      ease,
+      y: -3,
+      scale: 1.06,
+      duration: 0.3,
+      ease: "power2.out",
+      overwrite: 'auto'
+    });
+  };
+
+  const handleLogoLeave = () => {
+    const img = logoImgRef.current;
+    if (!img) return;
+    logoTweenRef.current?.kill();
+    logoTweenRef.current = gsap.to(img, {
+      y: 0,
+      scale: 1,
+      duration: 0.3,
+      ease: "power2.out",
       overwrite: 'auto'
     });
   };
@@ -606,27 +619,34 @@ const Navbar = ({ setShowContactForm }) => {
         {/* DEDICATED BRAND BLOCK */}
         <Link
           to="/"
-          className="brand-block flex items-center gap-3 sm:gap-4 mr-6 md:mr-8 shrink-0 text-left group no-underline select-none"
+          className="brand-block flex items-center gap-3 sm:gap-4 mr-6 md:mr-8 shrink-0 text-left group no-underline select-none cursor-pointer"
           aria-label="Praskla Digital X Home"
           onMouseEnter={handleLogoEnter}
+          onMouseLeave={handleLogoLeave}
           ref={el => {
             logoRef.current = el;
           }}
         >
           <div className="pill-logo shrink-0">
-            <img src={Logo} alt="Praskla Digital X Logo" ref={logoImgRef} className="h-[38px] sm:h-[40px] w-auto object-contain" />
+            <img
+              src={Logo}
+              alt="Praskla Digital X Logo"
+              ref={logoImgRef}
+              className="h-[38px] sm:h-[40px] w-auto object-contain transition-all duration-300 group-hover:drop-shadow-[0_6px_16px_rgba(227,29,46,0.35)]"
+              style={{ willChange: 'transform, filter' }}
+            />
           </div>
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeOut" }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
             className="flex flex-col justify-center"
           >
-            <span className="text-[18px] sm:text-[19px] lg:text-[20px] font-bold text-[#111111] leading-none tracking-tight">
+            <span className="font-signature text-[24px] sm:text-[28px] lg:text-[30px] font-normal text-[#111111] leading-none tracking-normal antialiased">
               Praskla Digital <span className="text-[#E31D2E]">X</span>
             </span>
-            <span className="hidden md:block text-[11px] sm:text-[12px] font-medium text-[#6B7280] tracking-[0.08em] mt-[8px] leading-none">
-              A Mindful Marketing & Production Firm
+            <span className="hidden md:block font-space-grotesk text-[10px] sm:text-[11px] font-medium text-[#6B7280] tracking-[0.08em] leading-[1.4] mt-[1px]">
+              Where Strategy Meets Creativity
             </span>
           </motion.div>
         </Link>
