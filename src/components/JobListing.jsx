@@ -395,19 +395,19 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                         <div className="flex items-center gap-2 border border-neutral-200/80 bg-neutral-50 rounded-full px-3.5 py-1.5 shadow-xs">
                           <FiMapPin className="text-[#E31D2E] w-3.5 h-3.5" />
                           <span className="text-neutral-700 font-semibold text-xs sm:text-sm">
-                            {job.location}
+                            {job?.location || 'Remote'}
                           </span>
                         </div>
                         <div className="flex items-center gap-2 border border-neutral-200/80 bg-neutral-50 rounded-full px-3.5 py-1.5 shadow-xs">
                           <FiClock className="text-neutral-500 w-3.5 h-3.5" />
                           <span className="text-neutral-700 font-semibold text-xs sm:text-sm">
-                            {job.type}
+                            {job?.type || 'Full-time'}
                           </span>
                         </div>
                         <div className="flex items-center gap-2 border border-neutral-200/80 bg-neutral-50 rounded-full px-3.5 py-1.5 shadow-xs">
                           <FiBriefcase className="text-neutral-500 w-3.5 h-3.5" />
                           <span className="text-neutral-700 font-semibold text-xs sm:text-sm">
-                            {job.level}
+                            {job?.level || 'Mid Level'}
                           </span>
                         </div>
                       </div>
@@ -417,7 +417,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                     <div className="pt-5 border-t border-neutral-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       {/* Technology / Skill Tags */}
                       <div className="flex flex-wrap gap-2 items-center">
-                        {job.skills.map((skill, idx) => (
+                        {(job?.skills || []).map((skill, idx) => (
                           <span
                             key={idx}
                             className="bg-white border border-neutral-200 text-neutral-600 text-xs font-medium px-3 py-1 rounded-lg shadow-xs"
