@@ -133,29 +133,19 @@
   }
 }
 
-/* Custom Scrollbar Styles */
+/* Native Scrollbar Hidden for Custom SnakeScrollbar */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 0px;
+  height: 0px;
+  background: transparent;
 }
 
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #E8192C;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #ff3040;
-}
-
-/* For Firefox */
+html,
+body,
 * {
-  scrollbar-width: thin;
-  scrollbar-color: #E8192C #0a0a0a;
+  scrollbar-width: none;
 }
 
 html,
@@ -335,29 +325,7 @@ section,
   background: transparent !important;
 }
 
-/* Scrollbar customization */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: #FAFAFA;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #FF2B2B;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #E51D1D;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #FF2B2B #FAFAFA;
-}
+/* Scrollbar styling handled by SnakeScrollbar component */
 
 /* Systemic overrides for text colors on light background - excluding all primary red CTA buttons and their children */
 .text-white:not(.dark-surface *):not(footer *):not(footer):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#1F1F1F]"]):not([class*="bg-[#1F1F1F]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]) {

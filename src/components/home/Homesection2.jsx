@@ -28,7 +28,7 @@ export default function FeaturedWorks() {
   // Derived active project object
   const activeProject = projects[activeIndex] || projects[0] || {};
 
-  // Safely scroll to a target project index and lock scroll event listener during animation
+  // Safely scroll to a target project index inside the portfolio list container (NEVER scrolls window/page)
   const scrollToItem = (index) => {
     if (index < 0 || index >= totalProjects) return;
 
@@ -37,9 +37,11 @@ export default function FeaturedWorks() {
       clearTimeout(scrollTimeoutRef.current);
     }
 
+    const container = scrollContainerRef.current;
     const el = itemRefs.current[index];
-    if (el) {
-      el.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    if (container && el) {
+      const targetTop = el.offsetTop - container.offsetTop;
+      container.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
     }
 
     scrollTimeoutRef.current = setTimeout(() => {

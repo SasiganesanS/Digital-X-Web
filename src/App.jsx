@@ -37,6 +37,7 @@ import ServiceCalculator from "./components/ServiceCalculator";
 import PlatformPlanPage from "./components/PlatformPlanPage";
 import CinematicUniverse from "./components/CinematicUniverse";
 import ScrollToTop from "./components/ScrollToTop";
+import SnakeScrollbar from "./components/SnakeScrollbar";
 
 // Legal Page Imports
 import PrivacyPolicy from "./components/legal/PrivacyPolicy";
@@ -410,6 +411,7 @@ const MainLayout = () => {
       <AppRoutes />
       <Footer setShowContactForm={setShowContactForm} />
       <ScrollToTop />
+      <SnakeScrollbar />
       </div>
     </div>
   );
