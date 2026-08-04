@@ -33,7 +33,7 @@ const navStyles = `
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  transition: transform 0.35s ease-out, opacity 0.35s ease-out, box-shadow 0.35s ease-out;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease-out, box-shadow 0.3s ease-out;
   will-change: transform, opacity;
 }
 
@@ -367,6 +367,8 @@ const Navbar = ({ setShowContactForm }) => {
   const resolvedPillTextColor = pillTextColor ?? baseColor;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  const [isTopHovered, setIsTopHovered] = useState(false);
+  const topHoverDebounceRef = useRef(null);
   const lastScrollY = useRef(0);
   const circleRefs = useRef([]);
   const tlRefs = useRef([]);
@@ -377,6 +379,36 @@ const Navbar = ({ setShowContactForm }) => {
   const mobileMenuRef = useRef(null);
   const navItemsRef = useRef(null);
   const logoRef = useRef(null);
+
+  // Reveal on Top Hover (Mouse entering top 70px of viewport)
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      const isTopZone = e.clientY <= 70;
+
+      if (isTopZone) {
+        if (topHoverDebounceRef.current) {
+          clearTimeout(topHoverDebounceRef.current);
+          topHoverDebounceRef.current = null;
+        }
+        setIsTopHovered(true);
+      } else {
+        if (!topHoverDebounceRef.current && isTopHovered) {
+          topHoverDebounceRef.current = setTimeout(() => {
+            setIsTopHovered(false);
+            topHoverDebounceRef.current = null;
+          }, 200);
+        }
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (topHoverDebounceRef.current) {
+        clearTimeout(topHoverDebounceRef.current);
+      }
+    };
+  }, [isTopHovered]);
 
   useEffect(() => {
     let ticking = false;
@@ -641,10 +673,12 @@ const Navbar = ({ setShowContactForm }) => {
     ['--pill-text']: resolvedPillTextColor
   };
 
+  const shouldShowNavbar = isVisible || isTopHovered || isMobileMenuOpen;
+
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: navStyles }} />
-      <div className={`pill-nav-container${!isVisible && !isMobileMenuOpen ? ' nav-hidden' : ''}`}>
+      <div className={`pill-nav-container${!shouldShowNavbar ? ' nav-hidden' : ''}`}>
         {/* DEDICATED BRAND BLOCK */}
         <Link
           to="/"
