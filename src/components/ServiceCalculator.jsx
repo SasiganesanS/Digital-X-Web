@@ -88,8 +88,8 @@ const PLATFORMS = platforms.map((platform) => ({
   })),
 }));
 
-// Duplicated service list so the marquee track can loop seamlessly
-const LOOPED_SERVICES = [...servicesData, ...servicesData];
+// Multi-set service list so the marquee track loops infinitely without blank space on either side
+const LOOPED_SERVICES = [...servicesData, ...servicesData, ...servicesData, ...servicesData];
 
 // Category tag mapping for services
 const getServiceCategoryTag = (title = "") => {
@@ -339,6 +339,7 @@ export default function ServiceCalculator() {
   const navigate = useNavigate();
   const location = useLocation();
   const calculatorRef = useRef(null);
+  const expertiseRef = useRef(null);
   const [selectedItems, setSelectedItems] = useState([]);
   const [modalPlatform, setModalPlatform] = useState(null);
   const [selectedPlanInModal, setSelectedPlanInModal] = useState(null);
@@ -357,8 +358,7 @@ export default function ServiceCalculator() {
   const halfWidthRef = useRef(360 * servicesData.length);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Measure actual rendered card width + gap so navigation lands exactly on a card,
-  // no matter the responsive card size.
+  // Measure actual rendered card width + gap & center initial track so left side is pre-filled
   useEffect(() => {
     const measure = () => {
       const track = trackRef.current;
@@ -368,7 +368,19 @@ export default function ServiceCalculator() {
       const step = second.offsetLeft - first.offsetLeft;
       if (step > 0) {
         cardStepRef.current = step;
-        halfWidthRef.current = step * servicesData.length;
+        const setWidth = step * servicesData.length;
+        halfWidthRef.current = setWidth;
+
+        // Initialize x position so preceding set pre-fills the left viewport edge
+        if (x.get() === 0) {
+          const container = track.parentElement;
+          if (container) {
+            const containerWidth = container.offsetWidth;
+            const cardWidth = first.offsetWidth || step;
+            const centerOffset = (containerWidth - cardWidth) / 2;
+            x.set(centerOffset - setWidth);
+          }
+        }
       }
     };
     measure();
@@ -376,21 +388,113 @@ export default function ServiceCalculator() {
     return () => window.removeEventListener("resize", measure);
   }, []);
 
-  // Continuous auto-scroll — pauses while hovered or while the user is
-  // actively interacting via an arrow/dot click.
-  useAnimationFrame((t, delta) => {
-    if (hoverRef.current || interactingRef.current) return;
-    const speed = 0.045; // px per ms
-    let next = x.get() - speed * delta;
-    const half = halfWidthRef.current || 1;
-    if (next <= -half) next += half;
-    x.set(next);
+  // Click & Drag physics refs & state
+  const [isDragging, setIsDragging] = useState(false);
+  const isDraggingRef = useRef(false);
+  const lastPointerXRef = useRef(null);
+  const dragVelocityRef = useRef(0);
 
-    const step = cardStepRef.current || 1;
-    const rawIndex = Math.round(-next / step);
-    const normalized = ((rawIndex % servicesData.length) + servicesData.length) % servicesData.length;
-    setActiveIndex((prev) => (prev === normalized ? prev : normalized));
+  const handlePointerDown = (e) => {
+    if (interactingRef.current) return;
+    if (e.button !== undefined && e.button !== 0) return;
+
+    isDraggingRef.current = true;
+    setIsDragging(true);
+    lastPointerXRef.current = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : null);
+    dragVelocityRef.current = 0;
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isDraggingRef.current) return;
+    const currentX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : null);
+    if (currentX !== null && lastPointerXRef.current !== null) {
+      const deltaX = currentX - lastPointerXRef.current;
+      let next = x.get() + deltaX;
+      
+      // Continuous multi-set wrapping while dragging
+      const setWidth = halfWidthRef.current || (cardStepRef.current * servicesData.length);
+      if (next <= -setWidth * 2) next += setWidth;
+      else if (next >= -setWidth * 0.5) next -= setWidth;
+
+      x.set(next);
+      dragVelocityRef.current = deltaX;
+    }
+    lastPointerXRef.current = currentX;
+  };
+
+  const handlePointerUp = () => {
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
+    setIsDragging(false);
+    lastPointerXRef.current = null;
+  };
+
+  // Global drag release listeners
+  useEffect(() => {
+    const onMove = (e) => {
+      if (isDraggingRef.current) handlePointerMove(e);
+    };
+    const onUp = () => {
+      if (isDraggingRef.current) handlePointerUp();
+    };
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseup", onUp);
+    window.addEventListener("touchmove", onMove);
+    window.addEventListener("touchend", onUp);
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseup", onUp);
+      window.removeEventListener("touchmove", onMove);
+      window.removeEventListener("touchend", onUp);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Continuous physics engine & inertia — applies friction momentum decay on release,
+  // wraps seamlessly, and updates activeIndex for the card closest to the horizontal viewport center.
+  useAnimationFrame((t, delta) => {
+    if (interactingRef.current) return;
+
+    // Apply friction decay on drag release
+    if (!isDraggingRef.current) {
+      if (Math.abs(dragVelocityRef.current) > 0.01) {
+        dragVelocityRef.current *= 0.95;
+        let next = x.get() + dragVelocityRef.current;
+        const setWidth = halfWidthRef.current || (cardStepRef.current * servicesData.length);
+        if (next <= -setWidth * 2) next += setWidth;
+        else if (next >= -setWidth * 0.5) next -= setWidth;
+        x.set(next);
+      } else {
+        dragVelocityRef.current = 0;
+      }
+    }
+
+    // Active state calculation: find card i whose horizontal center is closest to viewport center
+    const track = trackRef.current;
+    const container = track?.parentElement;
+    if (track && container) {
+      const viewportCenter = container.offsetWidth / 2;
+      const cardWidth = track.children[0]?.offsetWidth || cardStepRef.current;
+      const step = cardStepRef.current || 1;
+      const currentX = x.get();
+
+      let minDistance = Infinity;
+      let centerCardOriginalIndex = 0;
+
+      for (let i = 0; i < LOOPED_SERVICES.length; i++) {
+        const cardCenter = currentX + (i * step) + (cardWidth / 2);
+        const dist = Math.abs(cardCenter - viewportCenter);
+        if (dist < minDistance) {
+          minDistance = dist;
+          centerCardOriginalIndex = i % servicesData.length;
+        }
+      }
+
+      setActiveIndex((prev) => (prev === centerCardOriginalIndex ? prev : centerCardOriginalIndex));
+    }
   });
+
+  const [focusedService, setFocusedService] = useState(null);
 
   const pauseThenResume = (delay = 3000) => {
     interactingRef.current = true;
@@ -402,33 +506,75 @@ export default function ServiceCalculator() {
 
   const goToIndex = (index, resumeDelay = 3000) => {
     const normalized = ((index % servicesData.length) + servicesData.length) % servicesData.length;
-    const target = -(normalized * cardStepRef.current);
+    // Align target card in Set 1 (offset by setLength) so left side is fully populated
+    const targetCardIndex = servicesData.length + normalized;
+
+    const container = trackRef.current?.parentElement;
+    let centerOffset = 0;
+    if (trackRef.current && container) {
+      const containerWidth = container.offsetWidth;
+      const cardWidth = trackRef.current.children[0]?.offsetWidth || cardStepRef.current;
+      centerOffset = (containerWidth - cardWidth) / 2;
+    }
+    const target = centerOffset - (targetCardIndex * cardStepRef.current);
+
     pauseThenResume(resumeDelay);
     animate(x, target, { duration: 0.6, ease: "easeInOut" });
     setActiveIndex(normalized);
   };
 
   useEffect(() => {
-    if (location.state?.highlightService) {
-      const targetService = location.state.highlightService;
-      const index = servicesData.findIndex(s => s.title.toLowerCase() === targetService.toLowerCase() || s.title.toLowerCase().includes(targetService.toLowerCase()));
-      if (index !== -1) {
-        // Scroll to the expertise section first
-        setTimeout(() => {
-          const expertiseSection = document.getElementById("expertise");
-          if (expertiseSection) {
-            expertiseSection.scrollIntoView({ behavior: "smooth", block: "center" });
+    const targetService =
+      location.state?.highlightService ||
+      location.state?.selectedService ||
+      new URLSearchParams(location.search).get("service");
+
+    if (targetService) {
+      const matched = servicesData.find(
+        (s) =>
+          s.title.toLowerCase() === targetService.toLowerCase() ||
+          s.title.toLowerCase().includes(targetService.toLowerCase())
+      );
+
+      if (matched) {
+        const index = servicesData.indexOf(matched);
+        const titleToFocus = matched.title;
+
+        // Step 1: Smooth-scroll the page until "Our Core Expertise" section is centered in viewport (~150ms)
+        const scrollTimer = setTimeout(() => {
+          if (expertiseRef.current) {
+            expertiseRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
+          } else {
+            const el = document.getElementById("expertise");
+            if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
           }
         }, 150);
 
-        // Jump the marquee to that card and hold it a little longer than usual
-        setTimeout(() => {
-          goToIndex(index, 4500);
-        }, 600);
+        // Step 2: Rotate carousel track until target card reaches center (~750ms after navigation)
+        const carouselTimer = setTimeout(() => {
+          goToIndex(index, 3500);
+        }, 750);
+
+        // Step 3: ONLY AFTER carousel reaches center (~1380ms total), set focusedService to trigger pop animation
+        const focusTimer = setTimeout(() => {
+          setFocusedService(titleToFocus);
+        }, 1380);
+
+        // Step 4: After 1200ms focus animation completes, clear focusedService
+        const clearFocusTimer = setTimeout(() => {
+          setFocusedService(null);
+        }, 2580);
+
+        return () => {
+          clearTimeout(scrollTimer);
+          clearTimeout(carouselTimer);
+          clearTimeout(focusTimer);
+          clearTimeout(clearFocusTimer);
+        };
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.state]);
+  }, [location.state, location.search]);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -642,7 +788,7 @@ export default function ServiceCalculator() {
       />
 
       {/* ── Auto-Scrolling Marquee Section with manual arrow/dot control ── */}
-      <section id="expertise" className="relative w-full py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent">
+      <section ref={expertiseRef} id="expertise" className="relative w-full py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 min-h-[520px]">
           
           {/* Section Heading & Subtitle */}
@@ -666,7 +812,10 @@ export default function ServiceCalculator() {
 
             {/* Marquee viewport */}
             <div
-              className="relative w-full overflow-hidden"
+              onPointerDown={handlePointerDown}
+              className={`relative w-full overflow-hidden select-none ${
+                isDragging ? "cursor-grabbing" : "cursor-grab"
+              }`}
               style={{
                 WebkitMaskImage:
                   "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
@@ -688,6 +837,7 @@ export default function ServiceCalculator() {
                 {LOOPED_SERVICES.map((service, i) => {
                   const originalIndex = i % servicesData.length;
                   const isHighlighted = activeIndex === originalIndex;
+                  const isProgrammaticHover = Boolean(focusedService && service.title.toLowerCase() === focusedService.toLowerCase());
 
                   return (
                     <div
@@ -695,25 +845,32 @@ export default function ServiceCalculator() {
                       className="w-[85vw] sm:w-[320px] md:w-[340px] lg:w-[360px] flex-shrink-0"
                     >
                       <div
-                        className={`relative rounded-[2.25rem] md:rounded-[2.5rem] p-7 md:p-8 pt-9 md:pt-10 flex flex-col justify-between items-start text-left min-h-[420px] md:min-h-[440px] cursor-pointer transition-all duration-500 ease-out group border overflow-hidden select-none ${
+                        style={{
+                          border: (isHighlighted || isProgrammaticHover)
+                            ? "1px solid #E31D2E"
+                            : "1px solid rgba(17, 17, 17, 0.10)",
+                        }}
+                        className={`relative rounded-[2.25rem] md:rounded-[2.5rem] p-6 md:p-7 pt-7 md:pt-8 flex flex-col justify-between items-start text-left min-h-[335px] md:min-h-[355px] cursor-pointer transition-all duration-500 ease-out group overflow-hidden select-none ${
                           isHighlighted
-                            ? 'border-[#FF2B2B] bg-white shadow-[0_16px_50px_rgba(0,0,0,0.08)] -translate-y-4 scale-[1.03] opacity-100 z-10'
-                            : 'border-neutral-200/80 bg-white/75 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-[#FF2B2B]/50 hover:bg-white hover:-translate-y-2 opacity-90 hover:opacity-100'
+                            ? 'bg-white shadow-[0_16px_45px_rgba(227,29,46,0.15)] -translate-y-4 scale-[1.03] opacity-100 z-10'
+                            : isProgrammaticHover
+                            ? 'bg-white shadow-[0_16px_35px_rgba(17,17,17,0.06)] -translate-y-2 border-[#E31D2E]/40 opacity-100 z-20'
+                            : 'bg-white/75 shadow-[0_8px_25px_rgba(0,0,0,0.04)] hover:border-[#E31D2E]/40 hover:bg-white hover:-translate-y-2 hover:shadow-[0_16px_35px_rgba(17,17,17,0.06)] opacity-90 hover:opacity-100'
                         }`}
                       >
-                        {/* Light Inner Glass Highlight */}
-                        <div className="absolute inset-0 rounded-[2.25rem] md:rounded-[2.5rem] bg-gradient-to-br from-white/80 via-transparent to-transparent pointer-events-none" />
+                        {/* Light Inner Glass Highlight (Inset by 1px so border remains outermost edge) */}
+                        <div className="absolute inset-[1px] rounded-[2.2rem] md:rounded-[2.4rem] bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none z-0" />
                         
                         {/* Top Area — Floating Icon Container */}
-                        <div className="relative mb-6">
+                        <div className="relative mb-3.5">
                           {/* Outer Glow Ring */}
                           <div className={`absolute inset-0 rounded-full blur-md transition-all duration-500 ${
-                            isHighlighted ? 'bg-[#FF2B2B]/15 scale-110' : 'bg-black/5 group-hover:bg-[#FF2B2B]/10 group-hover:scale-110'
+                            (isHighlighted || isProgrammaticHover) ? 'bg-[#FF2B2B]/15 scale-110' : 'bg-black/5 group-hover:bg-[#FF2B2B]/10 group-hover:scale-110'
                           }`} />
 
                           {/* Glass Icon Capsule */}
-                          <div className={`relative z-10 w-20 h-20 sm:w-22 sm:h-22 rounded-full p-2 border transition-all duration-500 flex items-center justify-center bg-gradient-to-br from-white via-white/95 to-white/70 shadow-[0_10px_25px_rgba(17,17,17,0.06)] group-hover:-translate-y-1.5 group-hover:rotate-[6deg] ${
-                            isHighlighted ? 'border-[#FF2B2B] shadow-[0_4px_16px_rgba(0,0,0,0.08)]' : 'border-neutral-200 group-hover:border-[#FF2B2B]'
+                          <div className={`relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-full p-2 border transition-all duration-500 flex items-center justify-center bg-gradient-to-br from-white via-white/95 to-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.05)] ${
+                            (isHighlighted || isProgrammaticHover) ? 'border-[#FF2B2B] shadow-[0_4px_16px_rgba(0,0,0,0.08)] -translate-y-1 rotate-[5deg]' : 'border-neutral-200 group-hover:border-[#FF2B2B] group-hover:-translate-y-1 group-hover:rotate-[5deg]'
                           }`}>
                             <img
                               src={service.image}
@@ -726,33 +883,43 @@ export default function ServiceCalculator() {
                         {/* Content Hierarchy */}
                         <div className="relative z-10 flex flex-col items-start w-full">
                           {/* Category Tag */}
-                          <span className="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-[0.2em] bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/15 mb-3 inline-flex items-center gap-1.5">
+                          <span className="px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-[0.2em] bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/15 mb-2 inline-flex items-center gap-1.5">
                             <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
                             {getServiceCategoryTag(service.title)}
                           </span>
 
                           {/* Title */}
-                          <h3 className="text-xl md:text-2xl font-black text-[#111111] mb-2.5 tracking-tight group-hover:text-[#E31D2E] transition-colors duration-300">
+                          <h3 className={`text-lg md:text-xl font-extrabold leading-[1.1] mb-2 tracking-tight transition-colors duration-300 ${
+                            isProgrammaticHover ? 'text-[#E31D2E]' : 'text-[#111111] group-hover:text-[#E31D2E]'
+                          }`}>
                             {service.title}
                           </h3>
 
                           {/* Description */}
-                          <p className="text-[#575757] font-medium text-xs sm:text-sm leading-relaxed line-clamp-3 mb-6 transition-colors duration-300">
+                          <p className="text-[#575757] font-medium text-xs sm:text-sm leading-relaxed line-clamp-3 mb-3.5 transition-colors duration-300">
                             {service.desc}
                           </p>
                         </div>
 
-                        {/* Bottom Action — Inline CTA */}
-                        <div className="relative z-10 flex items-center gap-2 pt-2 text-[#111111] font-bold text-xs uppercase tracking-wider group-hover:text-[#E31D2E] transition-colors duration-300">
+                        {/* Bottom Action — Integrated Thin Divider CTA */}
+                        <div className={`relative z-10 w-full pt-3 mt-auto border-t border-black/10 flex items-center justify-between text-xs font-extrabold uppercase tracking-wider transition-colors duration-300 ${
+                          isProgrammaticHover ? 'text-[#E31D2E]' : 'text-[#111111] group-hover:text-[#E31D2E]'
+                        }`}>
                           <span className="relative">
                             Learn More
-                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
+                            <span className={`absolute bottom-0 left-0 h-0.5 bg-[#E31D2E] transition-all duration-300 ${
+                              isProgrammaticHover ? 'w-full' : 'w-0 group-hover:w-full'
+                            }`} />
                           </span>
-                          <span className="transition-transform duration-300 group-hover:translate-x-1.5 text-[#E31D2E]">→</span>
+                          <span className={`transition-transform duration-300 text-[#E31D2E] ${
+                            isProgrammaticHover ? 'translate-x-1.5' : 'group-hover:translate-x-1.5'
+                          }`}>→</span>
                         </div>
 
                         {/* Bottom Hover Accent Glow Line */}
-                        <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E31D2E] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                        <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E31D2E] to-transparent transition-transform duration-700 ${
+                          isProgrammaticHover ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                        }`} />
                       </div>
                     </div>
                   );

@@ -1,9 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./Services.css";
 import servicesData from "../data/servicesData";
-
 
 /** Stable sparkle positions (avoid Math.random() each render) */
 const SECTION_SPARKLES = Array.from({ length: 18 }, (_, i) => ({
@@ -14,6 +13,41 @@ const SECTION_SPARKLES = Array.from({ length: 18 }, (_, i) => ({
 }));
 
 const Services = () => {
+  const location = useLocation();
+  const cardRefs = useRef({});
+  const [selectedTitle, setSelectedTitle] = useState(null);
+  const [isFocused, setIsFocused] = useState(false);
+
+  useEffect(() => {
+    const serviceTarget =
+      location.state?.highlightService ||
+      location.state?.selectedService ||
+      new URLSearchParams(location.search).get("service");
+
+    if (serviceTarget) {
+      const matchedService = servicesData.find(
+        (s) =>
+          s.title.toLowerCase() === serviceTarget.toLowerCase() ||
+          s.title.toLowerCase().includes(serviceTarget.toLowerCase())
+      );
+
+      if (matchedService) {
+        const titleKey = matchedService.title;
+        setSelectedTitle(titleKey);
+
+        const timer = setTimeout(() => {
+          const cardEl = cardRefs.current[titleKey];
+          if (cardEl) {
+            cardEl.scrollIntoView({ behavior: "smooth", block: "center" });
+            setIsFocused(true);
+          }
+        }, 150);
+
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [location]);
+
   return (
     <div className="bg-white min-h-screen text-[#111111] overflow-x-hidden">
       {/* Unified: intro copy (left) + Core Expertise grid (right) */}
@@ -77,33 +111,83 @@ const Services = () => {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 w-full">
-                {servicesData.map((service, i) => (
-                  <motion.div
-                    key={service.title}
-                    initial={{ opacity: 0, y: 22 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.06 }}
-                    className="relative bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] p-5 md:p-6 pt-7 flex flex-col items-center text-center min-h-[260px] sm:min-h-[280px] cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_16px_50px_rgba(0,0,0,0.08)] transition-all duration-500 group border border-neutral-200/80 hover:border-[#FF2B2B]/40 overflow-hidden"
-                  >
-                    <div className="relative z-10 w-[88px] h-[88px] md:w-[100px] md:h-[100px] mb-5 rounded-full p-1.5 border-[3px] border-neutral-200 group-hover:border-[#FF2B2B] transition-all duration-500 flex items-center justify-center -mt-1 bg-white shadow-sm">
-                      <img
-                        src={service.image}
-                        alt={service.title}
-                        className="w-full h-full object-cover rounded-full"
-                      />
-                    </div>
+                {servicesData.map((service, i) => {
+                  const isSelected = service.title === selectedTitle;
 
-                    <h3 className="relative z-10 text-lg md:text-xl font-black text-[#111111] mb-2 tracking-tight group-hover:text-[#FF2B2B] transition-colors duration-300">
-                      {service.title}
-                    </h3>
-                    <p className="relative z-10 text-[#555555] font-medium text-sm leading-relaxed px-1 group-hover:text-[#111111] transition-colors duration-300">
-                      {service.desc}
-                    </p>
+                  return (
+                    <motion.div
+                      key={service.title}
+                      ref={(el) => (cardRefs.current[service.title] = el)}
+                      id={`service-card-${service.title.toLowerCase().replace(/[^a-z0-9]/g, "-")}`}
+                      initial={{ opacity: 0, y: 22 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      animate={
+                        isSelected && isFocused
+                          ? {
+                              scale: [1, 1.07, 1.04],
+                              y: [0, -12, -8],
+                              boxShadow: [
+                                "0 8px 30px rgba(0,0,0,0.04)",
+                                "0 24px 60px rgba(255,43,43,0.3)",
+                                "0 18px 45px rgba(255,43,43,0.2)"
+                              ]
+                            }
+                          : {}
+                      }
+                      transition={
+                        isSelected && isFocused
+                          ? { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+                          : { duration: 0.5, delay: i * 0.06 }
+                      }
+                      style={{
+                        border: isSelected
+                          ? "2px solid #FF2B2B"
+                          : "1px solid rgba(75, 46, 131, 0.35)",
+                      }}
+                      className={`relative bg-white rounded-2xl p-5 md:p-6 pt-7 flex flex-col items-center text-center min-h-[260px] sm:min-h-[280px] cursor-pointer transition-all duration-500 group overflow-hidden ${
+                        isSelected
+                          ? "shadow-[0_18px_45px_rgba(255,43,43,0.2)] -translate-y-2 z-20"
+                          : "hover:border-[#FF2B2B]/40 hover:-translate-y-1.5 hover:shadow-[0_16px_50px_rgba(0,0,0,0.08)] shadow-[0_8px_30px_rgba(0,0,0,0.04)]"
+                      }`}
+                    >
+                      {/* Active Red Tag Indicator */}
+                      {isSelected && (
+                        <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF2B2B]/10 border border-[#FF2B2B]/30">
+                          <span className="h-2 w-2 rounded-full bg-[#FF2B2B] animate-pulse" />
+                          <span className="text-[10px] font-bold text-[#FF2B2B] uppercase tracking-wider">
+                            Selected
+                          </span>
+                        </div>
+                      )}
 
-                    <div className="absolute bottom-0 left-0 w-full h-1 bg-[#FF2B2B] scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
-                  </motion.div>
-                ))}
+                      <div className={`relative z-10 w-[88px] h-[88px] md:w-[100px] md:h-[100px] mb-5 rounded-full p-1.5 transition-all duration-500 flex items-center justify-center -mt-1 bg-white shadow-sm ${
+                        isSelected
+                          ? "border-[3px] border-[#FF2B2B] ring-4 ring-[#FF2B2B]/15"
+                          : "border-[3px] border-neutral-200 group-hover:border-[#FF2B2B]"
+                      }`}>
+                        <img
+                          src={service.image}
+                          alt={service.title}
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      </div>
+
+                      <h3 className={`relative z-10 text-lg md:text-xl font-black mb-2 tracking-tight transition-colors duration-300 ${
+                        isSelected ? "text-[#FF2B2B]" : "text-[#111111] group-hover:text-[#FF2B2B]"
+                      }`}>
+                        {service.title}
+                      </h3>
+                      <p className="relative z-10 text-[#555555] font-medium text-sm leading-relaxed px-1 group-hover:text-[#111111] transition-colors duration-300">
+                        {service.desc}
+                      </p>
+
+                      <div className={`absolute bottom-0 left-0 w-full h-1 bg-[#FF2B2B] transition-transform duration-700 ${
+                        isSelected ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                      }`} />
+                    </motion.div>
+                  );
+                })}
               </div>
             </motion.div>
           </div>

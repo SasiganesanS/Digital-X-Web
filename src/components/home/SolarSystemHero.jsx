@@ -142,42 +142,35 @@ const ServicesCoverflow = () => {
 
     let scale = 1;
     let opacity = 1;
-    let blur = 0;
     let zIndex = 100;
     let mask = "none";
 
-    if (distance < 0.2) {
+    const isFront = distance < 0.3;
+    const isLeft = rawOffset < -0.2;
+    const isRight = rawOffset > 0.2;
+
+    if (isFront) {
       scale = 1;
       opacity = 1;
-      blur = 0;
       zIndex = 100;
       mask = "none";
-    } else if (distance < 1.2) {
-      const t = distance - 0.2;
-      scale = 1 - t * 0.18;
-      opacity = 1 - t * 0.45;
-      blur = t * 1.5;
-      zIndex = Math.round(100 - t * 50);
-      const innerStop = Math.round(30 - t * 10);
-      const midStop = Math.round(65 - t * 10);
-      const outerStop = Math.round(85 - t * 8);
-      mask = `radial-gradient(ellipse 88% 88% at center, rgba(0,0,0,1) ${innerStop}%, rgba(0,0,0,0.6) ${midStop}%, rgba(0,0,0,0.2) ${outerStop}%, rgba(0,0,0,0) 100%)`;
-    } else if (distance < 2.2) {
-      const t = distance - 1.2;
-      scale = 0.82 - t * 0.12;
-      opacity = 0.55 - t * 0.35;
-      blur = 1.5 + t * 1.5;
-      zIndex = Math.round(50 - t * 30);
-      const innerStop = Math.round(20 - t * 8);
-      const midStop = Math.round(55 - t * 10);
-      const outerStop = Math.round(77 - t * 8);
-      mask = `radial-gradient(ellipse 78% 78% at center, rgba(0,0,0,1) ${innerStop}%, rgba(0,0,0,0.5) ${midStop}%, rgba(0,0,0,0.15) ${outerStop}%, rgba(0,0,0,0) 98%)`;
+    } else if (isLeft) {
+      const t = Math.min(distance - 0.2, 2);
+      scale = 1 - t * 0.15;
+      opacity = 1;
+      zIndex = Math.round(100 - t * 40);
+      mask = "none";
+    } else if (isRight) {
+      const t = Math.min(distance - 0.2, 2);
+      scale = 1 - t * 0.15;
+      opacity = 1;
+      zIndex = Math.round(100 - t * 40);
+      mask = "none";
     } else {
       scale = 0.60;
       opacity = 0.08;
-      blur = 3;
       zIndex = 10;
-      mask = "radial-gradient(ellipse 65% 65% at center, rgba(0,0,0,1) 10%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.1) 65%, rgba(0,0,0,0) 95%)";
+      mask = "none";
     }
 
     return {
@@ -186,10 +179,12 @@ const ServicesCoverflow = () => {
       z,
       scale,
       opacity,
-      blur,
       zIndex,
       mask,
-      isFront: distance < 0.3,
+      isFront,
+      isLeft,
+      isRight,
+      rawOffset,
     };
   };
 
@@ -299,7 +294,7 @@ const ServicesCoverflow = () => {
                   y: s.y,
                   scale: s.scale,
                   opacity: s.opacity,
-                  filter: s.isFront ? "blur(0px)" : `blur(${s.blur}px)`,
+                  filter: "blur(0px)",
                 }}
                 whileHover={s.isFront ? {
                   y: s.y - 8,
@@ -363,6 +358,40 @@ const ServicesCoverflow = () => {
                       </svg>
                     </div>
                   </div>
+
+                  {/* ── Directional Gradient Blur Overlays (Left: 100% outer -> 50% inner) ── */}
+                  {!s.isFront && s.isLeft && (
+                    <>
+                      {/* Base 50% Blur Layer Across Card (4px blur) */}
+                      <div className="absolute inset-0 z-20 pointer-events-none rounded-[30px] backdrop-blur-[4px]" />
+
+                      {/* Directional Blur Overlay (4px blur with left-to-right gradient mask) */}
+                      <div
+                        className="absolute inset-0 z-25 pointer-events-none rounded-[30px] backdrop-blur-[4px]"
+                        style={{
+                          WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)",
+                          maskImage: "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)",
+                        }}
+                      />
+                    </>
+                  )}
+
+                  {/* ── Directional Gradient Blur Overlays (Right: 100% outer -> 50% inner) ── */}
+                  {!s.isFront && s.isRight && (
+                    <>
+                      {/* Base 50% Blur Layer Across Card (4px blur) */}
+                      <div className="absolute inset-0 z-20 pointer-events-none rounded-[30px] backdrop-blur-[4px]" />
+
+                      {/* Directional Blur Overlay (4px blur with right-to-left gradient mask) */}
+                      <div
+                        className="absolute inset-0 z-25 pointer-events-none rounded-[30px] backdrop-blur-[4px]"
+                        style={{
+                          WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)",
+                          maskImage: "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)",
+                        }}
+                      />
+                    </>
+                  )}
                 </div>
               </motion.div>
             );
