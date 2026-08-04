@@ -120,7 +120,7 @@ const Teams = () => {
                   </div>
 
                   <div
-                    className={`mt-4 ${clickable ? "cursor-pointer" : ""}`}
+                    className={`mt-7 sm:mt-8 ${clickable ? "cursor-pointer" : ""}`}
                     onClick={() => handleCardClick(member)}
                   >
                     <h3 className="text-lg font-bold text-[#111111] mb-1 tracking-tight">{member.name}</h3>

@@ -1,7 +1,8 @@
-/* ---------------- Google Fonts Import ---------------- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* ---------------- Google & Fontshare Fonts Import ---------------- */
+@import url('https://api.fontshare.com/v2/css?f[]=general-sans@600,700,800,900&f[]=satoshi@700,900&f[]=clash-display@600,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Allura&family=Great+Vibes&family=Satisfy&display=swap');
 
 /* ---------------- Tailwind Directives ---------------- */
 @tailwind base;
@@ -13,8 +14,12 @@
     font-family: 'Space Grotesk', 'Inter', sans-serif !important;
   }
 
+  .font-brand {
+    font-family: 'General Sans', 'Satoshi', 'Clash Display', 'Neue Montreal', 'Manrope', 'Inter', sans-serif !important;
+  }
+
   .font-signature {
-    font-family: 'Alex Brush', 'Allura', 'Great Vibes', 'Satisfy', cursive !important;
+    font-family: 'General Sans', 'Satoshi', 'Clash Display', 'Neue Montreal', 'Manrope', 'Inter', sans-serif !important;
   }
 }
 

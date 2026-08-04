@@ -104,7 +104,7 @@ export default function TiltedCard({
         <motion.img
           src={imageSrc}
           alt={altText}
-          className="absolute top-0 left-0 object-cover rounded-[22px] will-change-transform [transform:translateZ(0)] shadow-2xl shadow-black/70"
+          className="absolute top-0 left-0 object-cover rounded-[22px] will-change-transform [transform:translateZ(0)] shadow-[0_12px_28px_rgba(0,0,0,0.12)]"
           style={{
             width: imageWidth,
             height: imageHeight,

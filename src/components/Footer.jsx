@@ -91,8 +91,8 @@ const Footer = ({ setShowContactForm }) => {
                   />
                 </div>
                 <div className="flex flex-col justify-center">
-                  <span className="font-signature text-[22px] sm:text-[26px] font-normal text-white leading-none">
-                    Praskla Digital <span className="text-[#FF2B2B]">X</span>
+                  <span className="font-brand text-[19px] sm:text-[22px] font-extrabold text-white leading-none tracking-[0.02em] antialiased">
+                    Praskla Digital <span className="text-[#E31D2E]">X</span>
                   </span>
                   <span className="font-space-grotesk text-[11px] font-medium text-[#9CA3AF] tracking-[0.08em] mt-0.5">
                     Where Strategy Meets Creativity

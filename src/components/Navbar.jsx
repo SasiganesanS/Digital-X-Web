@@ -705,10 +705,10 @@ const Navbar = ({ setShowContactForm }) => {
             transition={{ duration: 0.35, ease: "easeOut" }}
             className="flex flex-col justify-center"
           >
-            <span className="font-signature text-[24px] sm:text-[28px] lg:text-[30px] font-normal text-[#111111] leading-none tracking-normal antialiased">
-              Praskla Digital <span className="text-[#FF2B2B]">X</span>
+            <span className="font-brand text-[20px] sm:text-[23px] lg:text-[25px] font-extrabold text-[#111111] leading-none tracking-[0.02em] antialiased">
+              Praskla Digital <span className="text-[#E31D2E]">X</span>
             </span>
-            <span className="hidden md:block font-space-grotesk text-[10px] sm:text-[11px] font-medium text-[#6B7280] tracking-[0.08em] leading-[1.4] mt-[2px]">
+            <span className="hidden md:block font-space-grotesk text-[10px] sm:text-[11px] font-medium text-[#6B7280] tracking-[0.08em] leading-[1.4] mt-[3px]">
               Where Strategy Meets Creativity
             </span>
           </motion.div>

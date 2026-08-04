@@ -397,7 +397,7 @@ const Projects = () => {
                     </div>
 
                     {/* Bottom Accent Line */}
-                    <div className="absolute bottom-0 left-0 w-full h-1 bg-[#FF2B2B] scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                    <div className="absolute bottom-3.5 left-6 right-6 sm:left-7 sm:right-7 h-1 bg-[#FF2B2B] rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-700 origin-left" />
                   </motion.div>
                 );
               })}
