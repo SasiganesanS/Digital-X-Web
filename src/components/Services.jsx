@@ -15,40 +15,12 @@ const SECTION_SPARKLES = Array.from({ length: 18 }, (_, i) => ({
 
 const Services = () => {
   return (
-    <div className="bg-[#050505] min-h-screen text-white overflow-x-hidden">
-      {/* Unified: intro copy (left) + Core Expertise grid (right) + glitter */}
+    <div className="bg-white min-h-screen text-[#111111] overflow-x-hidden">
+      {/* Unified: intro copy (left) + Core Expertise grid (right) */}
       <section
         id="services-main"
-        className="services-unified-section relative w-full flex flex-col justify-center overflow-hidden py-12 sm:py-14 lg:py-16 scroll-mt-24"
+        className="services-unified-section relative w-full flex flex-col justify-center overflow-hidden py-12 sm:py-14 lg:py-16 scroll-mt-24 bg-white"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-[#050505] via-[#080808] to-[#1a0305] pointer-events-none" />
-        <div className="services-glitter-layer absolute inset-0 pointer-events-none z-[1]" aria-hidden />
-        <div className="absolute top-1/4 left-0 w-[420px] h-[420px] bg-[#E8192C]/10 rounded-full blur-[130px] pointer-events-none z-[1]" />
-        <div className="absolute bottom-0 right-0 w-[380px] h-[380px] bg-[#E8192C]/6 rounded-full blur-[100px] pointer-events-none z-[1]" />
-
-        {SECTION_SPARKLES.map((pos, i) => (
-          <motion.div
-            key={`svc-bg-sparkle-${i}`}
-            className="absolute w-1 h-1 rounded-full bg-white pointer-events-none z-[2]"
-            style={{
-              top: pos.top,
-              left: pos.left,
-              boxShadow: "0 0 12px 2px rgba(232,25,44,0.55)",
-            }}
-            animate={{
-              opacity: [0, 0.95, 0],
-              scale: [0.4, 1.15, 0.4],
-              y: [0, -12, 0],
-            }}
-            transition={{
-              duration: pos.dur,
-              repeat: Infinity,
-              delay: pos.delay,
-              ease: "easeInOut",
-            }}
-          />
-        ))}
-
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-14 xl:gap-16 items-start lg:items-center">
             <motion.div
@@ -57,19 +29,19 @@ const Services = () => {
               transition={{ duration: 0.75 }}
               className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-xl mx-auto lg:mx-0"
             >
-              <div className="inline-flex items-center border border-white/10 gap-2 px-4 py-1.5 bg-[#E8192C]/10 rounded-full mb-6 shadow-[0_0_15px_rgba(232,25,44,0.2)]">
-                <div className="w-2 h-2 rounded-full bg-[#E8192C] shadow-[0_0_8px_rgba(232,25,44,0.8)]" />
-                <span className="text-xs font-bold text-white uppercase tracking-[0.2em] ml-1">
+              <div className="inline-flex items-center border border-neutral-200 gap-2 px-4 py-1.5 bg-[#FF2B2B]/5 rounded-full mb-6">
+                <div className="w-2 h-2 rounded-full bg-[#FF2B2B]" />
+                <span className="text-xs font-bold text-[#FF2B2B] uppercase tracking-[0.2em] ml-1">
                   Our Services
                 </span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[1.05] tracking-tight text-white">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[1.05] tracking-tight text-[#111111]">
                 Transforming Brands into <br className="hidden sm:block" />
-                <span className="text-[#E8192C]">Digital Authority</span>
+                <span className="text-[#FF2B2B]">Digital Authority</span>
               </h1>
 
-              <p className="text-white/50 text-base md:text-lg leading-relaxed font-medium mb-8">
+              <p className="text-[#555555] text-base md:text-lg leading-relaxed font-medium mb-8">
                 Comprehensive branding, media, and performance marketing solutions designed to help
                 your business grow strategically, creatively, and profitably.
               </p>
@@ -83,7 +55,7 @@ const Services = () => {
                 </Link>
                 <a
                   href="#expertise"
-                  className="px-8 py-4 rounded-full font-bold border border-white/15 text-white/90 hover:border-[#E8192C]/50 hover:text-white transition-all"
+                  className="px-8 py-4 rounded-full font-bold border border-neutral-200 text-[#111111] hover:border-[#FF2B2B] hover:text-[#FF2B2B] transition-all"
                 >
                   Core Expertise
                 </a>
@@ -98,10 +70,10 @@ const Services = () => {
               className="w-full min-w-0"
             >
               <div className="flex flex-col gap-2 mb-8 text-center lg:text-left">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight">
-                  Our <span className="text-[#E8192C]">Core Expertise</span>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#111111] tracking-tight">
+                  Our <span className="text-[#FF2B2B]">Core Expertise</span>
                 </h2>
-                <div className="h-1 w-24 bg-gradient-to-r from-transparent via-[#E8192C] to-transparent rounded-full mx-auto lg:mx-0" />
+                <div className="h-1 w-24 bg-[#FF2B2B] rounded-full mx-auto lg:mx-0" />
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5 w-full">
@@ -112,31 +84,9 @@ const Services = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.06 }}
-                    className="relative bg-gradient-to-br from-[#080808] via-black to-[#E8192C]/20 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] p-5 md:p-6 pt-7 flex flex-col items-center text-center min-h-[260px] sm:min-h-[280px] cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_30px_60px_rgba(232,25,44,0.2)] transition-all duration-500 group border border-white/5 hover:border-[#E8192C]/40 overflow-hidden"
+                    className="relative bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] p-5 md:p-6 pt-7 flex flex-col items-center text-center min-h-[260px] sm:min-h-[280px] cursor-pointer hover:-translate-y-1.5 hover:shadow-[0_16px_50px_rgba(0,0,0,0.08)] transition-all duration-500 group border border-neutral-200/80 hover:border-[#FF2B2B]/40 overflow-hidden"
                   >
-                    {[0, 1, 2].map((si) => (
-                      <motion.div
-                        key={si}
-                        className="absolute w-1 h-1 bg-white rounded-full pointer-events-none z-0"
-                        style={{
-                          top: `${(i * 11 + si * 27) % 88}%`,
-                          left: `${(i * 19 + si * 31) % 88}%`,
-                          boxShadow: "0 0 10px 2px rgba(232,25,44,0.6)",
-                        }}
-                        animate={{
-                          opacity: [0, 0.85, 0],
-                          scale: [0.5, 1.2, 0.5],
-                        }}
-                        transition={{
-                          duration: 2.2 + si * 0.3,
-                          repeat: Infinity,
-                          delay: (i * 0.2 + si * 0.4) % 2.5,
-                          ease: "easeInOut",
-                        }}
-                      />
-                    ))}
-
-                    <div className="relative z-10 w-[88px] h-[88px] md:w-[100px] md:h-[100px] mb-5 rounded-full p-1.5 border-[3px] border-[#E8192C]/30 group-hover:border-[#E8192C] transition-all duration-500 flex items-center justify-center -mt-1 bg-black shadow-xl">
+                    <div className="relative z-10 w-[88px] h-[88px] md:w-[100px] md:h-[100px] mb-5 rounded-full p-1.5 border-[3px] border-neutral-200 group-hover:border-[#FF2B2B] transition-all duration-500 flex items-center justify-center -mt-1 bg-white shadow-sm">
                       <img
                         src={service.image}
                         alt={service.title}
@@ -144,14 +94,14 @@ const Services = () => {
                       />
                     </div>
 
-                    <h3 className="relative z-10 text-lg md:text-xl font-black text-white mb-2 tracking-tight group-hover:text-[#E8192C] transition-colors duration-300">
+                    <h3 className="relative z-10 text-lg md:text-xl font-black text-[#111111] mb-2 tracking-tight group-hover:text-[#FF2B2B] transition-colors duration-300">
                       {service.title}
                     </h3>
-                    <p className="relative z-10 text-white/50 font-medium text-sm leading-relaxed px-1 group-hover:text-white/70 transition-colors duration-300">
+                    <p className="relative z-10 text-[#555555] font-medium text-sm leading-relaxed px-1 group-hover:text-[#111111] transition-colors duration-300">
                       {service.desc}
                     </p>
 
-                    <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E8192C]/50 to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                    <div className="absolute bottom-0 left-0 w-full h-1 bg-[#FF2B2B] scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
                   </motion.div>
                 ))}
               </div>
@@ -160,22 +110,14 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="py-12 sm:py-14 lg:py-16 bg-[#080808]">
+      <section className="py-12 sm:py-14 lg:py-16 bg-[#FAFAFA]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-[2rem] bg-gradient-to-r from-[#E8192C] to-[#b71422] p-8 md:p-12 text-center relative overflow-hidden shadow-[0_0_50px_rgba(232,25,44,0.15)]"
+            className="rounded-[2rem] bg-[#111111] p-8 md:p-12 text-center relative overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
           >
-            <div
-              className="absolute inset-0 opacity-10 pointer-events-none"
-              style={{
-                backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)",
-                backgroundSize: "30px 30px",
-              }}
-            />
-
             <h2 className="text-2xl md:text-3xl font-black text-white mb-6 relative z-10 leading-tight">
               See the Impact <br className="hidden md:block" />
               We&apos;ve Delivered
@@ -183,7 +125,7 @@ const Services = () => {
 
             <Link
               to="/projects"
-              className="inline-flex items-center justify-center bg-white text-black px-7 py-3.5 rounded-full font-bold text-sm hover:bg-white/90 transition-all duration-300 hover:scale-105 active:scale-95 relative z-10 shadow-2xl"
+              className="inline-flex items-center justify-center bg-white text-black px-7 py-3.5 rounded-full font-bold text-sm hover:bg-neutral-100 transition-all duration-300 hover:scale-105 active:scale-95 relative z-10 shadow-md"
             >
               View Our Portfolio
             </Link>

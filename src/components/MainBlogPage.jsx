@@ -88,18 +88,13 @@ export default function BlogPage() {
               <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
               <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-400 to-transparent" />
             </div>
-            <motion.div
-              animate={{ scale: [1, 1.2, 1], opacity: [0.05, 0.1, 0.05] }}
-              transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-20 left-10 w-96 h-96 rounded-full bg-[#E8192C] blur-[120px]"
-            />
           </div>
         }
         badge={
-          <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
+          <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#FF2B2B]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF2B2B] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF2B2B]" />
             </span>
             <span className="relative text-[#111111] text-xs font-bold tracking-[0.25em] uppercase">Latest Insights</span>
           </div>
@@ -183,7 +178,6 @@ export default function BlogPage() {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="absolute -inset-4 bg-[#E8192C]/10 rounded-3xl blur-2xl opacity-40"></div>
             <img
               src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1000"
               alt="Tech Community"
@@ -211,7 +205,7 @@ export default function BlogPage() {
                 viewport={{ once: true }}
               >
                 <h3 className="text-4xl md:text-6xl font-black text-white mb-2">{stat.value}</h3>
-                <p className="text-[#E8192C] text-sm md:text-base font-bold uppercase tracking-widest">{stat.label}</p>
+                <p className="text-[#FF2B2B] text-sm md:text-base font-bold uppercase tracking-widest">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -228,7 +222,6 @@ export default function BlogPage() {
             viewport={{ once: true }}
             className="relative order-2 md:order-1"
           >
-            <div className="absolute -inset-4 bg-[#E8192C]/10 rounded-3xl blur-2xl opacity-40"></div>
             <img
               src="https://images.unsplash.com/photo-1485217988980-11786ced9454?w=1000"
               alt="Networking"

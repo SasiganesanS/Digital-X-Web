@@ -385,7 +385,7 @@ const JobApplication = ({ job, onClose }) => {
           {/* Header */}
           <div className="mb-5">
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-red-50 text-[#E31D2E] border border-red-100">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#FF2B2B]/5 text-[#FF2B2B] border border-[#FF2B2B]/20">
                 {activeJob.department || 'Career Opportunity'}
               </span>
               <span className="text-gray-400 text-xs">•</span>
@@ -429,7 +429,7 @@ const JobApplication = ({ job, onClose }) => {
               
               {/* Submission Error Banner */}
               {submitError && (
-                <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-medium flex items-center gap-2">
+                <div className="p-3.5 bg-[#FF2B2B]/5 border border-[#FF2B2B]/20 rounded-xl text-[#FF2B2B] text-xs font-medium flex items-center gap-2">
                   <AlertCircle className="w-4 h-4 flex-shrink-0" />
                   <span>{submitError}</span>
                 </div>
@@ -440,7 +440,7 @@ const JobApplication = ({ job, onClose }) => {
                 {/* Full Name */}
                 <div>
                   <label htmlFor="applicant-name" className="block text-xs font-semibold text-gray-700 mb-1.5">
-                    Full Name <span className="text-[#E31D2E]">*</span>
+                    Full Name <span className="text-[#FF2B2B]">*</span>
                   </label>
                   <input
                     ref={nameInputRef}
@@ -450,8 +450,8 @@ const JobApplication = ({ job, onClose }) => {
                     value={formData.name}
                     onChange={handleInputChange}
                     placeholder="Jane Doe"
-                    className={`w-full h-10 px-3.5 text-xs sm:text-sm text-[#111111] bg-gray-50/60 hover:bg-white focus:bg-white border rounded-xl placeholder:text-gray-400 font-medium transition-all outline-none
-                              ${errors.name ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-2 focus:ring-red-500/10' : 'border-gray-200 focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/10'}`}
+                    className={`w-full h-10 px-3.5 text-xs sm:text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white border rounded-xl placeholder:text-gray-400 font-medium transition-all outline-none
+                              ${errors.name ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-2 focus:ring-red-500/10' : 'border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15'}`}
                   />
                   {errors.name && (
                     <p className="text-red-500 text-[11px] font-medium mt-1 flex items-center gap-1">
@@ -464,7 +464,7 @@ const JobApplication = ({ job, onClose }) => {
                 {/* Email Address */}
                 <div>
                   <label htmlFor="applicant-email" className="block text-xs font-semibold text-gray-700 mb-1.5">
-                    Email Address <span className="text-[#E31D2E]">*</span>
+                    Email Address <span className="text-[#FF2B2B]">*</span>
                   </label>
                   <input
                     id="applicant-email"
@@ -473,8 +473,8 @@ const JobApplication = ({ job, onClose }) => {
                     value={formData.email}
                     onChange={handleInputChange}
                     placeholder="jane@example.com"
-                    className={`w-full h-10 px-3.5 text-xs sm:text-sm text-[#111111] bg-gray-50/60 hover:bg-white focus:bg-white border rounded-xl placeholder:text-gray-400 font-medium transition-all outline-none
-                              ${errors.email ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-2 focus:ring-red-500/10' : 'border-gray-200 focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/10'}`}
+                    className={`w-full h-10 px-3.5 text-xs sm:text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white border rounded-xl placeholder:text-gray-400 font-medium transition-all outline-none
+                              ${errors.email ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-2 focus:ring-red-500/10' : 'border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15'}`}
                   />
                   {errors.email && (
                     <p className="text-red-500 text-[11px] font-medium mt-1 flex items-center gap-1">
@@ -488,14 +488,14 @@ const JobApplication = ({ job, onClose }) => {
               {/* Phone Field with Searchable Country Selector */}
               <div>
                 <label htmlFor="applicant-phone" className="block text-xs font-semibold text-gray-700 mb-1.5">
-                  Phone Number <span className="text-[#E31D2E]">*</span>
+                  Phone Number <span className="text-[#FF2B2B]">*</span>
                 </label>
                 <div className="relative flex items-center" ref={countryDropdownRef}>
                   <button
                     type="button"
                     onClick={() => setShowCountryList(!showCountryList)}
-                    className={`h-10 px-3 border border-r-0 rounded-l-xl bg-gray-50/60 hover:bg-gray-100 flex items-center gap-1.5 transition-colors focus:outline-none
-                              ${errors.phone ? 'border-red-500 bg-red-50/20' : 'border-gray-200'}`}
+                    className={`h-10 px-3 border border-r-0 rounded-l-xl bg-white hover:bg-gray-50 flex items-center gap-1.5 transition-colors focus:outline-none
+                              ${errors.phone ? 'border-red-500 bg-red-50/20' : 'border-[#E5E5E5]'}`}
                   >
                     <img 
                       src={`https://flagcdn.com/w20/${selectedCountry.flag}.png`}
@@ -508,7 +508,7 @@ const JobApplication = ({ job, onClose }) => {
 
                   {/* Dropdown Menu */}
                   {showCountryList && (
-                    <div className="absolute left-0 top-full mt-1.5 w-60 bg-white border border-gray-200 rounded-2xl shadow-xl z-50 p-2 overflow-hidden">
+                    <div className="absolute left-0 top-full mt-1.5 w-60 bg-white border border-[#ECECEC] rounded-2xl shadow-xl z-50 p-2 overflow-hidden">
                       <div className="relative mb-1.5">
                         <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
                         <input
@@ -517,7 +517,7 @@ const JobApplication = ({ job, onClose }) => {
                           value={countrySearch}
                           onChange={(e) => setCountrySearch(e.target.value)}
                           placeholder="Search country..."
-                          className="w-full pl-8 pr-3 py-1.5 text-xs bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-[#E31D2E] text-gray-900"
+                          className="w-full pl-8 pr-3 py-1.5 text-xs bg-gray-50 border border-[#E5E5E5] rounded-lg outline-none focus:border-[#FF2B2B] text-gray-900"
                         />
                       </div>
                       <div className="max-h-40 overflow-y-auto space-y-0.5 pr-1">
@@ -526,7 +526,7 @@ const JobApplication = ({ job, onClose }) => {
                             key={`${c.country}-${c.code}`}
                             type="button"
                             onClick={() => handleCountrySelect(c)}
-                            className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors ${selectedCountry.country === c.country ? 'bg-red-50 text-[#E31D2E] font-semibold' : 'hover:bg-gray-50 text-gray-700'}`}
+                            className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors ${selectedCountry.country === c.country ? 'bg-[#FF2B2B]/10 text-[#FF2B2B] font-semibold' : 'hover:bg-gray-50 text-gray-700'}`}
                           >
                             <div className="flex items-center gap-2 truncate">
                               <img src={`https://flagcdn.com/w20/${c.flag}.png`} alt={c.name} className="w-4 h-auto rounded-sm" />
@@ -546,8 +546,8 @@ const JobApplication = ({ job, onClose }) => {
                     value={formData.phone}
                     onChange={handleInputChange}
                     placeholder="9876543210"
-                    className={`w-full h-10 px-3.5 border rounded-r-xl text-xs sm:text-sm text-[#111111] bg-gray-50/60 hover:bg-white focus:bg-white placeholder:text-gray-400 font-medium transition-all outline-none
-                              ${errors.phone ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-2 focus:ring-red-500/10' : 'border-gray-200 focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/10'}`}
+                    className={`w-full h-10 px-3.5 border rounded-r-xl text-xs sm:text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white placeholder:text-gray-400 font-medium transition-all outline-none
+                              ${errors.phone ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-2 focus:ring-red-500/10' : 'border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15'}`}
                   />
                 </div>
                 {errors.phone && (
@@ -572,7 +572,7 @@ const JobApplication = ({ job, onClose }) => {
                     value={formData.portfolio}
                     onChange={handleInputChange}
                     placeholder="https://yourportfolio.com"
-                    className="w-full h-10 px-3.5 text-xs sm:text-sm text-[#111111] bg-gray-50/60 hover:bg-white focus:bg-white border border-gray-200 focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/10 rounded-xl placeholder:text-gray-400 font-medium transition-all outline-none"
+                    className="w-full h-10 px-3.5 text-xs sm:text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white border border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15 rounded-xl placeholder:text-gray-400 font-medium transition-all outline-none"
                   />
                 </div>
 
@@ -588,7 +588,7 @@ const JobApplication = ({ job, onClose }) => {
                     value={formData.linkedin}
                     onChange={handleInputChange}
                     placeholder="https://linkedin.com/in/username"
-                    className="w-full h-10 px-3.5 text-xs sm:text-sm text-[#111111] bg-gray-50/60 hover:bg-white focus:bg-white border border-gray-200 focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/10 rounded-xl placeholder:text-gray-400 font-medium transition-all outline-none"
+                    className="w-full h-10 px-3.5 text-xs sm:text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white border border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15 rounded-xl placeholder:text-gray-400 font-medium transition-all outline-none"
                   />
                 </div>
               </div>
@@ -596,14 +596,14 @@ const JobApplication = ({ job, onClose }) => {
               {/* Resume Upload Drop Area */}
               <div>
                 <label className="block text-xs font-semibold text-gray-700 mb-1.5">
-                  Resume / CV <span className="text-[#E31D2E]">*</span>
+                  Resume / CV <span className="text-[#FF2B2B]">*</span>
                 </label>
                 <label className={`relative flex flex-col items-center justify-center p-4 border-2 border-dashed rounded-2xl cursor-pointer transition-all duration-200 ${
                   errors.resume 
                     ? 'border-red-400 bg-red-50/20' 
                     : formData.resume 
                     ? 'border-emerald-500/80 bg-emerald-50/30' 
-                    : 'border-gray-200 hover:border-[#E31D2E]/50 bg-gray-50/40 hover:bg-white'
+                    : 'border-[#E5E5E5] hover:border-[#FF2B2B]/50 bg-white hover:bg-gray-50'
                 }`}>
                   {formData.resume ? (
                     <div className="flex items-center gap-2.5 text-emerald-700 font-semibold text-xs">
@@ -638,9 +638,9 @@ const JobApplication = ({ job, onClose }) => {
               <div>
                 <div className="flex items-center justify-between mb-1.5">
                   <label htmlFor="applicant-cover-letter" className="text-xs font-semibold text-gray-700">
-                    Cover Letter / Statement <span className="text-[#E31D2E]">*</span>
+                    Cover Letter / Statement <span className="text-[#FF2B2B]">*</span>
                   </label>
-                  <span className={`text-[11px] font-medium transition-colors ${formData.coverLetter.length > 450 ? 'text-[#E31D2E]' : 'text-gray-400'}`}>
+                  <span className={`text-[11px] font-medium transition-colors ${formData.coverLetter.length > 450 ? 'text-[#FF2B2B]' : 'text-gray-400'}`}>
                     {formData.coverLetter.length} / 500
                   </span>
                 </div>
@@ -651,8 +651,8 @@ const JobApplication = ({ job, onClose }) => {
                   onChange={handleInputChange}
                   rows={3}
                   placeholder="Tell us why you are a great fit for this position..."
-                  className={`w-full p-3 text-xs sm:text-sm text-[#111111] bg-gray-50/60 hover:bg-white focus:bg-white border rounded-xl placeholder:text-gray-400 font-medium transition-all outline-none resize-y min-h-[90px] max-h-[160px]
-                            ${errors.coverLetter ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-2 focus:ring-red-500/10' : 'border-gray-200 focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/10'}`}
+                  className={`w-full p-3 text-xs sm:text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white border rounded-xl placeholder:text-gray-400 font-medium transition-all outline-none resize-y min-h-[90px] max-h-[160px]
+                            ${errors.coverLetter ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-2 focus:ring-red-500/10' : 'border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15'}`}
                 />
                 {errors.coverLetter && (
                   <p className="text-red-500 text-[11px] font-medium mt-1 flex items-center gap-1">
@@ -675,7 +675,7 @@ const JobApplication = ({ job, onClose }) => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="px-6 py-2.5 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] text-white font-semibold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-[#E31D2E]/20"
+                  className="px-6 py-2.5 rounded-xl bg-[#FF2B2B] hover:bg-[#E51D1D] text-white font-semibold text-xs uppercase tracking-wider shadow-[0_8px_20px_rgba(0,0,0,0.10)] transition-all flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-[#FF2B2B]/20"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center gap-2">

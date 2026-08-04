@@ -39,52 +39,8 @@ function TrustedBy() {
       className="relative py-16 md:py-24 bg-gradient-to-br from-gray-50 to-white overflow-hidden"
       onMouseMove={handleMouseMove}
     >
-      {/* Enhanced Background System */}
-      <div className="absolute inset-0">
-        {/* Interactive mouse follower */}
-        <motion.div
-          className="absolute w-72 h-72 bg-gradient-radial from-[#371445]/12 via-[#371445]/6 to-transparent rounded-full blur-3xl pointer-events-none"
-          animate={{
-            x: mousePosition.x * 2.5 - 144,
-            y: mousePosition.y * 2.5 - 144,
-          }}
-          transition={{ type: "spring", stiffness: 100, damping: 25 }}
-        />
-
-        {/* Floating elements */}
-        <motion.div
-          className="absolute top-16 left-16 w-24 h-24 border border-[#371445]/10 rounded-full"
-          animate={{
-            rotate: [0, 360],
-            scale: [1, 1.1, 1],
-          }}
-          transition={{
-            rotate: { duration: 25, repeat: Infinity, ease: "linear" },
-            scale: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-          }}
-        />
-
-        <motion.div
-          className="absolute bottom-20 right-20 w-16 h-16 bg-[#371445]/8 rounded-lg"
-          animate={{
-            y: [0, -15, 0],
-            rotate: [0, 180, 360],
-          }}
-          transition={{
-            y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-            rotate: { duration: 8, repeat: Infinity, ease: "linear" },
-          }}
-        />
-
-        {/* Subtle grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.01]"
-          style={{
-            backgroundImage: `linear-gradient(#371445 1px, transparent 1px), linear-gradient(90deg, #371445 1px, transparent 1px)`,
-            backgroundSize: "30px 30px",
-          }}
-        />
-      </div>
+      {/* Background System */}
+      <div className="absolute inset-0 bg-white" />
       <div className="relative z-10 w-[90%] max-w-6xl mx-auto text-center">
         {/* Section Headline */}
         <h2 className="text-xl md:text-[22px] lg:text-2xl font-semibold text-[#371445] mb-12">

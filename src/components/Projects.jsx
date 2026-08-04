@@ -115,7 +115,7 @@ function ProjectShowcase({ projectImages, imageIndex }) {
       >
         {/* Outer Claymorphic Showcase Frame */}
         <div className={`relative rounded-[2.5rem] p-3.5 sm:p-4 bg-white/50 backdrop-blur-2xl border border-white/60 shadow-[0_20px_50px_rgba(17,17,17,0.06)] transition-all duration-500 overflow-hidden ${
-          isHovered ? "border-[#E31D2E]/40 shadow-[0_25px_60px_rgba(227,29,46,0.16)] bg-white/70" : ""
+          isHovered ? "border-[#ECECEC] shadow-[0_12px_40px_rgba(0,0,0,0.08)] bg-white/70" : ""
         }`}>
           {/* Inner Light Highlight */}
           <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-tr from-white/80 via-transparent to-white/40 pointer-events-none z-10" />
@@ -244,16 +244,7 @@ const Projects = () => {
       
       {/* ------------------ Hero Section ------------------ */}
       <HeroLayout
-        bgElements={
-          <>
-            <div className="absolute top-1/4 left-0 w-[550px] h-[550px] bg-[#E31D2E]/5 rounded-full blur-[140px] pointer-events-none" />
-            <div className="absolute bottom-10 right-0 w-[450px] h-[450px] bg-[#E31D2E]/4 rounded-full blur-[130px] pointer-events-none" />
-            <div
-              className="absolute inset-0 opacity-[0.03] pointer-events-none"
-              style={{ backgroundImage: "radial-gradient(circle,#111 1.2px,transparent 1.2px)", backgroundSize: "44px 44px" }}
-            />
-          </>
-        }
+        bgElements={null}
         badge={
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -310,13 +301,6 @@ const Projects = () => {
 
       {/* ------------------ Our Workflow Process Section ------------------ */}
       <section className="projects-empower-section relative bg-transparent py-12 sm:py-14 lg:py-16 overflow-hidden">
-        {/* Subtle Decorative Background Elements */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#E31D2E]/4 rounded-full blur-[160px] pointer-events-none" />
-        <div
-          className="absolute inset-0 opacity-[0.025] pointer-events-none"
-          style={{ backgroundImage: "radial-gradient(circle,#111 1px,transparent 1px)", backgroundSize: "40px 40px" }}
-        />
-
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Section Header */}
           <motion.div
@@ -327,10 +311,10 @@ const Projects = () => {
             className="flex flex-col items-center justify-center text-center mb-16 md:mb-20"
           >
             {/* Small Badge */}
-            <div className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-[#E31D2E]/25 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md mb-6">
+            <div className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-neutral-200 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md mb-6">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF2B2B] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF2B2B]" />
               </span>
               <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
                 OUR WORKFLOW
@@ -340,7 +324,7 @@ const Projects = () => {
             {/* Heading with Animated Underline */}
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#111111] leading-tight max-w-4xl tracking-tight">
               We research, create, launch, and optimize{" "}
-              <span className="relative inline-block text-[#E31D2E]">
+              <span className="relative inline-block text-[#FF2B2B]">
                 transformative brand experiences
               </span>
             </h2>
@@ -355,7 +339,7 @@ const Projects = () => {
                 whileInView={{ scaleX: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="h-full bg-gradient-to-r from-[#E31D2E]/60 via-[#E31D2E]/40 to-[#E31D2E]/20 origin-left rounded-full"
+                className="h-full bg-neutral-300 origin-left rounded-full"
               />
             </div>
 
@@ -363,10 +347,10 @@ const Projects = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative z-10 pt-8">
               {data.map((item, index) => {
                 const icons = [
-                  <TrendingUp className="w-5 h-5 sm:w-5 sm:h-5 text-[#E31D2E]" />,
-                  <ArrowUpRight className="w-5 h-5 sm:w-5 sm:h-5 text-[#E31D2E]" />,
-                  <Star className="w-5 h-5 sm:w-5 sm:h-5 text-[#E31D2E]" />,
-                  <Check className="w-5 h-5 sm:w-5 sm:h-5 text-[#E31D2E]" />
+                  <TrendingUp className="w-5 h-5 sm:w-5 sm:h-5 text-[#FF2B2B]" />,
+                  <ArrowUpRight className="w-5 h-5 sm:w-5 sm:h-5 text-[#FF2B2B]" />,
+                  <Star className="w-5 h-5 sm:w-5 sm:h-5 text-[#FF2B2B]" />,
+                  <Check className="w-5 h-5 sm:w-5 sm:h-5 text-[#FF2B2B]" />
                 ];
 
                 return (
@@ -383,25 +367,24 @@ const Projects = () => {
                     <div className="absolute inset-0 rounded-[1.75rem] md:rounded-[2rem] bg-gradient-to-br from-white/80 via-transparent to-transparent pointer-events-none" />
 
                     {/* Floating Step Number Badge — Top Right */}
-                    <div className="absolute -top-3.5 right-6 sm:right-7 px-3 py-0.5 rounded-full bg-white/95 border border-[#E31D2E]/25 text-[#E31D2E] font-black text-[11px] sm:text-xs shadow-sm tracking-wider flex items-center gap-1 z-20">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
+                    <div className="absolute -top-3.5 right-6 sm:right-7 px-3 py-0.5 rounded-full bg-white/95 border border-neutral-200 text-[#FF2B2B] font-black text-[11px] sm:text-xs shadow-sm tracking-wider flex items-center gap-1 z-20">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#FF2B2B]" />
                       <span>0{index + 1}</span>
                     </div>
 
                     {/* Overlapping Icon Capsule — Top Left */}
                     <div className="absolute -top-6 left-6 sm:left-7 z-20">
-                      <div className="absolute inset-0 rounded-2xl bg-[#E31D2E]/10 blur-md group-hover:bg-[#E31D2E]/20 group-hover:scale-110 transition-all duration-500" />
-                      <div className="relative z-10 w-12 h-12 rounded-2xl bg-gradient-to-br from-white via-white/95 to-white/70 border border-white/90 flex items-center justify-center shadow-sm group-hover:rotate-[8deg] group-hover:scale-105 transition-all duration-500">
+                      <div className="relative z-10 w-12 h-12 rounded-2xl bg-white border border-neutral-200 flex items-center justify-center shadow-sm group-hover:rotate-[8deg] group-hover:scale-105 transition-all duration-500">
                         {icons[index]}
                       </div>
                     </div>
 
                     {/* Content & Phase Tag */}
                     <div className="relative z-10 pt-4 sm:pt-5">
-                      <span className="text-[#E31D2E] text-[10px] font-black uppercase tracking-[0.2em] mb-1.5 block">
+                      <span className="text-[#FF2B2B] text-[10px] font-black uppercase tracking-[0.2em] mb-1.5 block">
                         {WORKFLOW_LABELS[index] || "Phase"}
                       </span>
-                      <h3 className="text-lg sm:text-xl font-black mb-2 leading-snug tracking-tight text-[#111111] group-hover:text-[#E31D2E] transition-colors duration-300">
+                      <h3 className="text-lg sm:text-xl font-black mb-2 leading-snug tracking-tight text-[#111111] group-hover:text-[#FF2B2B] transition-colors duration-300">
                         {item.title.split(' & ').map((part, i) => (
                           <React.Fragment key={i}>
                             {part} {i === 0 && <br />}
@@ -413,8 +396,8 @@ const Projects = () => {
                       </p>
                     </div>
 
-                    {/* Bottom Accent Glow Line */}
-                    <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E31D2E] to-transparent scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
+                    {/* Bottom Accent Line */}
+                    <div className="absolute bottom-0 left-0 w-full h-1 bg-[#FF2B2B] scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
                   </motion.div>
                 );
               })}
@@ -429,9 +412,9 @@ const Projects = () => {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="text-center text-[#575757] text-xs font-black uppercase tracking-[0.25em] mt-16 flex items-center justify-center gap-3"
           >
-            <span className="w-12 h-[1px] bg-[#E31D2E]/30 hidden sm:block" />
+            <span className="w-12 h-[1px] bg-neutral-200 hidden sm:block" />
             <span>Every project follows a structured growth framework.</span>
-            <span className="w-12 h-[1px] bg-[#E31D2E]/30 hidden sm:block" />
+            <span className="w-12 h-[1px] bg-neutral-200 hidden sm:block" />
           </motion.div>
 
         </div>
@@ -439,13 +422,6 @@ const Projects = () => {
 
       {/* ------------------ Featured Case Studies Section ------------------ */}
       <section className="relative bg-transparent py-12 sm:py-14 lg:py-16 overflow-hidden">
-        {/* Decorative Background Elements */}
-        <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-[#E31D2E]/4 rounded-full blur-[150px] pointer-events-none" />
-        <div
-          className="absolute inset-0 opacity-[0.025] pointer-events-none"
-          style={{ backgroundImage: "radial-gradient(circle,#111 1px,transparent 1px)", backgroundSize: "40px 40px" }}
-        />
-
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Section Header */}
           <motion.div
@@ -456,10 +432,10 @@ const Projects = () => {
             className="flex flex-col items-center justify-center text-center mb-16 md:mb-20"
           >
             {/* Small Badge */}
-            <div className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-[#E31D2E]/25 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md mb-6">
+            <div className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-neutral-200 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md mb-6">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF2B2B] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF2B2B]" />
               </span>
               <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
                 SELECTED CASE STUDIES
@@ -469,7 +445,7 @@ const Projects = () => {
             {/* Heading with Animated Underline */}
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#111111] leading-tight max-w-4xl tracking-tight">
               Building Brands That{" "}
-              <span className="relative inline-block text-[#E31D2E]">
+              <span className="relative inline-block text-[#FF2B2B]">
                 Perform
               </span>
             </h2>
@@ -491,7 +467,7 @@ const Projects = () => {
                   transition={{ duration: 0.6, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
                   whileHover={{ y: -6 }}
                   onClick={() => navigate(`/blog/${index}`)}
-                  className="clay-card group relative flex flex-col overflow-hidden cursor-pointer p-4 sm:p-5 rounded-[2rem] border border-white/80 shadow-[0_10px_30px_rgba(17,17,17,0.03)] backdrop-blur-xl bg-white/80 hover:bg-white hover:border-[#E31D2E]/40 hover:shadow-[0_16px_36px_rgba(227,29,46,0.12)] transition-all duration-500 select-none"
+                  className="clay-card group relative flex flex-col overflow-hidden cursor-pointer p-4 sm:p-5 rounded-[2rem] border border-white/80 shadow-[0_10px_30px_rgba(17,17,17,0.03)] backdrop-blur-xl bg-white/80 hover:bg-white hover:border-[#ECECEC] hover:shadow-[0_16px_50px_rgba(0,0,0,0.08)] transition-all duration-500 select-none"
                 >
                   {/* Light Inner Glass Highlight */}
                   <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/80 via-transparent to-transparent pointer-events-none z-10" />

@@ -12,6 +12,7 @@
   .font-space-grotesk {
     font-family: 'Space Grotesk', 'Inter', sans-serif !important;
   }
+
   .font-signature {
     font-family: 'Alex Brush', 'Allura', 'Great Vibes', 'Satisfy', cursive !important;
   }
@@ -250,36 +251,40 @@ body {
 /* Professional Color Palette CSS Variables */
 :root {
   /* Brand Colors */
-  --color-bg-primary: #F3E9E9;
+  --color-bg-primary: #FFFFFF;
   --color-white: #FFFFFF;
   --color-text-primary: #111111;
-  --color-text-secondary: #575757;
-  --color-text-muted: #8B8B8B;
-  --color-brand-red: #E31D2E;
-  --color-dark-red: #991A23;
-  --color-dark-surface: #1B1B1B;
+  --color-text-secondary: #555555;
+  --color-text-muted: #7A7A7A;
+  --color-text-label: #8E8E8E;
+  --color-brand-red: #FF2B2B;
+  --color-dark-red: #E51D1D;
+  --color-dark-surface: #111111;
 
-  --color-primary: #E31D2E;
-  --color-primary-light: #ff3b4d;
-  --color-primary-dark: #991A23;
+  --color-primary: #FF2B2B;
+  --color-primary-light: #FF5252;
+  --color-primary-dark: #E51D1D;
 
   /* Secondary/Accent Colors */
   --color-secondary: #111111;
-  --color-secondary-light: #575757;
+  --color-secondary-light: #555555;
   --color-secondary-dark: #000000;
 
-  /* Background */
-  --color-background: #f4eeef;
+  /* Backgrounds */
+  --color-background: #FFFFFF;
+  --color-bg-secondary: #FAFAFA;
+  --color-bg-section-alt: #F8F9FB;
+  --color-bg-hover: #F5F5F5;
 
   /* Text Colors */
   --color-text: #111111;
-  --color-text-light: #575757;
-  --color-text-lighter: #8B8B8B;
+  --color-text-light: #555555;
+  --color-text-lighter: #7A7A7A;
 
   /* UI/Border Colors */
-  --color-ui: #D1D1D1;
-  --color-ui-light: #E5E5E5;
-  --color-ui-dark: #BEBEBE;
+  --color-ui: #ECECEC;
+  --color-ui-light: #ECECEC;
+  --color-ui-dark: #DDDDDD;
 }
 
 /* Enhanced gradient utilities for new colors */
@@ -289,14 +294,11 @@ body {
 
 /* Light Frosted Glass Navbar Styles */
 .light-frosted-nav {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(24px) saturate(120%);
   -webkit-backdrop-filter: blur(24px) saturate(120%);
-  box-shadow:
-    0 10px 30px rgba(17, 17, 17, 0.03),
-    0 1px 8px rgba(17, 17, 17, 0.01),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ECECEC;
 }
 
 /* Global overrides to make the Cinematic Universe background visible across all pages */
@@ -340,21 +342,21 @@ section,
 }
 
 ::-webkit-scrollbar-track {
-  background: #F3E9E9;
+  background: #FAFAFA;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #E31D2E;
+  background: #FF2B2B;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #991A23;
+  background: #E51D1D;
 }
 
 * {
   scrollbar-width: thin;
-  scrollbar-color: #E31D2E #F3E9E9;
+  scrollbar-color: #FF2B2B #FAFAFA;
 }
 
 /* Systemic overrides for text colors on light background - excluding all primary red CTA buttons and their children */
@@ -432,15 +434,15 @@ section,
 }
 
 .bg-\[\#371445\]\/10 {
-  background-color: rgba(227, 29, 46, 0.1) !important;
+  background-color: #FAFAFA !important;
 }
 
 .bg-\[\#371445\]\/20 {
-  background-color: rgba(227, 29, 46, 0.2) !important;
+  background-color: #FAFAFA !important;
 }
 
 .bg-\[\#371445\]\/90 {
-  background-color: rgba(227, 29, 46, 0.9) !important;
+  background-color: #FF2B2B !important;
 }
 
 .focus\:ring-\[\#371445\]:focus {
@@ -509,25 +511,18 @@ section,
 
 /* Claymorphic Utility Styling */
 .clay-card {
-  background: rgba(255, 255, 255, 0.65);
-  backdrop-filter: blur(20px) saturate(120%);
-  -webkit-backdrop-filter: blur(20px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.5) !important;
-  box-shadow:
-    0 12px 32px rgba(17, 17, 17, 0.04),
-    0 2px 8px rgba(17, 17, 17, 0.02),
-    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  background: #FFFFFF;
+  border: 1px solid #ECECEC !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
   border-radius: 2rem !important;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .clay-card:hover {
   transform: translateY(-4px);
-  background: rgba(255, 255, 255, 0.75);
-  box-shadow:
-    0 20px 40px rgba(17, 17, 17, 0.07),
-    0 4px 12px rgba(17, 17, 17, 0.03),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  background: #FFFFFF;
+  border-color: #DDDDDD !important;
+  box-shadow: 0 16px 50px rgba(0, 0, 0, 0.08);
 }
 
 /* Dark surface clay card */
@@ -547,6 +542,8 @@ section,
 .primary-btn,
 button.primary-btn,
 a.primary-btn,
+button[class*="bg-[#FF2B2B]"],
+a[class*="bg-[#FF2B2B]"],
 button[class*="bg-[#E31D2E]"],
 a[class*="bg-[#E31D2E]"],
 button[class*="bg-[#E8192C]"],
@@ -557,11 +554,11 @@ button[class*="bg-[#371445]"],
 a[class*="bg-[#371445]"],
 button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"],
 a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"] {
-  background-color: #EF2029 !important;
+  background-color: #FF2B2B !important;
   background-image: none !important;
   color: #FFFFFF !important;
   border: none !important;
-  box-shadow: none !important;
+  box-shadow: 0 10px 24px rgba(255, 43, 43, 0.22) !important;
   transition: transform 300ms cubic-bezier(.22, .61, .36, 1),
     background-color 300ms cubic-bezier(.22, .61, .36, 1),
     color 300ms cubic-bezier(.22, .61, .36, 1),
@@ -826,26 +823,26 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg {
    =================================================================== */
 :root {
   /* 
-    Fixed Navbar top position: 1.5rem (24px) + pill height ~44px = ~68px bottom edge.
-    Desktop: ~48px gap below navbar -> 68px + 48px = 116px top offset.
+    Floating Navbar top position: 2rem (32px) + floating card height 72px = 104px bottom edge.
+    Desktop: 40px gap below navbar -> 104px + 40px = 144px top offset.
   */
-  --nav-bottom-edge: 68px;
-  --hero-top-offset: 116px;
+  --nav-bottom-edge: 104px;
+  --hero-top-offset: 144px;
 }
 
 @media (max-width: 1023px) {
   :root {
-    /* Tablet: ~34px gap below navbar -> 66px + 34px = 100px top offset */
-    --nav-bottom-edge: 66px;
-    --hero-top-offset: 100px;
+    /* Tablet: 24px top + 68px card = 92px bottom edge + 32px gap = 124px top offset */
+    --nav-bottom-edge: 92px;
+    --hero-top-offset: 124px;
   }
 }
 
 @media (max-width: 767px) {
   :root {
-    /* Mobile: ~24px gap below navbar -> 60px + 24px = 84px top offset */
-    --nav-bottom-edge: 60px;
-    --hero-top-offset: 84px;
+    /* Mobile: 20px top + 64px card = 84px bottom edge + 24px gap = 108px top offset */
+    --nav-bottom-edge: 84px;
+    --hero-top-offset: 108px;
   }
 }
 

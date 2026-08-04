@@ -16,25 +16,32 @@ const navItemsList = [
 const navStyles = `
 .pill-nav-container {
   position: fixed;
-  top: 1.5rem;
+  top: 2rem;
   left: 50%;
   transform: translateX(-50%) translateY(0);
   opacity: 1;
-  width: 90%;
-  max-width: 1350px;
+  width: 92%;
+  max-width: 1320px;
+  height: 72px;
+  padding: 0 24px;
+  background: #FFFFFF;
+  border: 1px solid #ECECEC;
+  border-radius: 32px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.10);
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: transform 0.35s ease-out, opacity 0.35s ease-out;
+  box-sizing: border-box;
+  transition: transform 0.35s ease-out, opacity 0.35s ease-out, box-shadow 0.35s ease-out;
   will-change: transform, opacity;
 }
 
 .nav-cta-btn {
-  height: 44px;
-  padding: 0 24px;
+  height: 48px;
+  padding: 0 28px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #FF2D2D 0%, #E61C24 100%);
+  background: linear-gradient(135deg, #FF2B2B 0%, #E51D1D 100%);
   color: #ffffff;
   font-weight: 600;
   font-size: 15px;
@@ -43,7 +50,7 @@ const navStyles = `
   align-items: center;
   justify-content: center;
   gap: 10px;
-  box-shadow: 0 12px 30px rgba(255, 40, 40, 0.22);
+  box-shadow: 0 10px 24px rgba(255, 43, 43, 0.22);
   border: 1px solid rgba(255, 255, 255, 0.08);
   cursor: pointer;
   text-decoration: none;
@@ -54,9 +61,9 @@ const navStyles = `
 }
 
 .nav-cta-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 36px rgba(255, 40, 40, 0.38);
-  background: linear-gradient(135deg, #FF3D3D 0%, #F5232B 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(255, 43, 43, 0.35);
+  background: linear-gradient(135deg, #E51D1D 0%, #C81515 100%);
 }
 
 .nav-cta-btn .cta-arrow {
@@ -70,35 +77,38 @@ const navStyles = `
 
 @media (max-width: 768px) {
   .pill-nav-container {
-    width: 100%;
-    left: 0;
-    transform: translateY(0);
-    padding: 0 1rem;
+    width: calc(100% - 2rem);
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    height: 64px;
+    padding: 0 16px;
+    border-radius: 28px;
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    top: 1.25rem;
   }
 }
 
 .pill-nav-container.nav-hidden {
-  transform: translateX(-50%) translateY(-120%);
+  transform: translateX(-50%) translateY(-140%);
   opacity: 0;
   pointer-events: none;
 }
 
 @media (max-width: 768px) {
   .pill-nav-container.nav-hidden {
-    transform: translateY(-120%);
+    transform: translateX(-50%) translateY(-140%);
     opacity: 0;
   }
 }
 
 .pill-nav {
-  --nav-h: 42px;
+  --nav-h: 46px;
   --logo: 36px;
-  --pill-pad-x: 18px;
-  --pill-gap: 3px;
+  --pill-pad-x: 20px;
+  --pill-gap: 6px;
   width: max-content;
   display: flex;
   align-items: center;
@@ -119,13 +129,16 @@ const navStyles = `
   display: flex;
   align-items: center;
   height: var(--nav-h);
-  background: var(--base, #000);
-  border-radius: 9999px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .pill-logo {
-  height: 38px;
+  height: auto;
   width: auto;
   background: transparent;
   padding: 0;
@@ -135,24 +148,31 @@ const navStyles = `
 }
 
 .pill-logo img {
-  height: 38px;
+  height: 46px;
   width: auto;
   object-fit: contain;
   display: block;
 }
 
+@media (min-width: 640px) {
+  .pill-logo img {
+    height: 50px;
+  }
+}
+
 .pill-list {
   list-style: none;
   display: flex;
-  align-items: stretch;
+  align-items: center;
   gap: var(--pill-gap);
   margin: 0;
-  padding: 3px;
+  padding: 0;
   height: 100%;
 }
 
 .pill-list > li {
   display: flex;
+  align-items: center;
   height: 100%;
 }
 
@@ -162,20 +182,26 @@ const navStyles = `
   justify-content: center;
   height: 100%;
   padding: 0 var(--pill-pad-x);
-  background: var(--base, #fff);
-  color: var(--pill-text, var(--base, #000));
+  background: transparent;
+  color: #333333;
   text-decoration: none;
   border-radius: 9999px;
   box-sizing: border-box;
   font-weight: 600;
-  font-size: 16px;
-  line-height: 0;
+  font-size: 15px;
+  line-height: 1;
   text-transform: uppercase;
-  letter-spacing: 0.2px;
+  letter-spacing: 0.3px;
   white-space: nowrap;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pill:hover:not(.is-active) {
+  background-color: #F6F6F6;
+  color: #111111;
 }
 
 .pill .hover-circle {
@@ -183,7 +209,7 @@ const navStyles = `
   left: 50%;
   bottom: 0;
   border-radius: 50%;
-  background: var(--pill-bg, #ef2029);
+  background: var(--pill-bg, #FF2B2B);
   z-index: 1;
   display: block;
   pointer-events: none;
@@ -216,8 +242,9 @@ const navStyles = `
 }
 
 .pill.is-active {
-  background: var(--pill-bg, #ef2029) !important;
+  background: var(--pill-bg, #FF2B2B) !important;
   color: var(--hover-text, #ffffff) !important;
+  box-shadow: 0 6px 16px rgba(255, 43, 43, 0.25);
 }
 
 .pill.is-active::after {
@@ -228,7 +255,7 @@ const navStyles = `
   transform: translateX(-50%);
   width: 12px;
   height: 12px;
-  background: var(--base, #000);
+  background: #FFFFFF;
   border-radius: 50px;
   z-index: 4;
 }
@@ -255,8 +282,9 @@ const navStyles = `
   width: var(--nav-h);
   height: var(--nav-h);
   border-radius: 50%;
-  background: var(--base, #000);
-  border: none;
+  background: #FFFFFF;
+  border: 1px solid #ECECEC;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
   display: none;
   flex-direction: column;
   align-items: center;
@@ -276,7 +304,7 @@ const navStyles = `
 .hamburger-line {
   width: 16px;
   height: 2px;
-  background: var(--pill-bg, #fff);
+  background: #111111;
   border-radius: 1px;
   transition: all 0.01s ease;
   transform-origin: center;
@@ -284,12 +312,13 @@ const navStyles = `
 
 .mobile-menu-popover {
   position: absolute;
-  top: 3em;
-  left: 1rem;
-  right: 1rem;
-  background: var(--base, #f0f0f0);
-  border-radius: 27px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  top: calc(100% + 12px);
+  left: 0;
+  right: 0;
+  background: #FFFFFF;
+  border: 1px solid #ECECEC;
+  border-radius: 28px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.10);
   z-index: 998;
   opacity: 0;
   transform-origin: top center;
@@ -299,17 +328,17 @@ const navStyles = `
 .mobile-menu-list {
   list-style: none;
   margin: 0;
-  padding: 3px;
+  padding: 6px;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
 }
 
 .mobile-menu-popover .mobile-menu-link {
   display: block;
   padding: 12px 16px;
-  color: var(--pill-text, #fff);
-  background-color: var(--pill-bg, #fff);
+  color: #111111;
+  background-color: #FAFAFA;
   text-decoration: none;
   font-size: 16px;
   font-weight: 500;
@@ -319,8 +348,8 @@ const navStyles = `
 
 .mobile-menu-popover .mobile-menu-link:hover {
   cursor: pointer;
-  background-color: var(--base);
-  color: var(--hover-text, #fff);
+  background-color: #FF2B2B;
+  color: #ffffff;
 }
 `;
 
@@ -330,7 +359,7 @@ const Navbar = ({ setShowContactForm }) => {
 
   const ease = 'power3.easeOut';
   const baseColor = '#ffffff';
-  const pillColor = '#ef2029';
+  const pillColor = '#FF2B2B';
   const hoveredPillTextColor = '#ffffff';
   const pillTextColor = '#111111';
   const initialLoadAnimation = false;
@@ -619,7 +648,7 @@ const Navbar = ({ setShowContactForm }) => {
         {/* DEDICATED BRAND BLOCK */}
         <Link
           to="/"
-          className="brand-block flex items-center gap-3 sm:gap-4 mr-6 md:mr-8 shrink-0 text-left group no-underline select-none cursor-pointer"
+          className="brand-block flex items-center gap-3.5 sm:gap-4.5 mr-6 md:mr-8 shrink-0 text-left group no-underline select-none cursor-pointer"
           aria-label="Praskla Digital X Home"
           onMouseEnter={handleLogoEnter}
           onMouseLeave={handleLogoLeave}
@@ -632,7 +661,7 @@ const Navbar = ({ setShowContactForm }) => {
               src={Logo}
               alt="Praskla Digital X Logo"
               ref={logoImgRef}
-              className="h-[38px] sm:h-[40px] w-auto object-contain transition-all duration-300 group-hover:drop-shadow-[0_6px_16px_rgba(227,29,46,0.35)]"
+              className="h-[48px] sm:h-[52px] w-auto object-contain transition-all duration-300 group-hover:drop-shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
               style={{ willChange: 'transform, filter' }}
             />
           </div>
@@ -643,9 +672,9 @@ const Navbar = ({ setShowContactForm }) => {
             className="flex flex-col justify-center"
           >
             <span className="font-signature text-[24px] sm:text-[28px] lg:text-[30px] font-normal text-[#111111] leading-none tracking-normal antialiased">
-              Praskla Digital <span className="text-[#E31D2E]">X</span>
+              Praskla Digital <span className="text-[#FF2B2B]">X</span>
             </span>
-            <span className="hidden md:block font-space-grotesk text-[10px] sm:text-[11px] font-medium text-[#6B7280] tracking-[0.08em] leading-[1.4] mt-[1px]">
+            <span className="hidden md:block font-space-grotesk text-[10px] sm:text-[11px] font-medium text-[#6B7280] tracking-[0.08em] leading-[1.4] mt-[2px]">
               Where Strategy Meets Creativity
             </span>
           </motion.div>

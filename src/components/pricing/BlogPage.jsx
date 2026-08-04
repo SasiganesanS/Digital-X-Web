@@ -195,7 +195,6 @@ const BlogPage = () => {
             {/* RIGHT IMAGE */}
             <div className="flex justify-center md:justify-end">
               <div className="relative group">
-                <div className="absolute -inset-4 bg-[#E8192C]/10 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                 <img
                   src={overview.image || heroImage || DEFAULT_CLIENT_IMAGE}
                   alt={overview.headline || post.title || post.name}

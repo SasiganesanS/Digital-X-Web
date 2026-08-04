@@ -271,7 +271,7 @@ function HeroShowcase({ ourServicesImg }) {
       >
         {/* Claymorphic Outer Showcase Frame */}
         <div className={`relative rounded-[2.5rem] p-3.5 sm:p-4 bg-white/50 backdrop-blur-2xl border border-white/60 shadow-[0_20px_50px_rgba(17,17,17,0.06)] transition-all duration-500 overflow-visible ${
-          isHovered ? "border-[#E31D2E]/40 shadow-[0_25px_60px_rgba(227,29,46,0.16)] bg-white/70" : ""
+          isHovered ? "border-neutral-300 shadow-[0_16px_50px_rgba(0,0,0,0.08)] bg-white/70" : ""
         }`}>
           
           {/* Inner Light Highlight Reflection */}
@@ -565,13 +565,6 @@ export default function ServiceCalculator() {
       <HeroLayout
         bgElements={
           <>
-            <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-[#E31D2E]/6 rounded-full blur-[150px] pointer-events-none" />
-            <div className="absolute bottom-10 left-0 w-[500px] h-[500px] bg-[#E31D2E]/5 rounded-full blur-[140px] pointer-events-none" />
-            <motion.div
-              animate={{ scale: [1, 1.15, 1], opacity: [0.25, 0.5, 0.25] }}
-              transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute top-1/3 left-1/4 w-96 h-96 rounded-full bg-[#E31D2E]/3 blur-[120px] pointer-events-none"
-            />
             <div
               className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
               style={{
@@ -650,13 +643,6 @@ export default function ServiceCalculator() {
 
       {/* ── Auto-Scrolling Marquee Section with manual arrow/dot control ── */}
       <section id="expertise" className="relative w-full py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent">
-        {/* Subtle Decorative Background Elements (Section only) */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#E31D2E]/4 rounded-full blur-[160px] pointer-events-none" />
-        <div
-          className="absolute inset-0 opacity-[0.025] pointer-events-none"
-          style={{ backgroundImage: "radial-gradient(circle,#111 1px,transparent 1px)", backgroundSize: "40px 40px" }}
-        />
-
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 min-h-[520px]">
           
           {/* Section Heading & Subtitle */}
@@ -668,9 +654,9 @@ export default function ServiceCalculator() {
             className="flex flex-col items-center justify-center text-center gap-2 mb-16"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#111111] tracking-tight">
-              Our <span className="text-[#E31D2E]">Core Expertise</span>
+              Our <span className="text-[#FF2B2B]">Core Expertise</span>
             </h2>
-            <div className="h-1.5 w-24 bg-gradient-to-r from-[#E31D2E] to-transparent rounded-full mb-1" />
+            <div className="h-1.5 w-24 bg-[#FF2B2B] rounded-full mb-1" />
             <p className="text-[#575757] text-sm md:text-base font-medium max-w-md tracking-wide">
               Strategic services designed to accelerate modern brands.
             </p>
@@ -689,8 +675,8 @@ export default function ServiceCalculator() {
               }}
             >
               {/* Left/right fade masks */}
-              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-r from-[#f1eaeaff] to-transparent opacity-80" />
-              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-l from-[#f1eaeaff] to-transparent opacity-80" />
+              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-r from-[#ffffff] to-transparent opacity-80" />
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-l from-[#ffffff] to-transparent opacity-80" />
 
               <motion.div
                 ref={trackRef}
@@ -711,8 +697,8 @@ export default function ServiceCalculator() {
                       <div
                         className={`relative rounded-[2.25rem] md:rounded-[2.5rem] p-7 md:p-8 pt-9 md:pt-10 flex flex-col justify-between items-start text-left min-h-[420px] md:min-h-[440px] cursor-pointer transition-all duration-500 ease-out group border overflow-hidden select-none ${
                           isHighlighted
-                            ? 'border-[#E31D2E]/70 bg-white shadow-[0_20px_50px_rgba(227,29,46,0.14)] -translate-y-4 scale-[1.03] opacity-100 z-10'
-                            : 'border-neutral-200/80 bg-white/75 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-[#E31D2E]/50 hover:bg-white hover:-translate-y-2 opacity-90 hover:opacity-100'
+                            ? 'border-[#FF2B2B] bg-white shadow-[0_16px_50px_rgba(0,0,0,0.08)] -translate-y-4 scale-[1.03] opacity-100 z-10'
+                            : 'border-neutral-200/80 bg-white/75 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-[#FF2B2B]/50 hover:bg-white hover:-translate-y-2 opacity-90 hover:opacity-100'
                         }`}
                       >
                         {/* Light Inner Glass Highlight */}
@@ -722,12 +708,12 @@ export default function ServiceCalculator() {
                         <div className="relative mb-6">
                           {/* Outer Glow Ring */}
                           <div className={`absolute inset-0 rounded-full blur-md transition-all duration-500 ${
-                            isHighlighted ? 'bg-[#E31D2E]/25 scale-110' : 'bg-[#E31D2E]/10 group-hover:bg-[#E31D2E]/20 group-hover:scale-110'
+                            isHighlighted ? 'bg-[#FF2B2B]/15 scale-110' : 'bg-black/5 group-hover:bg-[#FF2B2B]/10 group-hover:scale-110'
                           }`} />
 
                           {/* Glass Icon Capsule */}
                           <div className={`relative z-10 w-20 h-20 sm:w-22 sm:h-22 rounded-full p-2 border transition-all duration-500 flex items-center justify-center bg-gradient-to-br from-white via-white/95 to-white/70 shadow-[0_10px_25px_rgba(17,17,17,0.06)] group-hover:-translate-y-1.5 group-hover:rotate-[6deg] ${
-                            isHighlighted ? 'border-[#E31D2E] shadow-[0_0_25px_rgba(227,29,46,0.25)]' : 'border-[#E31D2E]/20 group-hover:border-[#E31D2E]'
+                            isHighlighted ? 'border-[#FF2B2B] shadow-[0_4px_16px_rgba(0,0,0,0.08)]' : 'border-neutral-200 group-hover:border-[#FF2B2B]'
                           }`}>
                             <img
                               src={service.image}
@@ -930,10 +916,10 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                     {/* Header with Inline Status Badge */}
                     <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                       <h3 className="text-xs font-black text-[#111111] uppercase tracking-[0.2em] flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-[#E31D2E]" />
+                        <span className="w-2 h-2 rounded-full bg-[#FF2B2B]" />
                         PLAN SUMMARY
                       </h3>
-                      <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-red-50 text-[#E31D2E] border border-red-100 shadow-2xs">
+                      <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#FF2B2B]/5 text-[#FF2B2B] border border-[#FF2B2B]/20 shadow-2xs">
                         {Array.isArray(selectedItems) ? selectedItems.length : 0} {selectedItems?.length === 1 ? "Selected Pillar" : "Selected Pillars"}
                       </span>
                     </div>
@@ -962,7 +948,7 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                             exit={{ opacity: 0, scale: 0.95 }}
                             className="py-8 px-4 text-center border border-dashed border-gray-200 rounded-2xl bg-gray-50/40 flex flex-col items-center justify-center space-y-2"
                           >
-                            <div className="w-11 h-11 rounded-full bg-red-50/80 border border-red-100 flex items-center justify-center text-[#E31D2E] shadow-2xs">
+                            <div className="w-11 h-11 rounded-full bg-[#FF2B2B]/10 border border-[#FF2B2B]/20 flex items-center justify-center text-[#FF2B2B] shadow-2xs">
                               <FiLayers className="w-5 h-5" />
                             </div>
                             <div>
@@ -989,12 +975,12 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                                 className="p-3.5 px-4 rounded-xl bg-gray-50/80 border border-gray-100 shadow-2xs hover:border-red-200 transition-all flex items-center justify-between group"
                               >
                                 <div className="flex items-center gap-3">
-                                  <div className="w-8 h-8 rounded-lg bg-red-50 border border-red-100 flex items-center justify-center text-[#E31D2E] shrink-0 font-bold">
+                                  <div className="w-8 h-8 rounded-lg bg-[#FF2B2B]/10 border border-[#FF2B2B]/20 flex items-center justify-center text-[#FF2B2B] shrink-0 font-bold">
                                     <FiCheckCircle className="w-4 h-4" />
                                   </div>
                                   <div>
                                     <div className="text-xs sm:text-sm font-extrabold text-[#111111] tracking-tight">{platformTitle}</div>
-                                    <div className="text-[#E31D2E] text-[10px] font-bold mt-0.5 inline-flex items-center gap-1">
+                                    <div className="text-[#FF2B2B] text-[10px] font-bold mt-0.5 inline-flex items-center gap-1">
                                       <MdStars className="text-xs" />
                                       {planTitle}
                                     </div>
@@ -1005,7 +991,7 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                                   <button
                                     type="button"
                                     onClick={() => setSelectedItems(prev => prev.filter((_, i) => i !== idx))}
-                                    className="w-7 h-7 rounded-full bg-gray-200/60 hover:bg-red-50 text-gray-400 hover:text-[#E31D2E] flex items-center justify-center transition-colors"
+                                    className="w-7 h-7 rounded-full bg-gray-200/60 hover:bg-[#FF2B2B]/10 text-gray-400 hover:text-[#FF2B2B] flex items-center justify-center transition-colors"
                                     title="Remove service"
                                   >
                                     <FaTimesCircle className="text-xs" />
@@ -1022,19 +1008,19 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                     <div className="p-3.5 bg-gray-50/70 rounded-2xl border border-gray-100">
                       <div className="grid grid-cols-2 gap-2 text-[11px] font-semibold text-[#374151]">
                         <div className="flex items-center gap-1.5">
-                          <FiCheckCircle className="text-[#E31D2E] shrink-0 w-3.5 h-3.5" />
+                          <FiCheckCircle className="text-[#FF2B2B] shrink-0 w-3.5 h-3.5" />
                           <span>Dedicated Support</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <FiCheckCircle className="text-[#E31D2E] shrink-0 w-3.5 h-3.5" />
+                          <FiCheckCircle className="text-[#FF2B2B] shrink-0 w-3.5 h-3.5" />
                           <span>Strategy & Audits</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <FiCheckCircle className="text-[#E31D2E] shrink-0 w-3.5 h-3.5" />
+                          <FiCheckCircle className="text-[#FF2B2B] shrink-0 w-3.5 h-3.5" />
                           <span>Timeline Planning</span>
                         </div>
                         <div className="flex items-center gap-2">
-                          <FiCheckCircle className="text-[#E31D2E] shrink-0 w-3.5 h-3.5" />
+                          <FiCheckCircle className="text-[#FF2B2B] shrink-0 w-3.5 h-3.5" />
                           <span>Monthly Reporting</span>
                         </div>
                       </div>
@@ -1083,8 +1069,8 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
 
         <div className="relative w-full overflow-hidden">
           {/* Fade masks so logos don't hard-cut at the edges */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-32 z-20 bg-gradient-to-r from-[#F3E9E9] to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-32 z-20 bg-gradient-to-l from-[#F3E9E9] to-transparent" />
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 md:w-32 z-20 bg-gradient-to-r from-[#ffffff] to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 md:w-32 z-20 bg-gradient-to-l from-[#ffffff] to-transparent" />
 
           <div className="flex partners-marquee-track w-max py-2">
             {LOOPED_PARTNERS.map((partner, i) => (
@@ -1092,7 +1078,7 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                 key={`${partner.alt}-${i}`}
                 className="flex-shrink-0 mr-6 md:mr-8 w-[160px] h-[96px] md:w-[190px] md:h-[110px] rounded-2xl
                            bg-white/60 border border-white/80 flex items-center justify-center p-5
-                           hover:border-[#E31D2E]/40 hover:shadow-[0_8px_24px_rgba(227,29,46,0.08)]
+                           hover:border-[#FF2B2B]/40 hover:shadow-[0_8px_24px_rgba(255,43,43,0.08)]
                            hover:scale-105 transition-all duration-500 shadow-sm"
               >
                 <img

@@ -197,7 +197,7 @@ function Services() {
     <>
       <section
         id="services"
-        className="py-20 lg:py-32 bg-[#f5f0eb] relative overflow-hidden"
+        className="py-20 lg:py-32 bg-[#FAFAFA] relative overflow-hidden"
       >
         {/* Subtle background pattern */}
         <div

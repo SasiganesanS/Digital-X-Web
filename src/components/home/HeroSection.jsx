@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import SolarSystemHero from "./SolarSystemHero";
 import HeroLayout from "../common/HeroLayout";
@@ -53,36 +52,8 @@ const HeroSection = () => {
 
   const bgElements = (
     <>
-      {/* ── Background Layer 1: Ambient Glows & Noise Grid ── */}
+      {/* ── Background Layer 1: Ambient Grid ── */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, rgba(227,29,46,0.05) 0%, transparent 70%)",
-          }}
-        />
-        <motion.div
-          animate={{
-            y: [0, -15, 0],
-            x: [0, 10, 0],
-          }}
-          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
-          style={{
-            transform: `translate(${mousePos.x * 0.6}px, ${mousePos.y * 0.6}px)`,
-          }}
-          className="absolute -top-20 left-10 w-[450px] h-[450px] rounded-full bg-[#E31D2E]/5 blur-[120px]"
-        />
-        <motion.div
-          animate={{
-            y: [0, 15, 0],
-            x: [0, -10, 0],
-          }}
-          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-          style={{
-            transform: `translate(${mousePos.x * 0.4}px, ${mousePos.y * 0.4}px)`,
-          }}
-          className="absolute bottom-0 right-10 w-[500px] h-[500px] rounded-full bg-[#E31D2E]/4 blur-[140px]"
-        />
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -182,44 +153,16 @@ const HeroSection = () => {
   );
 
   const actions = (
-    <div className="flex flex-col items-center lg:items-start gap-6 w-full">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.95 }}
-      >
-        <Link
-          to="/projects"
-          className="primary-btn group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full px-8 py-4 text-xs sm:text-sm font-bold uppercase tracking-[0.15em] sm:tracking-[0.18em] text-white shadow-md hover:scale-102 transition-all"
-        >
-          <span className="relative z-10">See Our Work</span>
-          <svg
-            className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2.5}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
-        </Link>
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.1 }}
-        className="grid grid-cols-3 gap-3 w-full max-w-[280px] sm:max-w-xs lg:max-w-sm"
-      >
-        <AnimatedStat targetNum="15" suffix="+" label="Clients" />
-        <AnimatedStat targetNum="20" suffix="+" label="Projects" />
-        <AnimatedStat targetNum="20" suffix="+" label="Tie-ups" />
-      </motion.div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.95 }}
+      className="grid grid-cols-3 gap-3 w-full max-w-[280px] sm:max-w-xs lg:max-w-sm"
+    >
+      <AnimatedStat targetNum="15" suffix="+" label="Clients" />
+      <AnimatedStat targetNum="20" suffix="+" label="Projects" />
+      <AnimatedStat targetNum="20" suffix="+" label="Tie-ups" />
+    </motion.div>
   );
 
   const media = (

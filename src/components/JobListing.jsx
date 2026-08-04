@@ -305,11 +305,10 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
         <button
           key={i}
           onClick={() => handlePageChange(i)}
-          className={`px-3 sm:px-4 py-2 rounded-full font-medium transition-colors text-sm sm:text-[15px] lg:text-base ${
-            currentPage === i
+          className={`px-3 sm:px-4 py-2 rounded-full font-medium transition-colors text-sm sm:text-[15px] lg:text-base ${currentPage === i
               ? "bg-[#E31D2E] text-white shadow-sm font-bold"
               : "bg-white/80 text-neutral-700 hover:bg-neutral-100 border border-neutral-200"
-          }`}
+            }`}
         >
           {i}
         </button>
@@ -450,11 +449,10 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className={`px-4 py-2 rounded-full font-medium transition-colors flex items-center gap-1 sm:gap-2 text-sm sm:text-[15px] ${
-                      currentPage === 1
+                    className={`px-4 py-2 rounded-full font-medium transition-colors flex items-center gap-1 sm:gap-2 text-sm sm:text-[15px] ${currentPage === 1
                         ? "bg-neutral-100 text-neutral-400 cursor-not-allowed border border-neutral-200"
                         : "bg-white text-neutral-700 hover:bg-neutral-100 border border-neutral-200 shadow-xs"
-                    }`}
+                      }`}
                   >
                     <FiChevronLeft className="w-4 h-4" />
                     <span>Prev</span>
@@ -467,11 +465,10 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
-                    className={`px-4 py-2 rounded-full font-medium transition-colors flex items-center gap-1 sm:gap-2 text-sm sm:text-[15px] ${
-                      currentPage === totalPages
+                    className={`px-4 py-2 rounded-full font-medium transition-colors flex items-center gap-1 sm:gap-2 text-sm sm:text-[15px] ${currentPage === totalPages
                         ? "bg-neutral-100 text-neutral-400 cursor-not-allowed border border-neutral-200"
                         : "bg-white text-neutral-700 hover:bg-neutral-100 border border-neutral-200 shadow-xs"
-                    }`}
+                      }`}
                   >
                     <span>Next</span>
                     <FiChevronRight className="w-4 h-4" />

@@ -78,24 +78,24 @@ export default function CareersImageGrid({ teamMembers }) {
                 y1="50%"
                 x2={line.x2}
                 y2={line.y2}
-                stroke="rgba(227, 29, 46, 0.14)"
+                stroke="rgba(0, 0, 0, 0.05)"
                 strokeWidth="1.5"
                 strokeDasharray="4 4"
               />
               <motion.circle
                 r="2.5"
-                fill="#E31D2E"
+                fill="#FF2B2B"
                 initial={{ offsetDistance: "0%" }}
                 animate={{
                   cx: ["50%", line.x2],
                   cy: ["50%", line.y2],
-                  opacity: [0, 0.9, 0],
+                  opacity: [0, 1, 0],
                 }}
                 transition={{
-                  duration: 4.5 + i * 0.4,
+                  duration: 3,
                   repeat: Infinity,
+                  delay: i * 0.4,
                   ease: "easeInOut",
-                  delay: i * 0.6,
                 }}
               />
             </React.Fragment>
@@ -194,7 +194,7 @@ function TileCard({
         isCenter
           ? "bg-white border-white shadow-[0_12px_32px_rgba(17,17,17,0.06)]"
           : isHovered
-          ? "bg-white border-[#E31D2E]/40 shadow-[0_18px_40px_rgba(227,29,46,0.14)] z-30"
+          ? "bg-white border-[#FF2B2B]/40 shadow-[0_12px_40px_rgba(0,0,0,0.08)] z-30"
           : "bg-white/80 border-white/80 shadow-[0_8px_24px_rgba(17,17,17,0.03)] hover:bg-white"
       }`}
       style={{

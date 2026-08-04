@@ -21,15 +21,6 @@ const Homesection4 = () => {
         className="relative w-full min-h-screen flex flex-col justify-center overflow-visible lg:overflow-hidden py-20 bg-transparent"
         style={{ zIndex: 1 }}
       >
-        {/* Soft Background Glow */}
-        <div className="absolute inset-0 pointer-events-none z-0">
-          <div
-            className="absolute top-1/2 right-10 -translate-y-1/2 w-[500px] h-[500px] rounded-full"
-            style={{
-              background: "radial-gradient(circle, rgba(227,29,46,0.03) 0%, transparent 70%)",
-            }}
-          />
-        </div>
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">

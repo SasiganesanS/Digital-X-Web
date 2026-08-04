@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { 
-  FileCheck, 
-  Briefcase, 
-  Copyright, 
-  UserCheck, 
-  CreditCard, 
-  AlertTriangle, 
-  Scale, 
-  Mail, 
-  Phone, 
-  MapPin, 
+import {
+  FileCheck,
+  Briefcase,
+  Copyright,
+  UserCheck,
+  CreditCard,
+  AlertTriangle,
+  Scale,
+  Mail,
+  Phone,
+  MapPin,
   ArrowRight,
   FileText,
   CheckCircle2,
@@ -81,7 +81,7 @@ const TermsAndConditions = () => {
       <section className="w-full pb-16 lg:pb-24">
         <div className="site-container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            
+
             {/* Sticky Sidebar Navigation */}
             <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-4">
               <div className="bg-white border border-neutral-200/80 rounded-[28px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)]">
@@ -97,13 +97,12 @@ const TermsAndConditions = () => {
                       <button
                         key={section.id}
                         onClick={() => scrollToSection(section.id)}
-                        className={`w-full text-left px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-3 ${
-                          isActive
+                        className={`w-full text-left px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-3 ${isActive
                             ? "bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/20"
                             : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900"
-                        }`}
+                          }`}
                       >
-                        <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-[#E31D2E]" : "text-neutral-400"}`} />
+                        <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-[#FF2B2B]" : "text-neutral-400"}`} />
                         <span className="truncate">{section.label}</span>
                       </button>
                     );
@@ -113,14 +112,13 @@ const TermsAndConditions = () => {
 
               {/* Need Help Box */}
               <div className="bg-[#111111] text-white rounded-[28px] p-6 shadow-md relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-[#E31D2E]/20 rounded-full blur-2xl pointer-events-none" />
                 <h4 className="font-bold text-base mb-1">Contract Inquiries?</h4>
                 <p className="text-neutral-400 text-xs leading-relaxed mb-4">
                   For service agreements or legal contracts, contact our operations desk.
                 </p>
                 <a
                   href="mailto:hello@praskla.com"
-                  className="inline-flex items-center gap-2 text-xs font-bold text-[#E31D2E] hover:text-white transition-colors"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-[#FF2B2B] hover:text-white transition-colors"
                 >
                   <span>Contact Operations</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -130,7 +128,7 @@ const TermsAndConditions = () => {
 
             {/* Document Content Sections */}
             <div className="lg:col-span-8 space-y-8">
-              
+
               {/* 1. Acceptance of Terms */}
               <motion.div
                 id="acceptance"
@@ -139,8 +137,8 @@ const TermsAndConditions = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <FileCheck className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">1. Acceptance of Terms</h2>
@@ -161,8 +159,8 @@ const TermsAndConditions = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <Briefcase className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">2. Services Scope</h2>
@@ -183,8 +181,8 @@ const TermsAndConditions = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <Copyright className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">3. Intellectual Property Rights</h2>
@@ -205,8 +203,8 @@ const TermsAndConditions = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <UserCheck className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">4. Client Obligations</h2>
@@ -224,8 +222,8 @@ const TermsAndConditions = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <CreditCard className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">5. Payment & Billing</h2>
@@ -243,8 +241,8 @@ const TermsAndConditions = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <AlertTriangle className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">6. Limitation of Liability</h2>
@@ -262,8 +260,8 @@ const TermsAndConditions = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <Scale className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">7. Governing Law</h2>

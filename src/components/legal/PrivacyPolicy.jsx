@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { 
-  ShieldCheck, 
-  Lock, 
-  Eye, 
-  Database, 
-  UserCheck, 
-  Globe, 
-  Mail, 
-  Phone, 
-  MapPin, 
+import {
+  ShieldCheck,
+  Lock,
+  Eye,
+  Database,
+  UserCheck,
+  Globe,
+  Mail,
+  Phone,
+  MapPin,
   ArrowRight,
   FileText,
   CheckCircle2,
@@ -80,7 +80,7 @@ const PrivacyPolicy = () => {
       <section className="w-full pb-16 lg:pb-24">
         <div className="site-container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            
+
             {/* Sticky Table of Contents Sidebar */}
             <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-4">
               <div className="bg-white border border-neutral-200/80 rounded-[28px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)]">
@@ -96,11 +96,10 @@ const PrivacyPolicy = () => {
                       <button
                         key={section.id}
                         onClick={() => scrollToSection(section.id)}
-                        className={`w-full text-left px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-3 ${
-                          isActive
+                        className={`w-full text-left px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-3 ${isActive
                             ? "bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/20"
                             : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900"
-                        }`}
+                          }`}
                       >
                         <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-[#E31D2E]" : "text-neutral-400"}`} />
                         <span className="truncate">{section.label}</span>
@@ -112,14 +111,13 @@ const PrivacyPolicy = () => {
 
               {/* Need Help Box */}
               <div className="bg-[#111111] text-white rounded-[28px] p-6 shadow-md relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-24 h-24 bg-[#E31D2E]/20 rounded-full blur-2xl pointer-events-none" />
                 <h4 className="font-bold text-base mb-1">Have Privacy Questions?</h4>
                 <p className="text-neutral-400 text-xs leading-relaxed mb-4">
                   Our compliance team is ready to answer any questions regarding your personal data.
                 </p>
                 <a
                   href="mailto:hello@praskla.com"
-                  className="inline-flex items-center gap-2 text-xs font-bold text-[#E31D2E] hover:text-white transition-colors"
+                  className="inline-flex items-center gap-2 text-xs font-bold text-[#FF2B2B] hover:text-white transition-colors"
                 >
                   <span>Contact Data Officer</span>
                   <ArrowRight className="w-3.5 h-3.5" />
@@ -129,7 +127,7 @@ const PrivacyPolicy = () => {
 
             {/* Document Content Sections */}
             <div className="lg:col-span-8 space-y-8">
-              
+
               {/* 1. Overview & Scope */}
               <motion.div
                 id="overview"
@@ -138,8 +136,8 @@ const PrivacyPolicy = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <ShieldCheck className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">1. Overview & Scope</h2>
@@ -160,8 +158,8 @@ const PrivacyPolicy = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <Database className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">2. Information We Collect</h2>
@@ -193,8 +191,8 @@ const PrivacyPolicy = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <Eye className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">3. How We Use Your Data</h2>
@@ -230,8 +228,8 @@ const PrivacyPolicy = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <Globe className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">4. Data Sharing & Third-Parties</h2>
@@ -249,8 +247,8 @@ const PrivacyPolicy = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <Lock className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">5. Security & Retention</h2>
@@ -268,8 +266,8 @@ const PrivacyPolicy = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <UserCheck className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">6. Your Rights & Choices</h2>
@@ -287,8 +285,8 @@ const PrivacyPolicy = () => {
                 viewport={{ once: true }}
                 className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
-                <div className="flex items-center gap-3 text-[#E31D2E]">
-                  <div className="w-10 h-10 rounded-2xl bg-red-50 flex items-center justify-center border border-red-100">
+                <div className="flex items-center gap-3 text-[#FF2B2B]">
+                  <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
                     <Mail className="w-5 h-5" />
                   </div>
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">7. Contact Our Privacy Team</h2>

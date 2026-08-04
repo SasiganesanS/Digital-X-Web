@@ -18,19 +18,10 @@ const AboutSection = () => {
       id="about"
       className="relative w-full flex flex-col justify-center overflow-hidden py-12 sm:py-14 lg:py-16 bg-transparent"
     >
-      {/* Background Soft Glow */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full"
-          style={{
-            background: "radial-gradient(circle, rgba(227,29,46,0.03) 0%, transparent 70%)",
-          }}
-        />
-      </div>
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
         {/* ── Premium Content Panel ── */}
-        <motion.div 
+        <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
@@ -77,14 +68,14 @@ const AboutSection = () => {
                 measurable digital success.
               </p>
             </motion.div>
-            
+
             <motion.p
               variants={fadeUp}
               className="text-neutral-600 text-base leading-relaxed font-normal"
             >
               By combining strategic thinking, creative execution, and performance-driven
               optimization, we help brands build <span className="text-[#111111] font-bold">visibility, credibility,
-              and sustainable growth</span> — growing alongside them at every stage.
+                and sustainable growth</span> — growing alongside them at every stage.
             </motion.p>
 
             <motion.div variants={fadeUp} className="mt-4">

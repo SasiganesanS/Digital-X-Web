@@ -49,16 +49,7 @@ const About = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
-  const bgElements = (
-    <div className="absolute inset-0 pointer-events-none z-0">
-      <div
-        className="absolute top-1/3 left-10 w-[500px] h-[500px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(227,29,46,0.04) 0%, transparent 70%)",
-        }}
-      />
-    </div>
-  );
+  const bgElements = null;
 
   const badge = (
     <motion.div
@@ -396,8 +387,6 @@ const About = () => {
 
       {/* What We Bring to the Table — Expertise Section */}
       <section className="relative w-full py-16 sm:py-20 lg:py-24 bg-transparent overflow-hidden">
-        {/* Subtle Ambient Radial Red Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[#E31D2E]/6 blur-[130px] pointer-events-none rounded-full" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Section Header */}
@@ -470,21 +459,21 @@ const About = () => {
                   transition={{ duration: 0.5, delay: index * 0.12, ease: "easeOut" }}
                   className="group relative"
                 >
-                  <div className="h-full bg-white border border-neutral-200/80 rounded-[28px] p-7 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_45px_rgba(227,29,46,0.12)] hover:border-[#E31D2E]/40 hover:-translate-y-2.5 hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between cursor-pointer relative overflow-hidden">
+                  <div className="h-full bg-white border border-neutral-200/80 rounded-[28px] p-7 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.08)] hover:border-[#FF2B2B]/40 hover:-translate-y-2.5 hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between cursor-pointer relative overflow-hidden">
                     
                     {/* Top Row: Icon Container + Category Number */}
                     <div>
                       <div className="flex items-center justify-between gap-4 mb-6">
-                        <div className="w-14 h-14 rounded-2xl bg-red-50/80 border border-red-100 flex items-center justify-center text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white group-hover:border-[#E31D2E] transition-all duration-300 shrink-0 shadow-xs group-hover:-translate-y-1">
+                        <div className="w-14 h-14 rounded-2xl bg-[#FF2B2B]/10 border border-[#FF2B2B]/20 flex items-center justify-center text-[#FF2B2B] group-hover:bg-[#FF2B2B] group-hover:text-white group-hover:border-[#FF2B2B] transition-all duration-300 shrink-0 shadow-xs group-hover:-translate-y-1">
                           <IconComponent className="w-7 h-7 stroke-[2.2]" />
                         </div>
-                        <span className="font-space-grotesk text-sm font-bold text-[#E31D2E] tracking-wider bg-red-50/60 px-3 py-1 rounded-full border border-red-100/60">
+                        <span className="font-space-grotesk text-sm font-bold text-[#FF2B2B] tracking-wider bg-[#FF2B2B]/10 px-3 py-1 rounded-full border border-[#FF2B2B]/20">
                           {item.id}
                         </span>
                       </div>
 
                       {/* Headline */}
-                      <h3 className="text-xl sm:text-2xl font-black text-[#111111] mb-3 leading-snug group-hover:text-[#E31D2E] transition-colors duration-300">
+                      <h3 className="text-xl sm:text-2xl font-black text-[#111111] mb-3 leading-snug group-hover:text-[#FF2B2B] transition-colors duration-300">
                         {item.title}
                       </h3>
 

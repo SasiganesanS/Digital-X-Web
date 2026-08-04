@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
-    theme: {
+  theme: {
     extend: {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
@@ -22,30 +22,34 @@ module.exports = {
       },
       colors: {
         primary: {
-          DEFAULT: "#E31D2E", // Brand Red
-          light: "#ff3b4d",
-          dark: "#991A23",
+          DEFAULT: "#FF2B2B", // Primary Brand Red
+          light: "#FF5252",
+          dark: "#E51D1D", // Hover Red
         },
         secondary: {
-          DEFAULT: "#111111", // Primary text / black color
-          light: "#575757",
+          DEFAULT: "#111111", // Primary heading text
+          light: "#555555", // Body text
           dark: "#000000",
         },
         background: {
-          DEFAULT: "#f1eaeaff", // Light primary background
+          DEFAULT: "#FFFFFF", // Pure white primary background
+          secondary: "#FAFAFA",
+          alt: "#F8F9FB",
+          hover: "#F5F5F5",
         },
-        "brand-red": "#E31D2E",
-        "dark-red": "#991A23",
-        "dark-surface": "#1B1B1B",
+        "brand-red": "#FF2B2B",
+        "dark-red": "#E51D1D",
+        "dark-surface": "#111111",
         text: {
           DEFAULT: "#111111",
-          light: "#575757",
-          lighter: "#8B8B8B",
+          light: "#555555",
+          lighter: "#7A7A7A",
+          muted: "#8E8E8E",
         },
         ui: {
-          DEFAULT: "#f7f3f3ff",
-          light: "#E5E5E5",
-          dark: "#BEBEBE",
+          DEFAULT: "#FAFAFA",
+          light: "#ECECEC",
+          dark: "#DDDDDD",
         },
       },
       animation: {

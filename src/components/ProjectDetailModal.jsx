@@ -177,7 +177,7 @@ export default function ProjectDetailModal({ isOpen, onClose, project: initialPr
                                             const nextProject = projects.find(p => p.id === 2);
                                             if (nextProject) handleSwitchProject(nextProject);
                                         }}
-                                        className="group relative flex items-center gap-4 bg-[#E8192C] text-white px-10 py-5 rounded-full font-black uppercase tracking-widest hover:bg-[#ff2235] transition-all duration-300 shadow-[0_0_40px_rgba(232,25,44,0.3)]"
+                                        className="group relative flex items-center gap-4 bg-[#FF2B2B] text-white px-10 py-5 rounded-full font-black uppercase tracking-widest hover:bg-[#E51D1D] transition-all duration-300 shadow-[0_10px_24px_rgba(255,43,43,0.22)]"
                                     >
                                         Next Impact Story: Adhithya Fashions
                                         <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
@@ -206,7 +206,7 @@ export default function ProjectDetailModal({ isOpen, onClose, project: initialPr
                    .custom-scrollbar::-webkit-scrollbar { width: 4px; }
                 }
                 .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); }
-                .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(232, 25, 44, 0.2); border-radius: 10px; }
+                .custom-scrollbar::-webkit-scrollbar-thumb { background: #FF2B2B; border-radius: 10px; }
             `}</style>
         </AnimatePresence>
     );

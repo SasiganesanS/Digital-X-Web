@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  X, 
-  Search, 
-  Check, 
-  AlertCircle, 
-  ChevronDown, 
-  Loader2, 
-  Send 
+import {
+  X,
+  Search,
+  Check,
+  AlertCircle,
+  ChevronDown,
+  Loader2,
+  Send
 } from 'lucide-react';
 import { sendContactFormEmails } from '../utils/emailService';
 
@@ -313,7 +313,7 @@ const ContactForm = ({ isOpen, onClose }) => {
     }
   };
 
-  const filteredCountries = COUNTRIES.filter(c => 
+  const filteredCountries = COUNTRIES.filter(c =>
     c.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
     c.code.includes(countrySearch) ||
     c.country.toLowerCase().includes(countrySearch.toLowerCase())
@@ -325,7 +325,7 @@ const ContactForm = ({ isOpen, onClose }) => {
   return ReactDOM.createPortal(
     <AnimatePresence>
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
           role="dialog"
           aria-modal="true"
@@ -333,7 +333,7 @@ const ContactForm = ({ isOpen, onClose }) => {
           aria-describedby="reach-us-modal-subtitle"
         >
           {/* Backdrop Blur Overlay */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -343,7 +343,7 @@ const ContactForm = ({ isOpen, onClose }) => {
           />
 
           {/* Modal Container */}
-          <motion.div 
+          <motion.div
             ref={modalRef}
             initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -374,7 +374,7 @@ const ContactForm = ({ isOpen, onClose }) => {
 
             {/* Success Overlay View */}
             {submitSuccess ? (
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="py-8 px-4 text-center flex flex-col items-center justify-center space-y-4"
@@ -399,10 +399,10 @@ const ContactForm = ({ isOpen, onClose }) => {
             ) : (
               /* Main Form View */
               <form onSubmit={handleSubmit} noValidate className="space-y-4">
-                
+
                 {/* Submission Error Banner */}
                 {submitError && (
-                  <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-red-700 text-xs font-medium flex items-center gap-2">
+                  <div className="p-3.5 bg-[#FF2B2B]/5 border border-[#FF2B2B]/20 rounded-xl text-[#FF2B2B] text-xs font-medium flex items-center gap-2">
                     <AlertCircle className="w-4 h-4 flex-shrink-0" />
                     <span>{submitError}</span>
                   </div>
@@ -413,7 +413,7 @@ const ContactForm = ({ isOpen, onClose }) => {
                   {/* Full Name */}
                   <div>
                     <label htmlFor="contact-name" className="block text-xs font-semibold text-gray-700 mb-1.5">
-                      Full Name <span className="text-[#E31D2E]">*</span>
+                      Full Name <span className="text-[#FF2B2B]">*</span>
                     </label>
                     <input
                       ref={nameInputRef}
@@ -423,8 +423,8 @@ const ContactForm = ({ isOpen, onClose }) => {
                       value={formData.name}
                       onChange={handleInputChange}
                       placeholder="Jane Doe"
-                      className={`w-full h-11 px-3.5 text-sm text-[#111111] bg-gray-50/60 hover:bg-white focus:bg-white border rounded-xl placeholder:text-gray-400 font-medium transition-all duration-200 outline-none
-                                ${errors.name ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-gray-200 focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/10'}`}
+                      className={`w-full h-11 px-3.5 text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white border rounded-xl placeholder:text-gray-400 font-medium transition-all duration-200 outline-none
+                                ${errors.name ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15'}`}
                     />
                     {errors.name && (
                       <p className="text-red-500 text-[11px] font-medium mt-1 flex items-center gap-1">
@@ -437,7 +437,7 @@ const ContactForm = ({ isOpen, onClose }) => {
                   {/* Email Address */}
                   <div>
                     <label htmlFor="contact-email" className="block text-xs font-semibold text-gray-700 mb-1.5">
-                      Email Address <span className="text-[#E31D2E]">*</span>
+                      Email Address <span className="text-[#FF2B2B]">*</span>
                     </label>
                     <input
                       ref={emailInputRef}
@@ -447,8 +447,8 @@ const ContactForm = ({ isOpen, onClose }) => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="jane@example.com"
-                      className={`w-full h-11 px-3.5 text-sm text-[#111111] bg-gray-50/60 hover:bg-white focus:bg-white border rounded-xl placeholder:text-gray-400 font-medium transition-all duration-200 outline-none
-                                ${errors.email ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-gray-200 focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/10'}`}
+                      className={`w-full h-11 px-3.5 text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white border rounded-xl placeholder:text-gray-400 font-medium transition-all duration-200 outline-none
+                                ${errors.email ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15'}`}
                     />
                     {errors.email && (
                       <p className="text-red-500 text-[11px] font-medium mt-1 flex items-center gap-1">
@@ -462,17 +462,17 @@ const ContactForm = ({ isOpen, onClose }) => {
                 {/* Phone Field with Searchable Country Selector */}
                 <div>
                   <label htmlFor="contact-phone" className="block text-xs font-semibold text-gray-700 mb-1.5">
-                    Phone Number <span className="text-[#E31D2E]">*</span>
+                    Phone Number <span className="text-[#FF2B2B]">*</span>
                   </label>
                   <div className="relative flex items-center" ref={countryDropdownRef}>
                     {/* Country Selector Trigger Button */}
                     <button
                       type="button"
                       onClick={() => setShowCountryList(!showCountryList)}
-                      className={`h-11 px-3 border border-r-0 rounded-l-xl bg-gray-50/60 hover:bg-gray-100/80 flex items-center gap-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#E31D2E]/20 z-10
-                                ${errors.phone ? 'border-red-500 bg-red-50/20' : 'border-gray-200'}`}
+                      className={`h-11 px-3 border border-r-0 rounded-l-xl bg-white hover:bg-gray-50 flex items-center gap-1.5 transition-colors focus:outline-none focus:ring-2 focus:ring-[#FF2B2B]/20 z-10
+                                ${errors.phone ? 'border-red-500 bg-red-50/20' : 'border-[#E5E5E5]'}`}
                     >
-                      <img 
+                      <img
                         src={`https://flagcdn.com/w20/${selectedCountry.flag}.png`}
                         alt={selectedCountry.name}
                         className="w-4 h-auto rounded-sm object-cover"
@@ -483,7 +483,7 @@ const ContactForm = ({ isOpen, onClose }) => {
 
                     {/* Searchable Country Dropdown Menu */}
                     {showCountryList && (
-                      <div className="absolute left-0 top-full mt-1.5 w-64 bg-white border border-gray-200 rounded-2xl shadow-xl z-50 p-2 overflow-hidden animate-in fade-in zoom-in-95">
+                      <div className="absolute left-0 top-full mt-1.5 w-64 bg-white border border-[#ECECEC] rounded-2xl shadow-xl z-50 p-2 overflow-hidden animate-in fade-in zoom-in-95">
                         {/* Dropdown Search Input */}
                         <div className="relative mb-1.5">
                           <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -493,7 +493,7 @@ const ContactForm = ({ isOpen, onClose }) => {
                             value={countrySearch}
                             onChange={(e) => setCountrySearch(e.target.value)}
                             placeholder="Search country or code..."
-                            className="w-full pl-8 pr-3 py-1.5 text-xs bg-gray-50 border border-gray-200 rounded-lg outline-none focus:border-[#E31D2E] focus:bg-white text-gray-900"
+                            className="w-full pl-8 pr-3 py-1.5 text-xs bg-gray-50 border border-[#E5E5E5] rounded-lg outline-none focus:border-[#FF2B2B] focus:bg-white text-gray-900"
                           />
                         </div>
 
@@ -505,10 +505,10 @@ const ContactForm = ({ isOpen, onClose }) => {
                                 key={`${c.country}-${c.code}`}
                                 type="button"
                                 onClick={() => handleCountrySelect(c)}
-                                className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors ${selectedCountry.country === c.country ? 'bg-red-50 text-[#E31D2E] font-semibold' : 'hover:bg-gray-50 text-gray-700'}`}
+                                className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs flex items-center justify-between transition-colors ${selectedCountry.country === c.country ? 'bg-[#FF2B2B]/10 text-[#FF2B2B] font-semibold' : 'hover:bg-gray-50 text-gray-700'}`}
                               >
                                 <div className="flex items-center gap-2 truncate">
-                                  <img 
+                                  <img
                                     src={`https://flagcdn.com/w20/${c.flag}.png`}
                                     alt={c.name}
                                     className="w-4 h-auto rounded-sm object-cover"
@@ -534,8 +534,8 @@ const ContactForm = ({ isOpen, onClose }) => {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="9876543210"
-                      className={`w-full h-11 px-3.5 border rounded-r-xl text-sm text-[#111111] bg-gray-50/60 hover:bg-white focus:bg-white placeholder:text-gray-400 font-medium transition-all duration-200 outline-none
-                                ${errors.phone ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-gray-200 focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/10'}`}
+                      className={`w-full h-11 px-3.5 border rounded-r-xl text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white placeholder:text-gray-400 font-medium transition-all duration-200 outline-none
+                                ${errors.phone ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15'}`}
                     />
                   </div>
                   {errors.phone && (
@@ -550,9 +550,9 @@ const ContactForm = ({ isOpen, onClose }) => {
                 <div>
                   <div className="flex items-center justify-between mb-1.5">
                     <label htmlFor="contact-message" className="text-xs font-semibold text-gray-700">
-                      Message <span className="text-[#E31D2E]">*</span>
+                      Message <span className="text-[#FF2B2B]">*</span>
                     </label>
-                    <span className={`text-[11px] font-medium transition-colors ${formData.message.length > 450 ? 'text-[#E31D2E]' : 'text-gray-400'}`}>
+                    <span className={`text-[11px] font-medium transition-colors ${formData.message.length > 450 ? 'text-[#FF2B2B]' : 'text-gray-400'}`}>
                       {formData.message.length} / 500
                     </span>
                   </div>
@@ -564,8 +564,8 @@ const ContactForm = ({ isOpen, onClose }) => {
                     onChange={handleInputChange}
                     rows={4}
                     placeholder="Tell us about your project or inquiry..."
-                    className={`w-full p-3.5 text-sm text-[#111111] bg-gray-50/60 hover:bg-white focus:bg-white border rounded-xl placeholder:text-gray-400 font-medium transition-all duration-200 outline-none resize-y min-h-[105px] max-h-[200px]
-                              ${errors.message ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-gray-200 focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/10'}`}
+                    className={`w-full p-3.5 text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white border rounded-xl placeholder:text-gray-400 font-medium transition-all duration-200 outline-none resize-y min-h-[105px] max-h-[200px]
+                              ${errors.message ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-4 focus:ring-red-500/10' : 'border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15'}`}
                   />
                   {errors.message && (
                     <p className="text-red-500 text-[11px] font-medium mt-1 flex items-center gap-1">

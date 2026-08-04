@@ -39,14 +39,14 @@ export default function PlatformPlanModal({
         <div className="flex items-center gap-4 mb-8">
           <div className="flex items-center justify-center p-3 rounded-2xl bg-neutral-100 border border-neutral-200 shadow-sm">
             {PlatformIcon ? (
-              <PlatformIcon className="text-3xl text-[#E31D2E]" />
+              <PlatformIcon className="text-3xl text-[#FF2B2B]" />
             ) : null}
           </div>
           <div className="flex-1 min-w-0">
             <h2 className="text-2xl font-black text-[#111111] tracking-tight">{platformTitle}</h2>
             <div className="flex items-baseline gap-2 mt-1">
               <span className="text-neutral-500 text-xs font-bold uppercase tracking-widest">Base Pillar Fee</span>
-              <span className="text-[#E31D2E] font-black text-lg">
+              <span className="text-[#FF2B2B] font-black text-lg">
                 ₹{platformPrice.toLocaleString()}
               </span>
             </div>
@@ -72,19 +72,19 @@ export default function PlatformPlanModal({
                     onClick={() => onSelectPlan && onSelectPlan(plan)}
                     className={`w-full flex items-center gap-4 p-4 rounded-2xl transition-all duration-300 border text-left ${
                       isSelected
-                        ? "bg-[#E31D2E]/5 border-[#E31D2E] shadow-[0_4px_16px_rgba(227,29,46,0.1)]"
+                        ? "bg-[#FF2B2B]/5 border-[#FF2B2B] shadow-[0_4px_16px_rgba(0,0,0,0.05)]"
                         : "bg-neutral-50 border-neutral-200/80 hover:border-neutral-300 hover:bg-neutral-100/80"
                     }`}
                   >
                     <div
                       className={`flex items-center justify-center p-2.5 rounded-xl border transition-all duration-300 ${
                         isSelected
-                          ? "bg-[#E31D2E] border-transparent shadow-md"
+                          ? "bg-[#FF2B2B] border-transparent shadow-md"
                           : "bg-white border-neutral-200 shadow-xs"
                       }`}
                     >
                       {PlanIcon ? (
-                        <PlanIcon className={`${isSelected ? "text-white" : "text-[#E31D2E]"} text-xl`} />
+                        <PlanIcon className={`${isSelected ? "text-white" : "text-[#FF2B2B]"} text-xl`} />
                       ) : null}
                     </div>
                     <div className="flex-1">
@@ -95,7 +95,7 @@ export default function PlatformPlanModal({
                         <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-tighter">
                           Starts at
                         </span>
-                        <span className={`text-sm font-black ${isSelected ? "text-[#E31D2E]" : "text-neutral-700"}`}>
+                        <span className={`text-sm font-black ${isSelected ? "text-[#FF2B2B]" : "text-neutral-700"}`}>
                           ₹{planPrice.toLocaleString()}
                         </span>
                       </div>
@@ -117,7 +117,7 @@ export default function PlatformPlanModal({
                 return (
                   <div className="h-full flex flex-col">
                     <div className="flex items-center gap-3 mb-6">
-                      <div className="p-2 rounded-xl bg-white border border-neutral-200 text-[#E31D2E] shadow-sm">
+                      <div className="p-2 rounded-xl bg-white border border-neutral-200 text-[#FF2B2B] shadow-sm">
                         {SelectedPlanIcon ? <SelectedPlanIcon className="text-2xl" /> : <MdStars className="text-2xl" />}
                       </div>
                       <div>
@@ -129,7 +129,7 @@ export default function PlatformPlanModal({
                     <div className="flex-1 space-y-3 mb-6 overflow-y-auto max-h-[220px] pr-2">
                       {featuresList.map((feat, idx) => (
                         <div key={idx} className="flex items-start gap-3 text-sm text-neutral-700">
-                          <FaCheckCircle className="text-[#E31D2E] mt-0.5 flex-shrink-0 text-base" />
+                          <FaCheckCircle className="text-[#FF2B2B] mt-0.5 flex-shrink-0 text-base" />
                           <span>{typeof feat === 'string' ? feat : feat?.name || String(feat)}</span>
                         </div>
                       ))}
@@ -142,7 +142,7 @@ export default function PlatformPlanModal({
                       </div>
                       <button
                         onClick={() => onApplyPlan && onApplyPlan(selectedPlan)}
-                        className="px-6 py-3 rounded-full bg-[#E31D2E] text-white font-bold text-sm hover:bg-[#c01726] transition-all shadow-[0_4px_16px_rgba(227,29,46,0.25)] hover:shadow-lg hover:scale-102"
+                        className="px-6 py-3 rounded-full bg-[#FF2B2B] text-white font-bold text-sm hover:bg-[#E51D1D] transition-all shadow-[0_10px_24px_rgba(0,0,0,0.08)] hover:shadow-lg hover:scale-102"
                       >
                         Select & Apply
                       </button>

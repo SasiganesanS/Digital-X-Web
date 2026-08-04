@@ -184,19 +184,17 @@ export default function FeaturedWorks() {
                       key={project.id}
                       type="button"
                       onClick={() => setActiveIndex(idx)}
-                      className={`group relative flex items-center justify-between w-full p-2.5 sm:p-3 rounded-2xl border text-left transition-all duration-300 min-w-[230px] lg:min-w-0 flex-shrink-0 flex-1 ${
-                        isActive
-                          ? "border-[#E31D2E]/40 bg-gradient-to-r from-[#E31D2E]/8 to-transparent text-[#111111] shadow-[0_6px_16px_rgba(227,29,46,0.1)] scale-[1.015]"
+                      className={`group relative flex items-center justify-between w-full p-2.5 sm:p-3 rounded-2xl border text-left transition-all duration-300 min-w-[230px] lg:min-w-0 flex-shrink-0 flex-1 ${isActive
+                          ? "border-[#FF2B2B]/40 bg-neutral-100/60 text-[#111111] shadow-[0_4px_16px_rgba(0,0,0,0.05)] scale-[1.015]"
                           : "border-neutral-100 bg-neutral-50/60 text-neutral-600 hover:border-neutral-200 hover:bg-neutral-100/80 hover:text-[#111111]"
-                      }`}
+                        }`}
                     >
                       {/* Active Red Accent Bar */}
                       <span
-                        className={`absolute inset-y-0 left-0 w-1.5 rounded-r-full transition-all duration-300 ${
-                          isActive
-                            ? "bg-[#E31D2E] shadow-[0_0_10px_rgba(227,29,46,0.8)]"
-                            : "bg-transparent group-hover:bg-[#E31D2E]/30"
-                        }`}
+                        className={`absolute inset-y-0 left-0 w-1.5 rounded-r-full transition-all duration-300 ${isActive
+                            ? "bg-[#FF2B2B]"
+                            : "bg-transparent group-hover:bg-[#FF2B2B]/30"
+                          }`}
                       />
 
                       {/* Project Cover Thumbnail + Details */}
@@ -211,9 +209,8 @@ export default function FeaturedWorks() {
 
                         <div className="truncate">
                           <h4
-                            className={`text-xs sm:text-sm font-extrabold truncate transition-colors ${
-                              isActive ? "text-[#111111]" : "text-neutral-700 group-hover:text-[#111111]"
-                            }`}
+                            className={`text-xs sm:text-sm font-extrabold truncate transition-colors ${isActive ? "text-[#111111]" : "text-neutral-700 group-hover:text-[#111111]"
+                              }`}
                           >
                             {project.title}
                           </h4>
@@ -225,11 +222,10 @@ export default function FeaturedWorks() {
 
                       {/* Arrow Icon */}
                       <ArrowUpRight
-                        className={`w-3.5 h-3.5 flex-shrink-0 transition-all duration-300 pointer-events-none ${
-                          isActive
+                        className={`w-3.5 h-3.5 flex-shrink-0 transition-all duration-300 pointer-events-none ${isActive
                             ? "text-[#E31D2E] translate-x-0.5 -translate-y-0.5"
                             : "text-neutral-300 group-hover:text-neutral-500"
-                        }`}
+                          }`}
                       />
                     </button>
                   );
@@ -247,11 +243,10 @@ export default function FeaturedWorks() {
                       key={pageIdx}
                       type="button"
                       onClick={() => handlePageSelect(pageIdx)}
-                      className={`h-2 rounded-full transition-all duration-300 ${
-                        pageIdx === page
+                      className={`h-2 rounded-full transition-all duration-300 ${pageIdx === page
                           ? "w-7 bg-[#E31D2E]"
                           : "w-2 bg-neutral-200 hover:bg-neutral-300"
-                      }`}
+                        }`}
                       aria-label={`Go to project group ${pageIdx + 1}`}
                     />
                   ))}

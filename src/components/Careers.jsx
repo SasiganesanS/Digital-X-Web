@@ -217,21 +217,6 @@ const Careers = () => {
         aria-label="Job search and filters"
       >
         {/* Soft background ambient radial gradients & blurred circles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden -z-10">
-          {/* Subtle dot pattern */}
-          <div
-            className="absolute inset-0 opacity-[0.035]"
-            style={{
-              backgroundImage: `radial-gradient(#111111 1px, transparent 1px)`,
-              backgroundSize: "24px 24px",
-            }}
-          />
-          {/* Soft radial gradients & blurred ambient circles */}
-          <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-gradient-to-tr from-[#E31D2E]/10 via-[#E31D2E]/3 to-transparent blur-3xl rounded-full" />
-          <div className="absolute top-10 left-10 w-72 h-72 bg-[#E31D2E]/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#E31D2E]/4 rounded-full blur-3xl" />
-        </div>
-
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 space-y-10 sm:space-y-12">
           {/* Section Heading Block */}
           <motion.div
@@ -242,8 +227,8 @@ const Careers = () => {
             className="text-center max-w-3xl mx-auto space-y-4"
           >
             <div className="inline-block">
-              <div className="border border-[#E31D2E]/20 bg-white/70 backdrop-blur-md px-5 py-2 rounded-full shadow-xs">
-                <span className="font-bold text-xs sm:text-sm uppercase tracking-widest text-[#E31D2E]">
+              <div className="border border-[#FF2B2B]/20 bg-white/70 backdrop-blur-md px-5 py-2 rounded-full shadow-xs">
+                <span className="font-bold text-xs sm:text-sm uppercase tracking-widest text-[#FF2B2B]">
                   We're growing our team
                 </span>
               </div>
@@ -263,16 +248,15 @@ const Careers = () => {
           >
             {/* Primary Focal Point Search Bar */}
             <div
-              className={`relative flex items-center h-[72px] w-full rounded-full bg-white transition-all duration-300 ${
-                isSearchFocused
-                  ? "border-2 border-[#E31D2E] shadow-[0_0_25px_rgba(227,29,46,0.18)] scale-[1.01]"
+              className={`relative flex items-center h-[72px] w-full rounded-full bg-white transition-all duration-300 ${isSearchFocused
+                  ? "border-2 border-[#FF2B2B] shadow-[0_4px_20px_rgba(0,0,0,0.08)] scale-[1.01]"
                   : "border border-neutral-200/80 hover:border-neutral-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03),_0_12px_32px_rgba(0,0,0,0.05)]"
-              }`}
+                }`}
             >
               <label htmlFor="job-search" className="sr-only">
                 Search by role, skill or department
               </label>
-              <div className="pl-6 text-[#E31D2E] flex items-center justify-center">
+              <div className="pl-6 text-[#FF2B2B] flex items-center justify-center">
                 <FiSearch className="w-6 h-6 sm:w-7 sm:h-7 flex-shrink-0" />
               </div>
               <input
@@ -327,11 +311,10 @@ const Careers = () => {
                     onClick={() =>
                       setSearchQuery(isActive ? "" : chip)
                     }
-                    className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
-                      isActive
+                    className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${isActive
                         ? "bg-[#E31D2E] text-white shadow-md shadow-[#E31D2E]/25 scale-105"
                         : "bg-white text-neutral-700 border border-neutral-200/80 hover:-translate-y-1 hover:border-[#E31D2E] hover:bg-[#E31D2E]/5 hover:text-[#E31D2E] shadow-xs"
-                    }`}
+                      }`}
                   >
                     {chip}
                   </motion.button>
@@ -365,31 +348,28 @@ const Careers = () => {
                     <div key={filterName} className="relative filter-dropdown">
                       <button
                         onClick={() => toggleFilter(filterName)}
-                        className={`w-full h-12 px-4 rounded-full font-bold flex items-center justify-between gap-2 text-xs sm:text-sm transition-all duration-200 ${
-                          selectedVal
+                        className={`w-full h-12 px-4 rounded-full font-bold flex items-center justify-between gap-2 text-xs sm:text-sm transition-all duration-200 ${selectedVal
                             ? "bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/30 shadow-xs"
                             : "bg-white text-neutral-700 border border-neutral-200/80 hover:-translate-y-0.5 hover:border-[#E31D2E]/40 hover:shadow-sm"
-                        }`}
+                          }`}
                         aria-expanded={openFilter === filterName}
                         aria-haspopup="listbox"
                         aria-label={`Filter by ${filterName}`}
                       >
                         <div className="flex items-center gap-2 min-w-0">
                           <FilterIcon
-                            className={`w-3.5 h-3.5 flex-shrink-0 ${
-                              selectedVal ? "text-[#E31D2E]" : "text-neutral-400"
-                            }`}
+                            className={`w-3.5 h-3.5 flex-shrink-0 ${selectedVal ? "text-[#E31D2E]" : "text-neutral-400"
+                              }`}
                           />
                           <span className="truncate text-left font-bold capitalize">
                             {selectedVal || filterName}
                           </span>
                         </div>
                         <FiChevronDown
-                          className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${
-                            openFilter === filterName
+                          className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${openFilter === filterName
                               ? "rotate-180 text-[#E31D2E]"
                               : "text-neutral-400"
-                          }`}
+                            }`}
                           aria-hidden="true"
                         />
                       </button>
@@ -404,11 +384,10 @@ const Careers = () => {
                           <div className="py-1 max-h-60 overflow-y-auto">
                             <button
                               onClick={() => handleFilterChange(filterName, "")}
-                              className={`w-full px-3.5 py-2.5 text-left rounded-xl transition-colors font-bold text-xs flex items-center justify-between ${
-                                !selectedVal
+                              className={`w-full px-3.5 py-2.5 text-left rounded-xl transition-colors font-bold text-xs flex items-center justify-between ${!selectedVal
                                   ? "bg-[#E31D2E]/10 text-[#E31D2E]"
                                   : "hover:bg-neutral-50 text-neutral-500"
-                              }`}
+                                }`}
                             >
                               <span>All {filterName}s</span>
                             </button>
@@ -418,11 +397,10 @@ const Careers = () => {
                                 onClick={() =>
                                   handleFilterChange(filterName, option)
                                 }
-                                className={`w-full px-3.5 py-2.5 text-left rounded-xl transition-colors text-xs font-semibold ${
-                                  selectedVal === option
+                                className={`w-full px-3.5 py-2.5 text-left rounded-xl transition-colors text-xs font-semibold ${selectedVal === option
                                     ? "bg-[#E31D2E] text-white font-bold"
                                     : "hover:bg-neutral-50 text-neutral-700"
-                                }`}
+                                  }`}
                               >
                                 {option}
                               </button>
