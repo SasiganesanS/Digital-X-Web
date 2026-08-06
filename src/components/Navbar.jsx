@@ -24,10 +24,10 @@ const navStyles = `
   max-width: 1320px;
   height: 72px;
   padding: 0 24px;
-  background: #FFFFFF;
-  border: 1px solid #ECECEC;
-  border-radius: 32px;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.10);
+  background: #ECECEC;
+  border: none;
+  border-radius: 999px;
+  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.07), -8px -8px 20px rgba(255, 255, 255, 0.95);
   z-index: 50;
   display: flex;
   align-items: center;
@@ -242,22 +242,15 @@ const navStyles = `
 }
 
 .pill.is-active {
-  background: var(--pill-bg, #FF2B2B) !important;
+  background: var(--pill-bg, #E31D2E) !important;
   color: var(--hover-text, #ffffff) !important;
-  box-shadow: 0 6px 16px rgba(255, 43, 43, 0.25);
+  box-shadow: 0 6px 18px rgba(227, 29, 46, 0.3) !important;
+  border-radius: 9999px !important;
 }
 
 .pill.is-active::after {
-  content: '';
-  position: absolute;
-  bottom: -6px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 12px;
-  height: 12px;
-  background: #FFFFFF;
-  border-radius: 50px;
-  z-index: 4;
+  display: none !important;
+  content: none !important;
 }
 
 .desktop-only {

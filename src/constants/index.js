@@ -237,279 +237,39 @@ export const blogPosts = [
   }
 ];
 
-// --- Platforms Data ---
-export const platforms = [
-  // Web Development
-  {
-    id: "web",
-    title: "Web Development",
-    price: 15000,
-    icon: "FaGlobe",
-    plans: [
-      {
-        id: "starter",
-        title: "Standard Web",
-        price: 5000,
-        icon: "MdDiamond",
-        availableDetails: [
-          "5 Pages Responsive Website",
-          "SEO Optimized Core",
-          "Contact Form Integration",
-          "Basic CMS Access"
-        ]
-      },
-      {
-        id: "growth",
-        title: "Business Pro",
-        price: 15000,
-        icon: "MdStars",
-        availableDetails: [
-          "15 Pages Custom Design",
-          "Advanced SEO & Analytics",
-          "E-commerce Integration",
-          "Custom Animations (Framer)"
-        ]
-      },
-      {
-        id: "premium",
-        title: "Enterprise Web",
-        price: 35000,
-        icon: "MdWorkspacePremium",
-        availableDetails: [
-          "Unlimited Pages & Scalability",
-          "Full Custom UI/UX Design",
-          "Multi-language Support",
-          "Dedicated 24/7 Support"
-        ]
-      }
-    ]
-  },
-  // Software Development
-  {
-    id: "software",
-    title: "Software Development",
-    price: 25000,
-    icon: "FaLaptopCode",
-    plans: [
-      {
-        id: "mvp",
-        title: "MVP Development",
-        price: 10000,
-        icon: "MdRocketLaunch",
-        availableDetails: [
-          "Core Functionality Build",
-          "Single Platform Focus",
-          "Basic Admin Dashboard",
-          "3-Month Maintenance"
-        ]
-      },
-      {
-        id: "custom",
-        title: "Custom SaaS",
-        price: 35000,
-        icon: "MdStars",
-        availableDetails: [
-          "Full Product Development",
-          "Cloud Infrastructure Setup",
-          "Third-party Integrations",
-          "Scalable Architecture"
-        ]
-      },
-      {
-        id: "enterprise",
-        title: "Enterprise Suite",
-        price: 75000,
-        icon: "MdWorkspacePremium",
-        availableDetails: [
-          "Complex Business Logic",
-          "High-Level Security",
-          "Multi-tenant Architecture",
-          "Dedicated Dev Team"
-        ]
-      }
-    ]
-  },
-  // App Development
-  {
-    id: "app",
-    title: "App Development",
-    price: 20000,
-    icon: "FaMobileAlt",
-    plans: [
-      {
-        id: "hybrid",
-        title: "Hybrid Starter",
-        price: 8000,
-        icon: "MdRocketLaunch",
-        availableDetails: [
-          "Cross-platform Build (React)",
-          "Push Notifications",
-          "App Store Deployment",
-          "Standard UI Components"
-        ]
-      },
-      {
-        id: "pro",
-        title: "Pro Experience",
-        price: 22000,
-        icon: "MdStars",
-        availableDetails: [
-          "Advanced Animations",
-          "Payment Gateway Integration",
-          "Social Login Systems",
-          "Performance Optimization"
-        ]
-      },
-      {
-        id: "native",
-        title: "Full Native Suite",
-        price: 45000,
-        icon: "MdWorkspacePremium",
-        availableDetails: [
-          "Native Performance Focus",
-          "Offline Functionality",
-          "Complex Data Syncing",
-          "Lifetime Priority Support"
-        ]
-      }
-    ]
-  },
-  // Cyber Security
-  {
-    id: "cyber",
-    title: "Cyber Security",
-    price: 30000,
-    icon: "FaShieldAlt",
-    plans: [
-      {
-        id: "audit",
-        title: "Security Audit",
-        price: 5000,
-        icon: "MdDiamond",
-        availableDetails: [
-          "Vulnerability Assessment",
-          "Penetration Testing",
-          "Compliance Checklist",
-          "Actionable Report"
-        ]
-      },
-      {
-        id: "shield",
-        title: "Threat Shield",
-        price: 18000,
-        icon: "MdStars",
-        availableDetails: [
-          "24/7 Active Monitoring",
-          "Firewall Management",
-          "End-point Protection",
-          "Incident Response"
-        ]
-      },
-      {
-        id: "fortress",
-        title: "Digital Fortress",
-        price: 40000,
-        icon: "MdWorkspacePremium",
-        availableDetails: [
-          "Zero Trust Architecture",
-          "Advanced Encryption",
-          "Disaster Recovery Plan",
-          "Dedicated CISO Support"
-        ]
-      }
-    ]
-  },
-  // Digital Marketing
-  {
-    id: "marketing",
-    title: "Digital Marketing",
-    price: 12000,
-    icon: "FaBullhorn",
-    plans: [
-      {
-        id: "visibility",
-        title: "Brand Visibility",
-        price: 4000,
-        icon: "MdDiamond",
-        availableDetails: [
-          "Social Media Setup",
-          "On-page SEO Audit",
-          "Basic Content Calendar",
-          "Monthly Reach Report"
-        ]
-      },
-      {
-        id: "growth",
-        title: "Performance Growth",
-        price: 12000,
-        icon: "MdStars",
-        availableDetails: [
-          "Paid Ads Management",
-          "Full SEO Execution",
-          "Influencer Partnerships",
-          "CRO Landing Pages"
-        ]
-      },
-      {
-        id: "authority",
-        title: "Dominion Strategy",
-        price: 25000,
-        icon: "MdWorkspacePremium",
-        availableDetails: [
-          "Full Omni-channel Growth",
-          "Global Ad Campaigns",
-          "Premium Video Content",
-          "AI-driven Analytics"
-        ]
-      }
-    ]
-  },
-  // Sustainability
-  {
-    id: "sustainability",
-    title: "Sustainability",
-    price: 10000,
-    icon: "FaLeaf",
-    plans: [
-      {
-        id: "green",
-        title: "Green Initiative",
-        price: 2000,
-        icon: "MdDiamond",
-        availableDetails: [
-          "Digital Carbon Audit",
-          "Green Hosting Migration",
-          "Impact Badge Integration",
-          "CSR Reporting Support"
-        ]
-      },
-      {
-        id: "eco",
-        title: "Eco-Optimization",
-        price: 7000,
-        icon: "MdStars",
-        availableDetails: [
-          "Smart Asset Delivery",
-          "Clean Code Practices",
-          "Energy Efficiency Plan",
-          "Community Impact Projects"
-        ]
-      },
-      {
-        id: "regenerative",
-        title: "Regenerative Core",
-        price: 15000,
-        icon: "MdWorkspacePremium",
-        availableDetails: [
-          "Circular Economy Strategy",
-          "Net Zero Implementation",
-          "Regenerative Tech Stack",
-          "Sustainability Partner Status"
-        ]
-      }
-    ]
-  }
-];
+import { SERVICES_CONFIG } from "../data/pricingConfig";
+
+// --- Platforms Data (Single Source of Truth derived from pricingConfig.js) ---
+export const platforms = SERVICES_CONFIG.map((service) => ({
+  id: service.id,
+  title: service.title,
+  price: service.basePrice,
+  icon:
+    service.id === "web"
+      ? "FaGlobe"
+      : service.id === "software"
+      ? "FaLaptopCode"
+      : service.id === "app"
+      ? "FaMobileAlt"
+      : service.id === "marketing"
+      ? "FaBullhorn"
+      : service.id === "cyber"
+      ? "FaShieldAlt"
+      : "FaLeaf",
+  plans: service.packages.map((pkg) => ({
+    id: pkg.id,
+    title: pkg.title,
+    price: pkg.price - service.basePrice > 0 ? pkg.price - service.basePrice : 0,
+    flatPackagePrice: pkg.price,
+    icon:
+      pkg.id === "standard"
+        ? "MdDiamond"
+        : pkg.id === "business"
+        ? "MdStars"
+        : "MdWorkspacePremium",
+    availableDetails: pkg.features,
+  })),
+}));
 export const businessWebsitePricingPlans = [
   {
     name: "Basic",

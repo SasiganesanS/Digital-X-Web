@@ -494,8 +494,7 @@ const JobApplication = ({ job, onClose }) => {
                   <button
                     type="button"
                     onClick={() => setShowCountryList(!showCountryList)}
-                    className={`h-10 px-3 border border-r-0 rounded-l-xl bg-white hover:bg-gray-50 flex items-center gap-1.5 transition-colors focus:outline-none
-                              ${errors.phone ? 'border-red-500 bg-red-50/20' : 'border-[#E5E5E5]'}`}
+                    className={`h-10 px-3 border border-r-0 rounded-l-xl bg-[#F4F4F6] border-[#D4D4D8] flex items-center gap-1.5 transition-colors focus:outline-none ${errors.phone ? 'border-red-500 bg-red-50/20' : ''}`}
                   >
                     <img 
                       src={`https://flagcdn.com/w20/${selectedCountry.flag}.png`}

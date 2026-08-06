@@ -455,7 +455,7 @@ export default function ServiceCalculator() {
   useAnimationFrame((t, delta) => {
     if (interactingRef.current) return;
 
-    // Apply friction decay on drag release
+    // Apply friction decay on drag release or continuous smooth auto-scroll
     if (!isDraggingRef.current) {
       if (Math.abs(dragVelocityRef.current) > 0.01) {
         dragVelocityRef.current *= 0.95;
@@ -466,6 +466,15 @@ export default function ServiceCalculator() {
         x.set(next);
       } else {
         dragVelocityRef.current = 0;
+        // Continuous auto-scroll when not hovering over carousel
+        if (!hoverRef.current) {
+          const moveStep = (delta / 1000) * 35;
+          let next = x.get() - moveStep;
+          const setWidth = halfWidthRef.current || (cardStepRef.current * servicesData.length);
+          if (next <= -setWidth * 2) next += setWidth;
+          else if (next >= -setWidth * 0.5) next -= setWidth;
+          x.set(next);
+        }
       }
     }
 
@@ -646,27 +655,50 @@ export default function ServiceCalculator() {
     setSelectedPlanInModal(null);
   };
 
-  const applyPlan = (plan) => {
-    if (!modalPlatform || !plan) return;
-    setSelectedItems(prev => {
+  const applyPlan = (itemObj) => {
+    if (!itemObj) return;
+
+    const platformObj = itemObj.platform || modalPlatform;
+    if (!platformObj) return;
+
+    const isConfigured = Boolean(itemObj.configuredPrice);
+    const planObj = isConfigured ? itemObj.plan : itemObj;
+
+    const itemToStore = {
+      platform: platformObj,
+      plan: planObj,
+      configuredPrice: isConfigured
+        ? itemObj.configuredPrice
+        : (platformObj.price || 0) + (planObj.price || 0),
+      durationLabel: itemObj.durationLabel || itemObj.timeline || "Project Scope",
+      durationMonths: itemObj.durationMonths || 1,
+      deliverables: itemObj.deliverables || [],
+      includedFeatures: itemObj.includedFeatures || [],
+    };
+
+    setSelectedItems((prev) => {
       const current = Array.isArray(prev) ? prev : [];
-      const exists = current.find(i => i?.platform?.id === modalPlatform.id && i?.plan?.id === plan.id);
-      if (exists) return current;
-      return [...current, { platform: modalPlatform, plan }];
+      const filtered = current.filter((i) => i?.platform?.id !== platformObj.id);
+      return [...filtered, itemToStore];
     });
+
     setModalPlatform(null);
   };
 
   // servicesData is imported from ../data/servicesData.js
 
   const total = useMemo(() => {
-    let sum = 5000;
+    let sum = 0;
     if (Array.isArray(selectedItems)) {
-      selectedItems.forEach(i => {
-        if (i && typeof i === 'object') {
-          const platformPrice = typeof i.platform?.price === 'number' ? i.platform.price : 0;
-          const planPrice = typeof i.plan?.price === 'number' ? i.plan.price : 0;
-          sum += platformPrice + planPrice;
+      selectedItems.forEach((i) => {
+        if (i && typeof i === "object") {
+          if (typeof i.configuredPrice === "number") {
+            sum += i.configuredPrice;
+          } else {
+            const platformPrice = typeof i.platform?.price === "number" ? i.platform.price : 0;
+            const planPrice = typeof i.plan?.price === "number" ? i.plan.price : 0;
+            sum += platformPrice + planPrice;
+          }
         }
       });
     }
@@ -675,30 +707,46 @@ export default function ServiceCalculator() {
 
   const handleGetProposalClick = () => {
     let message = `Hello Praskla DigitalX, I’m interested in your marketing services proposal.\n\n`;
-    message += `📋 *PLAN SUMMARY*\n`;
-    message += `• Base Setup Fee: ₹5,000\n`;
-    
+    message += `📋 *PROJECT PROPOSAL SUMMARY*\n`;
+
     if (Array.isArray(selectedItems) && selectedItems.length > 0) {
-      message += `\n*Selected Pillars (${selectedItems.length}):*\n`;
-      selectedItems.forEach(i => {
+      message += `\n*Selected Configured Pillars (${selectedItems.length}):*\n`;
+      selectedItems.forEach((i) => {
         if (i && i.platform && i.plan) {
-          const pTitle = i.platform.title || 'Service Pillar';
-          const planTitle = i.plan.title || 'Plan';
-          const cost = (i.platform.price || 0) + (i.plan.price || 0);
-          message += `• ${pTitle} — ${planTitle}: ₹${cost.toLocaleString()}\n`;
+          const pTitle = i.platform.title || "Service Pillar";
+          const planTitle = i.plan.title || "Plan";
+          const cost =
+            typeof i.configuredPrice === "number"
+              ? i.configuredPrice
+              : (i.platform.price || 0) + (i.plan.price || 0);
+          const duration = i.durationLabel ? ` (${i.durationLabel})` : "";
+          message += `• ${pTitle} — ${planTitle}${duration}: ₹${cost.toLocaleString()}\n`;
+
+          if (Array.isArray(i.deliverables) && i.deliverables.length > 0) {
+            i.deliverables.forEach((d) => {
+              if (d.type === "quantity") {
+                message += `   - ${d.name}: ×${d.qty} ${d.unit || ""}\n`;
+              } else if (d.type === "toggle" && d.enabled) {
+                message += `   - ${d.name} (ON)\n`;
+              }
+            });
+          }
         }
       });
     } else {
       message += `• Custom Plan Inquiry\n`;
     }
-    
+
     message += `\n💰 *Total Investment Est.:* ₹${(total || 0).toLocaleString()}\n`;
     message += `\nPlease provide a detailed proposal and scope breakdown for my project.`;
 
     try {
-      window.open(`https://wa.me/919500690740?text=${encodeURIComponent(message)}`, "_blank");
+      window.open(
+        `https://wa.me/919500690740?text=${encodeURIComponent(message)}`,
+        "_blank"
+      );
     } catch (err) {
-      console.error('WhatsApp open error:', err);
+      console.error("WhatsApp open error:", err);
     }
     setShowContactForm(true);
   };
@@ -843,34 +891,32 @@ export default function ServiceCalculator() {
                     <div
                       key={`${service.title}-${i}`}
                       className="w-[85vw] sm:w-[320px] md:w-[340px] lg:w-[360px] flex-shrink-0"
+                      onClick={() => {
+                        goToIndex(originalIndex, 3000);
+                        setFocusedService(service.title);
+                        setTimeout(() => setFocusedService(null), 2500);
+                      }}
                     >
                       <div
-                        style={{
-                          border: (isHighlighted || isProgrammaticHover)
-                            ? "1px solid #E31D2E"
-                            : "1px solid rgba(17, 17, 17, 0.10)",
-                        }}
-                        className={`relative rounded-[2.25rem] md:rounded-[2.5rem] p-6 md:p-7 pt-7 md:pt-8 flex flex-col justify-between items-start text-left min-h-[335px] md:min-h-[355px] cursor-pointer transition-all duration-500 ease-out group overflow-hidden select-none ${
-                          isHighlighted
-                            ? 'bg-white shadow-[0_16px_45px_rgba(227,29,46,0.15)] -translate-y-4 scale-[1.03] opacity-100 z-10'
-                            : isProgrammaticHover
-                            ? 'bg-white shadow-[0_16px_35px_rgba(17,17,17,0.06)] -translate-y-2 border-[#E31D2E]/40 opacity-100 z-20'
-                            : 'bg-white/75 shadow-[0_8px_25px_rgba(0,0,0,0.04)] hover:border-[#E31D2E]/40 hover:bg-white hover:-translate-y-2 hover:shadow-[0_16px_35px_rgba(17,17,17,0.06)] opacity-90 hover:opacity-100'
+                        className={`relative rounded-[2.25rem] md:rounded-[2.5rem] p-6 md:p-7 pt-7 md:pt-8 flex flex-col justify-between items-start text-left min-h-[335px] md:min-h-[355px] cursor-pointer transition-all duration-500 ease-out group overflow-hidden select-none bg-white border ${
+                          isProgrammaticHover
+                            ? 'border-[#E31D2E] shadow-[0_22px_45px_rgba(0,0,0,0.15)] -translate-y-4 scale-[1.05] z-30'
+                            : 'border-neutral-300 shadow-[0_10px_28px_rgba(0,0,0,0.07)] hover:border-neutral-400 hover:-translate-y-2 hover:shadow-[0_18px_40px_rgba(0,0,0,0.1)] opacity-95 hover:opacity-100 z-10'
                         }`}
                       >
-                        {/* Light Inner Glass Highlight (Inset by 1px so border remains outermost edge) */}
+                        {/* Light Inner Glass Highlight */}
                         <div className="absolute inset-[1px] rounded-[2.2rem] md:rounded-[2.4rem] bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none z-0" />
                         
                         {/* Top Area — Floating Icon Container */}
                         <div className="relative mb-3.5">
                           {/* Outer Glow Ring */}
                           <div className={`absolute inset-0 rounded-full blur-md transition-all duration-500 ${
-                            (isHighlighted || isProgrammaticHover) ? 'bg-[#FF2B2B]/15 scale-110' : 'bg-black/5 group-hover:bg-[#FF2B2B]/10 group-hover:scale-110'
+                            isProgrammaticHover ? 'bg-[#FF2B2B]/15 scale-110' : 'bg-black/5 group-hover:bg-[#FF2B2B]/10 group-hover:scale-110'
                           }`} />
 
-                          {/* Glass Icon Capsule */}
+                          {/* Icon Capsule */}
                           <div className={`relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-full p-2 border transition-all duration-500 flex items-center justify-center bg-gradient-to-br from-white via-white/95 to-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.05)] ${
-                            (isHighlighted || isProgrammaticHover) ? 'border-[#FF2B2B] shadow-[0_4px_16px_rgba(0,0,0,0.08)] -translate-y-1 rotate-[5deg]' : 'border-neutral-200 group-hover:border-[#FF2B2B] group-hover:-translate-y-1 group-hover:rotate-[5deg]'
+                            isProgrammaticHover ? 'border-[#FF2B2B] shadow-[0_4px_16px_rgba(0,0,0,0.08)] -translate-y-1 rotate-[5deg]' : 'border-neutral-200 group-hover:border-[#FF2B2B] group-hover:-translate-y-1 group-hover:rotate-[5deg]'
                           }`}>
                             <img
                               src={service.image}
@@ -1091,18 +1137,7 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                       </span>
                     </div>
 
-                    {/* Premium Base Setup Fee Card */}
-                    <div className="flex justify-between items-center p-4 px-4.5 bg-gray-50/80 rounded-2xl border border-gray-100/90 shadow-2xs">
-                      <div>
-                        <div className="text-[#111111] font-extrabold text-xs sm:text-sm tracking-tight">
-                          Base Setup Fee
-                        </div>
-                        <div className="text-[#6B7280] text-[11px] font-normal mt-0.5">
-                          One-time onboarding & planning fee
-                        </div>
-                      </div>
-                      <span className="font-black text-[#111111] text-base sm:text-lg">₹5,000</span>
-                    </div>
+
 
                     {/* Selected Services Area with Elegant Empty State */}
                     <div className="max-h-[320px] overflow-y-auto pr-1 space-y-2.5 custom-scrollbar">
@@ -1130,7 +1165,10 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                             if (!item || !item.platform || !item.plan) return null;
                             const platformTitle = item.platform.title || "Service";
                             const planTitle = item.plan.title || "Plan";
-                            const itemPrice = (item.platform.price || 0) + (item.plan.price || 0);
+                            const itemPrice =
+                              typeof item.configuredPrice === "number"
+                                ? item.configuredPrice
+                                : (item.platform.price || 0) + (item.plan.price || 0);
 
                             return (
                               <motion.div
@@ -1147,9 +1185,14 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                                   </div>
                                   <div>
                                     <div className="text-xs sm:text-sm font-extrabold text-[#111111] tracking-tight">{platformTitle}</div>
-                                    <div className="text-[#FF2B2B] text-[10px] font-bold mt-0.5 inline-flex items-center gap-1">
+                                    <div className="text-[#FF2B2B] text-[10px] font-bold mt-0.5 inline-flex items-center gap-1.5">
                                       <MdStars className="text-xs" />
-                                      {planTitle}
+                                      <span>{planTitle}</span>
+                                      {item.durationLabel && (
+                                        <span className="text-neutral-500 font-semibold text-[9px] bg-neutral-200/60 px-1.5 py-0.2 rounded-md">
+                                          {item.durationLabel}
+                                        </span>
+                                      )}
                                     </div>
                                   </div>
                                 </div>

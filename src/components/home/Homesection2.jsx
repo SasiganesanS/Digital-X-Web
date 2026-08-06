@@ -171,16 +171,17 @@ export default function FeaturedWorks() {
                 <img
                   src={activeProject.image}
                   alt={activeProject.title || "Project preview"}
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                  className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.035]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
               </motion.div>
             </AnimatePresence>
 
-            {/* Category Pill Tag Overlay */}
-            <div className="absolute top-5 left-5 z-10">
-              <span className="px-3.5 py-1.5 rounded-full bg-black/50 border border-white/20 backdrop-blur-md text-white text-[11px] font-bold uppercase tracking-[0.2em]">
-                {activeProject.category || activeProject.services?.[0] || "Featured Work"}
+            {/* Category Pill Tag Overlay — High Contrast & Visible on All Images */}
+            <div className="absolute top-5 left-5 z-20">
+              <span className="px-4 py-2 rounded-full bg-white/95 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.18)] text-[#111111] text-[11px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[#E31D2E]" />
+                <span>{activeProject.category || activeProject.services?.[0] || "Featured Work"}</span>
               </span>
             </div>
           </div>
@@ -236,17 +237,8 @@ export default function FeaturedWorks() {
                         : "border-neutral-100 bg-neutral-50/60 text-neutral-600 hover:border-neutral-200 hover:bg-neutral-100/80 hover:text-[#111111]"
                     }`}
                   >
-                    {/* Active Red Accent Bar */}
-                    <span
-                      className={`absolute inset-y-0 left-0 w-1.5 transition-all duration-300 ${
-                        isActive
-                          ? "bg-[#FF2B2B]"
-                          : "bg-transparent group-hover:bg-[#FF2B2B]/30"
-                      }`}
-                    />
-
                     {/* Project Cover Thumbnail + Details */}
-                    <div className="flex items-center gap-3 pl-1.5 truncate pr-2 pointer-events-none">
+                    <div className="flex items-center gap-3 truncate pr-2 pointer-events-none">
                       <div className="relative w-[42px] h-[42px] sm:w-[48px] sm:h-[48px] lg:w-[50px] lg:h-[50px] rounded-xl overflow-hidden border border-neutral-200/80 flex-shrink-0 bg-neutral-100 shadow-xs">
                         <img
                           src={project.image}

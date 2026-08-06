@@ -19,9 +19,10 @@ const Footer = ({ setShowContactForm }) => {
   return (
     <footer id="contact" className="relative w-full py-5 sm:py-7 z-10">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-        <div className="relative w-full bg-[#0B0B0B] bg-gradient-to-b from-[#171717] via-[#121212] to-[#0B0B0B] rounded-[24px] sm:rounded-[32px] border border-white/[0.06] shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden p-5 sm:p-7 lg:p-9 text-white dark-surface">
+        {/* Sleek Dark Footer Container */}
+        <div className="relative w-full bg-[#0B0B0B] bg-gradient-to-b from-[#171717] via-[#121212] to-[#0B0B0B] rounded-[24px] sm:rounded-[32px] border border-white/[0.08] shadow-[0_24px_50px_rgba(0,0,0,0.5)] overflow-hidden p-5 sm:p-7 lg:p-9 text-white dark-surface">
           
-          {/* TOP CTA BAR: Compact Integrated Agency Composition (-20% Height) */}
+          {/* TOP CTA BAR */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -49,20 +50,22 @@ const Footer = ({ setShowContactForm }) => {
 
             {/* RIGHT COLUMN */}
             <div className="lg:col-span-5 flex flex-col sm:flex-row lg:flex-col items-start lg:items-end justify-center gap-2.5">
+              {/* Primary Red Button */}
               <motion.button
                 onClick={() => setShowContactForm && setShowContactForm(true)}
-                className="w-full sm:w-auto lg:w-[240px] px-6 py-3 rounded-[16px] font-bold text-xs sm:text-sm bg-[#FF2B2B] !text-white hover:bg-[#E51D1D] transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,43,43,0.25)] hover:-translate-y-0.5 group"
+                className="w-full sm:w-auto lg:w-[240px] px-6 py-3 rounded-full font-bold text-xs sm:text-sm bg-[#FF2B2B] !text-white hover:bg-[#E51D1D] transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,43,43,0.25)] hover:-translate-y-0.5 group cursor-pointer"
                 style={{ color: "#FFFFFF", opacity: 1 }}
               >
                 <span className="!text-white text-white font-bold" style={{ color: "#FFFFFF" }}>Start Your Project</span>
                 <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform !text-white" style={{ color: "#FFFFFF" }} />
               </motion.button>
 
+              {/* Secondary Dark Button */}
               <a
                 href="https://wa.me/919566880740"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto lg:w-[240px] px-6 py-2.5 rounded-[16px] font-bold text-xs sm:text-sm border border-white/20 !text-white bg-[#1F1F1F] hover:bg-[#2A2A2A] hover:border-white/40 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm text-center"
+                className="w-full sm:w-auto lg:w-[240px] px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm border border-white/20 !text-white bg-[#1F1F1F] hover:bg-[#2A2A2A] hover:border-white/40 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm text-center cursor-pointer"
                 style={{ color: "#FFFFFF", opacity: 1 }}
               >
                 <span className="!text-white text-white font-bold" style={{ color: "#FFFFFF" }}>
@@ -72,7 +75,7 @@ const Footer = ({ setShowContactForm }) => {
             </div>
           </motion.div>
 
-          {/* MAIN FOOTER: Refined 2-Column Agency Composition */}
+          {/* MAIN FOOTER */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -80,7 +83,7 @@ const Footer = ({ setShowContactForm }) => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 py-6 lg:py-8 items-center"
           >
-            {/* LEFT COLUMN: Logo, Tagline, Description (No Duplicate Button) */}
+            {/* LEFT COLUMN: Logo, Tagline, Description */}
             <div className="md:col-span-7 space-y-2.5">
               <Link to="/" className="flex items-center gap-3.5 group w-fit">
                 <div className="w-[42px] h-[42px] rounded-[12px] bg-white p-[6px] flex items-center justify-center border border-black/[0.06] shadow-md shrink-0 transition-all duration-300 group-hover:scale-105">
@@ -90,9 +93,9 @@ const Footer = ({ setShowContactForm }) => {
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <div className="flex flex-col justify-center">
-                  <span className="font-brand text-[19px] sm:text-[22px] font-extrabold text-white leading-none tracking-[0.02em] antialiased">
-                    Praskla Digital <span className="text-[#E31D2E]">X</span>
+                <div className="flex flex-col">
+                  <span className="text-base sm:text-lg font-black text-white tracking-tight group-hover:text-[#FF2B2B] transition-colors duration-300">
+                    Praskla Digital <span className="text-[#FF2B2B]">X</span>
                   </span>
                   <span className="font-space-grotesk text-[11px] font-medium text-[#9CA3AF] tracking-[0.08em] mt-0.5">
                     Where Strategy Meets Creativity
@@ -105,9 +108,8 @@ const Footer = ({ setShowContactForm }) => {
               </p>
             </div>
 
-            {/* RIGHT COLUMN: Grouped Contact Details & Refined Social Icons */}
+            {/* RIGHT COLUMN: Contact Details & Social Buttons */}
             <div className="md:col-span-5 flex flex-col items-start md:items-end justify-center space-y-3">
-              {/* Tightened Inline Contact Rows */}
               <div className="flex flex-col gap-2 text-xs sm:text-sm font-semibold text-[#9CA3AF]">
                 <a
                   href="mailto:hello@praskla.com"
@@ -129,7 +131,7 @@ const Footer = ({ setShowContactForm }) => {
                 </div>
               </div>
 
-              {/* Compact Circular Social Buttons */}
+              {/* Circular Social Buttons */}
               <div className="flex items-center gap-2 pt-0.5">
                 {[
                   { href: "https://www.instagram.com/py.digitalx/", icon: FaInstagram, label: "Instagram" },
@@ -155,37 +157,24 @@ const Footer = ({ setShowContactForm }) => {
             </div>
           </motion.div>
 
-          {/* BOTTOM LEGAL BAR: Single Clean Horizontal Row */}
+          {/* BOTTOM LEGAL BAR */}
           <div className="relative z-10 border-t border-white/[0.06] pt-4 pb-0.5">
             <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-center md:text-left text-xs font-semibold text-[#9CA3AF]">
-              <p>© {new Date().getFullYear()} Praskla Digital X. All rights reserved.</p>
-              <a
-                href="https://www.prasklatechnology.com/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative hover:text-white transition-colors"
-              >
-                <span>Crafted with ❤️ by Praskla Technology</span>
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
-              </a>
-              <div className="flex items-center gap-2.5">
-                <Link to="/privacy-policy" className="group relative hover:text-white transition-colors">
-                  <span>Privacy Policy</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
+              <span>
+                © {new Date().getFullYear()} Praskla Digital X. All rights reserved.
+              </span>
+
+              <div className="flex items-center gap-6">
+                <Link to="/services" className="hover:text-white transition-colors">
+                  Privacy Policy
                 </Link>
-                <span className="text-white/20">•</span>
-                <Link to="/terms-and-conditions" className="group relative hover:text-white transition-colors">
-                  <span>Terms & Conditions</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
-                </Link>
-                <span className="text-white/20">•</span>
-                <Link to="/cookie-policy" className="group relative hover:text-white transition-colors">
-                  <span>Cookie Policy</span>
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#E31D2E] group-hover:w-full transition-all duration-300" />
+                <Link to="/services" className="hover:text-white transition-colors">
+                  Terms of Service
                 </Link>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </footer>

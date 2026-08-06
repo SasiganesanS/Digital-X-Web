@@ -146,7 +146,7 @@ const About = () => {
       initial={{ opacity: 0, x: 32 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
-      className="w-full"
+      className="w-full max-w-[480px] mx-auto"
     >
       <motion.div
         onMouseMove={handlePanelMouseMove}
@@ -156,60 +156,88 @@ const About = () => {
           y: panelMouse.y,
         }}
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
-        className="group relative rounded-[36px] p-8 sm:p-10 overflow-hidden border border-neutral-200/80 bg-white/80 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.07)] hover:border-[#E31D2E]/30 transition-all duration-500"
+        className="group relative rounded-[32px] p-6 sm:p-7 overflow-hidden border border-neutral-200/80 bg-white/90 backdrop-blur-2xl shadow-[0_20px_50px_rgba(17,17,17,0.06)] hover:shadow-[0_25px_60px_rgba(17,17,17,0.09)] transition-all duration-500"
       >
         {/* Soft Background Radial Glow */}
         <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-[#E31D2E]/5 blur-[80px] pointer-events-none" />
 
-        {/* Centered Logo Orb */}
-        <div className="flex justify-center mb-6">
-          <motion.div
-            animate={{ y: [0, -5, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <div className="w-20 h-20 rounded-full flex items-center justify-center bg-white border border-neutral-200 shadow-sm group-hover:rotate-6 transition-transform duration-500">
-              <img src={pyLogo} alt="Praskla Digital X" className="w-12 h-12 object-contain" />
+        {/* Header Row: Logo Orb + Title + Pill Badge */}
+        <div className="flex items-center justify-between gap-4 mb-5">
+          <div className="flex items-center gap-3">
+            <div className="w-12 h-12 rounded-2xl bg-white border border-neutral-200/80 p-2 shadow-xs flex items-center justify-center flex-shrink-0 group-hover:rotate-6 transition-transform duration-500">
+              <img src={pyLogo} alt="Praskla Digital X" className="w-full h-full object-contain" />
             </div>
-          </motion.div>
+            <div>
+              <h3 className="text-sm font-black text-[#111111]">Praskla Digital X</h3>
+              <p className="text-[11px] font-semibold text-neutral-400">Mindful Marketing Firm</p>
+            </div>
+          </div>
+
+          <span className="px-3 py-1 rounded-full bg-[#E31D2E]/10 border border-[#E31D2E]/20 text-[10px] font-extrabold text-[#E31D2E] uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E] animate-pulse" />
+            Excellence
+          </span>
         </div>
 
-        {/* Cycling phrase headline */}
-        <div className="relative flex items-center justify-center min-h-[36px] mb-4">
+        {/* Cycling phrase banner card */}
+        <div className="relative rounded-2xl p-4 bg-neutral-50/80 border border-neutral-200/60 mb-4 min-h-[72px] flex flex-col justify-center items-center text-center">
           <AnimatePresence mode="wait">
             <motion.p
               key={index}
-              initial={{ opacity: 0, y: 8 }}
+              initial={{ opacity: 0, y: 6 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
+              exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.3 }}
-              className="text-[#111111] font-black text-lg text-center"
+              className="text-[#111111] font-black text-sm leading-snug"
             >
               {phrases[index]}
             </motion.p>
           </AnimatePresence>
+
+          {/* Progress bar line */}
+          <div className="flex gap-1.5 justify-center mt-3">
+            {phrases.map((_, idx) => (
+              <div
+                key={idx}
+                className="h-1 rounded-full transition-all duration-300"
+                style={{
+                  width: idx === index ? "20px" : "6px",
+                  background: idx === index ? "#E31D2E" : "rgba(17,17,17,0.15)",
+                }}
+              />
+            ))}
+          </div>
         </div>
 
-        {/* Progress dots */}
-        <div className="flex gap-2 justify-center mb-8">
-          {phrases.map((_, idx) => (
-            <div
-              key={idx}
-              className="h-1 rounded-full transition-all duration-300"
-              style={{
-                width: idx === index ? "24px" : "8px",
-                background: idx === index ? "#E31D2E" : "rgba(17,17,17,0.12)",
-              }}
-            />
-          ))}
+        {/* 2x2 Agency Impact Highlights Grid */}
+        <div className="grid grid-cols-2 gap-3 mb-4">
+          <div className="p-3.5 rounded-2xl bg-white border border-neutral-200/70 shadow-2xs">
+            <span className="text-xl font-black text-[#E31D2E] block">50+</span>
+            <span className="text-[11px] font-bold text-[#111111] block mt-0.5">Projects Delivered</span>
+          </div>
+          <div className="p-3.5 rounded-2xl bg-white border border-neutral-200/70 shadow-2xs">
+            <span className="text-xl font-black text-[#E31D2E] block">98%</span>
+            <span className="text-[11px] font-bold text-[#111111] block mt-0.5">Client Satisfaction</span>
+          </div>
+          <div className="p-3.5 rounded-2xl bg-white border border-neutral-200/70 shadow-2xs">
+            <span className="text-xl font-black text-[#E31D2E] block">100%</span>
+            <span className="text-[11px] font-bold text-[#111111] block mt-0.5">Tailored Strategy</span>
+          </div>
+          <div className="p-3.5 rounded-2xl bg-white border border-neutral-200/70 shadow-2xs">
+            <span className="text-xl font-black text-[#E31D2E] block">24/7</span>
+            <span className="text-[11px] font-bold text-[#111111] block mt-0.5">Dedicated Support</span>
+          </div>
         </div>
 
-        {/* Quote */}
-        <p className="text-[#575757] text-xs leading-relaxed text-center font-medium">
-          "Creating impactful digital brand experiences that combine strategic clarity, high performance, and human connection."
-        </p>
+        {/* Quote Box */}
+        <div className="p-3.5 rounded-2xl bg-[#E31D2E]/5 border border-[#E31D2E]/15">
+          <p className="text-[#575757] text-xs leading-relaxed font-medium italic text-center">
+            "Creating impactful digital brand experiences that combine strategic clarity, high performance, and human connection."
+          </p>
+        </div>
 
-        {/* Floating badge bottom */}
-        <div className="mt-8 pt-6 border-t border-neutral-100 flex items-center justify-between text-xs text-neutral-400 font-bold uppercase tracking-wider">
+        {/* Footer Bar */}
+        <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-[11px] text-neutral-400 font-bold uppercase tracking-wider">
           <span>Praskla Digital X</span>
           <span className="text-[#E31D2E]">Established Excellence</span>
         </div>
@@ -230,84 +258,138 @@ const About = () => {
       />
 
       {/* Vision & Mission Section */}
-      <section className="relative py-16 overflow-visible bg-transparent">
+      <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-transparent">
+        {/* Background ambient glows */}
+        <div className="absolute top-1/2 left-10 -translate-y-1/2 w-80 h-80 bg-[#E31D2E]/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-1/2 right-10 -translate-y-1/2 w-80 h-80 bg-[#E31D2E]/5 rounded-full blur-[100px] pointer-events-none" />
+
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Section Header */}
-          <div className="text-center mb-12">
-            <div className="flex justify-center">
-              <div
-                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]"
-              >
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E31D2E]" />
-                </span>
-                <span className="relative text-[#111111] text-xs sm:text-sm font-bold tracking-[0.3em] uppercase">Vision & Mission</span>
-              </div>
-            </div>
-          </div>
-        </div>
+          <div className="text-center mb-12 sm:mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-[#E31D2E]/20 bg-white/80 backdrop-blur-md shadow-[0_8px_16px_rgba(17,17,17,0.03)]"
+            >
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E31D2E]" />
+              </span>
+              <span className="text-[#111111] text-xs sm:text-sm font-bold tracking-[0.3em] uppercase">Vision & Mission</span>
+            </motion.div>
 
-        <div className="flex flex-col gap-6 max-w-5xl mx-auto px-4 pb-6">
-          {/* Vision Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="relative rounded-[2rem] overflow-hidden w-full md:max-w-[88%] md:mr-auto"
-            style={{
-              background: "rgba(255, 255, 255, 0.65)",
-              backdropFilter: "blur(20px) saturate(120%)",
-              WebkitBackdropFilter: "blur(20px) saturate(120%)",
-              border: "1px solid rgba(255, 255, 255, 0.5)",
-              boxShadow: "0 12px 32px rgba(17, 17, 17, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
-            }}
-          >
-            <div className="relative z-10 flex flex-col md:flex-row items-start gap-6 p-6 md:p-10">
-              <div className="flex flex-col gap-3 flex-shrink-0">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-[#E31D2E]/10 border border-[#E31D2E]/30 text-[#E31D2E] text-sm font-black font-mono">01</span>
-              </div>
-              <div className="flex-1 min-w-0">
-                <span className="text-[#E31D2E] text-xs font-bold tracking-[0.25em] uppercase block mb-2">Our Vision</span>
-                <h3 className="text-xl md:text-2xl font-black text-[#111111] mb-3 tracking-tight">Powered by a Vision</h3>
-                <div className="w-12 h-0.5 rounded-full mb-4 bg-gradient-to-r from-[#E31D2E] to-transparent" />
-                <p className="text-[#575757] text-sm md:text-base leading-relaxed">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-3xl sm:text-4xl md:text-5xl font-black text-[#111111] tracking-tight mt-4"
+            >
+              Pioneering Purpose & Direction
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="text-[#575757] text-base sm:text-lg max-w-2xl mx-auto mt-3 font-normal"
+            >
+              Building long-term brand impact through creative storytelling, data intelligence, and measurable results.
+            </motion.p>
+          </div>
+
+          {/* 2-Column Grid Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 max-w-6xl mx-auto">
+            {/* Vision Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative rounded-[2.5rem] p-8 sm:p-10 border border-neutral-200/80 bg-white/80 shadow-[0_20px_50px_rgba(17,17,17,0.04),_inset_0_2px_4px_rgba(255,255,255,0.9)] backdrop-blur-xl hover:shadow-[0_30px_70px_rgba(227,29,46,0.12)] hover:border-[#E31D2E]/30 transition-all duration-500 flex flex-col justify-between"
+            >
+              <div>
+                {/* Header row with Icon & Number */}
+                <div className="flex items-center justify-between mb-8">
+                  <div className="w-14 h-14 rounded-2xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center text-[#E31D2E] shadow-xs group-hover:scale-110 group-hover:bg-[#E31D2E] group-hover:text-white transition-all duration-500">
+                    <Eye className="w-7 h-7 stroke-[2.2]" />
+                  </div>
+                  <span className="px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] group-hover:border-[#E31D2E]/30 transition-colors duration-300">
+                    01
+                  </span>
+                </div>
+
+                {/* Subtitle & Main Title */}
+                <span className="text-[#E31D2E] text-xs font-bold tracking-[0.25em] uppercase block mb-2">
+                  OUR VISION
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mb-4">
+                  Powered by a Vision
+                </h3>
+
+                {/* Paragraph */}
+                <p className="text-[#575757] text-base leading-relaxed font-normal">
                   To become a leading mindful marketing firm known for innovative strategies, measurable growth, and long-term brand impact. We envision building a collaborative ecosystem where businesses scale confidently through creative storytelling, data intelligence, and sustainable growth practices — becoming a trusted partner in every stage of their journey.
                 </p>
               </div>
-            </div>
-          </motion.div>
 
-          {/* Mission Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
-            className="relative rounded-[2rem] overflow-hidden w-full md:max-w-[88%] md:ml-auto"
-            style={{
-              background: "rgba(255, 255, 255, 0.65)",
-              backdropFilter: "blur(20px) saturate(120%)",
-              WebkitBackdropFilter: "blur(20px) saturate(120%)",
-              border: "1px solid rgba(255, 255, 255, 0.5)",
-              boxShadow: "0 12px 32px rgba(17, 17, 17, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8)",
-            }}
-          >
-            <div className="relative z-10 flex flex-col md:flex-row items-start gap-6 p-6 md:p-10">
-              <div className="flex flex-col gap-3 flex-shrink-0">
-                <span className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-[#E31D2E]/10 border border-[#E31D2E]/30 text-[#E31D2E] text-sm font-black font-mono">02</span>
+              {/* Mini Highlight Tags */}
+              <div className="mt-8 pt-6 border-t border-neutral-100 flex flex-wrap gap-2.5">
+                {["Innovative Strategies", "Data Intelligence", "Sustainable Growth"].map((tag, i) => (
+                  <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-100/80 text-xs font-bold text-[#111111]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
+                    {tag}
+                  </span>
+                ))}
               </div>
-              <div className="flex-1 min-w-0">
-                <span className="text-[#E31D2E] text-xs font-bold tracking-[0.25em] uppercase block mb-2">Our Mission</span>
-                <h3 className="text-xl md:text-2xl font-black text-[#111111] mb-3 tracking-tight">Driven by a Mission</h3>
-                <div className="w-12 h-0.5 rounded-full mb-4 bg-gradient-to-r from-[#E31D2E] to-transparent" />
-                <p className="text-[#575757] text-sm md:text-base leading-relaxed">
+            </motion.div>
+
+            {/* Mission Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+              className="group relative rounded-[2.5rem] p-8 sm:p-10 border border-neutral-200/80 bg-white/80 shadow-[0_20px_50px_rgba(17,17,17,0.04),_inset_0_2px_4px_rgba(255,255,255,0.9)] backdrop-blur-xl hover:shadow-[0_30px_70px_rgba(227,29,46,0.12)] hover:border-[#E31D2E]/30 transition-all duration-500 flex flex-col justify-between"
+            >
+              <div>
+                {/* Header row with Icon & Number */}
+                <div className="flex items-center justify-between mb-8">
+                  <div className="w-14 h-14 rounded-2xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center text-[#E31D2E] shadow-xs group-hover:scale-110 group-hover:bg-[#E31D2E] group-hover:text-white transition-all duration-500">
+                    <Target className="w-7 h-7 stroke-[2.2]" />
+                  </div>
+                  <span className="px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] group-hover:border-[#E31D2E]/30 transition-colors duration-300">
+                    02
+                  </span>
+                </div>
+
+                {/* Subtitle & Main Title */}
+                <span className="text-[#E31D2E] text-xs font-bold tracking-[0.25em] uppercase block mb-2">
+                  OUR MISSION
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mb-4">
+                  Driven by a Mission
+                </h3>
+
+                {/* Paragraph */}
+                <p className="text-[#575757] text-base leading-relaxed font-normal">
                   At Praskla Digital X, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
                 </p>
               </div>
-            </div>
-          </motion.div>
+
+              {/* Mini Highlight Tags */}
+              <div className="mt-8 pt-6 border-t border-neutral-100 flex flex-wrap gap-2.5">
+                {["Performance Marketing", "Creative Excellence", "Measurable ROI"].map((tag, i) => (
+                  <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-100/80 text-xs font-bold text-[#111111]">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 

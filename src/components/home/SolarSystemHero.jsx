@@ -308,20 +308,18 @@ const ServicesCoverflow = () => {
                 onClick={() => handleCardClick(i)}
               >
                 <div
-                  className="relative w-full h-full overflow-hidden flex flex-col p-3"
+                  className="relative w-full h-full overflow-hidden flex flex-col p-3 transition-all duration-300"
                   style={{
-                    background: "#ffffff",
-                    border: s.isFront
-                      ? "1px solid rgba(255, 255, 255, 0.85)"
-                      : "none",
+                    background: "#ECECEC",
+                    border: "none",
                     borderRadius: "30px",
                     boxShadow: s.isFront
-                      ? "0 20px 48px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(255, 255, 255, 0.9) inset"
-                      : "none",
+                      ? "12px 12px 30px rgba(0, 0, 0, 0.1), -12px -12px 30px rgba(255, 255, 255, 1)"
+                      : "6px 6px 16px rgba(0, 0, 0, 0.08), -6px -6px 16px rgba(255, 255, 255, 0.95)",
                   }}
                 >
                   {/* Image container frame */}
-                  <div className="relative w-full h-[48%] rounded-[22px] overflow-hidden bg-[#FAFAFA] flex items-center justify-center p-2 border border-white/40 shadow-inner">
+                  <div className="relative w-full h-[48%] rounded-[22px] overflow-hidden bg-[#ECECEC] flex items-center justify-center p-2 border border-black/10 shadow-[inset_3px_3px_8px_rgba(0,0,0,0.06),inset_-3px_-3px_8px_rgba(255,255,255,0.9)]">
                     <img
                       src={service.image}
                       alt={service.title}

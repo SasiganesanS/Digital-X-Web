@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { ArrowRight, Sparkles } from "lucide-react";
+import ProjectBriefModal from "../ProjectBriefModal";
 
 const containerVariants = {
   hidden: {},
@@ -13,18 +14,27 @@ const fadeUp = {
 };
 
 const Homesection4 = () => {
+  const [isBriefModalOpen, setIsBriefModalOpen] = useState(false);
+
+  const benefits = [
+    "Free consultation",
+    "Tailored strategy",
+    "Transparent quotation",
+    "Faster project onboarding",
+    "Dedicated project manager",
+    "No commitment required",
+  ];
+
   return (
     <>
-      {/* ── Our Services Overview Section (Split Layout) ── */}
       <section
-        id="services"
-        className="relative w-full min-h-screen flex flex-col justify-center overflow-visible lg:overflow-hidden py-20 bg-transparent"
+        id="start-project"
+        className="relative w-full min-h-screen flex flex-col justify-center overflow-visible lg:overflow-hidden py-16 sm:py-20 lg:py-24 bg-transparent"
         style={{ zIndex: 1 }}
       >
-
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* ── LEFT SIDE ── */}
             <motion.div
               initial="hidden"
               whileInView="visible"
@@ -32,80 +42,147 @@ const Homesection4 = () => {
               variants={containerVariants}
               className="flex flex-col items-start text-left"
             >
-              {/* Eyebrow Badge */}
-              <motion.div variants={fadeUp} className="inline-flex items-center border border-[#E31D2E]/20 gap-2 px-4 py-2 bg-white/80 rounded-full mb-8 shadow-[0_8px_16px_rgba(17,17,17,0.03)] backdrop-blur-sm">
+              {/* Small badge */}
+              <motion.div
+                variants={fadeUp}
+                className="inline-flex items-center gap-2.5 px-4 py-2 bg-white/80 border border-[#E31D2E]/20 rounded-full mb-8 shadow-[0_8px_16px_rgba(17,17,17,0.03)] backdrop-blur-sm"
+              >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
                 </span>
-                <span className="text-xs font-bold text-[#111111] uppercase tracking-[0.25em] ml-1">Our Services</span>
+                <span className="text-xs font-bold text-[#111111] uppercase tracking-[0.25em]">
+                  START YOUR PROJECT
+                </span>
               </motion.div>
 
-              {/* Headline */}
-              <motion.h1 variants={fadeUp} className="text-4xl md:text-5xl lg:text-7xl font-black mb-8 leading-[1.05] tracking-tight text-[#111111]">
-                Transforming Brands into <br />
-                <span className="text-[#E31D2E]">Digital Authority</span>
-              </motion.h1>
+              {/* Large Heading */}
+              <motion.h2
+                variants={fadeUp}
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] tracking-tight text-[#111111] mb-6"
+              >
+                Let's Build Something <br className="hidden sm:inline" />
+                <span className="text-[#E31D2E]">Exceptional Together</span>
+              </motion.h2>
 
               {/* Description */}
-              <motion.p variants={fadeUp} className="text-[#575757] text-lg md:text-xl leading-relaxed max-w-xl font-normal mb-10">
-                Comprehensive branding, media, and performance marketing solutions designed to help your business grow strategically, creatively, and profitably.
+              <motion.p
+                variants={fadeUp}
+                className="text-[#575757] text-base sm:text-lg md:text-xl leading-relaxed max-w-xl font-normal mb-8 space-y-2"
+              >
+                Every successful project starts with understanding your business.
+                <br />
+                Tell us about your company, your goals, your brand identity, and
+                your vision.
+                <br />
+                Complete our Project Brief and our team will review your
+                requirements before preparing a personalized proposal.
               </motion.p>
 
-              {/* Button */}
-              <motion.div variants={fadeUp}>
-                <Link to="/services">
-                  <button className="primary-btn px-8 py-4 text-white rounded-full font-bold text-sm sm:text-base shadow-md hover:scale-102 transition-all">
-                    Explore All Services
-                  </button>
-                </Link>
+              {/* Small benefits */}
+              <motion.div variants={fadeUp} className="w-full max-w-xl">
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 sm:gap-4">
+                  {benefits.map((item, index) => (
+                    <li key={index} className="flex items-center gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] font-bold text-xs sm:text-sm">
+                        ✓
+                      </span>
+                      <span className="text-[#111111] text-sm sm:text-base font-semibold">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             </motion.div>
 
-            {/* Right Visual & Cards */}
+            {/* ── RIGHT SIDE ── */}
             <motion.div
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
               variants={containerVariants}
-              className="relative block lg:block"
+              className="relative w-full"
             >
-              <div className="relative mx-auto w-full max-w-[560px] overflow-hidden rounded-[32px] border border-neutral-200/80 bg-white/60 p-6 md:p-8 shadow-[0_16px_40px_rgba(17,17,17,0.04)] backdrop-blur-xl">
-                <div className="relative z-10 space-y-4">
-                  {/* Top Visual Anchor Card */}
-                  <motion.div variants={fadeUp} className="relative overflow-hidden rounded-[24px] border border-neutral-200/80 bg-white p-6 sm:p-7 shadow-[0_8px_24px_rgba(0,0,0,0.04)]">
-                    <span className="absolute inset-y-0 left-0 w-1.5 rounded-r-full bg-[#E31D2E]" />
-                    <p className="text-[10px] font-bold uppercase tracking-[0.25em] text-[#E31D2E]">What we deliver</p>
-                    <h3 className="mt-2 text-2xl font-black text-[#111111]">A premium digital growth system</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-[#575757] font-normal">
-                      From brand positioning to performance marketing, every service is built to elevate visibility, trust, and conversion.
-                    </p>
+              {/* Clean Card */}
+              <div className="relative mx-auto w-full max-w-[520px] rounded-[32px] sm:rounded-[36px] border border-neutral-200/80 bg-white p-7 sm:p-8 md:p-9 shadow-[0_20px_50px_rgba(17,17,17,0.06)] transition-all duration-300 text-left">
+                <div className="flex flex-col items-start space-y-5">
+                  {/* Top Header Row with Icon & Badge */}
+                  <div className="w-full flex items-center justify-between">
+                    <motion.div
+                      variants={fadeUp}
+                      className="w-14 h-14 rounded-2xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center text-[#E31D2E] shadow-xs"
+                    >
+                      <Sparkles className="w-7 h-7 stroke-[2]" />
+                    </motion.div>
+
+                    <motion.span
+                      variants={fadeUp}
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E31D2E]/10 border border-[#E31D2E]/20 text-[11px] font-extrabold text-[#E31D2E] uppercase tracking-wider"
+                    >
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E] animate-pulse" />
+                      Instant Onboarding
+                    </motion.span>
+                  </div>
+
+                  {/* Heading */}
+                  <motion.h3
+                    variants={fadeUp}
+                    className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight"
+                  >
+                    Begin Your Project
+                  </motion.h3>
+
+                  {/* Description */}
+                  <motion.p
+                    variants={fadeUp}
+                    className="text-sm sm:text-base text-neutral-600 leading-relaxed font-normal"
+                  >
+                    Tell us everything about your business in one place.
+                    <br className="hidden sm:inline" />
+                    Once submitted, our team will analyze your requirements and
+                    contact you with a customized proposal.
+                  </motion.p>
+
+                  {/* Highlights Bar */}
+                  <motion.div
+                    variants={fadeUp}
+                    className="w-full pt-1 flex flex-wrap gap-2.5"
+                  >
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-100/80 border border-neutral-200/60 text-xs font-semibold text-neutral-700">
+                      ⏱️ 3 Min Brief
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-100/80 border border-neutral-200/60 text-xs font-semibold text-neutral-700">
+                      🎯 Custom Strategy
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-100/80 border border-neutral-200/60 text-xs font-semibold text-neutral-700">
+                      ⚡ Quick Response
+                    </span>
                   </motion.div>
 
-                  {/* 4 Feature Cards Grid */}
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    {[
-                      ["Brand Strategy", "Thoughtful positioning, visual identity, and messaging that feels intentional."],
-                      ["Performance Marketing", "Paid campaigns and conversion-focused systems designed for measurable growth."],
-                      ["Content & Media", "Creative storytelling and high-impact digital content that strengthens your presence."],
-                      ["Growth Consulting", "Clear direction, planning, and execution support for long-term scale."],
-                    ].map(([title, text]) => (
-                      <motion.div
-                        key={title}
-                        variants={fadeUp}
-                        className="group rounded-[22px] border border-neutral-200/80 bg-white p-5 shadow-xs hover:border-[#E31D2E]/40 hover:-translate-y-2 hover:shadow-[0_12px_28px_rgba(0,0,0,0.06)] transition-all duration-300"
-                      >
-                        <p className="text-base font-black text-[#111111] group-hover:text-[#E31D2E] transition-colors">{title}</p>
-                        <p className="mt-2 text-xs leading-relaxed text-neutral-500 font-normal">{text}</p>
-                      </motion.div>
-                    ))}
-                  </div>
+                  {/* Clean CTA Button */}
+                  <motion.div variants={fadeUp} className="w-full pt-2">
+                    <button
+                      type="button"
+                      onClick={() => setIsBriefModalOpen(true)}
+                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-[#E31D2E] hover:bg-[#C1121F] text-white px-7 py-3.5 rounded-full font-bold text-base shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 cursor-pointer group/btn"
+                    >
+                      <span>Apply for Your Project</span>
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                    </button>
+                  </motion.div>
                 </div>
               </div>
             </motion.div>
           </div>
         </div>
       </section>
+
+      {/* Complete 10-Section Project Brief Modal */}
+      <ProjectBriefModal
+        isOpen={isBriefModalOpen}
+        onClose={() => setIsBriefModalOpen(false)}
+      />
     </>
   );
 };
