@@ -21,6 +21,23 @@
   .font-signature {
     font-family: 'General Sans', 'Satoshi', 'Clash Display', 'Neue Montreal', 'Manrope', 'Inter', sans-serif !important;
   }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 9999px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(227, 29, 46, 0.4);
+    border-radius: 9999px;
+    transition: background 0.3s ease;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(227, 29, 46, 0.75);
+  }
 }
 
 /* Base styles for headings */

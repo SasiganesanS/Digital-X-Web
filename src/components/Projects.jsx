@@ -6,6 +6,7 @@ import ContactForm from "./ContactForm";
 import { ArrowUpRight, Star, Check, TrendingUp } from "lucide-react";
 import "../index.css";
 import { data, blogPosts } from "../constants";
+import { projects } from "../data/projects";
 import ProjectDetailModal from "./ProjectDetailModal";
 import "./Projects.css"
 
@@ -268,9 +269,9 @@ const Projects = () => {
             transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.08] tracking-tight text-[#111111]"
           >
-            Collaborate <br />
+            Collaborate for <br />
             <span className="relative inline-block text-[#E31D2E]">
-              for meaningful brand growth
+              meaningful brand growth
             </span>
           </motion.h1>
         }
@@ -281,7 +282,7 @@ const Projects = () => {
             transition={{ duration: 0.75, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
             className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium"
           >
-            Strategic, creative, and performance-driven marketing solutions that accelerate visibility and revenue.
+            A powerful blend of strategy, creativity and performance marketing designed to boost visibility and accelerate revenue growth.
           </motion.p>
         }
         actions={
@@ -308,26 +309,29 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center justify-center text-center mb-16 md:mb-20"
+            className="flex flex-col items-center justify-center text-center mb-16 md:mb-20 max-w-4xl mx-auto"
           >
             {/* Small Badge */}
             <div className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-neutral-200 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md mb-6">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF2B2B] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF2B2B]" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
               </span>
               <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
                 OUR WORKFLOW
               </span>
             </div>
 
-            {/* Heading with Animated Underline */}
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#111111] leading-tight max-w-4xl tracking-tight">
-              We research, create, launch, and optimize{" "}
-              <span className="relative inline-block text-[#FF2B2B]">
-                transformative brand experiences
+            {/* Heading */}
+            <h2 className="text-3xl md:text-5xl lg:text-[46px] font-black text-[#111111] leading-tight tracking-tight mb-4">
+              Empowering progress through{" "}
+              <span className="relative inline-block text-[#E31D2E]">
+                mindful strategy and creative execution.
               </span>
             </h2>
+            <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium max-w-3xl">
+              We transform insights into impactful brand experiences strategically created, seamlessly launched and constantly optimized for growth.
+            </p>
           </motion.div>
 
           {/* Connected Timeline Track Container */}
@@ -451,86 +455,65 @@ const Projects = () => {
             </h2>
           </motion.div>
 
-          {/* Featured Project Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-            {blogPosts.map((post, index) => {
-              const categoryTag = post.overview?.headline || "Featured Project";
-              const description = post.overview?.paragraph || "Strategic digital solution engineered for growth and visibility.";
-              const techTags = post.overview?.features?.slice(0, 3) || ["Web App", "UI/UX", "Strategy"];
+          {/* Unified Scrollable Project Container */}
+          <div className="relative w-full rounded-[2.5rem] p-4 sm:p-6 lg:p-8 bg-neutral-50/60 border border-neutral-200/80 shadow-[0_20px_50px_rgba(0,0,0,0.03)] backdrop-blur-xl">
+            {/* Scrollable Container with Custom Scrollbar */}
+            <div className="max-h-[660px] sm:max-h-[720px] lg:max-h-[760px] overflow-y-auto overscroll-contain pr-2 sm:pr-3 custom-scrollbar">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch py-2">
+                {projects.map((project, index) => {
+                  const categoryTag = project.tags || "Featured Case Study";
+                  const description = project.overview?.paragraph || project.description;
+                  const techTags = project.services?.slice(0, 3) || ["Digital Strategy"];
 
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                  whileHover={{ y: -6 }}
-                  onClick={() => navigate(`/blog/${index}`)}
-                  className="clay-card group relative flex flex-col overflow-hidden cursor-pointer p-4 sm:p-5 rounded-[2rem] border border-white/80 shadow-[0_10px_30px_rgba(17,17,17,0.03)] backdrop-blur-xl bg-white/80 hover:bg-white hover:border-[#ECECEC] hover:shadow-[0_16px_50px_rgba(0,0,0,0.08)] transition-all duration-500 select-none"
-                >
-                  {/* Light Inner Glass Highlight */}
-                  <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/80 via-transparent to-transparent pointer-events-none z-10" />
-
-                  {/* Image Area (~70% Visual Height) */}
-                  <div className="relative w-full aspect-[16/11] overflow-hidden rounded-[1.5rem] border border-white/60 mb-5 z-10">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
-                    />
-
-                    {/* Dark Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-75 group-hover:opacity-85 transition-opacity duration-500 pointer-events-none" />
-
-                    {/* Category Tag — Top Left */}
-                    <div className="absolute top-3.5 left-3.5 z-20 px-3 py-1 rounded-full bg-white/85 backdrop-blur-md border border-white/70 shadow-sm text-[#111111] font-extrabold text-[10px] uppercase tracking-wider flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
-                      <span className="truncate max-w-[140px]">{categoryTag}</span>
-                    </div>
-
-                    {/* Year / Case Study Tag — Top Right */}
-                    <div className="absolute top-3.5 right-3.5 z-20 px-3 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/20 text-white font-bold text-[10px] uppercase tracking-widest">
-                      2024
-                    </div>
-                  </div>
-
-                  {/* Bottom Content Area */}
-                  <div className="flex flex-col justify-between flex-grow px-1.5 pb-1 relative z-10">
-                    <div>
-                      {/* Title */}
-                      <div className="flex items-start justify-between gap-3 mb-2">
-                        <h3 className="text-lg sm:text-xl font-black text-[#111111] leading-snug group-hover:text-[#E31D2E] group-hover:-translate-y-0.5 transition-all duration-300 tracking-tight line-clamp-2">
-                          {post.title}
-                        </h3>
-
-                        {/* Action Circle Arrow */}
-                        <div className="w-9 h-9 rounded-full bg-neutral-100 border border-neutral-200/80 flex items-center justify-center text-[#111111] group-hover:bg-[#E31D2E] group-hover:border-[#E31D2E] group-hover:text-white transition-all duration-300 flex-shrink-0 shadow-sm">
-                          <ArrowUpRight className="w-4.5 h-4.5 transition-transform duration-300 group-hover:rotate-45" />
-                        </div>
+                  return (
+                    <motion.div
+                      key={project.id || index}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                      whileHover={{ y: -4 }}
+                      onClick={() => navigate(`/project/${project.slug}`)}
+                      className="group relative flex flex-col justify-between cursor-pointer p-3.5 sm:p-4 rounded-[1.75rem] border border-neutral-200/80 shadow-[0_8px_24px_rgba(0,0,0,0.03)] bg-white hover:border-[#E31D2E]/30 hover:shadow-[0_14px_36px_rgba(227,29,46,0.1)] transition-all duration-300 select-none"
+                    >
+                      {/* 1. Image Area — Crisp & Unobstructed */}
+                      <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl border border-neutral-200/60 mb-3 bg-neutral-900 shadow-2xs">
+                        <img
+                          src={project.image}
+                          alt={project.title}
+                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
+                        />
                       </div>
 
-                      {/* Description */}
-                      <p className="text-xs leading-relaxed font-medium text-[#575757] line-clamp-2 mb-4">
-                        {description}
-                      </p>
-                    </div>
+                      {/* 2. Project Name & Case Study CTA Row */}
+                      <div className="flex items-start justify-between gap-3 mb-3 px-0.5">
+                        <h3 className="text-base sm:text-lg font-black text-[#111111] leading-snug group-hover:text-[#E31D2E] transition-colors duration-300 tracking-tight line-clamp-2">
+                          {project.title}
+                        </h3>
 
-                    {/* Tech / Feature Chips */}
-                    <div className="flex flex-wrap items-center gap-1.5 pt-2 border-t border-neutral-100">
-                      {techTags.map((tag, i) => (
-                        <span
-                          key={i}
-                          className="px-2.5 py-1 rounded-md bg-neutral-100/80 text-[#575757] text-[10px] font-bold tracking-wide group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] transition-colors duration-300 truncate max-w-[130px]"
-                        >
-                          {tag}
+                        {/* Compact Case Study Pill Button */}
+                        <span className="px-3 py-1.5 rounded-full bg-[#E31D2E] text-white font-black text-[10px] uppercase tracking-wider flex items-center gap-1 shrink-0 shadow-2xs group-hover:bg-[#c91827] group-hover:scale-105 transition-all duration-300">
+                          <span>Case Study</span>
+                          <ArrowUpRight className="w-3 h-3" />
                         </span>
-                      ))}
-                    </div>
-                  </div>
-                </motion.div>
-              );
-            })}
+                      </div>
+
+                      {/* 3. Options / Service Chips */}
+                      <div className="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-neutral-100 px-0.5">
+                        {techTags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="px-2.5 py-0.5 rounded-md bg-neutral-100/90 text-neutral-600 text-[10px] font-bold tracking-wide group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] transition-colors duration-200 truncate max-w-[140px]"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </section>

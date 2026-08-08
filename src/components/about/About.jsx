@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Users,
@@ -12,10 +12,43 @@ import {
   ArrowRight
 } from "lucide-react";
 import pyLogo from "../../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
-import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Teams from "../Teams";
 import HeroLayout from "../common/HeroLayout";
+
+function AnimatedCounter({ target, suffix = "", prefix = "", duration = 1.6 }) {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTimestamp = null;
+    let animationFrameId;
+
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
+      // Smooth deceleration curve
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(easeOut * target));
+
+      if (progress < 1) {
+        animationFrameId = window.requestAnimationFrame(step);
+      }
+    };
+
+    animationFrameId = window.requestAnimationFrame(step);
+    return () => {
+      if (animationFrameId) window.cancelAnimationFrame(animationFrameId);
+    };
+  }, [target, duration]);
+
+  return (
+    <span>
+      {prefix}
+      {count}
+      {suffix}
+    </span>
+  );
+}
 
 const About = () => {
   const [index, setIndex] = useState(0);
@@ -211,22 +244,73 @@ const About = () => {
 
         {/* 2x2 Agency Impact Highlights Grid */}
         <div className="grid grid-cols-2 gap-3 mb-4">
-          <div className="p-3.5 rounded-2xl bg-white border border-neutral-200/70 shadow-2xs">
-            <span className="text-xl font-black text-[#E31D2E] block">50+</span>
-            <span className="text-[11px] font-bold text-[#111111] block mt-0.5">Projects Delivered</span>
-          </div>
-          <div className="p-3.5 rounded-2xl bg-white border border-neutral-200/70 shadow-2xs">
-            <span className="text-xl font-black text-[#E31D2E] block">98%</span>
-            <span className="text-[11px] font-bold text-[#111111] block mt-0.5">Client Satisfaction</span>
-          </div>
-          <div className="p-3.5 rounded-2xl bg-white border border-neutral-200/70 shadow-2xs">
-            <span className="text-xl font-black text-[#E31D2E] block">100%</span>
-            <span className="text-[11px] font-bold text-[#111111] block mt-0.5">Tailored Strategy</span>
-          </div>
-          <div className="p-3.5 rounded-2xl bg-white border border-neutral-200/70 shadow-2xs">
-            <span className="text-xl font-black text-[#E31D2E] block">24/7</span>
-            <span className="text-[11px] font-bold text-[#111111] block mt-0.5">Dedicated Support</span>
-          </div>
+          <motion.div
+            whileHover={{ y: -3, scale: 1.02 }}
+            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-[#E31D2E]/30 hover:shadow-[0_10px_24px_rgba(227,29,46,0.12)] transition-all duration-300 overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
+                <AnimatedCounter target={50} suffix="+" />
+              </span>
+              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white transition-colors duration-300">
+                <Award className="w-3.5 h-3.5" />
+              </div>
+            </div>
+            <span className="text-[11px] font-bold text-[#111111] block mt-1 group-hover:text-[#E31D2E] transition-colors">
+              Projects Delivered
+            </span>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ y: -3, scale: 1.02 }}
+            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-[#E31D2E]/30 hover:shadow-[0_10px_24px_rgba(227,29,46,0.12)] transition-all duration-300 overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
+                <AnimatedCounter target={98} suffix="%" />
+              </span>
+              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white transition-colors duration-300">
+                <TrendingUp className="w-3.5 h-3.5" />
+              </div>
+            </div>
+            <span className="text-[11px] font-bold text-[#111111] block mt-1 group-hover:text-[#E31D2E] transition-colors">
+              Client Satisfaction
+            </span>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ y: -3, scale: 1.02 }}
+            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-[#E31D2E]/30 hover:shadow-[0_10px_24px_rgba(227,29,46,0.12)] transition-all duration-300 overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
+                <AnimatedCounter target={100} suffix="%" />
+              </span>
+              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white transition-colors duration-300">
+                <Target className="w-3.5 h-3.5" />
+              </div>
+            </div>
+            <span className="text-[11px] font-bold text-[#111111] block mt-1 group-hover:text-[#E31D2E] transition-colors">
+              Tailored Strategy
+            </span>
+          </motion.div>
+
+          <motion.div
+            whileHover={{ y: -3, scale: 1.02 }}
+            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-[#E31D2E]/30 hover:shadow-[0_10px_24px_rgba(227,29,46,0.12)] transition-all duration-300 overflow-hidden"
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
+                <AnimatedCounter target={24} suffix="/7" />
+              </span>
+              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white transition-colors duration-300">
+                <Shield className="w-3.5 h-3.5" />
+              </div>
+            </div>
+            <span className="text-[11px] font-bold text-[#111111] block mt-1 group-hover:text-[#E31D2E] transition-colors">
+              Dedicated Support
+            </span>
+          </motion.div>
         </div>
 
         {/* Quote Box */}
@@ -541,12 +625,12 @@ const About = () => {
                   transition={{ duration: 0.5, delay: index * 0.12, ease: "easeOut" }}
                   className="group relative"
                 >
-                  <div className="h-full bg-white border border-neutral-200/80 rounded-[28px] p-7 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_50px_rgba(0,0,0,0.08)] hover:border-[#FF2B2B]/40 hover:-translate-y-2.5 hover:scale-[1.02] transition-all duration-300 flex flex-col justify-between cursor-pointer relative overflow-hidden">
+                  <div className="h-full bg-white border border-neutral-200/80 rounded-[28px] p-7 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)] hover:border-[#FF2B2B]/30 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
                     
                     {/* Top Row: Icon Container + Category Number */}
                     <div>
                       <div className="flex items-center justify-between gap-4 mb-6">
-                        <div className="w-14 h-14 rounded-2xl bg-[#FF2B2B]/10 border border-[#FF2B2B]/20 flex items-center justify-center text-[#FF2B2B] group-hover:bg-[#FF2B2B] group-hover:text-white group-hover:border-[#FF2B2B] transition-all duration-300 shrink-0 shadow-xs group-hover:-translate-y-1">
+                        <div className="w-14 h-14 rounded-2xl bg-[#FF2B2B]/10 border border-[#FF2B2B]/20 flex items-center justify-center text-[#FF2B2B] group-hover:bg-[#FF2B2B] group-hover:text-white group-hover:border-[#FF2B2B] transition-all duration-300 shrink-0 shadow-xs">
                           <IconComponent className="w-7 h-7 stroke-[2.2]" />
                         </div>
                         <span className="font-space-grotesk text-sm font-bold text-[#FF2B2B] tracking-wider bg-[#FF2B2B]/10 px-3 py-1 rounded-full border border-[#FF2B2B]/20">
@@ -555,27 +639,15 @@ const About = () => {
                       </div>
 
                       {/* Headline */}
-                      <h3 className="text-xl sm:text-2xl font-black text-[#111111] mb-3 leading-snug group-hover:text-[#FF2B2B] transition-colors duration-300">
+                      <h3 className="text-xl sm:text-2xl font-black text-[#111111] mb-3 leading-snug">
                         {item.title}
                       </h3>
 
                       {/* Description */}
-                      <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal mb-8">
+                      <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal">
                         {item.desc}
                       </p>
                     </div>
-
-                    {/* Bottom Row: CTA Button */}
-                    <div className="pt-4 border-t border-neutral-100 flex items-center justify-between">
-                      <Link
-                        to={item.link}
-                        className="inline-flex items-center gap-2 text-xs sm:text-sm font-bold text-[#111111] group-hover:text-[#E31D2E] transition-colors duration-300"
-                      >
-                        <span>Learn More</span>
-                        <ArrowRight className="w-4 h-4 text-[#E31D2E] group-hover:translate-x-1.5 transition-transform duration-300" />
-                      </Link>
-                    </div>
-
                   </div>
                 </motion.div>
               );

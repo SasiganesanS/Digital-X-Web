@@ -52,22 +52,22 @@ export const clientData = [
 export const data = [
   {
     title: "Research & Strategize",
-    desc: "Analyze market trends, audience behavior, and brand positioning to uncover insights that drive impactful marketing decisions.",
+    desc: "We dive deep into market trends, audience behavior and brand positioning to uncover insights that power smarter, high-impact marketing decisions.",
     code: "RSD",
   },
   {
     title: "Design & Create",
-    desc: "Craft compelling content, visual storytelling, and campaign creatives that align with brand identity and audience psychology",
+    desc: "We create compelling content, visual stories and campaign creatives that align perfectly with your brand and truly connect with your audience.",
     code: "DSN",
   },
   {
     title: "Launch & Amplify",
-    desc: "Execute performance campaigns across social media, SEO, paid ads, and digital platforms to maximize reach and engagement.",
+    desc: "From social media to SEO and paid ads, we run strategic campaigns that expand your reach and turn attention into meaningful engagement.",
     code: "LCH",
   },
   {
     title: "Optimize & Scale",
-    desc: "Continuously monitor data, refine strategies, and scale winning campaigns to improve ROI and long-term brand growth.",
+    desc: "Through continuous analysis and optimization, we refine strategies and scale high-performing campaigns to enhance ROI and ensure sustained brand growth.",
     code: "OPT",
   },
 ];

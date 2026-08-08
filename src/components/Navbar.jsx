@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ArrowRight } from 'lucide-react';
 import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
@@ -13,45 +13,123 @@ const navItemsList = [
   { label: "Careers", href: "/careers" }
 ];
 
+const BRAND_TAGLINES = [
+  "Where Strategy Meets Creativity",
+  "Mindful Growth & Brand Scale",
+  "Data-Driven Digital Impact",
+  "Performance-First Marketing",
+];
+
+function AnimatedBrandTagline() {
+  const [taglineIdx, setTaglineIdx] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTaglineIdx((prev) => (prev + 1) % BRAND_TAGLINES.length);
+    }, 3200);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
+    <div className="hidden md:block h-[15px] overflow-hidden relative mt-[2px]">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={BRAND_TAGLINES[taglineIdx]}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className="font-space-grotesk text-[10px] sm:text-[11px] font-bold text-[#E31D2E] tracking-[0.06em] block truncate uppercase"
+        >
+          {BRAND_TAGLINES[taglineIdx]}
+        </motion.span>
+      </AnimatePresence>
+    </div>
+  );
+}
+
 const navStyles = `
 .pill-nav-container {
   position: fixed;
-  top: 2rem;
+  top: 1.75rem;
   left: 50%;
   transform: translateX(-50%) translateY(0);
   opacity: 1;
   width: 92%;
   max-width: 1320px;
-  height: 72px;
-  padding: 0 24px;
-  background: #ECECEC;
-  border: none;
-  border-radius: 999px;
-  box-shadow: 8px 8px 20px rgba(0, 0, 0, 0.07), -8px -8px 20px rgba(255, 255, 255, 0.95);
+  height: 64px;
+  padding: 0;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   z-index: 50;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 3.5rem;
   box-sizing: border-box;
-  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease-out, box-shadow 0.3s ease-out;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease-out;
   will-change: transform, opacity;
+  pointer-events: none;
+}
+
+.pill-nav-container > * {
+  pointer-events: auto;
+}
+
+.nav-brand-capsule {
+  position: relative;
+  left: auto;
+  top: auto;
+  transform: none;
+  background: #ECECEC;
+  padding: 8px 24px 8px 18px;
+  border-radius: 999px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  min-width: 320px;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  transition: box-shadow 0.3s ease;
+}
+
+.nav-brand-capsule:hover {
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.nav-links-capsule {
+  background: #ECECEC;
+  padding: 5px 6px 5px 14px;
+  border-radius: 999px;
+  box-shadow: 6px 6px 18px rgba(0, 0, 0, 0.07), -6px -6px 18px rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  flex-shrink: 0;
 }
 
 .nav-cta-btn {
-  height: 48px;
-  padding: 0 28px;
+  height: 44px;
+  padding: 0 24px;
   border-radius: 999px;
   background: linear-gradient(135deg, #FF2B2B 0%, #E51D1D 100%);
   color: #ffffff;
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 700;
+  font-size: 14px;
   line-height: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  box-shadow: 0 10px 24px rgba(255, 43, 43, 0.22);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 8px;
+  box-shadow: 0 8px 20px rgba(255, 43, 43, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
@@ -62,7 +140,7 @@ const navStyles = `
 
 .nav-cta-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(255, 43, 43, 0.35);
+  box-shadow: 0 12px 28px rgba(255, 43, 43, 0.38);
   background: linear-gradient(135deg, #E51D1D 0%, #C81515 100%);
 }
 
@@ -75,41 +153,36 @@ const navStyles = `
   transform: translateX(4px);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .pill-nav-container {
     width: calc(100% - 2rem);
-    left: 50%;
-    transform: translateX(-50%) translateY(0);
-    height: 64px;
-    padding: 0 16px;
-    border-radius: 28px;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     top: 1.25rem;
+    justify-content: space-between;
+  }
+  .nav-brand-capsule {
+    position: relative;
+    left: auto;
+    top: auto;
+    transform: none;
+    min-width: auto;
+    padding: 6px 16px;
+  }
+  .nav-links-capsule {
+    margin: 0;
+    padding: 4px 6px;
   }
 }
 
 .pill-nav-container.nav-hidden {
-  transform: translateX(-50%) translateY(-140%);
+  transform: translateX(-50%) translateY(-160%);
   opacity: 0;
   pointer-events: none;
 }
 
-@media (max-width: 768px) {
-  .pill-nav-container.nav-hidden {
-    transform: translateX(-50%) translateY(-140%);
-    opacity: 0;
-  }
-}
-
 .pill-nav {
-  --nav-h: 46px;
-  --logo: 36px;
-  --pill-pad-x: 20px;
-  --pill-gap: 6px;
-  width: max-content;
+  --nav-h: 42px;
+  --pill-pad-x: 18px;
+  --pill-gap: 4px;
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -131,9 +204,6 @@ const navStyles = `
   height: var(--nav-h);
   background: transparent;
   border: none;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -148,7 +218,7 @@ const navStyles = `
 }
 
 .pill-logo img {
-  height: 46px;
+  height: 44px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -156,7 +226,7 @@ const navStyles = `
 
 @media (min-width: 640px) {
   .pill-logo img {
-    height: 50px;
+    height: 48px;
   }
 }
 
@@ -187,8 +257,8 @@ const navStyles = `
   text-decoration: none;
   border-radius: 9999px;
   box-sizing: border-box;
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 700;
+  font-size: 14px;
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.3px;
@@ -200,7 +270,7 @@ const navStyles = `
 }
 
 .pill:hover:not(.is-active) {
-  background-color: #F6F6F6;
+  background-color: #F0F0F0;
   color: #111111;
 }
 
@@ -248,36 +318,13 @@ const navStyles = `
   border-radius: 9999px !important;
 }
 
-.pill.is-active::after {
-  display: none !important;
-  content: none !important;
-}
-
-.desktop-only {
-  display: block;
-}
-
-.mobile-only {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .desktop-only {
-    display: none;
-  }
-
-  .mobile-only {
-    display: block;
-  }
-}
-
 .mobile-menu-button {
   width: var(--nav-h);
   height: var(--nav-h);
   border-radius: 50%;
   background: #FFFFFF;
   border: 1px solid #ECECEC;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   display: none;
   flex-direction: column;
   align-items: center;
@@ -306,22 +353,22 @@ const navStyles = `
 .mobile-menu-popover {
   position: absolute;
   top: calc(100% + 12px);
-  left: 0;
   right: 0;
+  width: 240px;
   background: #FFFFFF;
   border: 1px solid #ECECEC;
-  border-radius: 28px;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.10);
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
   z-index: 998;
   opacity: 0;
-  transform-origin: top center;
+  transform-origin: top right;
   visibility: hidden;
 }
 
 .mobile-menu-list {
   list-style: none;
   margin: 0;
-  padding: 6px;
+  padding: 8px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -329,12 +376,12 @@ const navStyles = `
 
 .mobile-menu-popover .mobile-menu-link {
   display: block;
-  padding: 12px 16px;
+  padding: 10px 16px;
   color: #111111;
   background-color: #FAFAFA;
   text-decoration: none;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 15px;
+  font-weight: 600;
   border-radius: 50px;
   transition: all 0.2s ease;
 }
@@ -672,10 +719,11 @@ const Navbar = ({ setShowContactForm }) => {
     <>
       <style dangerouslySetInnerHTML={{ __html: navStyles }} />
       <div className={`pill-nav-container${!shouldShowNavbar ? ' nav-hidden' : ''}`}>
-        {/* DEDICATED BRAND BLOCK */}
+        
+        {/* ── LEFT SEPARATE CAPSULE: DEDICATED BRAND BLOCK ── */}
         <Link
           to="/"
-          className="brand-block flex items-center gap-3.5 sm:gap-4.5 mr-6 md:mr-8 shrink-0 text-left group no-underline select-none cursor-pointer"
+          className="nav-brand-capsule group select-none cursor-pointer"
           aria-label="Praskla Digital X Home"
           onMouseEnter={handleLogoEnter}
           onMouseLeave={handleLogoLeave}
@@ -688,140 +736,148 @@ const Navbar = ({ setShowContactForm }) => {
               src={Logo}
               alt="Praskla Digital X Logo"
               ref={logoImgRef}
-              className="h-[48px] sm:h-[52px] w-auto object-contain transition-all duration-300 group-hover:drop-shadow-[0_4px_12px_rgba(0,0,0,0.08)]"
+              className="h-[44px] sm:h-[48px] w-auto object-contain transition-all duration-300 drop-shadow-[0_2px_6px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_6px_14px_rgba(0,0,0,0.25)]"
               style={{ willChange: 'transform, filter' }}
             />
           </div>
           <motion.div
-            initial={{ opacity: 0, y: 8 }}
+            initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35, ease: "easeOut" }}
-            className="flex flex-col justify-center"
+            className="flex flex-col justify-center text-left"
           >
-            <span className="font-brand text-[20px] sm:text-[23px] lg:text-[25px] font-extrabold text-[#111111] leading-none tracking-[0.02em] antialiased">
-              Praskla Digital <span className="text-[#E31D2E]">X</span>
+            <span className="font-brand text-[19px] sm:text-[22px] lg:text-[24px] font-extrabold text-[#111111] leading-none tracking-[0.02em] antialiased [text-shadow:0_2px_6px_rgba(0,0,0,0.12)]">
+              Praskla Digital{" "}
+              <span className="text-[#E31D2E] inline-block animate-pulse drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
+                X
+              </span>
             </span>
-            <span className="hidden md:block font-space-grotesk text-[10px] sm:text-[11px] font-medium text-[#6B7280] tracking-[0.08em] leading-[1.4] mt-[3px]">
-              Where Strategy Meets Creativity
-            </span>
+
+            {/* Continuous Dynamic Animated Tagline */}
+            <AnimatedBrandTagline />
           </motion.div>
         </Link>
 
-        <nav className="pill-nav" aria-label="Primary" style={cssVars}>
-          <div className="pill-nav-items desktop-only" ref={navItemsRef}>
-            <ul className="pill-list" role="menubar">
+        {/* ── RIGHT SEPARATE CAPSULE: NAVIGATION LINKS & CTA ── */}
+        <div className="nav-links-capsule relative">
+          <nav className="pill-nav" aria-label="Primary" style={cssVars}>
+            <div className="pill-nav-items desktop-only" ref={navItemsRef}>
+              <ul className="pill-list" role="menubar">
+                {navItemsList.map((item, i) => (
+                  <li key={item.href || `item-${i}`} role="none">
+                    {isRouterLink(item.href) ? (
+                      <Link
+                        role="menuitem"
+                        to={item.href}
+                        className={`pill${activeHref === item.href ? ' is-active' : ''}`}
+                        aria-label={item.label}
+                        onMouseEnter={() => handleEnter(i)}
+                        onMouseLeave={() => handleLeave(i)}
+                      >
+                        <span
+                          className="hover-circle"
+                          aria-hidden="true"
+                          ref={el => {
+                            circleRefs.current[i] = el;
+                          }}
+                        />
+                        <span className="label-stack">
+                          <span className="pill-label">{item.label}</span>
+                          <span className="pill-label-hover" aria-hidden="true">
+                            {item.label}
+                          </span>
+                        </span>
+                      </Link>
+                    ) : (
+                      <a
+                        role="menuitem"
+                        href={item.href}
+                        className={`pill${activeHref === item.href ? ' is-active' : ''}`}
+                        aria-label={item.label}
+                        onMouseEnter={() => handleEnter(i)}
+                        onMouseLeave={() => handleLeave(i)}
+                      >
+                        <span
+                          className="hover-circle"
+                          aria-hidden="true"
+                          ref={el => {
+                            circleRefs.current[i] = el;
+                          }}
+                        />
+                        <span className="label-stack">
+                          <span className="pill-label">{item.label}</span>
+                          <span className="pill-label-hover" aria-hidden="true">
+                            {item.label}
+                          </span>
+                        </span>
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <button
+              className="mobile-menu-button mobile-only"
+              onClick={toggleMobileMenu}
+              aria-label="Toggle menu"
+              ref={hamburgerRef}
+            >
+              <span className="hamburger-line" />
+              <span className="hamburger-line" />
+            </button>
+          </nav>
+
+          {/* DESKTOP CTA BUTTON */}
+          <button
+            type="button"
+            onClick={handleCtaClick}
+            className="nav-cta-btn desktop-only"
+            aria-label="Let's Talk"
+          >
+            <span>Let's Talk</span>
+            <ArrowRight className="w-4 h-4 cta-arrow" />
+          </button>
+
+          {/* MOBILE POPOVER MENU */}
+          <div className="mobile-menu-popover mobile-only" ref={mobileMenuRef} style={cssVars}>
+            <ul className="mobile-menu-list">
               {navItemsList.map((item, i) => (
-                <li key={item.href || `item-${i}`} role="none">
+                <li key={item.href || `mobile-item-${i}`}>
                   {isRouterLink(item.href) ? (
                     <Link
-                      role="menuitem"
                       to={item.href}
-                      className={`pill${activeHref === item.href ? ' is-active' : ''}`}
-                      aria-label={item.label}
-                      onMouseEnter={() => handleEnter(i)}
-                      onMouseLeave={() => handleLeave(i)}
+                      className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
+                      onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <span
-                        className="hover-circle"
-                        aria-hidden="true"
-                        ref={el => {
-                          circleRefs.current[i] = el;
-                        }}
-                      />
-                      <span className="label-stack">
-                        <span className="pill-label">{item.label}</span>
-                        <span className="pill-label-hover" aria-hidden="true">
-                          {item.label}
-                        </span>
-                      </span>
+                      {item.label}
                     </Link>
                   ) : (
                     <a
-                      role="menuitem"
                       href={item.href}
-                      className={`pill${activeHref === item.href ? ' is-active' : ''}`}
-                      aria-label={item.label}
-                      onMouseEnter={() => handleEnter(i)}
-                      onMouseLeave={() => handleLeave(i)}
+                      className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
+                      onClick={() => setIsMobileMenuOpen(false)}
                     >
-                      <span
-                        className="hover-circle"
-                        aria-hidden="true"
-                        ref={el => {
-                          circleRefs.current[i] = el;
-                        }}
-                      />
-                      <span className="label-stack">
-                        <span className="pill-label">{item.label}</span>
-                        <span className="pill-label-hover" aria-hidden="true">
-                          {item.label}
-                        </span>
-                      </span>
+                      {item.label}
                     </a>
                   )}
                 </li>
               ))}
+              <li className="pt-2 pb-1 px-1">
+                <button
+                  type="button"
+                  onClick={handleCtaClick}
+                  className="nav-cta-btn w-full justify-center"
+                  aria-label="Let's Talk"
+                >
+                  <span>Let's Talk</span>
+                  <ArrowRight className="w-4 h-4 cta-arrow" />
+                </button>
+              </li>
             </ul>
           </div>
-
-          <button
-            className="mobile-menu-button mobile-only"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle menu"
-            ref={hamburgerRef}
-          >
-            <span className="hamburger-line" />
-            <span className="hamburger-line" />
-          </button>
-        </nav>
-
-        {/* DESKTOP CTA BUTTON */}
-        <button
-          type="button"
-          onClick={handleCtaClick}
-          className="nav-cta-btn desktop-only"
-          aria-label="Let's Talk"
-        >
-          <span>Let's Talk</span>
-          <ArrowRight className="w-4 h-4 cta-arrow" />
-        </button>
-
-        <div className="mobile-menu-popover mobile-only" ref={mobileMenuRef} style={cssVars}>
-          <ul className="mobile-menu-list">
-            {navItemsList.map((item, i) => (
-              <li key={item.href || `mobile-item-${i}`}>
-                {isRouterLink(item.href) ? (
-                  <Link
-                    to={item.href}
-                    className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <a
-                    href={item.href}
-                    className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                )}
-              </li>
-            ))}
-            <li className="pt-2 pb-1 px-1">
-              <button
-                type="button"
-                onClick={handleCtaClick}
-                className="nav-cta-btn w-full justify-center"
-                aria-label="Let's Talk"
-              >
-                <span>Let's Talk</span>
-                <ArrowRight className="w-4 h-4 cta-arrow" />
-              </button>
-            </li>
-          </ul>
         </div>
+
       </div>
     </>
   );

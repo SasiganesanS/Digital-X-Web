@@ -120,7 +120,7 @@ const PARTNERS = [
 const LOOPED_PARTNERS = [...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS];
 
 // ── Services Hero Helper Components ──
-function AnimatedPriceDisplay({ value = 5000 }) {
+function AnimatedPriceDisplay({ value = 5000, textColor = "text-[#111111]" }) {
   const safeEndValue = typeof value === 'number' && !isNaN(value) ? value : 5000;
   const [displayValue, setDisplayValue] = useState(safeEndValue);
 
@@ -156,7 +156,7 @@ function AnimatedPriceDisplay({ value = 5000 }) {
   const numToFormat = typeof displayValue === 'number' && !isNaN(displayValue) ? displayValue : 5000;
 
   return (
-    <div className="flex items-baseline gap-1 text-4xl sm:text-[2.75rem] font-black text-[#111111] tracking-tight">
+    <div className={`flex items-baseline gap-1 text-3xl sm:text-[2.5rem] font-black ${textColor} tracking-tight`}>
       <span className="text-[#E31D2E] text-2xl sm:text-3xl font-black">₹</span>
       <span>{numToFormat.toLocaleString()}</span>
     </div>
@@ -1044,13 +1044,18 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Column: Pillars */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="clay-card p-6 sm:p-8 md:p-10 rounded-[2.25rem]">
-                <h3 className="text-xs font-black text-[#575757] uppercase tracking-[0.2em] mb-8 flex items-center gap-3">
-                  <span className="w-8 h-[1.5px] bg-[#E31D2E]" />
-                  Select Service Pillars
-                </h3>
+              <div className="bg-white p-6 sm:p-8 md:p-9 rounded-[2.5rem] border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.05)] relative overflow-hidden">
+                <div className="flex items-center justify-between mb-7 pb-4 border-b border-gray-100">
+                  <h3 className="text-xs font-black text-[#111111] uppercase tracking-[0.2em] flex items-center gap-2.5">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#E31D2E] animate-pulse" />
+                    Select Service Pillars
+                  </h3>
+                  <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider bg-gray-100 px-3 py-1 rounded-full">
+                    {PLATFORMS.length} Available
+                  </span>
+                </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4.5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {PLATFORMS.map((p) => {
                     if (!p) return null;
                     const isSelected = Array.isArray(selectedItems) && selectedItems.some((item) => item?.platform?.id === p.id);
@@ -1061,55 +1066,50 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                     return (
                       <button
                         key={p.id || pTitle}
+                        type="button"
                         onClick={(e) => handlePlatformClick(p, e)}
-                        className={`group relative p-5 sm:p-6 rounded-[2rem] bg-white/75 backdrop-blur-xl border transition-all duration-500 text-left overflow-hidden flex items-center justify-between cursor-pointer min-h-[110px] ${
+                        className={`group relative p-5 rounded-[1.75rem] border transition-all duration-300 text-left overflow-hidden flex items-center justify-between cursor-pointer min-h-[105px] ${
                           isSelected
-                            ? "border-[#E31D2E] bg-white shadow-[0_16px_40px_rgba(227,29,46,0.14)] scale-[1.02] -translate-y-1"
-                            : "border-white/80 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-[#E31D2E]/50 hover:bg-white hover:-translate-y-1 hover:scale-[1.02]"
+                            ? "bg-gradient-to-br from-white via-red-50/40 to-white border-[#E31D2E] shadow-[0_14px_36px_rgba(227,29,46,0.14)] scale-[1.02] -translate-y-0.5"
+                            : "bg-slate-50/70 border-slate-200/80 hover:bg-white hover:border-[#E31D2E]/60 hover:shadow-[0_12px_32px_rgba(227,29,46,0.08)] hover:-translate-y-0.5"
                         }`}
                       >
-                        {/* Light Inner Glass Highlight */}
-                        <div className="absolute inset-0 rounded-[2rem] bg-gradient-to-br from-white/80 via-transparent to-transparent pointer-events-none" />
-
-                        <div className="relative z-10 flex items-center gap-4">
+                        <div className="relative z-10 flex items-center gap-3.5">
                           {/* Floating Layered Icon Container */}
-                          <div className={`relative w-12 h-12 rounded-2xl flex items-center justify-center border transition-all duration-500 shadow-sm ${
+                          <div className={`relative w-11 h-11 rounded-2xl flex items-center justify-center border transition-all duration-300 shrink-0 ${
                             isSelected
-                              ? "bg-[#E31D2E] text-white border-[#E31D2E] shadow-[0_0_15px_rgba(227,29,46,0.4)]"
-                              : "bg-gradient-to-br from-white via-white/95 to-white/70 text-[#E31D2E] border-white/90 group-hover:rotate-[8deg] group-hover:scale-110"
+                              ? "bg-[#E31D2E] text-white border-[#E31D2E] shadow-[0_4px_16px_rgba(227,29,46,0.35)] scale-105"
+                              : "bg-white text-[#E31D2E] border-gray-200 group-hover:border-[#E31D2E]/40 group-hover:scale-105 group-hover:rotate-[6deg]"
                           }`}>
-                            {PlatformIcon ? <PlatformIcon className="text-xl transition-transform duration-300" /> : null}
+                            {PlatformIcon ? <PlatformIcon className="text-lg transition-transform duration-300" /> : null}
                           </div>
 
                           {/* Content */}
                           <div>
-                            <div className="font-black text-[#111111] text-base sm:text-lg group-hover:text-[#E31D2E] transition-colors duration-300">
+                            <div className={`font-extrabold text-sm sm:text-base leading-snug transition-colors duration-300 ${
+                              isSelected ? "text-[#E31D2E]" : "text-[#111111] group-hover:text-[#E31D2E]"
+                            }`}>
                               {pTitle}
                             </div>
-                            <div className="text-[#E31D2E] text-xs sm:text-sm font-black mt-0.5 inline-flex items-center gap-1.5">
-                              <span>₹{pPrice.toLocaleString()}</span>
-                              <span className="text-[#8B8B8B] font-bold text-[10px] uppercase tracking-wider">base</span>
+                            <div className="text-xs font-bold mt-1 inline-flex items-center gap-1.5">
+                              <span className="text-[#E31D2E] font-black">₹{pPrice.toLocaleString()}</span>
+                              <span className="text-gray-400 font-semibold text-[10px] uppercase tracking-wider">base</span>
                             </div>
                           </div>
                         </div>
 
                         {/* Right Indicator (Check or Arrow) */}
-                        <div className="relative z-10">
+                        <div className="relative z-10 shrink-0 ml-2">
                           {isSelected ? (
-                            <div className="w-8 h-8 rounded-full bg-[#E31D2E] text-white flex items-center justify-center shadow-md animate-pulse">
-                              <FaCheckCircle className="text-sm" />
+                            <div className="w-7 h-7 rounded-full bg-[#E31D2E] text-white flex items-center justify-center shadow-md shadow-red-500/20">
+                              <FaCheckCircle className="text-xs" />
                             </div>
                           ) : (
-                            <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-[#E31D2E] group-hover:bg-[#E31D2E]/10 transition-all bg-white shadow-sm">
-                              <FaArrowRight className="text-[#8B8B8B] text-xs group-hover:text-[#E31D2E] transition-colors" />
+                            <div className="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center bg-white group-hover:border-[#E31D2E] group-hover:bg-[#E31D2E]/10 transition-all shadow-2xs">
+                              <FaArrowRight className="text-gray-400 text-[10px] group-hover:text-[#E31D2E] transition-colors" />
                             </div>
                           )}
                         </div>
-
-                        {/* Bottom Glow Line on hover/selected */}
-                        <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E31D2E] to-transparent transition-transform duration-500 ${
-                          isSelected ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-                        }`} />
                       </button>
                     );
                   })}
@@ -1120,27 +1120,21 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
             {/* Right Column: Redesigned Dashboard-Style Sticky Summary Card */}
             <div className="lg:col-span-5">
               <div className="sticky top-28">
-                <div className="bg-white p-6 sm:p-7 rounded-[2.25rem] border border-gray-200/80 shadow-[0_20px_50px_rgba(17,17,17,0.06)] relative overflow-hidden">
-                  
-                  {/* Subtle top accent gradient */}
-                  <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#E31D2E] via-red-400 to-[#E31D2E]" />
-
+                <div className="bg-white p-6 sm:p-8 rounded-[2.5rem] border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.05)] relative overflow-hidden">
                   <div className="relative z-10 space-y-5">
                     {/* Header with Inline Status Badge */}
                     <div className="flex items-center justify-between pb-4 border-b border-gray-100">
-                      <h3 className="text-xs font-black text-[#111111] uppercase tracking-[0.2em] flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-[#FF2B2B]" />
-                        PLAN SUMMARY
+                      <h3 className="text-xs font-black text-[#111111] uppercase tracking-[0.2em] flex items-center gap-2.5">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#E31D2E]" />
+                        Plan Summary
                       </h3>
-                      <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-[#FF2B2B]/5 text-[#FF2B2B] border border-[#FF2B2B]/20 shadow-2xs">
-                        {Array.isArray(selectedItems) ? selectedItems.length : 0} {selectedItems?.length === 1 ? "Selected Pillar" : "Selected Pillars"}
+                      <span className="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-red-50 text-[#E31D2E] border border-red-100">
+                        {Array.isArray(selectedItems) ? selectedItems.length : 0} {selectedItems?.length === 1 ? "Pillar" : "Pillars"}
                       </span>
                     </div>
 
-
-
                     {/* Selected Services Area with Elegant Empty State */}
-                    <div className="max-h-[320px] overflow-y-auto pr-1 space-y-2.5 custom-scrollbar">
+                    <div className="max-h-[300px] overflow-y-auto pr-1 space-y-2.5 custom-scrollbar">
                       <AnimatePresence mode="popLayout">
                         {!Array.isArray(selectedItems) || selectedItems.length === 0 ? (
                           <motion.div
@@ -1148,15 +1142,15 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
-                            className="py-8 px-4 text-center border border-dashed border-gray-200 rounded-2xl bg-gray-50/40 flex flex-col items-center justify-center space-y-2"
+                            className="py-8 px-4 text-center border border-dashed border-gray-200 rounded-2xl bg-slate-50/50 flex flex-col items-center justify-center space-y-2.5"
                           >
-                            <div className="w-11 h-11 rounded-full bg-[#FF2B2B]/10 border border-[#FF2B2B]/20 flex items-center justify-center text-[#FF2B2B] shadow-2xs">
+                            <div className="w-12 h-12 rounded-2xl bg-red-50 border border-red-100 flex items-center justify-center text-[#E31D2E] shadow-2xs">
                               <FiLayers className="w-5 h-5" />
                             </div>
                             <div>
-                              <h4 className="text-xs font-bold text-[#111111]">No services selected yet</h4>
-                              <p className="text-[11px] text-[#6B7280] font-normal mt-1 leading-relaxed max-w-[240px] mx-auto">
-                                Choose one or more service pillars from the left to build your custom proposal.
+                              <h4 className="text-xs font-extrabold text-[#111111]">No services selected yet</h4>
+                              <p className="text-[11px] text-gray-500 font-medium mt-1 leading-relaxed max-w-[240px] mx-auto">
+                                Click one or more service pillars on the left to build your tailored growth plan.
                               </p>
                             </div>
                           </motion.div>
@@ -1177,19 +1171,19 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9, y: -10 }}
                                 transition={{ duration: 0.2 }}
-                                className="p-3.5 px-4 rounded-xl bg-gray-50/80 border border-gray-100 shadow-2xs hover:border-red-200 transition-all flex items-center justify-between group"
+                                className="p-3.5 px-4 rounded-2xl bg-slate-50/80 border border-slate-100 shadow-2xs hover:border-red-200 transition-all flex items-center justify-between group"
                               >
                                 <div className="flex items-center gap-3">
-                                  <div className="w-8 h-8 rounded-lg bg-[#FF2B2B]/10 border border-[#FF2B2B]/20 flex items-center justify-center text-[#FF2B2B] shrink-0 font-bold">
+                                  <div className="w-8 h-8 rounded-xl bg-red-50 border border-red-100 flex items-center justify-center text-[#E31D2E] shrink-0 font-bold">
                                     <FiCheckCircle className="w-4 h-4" />
                                   </div>
                                   <div>
                                     <div className="text-xs sm:text-sm font-extrabold text-[#111111] tracking-tight">{platformTitle}</div>
-                                    <div className="text-[#FF2B2B] text-[10px] font-bold mt-0.5 inline-flex items-center gap-1.5">
+                                    <div className="text-[#E31D2E] text-[10px] font-bold mt-0.5 inline-flex items-center gap-1.5">
                                       <MdStars className="text-xs" />
                                       <span>{planTitle}</span>
                                       {item.durationLabel && (
-                                        <span className="text-neutral-500 font-semibold text-[9px] bg-neutral-200/60 px-1.5 py-0.2 rounded-md">
+                                        <span className="text-gray-500 font-semibold text-[9px] bg-gray-200/60 px-1.5 py-0.2 rounded-md">
                                           {item.durationLabel}
                                         </span>
                                       )}
@@ -1201,7 +1195,7 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                                   <button
                                     type="button"
                                     onClick={() => setSelectedItems(prev => prev.filter((_, i) => i !== idx))}
-                                    className="w-7 h-7 rounded-full bg-gray-200/60 hover:bg-[#FF2B2B]/10 text-gray-400 hover:text-[#FF2B2B] flex items-center justify-center transition-colors"
+                                    className="w-7 h-7 rounded-full bg-gray-200/60 hover:bg-red-50 text-gray-400 hover:text-[#E31D2E] flex items-center justify-center transition-colors cursor-pointer"
                                     title="Remove service"
                                   >
                                     <FaTimesCircle className="text-xs" />
@@ -1215,22 +1209,22 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                     </div>
 
                     {/* Included Benefits Two-Column Checklist */}
-                    <div className="p-3.5 bg-gray-50/70 rounded-2xl border border-gray-100">
-                      <div className="grid grid-cols-2 gap-2 text-[11px] font-semibold text-[#374151]">
+                    <div className="p-3.5 bg-slate-50/80 rounded-2xl border border-slate-100">
+                      <div className="grid grid-cols-2 gap-2.5 text-[11px] font-bold text-gray-700">
                         <div className="flex items-center gap-1.5">
-                          <FiCheckCircle className="text-[#FF2B2B] shrink-0 w-3.5 h-3.5" />
+                          <FiCheckCircle className="text-[#E31D2E] shrink-0 w-3.5 h-3.5" />
                           <span>Dedicated Support</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <FiCheckCircle className="text-[#FF2B2B] shrink-0 w-3.5 h-3.5" />
+                        <div className="flex items-center gap-1.5">
+                          <FiCheckCircle className="text-[#E31D2E] shrink-0 w-3.5 h-3.5" />
                           <span>Strategy & Audits</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <FiCheckCircle className="text-[#FF2B2B] shrink-0 w-3.5 h-3.5" />
+                        <div className="flex items-center gap-1.5">
+                          <FiCheckCircle className="text-[#E31D2E] shrink-0 w-3.5 h-3.5" />
                           <span>Timeline Planning</span>
                         </div>
-                        <div className="flex items-center gap-2">
-                          <FiCheckCircle className="text-[#FF2B2B] shrink-0 w-3.5 h-3.5" />
+                        <div className="flex items-center gap-1.5">
+                          <FiCheckCircle className="text-[#E31D2E] shrink-0 w-3.5 h-3.5" />
                           <span>Monthly Reporting</span>
                         </div>
                       </div>
@@ -1238,28 +1232,31 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
 
                     {/* Investment Estimate & Proposal CTA */}
                     <div className="pt-4 border-t border-gray-100 space-y-4">
-                      <div className="bg-gray-50/90 p-4 rounded-2xl border border-gray-100">
-                        <div className="text-[#6B7280] text-[10px] font-bold uppercase tracking-[0.2em] mb-1">
-                          Estimated Investment
-                        </div>
-                        <AnimatedPriceDisplay value={total} />
-                        <div className="text-[#9CA3AF] text-[10px] font-medium mt-1">
-                          Includes base setup fee & selected pillars
+                      {/* High Contrast Clean Investment Display Card */}
+                      <div className="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80 shadow-2xs relative overflow-hidden">
+                        <div className="relative z-10">
+                          <div className="text-gray-500 text-[10px] font-extrabold uppercase tracking-[0.2em] mb-1">
+                            Estimated Investment
+                          </div>
+                          <AnimatedPriceDisplay value={total} textColor="text-[#111111]" />
+                          <div className="text-gray-400 text-[10px] font-medium mt-1">
+                            Includes base setup fee & selected pillars
+                          </div>
                         </div>
                       </div>
 
-                      {/* CTA Button: STAYS GREEN ON HOVER */}
+                      {/* WhatsApp Green CTA Button */}
                       <button
                         type="button"
                         onClick={handleGetProposalClick}
-                        className="w-full py-3.5 sm:py-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] active:bg-[#1eb757] text-white font-extrabold flex items-center justify-center gap-2.5 transition-all duration-200 shadow-[0_10px_25px_rgba(37,211,102,0.25)] hover:shadow-[0_14px_32px_rgba(37,211,102,0.4)] hover:-translate-y-0.5 hover:scale-[1.005] active:scale-[0.98] text-xs sm:text-sm uppercase tracking-wider group"
+                        className="w-full py-4 rounded-2xl bg-[#25D366] hover:bg-[#20bd5a] active:bg-[#1eb757] text-white font-extrabold flex items-center justify-center gap-2.5 transition-all duration-200 shadow-[0_10px_25px_rgba(37,211,102,0.25)] hover:shadow-[0_14px_32px_rgba(37,211,102,0.4)] hover:-translate-y-0.5 active:scale-[0.98] text-xs sm:text-sm uppercase tracking-wider group cursor-pointer"
                       >
-                        <IoLogoWhatsapp className="text-xl sm:text-2xl" />
+                        <IoLogoWhatsapp className="text-xl sm:text-2xl shrink-0" />
                         <span>GET DETAILED PROPOSAL</span>
                         <span className="transition-transform duration-200 group-hover:translate-x-1 font-bold">→</span>
                       </button>
 
-                      <p className="text-center text-[#9CA3AF] text-[10px] font-semibold uppercase tracking-widest pt-1">
+                      <p className="text-center text-gray-400 text-[10px] font-bold uppercase tracking-widest pt-0.5">
                         Final pricing subject to specific scope requirements
                       </p>
                     </div>
@@ -1269,7 +1266,7 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
             </div>
           </div>
         </div>
-        </div>
+      </div>
 
       {/* ── Ecosystem Partners ── */}
       <section className="py-12 sm:py-14 lg:py-16 border-t border-gray-200 bg-transparent overflow-hidden">

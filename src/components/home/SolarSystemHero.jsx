@@ -143,33 +143,38 @@ const ServicesCoverflow = () => {
     let scale = 1;
     let opacity = 1;
     let zIndex = 100;
+    let blurAmount = 0;
     let mask = "none";
 
-    const isFront = distance < 0.3;
-    const isLeft = rawOffset < -0.2;
-    const isRight = rawOffset > 0.2;
+    const isFront = distance < 0.35;
+    const isLeft = rawOffset < -0.35 && rawOffset >= -1.4;
+    const isRight = rawOffset > 0.35 && rawOffset <= 1.4;
 
     if (isFront) {
       scale = 1;
       opacity = 1;
       zIndex = 100;
+      blurAmount = 0;
       mask = "none";
     } else if (isLeft) {
-      const t = Math.min(distance - 0.2, 2);
-      scale = 1 - t * 0.15;
-      opacity = 1;
-      zIndex = Math.round(100 - t * 40);
-      mask = "none";
+      scale = 0.84;
+      opacity = 1; // Card body remains 100% opaque and dark
+      zIndex = 80;
+      blurAmount = 4;
+      // Fades ONLY the far outer 25% left edge of the card
+      mask = "linear-gradient(to right, transparent 0%, black 28%, black 100%)";
     } else if (isRight) {
-      const t = Math.min(distance - 0.2, 2);
-      scale = 1 - t * 0.15;
-      opacity = 1;
-      zIndex = Math.round(100 - t * 40);
-      mask = "none";
+      scale = 0.84;
+      opacity = 1; // Card body remains 100% opaque and dark
+      zIndex = 80;
+      blurAmount = 4;
+      // Fades ONLY the far outer 25% right edge of the card
+      mask = "linear-gradient(to left, transparent 0%, black 28%, black 100%)";
     } else {
       scale = 0.60;
-      opacity = 0.08;
-      zIndex = 10;
+      opacity = 0;
+      zIndex = 0;
+      blurAmount = 10;
       mask = "none";
     }
 
@@ -180,6 +185,7 @@ const ServicesCoverflow = () => {
       scale,
       opacity,
       zIndex,
+      blurAmount,
       mask,
       isFront,
       isLeft,
@@ -242,8 +248,12 @@ const ServicesCoverflow = () => {
 
       {/* ── 3D Carousel Stage ── */}
       <motion.div
-        className="relative w-full flex items-center justify-center"
-        style={{ height: 380, perspective: 1200, perspectiveOrigin: "50% 45%" }}
+        className="relative w-full flex items-center justify-center overflow-hidden"
+        style={{
+          height: 380,
+          perspective: 1200,
+          perspectiveOrigin: "50% 45%",
+        }}
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
         dragElastic={0.18}
@@ -294,7 +304,7 @@ const ServicesCoverflow = () => {
                   y: s.y,
                   scale: s.scale,
                   opacity: s.opacity,
-                  filter: "blur(0px)",
+                  filter: `blur(${s.blurAmount}px)`,
                 }}
                 whileHover={s.isFront ? {
                   y: s.y - 8,

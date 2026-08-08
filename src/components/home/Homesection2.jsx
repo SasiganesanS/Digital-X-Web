@@ -19,11 +19,18 @@ export default function FeaturedWorks() {
   const totalProjects = projects?.length || 0;
   const totalPages = Math.ceil(totalProjects / PROJECTS_PER_PAGE);
 
-  // Derived page index for numbered page indicators (1, 2, 3, 4)
+  // Derived page index for active project
   const page = Math.min(
     Math.floor(activeIndex / PROJECTS_PER_PAGE),
     Math.max(totalPages - 1, 0)
   );
+
+  // Active scroll page indicator state
+  const [scrollPage, setScrollPage] = useState(0);
+
+  useEffect(() => {
+    setScrollPage(page);
+  }, [page]);
 
   // Derived active project object
   const activeProject = projects[activeIndex] || projects[0] || {};
@@ -49,7 +56,7 @@ export default function FeaturedWorks() {
     }, 450);
   };
 
-  // Synchronize activeIndex dynamically while user performs natural mouse / touch scrolling
+  // Natural scroll handler (updates scrollPage indicator as user scrolls list)
   const handleScroll = () => {
     if (isProgrammaticScrollRef.current) return;
 
@@ -60,7 +67,7 @@ export default function FeaturedWorks() {
     const containerHeight = container.clientHeight;
     const focusPoint = containerTop + containerHeight / 3;
 
-    let closestIndex = activeIndex;
+    let closestIndex = 0;
     let minDistance = Infinity;
 
     itemRefs.current.forEach((el, index) => {
@@ -73,38 +80,10 @@ export default function FeaturedWorks() {
       }
     });
 
-    if (closestIndex !== activeIndex) {
-      setActiveIndex(closestIndex);
+    const currentScrollPage = Math.floor(closestIndex / PROJECTS_PER_PAGE);
+    if (currentScrollPage !== scrollPage) {
+      setScrollPage(currentScrollPage);
     }
-  };
-
-  // Strict Prev arrow navigation: decrements master activeIndex by 1
-  const handlePrev = () => {
-    if (activeIndex <= 0) return;
-    const prevIdx = activeIndex - 1;
-    setActiveIndex(prevIdx);
-    scrollToItem(prevIdx);
-  };
-
-  // Strict Next arrow navigation: increments master activeIndex by 1
-  const handleNext = () => {
-    if (activeIndex >= totalProjects - 1) return;
-    const nextIdx = activeIndex + 1;
-    setActiveIndex(nextIdx);
-    scrollToItem(nextIdx);
-  };
-
-  // Page number button navigation: jumps directly to the start of section
-  const handlePageSelect = (targetPage) => {
-    const targetIndex = Math.min(targetPage * PROJECTS_PER_PAGE, totalProjects - 1);
-    setActiveIndex(targetIndex);
-    scrollToItem(targetIndex);
-  };
-
-  // Direct card click navigation
-  const handleCardClick = (index) => {
-    setActiveIndex(index);
-    scrollToItem(index);
   };
 
   // Keyboard accessibility handler for Arrow keys
@@ -118,21 +97,53 @@ export default function FeaturedWorks() {
     }
   };
 
-  // Autoplay every 5s (pauses on hover)
-  useEffect(() => {
-    if (isPaused || totalProjects === 0) return;
-    const timer = setInterval(() => {
-      setActiveIndex((prev) => {
-        const next = (prev + 1) % totalProjects;
-        scrollToItem(next);
-        return next;
-      });
-    }, 5000);
-    return () => {
-      clearInterval(timer);
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-    };
-  }, [isPaused, totalProjects]);
+  // Strict Prev arrow navigation
+  const handlePrev = () => {
+    if (activeIndex <= 0) return;
+    const prevIdx = activeIndex - 1;
+    setActiveIndex(prevIdx);
+    scrollToItem(prevIdx);
+  };
+
+  // Strict Next arrow navigation
+  const handleNext = () => {
+    if (activeIndex >= totalProjects - 1) return;
+    const nextIdx = activeIndex + 1;
+    setActiveIndex(nextIdx);
+    scrollToItem(nextIdx);
+  };
+
+  // Page number button navigation
+  const handlePageSelect = (targetPage) => {
+    const targetIndex = Math.min(targetPage * PROJECTS_PER_PAGE, totalProjects - 1);
+    setActiveIndex(targetIndex);
+    setScrollPage(targetPage);
+    scrollToItem(targetIndex);
+  };
+
+  // Direct card click navigation
+  const handleCardClick = (index) => {
+    setActiveIndex(index);
+    setScrollPage(Math.floor(index / PROJECTS_PER_PAGE));
+    scrollToItem(index);
+  };
+
+  // Calculate visible page buttons (Shows only 2 page numbers at a time + continuation dots "..")
+  const getVisiblePages = () => {
+    if (totalPages <= 2) {
+      return { pages: Array.from({ length: totalPages }, (_, i) => i), showDotsEnd: false, showDotsStart: false };
+    }
+
+    if (page === 0) {
+      return { pages: [0, 1], showDotsEnd: true, showDotsStart: false };
+    }
+
+    if (page >= totalPages - 1) {
+      return { pages: [totalPages - 2, totalPages - 1], showDotsEnd: false, showDotsStart: true };
+    }
+
+    return { pages: [page, page + 1], showDotsEnd: page + 1 < totalPages - 1, showDotsStart: true };
+  };
 
   return (
     <section id="projects" className="relative overflow-hidden bg-transparent py-12 sm:py-14 lg:py-16">
@@ -141,13 +152,13 @@ export default function FeaturedWorks() {
         <div className="mb-8 max-w-3xl space-y-2.5">
           <div className="inline-flex items-center gap-2 rounded-full border border-[#E31D2E]/20 bg-white/60 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.25em] text-[#111111] shadow-[0_8px_16px_rgba(17,17,17,0.02)]">
             <span className="h-2 w-2 rounded-full bg-[#E31D2E] animate-pulse" />
-            Portfolio Showcase
+            Case Studies
           </div>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#111111]">
-            Featured <span className="text-[#E31D2E]">Projects</span>.
+            Featured <span className="text-[#E31D2E]">Case Studies</span>.
           </h2>
           <p className="max-w-xl text-sm sm:text-base leading-6 text-[#575757] font-medium">
-            Browse our curated agency work across branding, digital media, 3D studios, and production.
+            Browse our curated case studies across branding, digital media, 3D studios, and production.
           </p>
         </div>
 
@@ -188,38 +199,14 @@ export default function FeaturedWorks() {
 
           {/* ── RIGHT COLUMN: Portfolio List Navigator ── */}
           <div className="lg:col-span-5 xl:col-span-4 relative h-full w-full rounded-[32px] border border-neutral-200/80 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.06)] p-5 sm:p-6 flex flex-col justify-between overflow-hidden self-stretch">
-            {/* Top Bar Controls */}
-            <div className="flex items-center justify-end pb-3 border-b border-neutral-100 flex-shrink-0">
-              {/* Prev / Next Arrows */}
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={handlePrev}
-                  disabled={activeIndex === 0}
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-white border border-neutral-200/80 text-neutral-700 shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-300 hover:scale-105 hover:bg-[#FF2B2B] hover:border-[#FF2B2B] hover:text-white hover:shadow-[0_4px_12px_rgba(255,43,43,0.25)] disabled:opacity-30 disabled:pointer-events-none disabled:scale-100"
-                  aria-label="Previous project"
-                >
-                  <ChevronLeft className="w-3.5 h-3.5" />
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNext}
-                  disabled={activeIndex === totalProjects - 1}
-                  className="flex h-7 w-7 items-center justify-center rounded-full bg-white border border-neutral-200/80 text-neutral-700 shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all duration-300 hover:scale-105 hover:bg-[#FF2B2B] hover:border-[#FF2B2B] hover:text-white hover:shadow-[0_4px_12px_rgba(255,43,43,0.25)] disabled:opacity-30 disabled:pointer-events-none disabled:scale-100"
-                  aria-label="Next project"
-                >
-                  <ChevronRight className="w-3.5 h-3.5" />
-                </button>
-              </div>
-            </div>
-
+            
             {/* Middle: Continuous Native Scroll Container */}
             <div
               ref={scrollContainerRef}
               tabIndex={0}
               onScroll={handleScroll}
               onKeyDown={handleKeyDown}
-              className="flex-1 my-2.5 py-1 flex flex-col gap-2.5 overflow-y-auto overscroll-contain scroll-smooth focus:outline-none select-none pr-1 custom-scrollbar"
+              className="flex-1 my-1 py-1 flex flex-col gap-2.5 overflow-y-auto overscroll-contain scroll-smooth focus:outline-none select-none pr-1 custom-scrollbar"
               style={{ overscrollBehavior: "contain" }}
             >
               {projects.map((project, idx) => {
@@ -274,29 +261,64 @@ export default function FeaturedWorks() {
               })}
             </div>
 
-            {/* Bottom Section: Numbered Circular Page Indicators & Pinned CTA Button */}
+            {/* Bottom Section: Glass Capsule Segmented Page Controller & Pinned CTA Button */}
             <div className="flex-shrink-0 pt-3 flex flex-col gap-3">
-              {/* Numbered Circular Page Indicators */}
+              {/* Premium Glass Segmented Controller (Shows EXACTLY 2 options at a time) */}
               {totalPages > 1 && (
-                <div className="flex items-center justify-center gap-2.5 py-0.5">
-                  {Array.from({ length: totalPages }).map((_, pageIdx) => {
-                    const isCurrent = pageIdx === page;
-                    return (
-                      <button
-                        key={pageIdx}
-                        type="button"
-                        onClick={() => handlePageSelect(pageIdx)}
-                        className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold transition-all duration-300 ${
-                          isCurrent
-                            ? "bg-[#FF2B2B] text-white shadow-[0_4px_12px_rgba(255,43,43,0.25)] scale-105"
-                            : "bg-white border border-neutral-200/80 text-[#111111] hover:border-[#FF2B2B] hover:text-[#FF2B2B] hover:scale-105"
-                        }`}
-                        aria-label={`Go to section ${pageIdx + 1}`}
-                      >
-                        {pageIdx + 1}
-                      </button>
-                    );
-                  })}
+                <div className="flex items-center justify-center select-none">
+                  <div className="inline-flex items-center gap-1 p-1 rounded-full bg-neutral-100/90 border border-neutral-200/80 shadow-xs backdrop-blur-md">
+                    {/* Left Chevron Button */}
+                    <button
+                      type="button"
+                      onClick={() => handlePageSelect(Math.max(0, scrollPage - 1))}
+                      disabled={scrollPage === 0}
+                      className="flex h-7 w-7 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-white/80 transition-all disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                      aria-label="Previous page"
+                    >
+                      <ChevronLeft className="w-3.5 h-3.5" />
+                    </button>
+
+                    {/* Exactly 2 Page Numbers (Dynamically shifts based on scroll/selection) */}
+                    {(() => {
+                      const visiblePages = totalPages <= 2
+                        ? Array.from({ length: totalPages }, (_, i) => i)
+                        : scrollPage === 0
+                        ? [0, 1]
+                        : scrollPage >= totalPages - 1
+                        ? [totalPages - 2, totalPages - 1]
+                        : [scrollPage, Math.min(scrollPage + 1, totalPages - 1)];
+
+                      return visiblePages.map((pageIdx) => {
+                        const isCurrent = pageIdx === scrollPage;
+                        return (
+                          <button
+                            key={pageIdx}
+                            type="button"
+                            onClick={() => handlePageSelect(pageIdx)}
+                            className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-black transition-all duration-300 cursor-pointer ${
+                              isCurrent
+                                ? "bg-[#E31D2E] text-white shadow-[0_4px_12px_rgba(227,29,46,0.3)] scale-105"
+                                : "text-neutral-600 hover:text-[#111111] hover:bg-white/80"
+                            }`}
+                            aria-label={`Go to page ${pageIdx + 1}`}
+                          >
+                            {pageIdx + 1}
+                          </button>
+                        );
+                      });
+                    })()}
+
+                    {/* Right Chevron Button */}
+                    <button
+                      type="button"
+                      onClick={() => handlePageSelect(Math.min(totalPages - 1, scrollPage + 1))}
+                      disabled={scrollPage === totalPages - 1}
+                      className="flex h-7 w-7 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-white/80 transition-all disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                      aria-label="Next page"
+                    >
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
               )}
 

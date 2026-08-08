@@ -490,20 +490,40 @@ const JobApplication = ({ job, onClose }) => {
                 <label htmlFor="applicant-phone" className="block text-xs font-semibold text-gray-700 mb-1.5">
                   Phone Number <span className="text-[#FF2B2B]">*</span>
                 </label>
-                <div className="relative flex items-center" ref={countryDropdownRef}>
+                <div
+                  ref={countryDropdownRef}
+                  className={`relative flex items-center w-full h-10 bg-white hover:bg-gray-50/80 focus-within:bg-white border rounded-xl transition-all duration-200 ${
+                    errors.phone
+                      ? 'border-red-500 bg-red-50/20 focus-within:border-red-500 focus-within:ring-2 focus-within:ring-red-500/10'
+                      : 'border-[#E5E5E5] focus-within:border-[#FF2B2B] focus-within:ring-4 focus-within:ring-[#FF2B2B]/15'
+                  }`}
+                >
                   <button
                     type="button"
                     onClick={() => setShowCountryList(!showCountryList)}
-                    className={`h-10 px-3 border border-r-0 rounded-l-xl bg-[#F4F4F6] border-[#D4D4D8] flex items-center gap-1.5 transition-colors focus:outline-none ${errors.phone ? 'border-red-500 bg-red-50/20' : ''}`}
+                    className="h-full px-3 flex items-center gap-1.5 hover:bg-gray-100/70 transition-colors rounded-l-xl focus:outline-none shrink-0 cursor-pointer"
                   >
                     <img 
                       src={`https://flagcdn.com/w20/${selectedCountry.flag}.png`}
                       alt={selectedCountry.name}
-                      className="w-4 h-auto rounded-sm object-cover"
+                      className="w-4 h-auto rounded-sm object-cover shadow-2xs"
                     />
-                    <span className="text-xs font-semibold text-gray-700">{selectedCountry.code}</span>
+                    <span className="text-xs font-bold text-gray-800">{selectedCountry.code}</span>
                     <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
                   </button>
+
+                  {/* Subtle Vertical Divider Line */}
+                  <div className="w-[1px] h-5 bg-gray-200 shrink-0" />
+
+                  <input
+                    id="applicant-phone"
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="9876543210"
+                    className="w-full h-full px-3 bg-transparent text-xs sm:text-sm text-[#111111] placeholder:text-gray-400 font-medium outline-none rounded-r-xl"
+                  />
 
                   {/* Dropdown Menu */}
                   {showCountryList && (
@@ -537,17 +557,6 @@ const JobApplication = ({ job, onClose }) => {
                       </div>
                     </div>
                   )}
-
-                  <input
-                    id="applicant-phone"
-                    type="tel"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    placeholder="9876543210"
-                    className={`w-full h-10 px-3.5 border rounded-r-xl text-xs sm:text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white placeholder:text-gray-400 font-medium transition-all outline-none
-                              ${errors.phone ? 'border-red-500 bg-red-50/20 focus:border-red-500 focus:ring-2 focus:ring-red-500/10' : 'border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15'}`}
-                  />
                 </div>
                 {errors.phone && (
                   <p className="text-red-500 text-[11px] font-medium mt-1 flex items-center gap-1">

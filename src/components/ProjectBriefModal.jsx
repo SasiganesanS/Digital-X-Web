@@ -1397,25 +1397,242 @@ ${formData.additionalInfo || "N/A"}
                               </p>
                             </div>
 
-                            <div className="p-6 border border-neutral-200/80 rounded-[24px] bg-neutral-50/60 space-y-4">
-                              <h4 className="text-base font-extrabold text-[#111111]">Application Summary</h4>
-                              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs text-neutral-600 font-medium">
+                            {/* Comprehensive Scrollable Brief Summary Box */}
+                            <div className="border border-neutral-200/90 rounded-[24px] bg-neutral-50/80 overflow-hidden shadow-inner">
+                              <div className="px-6 py-4 border-b border-neutral-200/80 bg-neutral-100/70 flex items-center justify-between flex-wrap gap-2">
                                 <div>
-                                  <span className="text-neutral-400 block text-[10px] uppercase font-bold">Company Name</span>
-                                  <span className="text-neutral-900 font-bold text-sm">{formData.companyName || "Not specified"}</span>
+                                  <h4 className="text-sm font-extrabold text-[#111111]">Comprehensive Application Summary</h4>
+                                  <p className="text-[11px] text-neutral-500 font-medium">Verify your answers across all 10 project onboarding sections below</p>
                                 </div>
-                                <div>
-                                  <span className="text-neutral-400 block text-[10px] uppercase font-bold">Industry & Type</span>
-                                  <span className="text-neutral-900 font-bold text-sm">{formData.industry || "Not specified"} ({formData.businessType})</span>
+                                <span className="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-[#E31D2E]/10 text-[#E31D2E]">
+                                  10 / 10 Sections
+                                </span>
+                              </div>
+
+                              <div className="p-6 max-h-[380px] overflow-y-auto space-y-6 custom-scrollbar text-xs">
+                                {/* 1. Company Profile */}
+                                <div className="space-y-2 pb-4 border-b border-neutral-200/60">
+                                  <div className="flex items-center justify-between">
+                                    <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
+                                      <Building2 className="w-3.5 h-3.5 text-[#E31D2E]" /> 1. Company Profile
+                                    </span>
+                                    <button type="button" onClick={() => setActiveSection(1)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                      Edit Section 1
+                                    </button>
+                                  </div>
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-neutral-600">
+                                    <div>
+                                      <span className="text-neutral-400 block text-[10px] font-bold uppercase">Company Name</span>
+                                      <span className="font-bold text-[#111111]">{formData.companyName || "Not specified"}</span>
+                                    </div>
+                                    <div>
+                                      <span className="text-neutral-400 block text-[10px] font-bold uppercase">Business Type & Industry</span>
+                                      <span className="font-bold text-[#111111]">{formData.industry || "Not specified"} ({formData.businessType})</span>
+                                    </div>
+                                    {formData.companyWebsite && (
+                                      <div>
+                                        <span className="text-neutral-400 block text-[10px] font-bold uppercase">Website</span>
+                                        <span className="font-semibold text-neutral-800">{formData.companyWebsite}</span>
+                                      </div>
+                                    )}
+                                    {formData.yearsInBusiness && (
+                                      <div>
+                                        <span className="text-neutral-400 block text-[10px] font-bold uppercase">Years in Business</span>
+                                        <span className="font-semibold text-neutral-800">{formData.yearsInBusiness}</span>
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
-                                <div>
-                                  <span className="text-neutral-400 block text-[10px] uppercase font-bold">Primary Contact</span>
-                                  <span className="text-neutral-900 font-bold text-sm">{formData.fullName || "Not specified"} ({formData.email})</span>
+
+                                {/* 2. Primary Contact */}
+                                <div className="space-y-2 pb-4 border-b border-neutral-200/60">
+                                  <div className="flex items-center justify-between">
+                                    <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
+                                      <User className="w-3.5 h-3.5 text-[#E31D2E]" /> 2. Primary Contact
+                                    </span>
+                                    <button type="button" onClick={() => setActiveSection(2)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                      Edit Section 2
+                                    </button>
+                                  </div>
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-neutral-600">
+                                    <div>
+                                      <span className="text-neutral-400 block text-[10px] font-bold uppercase">Full Name & Role</span>
+                                      <span className="font-bold text-[#111111]">{formData.fullName || "Not specified"} {formData.designation && `(${formData.designation})`}</span>
+                                    </div>
+                                    <div>
+                                      <span className="text-neutral-400 block text-[10px] font-bold uppercase">Email & Phone</span>
+                                      <span className="font-bold text-[#111111]">{formData.email} | {formData.phone}</span>
+                                    </div>
+                                    <div>
+                                      <span className="text-neutral-400 block text-[10px] font-bold uppercase">Preferred Contact</span>
+                                      <span className="font-semibold text-neutral-800">{formData.preferredContactMethod}</span>
+                                    </div>
+                                    {(formData.city || formData.country) && (
+                                      <div>
+                                        <span className="text-neutral-400 block text-[10px] font-bold uppercase">Location</span>
+                                        <span className="font-semibold text-neutral-800">{[formData.city, formData.state, formData.country].filter(Boolean).join(", ")}</span>
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
-                                <div>
-                                  <span className="text-neutral-400 block text-[10px] uppercase font-bold">Budget & Schedule</span>
-                                  <span className="text-neutral-900 font-bold text-sm">{formData.budgetRange} | {formData.startDate}</span>
+
+                                {/* 3. Brand Identity & Assets */}
+                                <div className="space-y-2 pb-4 border-b border-neutral-200/60">
+                                  <div className="flex items-center justify-between">
+                                    <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
+                                      <Palette className="w-3.5 h-3.5 text-[#E31D2E]" /> 3. Brand Identity & Assets
+                                    </span>
+                                    <button type="button" onClick={() => setActiveSection(3)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                      Edit Section 3
+                                    </button>
+                                  </div>
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-neutral-600">
+                                    <div>
+                                      <span className="text-neutral-400 block text-[10px] font-bold uppercase">Has Logo?</span>
+                                      <span className="font-semibold text-[#111111]">{formData.hasLogo} {formData.logoLink && `(${formData.logoLink})`}</span>
+                                    </div>
+                                    {formData.existingAssets?.length > 0 && (
+                                      <div>
+                                        <span className="text-neutral-400 block text-[10px] font-bold uppercase">Existing Assets</span>
+                                        <span className="font-semibold text-[#111111]">{formData.existingAssets.join(", ")}</span>
+                                      </div>
+                                    )}
+                                    {formData.preferredColors && (
+                                      <div>
+                                        <span className="text-neutral-400 block text-[10px] font-bold uppercase">Brand Colors</span>
+                                        <span className="font-semibold text-neutral-800">{formData.preferredColors}</span>
+                                      </div>
+                                    )}
+                                    {formData.brandStyles?.length > 0 && (
+                                      <div>
+                                        <span className="text-neutral-400 block text-[10px] font-bold uppercase">Brand Styles</span>
+                                        <span className="font-semibold text-neutral-800">{formData.brandStyles.join(", ")}</span>
+                                      </div>
+                                    )}
+                                  </div>
                                 </div>
+
+                                {/* 4. Selected Services */}
+                                <div className="space-y-2 pb-4 border-b border-neutral-200/60">
+                                  <div className="flex items-center justify-between">
+                                    <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
+                                      <Layers className="w-3.5 h-3.5 text-[#E31D2E]" /> 4. Selected Services
+                                    </span>
+                                    <button type="button" onClick={() => setActiveSection(4)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                      Edit Section 4
+                                    </button>
+                                  </div>
+                                  <div>
+                                    {formData.services?.length > 0 ? (
+                                      <div className="flex flex-wrap gap-1.5 mt-1">
+                                        {formData.services.map((srv) => (
+                                          <span key={srv} className="px-3 py-1 rounded-full bg-[#E31D2E]/10 text-[#E31D2E] text-[11px] font-bold">
+                                            {srv}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    ) : (
+                                      <span className="text-neutral-400 italic">No specific services pre-checked</span>
+                                    )}
+                                    {formData.otherService && (
+                                      <p className="text-neutral-700 text-xs mt-1.5"><strong>Custom Service:</strong> {formData.otherService}</p>
+                                    )}
+                                  </div>
+                                </div>
+
+                                {/* 5. Project Goals & Detail */}
+                                <div className="space-y-2 pb-4 border-b border-neutral-200/60">
+                                  <div className="flex items-center justify-between">
+                                    <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
+                                      <Target className="w-3.5 h-3.5 text-[#E31D2E]" /> 5. Project Goals & Vision
+                                    </span>
+                                    <button type="button" onClick={() => setActiveSection(5)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                      Edit Section 5
+                                    </button>
+                                  </div>
+                                  <div>
+                                    {formData.projectGoals?.length > 0 ? (
+                                      <div className="flex flex-wrap gap-1.5 mt-1">
+                                        {formData.projectGoals.map((g) => (
+                                          <span key={g} className="px-3 py-1 rounded-full bg-neutral-200/80 text-neutral-800 text-[11px] font-extrabold">
+                                            {g}
+                                          </span>
+                                        ))}
+                                      </div>
+                                    ) : (
+                                      <span className="text-neutral-400 italic">No specific goals pre-checked</span>
+                                    )}
+                                    {formData.projectDetail && (
+                                      <p className="text-neutral-700 text-xs mt-2 p-3 rounded-xl bg-white border border-neutral-200/70 leading-relaxed">
+                                        "{formData.projectDetail}"
+                                      </p>
+                                    )}
+                                  </div>
+                                </div>
+
+                                {/* 6 & 7. Timeline & Budget */}
+                                <div className="space-y-2 pb-4 border-b border-neutral-200/60">
+                                  <div className="flex items-center justify-between">
+                                    <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
+                                      <Calendar className="w-3.5 h-3.5 text-[#E31D2E]" /> 6 & 7. Timeline & Investment
+                                    </span>
+                                    <button type="button" onClick={() => setActiveSection(6)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                      Edit Section 6/7
+                                    </button>
+                                  </div>
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-neutral-600">
+                                    <div>
+                                      <span className="text-neutral-400 block text-[10px] font-bold uppercase">Budget Range</span>
+                                      <span className="font-extrabold text-[#E31D2E] text-sm">{formData.budgetRange}</span>
+                                    </div>
+                                    <div>
+                                      <span className="text-neutral-400 block text-[10px] font-bold uppercase">Start Schedule</span>
+                                      <span className="font-bold text-[#111111]">{formData.startDate}</span>
+                                    </div>
+                                    {formData.expectedCompletionDate && (
+                                      <div>
+                                        <span className="text-neutral-400 block text-[10px] font-bold uppercase">Target Completion</span>
+                                        <span className="font-semibold text-neutral-800">{formData.expectedCompletionDate}</span>
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+
+                                {/* 8. References */}
+                                {(formData.referenceWebsites || formData.competitorWebsites || formData.driveLinks) && (
+                                  <div className="space-y-2 pb-4 border-b border-neutral-200/60">
+                                    <div className="flex items-center justify-between">
+                                      <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
+                                        <Link2 className="w-3.5 h-3.5 text-[#E31D2E]" /> 8. References & Inspirations
+                                      </span>
+                                      <button type="button" onClick={() => setActiveSection(8)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                        Edit Section 8
+                                      </button>
+                                    </div>
+                                    <div className="space-y-1 text-neutral-600 text-xs">
+                                      {formData.referenceWebsites && <p><strong>References:</strong> {formData.referenceWebsites}</p>}
+                                      {formData.competitorWebsites && <p><strong>Competitors:</strong> {formData.competitorWebsites}</p>}
+                                      {formData.driveLinks && <p><strong>Drive Link:</strong> {formData.driveLinks}</p>}
+                                    </div>
+                                  </div>
+                                )}
+
+                                {/* 9. Additional Notes */}
+                                {formData.additionalInfo && (
+                                  <div className="space-y-2">
+                                    <div className="flex items-center justify-between">
+                                      <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
+                                        <FileText className="w-3.5 h-3.5 text-[#E31D2E]" /> 9. Additional Notes
+                                      </span>
+                                      <button type="button" onClick={() => setActiveSection(9)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                        Edit Section 9
+                                      </button>
+                                    </div>
+                                    <p className="text-neutral-700 text-xs p-3 rounded-xl bg-white border border-neutral-200/70 leading-relaxed">
+                                      {formData.additionalInfo}
+                                    </p>
+                                  </div>
+                                )}
                               </div>
                             </div>
 
@@ -1450,7 +1667,7 @@ ${formData.additionalInfo || "N/A"}
                       <button
                         type="button"
                         onClick={handlePrev}
-                        className="h-[56px] px-8 rounded-[18px] border border-neutral-200 text-neutral-700 hover:bg-neutral-100 font-bold text-sm transition-all flex items-center gap-2"
+                        className="h-[56px] px-8 rounded-[18px] border border-neutral-200 text-neutral-700 hover:bg-neutral-100 font-bold text-sm transition-all flex items-center gap-2 cursor-pointer"
                       >
                         <ArrowLeft className="w-4 h-4" />
                         <span>Previous</span>

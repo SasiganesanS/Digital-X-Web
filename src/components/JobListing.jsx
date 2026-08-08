@@ -8,7 +8,7 @@ import {
   FiSearch,
   FiX,
 } from "react-icons/fi";
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
 
 // component imports
@@ -17,6 +17,7 @@ import JobApplication from "./JobApplication";
 function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilters }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedJob, setSelectedJob] = useState(null);
+  const containerRef = useRef(null);
   const jobsPerPage = 5;
 
   const allJobs = useMemo(
@@ -280,6 +281,14 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+    if (containerRef.current) {
+      const elementPosition = containerRef.current.getBoundingClientRect().top + window.pageYOffset;
+      const offsetPosition = Math.max(0, elementPosition - 120);
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
   };
 
   const handleJobClick = (job) => {
@@ -319,7 +328,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
 
   return (
     <>
-      <div className="bg-transparent py-4 sm:py-6">
+      <div ref={containerRef} className="bg-transparent py-4 sm:py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Dynamic Animated Job Count Header */}
           <div className="flex items-center justify-between mb-6 sm:mb-8 pb-4 border-b border-neutral-200/60">
