@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import SolarSystemHero from "./SolarSystemHero";
 import HeroLayout from "../common/HeroLayout";
 
@@ -27,12 +29,12 @@ function AnimatedStat({ targetNum, suffix = "+", label }) {
     <motion.div
       whileHover={{ y: -3 }}
       transition={{ type: "spring", stiffness: 300 }}
-      className="clay-card relative flex flex-col items-center text-center py-4 px-3 cursor-default"
+      className="clay-card relative flex flex-col items-center text-center py-2.5 px-2.5 cursor-default"
     >
-      <p className="text-[#E31D2E] font-black text-xl sm:text-3xl">
+      <p className="text-[#E31D2E] font-black text-lg sm:text-2xl">
         {count}{suffix}
       </p>
-      <p className="text-[#575757] text-[8px] sm:text-[10px] font-bold uppercase tracking-[0.18em] mt-1">
+      <p className="text-[#575757] text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.16em] mt-0.5">
         {label}
       </p>
     </motion.div>
@@ -68,19 +70,19 @@ const HeroSection = () => {
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 1.3 }}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
+        className="absolute bottom-2 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
         onClick={() => {
           const el = document.getElementById("projects") || document.getElementById("expertise");
           if (el) el.scrollIntoView({ behavior: "smooth" });
         }}
       >
-        <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#575757]">
+        <span className="text-[8px] font-bold uppercase tracking-[0.25em] text-[#575757]">
           Scroll
         </span>
         <motion.div
-          animate={{ y: [0, 5, 0] }}
+          animate={{ y: [0, 4, 0] }}
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="w-4 h-7 rounded-full border border-neutral-300 flex items-start justify-center p-1 bg-white/40 backdrop-blur-xs"
+          className="w-3.5 h-6 rounded-full border border-neutral-300 flex items-start justify-center p-1 bg-white/40 backdrop-blur-xs"
         >
           <span className="w-1 h-1.5 rounded-full bg-[#E31D2E]" />
         </motion.div>
@@ -97,13 +99,13 @@ const HeroSection = () => {
         scale: { duration: 0.6, ease: "easeOut" },
         y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
       }}
-      className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full overflow-hidden border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)] backdrop-blur-sm"
+      className="relative inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full overflow-hidden border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)] backdrop-blur-sm"
     >
       <span className="relative flex h-2 w-2">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
         <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
       </span>
-      <span className="relative text-[#111111] text-[10px] sm:text-xs font-bold tracking-[0.2em] uppercase">
+      <span className="relative text-[#111111] text-[9px] sm:text-[11px] font-bold tracking-[0.2em] uppercase">
         Where Strategy Meets Performance
       </span>
     </motion.div>
@@ -111,7 +113,7 @@ const HeroSection = () => {
 
   const title = (
     <h1
-      className="font-black leading-[1.08] tracking-tight text-[#111111] w-full text-4xl sm:text-5xl lg:text-[52px]"
+      className="font-black leading-[1.08] tracking-tight text-[#111111] w-full text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px]"
     >
       <motion.span
         initial={{ opacity: 0, y: 24 }}
@@ -145,7 +147,7 @@ const HeroSection = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-      className="text-[#575757] text-sm sm:text-base font-medium leading-relaxed max-w-lg"
+      className="text-[#575757] text-xs sm:text-sm lg:text-base font-medium leading-relaxed max-w-xl"
     >
       Your strategic growth partner for branding, performance marketing,
       and long-term digital scale. We don't just create campaigns; we build legacies.
@@ -157,11 +159,27 @@ const HeroSection = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.95 }}
-      className="grid grid-cols-3 gap-3 w-full max-w-[280px] sm:max-w-xs lg:max-w-sm"
+      className="flex flex-col items-center lg:items-start gap-3.5 w-full"
     >
-      <AnimatedStat targetNum="15" suffix="+" label="Clients" />
-      <AnimatedStat targetNum="20" suffix="+" label="Projects" />
-      <AnimatedStat targetNum="20" suffix="+" label="Tie-ups" />
+      <div className="grid grid-cols-3 gap-2.5 w-full max-w-[280px] sm:max-w-xs lg:max-w-md">
+        <AnimatedStat targetNum="15" suffix="+" label="Clients" />
+        <AnimatedStat targetNum="20" suffix="+" label="Projects" />
+        <AnimatedStat targetNum="20" suffix="+" label="Tie-ups" />
+      </div>
+
+      <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 w-full">
+        <Link
+          to="/services"
+          className="primary-btn px-5 py-2 rounded-full text-[11px] font-black uppercase tracking-wider text-white shadow-md shadow-red-500/20 inline-flex items-center gap-2"
+        >
+          <span>Explore Services</span>
+          <ArrowRight className="w-3.5 h-3.5" />
+        </Link>
+        <span className="text-[10px] sm:text-xs font-bold text-[#575757] flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-gray-200/80 shadow-2xs">
+          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span>Data-Driven Strategy & Performance Scale</span>
+        </span>
+      </div>
     </motion.div>
   );
 

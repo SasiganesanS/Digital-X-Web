@@ -32,13 +32,6 @@ const Footer = ({ setShowContactForm }) => {
           >
             {/* LEFT COLUMN */}
             <div className="lg:col-span-7 space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-0.5 rounded-full border border-[#FF2B2B]/40 bg-[#FF2B2B]/10 backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-[#FF2B2B] animate-pulse" />
-                <span className="font-bold text-[10px] sm:text-xs uppercase tracking-widest text-white">
-                  LET'S BUILD SOMETHING AMAZING
-                </span>
-              </div>
-
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight tracking-tight">
                 Ready to Grow Your Brand?
               </h2>

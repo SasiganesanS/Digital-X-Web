@@ -38,6 +38,7 @@ import {
   FiBarChart2,
   FiCode,
   FiCheckCircle,
+  FiZap,
 } from "react-icons/fi";
 import {
   MdDiamond,
@@ -92,21 +93,31 @@ const PLATFORMS = platforms.map((platform) => ({
 const LOOPED_SERVICES = [...servicesData, ...servicesData, ...servicesData, ...servicesData];
 
 // Category tag mapping for services
-const getServiceCategoryTag = (title = "") => {
+const getServiceCategoryTag = (title) => {
   const t = title.toLowerCase();
-  if (t.includes("seo")) return "Strategy";
-  if (t.includes("ssm") || t.includes("social")) return "Marketing";
-  if (t.includes("ads")) return "Paid Media";
-  if (t.includes("web") || t.includes("design")) return "Creative";
-  if (t.includes("video") || t.includes("production")) return "Production";
-  if (t.includes("analytics") || t.includes("report")) return "Analytics";
-  if (t.includes("content")) return "Creative";
-  if (t.includes("e-commerce") || t.includes("ecommerce")) return "Performance";
-  if (t.includes("email")) return "Marketing";
-  if (t.includes("influencer")) return "Strategy";
-  if (t.includes("performance")) return "Performance";
-  if (t.includes("orm")) return "Reputation";
-  return "Marketing";
+  if (t.includes("seo") || t.includes("analytics")) return "Strategy";
+  if (t.includes("smm") || t.includes("content") || t.includes("influencer") || t.includes("orm")) return "Marketing";
+  if (t.includes("ads") || t.includes("performance") || t.includes("ecommerce") || t.includes("email")) return "Growth";
+  return "Engineering";
+};
+
+const getServiceHighlights = (title) => {
+  const map = {
+    "SEO": ["Keyword Strategy", "Technical Audit", "Rank Growth"],
+    "SSM": ["Content Calendar", "Audience Scale", "Brand Vibe"],
+    "ADS": ["Google & Meta Ads", "ROI Optimization", "High Conversion"],
+    "Website Design": ["Custom UI/UX", "Mobile First", "Speed Optimized"],
+    "Video Production": ["Reels & Shorts", "Product Shoots", "High-End Edit"],
+    "Content Marketing": ["SEO Blogs", "Copywriting", "Brand Voice"],
+    "E-commerce Marketing": ["Store Scale", "Cart Recovery", "Revenue Growth"],
+    "Email Marketing": ["Automation", "High Open Rate", "Lead Nurturing"],
+    "Influencer Marketing": ["Creator Match", "Campaign Strategy", "Viral Reach"],
+    "Performance Marketing": ["Data-Driven ROI", "Lead Generation", "Ad Scaling"],
+    "ORM": ["Review Management", "Brand Trust", "Positive Perception"],
+    "Analytics & Reporting": ["Live Dashboards", "Conversion Tracking", "Data Insights"]
+  };
+
+  return map[title] || ["Strategy & Execution", "Data Insights", "Brand Growth"];
 };
 
 // Partner logos for the auto-scrolling "Ecosystem Partners" strip
@@ -789,7 +800,7 @@ export default function ServiceCalculator() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.08] tracking-tight text-[#111111]"
+            className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-[1.08] tracking-tight text-[#111111]"
           >
             Transforming Brands into <br className="hidden sm:block" />
             <span className="text-[#E31D2E] relative inline-block">
@@ -802,34 +813,53 @@ export default function ServiceCalculator() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium"
+            className="text-[#575757] text-xs sm:text-sm lg:text-base leading-relaxed font-medium max-w-xl"
           >
             Comprehensive branding, media, and performance marketing solutions designed to help your business grow strategically, creatively, and profitably.
           </motion.p>
         }
         actions={
-          <div className="flex flex-wrap items-center gap-4 sm:gap-5 relative z-10 w-full justify-center lg:justify-start">
-            <HeroAnimatedStat
-              targetNum="15"
-              suffix="+"
-              label="Clients"
-              icon={FiUsers}
-              delay={0}
-            />
-            <HeroAnimatedStat
-              targetNum="20"
-              suffix="+"
-              label="Projects"
-              icon={FiBriefcase}
-              delay={0.1}
-            />
-            <HeroAnimatedStat
-              targetNum="6"
-              suffix=""
-              label="Services"
-              icon={FiLayers}
-              delay={0.2}
-            />
+          <div className="flex flex-col items-center lg:items-start gap-3.5 relative z-10 w-full">
+            <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 w-full justify-center lg:justify-start">
+              <HeroAnimatedStat
+                targetNum="15"
+                suffix="+"
+                label="Clients"
+                icon={FiUsers}
+                delay={0}
+              />
+              <HeroAnimatedStat
+                targetNum="20"
+                suffix="+"
+                label="Projects"
+                icon={FiBriefcase}
+                delay={0.1}
+              />
+              <HeroAnimatedStat
+                targetNum="6"
+                suffix=""
+                label="Services"
+                icon={FiLayers}
+                delay={0.2}
+              />
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 w-full">
+              <button
+                type="button"
+                onClick={() => {
+                  calculatorRef.current?.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="primary-btn px-5 py-2 rounded-full text-[11px] font-black uppercase tracking-wider text-white shadow-md shadow-red-500/20 inline-flex items-center gap-2"
+              >
+                <span>Calculate Plan Estimate</span>
+                <FiZap className="w-3.5 h-3.5" />
+              </button>
+              <span className="text-[10px] sm:text-xs font-bold text-[#575757] flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-gray-200/80 shadow-2xs">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span>Instant Custom Quote & Transparent Deliverables</span>
+              </span>
+            </div>
           </div>
         }
         media={<HeroShowcase ourServicesImg={ourServicesImg} />}
@@ -947,19 +977,17 @@ export default function ServiceCalculator() {
                           </p>
                         </div>
 
-                        {/* Bottom Action — Integrated Thin Divider CTA */}
-                        <div className={`relative z-10 w-full pt-3 mt-auto border-t border-black/10 flex items-center justify-between text-xs font-extrabold uppercase tracking-wider transition-colors duration-300 ${
-                          isProgrammaticHover ? 'text-[#E31D2E]' : 'text-[#111111] group-hover:text-[#E31D2E]'
-                        }`}>
-                          <span className="relative">
-                            Learn More
-                            <span className={`absolute bottom-0 left-0 h-0.5 bg-[#E31D2E] transition-all duration-300 ${
-                              isProgrammaticHover ? 'w-full' : 'w-0 group-hover:w-full'
-                            }`} />
-                          </span>
-                          <span className={`transition-transform duration-300 text-[#E31D2E] ${
-                            isProgrammaticHover ? 'translate-x-1.5' : 'group-hover:translate-x-1.5'
-                          }`}>→</span>
+                        {/* Bottom Feature Deliverables — Replaces Learn More */}
+                        <div className="relative z-10 w-full pt-3 mt-auto border-t border-black/10 flex flex-wrap items-center gap-1.5">
+                          {getServiceHighlights(service.title).map((highlight, idx) => (
+                            <span
+                              key={idx}
+                              className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#E31D2E]/5 text-[#E31D2E] border border-[#E31D2E]/10 flex items-center gap-1 group-hover:bg-[#E31D2E] group-hover:text-white transition-colors duration-300"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-[#E31D2E] group-hover:bg-white transition-colors" />
+                              {highlight}
+                            </span>
+                          ))}
                         </div>
 
                         {/* Bottom Hover Accent Glow Line */}

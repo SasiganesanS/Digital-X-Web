@@ -29,7 +29,7 @@ const HeroLayout = ({
       {bgElements}
 
       {/* Standardized Content Container */}
-      <div className={`relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 pt-4 sm:pt-6 lg:pt-8 pb-12 lg:pb-16 ${containerClassName}`}>
+      <div className={`relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 pt-2 sm:pt-3 lg:pt-4 pb-4 sm:pb-6 lg:pb-8 ${containerClassName}`}>
         {children ? (
           children
         ) : (

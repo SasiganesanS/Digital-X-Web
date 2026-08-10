@@ -104,7 +104,7 @@ const About = () => {
       variants={fadeUp}
       initial="hidden"
       animate="visible"
-      className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.1] tracking-tight text-[#111111]"
+      className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-[1.1] tracking-tight text-[#111111]"
     >
       Where Mindful Strategy{" "}
       <span className="inline-block text-[#E31D2E]">
@@ -118,7 +118,7 @@ const About = () => {
       variants={fadeUp}
       initial="hidden"
       animate="visible"
-      className="text-neutral-600 text-base sm:text-lg leading-relaxed max-w-xl font-normal"
+      className="text-neutral-600 text-xs sm:text-sm lg:text-base leading-relaxed max-w-xl font-normal"
     >
       A trusted marketing partner delivering brand transformation, performance campaigns,
       and high-impact digital ecosystems that accelerate business growth.

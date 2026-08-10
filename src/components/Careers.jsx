@@ -6,6 +6,7 @@ import React, {
   useCallback,
 } from "react";
 import { motion } from "framer-motion";
+import { ArrowRight, Sparkles, TrendingUp, Globe, Zap, Users } from "lucide-react";
 import HeroLayout from "./common/HeroLayout";
 
 // Component imports
@@ -37,7 +38,6 @@ import {
   FiX,
   FiFilter,
 } from "react-icons/fi";
-import { Sparkles } from "lucide-react";
 
 import CareersImageGrid from "./CareersImageGrid";
 
@@ -182,7 +182,7 @@ const Careers = () => {
           </div>
         }
         title={
-          <h1 className="text-[#111111] text-[36px] sm:text-[44px] lg:text-[52px] font-black leading-tight">
+          <h1 className="text-[#111111] text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-tight">
             Join us in creating <br />
             software that drives <br />
             <span className="text-[#E31D2E]">innovation</span>
@@ -190,14 +190,36 @@ const Careers = () => {
         }
         description="Build high-impact digital experiences and grow with a team of strategic, creative, and engineering minds."
         actions={
-          <div className="flex justify-center lg:justify-start w-full">
-            <button
-              onClick={scrollToJobs}
-              className="primary-btn px-8 py-4 rounded-full font-bold text-sm sm:text-base"
-              aria-label="Scroll to view open job positions"
-            >
-              View Open Roles
-            </button>
+          <div className="flex flex-col items-center lg:items-start gap-3.5 w-full">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 w-full">
+              <button
+                onClick={scrollToJobs}
+                className="primary-btn px-6 py-2.5 rounded-full font-black text-xs uppercase tracking-wider text-white shadow-md shadow-red-500/20 inline-flex items-center gap-2"
+                aria-label="Scroll to view open job positions"
+              >
+                <span>View Open Roles</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1 w-full max-w-xl">
+              {[
+                { icon: TrendingUp, text: "Fast Career Growth" },
+                { icon: Globe, text: "Remote & Hybrid Flex" },
+                { icon: Zap, text: "Creative Freedom" },
+                { icon: Users, text: "Supportive Team Vibe" }
+              ].map((perk, idx) => {
+                const IconComponent = perk.icon;
+                return (
+                  <span
+                    key={idx}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200/90 bg-white/90 shadow-2xs text-[#111111] text-[11px] font-bold tracking-tight hover:border-[#E31D2E]/30 transition-colors"
+                  >
+                    <IconComponent className="w-3.5 h-3.5 text-[#E31D2E]" />
+                    <span>{perk.text}</span>
+                  </span>
+                );
+              })}
+            </div>
           </div>
         }
         media={

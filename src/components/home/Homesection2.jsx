@@ -322,12 +322,12 @@ export default function FeaturedWorks() {
                 </div>
               )}
 
-              {/* Pinned View Project Button */}
+              {/* Pinned View Case Study Button */}
               <Link
-                to={`/project/${activeProject.slug || ""}`}
+                to={`/case-study/${activeProject.slug || ""}`}
                 className="primary-btn flex items-center justify-between w-full rounded-full px-5 py-3 text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white shadow-md transition-all hover:scale-[1.01]"
               >
-                <span>View Project</span>
+                <span>View Case Study</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-white" />
               </Link>
             </div>

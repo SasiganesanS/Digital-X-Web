@@ -104,7 +104,7 @@ function ProjectCardSticky({ project, index, range, targetScale, isMobile }) {
           </div>
 
           <Link
-            to={`/project/${project.id}`}
+            to={`/case-study/${project.slug || project.id}`}
             state={{ project }}
             className={`inline-flex items-center gap-2 font-semibold text-[#371445] bg-white hover:scale-105 transition-all ${isMobile ? "px-6 py-2.5 text-sm" : "px-8 py-3 text-base"
               } rounded-full hover:bg-gray-50`}

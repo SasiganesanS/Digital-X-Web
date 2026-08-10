@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroLayout from "./common/HeroLayout";
 import ContactForm from "./ContactForm";
-import { ArrowUpRight, Star, Check, TrendingUp } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Star, Check, TrendingUp } from "lucide-react";
 import "../index.css";
 import { data, blogPosts } from "../constants";
 import { projects } from "../data/projects";
@@ -267,7 +267,7 @@ const Projects = () => {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-4xl sm:text-5xl lg:text-[52px] font-black leading-[1.08] tracking-tight text-[#111111]"
+            className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-[1.08] tracking-tight text-[#111111]"
           >
             Collaborate for <br />
             <span className="relative inline-block text-[#E31D2E]">
@@ -280,17 +280,32 @@ const Projects = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium"
+            className="text-[#575757] text-xs sm:text-sm lg:text-base leading-relaxed font-medium max-w-xl"
           >
             A powerful blend of strategy, creativity and performance marketing designed to boost visibility and accelerate revenue growth.
           </motion.p>
         }
         actions={
-          <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 relative z-10 w-full justify-center lg:justify-start">
-            <ProjectCounter targetNum="50" suffix="+" label="Projects Delivered" delay={0} />
-            <ProjectCounter targetNum="15" suffix="+" label="Brands" delay={0.1} />
-            <ProjectCounter targetNum="98" suffix="%" label="Client Satisfaction" delay={0.2} />
-            <ProjectCounter targetNum="5" suffix="+" label="Years Experience" delay={0.3} />
+          <div className="flex flex-col items-center lg:items-start gap-3.5 relative z-10 w-full">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full max-w-xl justify-center lg:justify-start">
+              <ProjectCounter targetNum="50" suffix="+" label="Projects Delivered" delay={0} />
+              <ProjectCounter targetNum="15" suffix="+" label="Brands" delay={0.1} />
+              <ProjectCounter targetNum="98" suffix="%" label="Client Satisfaction" delay={0.2} />
+              <ProjectCounter targetNum="5" suffix="+" label="Years Experience" delay={0.3} />
+            </div>
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 w-full">
+              <a
+                href="#portfolio-grid"
+                className="primary-btn px-5 py-2 rounded-full text-[11px] font-black uppercase tracking-wider text-white shadow-md shadow-red-500/20 inline-flex items-center gap-2"
+              >
+                <span>View Featured Work</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
+              <span className="text-[10px] sm:text-xs font-bold text-[#575757] flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-gray-200/80 shadow-2xs">
+                <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
+                <span>Crafting Scalable Digital Ecosystems</span>
+              </span>
+            </div>
           </div>
         }
         media={
@@ -473,7 +488,7 @@ const Projects = () => {
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
                       whileHover={{ y: -4 }}
-                      onClick={() => navigate(`/project/${project.slug}`)}
+                      onClick={() => navigate(`/project/${project.slug || project.id}`)}
                       className="group relative flex flex-col justify-between cursor-pointer p-3.5 sm:p-4 rounded-[1.75rem] border border-neutral-200/80 shadow-[0_8px_24px_rgba(0,0,0,0.03)] bg-white hover:border-[#E31D2E]/30 hover:shadow-[0_14px_36px_rgba(227,29,46,0.1)] transition-all duration-300 select-none"
                     >
                       {/* 1. Image Area — Crisp & Unobstructed */}
@@ -492,10 +507,17 @@ const Projects = () => {
                         </h3>
 
                         {/* Compact Case Study Pill Button */}
-                        <span className="px-3 py-1.5 rounded-full bg-[#E31D2E] text-white font-black text-[10px] uppercase tracking-wider flex items-center gap-1 shrink-0 shadow-2xs group-hover:bg-[#c91827] group-hover:scale-105 transition-all duration-300">
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`/case-study/${project.slug || project.id}`);
+                          }}
+                          className="px-3 py-1.5 rounded-full bg-[#E31D2E] text-white font-black text-[10px] uppercase tracking-wider flex items-center gap-1 shrink-0 shadow-2xs hover:bg-[#c91827] hover:scale-105 transition-all duration-300 cursor-pointer"
+                        >
                           <span>Case Study</span>
                           <ArrowUpRight className="w-3 h-3" />
-                        </span>
+                        </button>
                       </div>
 
                       {/* 3. Options / Service Chips */}

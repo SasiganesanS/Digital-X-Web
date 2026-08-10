@@ -33,11 +33,12 @@ import MobileMarketingCombo from "./components/pricing/MobileMarketingCombo";
 import BlogPage from "./components/pricing/BlogPage";
 import MainBlogPage from "./components/MainBlogPage";
 import ProjectCaseStudy from "./components/ProjectCaseStudy";
+import ProjectDetail from "./components/ProjectDetail";
 import ServiceCalculator from "./components/ServiceCalculator";
 import PlatformPlanPage from "./components/PlatformPlanPage";
 import CinematicUniverse from "./components/CinematicUniverse";
 import ScrollToTop from "./components/ScrollToTop";
-import SnakeScrollbar from "./components/SnakeScrollbar";
+import RocketScrollbar from "./components/RocketScrollbar";
 
 // Legal Page Imports
 import PrivacyPolicy from "./components/legal/PrivacyPolicy";
@@ -267,10 +268,19 @@ const AppRoutes = () => {
 
 
       <Route
-        path="/project/:id"
+        path="/case-study/:id"
         element={
           <AnimatedPage>
             <ProjectCaseStudy />
+          </AnimatedPage>
+        }
+      />
+
+      <Route
+        path="/project/:id"
+        element={
+          <AnimatedPage>
+            <ProjectDetail />
           </AnimatedPage>
         }
       />
@@ -411,7 +421,7 @@ const MainLayout = () => {
       <AppRoutes />
       <Footer setShowContactForm={setShowContactForm} />
       <ScrollToTop />
-      <SnakeScrollbar />
+      <RocketScrollbar />
       </div>
     </div>
   );

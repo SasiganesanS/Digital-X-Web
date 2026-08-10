@@ -56,101 +56,101 @@ const ProjectCaseStudy = () => {
   return (
     <div className="bg-[#F8FAFC] min-h-screen text-[#111111] font-sans overflow-x-hidden selection:bg-[#E31D2E] selection:text-white">
       
-      {/* ── HERO SECTION: FULL-WIDTH COVER IMAGE BACKGROUND ── */}
-      <section className="relative w-full min-h-[75vh] lg:min-h-[82vh] flex items-end overflow-hidden pt-28 pb-16 lg:pb-20">
-        
-        {/* Full-Width Background Cover Image */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src={project.image}
-            alt={project.title}
-            className="w-full h-full object-cover object-center scale-105"
-          />
-          {/* Rich Gradient Overlay for Image & Text Readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/75 to-black/50" />
-          <div className="absolute inset-0 bg-[#080808]/20 backdrop-blur-[2px]" />
-        </div>
-
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-start max-w-4xl"
-          >
-            {/* Back Button */}
-            <div className="mb-4">
-              <Link
-                to="/projects"
-                className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider transition-all duration-200 group"
-              >
-                <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#E31D2E]" />
-                <span>Back to Case Studies</span>
-              </Link>
-            </div>
-
-            {/* Breadcrumb Tag */}
-            <div className="mb-4 inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-gray-300 text-xs font-semibold">
-              <span>{project.breadcrumb || `Blog / ${project.title}`}</span>
-            </div>
-
-            {/* Title */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.08] tracking-tight text-white mb-4 drop-shadow-sm">
-              {project.title}
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-gray-300 text-base sm:text-lg font-medium leading-relaxed mb-8 max-w-2xl drop-shadow-sm">
-              {project.description}
-            </p>
-
-            {/* Impact Result Pill Banner */}
-            <div className="p-4 rounded-2xl bg-black/60 backdrop-blur-xl border border-white/20 mb-8 w-full max-w-xl flex items-center gap-4 shadow-xl">
-              <div className="w-10 h-10 rounded-xl bg-[#E31D2E] text-white flex items-center justify-center shrink-0 shadow-md shadow-red-500/30">
-                <TrendingUp className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="text-[10px] font-extrabold uppercase tracking-widest text-[#E31D2E]">
-                  Impact Metric
-                </div>
-                <div className="text-sm sm:text-base font-black text-white">
-                  {project.result}
-                </div>
-              </div>
-            </div>
-
-            {/* Service Badges */}
-            <div className="flex flex-wrap gap-2.5">
-              {project.services.map((svc, i) => (
-                <span
-                  key={i}
-                  className="px-4 py-1.5 rounded-lg border border-white/20 bg-white/10 backdrop-blur-md text-white text-xs font-extrabold uppercase tracking-wider"
+      {/* ── CASE STUDY HERO ── */}
+      <section className="relative w-full pt-2 sm:pt-3 lg:pt-4 pb-10 sm:pb-12 lg:pb-14 bg-gradient-to-b from-[#F8FAFC] via-white to-[#F8FAFC]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            
+            {/* Left Column: Metadata & Hero Narrative */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-7 flex flex-col items-start"
+            >
+              {/* Top Navigation Row: Back Button & Breadcrumb */}
+              <div className="flex flex-wrap items-center gap-3 mb-5">
+                <Link
+                  to="/projects"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white shadow-2xs hover:border-[#E31D2E]/40 text-[#111111] text-xs font-bold uppercase tracking-wider transition-all duration-200 group"
                 >
-                  {svc}
-                </span>
-              ))}
-            </div>
+                  <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#E31D2E]" />
+                  <span>Back to Case Studies</span>
+                </Link>
 
-          </motion.div>
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50/90 border border-red-100/90 text-[#E31D2E] text-xs font-bold tracking-wide">
+                  <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
+                  <span>{project.breadcrumb || `Blog / ${project.title}`}</span>
+                </div>
+              </div>
 
-          {/* Scroll Down Hint */}
-          <motion.div
-            className="mt-12 flex items-center gap-3 text-white/60"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-          >
-            <div className="w-5 h-9 border border-white/25 rounded-full flex items-start justify-center p-1">
-              <motion.div
-                className="w-1 h-2 bg-[#E31D2E] rounded-full"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
-            </div>
-            <span className="text-[10px] font-extrabold uppercase tracking-[0.25em] text-white/70">
-              Scroll to explore case study
-            </span>
-          </motion.div>
+              {/* Title */}
+              <h1 className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.08] tracking-tight text-[#111111] mb-4 sm:mb-5">
+                {project.title}
+              </h1>
+
+              {/* Subtitle */}
+              <p className="text-[#575757] text-base sm:text-lg font-medium leading-relaxed mb-6 sm:mb-7 max-w-2xl">
+                {project.description}
+              </p>
+
+              {/* Impact Metric Banner Card */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.04)] mb-7 w-full max-w-xl flex items-center gap-4">
+                <div className="w-11 h-11 rounded-xl bg-[#E31D2E] text-white flex items-center justify-center shrink-0 shadow-md shadow-red-500/25">
+                  <TrendingUp className="w-5.5 h-5.5" />
+                </div>
+                <div>
+                  <div className="text-[10px] font-extrabold uppercase tracking-widest text-[#E31D2E] mb-0.5">
+                    Impact Metric
+                  </div>
+                  <div className="text-base sm:text-lg font-black text-[#111111]">
+                    {project.result}
+                  </div>
+                </div>
+              </div>
+
+              {/* Service Badges */}
+              <div className="flex flex-wrap gap-2.5">
+                {project.services.map((svc, i) => (
+                  <span
+                    key={i}
+                    className="px-3.5 py-1.5 rounded-lg border border-slate-200 bg-white text-[#333333] hover:text-[#E31D2E] hover:border-red-200 hover:bg-red-50/50 text-xs font-extrabold uppercase tracking-wider shadow-2xs transition-all"
+                  >
+                    {svc}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Right Column: High-Impact Showcase Frame */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5 w-full flex justify-center lg:justify-end"
+            >
+              <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
+                <div className="relative rounded-[2.5rem] p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden">
+                  <div className="relative rounded-[2rem] overflow-hidden aspect-[4/3] bg-gray-100">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                    />
+                  </div>
+
+                  {/* Clean floating status badge */}
+                  <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 p-3 px-4 rounded-xl bg-white/95 backdrop-blur-md border border-gray-200 shadow-md flex items-center gap-2.5">
+                    <div className="w-2.5 h-2.5 rounded-full bg-[#E31D2E] animate-ping" />
+                    <span className="text-[#111111] text-xs font-extrabold uppercase tracking-wider">
+                      Featured Case Study
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+          </div>
         </div>
       </section>
 
@@ -268,13 +268,15 @@ const ProjectCaseStudy = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.07 }}
                   whileHover={{ y: -5 }}
-                  className="group relative p-7 rounded-[2rem] bg-white border border-gray-200/80 hover:border-[#E31D2E]/50 hover:shadow-[0_16px_40px_rgba(227,29,46,0.08)] transition-all duration-300 flex flex-col justify-between"
+                  className="group relative p-7 sm:p-8 rounded-[2rem] bg-white border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-[#E31D2E]/40 hover:shadow-[0_18px_44px_rgba(227,29,46,0.09)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
                 >
+                  {/* Top Red Gradient Accent Line on Hover */}
+                  <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#E31D2E] to-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-[2rem]" />
                   <div>
-                    <div className="w-12 h-12 rounded-2xl bg-red-50 border border-red-100 text-2xl flex items-center justify-center mb-5 group-hover:bg-[#E31D2E] group-hover:text-white transition-all duration-300 shadow-2xs">
-                      {f.icon}
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50/90 border border-red-100/90 text-[#E31D2E] text-[10px] font-black uppercase tracking-widest mb-4">
+                      <span>Feature 0{i + 1}</span>
                     </div>
-                    <h3 className="text-lg font-extrabold text-[#111111] mb-2 group-hover:text-[#E31D2E] transition-colors leading-snug">
+                    <h3 className="text-lg sm:text-xl font-black text-[#111111] mb-2.5 group-hover:text-[#E31D2E] transition-colors leading-snug tracking-tight">
                       {f.title}
                     </h3>
                     <p className="text-[#575757] text-sm leading-relaxed font-medium">
@@ -289,46 +291,66 @@ const ProjectCaseStudy = () => {
         </section>
       )}
 
-      {/* ── MEASURABLE RESULTS & IMPACT ── */}
+      {/* ── MEASURABLE RESULTS & IMPACT (LIGHT THEME) ── */}
       {project.results?.length > 0 && (
-        <section className="relative w-full py-16 sm:py-20 lg:py-24 border-t border-gray-200/60 bg-transparent">
+        <section className="relative w-full py-16 sm:py-20 lg:py-24 bg-transparent">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
             
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="text-center mb-16"
-            >
-              <span className="text-[#E31D2E] text-xs font-black tracking-[0.25em] uppercase mb-3 block">
-                Impact & Outcomes
-              </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111111] tracking-tight">
-                Measurable Business Growth
-              </h2>
-            </motion.div>
+            <div className="bg-gradient-to-br from-red-50/60 via-white to-slate-50/80 rounded-[2.5rem] p-8 sm:p-12 md:p-14 border border-red-100/80 shadow-[0_15px_45px_rgba(227,29,46,0.04)] relative overflow-hidden text-[#111111]">
+              
+              {/* Header Row */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="text-left mb-12 sm:mb-14 relative z-10 max-w-2xl"
+              >
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200/80 text-[#E31D2E] text-xs font-black uppercase tracking-[0.25em] mb-4">
+                  <TrendingUp className="w-3.5 h-3.5" />
+                  <span>Impact & Outcomes</span>
+                </div>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111111] tracking-tight leading-tight mb-3">
+                  Measurable Business Growth
+                </h2>
+                <p className="text-[#575757] text-sm sm:text-base font-medium leading-relaxed">
+                  Concrete performance metrics and real outcomes achieved through our tailored strategy and execution.
+                </p>
+              </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {project.results.map((r, i) => (
-                <motion.div
-                  key={r.id || i}
-                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
-                  whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  whileHover={{ y: -4 }}
-                  className="p-7 rounded-[2rem] bg-white border border-gray-200/90 hover:border-[#E31D2E]/50 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:shadow-[0_16px_36px_rgba(227,29,46,0.1)] text-center flex flex-col justify-center items-center relative overflow-hidden group transition-all"
-                >
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#E31D2E] mb-4 animate-pulse" />
-                  <h4 className="text-2xl sm:text-3xl font-black text-[#111111] mb-2 group-hover:text-[#E31D2E] transition-colors leading-tight">
-                    {r.metric}
-                  </h4>
-                  <p className="text-[#575757] text-xs sm:text-sm font-semibold leading-relaxed">
-                    {r.text}
-                  </p>
-                </motion.div>
-              ))}
+              {/* Metric Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+                {project.results.map((r, i) => (
+                  <motion.div
+                    key={r.id || i}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.08 }}
+                    whileHover={{ y: -4 }}
+                    className="p-7 sm:p-8 rounded-[1.75rem] bg-white border border-red-100/80 shadow-[0_8px_24px_rgba(17,17,17,0.03)] hover:border-[#E31D2E]/50 hover:shadow-[0_16px_36px_rgba(227,29,46,0.1)] flex flex-col justify-between group transition-all"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="text-[10px] font-black uppercase tracking-widest text-[#E31D2E] bg-red-50 px-2.5 py-1 rounded-md border border-red-100/60">
+                          Metric 0{i + 1}
+                        </span>
+                        <div className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
+                      </div>
+
+                      {/* Prominent Red Highlight Metric */}
+                      <h4 className="text-2xl sm:text-3xl font-black text-[#E31D2E] group-hover:scale-[1.02] transition-transform origin-left leading-tight mb-3">
+                        {r.metric}
+                      </h4>
+                    </div>
+
+                    <p className="text-[#575757] text-xs sm:text-sm font-semibold leading-relaxed border-t border-gray-100 pt-4 mt-2">
+                      {r.text}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+
             </div>
 
           </div>

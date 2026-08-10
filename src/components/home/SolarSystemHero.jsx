@@ -32,8 +32,8 @@ const ToyAstronaut = ({ style, className = "", seated = false }) => (
   </motion.div>
 );
 
-const CARD_W = 240;
-const CARD_H = 330;
+const CARD_W = 210;
+const CARD_H = 285;
 
 const ServicesCoverflow = () => {
   const navigate = useNavigate();
@@ -198,7 +198,7 @@ const ServicesCoverflow = () => {
     <div
       className={`relative w-full flex flex-col items-center justify-center select-none overflow-hidden ${isDragging ? "cursor-grabbing" : "cursor-grab"
         }`}
-      style={{ minHeight: 460 }}
+      style={{ minHeight: 375 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(true);
@@ -214,8 +214,8 @@ const ServicesCoverflow = () => {
         style={{
           top: "40%",
           left: "50%",
-          width: 500,
-          height: 500,
+          width: 450,
+          height: 450,
           transform: "translate(-50%, -50%)",
           background: "radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%)",
           filter: "blur(40px)",
@@ -228,7 +228,7 @@ const ServicesCoverflow = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="flex items-center gap-2 mb-1.5 z-10"
+        className="flex items-center gap-2 mb-1 z-10"
       >
         <div className="w-2 h-2 rounded-full bg-[#ef2029]" />
         <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#111111]">
@@ -241,7 +241,7 @@ const ServicesCoverflow = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.15 }}
-        className="text-[#8B8B8B] text-[9px] font-medium tracking-[0.2em] uppercase mb-4 z-10"
+        className="text-[#8B8B8B] text-[9px] font-medium tracking-[0.2em] uppercase mb-2.5 z-10"
       >
         Tactile digital solutions
       </motion.p>
@@ -250,7 +250,7 @@ const ServicesCoverflow = () => {
       <motion.div
         className="relative w-full flex items-center justify-center overflow-hidden"
         style={{
-          height: 380,
+          height: 310,
           perspective: 1200,
           perspectiveOrigin: "50% 45%",
         }}
@@ -358,12 +358,10 @@ const ServicesCoverflow = () => {
                       </p>
                     </div>
 
-                    {/* CTA link inside active card */}
-                    <div className="mt-1 flex items-center text-[#ef2029] font-black text-[9px] uppercase tracking-wider">
-                      Learn More
-                      <svg className="w-3 h-3 ml-1 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                      </svg>
+                    {/* Focus tag inside active card — Replaces Learn More */}
+                    <div className="mt-1 inline-flex items-center gap-1 text-[#ef2029] font-extrabold text-[9px] uppercase tracking-wider">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#ef2029]" />
+                      <span>High Impact Strategy</span>
                     </div>
                   </div>
 
@@ -408,7 +406,7 @@ const ServicesCoverflow = () => {
       </motion.div>
 
       {/* Pagination dots */}
-      <div className="flex items-center gap-2 mt-4 z-10 flex-wrap justify-center max-w-md px-4">
+      <div className="flex items-center gap-2 mt-2 z-10 flex-wrap justify-center max-w-md px-4">
         {servicesData.map((service, i) => (
           <button
             key={service.title + i}
@@ -416,8 +414,8 @@ const ServicesCoverflow = () => {
             onClick={() => goTo(i)}
             className="transition-all duration-300 rounded-full"
             style={{
-              width: i === active ? 20 : 6,
-              height: 6,
+              width: i === active ? 18 : 5,
+              height: 5,
               background: i === active ? "#ef2029" : "rgba(17,17,17,0.15)",
             }}
           />
@@ -427,7 +425,7 @@ const ServicesCoverflow = () => {
       {/* View Services Button */}
       <button
         onClick={() => navigate("/services")}
-        className="primary-btn mt-5 z-10 text-[9px] font-black uppercase tracking-[0.25em] text-white px-6 py-2.5 rounded-full whitespace-nowrap"
+        className="primary-btn mt-2.5 z-10 text-[9px] font-black uppercase tracking-[0.25em] text-white px-5 py-2 rounded-full whitespace-nowrap"
       >
         View Services
       </button>

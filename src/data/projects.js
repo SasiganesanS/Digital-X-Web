@@ -1,5 +1,5 @@
 // src/data/projects.js
-import studiosImg from "../assets/project-cover/3dstudios_new.png";
+import studiosImg from "../assets/project-cover/3D studios (2).png";
 import nofaImg from "../assets/project-cover/Nofa.png";
 import adhithyaImg from "../assets/project-cover/AF (2).png";
 import leafImg from "../assets/project-cover/Leaf world (3).png";
