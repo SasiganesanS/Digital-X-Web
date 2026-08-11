@@ -17,6 +17,7 @@ import {
   Clock
 } from "lucide-react";
 import HeroLayout from "../common/HeroLayout";
+import SectionBadge from "../common/SectionBadge";
 
 const SECTIONS = [
   { id: "overview", label: "1. Overview & Scope", icon: ShieldCheck },
@@ -46,15 +47,7 @@ const PrivacyPolicy = () => {
       {/* Hero Section */}
       <HeroLayout
         badge={
-          <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
-            </span>
-            <span className="relative text-[#111111] text-xs font-bold tracking-[0.25em] uppercase">
-              Legal & Transparency
-            </span>
-          </div>
+          <SectionBadge text="Legal & Transparency" />
         }
         title={
           <h1 className="text-[#111111] text-[36px] sm:text-[44px] lg:text-[52px] font-black leading-tight tracking-tight">

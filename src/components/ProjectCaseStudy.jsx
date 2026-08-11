@@ -13,6 +13,7 @@ import {
   ChevronRight
 } from "lucide-react";
 import { projects } from "../data/projects";
+import SectionBadge from "./common/SectionBadge";
 import ContactForm from "./ContactForm";
 
 const ProjectCaseStudy = () => {
@@ -306,9 +307,8 @@ const ProjectCaseStudy = () => {
                 transition={{ duration: 0.6 }}
                 className="text-left mb-12 sm:mb-14 relative z-10 max-w-2xl"
               >
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50 border border-red-200/80 text-[#E31D2E] text-xs font-black uppercase tracking-[0.25em] mb-4">
-                  <TrendingUp className="w-3.5 h-3.5" />
-                  <span>Impact & Outcomes</span>
+                <div className="mb-4">
+                  <SectionBadge text="Impact & Outcomes" />
                 </div>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111111] tracking-tight leading-tight mb-3">
                   Measurable Business Growth

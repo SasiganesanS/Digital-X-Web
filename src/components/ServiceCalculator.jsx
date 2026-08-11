@@ -8,6 +8,7 @@ import shipyon from '../assets/tie/Shipyon.png';
 import pt from '../assets/tie/pt.png';
 import ourServicesImg from "../assets/services-img/digital.jpeg";
 import servicesData from "../data/servicesData";
+import SectionBadge from "./common/SectionBadge";
 import {
   motion,
   AnimatePresence,
@@ -525,18 +526,23 @@ export default function ServiceCalculator() {
   };
 
   const goToIndex = (index, resumeDelay = 3000) => {
+    const track = trackRef.current;
+    const container = track?.parentElement;
+    if (!track || !container || track.children.length < 2) return;
+
+    const first = track.children[0];
+    const second = track.children[1];
+    const actualStep = (second.offsetLeft - first.offsetLeft) || cardStepRef.current || 360;
+    cardStepRef.current = actualStep;
+
     const normalized = ((index % servicesData.length) + servicesData.length) % servicesData.length;
-    // Align target card in Set 1 (offset by setLength) so left side is fully populated
+    // Align target card in Set 1 (offset by setLength) so left/right sides are pre-filled
     const targetCardIndex = servicesData.length + normalized;
 
-    const container = trackRef.current?.parentElement;
-    let centerOffset = 0;
-    if (trackRef.current && container) {
-      const containerWidth = container.offsetWidth;
-      const cardWidth = trackRef.current.children[0]?.offsetWidth || cardStepRef.current;
-      centerOffset = (containerWidth - cardWidth) / 2;
-    }
-    const target = centerOffset - (targetCardIndex * cardStepRef.current);
+    const containerWidth = container.offsetWidth;
+    const cardWidth = first.offsetWidth || 340;
+    const centerOffset = (containerWidth - cardWidth) / 2;
+    const target = centerOffset - (targetCardIndex * actualStep);
 
     pauseThenResume(resumeDelay);
     animate(x, target, { duration: 0.6, ease: "easeInOut" });
@@ -544,46 +550,47 @@ export default function ServiceCalculator() {
   };
 
   useEffect(() => {
-    const targetService =
+    const rawTarget =
       location.state?.highlightService ||
       location.state?.selectedService ||
-      new URLSearchParams(location.search).get("service");
+      new URLSearchParams(location.search).get("service") ||
+      (location.hash ? location.hash.replace("#", "") : null);
 
-    if (targetService) {
+    if (rawTarget) {
+      const cleanTarget = rawTarget.toLowerCase().replace(/-/g, " ");
       const matched = servicesData.find(
         (s) =>
-          s.title.toLowerCase() === targetService.toLowerCase() ||
-          s.title.toLowerCase().includes(targetService.toLowerCase())
+          s.title.toLowerCase() === cleanTarget ||
+          s.title.toLowerCase().includes(cleanTarget) ||
+          cleanTarget.includes(s.title.toLowerCase())
       );
 
       if (matched) {
         const index = servicesData.indexOf(matched);
         const titleToFocus = matched.title;
 
-        // Step 1: Smooth-scroll the page until "Our Core Expertise" section is centered in viewport (~150ms)
-        const scrollTimer = setTimeout(() => {
-          if (expertiseRef.current) {
-            expertiseRef.current.scrollIntoView({ behavior: "smooth", block: "center" });
-          } else {
-            const el = document.getElementById("expertise");
-            if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
-          }
+        // Step 1: Immediately rotate carousel track so target card (e.g. ORM) is placed dead center
+        const carouselTimer = setTimeout(() => {
+          goToIndex(index, 4000);
         }, 150);
 
-        // Step 2: Rotate carousel track until target card reaches center (~750ms after navigation)
-        const carouselTimer = setTimeout(() => {
-          goToIndex(index, 3500);
-        }, 750);
+        // Step 2: Smooth-scroll page vertically so the carousel track container is centered in viewport
+        const scrollTimer = setTimeout(() => {
+          const el = trackRef.current?.parentElement || document.getElementById("expertise");
+          if (el) {
+            el.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+        }, 300);
 
-        // Step 3: ONLY AFTER carousel reaches center (~1380ms total), set focusedService to trigger pop animation
+        // Step 3: Trigger pop highlight animation on card
         const focusTimer = setTimeout(() => {
           setFocusedService(titleToFocus);
-        }, 1380);
+        }, 800);
 
-        // Step 4: After 1200ms focus animation completes, clear focusedService
+        // Step 4: After focus animation completes, clear focusedService
         const clearFocusTimer = setTimeout(() => {
           setFocusedService(null);
-        }, 2580);
+        }, 3500);
 
         return () => {
           clearTimeout(scrollTimer);
@@ -594,7 +601,7 @@ export default function ServiceCalculator() {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.state, location.search]);
+  }, [location.state, location.search, location.hash]);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -784,15 +791,8 @@ export default function ServiceCalculator() {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-[#E31D2E]/25 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
-            </span>
-            <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
-              Our Services
-            </span>
+            <SectionBadge text="Our Services" />
           </motion.div>
         }
         title={
@@ -1048,14 +1048,8 @@ export default function ServiceCalculator() {
             className="flex flex-col items-center justify-center text-center mb-16"
           >
             {/* Small Badge */}
-            <div className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-[#E31D2E]/25 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
-              </span>
-              <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
-                BUILD YOUR PLAN
-              </span>
+            <div className="mb-4">
+              <SectionBadge text="BUILD YOUR PLAN" />
             </div>
 
             {/* Large Heading */}

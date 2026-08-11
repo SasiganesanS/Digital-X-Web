@@ -561,11 +561,11 @@ select {
   transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease !important;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="tel"]:focus,
-input[type="number"]:focus,
-input[type="url"]:focus,
+input[type="text"]:focus:not(.search-input),
+input[type="email"]:focus:not(.search-input),
+input[type="tel"]:focus:not(.search-input),
+input[type="number"]:focus:not(.search-input),
+input[type="url"]:focus:not(.search-input),
 textarea:focus,
 select:focus,
 .neu-input:focus {
@@ -573,6 +573,19 @@ select:focus,
   border-color: #E31D2E !important;
   box-shadow: 0 0 0 4px rgba(227, 29, 46, 0.14) !important;
   outline: none !important;
+}
+
+.search-input,
+input.search-input,
+input.search-input:focus,
+input[type="text"].search-input,
+input[type="text"].search-input:focus {
+  background-color: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  -webkit-appearance: none !important;
 }
 
 input::placeholder,

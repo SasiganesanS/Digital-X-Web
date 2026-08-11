@@ -41,6 +41,8 @@ import {
 
 import CareersImageGrid from "./CareersImageGrid";
 
+import SectionBadge from "./common/SectionBadge";
+
 const Careers = () => {
   const [selectedJob, setSelectedJob] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -173,13 +175,7 @@ const Careers = () => {
     <>
       <HeroLayout
         badge={
-          <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
-            </span>
-            <span className="relative text-[#111111] text-xs font-bold tracking-[0.25em] uppercase">Careers @ Praskla Digital X</span>
-          </div>
+          <SectionBadge text="Careers @ Praskla Digital X" />
         }
         title={
           <h1 className="text-[#111111] text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-tight">
@@ -345,111 +341,7 @@ const Careers = () => {
             </motion.div>
           </motion.div>
 
-          {/* Unified Filter Bar Container */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="bg-white/80 backdrop-blur-xl border border-white/80 rounded-[28px] p-3.5 sm:p-4 shadow-[0_16px_40px_rgba(0,0,0,0.04)]">
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5 sm:gap-3">
-                {Object.keys(filterOptions).map((filterName) => {
-                  const icons = {
-                    role: FiBriefcase,
-                    department: FiLayers,
-                    type: FiClock,
-                    level: FiTrendingUp,
-                    location: FiMapPin,
-                  };
-                  const FilterIcon = icons[filterName] || FiFilter;
-                  const selectedVal = filters[filterName];
 
-                  return (
-                    <div key={filterName} className="relative filter-dropdown">
-                      <button
-                        onClick={() => toggleFilter(filterName)}
-                        className={`w-full h-12 px-4 rounded-full font-bold flex items-center justify-between gap-2 text-xs sm:text-sm transition-all duration-200 ${selectedVal
-                            ? "bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/30 shadow-xs"
-                            : "bg-white text-neutral-700 border border-neutral-200/80 hover:-translate-y-0.5 hover:border-[#E31D2E]/40 hover:shadow-sm"
-                          }`}
-                        aria-expanded={openFilter === filterName}
-                        aria-haspopup="listbox"
-                        aria-label={`Filter by ${filterName}`}
-                      >
-                        <div className="flex items-center gap-2 min-w-0">
-                          <FilterIcon
-                            className={`w-3.5 h-3.5 flex-shrink-0 ${selectedVal ? "text-[#E31D2E]" : "text-neutral-400"
-                              }`}
-                          />
-                          <span className="truncate text-left font-bold capitalize">
-                            {selectedVal || filterName}
-                          </span>
-                        </div>
-                        <FiChevronDown
-                          className={`w-4 h-4 flex-shrink-0 transition-transform duration-200 ${openFilter === filterName
-                              ? "rotate-180 text-[#E31D2E]"
-                              : "text-neutral-400"
-                            }`}
-                          aria-hidden="true"
-                        />
-                      </button>
-
-                      {/* Dropdown Menu */}
-                      {openFilter === filterName && (
-                        <div
-                          className="absolute top-full mt-2 left-0 right-0 bg-white/95 backdrop-blur-md border border-neutral-200/80 rounded-2xl shadow-xl z-50 min-w-[200px] overflow-hidden p-1.5"
-                          role="listbox"
-                          aria-label={`${filterName} filter options`}
-                        >
-                          <div className="py-1 max-h-60 overflow-y-auto">
-                            <button
-                              onClick={() => handleFilterChange(filterName, "")}
-                              className={`w-full px-3.5 py-2.5 text-left rounded-xl transition-colors font-bold text-xs flex items-center justify-between ${!selectedVal
-                                  ? "bg-[#E31D2E]/10 text-[#E31D2E]"
-                                  : "hover:bg-neutral-50 text-neutral-500"
-                                }`}
-                            >
-                              <span>All {filterName}s</span>
-                            </button>
-                            {filterOptions[filterName].map((option) => (
-                              <button
-                                key={option}
-                                onClick={() =>
-                                  handleFilterChange(filterName, option)
-                                }
-                                className={`w-full px-3.5 py-2.5 text-left rounded-xl transition-colors text-xs font-semibold ${selectedVal === option
-                                    ? "bg-[#E31D2E] text-white font-bold"
-                                    : "hover:bg-neutral-50 text-neutral-700"
-                                  }`}
-                              >
-                                {option}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Clear active filters button */}
-              {hasActiveFilters && (
-                <div className="mt-3 pt-3 border-t border-neutral-100 flex justify-center">
-                  <button
-                    onClick={clearAllFilters}
-                    className="text-xs font-bold text-[#E31D2E] hover:text-[#111111] flex items-center gap-1.5 py-1 px-3.5 rounded-full hover:bg-neutral-100 transition-all"
-                    aria-label="Clear all active filters"
-                  >
-                    <FiX className="w-3.5 h-3.5" />
-                    Clear All Filters
-                  </button>
-                </div>
-              )}
-            </div>
-          </motion.div>
 
           {/* Premium Information Callout Banner */}
           <motion.div

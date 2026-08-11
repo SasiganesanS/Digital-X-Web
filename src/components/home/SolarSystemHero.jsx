@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import servicesData from "../../data/servicesData";
 
+import SectionBadge from "../common/SectionBadge";
+
 /* Keep ToyAstronaut defined for file exports and compatibility */
 const ToyAstronaut = ({ style, className = "", seated = false }) => (
   <motion.div
@@ -155,27 +157,16 @@ const ServicesCoverflow = () => {
       opacity = 1;
       zIndex = 100;
       blurAmount = 0;
-      mask = "none";
-    } else if (isLeft) {
+    } else if (isLeft || isRight) {
       scale = 0.84;
-      opacity = 1; // Card body remains 100% opaque and dark
+      opacity = 0.85;
       zIndex = 80;
-      blurAmount = 4;
-      // Fades ONLY the far outer 25% left edge of the card
-      mask = "linear-gradient(to right, transparent 0%, black 28%, black 100%)";
-    } else if (isRight) {
-      scale = 0.84;
-      opacity = 1; // Card body remains 100% opaque and dark
-      zIndex = 80;
-      blurAmount = 4;
-      // Fades ONLY the far outer 25% right edge of the card
-      mask = "linear-gradient(to left, transparent 0%, black 28%, black 100%)";
+      blurAmount = 5;
     } else {
       scale = 0.60;
       opacity = 0;
       zIndex = 0;
       blurAmount = 10;
-      mask = "none";
     }
 
     return {
@@ -186,7 +177,6 @@ const ServicesCoverflow = () => {
       opacity,
       zIndex,
       blurAmount,
-      mask,
       isFront,
       isLeft,
       isRight,
@@ -196,7 +186,7 @@ const ServicesCoverflow = () => {
 
   return (
     <div
-      className={`relative w-full flex flex-col items-center justify-center select-none overflow-hidden ${isDragging ? "cursor-grabbing" : "cursor-grab"
+      className={`relative w-full flex flex-col items-center justify-center select-none ${isDragging ? "cursor-grabbing" : "cursor-grab"
         }`}
       style={{ minHeight: 375 }}
       onMouseEnter={() => setIsHovered(true)}
@@ -228,12 +218,9 @@ const ServicesCoverflow = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="flex items-center gap-2 mb-1 z-10"
+        className="mb-1 z-10"
       >
-        <div className="w-2 h-2 rounded-full bg-[#ef2029]" />
-        <span className="text-[10px] font-black uppercase tracking-[0.25em] text-[#111111]">
-          Our Services
-        </span>
+        <SectionBadge text="Our Services" />
       </motion.div>
 
       <motion.p
@@ -248,11 +235,13 @@ const ServicesCoverflow = () => {
 
       {/* ── 3D Carousel Stage ── */}
       <motion.div
-        className="relative w-full flex items-center justify-center overflow-hidden"
+        className="relative w-full flex items-center justify-center"
         style={{
           height: 310,
           perspective: 1200,
           perspectiveOrigin: "50% 45%",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 6%, black 16%, black 84%, rgba(0,0,0,0.4) 94%, transparent 100%)",
+          maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 6%, black 16%, black 84%, rgba(0,0,0,0.4) 94%, transparent 100%)",
         }}
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
@@ -262,6 +251,8 @@ const ServicesCoverflow = () => {
         onDrag={(e, info) => setDragX(info.offset.x)}
         onDragEnd={handleDragEnd}
       >
+
+
         {/* Soft shadow ellipse under the front card */}
         <div
           className="absolute rounded-full pointer-events-none"
@@ -296,8 +287,6 @@ const ServicesCoverflow = () => {
                   height: CARD_H,
                   zIndex: s.zIndex,
                   transformStyle: "preserve-3d",
-                  WebkitMaskImage: s.mask,
-                  maskImage: s.mask,
                 }}
                 animate={{
                   x: s.x,
@@ -364,40 +353,6 @@ const ServicesCoverflow = () => {
                       <span>High Impact Strategy</span>
                     </div>
                   </div>
-
-                  {/* ── Directional Gradient Blur Overlays (Left: 100% outer -> 50% inner) ── */}
-                  {!s.isFront && s.isLeft && (
-                    <>
-                      {/* Base 50% Blur Layer Across Card (4px blur) */}
-                      <div className="absolute inset-0 z-20 pointer-events-none rounded-[30px] backdrop-blur-[4px]" />
-
-                      {/* Directional Blur Overlay (4px blur with left-to-right gradient mask) */}
-                      <div
-                        className="absolute inset-0 z-25 pointer-events-none rounded-[30px] backdrop-blur-[4px]"
-                        style={{
-                          WebkitMaskImage: "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)",
-                          maskImage: "linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)",
-                        }}
-                      />
-                    </>
-                  )}
-
-                  {/* ── Directional Gradient Blur Overlays (Right: 100% outer -> 50% inner) ── */}
-                  {!s.isFront && s.isRight && (
-                    <>
-                      {/* Base 50% Blur Layer Across Card (4px blur) */}
-                      <div className="absolute inset-0 z-20 pointer-events-none rounded-[30px] backdrop-blur-[4px]" />
-
-                      {/* Directional Blur Overlay (4px blur with right-to-left gradient mask) */}
-                      <div
-                        className="absolute inset-0 z-25 pointer-events-none rounded-[30px] backdrop-blur-[4px]"
-                        style={{
-                          WebkitMaskImage: "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)",
-                          maskImage: "linear-gradient(to left, rgba(0,0,0,1) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)",
-                        }}
-                      />
-                    </>
-                  )}
                 </div>
               </motion.div>
             );

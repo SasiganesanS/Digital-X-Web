@@ -5,6 +5,7 @@ import { FaCalendar, FaUser, FaArrowRight, FaClock } from "react-icons/fa";
 import "./MainBlog.css";
 
 import HeroLayout from "./common/HeroLayout";
+import SectionBadge from "./common/SectionBadge";
 
 export default function BlogPage() {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -91,13 +92,7 @@ export default function BlogPage() {
           </div>
         }
         badge={
-          <div className="relative inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[#FF2B2B]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF2B2B] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF2B2B]" />
-            </span>
-            <span className="relative text-[#111111] text-xs font-bold tracking-[0.25em] uppercase">Latest Insights</span>
-          </div>
+          <SectionBadge text="Latest Insights" />
         }
         title={
           <motion.h1

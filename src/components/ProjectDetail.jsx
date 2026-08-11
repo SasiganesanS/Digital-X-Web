@@ -12,6 +12,7 @@ import {
   Zap,
   ChevronRight
 } from "lucide-react";
+import SectionBadge from "./common/SectionBadge";
 import { projects } from "../data/projects";
 import ContactForm from "./ContactForm";
 
@@ -79,10 +80,7 @@ const ProjectDetail = () => {
                   <span>Back to Projects</span>
                 </Link>
 
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold tracking-wide">
-                  <span className="w-2 h-2 rounded-full bg-[#E31D2E]" />
-                  <span>Project Showcase</span>
-                </div>
+                <SectionBadge text="Project Showcase" />
               </div>
 
               {/* Title */}

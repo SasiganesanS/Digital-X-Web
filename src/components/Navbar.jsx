@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Search } from 'lucide-react';
 import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
 
 const navItemsList = [
@@ -66,8 +66,8 @@ const navStyles = `
   z-index: 50;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  gap: 3.5rem;
+  justify-content: space-between;
+  gap: 1.5rem;
   box-sizing: border-box;
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease-out;
   will-change: transform, opacity;
@@ -104,7 +104,7 @@ const navStyles = `
 
 .nav-links-capsule {
   background: #ECECEC;
-  padding: 5px 6px 5px 14px;
+  padding: 5px 12px 5px 14px;
   border-radius: 999px;
   box-shadow: 6px 6px 18px rgba(0, 0, 0, 0.07), -6px -6px 18px rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(255, 255, 255, 0.8);
@@ -115,27 +115,56 @@ const navStyles = `
   flex-shrink: 0;
 }
 
+.nav-search-pill {
+  height: var(--nav-h);
+  width: var(--nav-h);
+  padding: 0;
+  border-radius: 9999px;
+  background: transparent;
+  border: none;
+  color: #333333;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.nav-search-pill:hover {
+  background-color: #F0F0F0;
+  color: #E31D2E;
+}
+
 .nav-cta-btn {
-  height: 44px;
+  height: 46px;
   padding: 0 24px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #FF2B2B 0%, #E51D1D 100%);
+  background: #111111;
   color: #ffffff;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
   line-height: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  box-shadow: 0 8px 20px rgba(255, 43, 43, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  gap: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   cursor: pointer;
   text-decoration: none;
   white-space: nowrap;
-  transition: transform 250ms ease-out, box-shadow 250ms ease-out, background 250ms ease-out;
+  transition: transform 250ms ease-out, box-shadow 250ms ease-out, background 250ms ease-out, border-color 250ms ease-out;
   outline: none;
   box-sizing: border-box;
+}
+
+.nav-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+  background: #1A1A1A;
+  border-color: rgba(227, 29, 46, 0.4);
 }
 
 .nav-cta-btn:hover {
@@ -391,9 +420,45 @@ const navStyles = `
   background-color: #FF2B2B;
   color: #ffffff;
 }
+
+.nav-search-btn {
+  height: 42px;
+  width: 42px;
+  padding: 0;
+  border-radius: 50%;
+  background: #FFFFFF;
+  color: #111111;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: all 200ms ease;
+  margin-left: 2px;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.nav-search-btn:hover {
+  background: #FFFFFF;
+  color: #E31D2E;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(227, 29, 46, 0.2);
+  border-color: rgba(227, 29, 46, 0.35);
+}
+
+@media (max-width: 768px) {
+  .nav-search-btn {
+    height: var(--nav-h);
+    width: var(--nav-h);
+    margin-left: 0;
+    margin-right: 6px;
+  }
+}
 `;
 
-const Navbar = ({ setShowContactForm }) => {
+const Navbar = ({ setShowContactForm, onOpenSearch }) => {
   const location = useLocation();
   const activeHref = location.pathname;
 
@@ -814,6 +879,21 @@ const Navbar = ({ setShowContactForm }) => {
                     )}
                   </li>
                 ))}
+                {/* SEARCH BUTTON (Adopted to navbar UI as pill item) */}
+                <li role="none">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (isMobileMenuOpen) setIsMobileMenuOpen(false);
+                      if (onOpenSearch) onOpenSearch();
+                    }}
+                    className="nav-search-pill group"
+                    aria-label="Search website"
+                    title="Search website (⌘K)"
+                  >
+                    <Search className="w-4 h-4 text-[#111111] group-hover:text-[#E31D2E] transition-colors" />
+                  </button>
+                </li>
               </ul>
             </div>
 
@@ -827,17 +907,6 @@ const Navbar = ({ setShowContactForm }) => {
               <span className="hamburger-line" />
             </button>
           </nav>
-
-          {/* DESKTOP CTA BUTTON */}
-          <button
-            type="button"
-            onClick={handleCtaClick}
-            className="nav-cta-btn desktop-only"
-            aria-label="Let's Talk"
-          >
-            <span>Let's Talk</span>
-            <ArrowRight className="w-4 h-4 cta-arrow" />
-          </button>
 
           {/* MOBILE POPOVER MENU */}
           <div className="mobile-menu-popover mobile-only" ref={mobileMenuRef} style={cssVars}>
@@ -863,19 +932,58 @@ const Navbar = ({ setShowContactForm }) => {
                   )}
                 </li>
               ))}
-              <li className="pt-2 pb-1 px-1">
+              <li className="pt-1 px-1">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    if (onOpenSearch) onOpenSearch();
+                  }}
+                  className="w-full flex items-center justify-between px-4 py-2 rounded-full bg-[#FAFAFA] hover:bg-[#F4F4F4] text-[#111111] font-semibold text-sm transition-colors border border-gray-200/80"
+                >
+                  <div className="flex items-center gap-2">
+                    <Search className="w-4 h-4 text-[#E31D2E]" />
+                    <span>Search Site</span>
+                  </div>
+                  <kbd className="px-1.5 py-0.5 text-[10px] font-bold text-gray-500 bg-gray-200/80 rounded">
+                    ⌘K
+                  </kbd>
+                </button>
+              </li>
+              <li className="pt-1 pb-1 px-1">
                 <button
                   type="button"
                   onClick={handleCtaClick}
-                  className="nav-cta-btn w-full justify-center"
-                  aria-label="Let's Talk"
+                  className="nav-cta-btn w-full justify-center group"
+                  aria-label="Get in Touch"
                 >
-                  <span>Let's Talk</span>
-                  <ArrowRight className="w-4 h-4 cta-arrow" />
+                  <span className="relative flex h-2 w-2 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+                  </span>
+                  <span>Get in Touch</span>
+                  <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
                 </button>
               </li>
             </ul>
           </div>
+        </div>
+
+        {/* DESKTOP CTA BUTTON (Separated in Far Right Corner) */}
+        <div className="hidden lg:block shrink-0">
+          <button
+            type="button"
+            onClick={handleCtaClick}
+            className="nav-cta-btn group"
+            aria-label="Get in Touch"
+          >
+            <span className="relative flex h-2 w-2 shrink-0">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+            </span>
+            <span>Get in Touch</span>
+            <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
+          </button>
         </div>
 
       </div>

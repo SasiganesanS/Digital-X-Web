@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { createPortal } from "react-dom";
 import TiltedCard from "./TiltedCard";
+import SectionBadge from "./common/SectionBadge";
 import pranesh from "../assets/team/Pranesh.png";
 import Jaillesh from "../assets/team/Jaillesh-Kathirvel.png";
 import naveen from "../assets/team/Naveen.webp";
@@ -68,15 +69,7 @@ const Teams = () => {
           >
             {/* New UI Badge */}
             <div className="flex justify-center mb-6">
-              <div className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full overflow-hidden border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]">
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E31D2E]" />
-                </span>
-                <span className="relative text-[#111111] text-xs sm:text-sm font-bold tracking-[0.3em] uppercase">
-                  Our Team
-                </span>
-              </div>
+              <SectionBadge text="Our Team" />
             </div>
 
             <h1 className="text-4xl md:text-5xl font-black text-[#111111] mb-6 tracking-tight">

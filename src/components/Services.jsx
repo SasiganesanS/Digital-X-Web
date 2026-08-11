@@ -118,7 +118,8 @@ const Services = () => {
                     <motion.div
                       key={service.title}
                       ref={(el) => (cardRefs.current[service.title] = el)}
-                      id={`service-card-${service.title.toLowerCase().replace(/[^a-z0-9]/g, "-")}`}
+                      id={service.title.toLowerCase().replace(/[^a-z0-9]/g, "-")}
+                      data-id={`service-card-${service.title.toLowerCase().replace(/[^a-z0-9]/g, "-")}`}
                       initial={{ opacity: 0, y: 22 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}

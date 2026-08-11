@@ -39,6 +39,7 @@ import PlatformPlanPage from "./components/PlatformPlanPage";
 import CinematicUniverse from "./components/CinematicUniverse";
 import ScrollToTop from "./components/ScrollToTop";
 import RocketScrollbar from "./components/RocketScrollbar";
+import SearchOverlay from "./components/SearchOverlay";
 
 // Legal Page Imports
 import PrivacyPolicy from "./components/legal/PrivacyPolicy";
@@ -347,27 +348,46 @@ const ScrollToTopOnNavigate = () => {
   const { pathname, hash, state } = useLocation();
 
   useEffect(() => {
-    // If state specifies scrolling to a specific section (e.g. projects section)
     if (state?.scrollToProjects) {
       return;
     }
 
-    // If navigating with a hash tag, handle section scroll
     if (hash) {
-      const element = document.getElementById(hash.replace("#", ""));
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-        return;
+      const id = hash.replace("#", "");
+      const scrollToTarget = () => {
+        const element =
+          document.getElementById(id) ||
+          document.getElementById(`service-card-${id}`) ||
+          document.getElementById(`job-${id}`) ||
+          document.querySelector(`[data-id="${id}"]`) ||
+          document.querySelector(`[data-id="service-card-${id}"]`);
+
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+          return true;
+        }
+        return false;
+      };
+
+      if (!scrollToTarget()) {
+        const timer1 = setTimeout(scrollToTarget, 100);
+        const timer2 = setTimeout(scrollToTarget, 300);
+        const timer3 = setTimeout(scrollToTarget, 600);
+        return () => {
+          clearTimeout(timer1);
+          clearTimeout(timer2);
+          clearTimeout(timer3);
+        };
       }
+      return;
     }
 
-    // Reset scroll position to top instantly on full page navigation
     window.scrollTo({
       top: 0,
       left: 0,
       behavior: "instant"
     });
-  }, [pathname]);
+  }, [pathname, hash, state]);
 
   return null;
 };
@@ -377,7 +397,20 @@ const ScrollToTopOnNavigate = () => {
 // ===================================================================
 const MainLayout = () => {
   const [showContactForm, setShowContactForm] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const location = useLocation();
+
+  // Global CMD+K / Ctrl+K keyboard shortcut to toggle search overlay
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        setIsSearchOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   // Check if current route is a mobile-only page (no navbar/footer)
   const isMobilePlanPage = location.pathname === "/platform-plan";
@@ -412,6 +445,12 @@ const MainLayout = () => {
         </filter>
       </svg>
       <Navbar
+        setShowContactForm={setShowContactForm}
+        onOpenSearch={() => setIsSearchOpen(true)}
+      />
+      <SearchOverlay
+        isOpen={isSearchOpen}
+        onClose={() => setIsSearchOpen(false)}
         setShowContactForm={setShowContactForm}
       />
       <ContactForm

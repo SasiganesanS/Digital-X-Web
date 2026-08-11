@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import SectionBadge from "../common/SectionBadge";
 import { ArrowRight, Sparkles } from "lucide-react";
 import ProjectBriefModal from "../ProjectBriefModal";
 
@@ -43,17 +44,8 @@ const Homesection4 = () => {
               className="flex flex-col items-start text-left"
             >
               {/* Small badge */}
-              <motion.div
-                variants={fadeUp}
-                className="inline-flex items-center gap-2.5 px-4 py-2 bg-white/80 border border-[#E31D2E]/20 rounded-full mb-8 shadow-[0_8px_16px_rgba(17,17,17,0.03)] backdrop-blur-sm"
-              >
-                <span className="relative flex h-2 w-2">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
-                </span>
-                <span className="text-xs font-bold text-[#111111] uppercase tracking-[0.25em]">
-                  START YOUR PROJECT
-                </span>
+              <motion.div variants={fadeUp} className="mb-6">
+                <SectionBadge text="Start Your Project" />
               </motion.div>
 
               {/* Large Heading */}

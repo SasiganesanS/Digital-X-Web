@@ -180,6 +180,8 @@ const WORKFLOW_LABELS = [
   "Continuous Growth",
 ];
 
+import SectionBadge from "./common/SectionBadge";
+
 const Projects = () => {
   const [showContactForm, setShowContactForm] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -251,15 +253,8 @@ const Projects = () => {
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-[#E31D2E]/25 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
-            </span>
-            <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
-              OUR PORTFOLIO
-            </span>
+            <SectionBadge text="OUR PORTFOLIO" />
           </motion.div>
         }
         title={
@@ -294,13 +289,12 @@ const Projects = () => {
               <ProjectCounter targetNum="5" suffix="+" label="Years Experience" delay={0.3} />
             </div>
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 w-full">
-              <a
-                href="#portfolio-grid"
-                className="primary-btn px-5 py-2 rounded-full text-[11px] font-black uppercase tracking-wider text-white shadow-md shadow-red-500/20 inline-flex items-center gap-2"
-              >
-                <span>View Featured Work</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </a>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E31D2E]/10 border border-[#E31D2E]/25 text-[#E31D2E] shadow-sm">
+                <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
+                <span className="text-[11px] font-black uppercase tracking-wider">
+                  Proven Results & Scalable Performance
+                </span>
+              </div>
               <span className="text-[10px] sm:text-xs font-bold text-[#575757] flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-gray-200/80 shadow-2xs">
                 <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
                 <span>Crafting Scalable Digital Ecosystems</span>
@@ -327,14 +321,8 @@ const Projects = () => {
             className="flex flex-col items-center justify-center text-center mb-16 md:mb-20 max-w-4xl mx-auto"
           >
             {/* Small Badge */}
-            <div className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-neutral-200 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
-              </span>
-              <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
-                OUR WORKFLOW
-              </span>
+            <div className="mb-4">
+              <SectionBadge text="OUR WORKFLOW" />
             </div>
 
             {/* Heading */}
@@ -451,14 +439,8 @@ const Projects = () => {
             className="flex flex-col items-center justify-center text-center mb-16 md:mb-20"
           >
             {/* Small Badge */}
-            <div className="relative inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-neutral-200 bg-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.04)] backdrop-blur-md mb-6">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF2B2B] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#FF2B2B]" />
-              </span>
-              <span className="relative text-[#111111] text-xs font-black tracking-[0.25em] uppercase">
-                SELECTED CASE STUDIES
-              </span>
+            <div className="mb-4">
+              <SectionBadge text="SELECTED CASE STUDIES" />
             </div>
 
             {/* Heading with Animated Underline */}

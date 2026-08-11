@@ -378,6 +378,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                 {currentJobs.map((job, index) => (
                   <motion.div
                     key={job.id}
+                    id={`job-${job.id}`}
                     initial={{ opacity: 0, y: 24 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.07, ease: "easeOut" }}

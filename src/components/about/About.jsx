@@ -15,6 +15,7 @@ import pyLogo from "../../assets/Praskla_Digital_X_Logo_Trasnparent_Background.p
 import { motion, AnimatePresence } from "framer-motion";
 import Teams from "../Teams";
 import HeroLayout from "../common/HeroLayout";
+import SectionBadge from "../common/SectionBadge";
 
 function AnimatedCounter({ target, suffix = "", prefix = "", duration = 1.6 }) {
   const [count, setCount] = useState(0);
@@ -89,13 +90,8 @@ const About = () => {
       variants={fadeUp}
       initial="hidden"
       animate="visible"
-      className="relative inline-flex items-center gap-3 px-5 py-2.5 rounded-full overflow-hidden border border-[#E31D2E]/20 bg-white/80 shadow-[0_8px_16px_rgba(17,17,17,0.03)] backdrop-blur-sm"
     >
-      <span className="relative flex h-2.5 w-2.5">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-        <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E31D2E]" />
-      </span>
-      <span className="relative text-[#111111] text-xs sm:text-sm font-bold tracking-[0.3em] uppercase">About Us</span>
+      <SectionBadge text="About Us" />
     </motion.div>
   );
 
@@ -355,13 +351,9 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-[#E31D2E]/20 bg-white/80 backdrop-blur-md shadow-[0_8px_16px_rgba(17,17,17,0.03)]"
+              className="mb-4"
             >
-              <span className="relative flex h-2.5 w-2.5">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E31D2E]" />
-              </span>
-              <span className="text-[#111111] text-xs sm:text-sm font-bold tracking-[0.3em] uppercase">Vision & Mission</span>
+              <SectionBadge text="Vision & Mission" />
             </motion.div>
 
             <motion.h2
@@ -495,14 +487,8 @@ const About = () => {
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
             >
               {/* Eyebrow badge */}
-              <div
-                className="relative inline-flex items-center gap-3 px-6 py-3 rounded-full border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)]"
-              >
-                <span className="relative flex h-2.5 w-2.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#E31D2E]" />
-                </span>
-                <span className="relative text-[#111111] text-xs sm:text-sm font-bold tracking-[0.3em] uppercase">Who we are</span>
+              <div className="mb-2">
+                <SectionBadge text="Who we are" />
               </div>
 
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#111111] leading-tight">
@@ -564,10 +550,7 @@ const About = () => {
               transition={{ duration: 0.5, ease: "easeOut" }}
               className="flex justify-center mb-4"
             >
-              <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-[#E31D2E]/20 bg-white/70 backdrop-blur-md shadow-xs">
-                <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
-                <span className="text-[#111111] text-xs font-bold tracking-[0.25em] uppercase">Our Core Expertise</span>
-              </div>
+              <SectionBadge text="Our Core Expertise" />
             </motion.div>
             
             <motion.h2 

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import SolarSystemHero from "./SolarSystemHero";
 import HeroLayout from "../common/HeroLayout";
+import SectionBadge from "../common/SectionBadge";
 
 function AnimatedStat({ targetNum, suffix = "+", label }) {
   const [count, setCount] = useState(0);
@@ -92,22 +93,12 @@ const HeroSection = () => {
 
   const badge = (
     <motion.div
-      initial={{ opacity: 0, scale: 0.9, y: 10 }}
-      animate={{ opacity: 1, scale: 1, y: [0, -4, 0] }}
-      transition={{
-        opacity: { duration: 0.6, ease: "easeOut" },
-        scale: { duration: 0.6, ease: "easeOut" },
-        y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-      }}
-      className="relative inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full overflow-hidden border border-[#E31D2E]/20 bg-white/60 shadow-[0_8px_16px_rgba(17,17,17,0.03)] backdrop-blur-sm"
+      initial={{ opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="will-change-transform transform-gpu"
     >
-      <span className="relative flex h-2 w-2">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-        <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
-      </span>
-      <span className="relative text-[#111111] text-[9px] sm:text-[11px] font-bold tracking-[0.2em] uppercase">
-        Where Strategy Meets Performance
-      </span>
+      <SectionBadge text="Where Strategy Meets Performance" />
     </motion.div>
   );
 
