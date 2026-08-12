@@ -70,7 +70,7 @@ const Services = () => {
                 </span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[1.05] tracking-tight text-[#111111]">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[1.2] tracking-tight text-[#111111]">
                 Transforming Brands into <br className="hidden sm:block" />
                 <span className="text-[#FF2B2B]">Digital Authority</span>
               </h1>

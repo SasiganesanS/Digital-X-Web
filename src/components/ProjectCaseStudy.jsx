@@ -86,7 +86,7 @@ const ProjectCaseStudy = () => {
               </div>
 
               {/* Title */}
-              <h1 className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.08] tracking-tight text-[#111111] mb-4 sm:mb-5">
+              <h1 className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.22] tracking-tight text-[#111111] mb-4 sm:mb-5">
                 {project.title}
               </h1>
 

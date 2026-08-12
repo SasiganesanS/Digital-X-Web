@@ -21,13 +21,20 @@ import {
   ArrowLeft,
   ChevronRight,
 } from "lucide-react";
-import { sendContactFormEmails } from "../utils/emailService";
+import { sendProjectApplicationEmails } from "../utils/emailService";
 
-export default function ProjectBriefModal({ isOpen, onClose }) {
+export default function ProjectBriefModal({ isOpen, onClose, initialQuotationData = null }) {
   const [activeSection, setActiveSection] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [submitError, setSubmitError] = useState("");
+  const [applicationId, setApplicationId] = useState("");
+
+  const [files, setFiles] = useState({
+    logoFile: null,
+    guidelinesFile: null,
+    referenceFile: null,
+  });
 
   const [formData, setFormData] = useState({
     // Section 1
@@ -162,6 +169,7 @@ export default function ProjectBriefModal({ isOpen, onClose }) {
 
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
+    if (isSubmitting) return; // Prevent double-clicking submission
     setSubmitError("");
 
     const validationErrors = validate();
@@ -179,87 +187,34 @@ export default function ProjectBriefModal({ isOpen, onClose }) {
 
     setIsSubmitting(true);
 
-    const formattedMessage = `
---- PROJECT BRIEF SUBMISSION ---
-COMPANY INFO:
-- Company Name: ${formData.companyName}
-- Business Type: ${formData.businessType}
-- Industry: ${formData.industry}
-- Website: ${formData.companyWebsite || "N/A"}
-- Description: ${formData.businessDescription || "N/A"}
-- Years in Business: ${formData.yearsInBusiness}
+    const payload = new FormData();
+    // Append all form fields
+    Object.keys(formData).forEach((key) => {
+      const val = formData[key];
+      if (Array.isArray(val)) {
+        payload.append(key, val.join(", "));
+      } else {
+        payload.append(key, val || "");
+      }
+    });
 
-PRIMARY CONTACT:
-- Name: ${formData.fullName} (${formData.designation || "N/A"})
-- Email: ${formData.email}
-- Phone: ${formData.phone}
-- Alt Phone: ${formData.altPhone || "N/A"}
-- WhatsApp: ${formData.whatsapp || "N/A"}
-- Address: ${formData.officeAddress || "N/A"}, ${formData.city || ""}, ${formData.state || ""}, ${formData.country || ""} ${formData.postalCode || ""}
-- Preferred Contact: ${formData.preferredContactMethod}
+    if (initialQuotationData) {
+      payload.append("quotationData", JSON.stringify(initialQuotationData));
+    }
 
-BRAND IDENTITY:
-- Logo: ${formData.hasLogo} ${formData.logoLink ? `(${formData.logoLink})` : ""}
-- Brand Assets: ${formData.existingAssets.join(", ") || "None"}
-- Asset Link: ${formData.assetDriveLink || "N/A"}
-- Preferred Colors: ${formData.preferredColors || "N/A"}
-- Preferred Fonts: ${formData.preferredFonts || "N/A"}
-- Brand Styles: ${formData.brandStyles.join(", ") || "None"}
-
-PROJECT DETAILS:
-- Services Needed: ${formData.services.join(", ") || "None"} ${formData.otherService ? `(Other: ${formData.otherService})` : ""}
-
-PROJECT GOALS:
-- Goals: ${formData.projectGoals.join(", ") || "None"} ${formData.otherGoal ? `(Other: ${formData.otherGoal})` : ""}
-- Details: ${formData.projectDetail || "N/A"}
-
-TIMELINE & BUDGET:
-- Start Time: ${formData.startDate}
-- Expected Completion: ${formData.expectedCompletionDate || "N/A"}
-- Budget Range: ${formData.budgetRange}
-
-REFERENCES:
-- Ref Websites: ${formData.referenceWebsites || "N/A"}
-- Competitors: ${formData.competitorWebsites || "N/A"}
-- Pinterest: ${formData.pinterestLinks || "N/A"}
-- Instagram: ${formData.instagramPages || "N/A"}
-- Drive Links: ${formData.driveLinks || "N/A"}
-
-ADDITIONAL INFO:
-${formData.additionalInfo || "N/A"}
-`;
-
-    const formattedData = {
-      name: formData.fullName.trim(),
-      email: formData.email.trim(),
-      phone: formData.phone.trim(),
-      company: formData.companyName.trim(),
-      message: formattedMessage,
-      timestamp: new Date().toISOString(),
-    };
+    // Attach uploaded files if selected
+    if (files.logoFile) payload.append("logoFile", files.logoFile);
+    if (files.guidelinesFile) payload.append("guidelinesFile", files.guidelinesFile);
+    if (files.referenceFile) payload.append("referenceFile", files.referenceFile);
 
     try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000);
-
-      await fetch(
-        "https://script.google.com/macros/s/AKfycbzM6Lq64FjN_xT1_wOqKk3p3x9w9Q8v4o8v4o8v4o8v4o8v4o8v4o8v4o8v/exec",
-        {
-          method: "POST",
-          mode: "no-cors",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(formattedData),
-          signal: controller.signal,
-        }
-      )
-        .catch((err) => console.warn("Endpoint notice:", err))
-        .finally(() => clearTimeout(timeoutId));
-
-      await sendContactFormEmails(formattedData).catch((err) =>
-        console.warn("Queue notice:", err)
-      );
-
-      setSubmitSuccess(true);
+      const res = await sendProjectApplicationEmails(payload);
+      if (res && res.success) {
+        setApplicationId(res.applicationId || `PDX-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-RECD`);
+        setSubmitSuccess(true);
+      } else {
+        setSubmitError(res?.message || "Failed to submit Project Brief. Please try again.");
+      }
     } catch (err) {
       console.error("Submission error:", err);
       setSubmitError("Failed to submit Project Brief. Please try again.");
@@ -384,13 +339,26 @@ ${formData.additionalInfo || "N/A"}
                 <h3 className="text-3xl sm:text-4xl font-black text-[#111111] mb-3 tracking-tight">
                   Project Brief Received!
                 </h3>
-                <p className="text-neutral-600 text-base max-w-md mb-8 leading-relaxed font-normal">
-                  Thank you for completing your project brief. Our strategy team is reviewing your requirements and will get back to you shortly.
+                <p className="text-neutral-600 text-base max-w-lg mb-4 leading-relaxed font-normal">
+                  Thank you for sharing your project requirements with Praskla Digital X. We have successfully received your project brief.
+                </p>
+                {applicationId && (
+                  <div className="bg-[#FAF9F6] border border-neutral-200 px-6 py-4 rounded-2xl mb-6 text-center">
+                    <span className="text-xs font-black text-[#E31D2E] tracking-widest uppercase block mb-1">
+                      APPLICATION ID
+                    </span>
+                    <span className="text-xl sm:text-2xl font-black text-[#111111] tracking-tight font-mono">
+                      {applicationId}
+                    </span>
+                  </div>
+                )}
+                <p className="text-neutral-500 text-sm max-w-md mb-8 leading-relaxed">
+                  Our team will review your requirements and contact you shortly.
                 </p>
                 <button
                   type="button"
                   onClick={onClose}
-                  className="h-[56px] px-10 rounded-[18px] bg-[#E31D2E] hover:bg-[#c91827] text-white font-bold text-base shadow-[0_8px_20px_rgba(227,29,46,0.3)] hover:shadow-[0_12px_28px_rgba(227,29,46,0.4)] transition-all"
+                  className="h-[56px] px-10 rounded-[18px] bg-[#E31D2E] hover:bg-[#c91827] text-white font-bold text-base shadow-[0_8px_20px_rgba(227,29,46,0.3)] hover:shadow-[0_12px_28px_rgba(227,29,46,0.4)] transition-all cursor-pointer"
                 >
                   Close Window
                 </button>
@@ -485,9 +453,19 @@ ${formData.additionalInfo || "N/A"}
                 <div className="flex-1 flex flex-col justify-between overflow-y-auto relative">
                   <form onSubmit={handleSubmit} className="p-6 sm:p-10 lg:p-14 space-y-8 flex-1">
                     {submitError && (
-                      <div className="p-4 bg-red-50 border border-red-200 text-red-600 rounded-2xl text-xs font-semibold flex items-center gap-2">
-                        <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                        <span>{submitError}</span>
+                      <div className="p-4 bg-red-50 border border-red-200 text-red-600 rounded-2xl text-xs font-semibold flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                        <div className="flex items-center gap-2">
+                          <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                          <span>{submitError}</span>
+                        </div>
+                        <a
+                          href={`https://wa.me/919344305986?text=${encodeURIComponent("Hello Praskla Digital X, I attempted to submit my project application for " + (formData.companyName || "my company") + " but encountered an issue. Here are my details:\nName: " + (formData.fullName || "") + "\nEmail: " + (formData.email || ""))}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-bold underline whitespace-nowrap text-[#E31D2E] hover:text-black shrink-0"
+                        >
+                          Submit via WhatsApp →
+                        </a>
                       </div>
                     )}
 
@@ -939,6 +917,20 @@ ${formData.additionalInfo || "N/A"}
                                 placeholder="Drive or Cloud folder URL containing brand files"
                                 className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
                               />
+                              <div className="mt-2.5">
+                                <label className="block text-[11px] font-semibold text-neutral-500 mb-1">
+                                  Or attach file directly (Images, PDF, Zip - Max 10MB)
+                                </label>
+                                <input
+                                  type="file"
+                                  accept="image/*,.pdf,.doc,.docx,.zip"
+                                  onChange={(e) => setFiles((prev) => ({ ...prev, logoFile: e.target.files[0] }))}
+                                  className="block w-full text-xs text-neutral-600 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#E31D2E]/10 file:text-[#E31D2E] hover:file:bg-[#E31D2E]/20"
+                                />
+                                {files.logoFile && (
+                                  <p className="text-xs text-emerald-600 font-semibold mt-1">✓ Attached: {files.logoFile.name}</p>
+                                )}
+                              </div>
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -1347,6 +1339,20 @@ ${formData.additionalInfo || "N/A"}
                                 placeholder="Google Drive link with moodboards, images, or assets"
                                 className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
                               />
+                              <div className="mt-2.5">
+                                <label className="block text-[11px] font-semibold text-neutral-500 mb-1">
+                                  Or attach reference documents / designs (Images, PDF, Doc, Zip - Max 10MB)
+                                </label>
+                                <input
+                                  type="file"
+                                  accept="image/*,.pdf,.doc,.docx,.zip"
+                                  onChange={(e) => setFiles((prev) => ({ ...prev, referenceFile: e.target.files[0] }))}
+                                  className="block w-full text-xs text-neutral-600 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#E31D2E]/10 file:text-[#E31D2E] hover:file:bg-[#E31D2E]/20"
+                                />
+                                {files.referenceFile && (
+                                  <p className="text-xs text-emerald-600 font-semibold mt-1">✓ Attached: {files.referenceFile.name}</p>
+                                )}
+                              </div>
                             </div>
                           </div>
                         )}

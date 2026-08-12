@@ -134,7 +134,7 @@ const BlogPage = () => {
             </div>
 
             {/* Main Title */}
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.08] tracking-tight text-white mb-4 drop-shadow-sm">
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl font-black leading-[1.22] tracking-tight text-white mb-4 drop-shadow-sm">
               {post.title || post.name}
             </h1>
 

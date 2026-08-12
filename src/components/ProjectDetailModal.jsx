@@ -56,7 +56,7 @@ export default function ProjectDetailModal({ isOpen, onClose, project: initialPr
                                             <span className="w-1.5 h-1.5 rounded-full bg-[#E8192C] animate-pulse" />
                                             <span className="text-[#E8192C] text-xs font-black tracking-[0.3em] uppercase">Case Study</span>
                                         </div>
-                                        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[1.1] tracking-tighter">
+                                        <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-[1.2] tracking-tighter">
                                             {project.title}
                                         </h1>
                                         <p className="text-white/40 text-lg md:text-xl mb-8 leading-relaxed">

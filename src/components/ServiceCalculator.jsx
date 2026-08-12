@@ -8,6 +8,7 @@ import shipyon from '../assets/tie/Shipyon.png';
 import pt from '../assets/tie/pt.png';
 import ourServicesImg from "../assets/services-img/digital.jpeg";
 import servicesData from "../data/servicesData";
+import ProjectBriefModal from "./ProjectBriefModal";
 import SectionBadge from "./common/SectionBadge";
 import {
   motion,
@@ -356,6 +357,7 @@ export default function ServiceCalculator() {
   const [modalPlatform, setModalPlatform] = useState(null);
   const [selectedPlanInModal, setSelectedPlanInModal] = useState(null);
   const [showContactForm, setShowContactForm] = useState(false);
+  const [showBriefModal, setShowBriefModal] = useState(false);
   const [clickPosition, setClickPosition] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
@@ -701,6 +703,7 @@ export default function ServiceCalculator() {
     });
 
     setModalPlatform(null);
+    setShowBriefModal(true);
   };
 
   // servicesData is imported from ../data/servicesData.js
@@ -760,13 +763,13 @@ export default function ServiceCalculator() {
 
     try {
       window.open(
-        `https://wa.me/919500690740?text=${encodeURIComponent(message)}`,
+        `https://wa.me/919344305986?text=${encodeURIComponent(message)}`,
         "_blank"
       );
     } catch (err) {
       console.error("WhatsApp open error:", err);
     }
-    setShowContactForm(true);
+    setShowBriefModal(true);
   };
 
   const handleWhatsAppClick = handleGetProposalClick;
@@ -800,7 +803,7 @@ export default function ServiceCalculator() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-[1.08] tracking-tight text-[#111111]"
+            className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-[1.22] tracking-tight text-[#111111]"
           >
             Transforming Brands into <br className="hidden sm:block" />
             <span className="text-[#E31D2E] relative inline-block">
@@ -1334,6 +1337,12 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
       <ContactForm
         isOpen={showContactForm}
         onClose={() => setShowContactForm(false)}
+      />
+
+      <ProjectBriefModal
+        isOpen={showBriefModal}
+        onClose={() => setShowBriefModal(false)}
+        initialQuotationData={{ selectedItems, grandTotal: total }}
       />
 
       <style jsx>{`

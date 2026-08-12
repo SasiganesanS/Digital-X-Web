@@ -53,6 +53,8 @@ const ContactForm = ({ isOpen, onClose }) => {
     name: '',
     email: '',
     phone: '',
+    company: '',
+    interestedService: 'Web Development',
     message: ''
   });
 
@@ -60,7 +62,7 @@ const ContactForm = ({ isOpen, onClose }) => {
 
   // Reset form when modal opens or closes
   const resetFormState = () => {
-    setFormData({ name: '', email: '', phone: '', message: '' });
+    setFormData({ name: '', email: '', phone: '', company: '', interestedService: 'Web Development', message: '' });
     setErrors({});
     setSubmitError('');
     setSubmitSuccess(false);
@@ -251,12 +253,12 @@ const ContactForm = ({ isOpen, onClose }) => {
 
   const handleSubmit = async (e) => {
     if (e) e.preventDefault();
+    if (isSubmitting) return; // Prevent duplicate submissions caused by double clicking
     setSubmitError('');
 
     const validationErrors = validateAll();
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
-      // Focus the first invalid field
       if (validationErrors.name) nameInputRef.current?.focus();
       else if (validationErrors.email) emailInputRef.current?.focus();
       else if (validationErrors.phone) phoneInputRef.current?.focus();
@@ -270,44 +272,29 @@ const ContactForm = ({ isOpen, onClose }) => {
       name: formData.name.trim(),
       email: formData.email.trim(),
       phone: `${selectedCountry.code} ${formData.phone.replace(/\D/g, '')}`,
+      company: formData.company ? formData.company.trim() : '',
+      interestedService: formData.interestedService || 'Web Development',
       message: formData.message.trim(),
+      sourcePage: window.location.pathname || 'Reach Us Modal',
       timestamp: new Date().toISOString()
     };
 
     try {
-      // Primary API endpoint call with abort controller timeout
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 10000);
-
-      await fetch(
-        'https://script.google.com/macros/s/AKfycbzM6Lq64FjN_xT1_wOqKk3p3x9w9Q8v4o8v4o8v4o8v4o8v4o8v4o8v4o8v/exec',
-        {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(formattedData),
-          signal: controller.signal
-        }
-      ).catch(err => {
-        console.warn('Backend endpoint response notice:', err);
-      }).finally(() => clearTimeout(timeoutId));
-
-      // Asynchronous email queue notification
-      await sendContactFormEmails(formattedData).catch(err => {
-        console.warn('Queue email service notice:', err);
-      });
-
-      setSubmitSuccess(true);
-      setErrors({});
-
-      // Auto-close modal after 4 seconds
-      autoCloseTimerRef.current = setTimeout(() => {
-        handleClose();
-      }, 4000);
-
+      const res = await sendContactFormEmails(formattedData);
+      if (res && res.success) {
+        setSubmitSuccess(true);
+        setErrors({});
+        autoCloseTimerRef.current = setTimeout(() => {
+          handleClose();
+        }, 5000);
+      } else {
+        setSubmitError(res?.message || 'Unable to send your request right now. Please try again or contact us through WhatsApp.');
+        setSubmitSuccess(false);
+      }
     } catch (err) {
       console.error('Submission error:', err);
-      setSubmitError('Unable to send message. Please try again.');
+      setSubmitError('Unable to send your request right now. Please try again or contact us through WhatsApp.');
+      setSubmitSuccess(false);
     } finally {
       setIsSubmitting(false);
     }
@@ -383,9 +370,9 @@ const ContactForm = ({ isOpen, onClose }) => {
                   <Check className="w-8 h-8 stroke-[3]" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-[#111111]">Message Sent Successfully</h3>
-                  <p className="text-sm text-gray-500 mt-1 max-w-xs mx-auto leading-relaxed">
-                    Thank you for reaching out. We have received your message and will respond shortly.
+                  <h3 className="text-xl font-bold text-[#111111]">Message received!</h3>
+                  <p className="text-sm text-gray-500 mt-2 max-w-xs mx-auto leading-relaxed">
+                    Thanks for contacting Praskla Digital X. Our team will review your enquiry and get back to you shortly.
                   </p>
                 </div>
                 <button
@@ -402,9 +389,19 @@ const ContactForm = ({ isOpen, onClose }) => {
 
                 {/* Submission Error Banner */}
                 {submitError && (
-                  <div className="p-3.5 bg-[#FF2B2B]/5 border border-[#FF2B2B]/20 rounded-xl text-[#FF2B2B] text-xs font-medium flex items-center gap-2">
-                    <AlertCircle className="w-4 h-4 flex-shrink-0" />
-                    <span>{submitError}</span>
+                  <div className="p-3.5 bg-[#FF2B2B]/5 border border-[#FF2B2B]/20 rounded-xl text-[#FF2B2B] text-xs font-medium flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                      <span>{submitError}</span>
+                    </div>
+                    <a
+                      href={`https://wa.me/919344305986?text=${encodeURIComponent("Hello Praskla Digital X, I attempted to submit a message on your website but encountered an issue. Here is my inquiry:\nName: " + (formData.name || "") + "\nMessage: " + (formData.message || ""))}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs font-bold underline whitespace-nowrap text-[#E31D2E] hover:text-black shrink-0"
+                    >
+                      Chat on WhatsApp →
+                    </a>
                   </div>
                 )}
 
@@ -456,6 +453,47 @@ const ContactForm = ({ isOpen, onClose }) => {
                         <span>{errors.email}</span>
                       </p>
                     )}
+                  </div>
+                </div>
+
+                {/* Grid Layout: Optional Company & Interested Service */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Company / Organization (Optional) */}
+                  <div>
+                    <label htmlFor="contact-company" className="block text-xs font-semibold text-gray-700 mb-1.5">
+                      Company / Organization <span className="text-gray-400 font-normal">(Optional)</span>
+                    </label>
+                    <input
+                      id="contact-company"
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      placeholder="Acme Corp"
+                      className="w-full h-11 px-3.5 text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white border border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15 rounded-xl placeholder:text-gray-400 font-medium transition-all duration-200 outline-none"
+                    />
+                  </div>
+
+                  {/* Interested Service (Optional) */}
+                  <div>
+                    <label htmlFor="contact-service" className="block text-xs font-semibold text-gray-700 mb-1.5">
+                      Interested Service <span className="text-gray-400 font-normal">(Optional)</span>
+                    </label>
+                    <select
+                      id="contact-service"
+                      name="interestedService"
+                      value={formData.interestedService}
+                      onChange={handleInputChange}
+                      className="w-full h-11 px-3.5 text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white border border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15 rounded-xl font-medium transition-all duration-200 outline-none cursor-pointer"
+                    >
+                      <option value="Web Development">Web Development</option>
+                      <option value="Software Development">Software Development</option>
+                      <option value="App Development">App Development</option>
+                      <option value="Digital Marketing">Digital Marketing</option>
+                      <option value="Cyber Security">Cyber Security</option>
+                      <option value="Sustainability">Sustainability</option>
+                      <option value="Other / Not Sure">Other / Not Sure</option>
+                    </select>
                   </div>
                 </div>
 

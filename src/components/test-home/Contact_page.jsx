@@ -882,10 +882,10 @@ const ContactSection = () => {
                             India Office
                           </p>
                           <a
-                            href="tel:+919500690740"
+                            href="tel:+919344305986"
                             className="text-[#371445] font-semibold hover:underline text-base md:text-lg"
                           >
-                            +91 95006 90740
+                            +91 93443 05986
                           </a>
                         </div>
                       </div>

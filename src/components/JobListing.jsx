@@ -299,31 +299,58 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
     }
   };
 
-  const renderPageNumbers = () => {
-    const pageNumbers = [];
-    const maxPagesToShow = 5;
-    let startPage = Math.max(1, currentPage - Math.floor(maxPagesToShow / 2));
-    let endPage = Math.min(totalPages, startPage + maxPagesToShow - 1);
+  const [windowStart, setWindowStart] = useState(1);
 
-    if (endPage - startPage < maxPagesToShow - 1) {
-      startPage = Math.max(1, endPage - maxPagesToShow + 1);
+  const handleEllipsisClick = () => {
+    const maxStart = Math.max(1, totalPages - 3);
+    setWindowStart((prev) => Math.min(prev + 1, maxStart));
+  };
+
+  const getSlidingWindowItems = (winStart, total) => {
+    if (total <= 1) return [];
+    if (total <= 5) return Array.from({ length: total }, (_, i) => i + 1);
+
+    const maxStart = total - 3;
+    const currentStart = Math.min(Math.max(1, winStart), maxStart);
+
+    if (currentStart >= maxStart) {
+      return [total - 3, total - 2, total - 1, total];
     }
 
-    for (let i = startPage; i <= endPage; i++) {
-      pageNumbers.push(
+    return [currentStart, currentStart + 1, "...", total - 1, total];
+  };
+
+  const renderPageNumbers = () => {
+    const pages = getSlidingWindowItems(windowStart, totalPages);
+
+    return pages.map((item, idx) => {
+      if (item === "...") {
+        return (
+          <button
+            key={`dots-${idx}`}
+            onClick={handleEllipsisClick}
+            className="px-2 py-1 text-neutral-400 font-extrabold hover:text-[#E31D2E] transition-colors select-none text-xs sm:text-sm cursor-pointer"
+            aria-label="Shift pagination window forward"
+          >
+            ...
+          </button>
+        );
+      }
+      return (
         <button
-          key={i}
-          onClick={() => handlePageChange(i)}
-          className={`px-3 sm:px-4 py-2 rounded-full font-medium transition-colors text-sm sm:text-[15px] lg:text-base ${currentPage === i
-              ? "bg-[#E31D2E] text-white shadow-sm font-bold"
-              : "bg-white/80 text-neutral-700 hover:bg-neutral-100 border border-neutral-200"
-            }`}
+          key={item}
+          onClick={() => handlePageChange(item)}
+          className={`h-9 w-9 rounded-full font-black transition-all text-xs sm:text-sm flex items-center justify-center cursor-pointer ${
+            currentPage === item
+              ? "bg-[#E31D2E] text-white shadow-md scale-105"
+              : "bg-white text-neutral-700 hover:bg-neutral-100 border border-neutral-200"
+          }`}
+          aria-label={`Page ${item}`}
         >
-          {i}
+          {item}
         </button>
       );
-    }
-    return pageNumbers;
+    });
   };
 
   return (

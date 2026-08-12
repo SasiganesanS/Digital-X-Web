@@ -40,7 +40,7 @@ const HeroLayout = ({
               {title && (
                 <div className="mb-5 w-full">
                   {typeof title === "string" ? (
-                    <h1 className="font-black text-[#111111] leading-[1.08] tracking-tight text-3xl sm:text-4xl lg:text-[52px]">
+                    <h1 className="font-black text-[#111111] leading-[1.22] tracking-tight text-3xl sm:text-4xl lg:text-[52px]">
                       {title}
                     </h1>
                   ) : (

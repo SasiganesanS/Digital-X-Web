@@ -100,7 +100,7 @@ const About = () => {
       variants={fadeUp}
       initial="hidden"
       animate="visible"
-      className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-[1.1] tracking-tight text-[#111111]"
+      className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-[1.22] tracking-tight text-[#111111]"
     >
       Where Mindful Strategy{" "}
       <span className="inline-block text-[#E31D2E]">

@@ -40,7 +40,7 @@ const AboutSection = () => {
             {/* Headline */}
             <motion.h2
               variants={fadeUp}
-              className="text-[clamp(1.8rem,5vw,3.2rem)] font-black leading-[1.1] tracking-tight text-[#111111] mb-6"
+              className="text-[clamp(1.8rem,5vw,3.2rem)] font-black leading-[1.2] tracking-tight text-[#111111] mb-6"
             >
               Empowering Brands through{" "}
               <span className="text-[#E31D2E]">

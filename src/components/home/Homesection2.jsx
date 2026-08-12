@@ -27,8 +27,9 @@ export default function FeaturedWorks() {
     Math.max(totalPages - 1, 0)
   );
 
-  // Active scroll page indicator state
+  // Active scroll page indicator state & sliding window start state
   const [scrollPage, setScrollPage] = useState(0);
+  const [windowStart, setWindowStart] = useState(1);
 
   useEffect(() => {
     setScrollPage(page);
@@ -99,23 +100,28 @@ export default function FeaturedWorks() {
     }
   };
 
-  // Strict Prev arrow navigation
+  // Strict Prev arrow navigation (currentPage - 1)
   const handlePrev = () => {
-    if (activeIndex <= 0) return;
-    const prevIdx = activeIndex - 1;
-    setActiveIndex(prevIdx);
-    scrollToItem(prevIdx);
+    if (scrollPage <= 0) return;
+    const prevPage = scrollPage - 1;
+    handlePageSelect(prevPage);
+    if (prevPage + 1 < windowStart) {
+      setWindowStart(prevPage + 1);
+    }
   };
 
-  // Strict Next arrow navigation
+  // Strict Next arrow navigation (currentPage + 1)
   const handleNext = () => {
-    if (activeIndex >= totalProjects - 1) return;
-    const nextIdx = activeIndex + 1;
-    setActiveIndex(nextIdx);
-    scrollToItem(nextIdx);
+    if (scrollPage >= totalPages - 1) return;
+    const nextPage = scrollPage + 1;
+    handlePageSelect(nextPage);
+    const maxStart = Math.max(1, totalPages - 3);
+    if (nextPage + 1 > windowStart + 1 && windowStart < maxStart) {
+      setWindowStart((prev) => Math.min(prev + 1, maxStart));
+    }
   };
 
-  // Page number button navigation
+  // Page number button navigation (changes active page and updates content)
   const handlePageSelect = (targetPage) => {
     const targetIndex = Math.min(targetPage * PROJECTS_PER_PAGE, totalProjects - 1);
     setActiveIndex(targetIndex);
@@ -126,25 +132,42 @@ export default function FeaturedWorks() {
   // Direct card click navigation
   const handleCardClick = (index) => {
     setActiveIndex(index);
-    setScrollPage(Math.floor(index / PROJECTS_PER_PAGE));
+    const targetPage = Math.floor(index / PROJECTS_PER_PAGE);
+    setScrollPage(targetPage);
     scrollToItem(index);
   };
 
-  // Calculate visible page buttons (Shows only 2 page numbers at a time + continuation dots "..")
-  const getVisiblePages = () => {
-    if (totalPages <= 2) {
-      return { pages: Array.from({ length: totalPages }, (_, i) => i), showDotsEnd: false, showDotsStart: false };
+  // Ellipsis button click handler (moves windowStart forward by EXACTLY ONE position)
+  const handleEllipsisClick = () => {
+    const maxStart = Math.max(1, totalPages - 3);
+    setWindowStart((prev) => Math.min(prev + 1, maxStart));
+  };
+
+  // Calculate Sliding Window Pagination items array (e.g. 1 2 ... 7 8 -> 2 3 ... 7 8)
+  const getSlidingWindowItems = (winStart, total) => {
+    if (total <= 1) return [];
+
+    // Small number of pages (<= 5): No ellipsis needed! Show all page numbers directly.
+    if (total <= 5) {
+      return Array.from({ length: total }, (_, i) => i + 1);
     }
 
-    if (page === 0) {
-      return { pages: [0, 1], showDotsEnd: true, showDotsStart: false };
+    const maxStart = total - 3;
+    const currentStart = Math.min(Math.max(1, winStart), maxStart);
+
+    // End of window reached (all remaining pages fit without ellipsis)
+    if (currentStart >= maxStart) {
+      return [total - 3, total - 2, total - 1, total];
     }
 
-    if (page >= totalPages - 1) {
-      return { pages: [totalPages - 2, totalPages - 1], showDotsEnd: false, showDotsStart: true };
-    }
-
-    return { pages: [page, page + 1], showDotsEnd: page + 1 < totalPages - 1, showDotsStart: true };
+    // Standard sliding window format: [currentStart, currentStart + 1, "...", total - 1, total]
+    return [
+      currentStart,
+      currentStart + 1,
+      "...",
+      total - 1,
+      total
+    ];
   };
 
   return (
@@ -264,62 +287,84 @@ export default function FeaturedWorks() {
 
             {/* Bottom Section: Glass Capsule Segmented Page Controller & Pinned CTA Button */}
             <div className="flex-shrink-0 pt-3 flex flex-col gap-3">
-              {/* Premium Glass Segmented Controller (Shows EXACTLY 2 options at a time) */}
+              {/* Premium Glass Segmented Controller (Formatted like 1 2 ... 50 with smooth spring animations) */}
               {totalPages > 1 && (
                 <div className="flex items-center justify-center select-none">
-                  <div className="inline-flex items-center gap-1 p-1 rounded-full bg-neutral-100/90 border border-neutral-200/80 shadow-xs backdrop-blur-md">
+                  <motion.div 
+                    layout
+                    className="inline-flex items-center gap-1 p-1 rounded-full bg-neutral-100/90 border border-neutral-200/80 shadow-xs backdrop-blur-md"
+                  >
                     {/* Left Chevron Button */}
-                    <button
+                    <motion.button
                       type="button"
-                      onClick={() => handlePageSelect(Math.max(0, scrollPage - 1))}
+                      whileHover={{ scale: 1.15 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={handlePrev}
                       disabled={scrollPage === 0}
-                      className="flex h-7 w-7 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-white/80 transition-all disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                      className="flex h-7 w-7 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-white/80 transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
                       aria-label="Previous page"
                     >
                       <ChevronLeft className="w-3.5 h-3.5" />
-                    </button>
+                    </motion.button>
 
-                    {/* Exactly 2 Page Numbers (Dynamically shifts based on scroll/selection) */}
-                    {(() => {
-                      const visiblePages = totalPages <= 2
-                        ? Array.from({ length: totalPages }, (_, i) => i)
-                        : scrollPage === 0
-                        ? [0, 1]
-                        : scrollPage >= totalPages - 1
-                        ? [totalPages - 2, totalPages - 1]
-                        : [scrollPage, Math.min(scrollPage + 1, totalPages - 1)];
-
-                      return visiblePages.map((pageIdx) => {
-                        const isCurrent = pageIdx === scrollPage;
+                    {/* Sliding Window Page Numbers & Interactive Ellipsis */}
+                    {getSlidingWindowItems(windowStart, totalPages).map((item, idx) => {
+                      if (item === "...") {
                         return (
-                          <button
-                            key={pageIdx}
+                          <motion.button
+                            key={`ellipsis-${idx}`}
                             type="button"
-                            onClick={() => handlePageSelect(pageIdx)}
-                            className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-black transition-all duration-300 cursor-pointer ${
-                              isCurrent
-                                ? "bg-[#E31D2E] text-white shadow-[0_4px_12px_rgba(227,29,46,0.3)] scale-105"
-                                : "text-neutral-600 hover:text-[#111111] hover:bg-white/80"
-                            }`}
-                            aria-label={`Go to page ${pageIdx + 1}`}
+                            whileHover={{ scale: 1.15 }}
+                            whileTap={{ scale: 0.9 }}
+                            onClick={handleEllipsisClick}
+                            className="flex h-7 px-1.5 items-center justify-center text-xs font-bold text-neutral-400 hover:text-[#E31D2E] transition-colors cursor-pointer select-none"
+                            aria-label="Shift pagination window forward by 1"
                           >
-                            {pageIdx + 1}
-                          </button>
+                            ...
+                          </motion.button>
                         );
-                      });
-                    })()}
+                      }
+
+                      const pageIdx = item - 1;
+                      const isCurrent = pageIdx === scrollPage;
+
+                      return (
+                        <motion.button
+                          key={pageIdx}
+                          type="button"
+                          onClick={() => handlePageSelect(pageIdx)}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                          className={`relative flex h-7 w-7 items-center justify-center rounded-full text-xs font-black transition-colors cursor-pointer ${
+                            isCurrent ? "text-white" : "text-neutral-600 hover:text-[#111111] hover:bg-white/80"
+                          }`}
+                          aria-label={`Page ${item}`}
+                        >
+                          {isCurrent && (
+                            <motion.span
+                              layoutId="activePagePill"
+                              className="absolute inset-0 rounded-full bg-[#E31D2E] shadow-[0_4px_12px_rgba(227,29,46,0.35)]"
+                              transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                            />
+                          )}
+                          <span className="relative z-10">{item}</span>
+                        </motion.button>
+                      );
+                    })}
 
                     {/* Right Chevron Button */}
-                    <button
+                    <motion.button
                       type="button"
-                      onClick={() => handlePageSelect(Math.min(totalPages - 1, scrollPage + 1))}
+                      whileHover={{ scale: 1.15 }}
+                      whileTap={{ scale: 0.9 }}
+                      onClick={handleNext}
                       disabled={scrollPage === totalPages - 1}
-                      className="flex h-7 w-7 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-white/80 transition-all disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                      className="flex h-7 w-7 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-white/80 transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
                       aria-label="Next page"
                     >
                       <ChevronRight className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
+                    </motion.button>
+                  </motion.div>
                 </div>
               )}
 

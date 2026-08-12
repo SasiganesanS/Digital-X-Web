@@ -55,7 +55,7 @@ const Footer = ({ setShowContactForm }) => {
 
               {/* Secondary Dark Button */}
               <a
-                href="https://wa.me/919566880740"
+                href="https://wa.me/919344305986?text=Hi%20Praskla%20Digital%20X%2C%20I%27m%20interested%20in%20your%20services%20and%20would%20like%20to%20discuss%20a%20project."
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto lg:w-[240px] px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm border border-white/20 !text-white bg-[#1F1F1F] hover:bg-[#2A2A2A] hover:border-white/40 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm text-center cursor-pointer"
@@ -105,18 +105,18 @@ const Footer = ({ setShowContactForm }) => {
             <div className="md:col-span-5 flex flex-col items-start md:items-end justify-center space-y-3">
               <div className="flex flex-col gap-2 text-xs sm:text-sm font-semibold text-[#9CA3AF]">
                 <a
-                  href="mailto:hello@praskla.com"
+                  href="mailto:sasiganesan7421@gmail.com"
                   className="flex items-center gap-2.5 hover:text-white transition-colors group"
                 >
                   <FiMail className="w-3.5 h-3.5 text-[#FF2B2B] shrink-0" />
-                  <span>hello@praskla.com</span>
+                  <span>sasiganesan7421@gmail.com</span>
                 </a>
                 <a
-                  href="tel:+919566880740"
+                  href="tel:+919344305986"
                   className="flex items-center gap-2.5 hover:text-white transition-colors group"
                 >
                   <FiPhone className="w-3.5 h-3.5 text-[#FF2B2B] shrink-0" />
-                  <span>+91 95668 80740</span>
+                  <span>+91 93443 05986</span>
                 </a>
                 <div className="flex items-center gap-2.5 text-[#9CA3AF]">
                   <FiMapPin className="w-3.5 h-3.5 text-[#FF2B2B] shrink-0" />
@@ -129,7 +129,7 @@ const Footer = ({ setShowContactForm }) => {
                 {[
                   { href: "https://www.instagram.com/py.digitalx/", icon: FaInstagram, label: "Instagram" },
                   { href: "https://www.linkedin.com/company/praskla", icon: FaLinkedinIn, label: "LinkedIn" },
-                  { href: "https://wa.me/919566880740", icon: FaWhatsapp, label: "WhatsApp" },
+                  { href: "https://wa.me/919344305986?text=Hi%20Praskla%20Digital%20X%2C%20I%27m%20interested%20in%20your%20services%20and%20would%20like%20to%20discuss%20a%20project.", icon: FaWhatsapp, label: "WhatsApp" },
                   { href: "https://facebook.com/praskla", icon: FaFacebookF, label: "Facebook" },
                 ].map((social) => {
                   const SocialIcon = social.icon;
