@@ -495,7 +495,7 @@ const About = () => {
               </h2>
 
               <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium">
-                At PRASKLA Digital X, we bring together creative visual creators, copywriting experts,
+                At Praskla Digital X, we bring together creative visual creators, copywriting experts,
                 ad strategists, and performance analytics professionals.
               </p>
 

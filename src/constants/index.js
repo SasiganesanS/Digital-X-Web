@@ -373,7 +373,7 @@ export const businessWebsiteExampleWorks = [
   },
   {
     plan: "Premium",
-    name: "PRASKLA TECHNOLOGY",
+    name: "Praskla Technology",
     description: "Feature-rich, high-conversion website built for business growth and impact",
     logo: praskla
   }
