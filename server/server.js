@@ -164,15 +164,23 @@ app.post('/api/contact', async (req, res) => {
     let emailSent = false;
     try {
       const transporter = createTransporter();
-      await transporter.sendMail({
+      console.log(`[SMTP] Attempting to send enquiry email from ${process.env.MAIL_USER || 'sasiganesan7421@gmail.com'} to ${ADMIN_EMAIL}...`);
+      const info = await transporter.sendMail({
         from: `"Praskla Digital X Web" <${process.env.MAIL_USER || 'sasiganesan7421@gmail.com'}>`,
         to: ADMIN_EMAIL,
         subject: 'New Website Enquiry — Praskla Digital X',
         html: adminHtml,
       });
       emailSent = true;
+      console.log(`[SMTP SUCCESS] Message accepted by SMTP server. Message ID: ${info.messageId} | Response: ${info.response}`);
     } catch (mailErr) {
-      console.error('Nodemailer error sending lead email:', mailErr.message);
+      if (mailErr.code === 'EAUTH' || mailErr.message.includes('Invalid login') || mailErr.responseCode === 535) {
+        console.error('[SMTP AUTH FAILURE] Failed to authenticate with SMTP server:', mailErr.message);
+      } else if (mailErr.code === 'ESOCKET' || mailErr.code === 'ECONNREFUSED' || mailErr.code === 'ETIMEDOUT') {
+        console.error('[SMTP CONNECTION FAILURE] Could not connect to SMTP server:', mailErr.message);
+      } else {
+        console.error('[SMTP SEND ERROR] Error sending email:', mailErr.message);
+      }
     }
 
     res.status(200).json({
