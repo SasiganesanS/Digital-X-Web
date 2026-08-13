@@ -48,50 +48,26 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
       },
       {
         id: 2,
-        title: "React / Frontend Developer",
+        title: "Lead Quality Executive",
         description:
-          "Build modern, high-performance web applications using React, Next.js, and modern frontend tools. Collaborate with designers to craft seamless digital experiences.",
+          "Ensure the quality and accuracy of leads generated through digital marketing campaigns. Monitor lead data, identify invalid or low-quality leads, coordinate with marketing and sales teams, and maintain consistent lead quality standards.",
         location: "Remote",
         type: "Full-time",
-        role: "React / Frontend Developer",
-        department: "Engineering",
+        role: "Lead Quality Executive",
+        department: "Quality",
         level: "Mid Level",
         skills: [
-          "React",
-          "Frontend",
-          "JavaScript",
-          "Tailwind CSS",
-          "TypeScript",
-          "UI/UX",
+          "Lead Quality",
+          "Lead Validation",
+          "CRM",
+          "Data Analysis",
+          "Digital Marketing",
+          "Quality Control",
         ],
         requirements: [
-          "Strong proficiency in React.js and modern JavaScript (ES6+)",
-          "Experience with responsive layouts and Tailwind CSS",
-          "Familiarity with REST APIs and state management",
-        ],
-      },
-      {
-        id: 3,
-        title: "UI/UX & Product Designer",
-        description:
-          "Design intuitive user interfaces and experiences for web and mobile platforms. Craft design systems, user flows, and interactive prototypes.",
-        location: "Remote",
-        type: "Full-time",
-        role: "UI/UX Designer",
-        department: "Design",
-        level: "Mid Level",
-        skills: [
-          "UI/UX",
-          "Figma",
-          "Product Design",
-          "Wireframing",
-          "Prototyping",
-          "Designer",
-        ],
-        requirements: [
-          "Strong portfolio demonstrating UI/UX and web design skills",
-          "Expertise in Figma and design system architecture",
-          "Understanding of responsive design principles",
+          "Monitor lead data and identify invalid or low-quality leads",
+          "Coordinate with marketing and sales teams to maintain quality standards",
+          "Experience with CRM systems, data validation, and digital marketing workflows",
         ],
       },
       {
@@ -247,7 +223,8 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
 
       const matchesType =
         !filters.type ||
-        job.type.toLowerCase() === filters.type.toLowerCase();
+        job.type.toLowerCase() === filters.type.toLowerCase() ||
+        (filters.type.toLowerCase() === "full-time intern" && job.type.toLowerCase() === "full-time");
 
       const matchesLevel =
         !filters.level ||
@@ -437,15 +414,17 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                         <div className="flex items-center gap-2 border border-neutral-200/80 bg-neutral-50 rounded-full px-3.5 py-1.5 shadow-xs">
                           <FiClock className="text-neutral-500 w-3.5 h-3.5" />
                           <span className="text-neutral-700 font-semibold text-xs sm:text-sm">
-                            {job?.type || 'Full-time'}
+                            {job?.type === 'Full-time' ? 'Full-time Intern' : (job?.type || 'Full-time Intern')}
                           </span>
                         </div>
-                        <div className="flex items-center gap-2 border border-neutral-200/80 bg-neutral-50 rounded-full px-3.5 py-1.5 shadow-xs">
-                          <FiBriefcase className="text-neutral-500 w-3.5 h-3.5" />
-                          <span className="text-neutral-700 font-semibold text-xs sm:text-sm">
-                            {job?.level || 'Mid Level'}
-                          </span>
-                        </div>
+                        {job?.level && job.level !== 'Intern' && (
+                          <div className="flex items-center gap-2 border border-neutral-200/80 bg-neutral-50 rounded-full px-3.5 py-1.5 shadow-xs">
+                            <FiBriefcase className="text-neutral-500 w-3.5 h-3.5" />
+                            <span className="text-neutral-700 font-semibold text-xs sm:text-sm">
+                              {job.level}
+                            </span>
+                          </div>
+                        )}
                       </div>
                     </div>
 

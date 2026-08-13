@@ -378,7 +378,7 @@ const ContactForm = ({ isOpen, onClose }) => {
                 <button
                   type="button"
                   onClick={handleClose}
-                  className="mt-2 px-6 py-2.5 bg-[#111111] hover:bg-black text-white rounded-xl text-xs uppercase tracking-wider font-semibold shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-black"
+                  className="mt-2 px-6 py-2.5 bg-[#111111] hover:bg-black !text-white rounded-xl text-xs uppercase tracking-wider font-semibold shadow-md transition-all focus:outline-none focus:ring-2 focus:ring-black"
                 >
                   Close
                 </button>

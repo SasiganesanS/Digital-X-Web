@@ -15,21 +15,12 @@ export const jobListingsData = [
   },
   {
     id: "job-2",
-    title: "React / Frontend Developer",
-    description: "Build modern, high-performance web applications using React, Next.js, and modern frontend tools.",
-    department: "Engineering",
+    title: "Lead Quality Executive",
+    description: "Ensure the quality and accuracy of leads generated through digital marketing campaigns. Monitor lead data, identify invalid or low-quality leads, coordinate with marketing and sales teams, and maintain consistent lead quality standards.",
+    department: "Quality",
     type: "Full-time",
     location: "Remote",
-    keywords: ["react", "frontend", "developer", "javascript", "tailwind", "typescript", "ui/ux", "web"]
-  },
-  {
-    id: "job-3",
-    title: "UI/UX & Product Designer",
-    description: "Design intuitive user interfaces and experiences for web and mobile platforms. Craft design systems and prototypes.",
-    department: "Design",
-    type: "Full-time",
-    location: "Remote",
-    keywords: ["ui", "ux", "design", "figma", "product", "wireframing", "prototyping", "designer"]
+    keywords: ["lead", "quality", "executive", "validation", "crm", "data", "analysis", "digital", "marketing", "control"]
   },
   {
     id: "job-4",

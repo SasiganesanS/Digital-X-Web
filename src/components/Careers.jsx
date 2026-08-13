@@ -62,14 +62,13 @@ const Careers = () => {
   // Quick search suggestion chips
   const quickSearchOptions = useMemo(
     () => [
-      "UI/UX",
       "Marketing",
-      "React",
       "SEO",
       "Video Editing",
       "Branding",
       "Content Creation",
       "Photography",
+      "Lead Quality",
     ],
     []
   );
@@ -78,8 +77,7 @@ const Careers = () => {
   const filterOptions = useMemo(
     () => ({
       role: [
-        "React / Frontend Developer",
-        "UI/UX Designer",
+        "Lead Quality Executive",
         "Jr. Video Editor / Motion Graphic Designer",
         "SEO Specialist",
         "Social Media Executive",
@@ -87,8 +85,8 @@ const Careers = () => {
         "Videography/Photography",
         "Content Creator",
       ],
-      department: ["Engineering", "Design", "Marketing", "VISCOM", "Sales"],
-      type: ["Full-time", "Internship", "Part-time", "Contract"],
+      department: ["Engineering", "Design", "Marketing", "VISCOM", "Sales", "Quality"],
+      type: ["Full-time Intern", "Internship", "Part-time", "Contract"],
       level: ["Intern", "Entry Level", "Mid Level", "Senior Level"],
       location: ["Remote", "Hybrid", "On-site"],
     }),
