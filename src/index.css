@@ -3,6 +3,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Great+Vibes&family=Alex+Brush&family=Satisfy&family=Montserrat:wght@800;900&display=swap');
+
+@font-face {
+  font-family: 'Inlander';
+  src: local('Inlander'), local('Inlander-Bold');
+}
+@font-face {
+  font-family: 'Briteny';
+  src: local('Briteny'), local('Britney'), local('Briteny-Regular');
+}
+@font-face {
+  font-family: 'Dingos';
+  src: local('Dingos'), local('Dingos-Bold');
+}
+
+/* ---------------- Centralized Inter Typography System ---------------- */
+:root {
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --heading-display-font: var(--font-primary);
+  --heading-display-weight: 800;
+  --heading-display-line-height: 0.98;
+  --heading-display-tracking: -0.04em;
+
+  --heading-section-font: var(--font-primary);
+  --heading-section-weight: 800;
+  --heading-section-line-height: 1.05;
+  --heading-section-tracking: -0.03em;
+
+  --body-font: var(--font-primary);
+  --body-line-height: 1.6;
+}
+
+html, body {
+  font-family: var(--font-primary) !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 /* ---------------- Tailwind Directives ---------------- */
 @tailwind base;
@@ -10,16 +47,48 @@
 @tailwind utilities;
 
 @layer utilities {
+  .display-heading {
+    font-family: var(--font-primary) !important;
+    font-weight: 800;
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+  }
+
+  .section-heading {
+    font-family: var(--font-primary) !important;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .body-text {
+    font-family: var(--font-primary) !important;
+    font-weight: 400;
+    line-height: 1.6;
+  }
+
   .font-space-grotesk {
     font-family: 'Space Grotesk', 'Inter', sans-serif !important;
   }
 
   .font-brand {
-    font-family: 'General Sans', 'Satoshi', 'Clash Display', 'Neue Montreal', 'Manrope', 'Inter', sans-serif !important;
+    font-family: 'Inter', sans-serif !important;
   }
 
   .font-signature {
-    font-family: 'General Sans', 'Satoshi', 'Clash Display', 'Neue Montreal', 'Manrope', 'Inter', sans-serif !important;
+    font-family: 'Inter', sans-serif !important;
+  }
+
+  .font-inlander {
+    font-family: 'Inlander', 'Cinzel', 'Playfair Display', 'Bodoni Moda', serif !important;
+  }
+
+  .font-briteny {
+    font-family: 'Briteny', 'Britney', 'Great Vibes', 'Alex Brush', 'Satisfy', cursive !important;
+  }
+
+  .font-dingos {
+    font-family: 'Dingos', 'Montserrat', 'Space Grotesk', 'Inter', sans-serif !important;
   }
 
   .custom-scrollbar::-webkit-scrollbar {
@@ -675,7 +744,7 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"] {
   background-image: none !important;
   color: #FFFFFF !important;
   border: none !important;
-  box-shadow: 0 10px 24px rgba(255, 43, 43, 0.22) !important;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12) !important;
   transition: transform 300ms cubic-bezier(.22, .61, .36, 1),
     background-color 300ms cubic-bezier(.22, .61, .36, 1),
     color 300ms cubic-bezier(.22, .61, .36, 1),
@@ -943,23 +1012,21 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg {
     Floating Navbar top position: 2rem (32px) + floating card height 72px = 104px bottom edge.
     Desktop: 40px gap below navbar -> 104px + 40px = 144px top offset.
   */
-  --nav-bottom-edge: 104px;
-  --hero-top-offset: 144px;
+  --nav-bottom-edge: 76px;
+  --hero-top-offset: 96px;
 }
 
 @media (max-width: 1023px) {
   :root {
-    /* Tablet: 24px top + 68px card = 92px bottom edge + 32px gap = 124px top offset */
-    --nav-bottom-edge: 92px;
-    --hero-top-offset: 124px;
+    --nav-bottom-edge: 72px;
+    --hero-top-offset: 88px;
   }
 }
 
 @media (max-width: 767px) {
   :root {
-    /* Mobile: 20px top + 64px card = 84px bottom edge + 24px gap = 108px top offset */
-    --nav-bottom-edge: 84px;
-    --hero-top-offset: 108px;
+    --nav-bottom-edge: 68px;
+    --hero-top-offset: 80px;
   }
 }
 

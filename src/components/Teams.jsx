@@ -22,18 +22,18 @@ const Teams = () => {
 
   const teamMembers = [
     {
-      id: 1,
-      name: "Pranesh Kumar Baskaran",
-      role: "Founder",
-      image: pranesh,
-      bio: "Committed to delivering quality-assured software solutions that generate sustainable value for all stakeholders. With a strategic vision and a focus on long-term growth, the CEO leads the organization by empowering teams, fostering innovation, and steering the company toward enduring success.",
-    },
-    {
       id: 3,
       name: "Jaillesh Kathirvel",
-      role: "Business head & Manager",
+      role: "Founder & Business Head & Manager",
       image: Jaillesh,
-      bio: "Drives business growth and client partnerships with a sharp eye for opportunity and execution. As Business Head & Manager, Jaillesh bridges strategy and day-to-day operations, ensuring every engagement is handled with precision, accountability, and a genuine commitment to client success.",
+      bio: "Drives business growth and client partnerships with a sharp eye for opportunity and execution. As Founder & Business Head & Manager, Jaillesh bridges strategy and day-to-day operations, ensuring every engagement is handled with precision, accountability, and a genuine commitment to client success.",
+    },
+    {
+      id: 1,
+      name: "Pranesh Kumar Baskaran",
+      role: "Co-Founder",
+      image: pranesh,
+      bio: "Committed to delivering quality-assured software solutions that generate sustainable value for all stakeholders. With a strategic vision and a focus on long-term growth, the Co-Founder leads the organization by empowering teams, fostering innovation, and steering the company toward enduring success.",
     },
     {
       id: 7,

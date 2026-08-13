@@ -14,6 +14,7 @@ const navItemsList = [
 ];
 
 const BRAND_TAGLINES = [
+  "A Mindful Marketing and Production Firm",
   "Where Strategy Meets Creativity",
   "Mindful Growth & Brand Scale",
   "Data-Driven Digital Impact",
@@ -30,18 +31,25 @@ function AnimatedBrandTagline() {
     return () => clearInterval(timer);
   }, []);
 
+  const currentTagline = BRAND_TAGLINES[taglineIdx];
+  const isLongTagline = currentTagline.length > 32;
+
   return (
-    <div className="hidden md:block h-[15px] overflow-hidden relative mt-[2px]">
+    <div className="hidden md:block h-[15px] overflow-hidden relative mt-[2px] w-full">
       <AnimatePresence mode="wait">
         <motion.span
-          key={BRAND_TAGLINES[taglineIdx]}
+          key={currentTagline}
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-          className="font-space-grotesk text-[10px] sm:text-[11px] font-bold text-[#E31D2E] tracking-[0.06em] block truncate uppercase"
+          className={`font-space-grotesk font-bold text-[#E31D2E] block truncate uppercase ${
+            isLongTagline
+              ? "text-[8px] sm:text-[8.5px] tracking-[0.01em]"
+              : "text-[10px] sm:text-[11px] tracking-[0.06em]"
+          }`}
         >
-          {BRAND_TAGLINES[taglineIdx]}
+          {currentTagline}
         </motion.span>
       </AnimatePresence>
     </div>
@@ -51,27 +59,24 @@ function AnimatedBrandTagline() {
 const navStyles = `
 .pill-nav-container {
   position: fixed;
-  top: 1.75rem;
-  left: 50%;
-  transform: translateX(-50%) translateY(0);
-  opacity: 1;
-  width: 92%;
-  max-width: 1320px;
-  height: 64px;
-  padding: 0;
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 76px;
+  padding: 0 2rem;
+  background: #FFFFFF !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1.25rem;
   box-sizing: border-box;
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease-out;
   will-change: transform, opacity;
-  pointer-events: none;
+  pointer-events: auto;
 }
 
 .pill-nav-container > * {
@@ -83,31 +88,33 @@ const navStyles = `
   left: auto;
   top: auto;
   transform: none;
-  background: #ECECEC;
-  padding: 8px 24px 8px 18px;
-  border-radius: 999px;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   text-decoration: none;
-  min-width: 320px;
+  min-width: auto;
+  max-width: none;
   flex-shrink: 0;
   box-sizing: border-box;
-  transition: box-shadow 0.3s ease;
+  transition: opacity 0.2s ease;
 }
 
 .nav-brand-capsule:hover {
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: none !important;
+  opacity: 0.92;
 }
 
 .nav-links-capsule {
   background: #ECECEC;
   padding: 5px 12px 5px 14px;
   border-radius: 999px;
-  box-shadow: 6px 6px 18px rgba(0, 0, 0, 0.07), -6px -6px 18px rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), inset 0 1px 2px rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.85);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -162,15 +169,9 @@ const navStyles = `
 
 .nav-cta-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
-  background: #1A1A1A;
-  border-color: rgba(227, 29, 46, 0.4);
-}
-
-.nav-cta-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 28px rgba(255, 43, 43, 0.38);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
   background: linear-gradient(135deg, #E51D1D 0%, #C81515 100%);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 .nav-cta-btn .cta-arrow {
@@ -247,7 +248,8 @@ const navStyles = `
 }
 
 .pill-logo img {
-  height: 44px;
+  height: 60px;
+  max-height: 76px;
   width: auto;
   object-fit: contain;
   display: block;
@@ -255,7 +257,7 @@ const navStyles = `
 
 @media (min-width: 640px) {
   .pill-logo img {
-    height: 48px;
+    height: 72px;
   }
 }
 
@@ -343,7 +345,7 @@ const navStyles = `
 .pill.is-active {
   background: var(--pill-bg, #E31D2E) !important;
   color: var(--hover-text, #ffffff) !important;
-  box-shadow: 0 6px 18px rgba(227, 29, 46, 0.3) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12) !important;
   border-radius: 9999px !important;
 }
 
@@ -444,8 +446,8 @@ const navStyles = `
   background: #FFFFFF;
   color: #E31D2E;
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(227, 29, 46, 0.2);
-  border-color: rgba(227, 29, 46, 0.35);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  border-color: rgba(0, 0, 0, 0.12);
 }
 
 @media (max-width: 768px) {
@@ -668,8 +670,8 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
     if (!img) return;
     logoTweenRef.current?.kill();
     logoTweenRef.current = gsap.to(img, {
-      y: -3,
-      scale: 1.06,
+      y: -2,
+      scale: 1.12,
       duration: 0.3,
       ease: "power2.out",
       overwrite: 'auto'
@@ -682,7 +684,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
     logoTweenRef.current?.kill();
     logoTweenRef.current = gsap.to(img, {
       y: 0,
-      scale: 1,
+      scale: 1.08,
       duration: 0.3,
       ease: "power2.out",
       overwrite: 'auto'
@@ -788,7 +790,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
         {/* ── LEFT SEPARATE CAPSULE: DEDICATED BRAND BLOCK ── */}
         <Link
           to="/"
-          className="nav-brand-capsule group select-none cursor-pointer"
+          className="nav-brand-capsule group select-none cursor-pointer flex items-center gap-1 sm:gap-1.5"
           aria-label="Praskla Digital X Home"
           onMouseEnter={handleLogoEnter}
           onMouseLeave={handleLogoLeave}
@@ -796,31 +798,42 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
             logoRef.current = el;
           }}
         >
-          <div className="pill-logo shrink-0">
+          {/* Logo Emblem (Big logo emblem) */}
+          <div className="pill-logo shrink-0 flex items-center">
             <img
               src={Logo}
               alt="Praskla Digital X Logo"
               ref={logoImgRef}
-              className="h-[44px] sm:h-[48px] w-auto object-contain transition-all duration-300 drop-shadow-[0_2px_6px_rgba(0,0,0,0.12)] group-hover:drop-shadow-[0_6px_14px_rgba(0,0,0,0.25)]"
+              className="h-[60px] sm:h-[68px] lg:h-[76px] !important w-auto object-contain transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.08)] group-hover:drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)]"
               style={{ willChange: 'transform, filter' }}
             />
           </div>
-          <motion.div
-            initial={{ opacity: 0, y: 6 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.35, ease: "easeOut" }}
-            className="flex flex-col justify-center text-left"
-          >
-            <span className="font-brand text-[19px] sm:text-[22px] lg:text-[24px] font-extrabold text-[#111111] leading-none tracking-[0.02em] antialiased [text-shadow:0_2px_6px_rgba(0,0,0,0.12)]">
-              Praskla Digital{" "}
-              <span className="text-[#E31D2E] inline-block animate-pulse drop-shadow-[0_2px_4px_rgba(0,0,0,0.25)]">
-                X
-              </span>
-            </span>
 
-            {/* Continuous Dynamic Animated Tagline */}
-            <AnimatedBrandTagline />
-          </motion.div>
+          {/* 2-line Text Column (PRASKLA DIGITAL + Tagline) */}
+          <div className="flex flex-col justify-center min-w-0">
+            <span className="font-inlander text-[17px] sm:text-[20px] lg:text-[22px] font-black text-[#111111] leading-none tracking-[0.01em] uppercase whitespace-nowrap">
+              PRASKLA DIGITAL
+            </span>
+            <span className="font-dingos text-[8px] sm:text-[9px] lg:text-[9.5px] font-bold text-[#E31D2E] block tracking-tight mt-[3px] leading-none whitespace-nowrap">
+              A Mindful Marketing and Production Firm
+            </span>
+          </div>
+
+          {/* Double-Stroke Red Calligraphic X Graphic (Moved right next to text) */}
+          <svg
+            viewBox="0 0 40 50"
+            className="h-[36px] sm:h-[40px] lg:h-[44px] w-auto shrink-0 select-none text-[#E31D2E] -ml-2.5 sm:-ml-3.5 lg:-ml-4 self-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+            fill="none"
+            aria-hidden="true"
+          >
+            {/* Top-Left to Bottom-Right double parallel lines */}
+            <path d="M 7 4 L 32 45 M 10 3 L 35 44" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M 4 5 H 11 M 30 45 H 37" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+
+            {/* Bottom-Left to Top-Right double parallel lines */}
+            <path d="M 5 44 L 33 4 M 8 45 L 36 5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M 3 43 H 9 M 31 4 H 38" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+          </svg>
         </Link>
 
         {/* ── RIGHT SEPARATE CAPSULE: NAVIGATION LINKS & CTA ── */}
@@ -958,8 +971,8 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                   aria-label="Get in Touch"
                 >
                   <span className="relative flex h-2 w-2 shrink-0">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] group-hover:bg-white opacity-75 transition-colors duration-300" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E] group-hover:bg-white transition-colors duration-300" />
                   </span>
                   <span>Get in Touch</span>
                   <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
@@ -978,8 +991,8 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
             aria-label="Get in Touch"
           >
             <span className="relative flex h-2 w-2 shrink-0">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E]" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] group-hover:bg-white opacity-75 transition-colors duration-300" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E] group-hover:bg-white transition-colors duration-300" />
             </span>
             <span>Get in Touch</span>
             <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />

@@ -271,7 +271,7 @@ const BlogPage = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   whileHover={{ y: -4 }}
-                  className="group flex items-start gap-5 bg-white p-7 rounded-[2rem] border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-[#E31D2E]/40 hover:shadow-[0_16px_36px_rgba(227,29,46,0.08)] transition-all duration-300"
+                  className="group flex items-start gap-5 bg-white p-7 rounded-[2rem] border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-black/20 hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] transition-all duration-300"
                 >
                   <div className="w-11 h-11 rounded-2xl bg-red-50 text-[#E31D2E] flex items-center justify-center text-sm font-black shrink-0 border border-red-100 group-hover:bg-[#E31D2E] group-hover:text-white transition-all duration-300 italic shadow-2xs">
                     0{item.id || i + 1}

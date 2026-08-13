@@ -127,7 +127,7 @@ export default function ProjectDetailModal({ isOpen, onClose, project: initialPr
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {project.features?.map((f, i) => (
-                                        <div key={i} className="p-8 rounded-[2rem] bg-white/[0.03] border border-white/5 hover:border-[#E8192C]/30 transition-all duration-300 group">
+                                        <div key={i} className="p-8 rounded-[2rem] bg-white/[0.03] border border-white/5 hover:border-white/20 transition-all duration-300 group">
                                             <div className="text-3xl mb-4 group-hover:scale-110 transition-transform">{f.icon}</div>
                                             <h4 className="text-white font-black uppercase tracking-tight mb-2">{f.title}</h4>
                                             <p className="text-white/30 text-xs leading-relaxed">{f.description}</p>
@@ -145,7 +145,7 @@ export default function ProjectDetailModal({ isOpen, onClose, project: initialPr
 
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     {project.results?.map((r, i) => (
-                                        <div key={i} className="p-10 rounded-[2.5rem] bg-[#0F0F0F] border border-white/5 group hover:border-[#E8192C]/20 transition-all duration-500">
+                                        <div key={i} className="p-10 rounded-[2.5rem] bg-[#0F0F0F] border border-white/5 group hover:border-white/20 transition-all duration-500">
                                             <div className="text-4xl md:text-5xl font-black text-[#E8192C] mb-4 leading-none tracking-tighter">{r.metric}</div>
                                             <div className="text-white/40 text-sm leading-relaxed tracking-tight">{r.text}</div>
                                         </div>
@@ -162,7 +162,7 @@ export default function ProjectDetailModal({ isOpen, onClose, project: initialPr
                                 </p>
                                 <div className="flex flex-wrap justify-center gap-3">
                                     {project.techStack?.map((t, i) => (
-                                        <span key={i} className="px-6 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white/50 text-xs font-black uppercase tracking-widest hover:border-[#E8192C]/40 hover:text-white transition-all duration-300">
+                                        <span key={i} className="px-6 py-3 rounded-xl bg-white/[0.03] border border-white/10 text-white/50 text-xs font-black uppercase tracking-widest hover:border-white/20 hover:text-white transition-all duration-300">
                                             {t}
                                         </span>
                                     ))}
@@ -177,7 +177,7 @@ export default function ProjectDetailModal({ isOpen, onClose, project: initialPr
                                             const nextProject = projects.find(p => p.id === 2);
                                             if (nextProject) handleSwitchProject(nextProject);
                                         }}
-                                        className="group relative flex items-center gap-4 bg-[#FF2B2B] text-white px-10 py-5 rounded-full font-black uppercase tracking-widest hover:bg-[#E51D1D] transition-all duration-300 shadow-[0_10px_24px_rgba(255,43,43,0.22)]"
+                                        className="group relative flex items-center gap-4 bg-[#FF2B2B] text-white px-10 py-5 rounded-full font-black uppercase tracking-widest hover:bg-[#E51D1D] transition-all duration-300 shadow-[0_10px_24px_rgba(0,0,0,0.14)]"
                                     >
                                         Next Impact Story: Adhithya Fashions
                                         <FaArrowRight className="group-hover:translate-x-2 transition-transform" />

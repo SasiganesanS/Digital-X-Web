@@ -70,7 +70,7 @@ const Services = () => {
                 </span>
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[1.2] tracking-tight text-[#111111]">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[0.98] tracking-[-0.04em] text-[#111111]">
                 Transforming Brands into <br className="hidden sm:block" />
                 <span className="text-[#FF2B2B]">Digital Authority</span>
               </h1>
@@ -89,7 +89,7 @@ const Services = () => {
                 </Link>
                 <a
                   href="#expertise"
-                  className="px-8 py-4 rounded-full font-bold border border-neutral-200 text-[#111111] hover:border-[#FF2B2B] hover:text-[#FF2B2B] transition-all"
+                  className="px-8 py-4 rounded-full font-bold border border-neutral-200 text-[#111111] hover:border-black/30 hover:text-[#FF2B2B] transition-all"
                 >
                   Core Expertise
                 </a>
@@ -130,8 +130,8 @@ const Services = () => {
                               y: [0, -12, -8],
                               boxShadow: [
                                 "0 8px 30px rgba(0,0,0,0.04)",
-                                "0 24px 60px rgba(255,43,43,0.3)",
-                                "0 18px 45px rgba(255,43,43,0.2)"
+                                "0 24px 60px rgba(0,0,0,0.12)",
+                                "0 18px 45px rgba(0,0,0,0.1)"
                               ]
                             }
                           : {}
@@ -144,12 +144,12 @@ const Services = () => {
                       style={{
                         border: isSelected
                           ? "2px solid #FF2B2B"
-                          : "1px solid rgba(75, 46, 131, 0.35)",
+                          : "1px solid rgba(0, 0, 0, 0.1)",
                       }}
                       className={`relative bg-white rounded-2xl p-5 md:p-6 pt-7 flex flex-col items-center text-center min-h-[260px] sm:min-h-[280px] cursor-pointer transition-all duration-500 group overflow-hidden ${
                         isSelected
-                          ? "shadow-[0_18px_45px_rgba(255,43,43,0.2)] -translate-y-2 z-20"
-                          : "hover:border-[#FF2B2B]/40 hover:-translate-y-1.5 hover:shadow-[0_16px_50px_rgba(0,0,0,0.08)] shadow-[0_8px_30px_rgba(0,0,0,0.04)]"
+                          ? "shadow-[0_18px_45px_rgba(0,0,0,0.1)] -translate-y-2 z-20"
+                          : "hover:border-black/20 hover:-translate-y-1.5 hover:shadow-[0_16px_50px_rgba(0,0,0,0.08)] shadow-[0_8px_30px_rgba(0,0,0,0.04)]"
                       }`}
                     >
                       {/* Active Red Tag Indicator */}
@@ -165,7 +165,7 @@ const Services = () => {
                       <div className={`relative z-10 w-[88px] h-[88px] md:w-[100px] md:h-[100px] mb-5 rounded-full p-1.5 transition-all duration-500 flex items-center justify-center -mt-1 bg-white shadow-sm ${
                         isSelected
                           ? "border-[3px] border-[#FF2B2B] ring-4 ring-[#FF2B2B]/15"
-                          : "border-[3px] border-neutral-200 group-hover:border-[#FF2B2B]"
+                          : "border-[3px] border-neutral-200 group-hover:border-black/30"
                       }`}>
                         <img
                           src={service.image}

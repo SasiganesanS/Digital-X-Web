@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroLayout from "./common/HeroLayout";
 import ContactForm from "./ContactForm";
@@ -189,6 +189,20 @@ const Projects = () => {
   const [imageIndex, setImageIndex] = useState(0);
   const sectionRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Scroll to project card on return navigation
+  useEffect(() => {
+    if (location.state?.scrollToId) {
+      const targetSlug = location.state.scrollToId;
+      setTimeout(() => {
+        const element = document.getElementById(`project-card-${targetSlug}`);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 200);
+    }
+  }, [location.state]);
 
   const projectImages = [
     { image: img1, title: 'Web Development', desc: 'Responsive and fast-loading websites' },
@@ -262,7 +276,7 @@ const Projects = () => {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-[1.22] tracking-tight text-[#111111]"
+            className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[0.98] tracking-[-0.04em] text-[#111111]"
           >
             Collaborate for <br />
             <span className="relative inline-block text-[#E31D2E]">
@@ -465,13 +479,14 @@ const Projects = () => {
                   return (
                     <motion.div
                       key={project.id || index}
+                      id={`project-card-${project.slug || project.id}`}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
                       whileHover={{ y: -4 }}
-                      onClick={() => navigate(`/project/${project.slug || project.id}`)}
-                      className="group relative flex flex-col justify-between cursor-pointer p-3.5 sm:p-4 rounded-[1.75rem] border border-neutral-200/80 shadow-[0_8px_24px_rgba(0,0,0,0.03)] bg-white hover:border-[#E31D2E]/30 hover:shadow-[0_14px_36px_rgba(227,29,46,0.1)] transition-all duration-300 select-none"
+                      onClick={() => navigate(`/project/${project.slug || project.id}`, { state: { from: '/projects', projectSlug: project.slug || project.id } })}
+                      className="group relative flex flex-col justify-between cursor-pointer p-3.5 sm:p-4 rounded-[1.75rem] border border-neutral-200/80 shadow-[0_8px_24px_rgba(0,0,0,0.03)] bg-white hover:border-black/20 hover:shadow-[0_14px_36px_rgba(0,0,0,0.08)] transition-all duration-300 select-none"
                     >
                       {/* 1. Image Area — Crisp & Unobstructed */}
                       <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl border border-neutral-200/60 mb-3 bg-neutral-900 shadow-2xs">
@@ -493,7 +508,7 @@ const Projects = () => {
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            navigate(`/case-study/${project.slug || project.id}`);
+                            navigate(`/case-study/${project.slug || project.id}`, { state: { from: '/projects', projectSlug: project.slug || project.id } });
                           }}
                           className="px-3 py-1.5 rounded-full bg-[#E31D2E] text-white font-black text-[10px] uppercase tracking-wider flex items-center gap-1 shrink-0 shadow-2xs hover:bg-[#c91827] hover:scale-105 transition-all duration-300 cursor-pointer"
                         >

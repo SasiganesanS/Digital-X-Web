@@ -611,7 +611,7 @@ const JobApplication = ({ job, onClose }) => {
                     ? 'border-red-400 bg-red-50/20' 
                     : formData.resume 
                     ? 'border-emerald-500/80 bg-emerald-50/30' 
-                    : 'border-[#E5E5E5] hover:border-[#FF2B2B]/50 bg-white hover:bg-gray-50'
+                    : 'border-[#E5E5E5] hover:border-black/20 bg-white hover:bg-gray-50'
                 }`}>
                   {formData.resume ? (
                     <div className="flex items-center gap-2.5 text-emerald-700 font-semibold text-xs">

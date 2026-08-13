@@ -208,7 +208,7 @@ const Careers = () => {
                 return (
                   <span
                     key={idx}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200/90 bg-white/90 shadow-2xs text-[#111111] text-[11px] font-bold tracking-tight hover:border-[#E31D2E]/30 transition-colors"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200/90 bg-white/90 shadow-2xs text-[#111111] text-[11px] font-bold tracking-tight hover:border-black/20 transition-colors"
                   >
                     <IconComponent className="w-3.5 h-3.5 text-[#E31D2E]" />
                     <span>{perk.text}</span>
@@ -330,8 +330,8 @@ const Careers = () => {
                       setSearchQuery(isActive ? "" : chip)
                     }
                     className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${isActive
-                        ? "bg-[#E31D2E] text-white shadow-md shadow-[#E31D2E]/25 scale-105"
-                        : "bg-white text-neutral-700 border border-neutral-200/80 hover:-translate-y-1 hover:border-[#E31D2E] hover:bg-[#E31D2E]/5 hover:text-[#E31D2E] shadow-xs"
+                        ? "bg-[#E31D2E] text-white shadow-md shadow-black/10 scale-105"
+                        : "bg-white text-neutral-700 border border-neutral-200/80 hover:-translate-y-1 hover:border-black/30 hover:bg-neutral-100 hover:text-[#111111] shadow-xs"
                       }`}
                   >
                     {chip}

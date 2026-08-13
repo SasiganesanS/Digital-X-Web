@@ -46,7 +46,7 @@ const Footer = ({ setShowContactForm }) => {
               {/* Primary Red Button */}
               <motion.button
                 onClick={() => setShowContactForm && setShowContactForm(true)}
-                className="w-full sm:w-auto lg:w-[240px] px-6 py-3 rounded-full font-bold text-xs sm:text-sm bg-[#FF2B2B] !text-white hover:bg-[#E51D1D] transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(255,43,43,0.25)] hover:-translate-y-0.5 group cursor-pointer"
+                className="w-full sm:w-auto lg:w-[240px] px-6 py-3 rounded-full font-bold text-xs sm:text-sm bg-[#FF2B2B] !text-white hover:bg-[#E51D1D] transition-all duration-300 flex items-center justify-center gap-2 shadow-[0_8px_20px_rgba(0,0,0,0.14)] hover:-translate-y-0.5 group cursor-pointer"
                 style={{ color: "#FFFFFF", opacity: 1 }}
               >
                 <span className="!text-white text-white font-bold" style={{ color: "#FFFFFF" }}>Start Your Project</span>
@@ -140,7 +140,7 @@ const Footer = ({ setShowContactForm }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={social.label}
-                      className="w-8 h-8 rounded-full border border-white/[0.08] bg-[#141414] flex items-center justify-center text-[#9CA3AF] hover:text-white hover:border-[#FF2B2B] hover:bg-[#FF2B2B]/20 hover:-translate-y-0.5 transition-all duration-300"
+                      className="w-8 h-8 rounded-full border border-white/[0.08] bg-[#141414] flex items-center justify-center text-[#9CA3AF] hover:text-white hover:border-white/30 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-300"
                     >
                       <SocialIcon size={13} />
                     </a>

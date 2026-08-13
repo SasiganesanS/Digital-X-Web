@@ -245,14 +245,16 @@ export const platforms = SERVICES_CONFIG.map((service) => ({
   title: service.title,
   price: service.basePrice,
   icon:
-    service.id === "web"
+    service.id === "marketing"
+      ? "FaBullhorn"
+      : service.id === "video"
+      ? "FaVideo"
+      : service.id === "web"
       ? "FaGlobe"
       : service.id === "software"
       ? "FaLaptopCode"
       : service.id === "app"
       ? "FaMobileAlt"
-      : service.id === "marketing"
-      ? "FaBullhorn"
       : service.id === "cyber"
       ? "FaShieldAlt"
       : "FaLeaf",

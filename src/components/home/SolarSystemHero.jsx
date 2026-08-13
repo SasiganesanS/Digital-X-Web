@@ -318,7 +318,7 @@ const ServicesCoverflow = () => {
                   }}
                 >
                   {/* Image container frame */}
-                  <div className="relative w-full h-[48%] rounded-[22px] overflow-hidden bg-[#ECECEC] flex items-center justify-center p-2 border border-black/10 shadow-[inset_3px_3px_8px_rgba(0,0,0,0.06),inset_-3px_-3px_8px_rgba(255,255,255,0.9)]">
+                  <div className="relative w-full h-[48%] rounded-[22px] overflow-hidden bg-[#000000] flex items-center justify-center p-2 border border-black/10 shadow-[inset_3px_3px_8px_rgba(0,0,0,0.06),inset_-3px_-3px_8px_rgba(255,255,255,0.9)]">
                     <img
                       src={service.image}
                       alt={service.title}

@@ -13,6 +13,7 @@ import {
   Laptop,
   Smartphone,
   Megaphone,
+  Video,
   Shield,
   Leaf,
   Sliders,
@@ -23,10 +24,11 @@ import {
 } from "../data/pricingConfig";
 
 const ICON_MAP = {
+  marketing: Megaphone,
+  video: Video,
   web: Globe,
   software: Laptop,
   app: Smartphone,
-  marketing: Megaphone,
   cyber: Shield,
   sustainability: Leaf,
 };
@@ -373,7 +375,7 @@ export default function PlatformPlanModal({
                           onClick={() => setSelectedPackage(pkg)}
                           className={`p-5 rounded-[22px] text-left transition-all duration-300 border flex flex-col justify-between relative cursor-pointer min-h-[270px] ${
                             isSelected
-                              ? "bg-white border-[#E31D2E] shadow-[0_12px_36px_rgba(227,29,46,0.14)] scale-[1.02] ring-2 ring-[#E31D2E]/15"
+                              ? "bg-white border-[#E31D2E] shadow-[0_12px_36px_rgba(0,0,0,0.1)] scale-[1.02] ring-2 ring-[#E31D2E]/15"
                               : "bg-white/80 border-neutral-200/80 hover:border-neutral-300 hover:bg-white"
                           }`}
                         >
@@ -432,7 +434,7 @@ export default function PlatformPlanModal({
                   <button
                     type="button"
                     onClick={handleSkipToSummary}
-                    className="py-3.5 px-7 rounded-full bg-[#E31D2E] hover:bg-[#c91827] active:bg-[#b01422] text-white font-extrabold text-xs uppercase tracking-wider transition-all duration-200 shadow-[0_8px_20px_rgba(227,29,46,0.3)] hover:shadow-[0_12px_28px_rgba(227,29,46,0.4)] hover:-translate-y-0.5 flex items-center justify-center gap-2.5 cursor-pointer group"
+                    className="py-3.5 px-7 rounded-full bg-[#E31D2E] hover:bg-[#c91827] active:bg-[#b01422] text-white font-extrabold text-xs uppercase tracking-wider transition-all duration-200 shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 flex items-center justify-center gap-2.5 cursor-pointer group"
                   >
                     <span>Continue With Package</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -442,7 +444,7 @@ export default function PlatformPlanModal({
                   <button
                     type="button"
                     onClick={handleGoToCustomization}
-                    className="py-3.5 px-7 rounded-full bg-white hover:bg-neutral-50 active:bg-neutral-100 text-[#E31D2E] border-2 border-[#E31D2E] font-extrabold text-xs uppercase tracking-wider transition-all duration-200 shadow-[0_4px_16px_rgba(227,29,46,0.12)] hover:shadow-[0_8px_24px_rgba(227,29,46,0.2)] hover:-translate-y-0.5 flex items-center justify-center gap-2.5 cursor-pointer group"
+                    className="py-3.5 px-7 rounded-full bg-white hover:bg-neutral-50 active:bg-neutral-100 text-[#E31D2E] border-2 border-[#E31D2E] font-extrabold text-xs uppercase tracking-wider transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 flex items-center justify-center gap-2.5 cursor-pointer group"
                   >
                     <Sliders className="w-4 h-4 transition-transform group-hover:rotate-12" />
                     <span>Customize Package</span>
@@ -584,7 +586,7 @@ export default function PlatformPlanModal({
                   <button
                     type="button"
                     onClick={handleNextStep}
-                    className="px-6 py-3 rounded-full bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_8px_20px_rgba(227,29,46,0.3)] flex items-center gap-2 cursor-pointer"
+                    className="px-6 py-3 rounded-full bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_8px_20px_rgba(0,0,0,0.12)] flex items-center gap-2 cursor-pointer"
                   >
                     <span>Final Proposal</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -697,7 +699,7 @@ export default function PlatformPlanModal({
                   <button
                     type="button"
                     onClick={handleFinalSubmit}
-                    className="px-8 py-3.5 rounded-full bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_10px_25px_rgba(227,29,46,0.3)] hover:scale-102 flex items-center gap-2 cursor-pointer"
+                    className="px-8 py-3.5 rounded-full bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_10px_25px_rgba(0,0,0,0.14)] hover:scale-102 flex items-center gap-2 cursor-pointer"
                   >
                     <span>REQUEST THIS PROPOSAL</span>
                     <ArrowRight className="w-4 h-4" />

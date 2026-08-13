@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams, Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -16,10 +16,64 @@ import SectionBadge from "./common/SectionBadge";
 import { projects } from "../data/projects";
 import ContactForm from "./ContactForm";
 
+const renderStyledTitle = (title) => {
+  if (!title) return null;
+  if (title.includes("–")) {
+    const [part1, ...rest] = title.split("–");
+    return (
+      <>
+        <span className="block">{part1.trim()} –</span>
+        <span className="block text-[#E31D2E]">{rest.join("–").trim()}</span>
+      </>
+    );
+  }
+  if (title.includes("-")) {
+    const [part1, ...rest] = title.split("-");
+    return (
+      <>
+        <span className="block">{part1.trim()} –</span>
+        <span className="block text-[#E31D2E]">{rest.join("-").trim()}</span>
+      </>
+    );
+  }
+  const words = title.split(" ");
+  if (words.length > 2) {
+    const mainWords = words.slice(0, words.length - 2).join(" ");
+    const redWords = words.slice(words.length - 2).join(" ");
+    return (
+      <>
+        <span className="block">{mainWords}</span>
+        <span className="block text-[#E31D2E]">{redWords}</span>
+      </>
+    );
+  }
+  return <span className="block text-[#E31D2E]">{title}</span>;
+};
+
 const ProjectDetail = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { id } = useParams();
   const [showContactForm, setShowContactForm] = useState(false);
+
+  const fromPath = location.state?.from;
+  const projectSlug = location.state?.projectSlug || id;
+
+  const handleBack = () => {
+    if (fromPath === '/' || fromPath === 'home') {
+      navigate('/', { replace: true });
+      setTimeout(() => {
+        const el = document.getElementById('projects');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else if (fromPath === '/projects') {
+      navigate('/projects', { state: { scrollToId: projectSlug } });
+    } else if (window.history.length > 2) {
+      navigate(-1);
+    } else {
+      navigate('/projects', { state: { scrollToId: projectSlug } });
+    }
+  };
 
   // Find project by id or slug
   const project = projects.find(
@@ -42,13 +96,14 @@ const ProjectDetail = () => {
           <p className="text-gray-500 text-sm mb-8 leading-relaxed font-medium">
             The requested project details could not be located.
           </p>
-          <Link
-            to="/projects"
-            className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-full font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5"
+          <button
+            type="button"
+            onClick={handleBack}
+            className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-full font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5 cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Projects
-          </Link>
+            <span>{fromPath === '/' ? "Back to Home" : "Back to Projects"}</span>
+          </button>
         </div>
       </div>
     );
@@ -72,32 +127,34 @@ const ProjectDetail = () => {
             >
               {/* Back Button & Category Badge */}
               <div className="flex flex-wrap items-center gap-3 mb-5">
-                <Link
-                  to="/projects"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white shadow-2xs hover:border-[#E31D2E]/40 text-[#111111] text-xs font-bold uppercase tracking-wider transition-all duration-200 group"
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white shadow-2xs hover:border-black/20 text-[#111111] text-xs font-bold uppercase tracking-wider transition-all duration-200 group cursor-pointer"
                 >
                   <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#E31D2E]" />
-                  <span>Back to Projects</span>
-                </Link>
+                  <span>{fromPath === '/' ? "Back to Home" : "Back to Projects"}</span>
+                </button>
 
                 <SectionBadge text="Project Showcase" />
               </div>
 
               {/* Title */}
-              <h1 className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.22] tracking-tight text-[#111111] mb-4 sm:mb-5">
-                {project.title}
+              <h1 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] mb-5 sm:mb-6 max-w-2xl font-sans">
+                {renderStyledTitle(project.title)}
               </h1>
 
               {/* Subtitle */}
-              <p className="text-[#575757] text-base sm:text-lg font-medium leading-relaxed mb-6 sm:mb-7 max-w-2xl">
+              <p className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] mb-7 sm:mb-8 max-w-2xl font-sans">
                 {project.description}
               </p>
 
               {/* Action Buttons: View Case Study + Get Proposal */}
-              <div className="flex flex-wrap items-center gap-4 mb-7">
+              <div className="flex flex-wrap items-center gap-4 mb-7 sm:mb-8">
                 <Link
                   to={`/case-study/${project.slug || project.id}`}
-                  className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-full font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5"
+                  state={{ from: fromPath || '/projects' }}
+                  className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-full font-bold text-[13px] sm:text-[14px] uppercase tracking-[0.02em] shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5 font-sans"
                 >
                   <span>Read Full Case Study</span>
                   <ArrowRight className="w-4 h-4" />
@@ -106,7 +163,7 @@ const ProjectDetail = () => {
                 <button
                   type="button"
                   onClick={() => setShowContactForm(true)}
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-gray-300 bg-white hover:border-gray-400 text-[#111111] font-bold text-xs uppercase tracking-wider transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-gray-300 bg-white hover:border-gray-400 text-[#111111] font-bold text-[13px] sm:text-[14px] uppercase tracking-[0.02em] transition-all font-sans cursor-pointer"
                 >
                   <span>Request Similar Project</span>
                 </button>
@@ -117,7 +174,7 @@ const ProjectDetail = () => {
                 {project.services.map((svc, i) => (
                   <span
                     key={i}
-                    className="px-3.5 py-1.5 rounded-lg border border-slate-200 bg-white text-[#333333] text-xs font-extrabold uppercase tracking-wider shadow-2xs"
+                    className="px-3.5 py-2 rounded-xl border border-slate-200/90 bg-white text-[#333333] hover:text-[#E31D2E] text-xs sm:text-[13px] font-semibold tracking-[0.04em] shadow-2xs font-sans"
                   >
                     {svc}
                   </span>

@@ -1,13 +1,14 @@
 // src/data/pricingConfig.js
-// Centralized Single Source of Truth for Pricing & Package System
+// Centralized Single Source of Truth for Pricing & Package System with Charm Pricing Strategy
 
 export const SERVICE_BASE_PRICES = {
-  web: 15000,
-  software: 25000,
-  app: 20000,
-  marketing: 12000,
-  cyber: 30000,
-  sustainability: 10000,
+  marketing: 11999,
+  video: 14999,
+  web: 14999,
+  software: 24999,
+  app: 19999,
+  cyber: 29999,
+  sustainability: 9999,
 };
 
 export const PACKAGE_MULTIPLIERS = {
@@ -24,31 +25,139 @@ export const DURATION_OPTIONS = [
 ];
 
 export const ADDONS_PRICING = {
-  extra_page: { name: "Extra Website Page", price: 1000, type: "qty", unit: "page" },
-  animation_section: { name: "Animation Section", price: 2500, type: "qty", unit: "section" },
-  landing_page: { name: "CRO Landing Page", price: 3000, type: "toggle" },
-  seo_pro: { name: "SEO Pro Execution", price: 4000, type: "toggle" },
-  hosting: { name: "Eco Green Hosting", price: 3000, type: "toggle" },
-  maintenance: { name: "Monthly Maintenance", price: 2500, type: "monthly" },
-  video_editing: { name: "Video Editing", price: 1500, type: "qty", unit: "video" },
-  instagram_reel: { name: "Instagram Reel", price: 900, type: "qty", unit: "reel" },
-  content_writing: { name: "Content Writing Article", price: 800, type: "qty", unit: "article" },
+  extra_page: { name: "Extra Website Page", price: 999, type: "qty", unit: "page" },
+  animation_section: { name: "Animation Section", price: 2499, type: "qty", unit: "section" },
+  landing_page: { name: "CRO Landing Page", price: 2999, type: "toggle" },
+  seo_pro: { name: "SEO Pro Execution", price: 3999, type: "toggle" },
+  hosting: { name: "Eco Green Hosting", price: 2999, type: "toggle" },
+  maintenance: { name: "Monthly Maintenance", price: 2499, type: "monthly" },
+  video_editing: { name: "Video Editing", price: 1499, type: "qty", unit: "video" },
+  instagram_reel: { name: "Instagram Reel", price: 899, type: "qty", unit: "reel" },
+  content_writing: { name: "Content Writing Article", price: 799, type: "qty", unit: "article" },
 };
 
 /**
- * Calculates Package Price from Service Base Price & Multiplier
- * Standard = Base * 1.0
- * Business = Base * 1.5
- * Enterprise = Base * 2.5
+ * Calculates Package Price from Service Base Price & Multiplier using Charm Pricing strategy
  */
 export const getPackagePrice = (serviceId, packageKey) => {
-  const basePrice = SERVICE_BASE_PRICES[serviceId] || 15000;
+  const basePrice = SERVICE_BASE_PRICES[serviceId] || 14999;
   const multiplier = PACKAGE_MULTIPLIERS[packageKey] || 1.0;
-  return Math.round(basePrice * multiplier);
+  const val = Math.round(basePrice * multiplier);
+  if (val % 1000 === 0) return val - 1;
+  if (val % 500 === 0) return val - 1;
+  if (val % 100 === 0) return val - 1;
+  return val;
 };
 
 // Complete Service Pillars Definitions derived strictly from Single Source of Truth
 export const SERVICES_CONFIG = [
+  {
+    id: "marketing",
+    title: "Digital Marketing",
+    desc: "Performance marketing, SEO execution, paid ads, content strategy, and rapid revenue growth.",
+    basePrice: SERVICE_BASE_PRICES.marketing,
+    packages: [
+      {
+        id: "standard",
+        title: "Brand Visibility",
+        idealFor: "Brand Launch & Awareness",
+        timeline: "Monthly",
+        price: getPackagePrice("marketing", "standard"), // ₹11,999
+        features: [
+          "Social Media Management (12 Posts)",
+          "On-page SEO Execution",
+          "Basic Content Calendar",
+          "Monthly Growth Report",
+        ],
+      },
+      {
+        id: "business",
+        title: "Performance Growth",
+        idealFor: "Lead Generation & Sales",
+        timeline: "Monthly",
+        price: getPackagePrice("marketing", "business"), // ₹17,999
+        features: [
+          "Paid Ads Management (Meta & Google)",
+          "Advanced SEO Execution & Ranking",
+          "8 Instagram Reels / Short Videos",
+          "CRO Landing Page Optimization",
+        ],
+      },
+      {
+        id: "enterprise",
+        title: "Dominion Strategy",
+        idealFor: "Omni-channel Dominance",
+        timeline: "Monthly",
+        price: getPackagePrice("marketing", "enterprise"), // ₹29,999
+        features: [
+          "Full Omni-Channel Execution",
+          "Global Campaign Scale",
+          "Premium Video Production",
+          "AI-Driven Analytics & CRO",
+        ],
+      },
+    ],
+    addons: [
+      { id: "instagram_reel", ...ADDONS_PRICING.instagram_reel },
+      { id: "video_editing", ...ADDONS_PRICING.video_editing },
+      { id: "content_writing", ...ADDONS_PRICING.content_writing },
+      { id: "landing_page", ...ADDONS_PRICING.landing_page },
+      { id: "seo_pro", ...ADDONS_PRICING.seo_pro },
+    ],
+  },
+  {
+    id: "video",
+    title: "Video Production",
+    desc: "Professional video editing, reel creation, commercial ad shoots, 3D motion graphics, and visual storytelling.",
+    basePrice: SERVICE_BASE_PRICES.video,
+    packages: [
+      {
+        id: "standard",
+        title: "Reel & Short Edition",
+        idealFor: "Social Media Reels & Short Ads",
+        timeline: "7 Days",
+        price: getPackagePrice("video", "standard"), // ₹14,999
+        features: [
+          "4 High-Quality Reels / Shorts",
+          "Professional Motion Graphics",
+          "Color Grading & Sound Mix",
+          "2 Rounds of Revisions",
+        ],
+      },
+      {
+        id: "business",
+        title: "Brand Commercial Pro",
+        idealFor: "Commercial Ads & Promo Video",
+        timeline: "14 Days",
+        price: getPackagePrice("video", "business"), // ₹22,499
+        features: [
+          "8 Reels & Brand Promo Commercial",
+          "4K Editing & Storyboarding",
+          "Custom Voiceover & Audio Mastering",
+          "Scriptwriting & Art Direction",
+        ],
+      },
+      {
+        id: "enterprise",
+        title: "Full Production Suite",
+        idealFor: "Full Campaign & TVC Production",
+        timeline: "30 Days",
+        price: getPackagePrice("video", "enterprise"), // ₹37,499
+        features: [
+          "Complete On-Location Multi-Cam Shoot",
+          "Full Cinema-Grade Post Production",
+          "3D VFX & Advanced Motion Graphics",
+          "Unlimited Raw & Edited Assets",
+        ],
+      },
+    ],
+    addons: [
+      { id: "instagram_reel", ...ADDONS_PRICING.instagram_reel },
+      { id: "video_editing", ...ADDONS_PRICING.video_editing },
+      { id: "content_writing", ...ADDONS_PRICING.content_writing },
+      { id: "landing_page", ...ADDONS_PRICING.landing_page },
+    ],
+  },
   {
     id: "web",
     title: "Web Development",
@@ -60,7 +169,7 @@ export const SERVICES_CONFIG = [
         title: "Standard Web",
         idealFor: "Startups & Small Sites",
         timeline: "14 Days",
-        price: getPackagePrice("web", "standard"), // ₹15,000
+        price: getPackagePrice("web", "standard"), // ₹14,999
         features: [
           "5 Pages Responsive Website",
           "Responsive Mobile Build",
@@ -74,7 +183,7 @@ export const SERVICES_CONFIG = [
         title: "Business Pro",
         idealFor: "Growing Companies & E-commerce",
         timeline: "30 Days",
-        price: getPackagePrice("web", "business"), // ₹22,500
+        price: getPackagePrice("web", "business"), // ₹22,499
         features: [
           "15 Pages Custom UI/UX Design",
           "Framer / React Micro-Animations",
@@ -88,7 +197,7 @@ export const SERVICES_CONFIG = [
         title: "Enterprise Suite",
         idealFor: "Scale-ups & Large Brands",
         timeline: "45 Days",
-        price: getPackagePrice("web", "enterprise"), // ₹37,500
+        price: getPackagePrice("web", "enterprise"), // ₹37,499
         features: [
           "Unlimited Pages & Scalability",
           "Full Custom Web Application",
@@ -119,7 +228,7 @@ export const SERVICES_CONFIG = [
         title: "MVP Build",
         idealFor: "Early Stage Products",
         timeline: "30 Days",
-        price: getPackagePrice("software", "standard"), // ₹25,000
+        price: getPackagePrice("software", "standard"), // ₹24,999
         features: [
           "Core Feature Architecture",
           "Single Platform Focus",
@@ -132,7 +241,7 @@ export const SERVICES_CONFIG = [
         title: "Custom SaaS",
         idealFor: "Growing SaaS Companies",
         timeline: "60 Days",
-        price: getPackagePrice("software", "business"), // ₹37,500
+        price: getPackagePrice("software", "business"), // ₹37,499
         features: [
           "Full SaaS Architecture",
           "Cloud Infrastructure Setup",
@@ -145,7 +254,7 @@ export const SERVICES_CONFIG = [
         title: "Enterprise Core",
         idealFor: "High-load Platforms",
         timeline: "90 Days",
-        price: getPackagePrice("software", "enterprise"), // ₹62,500
+        price: getPackagePrice("software", "enterprise"), // ₹62,499
         features: [
           "Complex Microservices",
           "High-level Encryption & Security",
@@ -171,7 +280,7 @@ export const SERVICES_CONFIG = [
         title: "Hybrid Starter",
         idealFor: "iOS & Android MVP",
         timeline: "25 Days",
-        price: getPackagePrice("app", "standard"), // ₹20,000
+        price: getPackagePrice("app", "standard"), // ₹19,999
         features: [
           "Cross-platform Build (React Native)",
           "Push Notifications",
@@ -184,7 +293,7 @@ export const SERVICES_CONFIG = [
         title: "Pro Experience",
         idealFor: "Feature-Rich Mobile Apps",
         timeline: "45 Days",
-        price: getPackagePrice("app", "business"), // ₹30,000
+        price: getPackagePrice("app", "business"), // ₹29,999
         features: [
           "Advanced Motion & Micro-animations",
           "Payment Gateway Integration",
@@ -197,7 +306,7 @@ export const SERVICES_CONFIG = [
         title: "Native Suite",
         idealFor: "High Performance Apps",
         timeline: "75 Days",
-        price: getPackagePrice("app", "enterprise"), // ₹50,000
+        price: getPackagePrice("app", "enterprise"), // ₹49,999
         features: [
           "Full Native Optimization",
           "Custom Hardware / Camera Access",
@@ -213,60 +322,6 @@ export const SERVICES_CONFIG = [
     ],
   },
   {
-    id: "marketing",
-    title: "Digital Marketing",
-    desc: "Performance marketing, SEO execution, paid ads, content, and revenue growth.",
-    basePrice: SERVICE_BASE_PRICES.marketing,
-    packages: [
-      {
-        id: "standard",
-        title: "Brand Visibility",
-        idealFor: "Brand Launch & Awareness",
-        timeline: "Monthly",
-        price: getPackagePrice("marketing", "standard"), // ₹12,000
-        features: [
-          "Social Media Management (12 Posts)",
-          "On-page SEO Execution",
-          "Basic Content Calendar",
-          "Monthly Growth Report",
-        ],
-      },
-      {
-        id: "business",
-        title: "Performance Growth",
-        idealFor: "Lead Generation & Sales",
-        timeline: "Monthly",
-        price: getPackagePrice("marketing", "business"), // ₹18,000
-        features: [
-          "Paid Ads Management (Meta & Google)",
-          "Advanced SEO Execution & Ranking",
-          "8 Instagram Reels / Short Videos",
-          "CRO Landing Page Optimization",
-        ],
-      },
-      {
-        id: "enterprise",
-        title: "Dominion Strategy",
-        idealFor: "Omni-channel Dominance",
-        timeline: "Monthly",
-        price: getPackagePrice("marketing", "enterprise"), // ₹30,000
-        features: [
-          "Full Omni-Channel Execution",
-          "Global Campaign Scale",
-          "Premium Video Production",
-          "AI-Driven Analytics & CRO",
-        ],
-      },
-    ],
-    addons: [
-      { id: "instagram_reel", ...ADDONS_PRICING.instagram_reel },
-      { id: "video_editing", ...ADDONS_PRICING.video_editing },
-      { id: "content_writing", ...ADDONS_PRICING.content_writing },
-      { id: "landing_page", ...ADDONS_PRICING.landing_page },
-      { id: "seo_pro", ...ADDONS_PRICING.seo_pro },
-    ],
-  },
-  {
     id: "cyber",
     title: "Cyber Security",
     desc: "24/7 threat protection, vulnerability audits, zero-trust architecture, and compliance.",
@@ -277,7 +332,7 @@ export const SERVICES_CONFIG = [
         title: "Security Audit",
         idealFor: "Security Risk Inspection",
         timeline: "10 Days",
-        price: getPackagePrice("cyber", "standard"), // ₹30,000
+        price: getPackagePrice("cyber", "standard"), // ₹29,999
         features: [
           "Vulnerability Assessment",
           "Penetration Testing",
@@ -290,7 +345,7 @@ export const SERVICES_CONFIG = [
         title: "Threat Shield",
         idealFor: "Active Business Protection",
         timeline: "Ongoing",
-        price: getPackagePrice("cyber", "business"), // ₹45,000
+        price: getPackagePrice("cyber", "business"), // ₹44,999
         features: [
           "24/7 Threat Monitoring",
           "Managed Firewall Protection",
@@ -303,7 +358,7 @@ export const SERVICES_CONFIG = [
         title: "Digital Fortress",
         idealFor: "Enterprise & Finance",
         timeline: "Ongoing",
-        price: getPackagePrice("cyber", "enterprise"), // ₹75,000
+        price: getPackagePrice("cyber", "enterprise"), // ₹74,999
         features: [
           "Zero-Trust Architecture",
           "End-to-End Encryption",
@@ -328,7 +383,7 @@ export const SERVICES_CONFIG = [
         title: "Green Initiative",
         idealFor: "Digital Carbon Reduction",
         timeline: "14 Days",
-        price: getPackagePrice("sustainability", "standard"), // ₹10,000
+        price: getPackagePrice("sustainability", "standard"), // ₹9,999
         features: [
           "Digital Carbon Audit",
           "Green Hosting Migration",
@@ -341,7 +396,7 @@ export const SERVICES_CONFIG = [
         title: "Eco-Optimization",
         idealFor: "Sustainable Digital Core",
         timeline: "30 Days",
-        price: getPackagePrice("sustainability", "business"), // ₹15,000
+        price: getPackagePrice("sustainability", "business"), // ₹14,999
         features: [
           "Smart Asset & Code Optimization",
           "Energy-Efficiency Plan",
@@ -354,7 +409,7 @@ export const SERVICES_CONFIG = [
         title: "Regenerative Core",
         idealFor: "Net-Zero Tech Stacks",
         timeline: "45 Days",
-        price: getPackagePrice("sustainability", "enterprise"), // ₹25,000
+        price: getPackagePrice("sustainability", "enterprise"), // ₹24,999
         features: [
           "Circular Tech Economy Strategy",
           "Net-Zero Implementation",
