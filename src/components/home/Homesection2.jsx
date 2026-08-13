@@ -53,27 +53,25 @@ export default function FeaturedWorks() {
     hasDraggedRef.current = false;
     startYRef.current = e.clientY;
     startScrollTopRef.current = scrollContainerRef.current ? scrollContainerRef.current.scrollTop : 0;
-
-    if (scrollContainerRef.current) {
-      try {
-        scrollContainerRef.current.setPointerCapture(e.pointerId);
-      } catch (err) {
-        // Fallback for environment constraints
-      }
-    }
-    setIsDraggingState(true);
   };
 
   const handlePointerMove = (e) => {
     if (!isDraggingRef.current) return;
 
     const deltaY = e.clientY - startYRef.current;
-    if (Math.abs(deltaY) > 6) {
-      hasDraggedRef.current = true;
-    }
-
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTop = startScrollTopRef.current - deltaY;
+    if (Math.abs(deltaY) > 10) {
+      if (!hasDraggedRef.current) {
+        hasDraggedRef.current = true;
+        setIsDraggingState(true);
+        if (scrollContainerRef.current) {
+          try {
+            scrollContainerRef.current.setPointerCapture(e.pointerId);
+          } catch (err) {}
+        }
+      }
+      if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollTop = startScrollTopRef.current - deltaY;
+      }
     }
   };
 
@@ -81,12 +79,10 @@ export default function FeaturedWorks() {
     if (!isDraggingRef.current) return;
     isDraggingRef.current = false;
 
-    if (scrollContainerRef.current) {
+    if (scrollContainerRef.current && hasDraggedRef.current) {
       try {
         scrollContainerRef.current.releasePointerCapture(e.pointerId);
-      } catch (err) {
-        // Fallback
-      }
+      } catch (err) {}
     }
     setIsDraggingState(false);
   };
@@ -208,7 +204,6 @@ export default function FeaturedWorks() {
     setActiveIndex(index);
     const targetPage = Math.floor(index / PROJECTS_PER_PAGE);
     setScrollPage(targetPage);
-    scrollToItem(index);
 
     const pageNum = targetPage + 1;
     const maxWStart = Math.max(1, totalPages - 6);
