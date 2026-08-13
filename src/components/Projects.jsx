@@ -3,18 +3,18 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroLayout from "./common/HeroLayout";
 import ContactForm from "./ContactForm";
-import { ArrowUpRight, ArrowRight, Star, Check, TrendingUp } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Star, Check, TrendingUp, Filter, ChevronDown } from "lucide-react";
 import "../index.css";
 import { data, blogPosts } from "../constants";
 import { projects } from "../data/projects";
 import ProjectDetailModal from "./ProjectDetailModal";
 import "./Projects.css"
 
-import img1 from '../assets/project-cover/photo 1.png';
-import img2 from '../assets/project-cover/photo 2.png';
-import img3 from '../assets/project-cover/photo 3.png';
-import img4 from '../assets/project-cover/photo 4.png';
-import img5 from '../assets/project-cover/photo 5.png';
+import img1 from '../assets/project-cover/photo 1.webp';
+import img2 from '../assets/project-cover/photo 2.webp';
+import img3 from '../assets/project-cover/photo 3.webp';
+import img4 from '../assets/project-cover/photo 4.webp';
+import img5 from '../assets/project-cover/photo 5.webp';
 
 // ── Portfolio Hero Helper Components ──
 function ProjectCounter({ targetNum, suffix = "+", label, delay = 0 }) {
@@ -187,9 +187,15 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [counts, setCounts] = useState({ clients: 0, projects: 0, tieups: 0 });
   const [imageIndex, setImageIndex] = useState(0);
+  const [selectedYear, setSelectedYear] = useState("ALL");
   const sectionRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
+
+  const filteredProjects = projects.filter((project) => {
+    if (selectedYear === "ALL") return true;
+    return String(project.year) === selectedYear;
+  });
 
   // Scroll to project card on return navigation
   useEffect(() => {
@@ -468,10 +474,38 @@ const Projects = () => {
 
           {/* Unified Scrollable Project Container */}
           <div className="relative w-full rounded-[2.5rem] p-4 sm:p-6 lg:p-8 bg-neutral-50/60 border border-neutral-200/80 shadow-[0_20px_50px_rgba(0,0,0,0.03)] backdrop-blur-xl">
+            {/* Top Row: Year Filter Select Dropdown on Top Left */}
+            <div className="flex items-center justify-between gap-4 mb-6 px-1 flex-wrap">
+              <div className="flex items-center gap-2.5">
+                <label htmlFor="year-filter-select" className="text-xs font-black uppercase tracking-wider text-neutral-500 flex items-center gap-1.5 cursor-pointer">
+                  <Filter className="w-3.5 h-3.5 text-[#E31D2E]" />
+                  <span>Filter Year:</span>
+                </label>
+
+                <div className="relative">
+                  <select
+                    id="year-filter-select"
+                    value={selectedYear}
+                    onChange={(e) => setSelectedYear(e.target.value)}
+                    className="appearance-none bg-white text-neutral-900 font-extrabold text-xs tracking-wider px-3.5 py-1.5 pr-8 rounded-full border border-neutral-200/90 shadow-2xs hover:border-black/30 focus:border-[#E31D2E] focus:outline-none cursor-pointer transition-all duration-200"
+                  >
+                    <option value="ALL">All Years</option>
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                  </select>
+                  <ChevronDown className="w-3.5 h-3.5 text-neutral-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                </div>
+              </div>
+
+              <span className="text-[11px] font-extrabold text-neutral-500 tracking-wider uppercase bg-white/80 border border-neutral-200/80 px-3.5 py-1.5 rounded-full shadow-2xs">
+                Showing {filteredProjects.length} Projects
+              </span>
+            </div>
+
             {/* Scrollable Container with Custom Scrollbar */}
             <div className="max-h-[660px] sm:max-h-[720px] lg:max-h-[760px] overflow-y-auto overscroll-contain pr-2 sm:pr-3 custom-scrollbar">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch py-2">
-                {projects.map((project, index) => {
+                {filteredProjects.map((project, index) => {
                   const categoryTag = project.tags || "Featured Case Study";
                   const description = project.overview?.paragraph || project.description;
                   const techTags = project.services?.slice(0, 3) || ["Digital Strategy"];

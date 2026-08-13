@@ -1,20 +1,21 @@
 // src/data/projects.js
-import studiosImg from "../assets/project-cover/3D studios (2).png";
-import nofaImg from "../assets/project-cover/Nofa.png";
-import adhithyaImg from "../assets/project-cover/AF (2).png";
-import leafImg from "../assets/project-cover/Leaf world (3).png";
-import shipyonImg from "../assets/project-cover/shipyon.png";
-import mkExportsImg from "../assets/project-cover/mk_exports.png";
-import pathcoreImg from "../assets/project-cover/pathcore.png";
-import mohansPhysicsImg from "../assets/project-cover/mohans_physics.png";
-import spvcImg from "../assets/project-cover/spvc.png";
-import proPortfoliosImg from "../assets/project-cover/professional_portfolios.png";
-import lowcodePortfoliosImg from "../assets/project-cover/nocode_portfolios.png";
+import studiosImg from "../assets/project-cover/3D studios (2).webp";
+import nofaImg from "../assets/project-cover/Nofa.webp";
+import adhithyaImg from "../assets/project-cover/AF (2).webp";
+import leafImg from "../assets/project-cover/Leaf world (3).webp";
+import shipyonImg from "../assets/project-cover/shipyon.webp";
+import mkExportsImg from "../assets/project-cover/mk_exports.webp";
+import pathcoreImg from "../assets/project-cover/pathcore.webp";
+import mohansPhysicsImg from "../assets/project-cover/mohans_physics.webp";
+import spvcImg from "../assets/project-cover/spvc.webp";
+import proPortfoliosImg from "../assets/project-cover/professional_portfolios.webp";
+import lowcodePortfoliosImg from "../assets/project-cover/nocode_portfolios.webp";
 
 export const projects = [
   {
     id: 1,
     slug: "3d-studios",
+    year: "2025",
     breadcrumb: "Blog / 3D Studios – Transforming Event Media Production",
     title: "3D Studios – Event Photography & Videography Workflow System",
     description: "Discover how we built impactful digital solutions for our clients.",
@@ -72,6 +73,7 @@ export const projects = [
   {
     id: 2,
     slug: "adhithya-fashions",
+    year: "2025",
     breadcrumb: "Blog / Adhithya Fashions – Bringing a Menswear Legacy Brand Online",
     title: "Adhithya Fashions – Complete Digital Brand Transformation",
     description: "Discover how we built impactful digital solutions for our clients.",
@@ -132,6 +134,7 @@ export const projects = [
   {
     id: 3,
     slug: "nofa-beauty-center",
+    year: "2025",
     breadcrumb: "Blog / Nofa Beauty Centre – Elevating the Salon Experience Online",
     title: "Nofa Beauty Centre – Premium Social Media & Engagement System",
     description: "Discover how we built impactful digital solutions for our clients.",
@@ -189,6 +192,7 @@ export const projects = [
   {
     id: 4,
     slug: "leaf-world",
+    year: "2026",
     breadcrumb: "Blog / Leaf World – Powering a Sustainable E-Commerce Brand",
     title: "Leaf World – Conversion-Focused E-Commerce System",
     description: "Discover how we built impactful digital solutions for our clients.",
@@ -246,6 +250,7 @@ export const projects = [
   {
     id: 5,
     slug: "shipyon",
+    year: "2026",
     breadcrumb: "Blog / Shipyon – Building a Brand From Zero",
     title: "Shipyon – Complete Brand Identity & Digital Launch",
     description: "Discover how we built impactful digital solutions for our clients.",
@@ -307,6 +312,7 @@ export const projects = [
   {
     id: 6,
     slug: "mk-exports",
+    year: "2026",
     breadcrumb: "Blog / MK Exports – Bringing Structure to an Existing Brand",
     title: "MK Exports – Brand Identity & Digital Refresh",
     description: "Discover how we built impactful digital solutions for our clients.",
@@ -366,6 +372,7 @@ export const projects = [
   {
     id: 7,
     slug: "pathcore-academy",
+    year: "2026",
     breadcrumb: "Blog / Pathcore Academy – Building Trust for a Career-Defining Decision",
     title: "Pathcore Academy – Brand & Digital Trust-Building System",
     description: "Discover how we built impactful digital solutions for our clients.",
@@ -425,6 +432,7 @@ export const projects = [
   {
     id: 8,
     slug: "mohans-physics-classes",
+    year: "2025",
     breadcrumb: "Blog / Mohan's Physics Classes – A Professional Website, Delivered Fast",
     title: "Mohan's Physics Classes – No-Code Website Build",
     description: "Discover how we built impactful digital solutions for our clients.",
@@ -480,6 +488,7 @@ export const projects = [
   {
     id: 9,
     slug: "spvc-clothing",
+    year: "2025",
     breadcrumb: "Blog / SPVC – A Digital Storefront for a Manufacturing Powerhouse",
     title: "Sri Populus Ventus Clothing (SPVC) – No-Code Website Build",
     description: "Discover how we built impactful digital solutions for our clients.",
@@ -535,6 +544,7 @@ export const projects = [
   {
     id: 10,
     slug: "professional-portfolios",
+    year: "2025",
     breadcrumb: "Blog / Professional Portfolios – Personal Branding for Working Professionals",
     title: "Professional Portfolio & Profile Websites",
     description: "Discover how we built impactful digital solutions for our clients.",
@@ -590,6 +600,7 @@ export const projects = [
   {
     id: 11,
     slug: "lowcode-portfolios",
+    year: "2025",
     breadcrumb: "Blog / Low-Code Portfolios – Fast, Professional Profile Websites",
     title: "Low-Code & No-Code Portfolio & Profile Websites",
     description: "Discover how we built impactful digital solutions for our clients.",

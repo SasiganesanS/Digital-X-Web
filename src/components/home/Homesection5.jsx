@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // CLIENT LOGO IMPORTS
-import vishnu from "../../assets/clients/School.jpg";
-import vilcet from "../../assets/clients/VILCET.png";
-import jkk from "../../assets/clients/jkk.png";
-import thilaga from "../../assets/clients/Thilaga-Impex.png";
-import capturever from "../../assets/clients/Captureever.png";
+import vishnu from "../../assets/clients/School.webp";
+import vilcet from "../../assets/clients/VILCET.webp";
+import jkk from "../../assets/clients/jkk.webp";
+import thilaga from "../../assets/clients/Thilaga-Impex.webp";
+import capturever from "../../assets/clients/Captureever.webp";
 
 // Simple SVG Icons for buttons
 const ChevronLeft = () => (

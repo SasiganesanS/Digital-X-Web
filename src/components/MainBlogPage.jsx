@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PHero from "../assets/P-Hero-3.jpg";
+import PHero from "../assets/P-Hero-3.webp";
 import { motion } from "framer-motion";
 import { FaCalendar, FaUser, FaArrowRight, FaClock } from "react-icons/fa";
 import "./MainBlog.css";

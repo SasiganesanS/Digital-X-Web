@@ -3,16 +3,16 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import TiltedCard from "./TiltedCard";
 import SectionBadge from "./common/SectionBadge";
-import pranesh from "../assets/team/Pranesh.png";
-import Jaillesh from "../assets/team/Jaillesh-Kathirvel.png";
+import pranesh from "../assets/team/Pranesh.webp";
+import Jaillesh from "../assets/team/Jaillesh-Kathirvel.webp";
 import naveen from "../assets/team/Naveen.webp";
-import sathya from "../assets/team/Satya.jpg";
-import Bright from "../assets/team/Bright.png";
-import janarathanan from "../assets/team/Janarthanan.png";
-import yogech from "../assets/team/Yogech.png";
-import ram from "../assets/team/Ramachandran.png";
-import Balaji from "../assets/team/balaji.jpg";
-import BaskaranK from "../assets/team/Baskaran-Krishnaswamy.png";
+import sathya from "../assets/team/Satya.webp";
+import Bright from "../assets/team/Bright.webp";
+import janarathanan from "../assets/team/Janarthanan.webp";
+import yogech from "../assets/team/Yogech.webp";
+import ram from "../assets/team/Ramachandran.webp";
+import Balaji from "../assets/team/balaji.webp";
+import BaskaranK from "../assets/team/Baskaran-Krishnaswamy.webp";
 
 // Only these members show a bio popup — must match the `id` used in teamMembers below
 const BIO_MEMBERS = new Set([1, 3, 7]);

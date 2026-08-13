@@ -7,13 +7,13 @@ import "./serviceCard.css";
 
 // Import service images
 
-import webImg from "../../assets/services-img/web.jpeg";
+import webImg from "../../assets/services-img/web.webp";
 
-import mobileImg from "../../assets/services-img/mobile.jpeg";
+import mobileImg from "../../assets/services-img/mobile.webp";
 
-import cloudImg from "../../assets/services-img/cloud.jpeg";
+import cloudImg from "../../assets/services-img/cloud.webp";
 
-import uiImg from "../../assets/services-img/ui.jpeg";
+import uiImg from "../../assets/services-img/ui.webp";
 
 // Service data with images
 

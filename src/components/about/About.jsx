@@ -11,7 +11,7 @@ import {
   Video,
   ArrowRight
 } from "lucide-react";
-import pyLogo from "../../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
+import pyLogo from "../../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
 import { motion, AnimatePresence } from "framer-motion";
 import Teams from "../Teams";
 import HeroLayout from "../common/HeroLayout";

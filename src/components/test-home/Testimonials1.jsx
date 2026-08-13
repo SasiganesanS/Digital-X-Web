@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper/modules";
 import { testimonials } from "../../data/testimonials";
-import testimonialBg from "../backgrounds/testimonal-bg.jpeg";
+import testimonialBg from "../backgrounds/testimonal-bg.webp";
 
 // Import Swiper styles
 import "swiper/css";

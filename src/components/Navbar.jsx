@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ArrowRight, ArrowUpRight, Search } from 'lucide-react';
-import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
+import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
 
 const navItemsList = [
   { label: "Home", href: "/" },

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
+import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
 import {
   FaInstagram,
   FaLinkedinIn,

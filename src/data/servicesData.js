@@ -1,15 +1,15 @@
-import seoImg from "../assets/services-img/SEO (2).png";
-import smmImg from "../assets/services-img/SMM (2).png";
-import adsImg from "../assets/services-img/ADS (2).png";
-import contentImg from "../assets/services-img/content marketing (2).png";
-import emailImg from "../assets/services-img/Email marketing (2).png";
+import seoImg from "../assets/services-img/SEO (2).webp";
+import smmImg from "../assets/services-img/SMM (2).webp";
+import adsImg from "../assets/services-img/ADS (2).webp";
+import contentImg from "../assets/services-img/content marketing (2).webp";
+import emailImg from "../assets/services-img/Email marketing (2).webp";
 import videoProdImg from "../assets/services-img/video-production.svg";
 import performanceImg from "../assets/services-img/performance-marketing.svg";
-import webDesignImg from "../assets/services-img/web desigh.png";
-import ormImg from "../assets/services-img/ORM (2).png";
-import influencerImg from "../assets/services-img/influencer marketing (2).png";
-import analyticsImg from "../assets/services-img/Analytics & report.png";
-import ecommerceImg from "../assets/services-img/Ecommerce marketing (2).png";
+import webDesignImg from "../assets/services-img/web desigh.webp";
+import ormImg from "../assets/services-img/ORM (2).webp";
+import influencerImg from "../assets/services-img/influencer marketing (2).webp";
+import analyticsImg from "../assets/services-img/Analytics & report.webp";
+import ecommerceImg from "../assets/services-img/Ecommerce marketing (2).webp";
 
 /**
  * Single source of truth for all services.

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import pyLogo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
-import career01 from "../assets/Careers/career01.png";
-import career02 from "../assets/Careers/career02.png";
-import career03 from "../assets/Careers/career03.png";
-import career04 from "../assets/Careers/career04.png";
-import career05 from "../assets/Careers/career05.png";
-import career06 from "../assets/Careers/career06.png";
-import career07 from "../assets/Careers/career07.png";
-import career08 from "../assets/Careers/career08.png";
+import pyLogo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
+import career01 from "../assets/Careers/career01.webp";
+import career02 from "../assets/Careers/career02.webp";
+import career03 from "../assets/Careers/career03.webp";
+import career04 from "../assets/Careers/career04.webp";
+import career05 from "../assets/Careers/career05.webp";
+import career06 from "../assets/Careers/career06.webp";
+import career07 from "../assets/Careers/career07.webp";
+import career08 from "../assets/Careers/career08.webp";
 
 const DEFAULT_MEMBERS = [
   { id: 1, image: career01, alt: "Marketing Dashboard", title: "Marketing", sub: "Dashboard" },

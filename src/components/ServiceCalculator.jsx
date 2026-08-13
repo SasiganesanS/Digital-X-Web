@@ -1,12 +1,12 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import HeroLayout from "./common/HeroLayout";
 import "./ServiceCalculator.css";
-import balajiPortraits from '../assets/tie/Balaji-Portraits.jpg';
-import ibodhiAcademy from '../assets/tie/ibodhi-academy-removebg.png';
-import vilcet from '../assets/tie/VILCET-removebg.png';
-import shipyon from '../assets/tie/Shipyon.png';
-import pt from '../assets/tie/pt.png';
-import ourServicesImg from "../assets/services-img/digital.jpeg";
+import balajiPortraits from '../assets/tie/Balaji-Portraits.webp';
+import ibodhiAcademy from '../assets/tie/ibodhi-academy-removebg.webp';
+import vilcet from '../assets/tie/VILCET-removebg.webp';
+import shipyon from '../assets/tie/Shipyon.webp';
+import pt from '../assets/tie/pt.webp';
+import ourServicesImg from "../assets/services-img/digital.webp";
 import servicesData from "../data/servicesData";
 import ProjectBriefModal from "./ProjectBriefModal";
 import SectionBadge from "./common/SectionBadge";

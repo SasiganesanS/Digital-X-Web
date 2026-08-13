@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 import "./TrustedBy.css"; // We'll create this for the marquee animation
 
 // Import your client logos
-import vishnu from "../../assets/clients/School.jpg";
-import vilcet from "../../assets/clients/VILCET.png";
-import jkk from "../../assets/clients/jkk.png";
-import thilaga from "../../assets/clients/Thilaga-Impex.png";
-import capturever from "../../assets/clients/Captureever.png";
+import vishnu from "../../assets/clients/School.webp";
+import vilcet from "../../assets/clients/VILCET.webp";
+import jkk from "../../assets/clients/jkk.webp";
+import thilaga from "../../assets/clients/Thilaga-Impex.webp";
+import capturever from "../../assets/clients/Captureever.webp";
 // Add 1-3 more logos here if you have them for a smoother scroll
 
 // We'll put them in an array to make it easy to manage
