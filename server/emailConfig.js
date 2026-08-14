@@ -1,30 +1,37 @@
 const nodemailer = require('nodemailer');
 
-// Create email transporter
-const transporter = nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: process.env.SMTP_PORT,
-    secure: true,
-    auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
-    },
-    tls: {
-        rejectUnauthorized: false
-    }
-});
+// Fallback SMTP Transporter Setup
+const createTransporter = () => {
+    const host = process.env.SMTP_HOST || process.env.MAIL_HOST || 'smtp.hostinger.com';
+    const port = parseInt(process.env.SMTP_PORT || process.env.MAIL_PORT || '465');
+    const isSecure = process.env.SMTP_SECURE === 'true' || port === 465;
+    const user = process.env.SMTP_USERNAME || process.env.SMTP_USER || process.env.MAIL_USER;
+    const pass = process.env.SMTP_PASSWORD || process.env.MAIL_PASSWORD || process.env.SMTP_PASS || process.env.EMAIL_PASS || '';
 
-// Email queue implementation
-const emailQueue = [];
-let isProcessingQueue = false;
-const DELAY_BETWEEN_EMAILS = 5000; // 5 seconds delay between emails to avoid rate limits
+    return nodemailer.createTransport({
+        host,
+        port,
+        secure: isSecure,
+        auth: {
+            user,
+            pass
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    });
+};
+
+const transporter = createTransporter();
 
 // Helper function to send email
 const sendEmail = async(mailOptions) => {
     try {
+        const fromName = process.env.SMTP_FROM_NAME || process.env.EMAIL_FROM_NAME || 'Praskla Digital X';
+        const fromEmail = process.env.SMTP_FROM_EMAIL || process.env.SMTP_USERNAME || process.env.SMTP_USER || process.env.MAIL_USER;
         console.log('Attempting to send email to:', mailOptions.to);
         const info = await transporter.sendMail({
-            from: `"${process.env.FROM_NAME}" <${process.env.FROM_EMAIL}>`,
+            from: `"${fromName}" <${fromEmail}>`,
             ...mailOptions
         });
         console.log('Email sent:', info.messageId);
@@ -35,23 +42,24 @@ const sendEmail = async(mailOptions) => {
     }
 };
 
-// Function to add emails to queue
+// Email queue implementation
+const emailQueue = [];
+let isProcessingQueue = false;
+const DELAY_BETWEEN_EMAILS = 5000;
+
 const queueEmail = (mailOptions) => {
     return new Promise((resolve) => {
-        // Add the email to the queue with a callback
         emailQueue.push({
             mailOptions,
             callback: (result) => resolve(result)
         });
 
-        // Start processing the queue if it's not already being processed
         if (!isProcessingQueue) {
             processEmailQueue();
         }
     });
 };
 
-// Function to process the email queue
 const processEmailQueue = async() => {
     if (isProcessingQueue || emailQueue.length === 0) return;
 
@@ -63,14 +71,9 @@ const processEmailQueue = async() => {
             const { mailOptions, callback } = emailQueue.shift();
 
             console.log(`Processing email to ${mailOptions.to} (${emailQueue.length} remaining in queue)`);
-
-            // Send the email
             const result = await sendEmail(mailOptions);
-
-            // Call the callback with the result
             callback(result);
 
-            // Add delay between emails to avoid hitting rate limits
             if (emailQueue.length > 0) {
                 console.log(`Waiting ${DELAY_BETWEEN_EMAILS/1000} seconds before sending next email...`);
                 await new Promise(resolve => setTimeout(resolve, DELAY_BETWEEN_EMAILS));
@@ -84,14 +87,10 @@ const processEmailQueue = async() => {
     }
 };
 
-// Send emails in background but now using the queue
 const sendEmailsInBackground = (adminOptions, userOptions) => {
-    // Queue admin email
     queueEmail(adminOptions)
         .then(result => {
             console.log('Admin email queued result:', result);
-
-            // Queue user email if provided
             if (userOptions) {
                 return queueEmail(userOptions);
             }
@@ -107,7 +106,7 @@ const sendEmailsInBackground = (adminOptions, userOptions) => {
 };
 
 module.exports = {
-    sendEmail: queueEmail, // Replace direct sending with queueing
+    sendEmail: queueEmail,
     sendEmailsInBackground,
     getQueueStatus: () => ({
         queueLength: emailQueue.length,

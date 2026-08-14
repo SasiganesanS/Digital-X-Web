@@ -15,7 +15,12 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL || 'sasiganesan7421@gmail.com';
+const MARKETING_EMAIL = process.env.TEST_MODE === 'true' && process.env.TEST_EMAIL
+  ? process.env.TEST_EMAIL
+  : (process.env.MARKETING_EMAIL || process.env.ADMIN_EMAIL || 'marketing@prasklatechnology.com');
+const SMTP_FROM_NAME = process.env.SMTP_FROM_NAME || process.env.EMAIL_FROM_NAME || 'Praskla Digital X';
+const SMTP_FROM_EMAIL = process.env.SMTP_FROM_EMAIL || process.env.SMTP_USERNAME || process.env.SMTP_USER || process.env.MAIL_USER || MARKETING_EMAIL;
+const ADMIN_EMAIL = MARKETING_EMAIL;
 
 // Create uploads directory if it doesn't exist
 const uploadsDir = path.join(__dirname, 'uploads');
@@ -77,17 +82,107 @@ const apiLimiter = rateLimit({
 });
 app.use('/api/', apiLimiter);
 
-// Nodemailer Transporter Setup
+// Nodemailer Transporter Setup (Fallback Engine)
 const createTransporter = () => {
+  const host = process.env.SMTP_HOST || process.env.MAIL_HOST || 'smtp.hostinger.com';
+  const port = parseInt(process.env.SMTP_PORT || process.env.MAIL_PORT || '465');
+  const isSecure = process.env.SMTP_SECURE === 'true' || port === 465;
+  const user = process.env.SMTP_USERNAME || process.env.SMTP_USER || process.env.MAIL_USER || SMTP_FROM_EMAIL;
+  const pass = process.env.SMTP_PASSWORD || process.env.MAIL_PASSWORD || process.env.SMTP_PASS || process.env.EMAIL_PASS || '';
+
   return nodemailer.createTransport({
-    host: process.env.MAIL_HOST || 'smtp.gmail.com',
-    port: parseInt(process.env.MAIL_PORT || '587'),
-    secure: process.env.MAIL_PORT === '465', // true for 465, false for other ports
+    host,
+    port,
+    secure: isSecure,
     auth: {
-      user: process.env.MAIL_USER || 'sasiganesan7421@gmail.com',
-      pass: process.env.MAIL_PASSWORD || process.env.EMAIL_PASS || '',
+      user,
+      pass,
     },
   });
+};
+
+// HTML Email Template Compiler
+const loadEmailTemplate = (templateName, variables = {}) => {
+  try {
+    const filePath = path.join(__dirname, 'templates', `${templateName}.html`);
+    if (!fs.existsSync(filePath)) {
+      return null;
+    }
+    let content = fs.readFileSync(filePath, 'utf8');
+    Object.keys(variables).forEach((key) => {
+      const regex = new RegExp(`{{${key}}}`, 'g');
+      content = content.replace(regex, variables[key] || '');
+    });
+    return content;
+  } catch (err) {
+    console.error(`Error loading email template ${templateName}:`, err.message);
+    return null;
+  }
+};
+
+// Universal Email Dispatcher (Primary Mail/PY REST API Engine, Fallback Hostinger SMTP Engine)
+const dispatchEmail = async ({ to, subject, html, template, variables }) => {
+  const mailApiUrl = process.env.MAIL_API_URL;
+  const apiKey = process.env.MAIL_API_KEY || process.env.SMTP_API_KEY;
+
+  // 1. Primary Engine: Mail/PY REST API
+  if (mailApiUrl && apiKey) {
+    try {
+      let payload;
+      if (template && !html) {
+        payload = {
+          api_key: apiKey,
+          from_name: SMTP_FROM_NAME,
+          to,
+          template,
+          variables,
+        };
+      } else {
+        payload = {
+          api_key: apiKey,
+          from_name: SMTP_FROM_NAME,
+          to,
+          subject,
+          html,
+        };
+      }
+
+      const res = await fetch(mailApiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Origin': 'http://localhost:3001',
+          'Authorization': `Bearer ${apiKey}`,
+          'X-API-Key': apiKey,
+        },
+        body: JSON.stringify(payload),
+      });
+      const data = await res.json();
+      if (res.ok && data.success !== false) {
+        console.log(`[PRIMARY MAIL API SUCCESS] Email sent to ${to} (Request ID: ${data.request_id || 'OK'})`);
+        return true;
+      }
+      console.warn(`[PRIMARY MAIL API WARN] API dispatch failed for ${to}, trying Fallback SMTP:`, data.error || data.message);
+    } catch (apiErr) {
+      console.warn(`[PRIMARY MAIL API WARN] API error for ${to}, trying Fallback SMTP:`, apiErr.message);
+    }
+  }
+
+  // 2. Fallback Engine: Hostinger / Standard SMTP
+  try {
+    const transporter = createTransporter();
+    const info = await transporter.sendMail({
+      from: `"${SMTP_FROM_NAME}" <${SMTP_FROM_EMAIL}>`,
+      to,
+      subject,
+      html,
+    });
+    console.log(`[FALLBACK SMTP SUCCESS] Email sent to ${to} via SMTP. Message ID: ${info.messageId}`);
+    return true;
+  } catch (mailErr) {
+    console.error(`[SMTP ERROR] Could not send email to ${to}:`, mailErr.message);
+    return false;
+  }
 };
 
 // ID Generators
@@ -138,8 +233,20 @@ app.post('/api/contact', async (req, res) => {
       ]
     );
 
-    // 2. Prepare Admin Email
-    const adminHtml = `
+    // 2. Prepare & Send Admin Email (Digital X - Admin Template ONLY to MARKETING_EMAIL)
+    const adminTemplateVars = {
+      LEAD_ID: leadId,
+      NAME: name.trim(),
+      EMAIL: email.trim(),
+      PHONE: phone.trim(),
+      COMPANY: company ? company.trim() : 'N/A',
+      SERVICE: interestedService || 'General Inquiry',
+      MESSAGE: message.trim(),
+      SOURCE_PAGE: sourcePage || 'Website Reach Us Modal',
+      DATE: new Date(timestamp).toLocaleString(),
+    };
+
+    const fallbackAdminHtml = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; color: #111; line-height: 1.6; border: 1px solid #eee; padding: 24px; borderRadius: 12px;">
         <h2 style="color: #E31D2E; margin-top: 0;">New Website Enquiry — Praskla Digital X</h2>
         <p style="background: #F8F9FA; padding: 10px 14px; border-left: 4px solid #E31D2E; font-weight: bold;">
@@ -160,33 +267,40 @@ app.post('/api/contact', async (req, res) => {
         </div>
       </div>
     `;
+    const adminHtml = loadEmailTemplate('digital-x-admin', adminTemplateVars) || fallbackAdminHtml;
 
-    let emailSent = false;
-    try {
-      const transporter = createTransporter();
-      console.log(`[SMTP] Attempting to send enquiry email from ${process.env.MAIL_USER || 'sasiganesan7421@gmail.com'} to ${ADMIN_EMAIL}...`);
-      const info = await transporter.sendMail({
-        from: `"Praskla Digital X Web" <${process.env.MAIL_USER || 'sasiganesan7421@gmail.com'}>`,
-        to: ADMIN_EMAIL,
-        subject: 'New Website Enquiry — Praskla Digital X',
-        html: adminHtml,
+    // Admin Notification -> ONLY to marketing@prasklatechnology.com
+    const adminEmailSent = await dispatchEmail({
+      to: MARKETING_EMAIL,
+      subject: `New Website Enquiry — ${name.trim()} — ${leadId}`,
+      html: adminHtml,
+      template: process.env.ADMIN_SLUG || 'digital X-admin',
+      variables: adminTemplateVars,
+    });
+
+    // 3. Prepare & Send Thank You Email (Digital X - User Template ONLY to User Email)
+    const userTemplateVars = {
+      LEAD_ID: leadId,
+      NAME: name.trim(),
+      EMAIL: email.trim(),
+      SERVICE: interestedService || 'General Inquiry',
+    };
+    const userHtml = loadEmailTemplate('digital-x-user', userTemplateVars);
+    if (userHtml) {
+      // Thank You Email -> ONLY to the user's email address (email.trim())
+      await dispatchEmail({
+        to: email.trim(),
+        subject: 'Thank You for Contacting Praskla Digital X',
+        html: userHtml,
+        template: process.env.USER_SLUG || 'digital X- User',
+        variables: userTemplateVars,
       });
-      emailSent = true;
-      console.log(`[SMTP SUCCESS] Message accepted by SMTP server. Message ID: ${info.messageId} | Response: ${info.response}`);
-    } catch (mailErr) {
-      if (mailErr.code === 'EAUTH' || mailErr.message.includes('Invalid login') || mailErr.responseCode === 535) {
-        console.error('[SMTP AUTH FAILURE] Failed to authenticate with SMTP server:', mailErr.message);
-      } else if (mailErr.code === 'ESOCKET' || mailErr.code === 'ECONNREFUSED' || mailErr.code === 'ETIMEDOUT') {
-        console.error('[SMTP CONNECTION FAILURE] Could not connect to SMTP server:', mailErr.message);
-      } else {
-        console.error('[SMTP SEND ERROR] Error sending email:', mailErr.message);
-      }
     }
 
     res.status(200).json({
       success: true,
       leadId,
-      emailSent,
+      emailSent: adminEmailSent,
       message: 'Message received! Thanks for contacting Praskla Digital X. Our team will review your enquiry and get back to you shortly.',
     });
   } catch (error) {
@@ -423,30 +537,103 @@ app.post('/api/project-application', upload.any(), async (req, res) => {
     try {
       const transporter = createTransporter();
 
-      // 1. Admin Email
+      // Google Sheet / Forms Webhook Sync (Optional)
+      if (process.env.GOOGLE_SHEET_WEBHOOK_URL) {
+        try {
+          await fetch(process.env.GOOGLE_SHEET_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              applicationId,
+              timestamp,
+              companyName,
+              businessType,
+              industry,
+              companyWebsite,
+              yearsInBusiness,
+              businessDescription,
+              fullName,
+              designation,
+              email,
+              phone,
+              altPhone,
+              whatsapp,
+              preferredContactMethod,
+              city,
+              state,
+              country,
+              projectName,
+              projectType,
+              projectDescription,
+              primaryGoal,
+              targetAudience,
+              requiredFeatures,
+              desiredStartDate,
+              deadline,
+              budgetRange,
+              competitorWebsites,
+              inspirationWebsites,
+              additionalRequirements
+            }),
+          });
+          console.log('[GOOGLE SYNC] Project application synced to Google Sheet');
+        } catch (gErr) {
+          console.warn('[GOOGLE SYNC WARN] Error syncing to Google Webhook:', gErr.message);
+        }
+      }
+
+      // 1. Admin Email (Sent to marketing@prasklatechnology.com)
       const adminMailOptions = {
-        from: `"Praskla Digital X Web" <${process.env.MAIL_USER || 'sasiganesan7421@gmail.com'}>`,
-        to: ADMIN_EMAIL,
+        from: `"${SMTP_FROM_NAME}" <${SMTP_FROM_EMAIL}>`,
+        to: MARKETING_EMAIL,
         subject: `New Project Application — ${companyName} — ${applicationId}`,
         html: `
-          <div style="font-family: Arial, sans-serif; max-width: 650px; color: #111; line-height: 1.6; border: 1px solid #eee; padding: 24px; border-radius: 12px;">
-            <h2 style="color: #E31D2E; margin-top: 0;">New Project Application Submitted</h2>
-            <p style="background: #F8F9FA; padding: 10px 14px; border-left: 4px solid #E31D2E; font-weight: bold;">
-              Application ID: ${applicationId}
-            </p>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
-              <tr><td style="padding: 6px 0; font-weight: bold; width: 160px;">Company Name:</td><td>${companyName}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold;">Industry / Type:</td><td>${industry || 'N/A'} (${businessType || 'N/A'})</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold;">Primary Contact:</td><td>${fullName} (${designation || 'N/A'})</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold;">Email:</td><td><a href="mailto:${email}">${email}</a></td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold;">Phone:</td><td><a href="tel:${phone}">${phone}</a></td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold;">Budget Range:</td><td>${budgetRange || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold;">Desired Start Date:</td><td>${desiredStartDate || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold;">Submission Date:</td><td>${new Date(timestamp).toLocaleString()}</td></tr>
+          <div style="font-family: Arial, sans-serif; max-width: 680px; color: #111; line-height: 1.6; border: 1px solid #eee; padding: 28px; border-radius: 12px; background: #ffffff;">
+            <h2 style="color: #E31D2E; margin-top: 0; font-size: 22px;">New 10-Step Project Onboarding Application</h2>
+            <div style="background: #F8F9FA; padding: 12px 16px; border-left: 4px solid #E31D2E; font-weight: bold; margin-bottom: 20px;">
+              Application Reference ID: <span style="font-family: monospace; color: #E31D2E;">${applicationId}</span>
+            </div>
+
+            <h3 style="font-size: 16px; color: #111; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; margin-top: 20px;">1. Company Information</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 14px;">
+              <tr><td style="padding: 6px 0; font-weight: bold; width: 180px; color: #666;">Company Name:</td><td style="font-weight: 600;">${companyName}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Business Type:</td><td>${businessType || 'N/A'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Industry:</td><td>${industry || 'N/A'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Company Website:</td><td>${companyWebsite ? `<a href="${companyWebsite}">${companyWebsite}</a>` : 'N/A'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Years in Business:</td><td>${yearsInBusiness || 'N/A'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Business Description:</td><td>${businessDescription || 'N/A'}</td></tr>
             </table>
-            <p style="margin-top: 18px; font-size: 13px; color: #666;">
-              The full detailed Project Brief document is attached to this email as a PDF (<strong>${applicationId}.pdf</strong>).
-            </p>
+
+            <h3 style="font-size: 16px; color: #111; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; margin-top: 20px;">2. Contact Person Details</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 14px;">
+              <tr><td style="padding: 6px 0; font-weight: bold; width: 180px; color: #666;">Full Name:</td><td style="font-weight: 600;">${fullName}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Designation:</td><td>${designation || 'N/A'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Email Address:</td><td><a href="mailto:${email}" style="color: #E31D2E; font-weight: 600;">${email}</a></td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Phone:</td><td><a href="tel:${phone}">${phone}</a></td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">WhatsApp:</td><td>${whatsapp || phone}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Preferred Contact:</td><td>${preferredContactMethod || 'Email'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Location:</td><td>${[city, state, country].filter(Boolean).join(', ') || 'N/A'}</td></tr>
+            </table>
+
+            <h3 style="font-size: 16px; color: #111; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; margin-top: 20px;">3. Project & Requirements</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 14px;">
+              <tr><td style="padding: 6px 0; font-weight: bold; width: 180px; color: #666;">Project Name:</td><td style="font-weight: 600;">${projectName || 'N/A'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Project Type / Services:</td><td>${projectType || 'N/A'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Project Scope/Details:</td><td>${projectDescription || 'N/A'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Primary Goal:</td><td>${primaryGoal || 'N/A'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Target Audience:</td><td>${targetAudience || 'N/A'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Required Features:</td><td>${requiredFeatures || 'N/A'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Budget Range:</td><td style="color: #E31D2E; font-weight: bold;">${budgetRange || 'N/A'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Desired Start Date:</td><td>${desiredStartDate || 'N/A'}</td></tr>
+              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Deadline:</td><td>${deadline || 'N/A'}</td></tr>
+            </table>
+
+            <div style="margin-top: 20px; padding: 14px 18px; background: #FFF5F5; border-radius: 8px; border: 1px solid #FED7D7;">
+              <strong style="color: #E31D2E;">Full Project Brief Attached:</strong>
+              <p style="margin: 4px 0 0 0; font-size: 13px; color: #4A5568;">
+                The complete 10-section PDF brief with all design guidelines, references, competitor notes, and uploaded files is attached to this email as <strong>${applicationId}-ProjectBrief.pdf</strong>.
+              </p>
+            </div>
           </div>
         `,
         attachments: pdfBuffer ? [
@@ -463,20 +650,20 @@ app.post('/api/project-application', upload.any(), async (req, res) => {
 
       // 2. Client Confirmation Email
       const clientMailOptions = {
-        from: `"Praskla Digital X" <${process.env.MAIL_USER || 'sasiganesan7421@gmail.com'}>`,
+        from: `"${SMTP_FROM_NAME}" <${SMTP_FROM_EMAIL}>`,
         to: email.trim(),
         subject: 'Project Brief Received — Praskla Digital X',
         html: `
           <div style="font-family: Arial, sans-serif; max-width: 600px; color: #111; line-height: 1.6; border: 1px solid #eee; padding: 24px; border-radius: 12px;">
             <h2 style="color: #111; margin-top: 0;">Project Brief Received</h2>
             <p>Dear ${fullName},</p>
-            <p>Thank you for sharing your project requirements with Praskla Digital X.</p>
+            <p>Thank you for sharing your project requirements with <strong>Praskla Digital X</strong>.</p>
             <p>We have successfully received your project brief.</p>
             <div style="background: #FAF9F6; padding: 14px 18px; border-radius: 8px; margin: 16px 0; border: 1px solid #E5E5E5;">
-              <strong style="color: #E31D2E; font-size: 14px;">Application ID:</strong>
+              <strong style="color: #E31D2E; font-size: 14px;">Application Reference ID:</strong>
               <div style="font-size: 18px; font-weight: bold; color: #111; margin-top: 4px;">${applicationId}</div>
             </div>
-            <p>Our team will review your requirements and contact you shortly.</p>
+            <p>Our strategy and technical team will review your requirements and reach out within 24 business hours.</p>
             <br/>
             <p style="margin-bottom: 0;">Best regards,<br/><strong>The Praskla Digital X Team</strong></p>
           </div>
@@ -513,12 +700,21 @@ app.post('/api/project-application', upload.any(), async (req, res) => {
   }
 });
 
+// App Config & Role Slugs endpoint
+app.get('/api/config', (req, res) => {
+  res.status(200).json({
+    userSlug: process.env.USER_SLUG || 'digital X- User',
+    adminSlug: process.env.ADMIN_SLUG || 'digital X-admin',
+    smtpConfigured: !!(process.env.SMTP_API_KEY || process.env.SMTP_USER || process.env.MAIL_USER),
+  });
+});
+
 // Health check endpoint
 app.get('/health', (req, res) => {
   res.status(200).json({ status: 'ok', service: 'Praskla Digital X Backend Server' });
 });
 
 // Start Server
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Praskla Digital X Backend Server is running on port ${PORT}`);
 });
