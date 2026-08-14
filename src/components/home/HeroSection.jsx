@@ -43,15 +43,15 @@ function AnimatedStat({ targetNum, suffix = "+", label, delay = 0 }) {
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.6, delay: 0.4 + delay, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -5, scale: 1.02 }}
-      className="clay-card relative flex flex-col items-start p-3.5 px-4 sm:px-5 rounded-2xl border border-white/70 shadow-[0_10px_28px_rgba(17,17,17,0.03)] backdrop-blur-xl bg-white/75 hover:bg-white/90 cursor-default group transition-all duration-300 min-w-[120px] sm:min-w-[135px]"
+      className="clay-card relative flex flex-col items-start p-2.5 sm:p-3.5 px-3 sm:px-4 rounded-2xl border border-white/70 shadow-[0_10px_28px_rgba(17,17,17,0.03)] backdrop-blur-xl bg-white/75 hover:bg-white/90 cursor-default group transition-all duration-300 w-full overflow-hidden"
     >
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/70 via-transparent to-transparent pointer-events-none" />
 
-      <div className="relative z-10 flex flex-col">
-        <span className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight group-hover:text-[#E31D2E] transition-colors duration-300">
+      <div className="relative z-10 flex flex-col w-full min-w-0">
+        <span className="text-xl sm:text-2xl lg:text-3xl font-black text-[#111111] tracking-tight group-hover:text-[#E31D2E] transition-colors duration-300">
           {count}{suffix}
         </span>
-        <span className="text-[#575757] text-[10px] font-bold uppercase tracking-[0.18em] mt-0.5">
+        <span className="text-[#575757] text-[8.5px] sm:text-[9.5px] lg:text-[10px] font-bold uppercase tracking-[0.1em] sm:tracking-[0.14em] mt-0.5 whitespace-nowrap overflow-hidden text-ellipsis">
           {label}
         </span>
       </div>
@@ -169,7 +169,7 @@ const HeroSection = () => {
       transition={{ duration: 0.8, delay: 0.95 }}
       className="flex flex-col items-center lg:items-start gap-3.5 w-full"
     >
-      <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 w-full">
+      <div className="grid grid-cols-4 gap-2 sm:gap-2.5 w-full max-w-xl">
         <AnimatedStat targetNum="50" suffix="+" label="Projects Delivered" delay={0.05} />
         <AnimatedStat targetNum="15" suffix="+" label="Brands" delay={0.1} />
         <AnimatedStat targetNum="98" suffix="%" label="Client Satisfaction" delay={0.15} />
