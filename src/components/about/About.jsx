@@ -500,7 +500,11 @@ const About = () => {
               </h2>
 
               <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium">
+<<<<<<< HEAD
                 At Praskla Digital <BrandX className="h-[1.05em] w-auto text-[#E31D2E] inline-block translate-y-[0.14em]" />, we bring together creative visual creators, copywriting experts,
+=======
+                At Praskla Digital X, we bring together creative visual creators, copywriting experts,
+>>>>>>> origin/main
                 ad strategists, and performance analytics professionals.
               </p>
 

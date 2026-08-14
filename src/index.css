@@ -107,6 +107,17 @@ html, body {
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: rgba(227, 29, 46, 0.75);
   }
+
+  /* Visually hide scrollbar for horizontal single-row navigation tracks */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
 }
 
 /* ── Visually Hide Native Browser Vertical Scrollbar Globally ── */
@@ -366,9 +377,9 @@ body {
 
   /* Backgrounds */
   --color-background: #FFFFFF;
-  --color-bg-secondary: #FAFAFA;
-  --color-bg-section-alt: #F8F9FB;
-  --color-bg-hover: #F5F5F5;
+  --color-bg-secondary: #FCFCFD;
+  --color-bg-section-alt: #FAFAFC;
+  --color-bg-hover: #FAFAFA;
 
   /* Text Colors */
   --color-text: #111111;
@@ -376,9 +387,9 @@ body {
   --color-text-lighter: #7A7A7A;
 
   /* UI/Border Colors */
-  --color-ui: #ECECEC;
-  --color-ui-light: #ECECEC;
-  --color-ui-dark: #DDDDDD;
+  --color-ui: #FAFAFA;
+  --color-ui-light: #FAFAFA;
+  --color-ui-dark: #ECECEC;
 }
 
 /* Enhanced gradient utilities for new colors */
@@ -432,7 +443,7 @@ section,
 /* Scrollbar styling handled by SnakeScrollbar component */
 
 /* Systemic overrides for text colors on light background - excluding all primary red CTA buttons and their children */
-.text-white:not(.dark-surface *):not(footer *):not(footer):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#1F1F1F]"]):not([class*="bg-[#1F1F1F]"] *):not([class*="bg-[#111111]"]):not([class*="bg-[#111111]"] *):not([class*="bg-[#111]"]):not([class*="bg-[#111]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]) {
+.text-white:not(.dark-surface *):not(.nav-links-capsule *):not(.nav-links-capsule):not(footer *):not(footer):not(.primary-btn):not(.primary-btn *):not([class*="bg-[#E31D2E]"]):not([class*="bg-[#E31D2E]"] *):not([class*="bg-[#1F1F1F]"]):not([class*="bg-[#1F1F1F]"] *):not([class*="bg-[#111111]"]):not([class*="bg-[#111111]"] *):not([class*="bg-[#111]"]):not([class*="bg-[#111]"] *):not([class*="bg-[#E8192C]"]):not([class*="bg-[#E8192C]"] *):not([class*="bg-[#ef2029]"]):not([class*="bg-[#ef2029]"] *):not([class*="bg-[#371445]"]):not([class*="bg-[#371445]"] *):not([class*="bg-gradient-to-r"] *):not([class*="bg-gradient-to-r"]) {
   color: var(--color-text-primary) !important;
 }
 
@@ -582,22 +593,22 @@ section,
 }
 
 /* ===================================================================
-   SOFT NEUMORPHIC DESIGN SYSTEM (#ECECEC Background & Soft Elevation)
+   SOFT NEUMORPHIC DESIGN SYSTEM (White Majority & Reduced Gray Contrast)
    =================================================================== */
 
 body, html, #root {
-  background-color: #ECECEC !important;
+  background-color: #FAFAFA !important;
   color: #111111;
 }
 
 /* Soft Neumorphic Raised Card */
 .neu-card,
 .clay-card {
-  background: #ECECEC !important;
-  border: none !important;
+  background: #FFFFFF !important;
+  border: 1px solid #F0F0F3 !important;
   box-shadow: 
-    8px 8px 18px rgba(0, 0, 0, 0.08), 
-    -8px -8px 18px rgba(255, 255, 255, 0.95) !important;
+    6px 6px 16px rgba(0, 0, 0, 0.04), 
+    -6px -6px 16px rgba(255, 255, 255, 1) !important;
   border-radius: 24px !important;
   transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -605,13 +616,13 @@ body, html, #root {
 .neu-card:hover,
 .clay-card:hover {
   transform: translateY(-4px);
-  background: #ECECEC !important;
+  background: #FFFFFF !important;
   box-shadow: 
-    12px 12px 24px rgba(0, 0, 0, 0.1), 
-    -12px -12px 24px rgba(255, 255, 255, 1) !important;
+    8px 8px 20px rgba(0, 0, 0, 0.06), 
+    -8px -8px 20px rgba(255, 255, 255, 1) !important;
 }
 
-/* Premium Crisp Form Input Styling — Zero Harsh White Glow & High Contrast Visibility */
+/* Premium Crisp Form Input Styling — Zero Harsh White Glow & Soft Visibility */
 .neu-input,
 .neu-pressed,
 input[type="text"],
@@ -621,9 +632,9 @@ input[type="number"],
 input[type="url"],
 textarea,
 select {
-  background-color: #F4F4F6 !important;
-  border: 1px solid #D4D4D8 !important;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05) !important;
+  background-color: #FAFAFC !important;
+  border: 1px solid #E4E4E7 !important;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.03) !important;
   border-radius: 14px !important;
   color: #111111 !important;
   font-weight: 600 !important;
@@ -660,19 +671,19 @@ input[type="text"].search-input:focus {
 input::placeholder,
 textarea::placeholder,
 select::placeholder {
-  color: #61616B !important;
+  color: #71717A !important;
   opacity: 1 !important;
   font-weight: 500 !important;
 }
 
 /* Soft Neumorphic Secondary Button */
 .neu-btn-secondary {
-  background: #ECECEC !important;
-  border: none !important;
+  background: #FFFFFF !important;
+  border: 1px solid #F0F0F3 !important;
   color: #111111 !important;
   box-shadow: 
-    5px 5px 12px rgba(0, 0, 0, 0.07), 
-    -5px -5px 12px rgba(255, 255, 255, 0.95) !important;
+    4px 4px 10px rgba(0, 0, 0, 0.04), 
+    -4px -4px 10px rgba(255, 255, 255, 1) !important;
   border-radius: 9999px !important;
   transition: all 0.3s ease;
 }
@@ -680,35 +691,35 @@ select::placeholder {
 .neu-btn-secondary:hover {
   transform: translateY(-2px);
   box-shadow: 
-    8px 8px 18px rgba(0, 0, 0, 0.1), 
-    -8px -8px 18px rgba(255, 255, 255, 1) !important;
+    6px 6px 14px rgba(0, 0, 0, 0.06), 
+    -6px -6px 14px rgba(255, 255, 255, 1) !important;
 }
 
 /* Soft Neumorphic Icon Container */
 .neu-icon {
-  background: #ECECEC !important;
-  border: none !important;
+  background: #FFFFFF !important;
+  border: 1px solid #F0F0F3 !important;
   box-shadow: 
-    4px 4px 10px rgba(0, 0, 0, 0.07), 
-    -4px -4px 10px rgba(255, 255, 255, 0.95) !important;
+    3px 3px 8px rgba(0, 0, 0, 0.04), 
+    -3px -3px 8px rgba(255, 255, 255, 1) !important;
 }
 
 /* Soft Neumorphic Floating Navbar Panel */
 .neu-navbar {
-  background: #ECECEC !important;
-  border: none !important;
+  background: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #F0F0F3 !important;
   box-shadow: 
-    8px 8px 20px rgba(0, 0, 0, 0.07), 
-    -8px -8px 20px rgba(255, 255, 255, 0.95) !important;
+    6px 6px 16px rgba(0, 0, 0, 0.04), 
+    -6px -6px 16px rgba(255, 255, 255, 1) !important;
   border-radius: 9999px !important;
 }
 
 /* Soft Neumorphic Modal Container */
 .neu-modal {
-  background: #ECECEC !important;
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  background: #FFFFFF !important;
+  border: 1px solid rgba(0, 0, 0, 0.06) !important;
   border-radius: 30px !important;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35) !important;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15) !important;
 }
 
 /* Dark surface clay/neu card */
@@ -1053,6 +1064,15 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg {
 .page-layout-wrapper>div:first-child>section:first-of-type.max-h-\[100vh\] {
   height: auto !important;
   max-height: none !important;
+}
+
+.page-layout-wrapper section:first-of-type.min-h-0,
+.page-layout-wrapper section:first-of-type.\!min-h-0,
+.page-layout-wrapper section:first-of-type.min-h-auto,
+.page-layout-wrapper>div:first-child>section:first-of-type.min-h-0,
+.page-layout-wrapper>div:first-child>section:first-of-type.\!min-h-0,
+.page-layout-wrapper>div:first-child>section:first-of-type.min-h-auto {
+  min-height: 0 !important;
 }
 
 /* ===================================================================

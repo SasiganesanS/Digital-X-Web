@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import pyLogo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
+<<<<<<< HEAD
 import BrandX from "./common/BrandX";
+=======
+>>>>>>> origin/main
 import career01 from "../assets/Careers/career01.webp";
 import career02 from "../assets/Careers/career02.webp";
 import career03 from "../assets/Careers/career03.webp";

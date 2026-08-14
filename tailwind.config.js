@@ -33,9 +33,9 @@ module.exports = {
         },
         background: {
           DEFAULT: "#FFFFFF", // Pure white primary background
-          secondary: "#FAFAFA",
-          alt: "#F8F9FB",
-          hover: "#F5F5F5",
+          secondary: "#FCFCFD",
+          alt: "#FAFAFC",
+          hover: "#FAFAFA",
         },
         "brand-red": "#FF2B2B",
         "dark-red": "#E51D1D",
@@ -48,8 +48,8 @@ module.exports = {
         },
         ui: {
           DEFAULT: "#FAFAFA",
-          light: "#ECECEC",
-          dark: "#DDDDDD",
+          light: "#FAFAFA",
+          dark: "#ECECEC",
         },
       },
       animation: {

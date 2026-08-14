@@ -309,12 +309,12 @@ const ServicesCoverflow = () => {
                 <div
                   className="relative w-full h-full overflow-hidden flex flex-col p-3 transition-all duration-300"
                   style={{
-                    background: "#ECECEC",
-                    border: "none",
+                    background: "#FFFFFF",
+                    border: "1px solid #F0F0F3",
                     borderRadius: "30px",
                     boxShadow: s.isFront
-                      ? "12px 12px 30px rgba(0, 0, 0, 0.1), -12px -12px 30px rgba(255, 255, 255, 1)"
-                      : "6px 6px 16px rgba(0, 0, 0, 0.08), -6px -6px 16px rgba(255, 255, 255, 0.95)",
+                      ? "8px 8px 20px rgba(0, 0, 0, 0.05), -8px -8px 20px rgba(255, 255, 255, 1)"
+                      : "4px 4px 12px rgba(0, 0, 0, 0.03), -4px -4px 12px rgba(255, 255, 255, 1)",
                   }}
                 >
                   {/* Image container frame */}

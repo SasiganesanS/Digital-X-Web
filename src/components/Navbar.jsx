@@ -15,11 +15,18 @@ const navItemsList = [
 
 const BRAND_TAGLINES = [
   "A Mindful Marketing and Production Firm",
+<<<<<<< HEAD
   "Where Strategy Meets Performance",
   "Scale Your Brand with Clarity",
   "Transforming Ideas into Digital Success",
   "Crafting Scalable Brand Ecosystems",
   "Creative Production & Measurable ROI",
+=======
+  "Where Strategy Meets Creativity",
+  "Mindful Growth & Brand Scale",
+  "Data-Driven Digital Impact",
+  "Performance-First Marketing",
+>>>>>>> origin/main
 ];
 
 function AnimatedBrandTagline() {
@@ -33,6 +40,7 @@ function AnimatedBrandTagline() {
   }, []);
 
   const currentTagline = BRAND_TAGLINES[taglineIdx];
+<<<<<<< HEAD
 
   return (
     <div className="h-[10px] sm:h-[11px] lg:h-[12px] overflow-hidden relative mt-[3px] w-full max-w-[220px] sm:max-w-[260px]">
@@ -44,6 +52,24 @@ function AnimatedBrandTagline() {
           exit={{ opacity: 0, y: -5 }}
           transition={{ duration: 0.35, ease: "easeInOut" }}
           className="font-dingos text-[8px] sm:text-[9px] lg:text-[9.5px] font-bold text-[#E31D2E] block tracking-tight leading-none whitespace-nowrap truncate"
+=======
+  const isLongTagline = currentTagline.length > 32;
+
+  return (
+    <div className="hidden md:block h-[15px] overflow-hidden relative mt-[2px] w-full">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={currentTagline}
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -8 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+          className={`font-space-grotesk font-bold text-[#E31D2E] block truncate uppercase ${
+            isLongTagline
+              ? "text-[8px] sm:text-[8.5px] tracking-[0.01em]"
+              : "text-[10px] sm:text-[11px] tracking-[0.06em]"
+          }`}
+>>>>>>> origin/main
         >
           {currentTagline}
         </motion.span>
@@ -106,11 +132,16 @@ const navStyles = `
 }
 
 .nav-links-capsule {
-  background: #ECECEC;
+  background: #111111;
   padding: 5px 12px 5px 14px;
   border-radius: 999px;
+<<<<<<< HEAD
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), inset 0 1px 2px rgba(255, 255, 255, 0.9);
   border: 1px solid rgba(255, 255, 255, 0.85);
+=======
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+>>>>>>> origin/main
   display: flex;
   align-items: center;
   gap: 12px;
@@ -125,7 +156,7 @@ const navStyles = `
   border-radius: 9999px;
   background: transparent;
   border: none;
-  color: #333333;
+  color: #ffffff !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -133,9 +164,20 @@ const navStyles = `
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
+.nav-search-pill svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  transition: color 0.2s ease, stroke 0.2s ease;
+}
+
 .nav-search-pill:hover {
-  background-color: #F0F0F0;
-  color: #E31D2E;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #FF2B2B !important;
+}
+
+.nav-search-pill:hover svg {
+  color: #FF2B2B !important;
+  stroke: #FF2B2B !important;
 }
 
 .nav-cta-btn {
@@ -280,7 +322,7 @@ const navStyles = `
   height: 100%;
   padding: 0 var(--pill-pad-x);
   background: transparent;
-  color: #333333;
+  color: #ffffff;
   text-decoration: none;
   border-radius: 9999px;
   box-sizing: border-box;
@@ -297,8 +339,8 @@ const navStyles = `
 }
 
 .pill:hover:not(.is-active) {
-  background-color: #F0F0F0;
-  color: #111111;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
 }
 
 .pill .hover-circle {
@@ -339,9 +381,13 @@ const navStyles = `
 }
 
 .pill.is-active {
-  background: var(--pill-bg, #E31D2E) !important;
+  background: var(--pill-bg, #FF2B2B) !important;
   color: var(--hover-text, #ffffff) !important;
+<<<<<<< HEAD
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12) !important;
+=======
+  box-shadow: 0 4px 14px rgba(255, 43, 43, 0.4) !important;
+>>>>>>> origin/main
   border-radius: 9999px !important;
 }
 
@@ -350,8 +396,8 @@ const navStyles = `
   height: var(--nav-h);
   border-radius: 50%;
   background: #FFFFFF;
-  border: 1px solid #ECECEC;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid #F0F0F3;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   display: none;
   flex-direction: column;
   align-items: center;
@@ -383,7 +429,7 @@ const navStyles = `
   right: 0;
   width: 240px;
   background: #FFFFFF;
-  border: 1px solid #ECECEC;
+  border: 1px solid #F0F0F3;
   border-radius: 24px;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
   z-index: 998;
@@ -464,7 +510,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
   const baseColor = '#ffffff';
   const pillColor = '#FF2B2B';
   const hoveredPillTextColor = '#ffffff';
-  const pillTextColor = '#111111';
+  const pillTextColor = '#ffffff';
   const initialLoadAnimation = false;
 
   const resolvedPillTextColor = pillTextColor ?? baseColor;
@@ -805,11 +851,16 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
             />
           </div>
 
+<<<<<<< HEAD
           {/* 2-line Text Column (PRASKLA DIGITAL + Animated Single-Line Tagline) */}
+=======
+          {/* 2-line Text Column (PRASKLA DIGITAL + Tagline) */}
+>>>>>>> origin/main
           <div className="flex flex-col justify-center min-w-0">
             <span className="font-inlander text-[17px] sm:text-[20px] lg:text-[22px] font-black text-[#111111] leading-none tracking-[0.01em] uppercase whitespace-nowrap">
               PRASKLA DIGITAL
             </span>
+<<<<<<< HEAD
             <AnimatedBrandTagline />
           </div>
 
@@ -822,6 +873,27 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
             aria-hidden="true"
           >
             <path d="M 162.344 127.547 C 161.972 128.516, 165.486 134.586, 171.752 143.797 C 216.594 209.714, 252 262.339, 252 263.072 C 252 263.556, 249.366 267.675, 246.147 272.226 C 240.970 279.544, 180.406 366.557, 162.614 392.238 C 158.903 397.594, 156.154 402.440, 156.504 403.006 C 156.924 403.687, 170.682 404.016, 197.040 403.977 C 231.438 403.926, 237.150 403.707, 238.467 402.390 C 239.307 401.550, 246.365 391.331, 254.151 379.681 C 261.937 368.032, 275.264 348.253, 283.766 335.730 L 299.225 312.960 307.951 327.230 C 352.104 399.438, 397.728 453.946, 446.013 492.176 C 537.703 564.772, 637.259 576.269, 738.133 525.909 C 776.265 506.873, 815.308 477.947, 847.500 444.882 C 858.201 433.891, 858.657 432.680, 848.509 442.200 C 831.870 457.809, 805.614 475.583, 781.090 487.838 C 754.801 500.975, 731.982 508.564, 703.421 513.669 C 690 516.068, 686.037 516.340, 664 516.377 C 643.070 516.411, 637.606 516.092, 626.500 514.184 C 598.849 509.435, 575.987 501.872, 550 488.878 C 479.268 453.511, 414.870 386.417, 354.795 285.500 C 345.954 270.648, 340 259.991, 340 259.018 C 340 258.576, 361.096 229.412, 386.879 194.208 C 412.662 159.004, 434.095 129.655, 434.507 128.989 C 434.923 128.316, 434.643 127.388, 433.878 126.904 C 433.120 126.423, 414.608 126.024, 392.740 126.015 L 352.981 126 350.338 129.750 C 348.884 131.813, 336.401 150.375, 322.597 171 C 308.794 191.625, 297.061 208.500, 296.526 208.500 C 295.990 208.500, 284.290 190.671, 270.526 168.880 C 256.761 147.089, 244.882 128.527, 244.128 127.630 C 242.901 126.173, 238.508 126, 202.846 126 C 167.757 126, 162.866 126.187, 162.344 127.547" />
+=======
+            <span className="font-dingos text-[8px] sm:text-[9px] lg:text-[9.5px] font-bold text-[#E31D2E] block tracking-tight mt-[3px] leading-none whitespace-nowrap">
+              A Mindful Marketing and Production Firm
+            </span>
+          </div>
+
+          {/* Double-Stroke Red Calligraphic X Graphic (Moved right next to text) */}
+          <svg
+            viewBox="0 0 40 50"
+            className="h-[36px] sm:h-[40px] lg:h-[44px] w-auto shrink-0 select-none text-[#E31D2E] -ml-2.5 sm:-ml-3.5 lg:-ml-4 self-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
+            fill="none"
+            aria-hidden="true"
+          >
+            {/* Top-Left to Bottom-Right double parallel lines */}
+            <path d="M 7 4 L 32 45 M 10 3 L 35 44" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M 4 5 H 11 M 30 45 H 37" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+
+            {/* Bottom-Left to Top-Right double parallel lines */}
+            <path d="M 5 44 L 33 4 M 8 45 L 36 5" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+            <path d="M 3 43 H 9 M 31 4 H 38" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+>>>>>>> origin/main
           </svg>
         </Link>
 
@@ -893,7 +965,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                     aria-label="Search website"
                     title="Search website (⌘K)"
                   >
-                    <Search className="w-4 h-4 text-[#111111] group-hover:text-[#E31D2E] transition-colors" />
+                    <Search className="w-4 h-4 !text-white group-hover:!text-[#FF2B2B] transition-colors" />
                   </button>
                 </li>
               </ul>

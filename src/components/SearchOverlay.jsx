@@ -241,11 +241,11 @@ const SearchOverlay = ({ isOpen, onClose, setShowContactForm }) => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.98, y: -8 }}
           transition={{ duration: 0.18, ease: "easeOut" }}
-          className="w-full max-w-xl sm:max-w-2xl bg-[#F4F4F4] rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.16)] border border-white/90 overflow-hidden flex flex-col transition-all duration-200"
+          className="w-full max-w-xl sm:max-w-2xl bg-white rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-200/60 overflow-hidden flex flex-col transition-all duration-200"
           onClick={(e) => e.stopPropagation()}
         >
           {/* BEAUTIFULLY ALIGNED SINGLE TYPING ROW */}
-          <div className="flex items-center gap-3.5 px-6 py-4 bg-[#F4F4F4]">
+          <div className="flex items-center gap-3.5 px-6 py-4 bg-white">
             <Search className="w-5 h-5 text-[#E31D2E] shrink-0" />
             <input
               ref={inputRef}
@@ -270,7 +270,7 @@ const SearchOverlay = ({ isOpen, onClose, setShowContactForm }) => {
 
           {/* RESULTS DROPDOWN (Shown ONLY when user types) */}
           {hasQuery && (
-            <div className="border-t border-gray-200/80 bg-[#F4F4F4]">
+            <div className="border-t border-gray-100 bg-white">
               <div
                 ref={resultsContainerRef}
                 className="max-h-[60vh] overflow-y-auto p-3.5 sm:p-4 space-y-3.5 scrollbar-thin scrollbar-thumb-gray-300"
