@@ -110,11 +110,11 @@ const navStyles = `
 }
 
 .nav-links-capsule {
-  background: #ECECEC;
+  background: #111111;
   padding: 5px 12px 5px 14px;
   border-radius: 999px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), inset 0 1px 2px rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -129,7 +129,7 @@ const navStyles = `
   border-radius: 9999px;
   background: transparent;
   border: none;
-  color: #333333;
+  color: #ffffff !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -137,9 +137,20 @@ const navStyles = `
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
+.nav-search-pill svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  transition: color 0.2s ease, stroke 0.2s ease;
+}
+
 .nav-search-pill:hover {
-  background-color: #F0F0F0;
-  color: #E31D2E;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #FF2B2B !important;
+}
+
+.nav-search-pill:hover svg {
+  color: #FF2B2B !important;
+  stroke: #FF2B2B !important;
 }
 
 .nav-cta-btn {
@@ -284,7 +295,7 @@ const navStyles = `
   height: 100%;
   padding: 0 var(--pill-pad-x);
   background: transparent;
-  color: #333333;
+  color: #ffffff;
   text-decoration: none;
   border-radius: 9999px;
   box-sizing: border-box;
@@ -301,8 +312,8 @@ const navStyles = `
 }
 
 .pill:hover:not(.is-active) {
-  background-color: #F0F0F0;
-  color: #111111;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
 }
 
 .pill .hover-circle {
@@ -343,9 +354,9 @@ const navStyles = `
 }
 
 .pill.is-active {
-  background: var(--pill-bg, #E31D2E) !important;
+  background: var(--pill-bg, #FF2B2B) !important;
   color: var(--hover-text, #ffffff) !important;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12) !important;
+  box-shadow: 0 4px 14px rgba(255, 43, 43, 0.4) !important;
   border-radius: 9999px !important;
 }
 
@@ -354,8 +365,8 @@ const navStyles = `
   height: var(--nav-h);
   border-radius: 50%;
   background: #FFFFFF;
-  border: 1px solid #ECECEC;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  border: 1px solid #F0F0F3;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
   display: none;
   flex-direction: column;
   align-items: center;
@@ -387,7 +398,7 @@ const navStyles = `
   right: 0;
   width: 240px;
   background: #FFFFFF;
-  border: 1px solid #ECECEC;
+  border: 1px solid #F0F0F3;
   border-radius: 24px;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
   z-index: 998;
@@ -468,7 +479,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
   const baseColor = '#ffffff';
   const pillColor = '#FF2B2B';
   const hoveredPillTextColor = '#ffffff';
-  const pillTextColor = '#111111';
+  const pillTextColor = '#ffffff';
   const initialLoadAnimation = false;
 
   const resolvedPillTextColor = pillTextColor ?? baseColor;
@@ -904,7 +915,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                     aria-label="Search website"
                     title="Search website (⌘K)"
                   >
-                    <Search className="w-4 h-4 text-[#111111] group-hover:text-[#E31D2E] transition-colors" />
+                    <Search className="w-4 h-4 !text-white group-hover:!text-[#FF2B2B] transition-colors" />
                   </button>
                 </li>
               </ul>

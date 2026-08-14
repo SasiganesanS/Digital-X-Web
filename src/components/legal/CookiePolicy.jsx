@@ -41,10 +41,65 @@ const CookiePolicy = () => {
     }
   };
 
+  const media = (
+    <motion.div
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.6, delay: 0.2 }}
+      className="w-full max-w-md p-6 rounded-3xl bg-white/90 backdrop-blur-md border border-neutral-200/80 shadow-[0_12px_40px_rgba(0,0,0,0.06)] space-y-4 relative overflow-hidden"
+    >
+      {/* Decorative Glow */}
+      <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#E31D2E]/10 rounded-full blur-2xl pointer-events-none" />
+
+      {/* Header */}
+      <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
+        <div className="flex items-center gap-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse" />
+          <span className="text-xs font-bold text-neutral-600 uppercase tracking-wider">Tracking Controls</span>
+        </div>
+        <span className="text-[10px] font-black uppercase tracking-widest text-[#E31D2E] bg-[#E31D2E]/5 px-2.5 py-1 rounded-full border border-[#E31D2E]/15">
+          User Consent
+        </span>
+      </div>
+
+      {/* Feature Metrics */}
+      <div className="grid grid-cols-2 gap-3">
+        <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60">
+          <div className="flex items-center gap-2 mb-1 text-[#E31D2E]">
+            <Cookie className="w-4 h-4" />
+            <span className="text-xs font-black text-[#111111]">Essential Only</span>
+          </div>
+          <p className="text-[11px] text-neutral-500 leading-snug">Strictly functional session cookies.</p>
+        </div>
+
+        <div className="p-3.5 rounded-2xl bg-neutral-50 border border-neutral-200/60">
+          <div className="flex items-center gap-2 mb-1 text-[#E31D2E]">
+            <Settings className="w-4 h-4" />
+            <span className="text-xs font-black text-[#111111]">Preferences</span>
+          </div>
+          <p className="text-[11px] text-neutral-500 leading-snug">Full user opt-in control at any time.</p>
+        </div>
+      </div>
+
+      {/* Compliance Seal */}
+      <div className="p-3.5 rounded-2xl bg-[#111111] text-white flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          <BarChart3 className="w-5 h-5 text-[#E31D2E]" />
+          <div>
+            <div className="text-xs font-bold">Transparent Analytics</div>
+            <div className="text-[10px] text-neutral-400">No Aggressive Cross-Site Tracking</div>
+          </div>
+        </div>
+        <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+      </div>
+    </motion.div>
+  );
+
   return (
-    <div className="page-layout-wrapper">
+    <div className="w-full bg-transparent">
       {/* Hero Section */}
       <HeroLayout
+        className="!min-h-0 py-6 sm:py-8 lg:py-10"
         badge={
           <SectionBadge text="Web Technology & Privacy" />
         }
@@ -66,59 +121,43 @@ const CookiePolicy = () => {
             </div>
           </div>
         }
+        media={media}
       />
 
       {/* Main Content Grid */}
       <section className="w-full pb-16 lg:pb-24">
-        <div className="site-container">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-
-            {/* Table of Contents */}
-            <div className="lg:col-span-4 lg:sticky lg:top-28 space-y-4">
-              <div className="bg-white border border-neutral-200/80 rounded-[28px] p-6 shadow-[0_8px_30px_rgba(0,0,0,0.03)]">
-                <h3 className="text-[#111111] font-bold text-sm uppercase tracking-wider mb-4 flex items-center gap-2">
-                  <FileText className="w-4 h-4 text-[#E31D2E]" />
-                  <span>Cookie Guide</span>
-                </h3>
-                <nav className="space-y-1">
-                  {SECTIONS.map((section) => {
-                    const Icon = section.icon;
-                    const isActive = activeSection === section.id;
-                    return (
-                      <button
-                        key={section.id}
-                        onClick={() => scrollToSection(section.id)}
-                        className={`w-full text-left px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-200 flex items-center gap-3 ${isActive
-                            ? "bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/20"
-                            : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900"
-                          }`}
-                      >
-                        <Icon className={`w-4 h-4 shrink-0 ${isActive ? "text-[#E31D2E]" : "text-neutral-400"}`} />
-                        <span className="truncate">{section.label}</span>
-                      </button>
-                    );
-                  })}
-                </nav>
-              </div>
-
-              {/* Box */}
-              <div className="bg-[#111111] text-white rounded-[28px] p-6 shadow-md relative overflow-hidden">
-                <h4 className="font-bold text-base mb-1">Cookie Preferences</h4>
-                <p className="text-neutral-400 text-xs leading-relaxed mb-4">
-                  You can modify your browser settings to accept or block cookies at any time.
-                </p>
-                <a
-                  href="mailto:hello@praskla.com"
-                  className="inline-flex items-center gap-2 text-xs font-bold text-[#FF2B2B] hover:text-white transition-colors"
-                >
-                  <span>Contact Tech Support</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </a>
+        <div className="site-container max-w-4xl mx-auto w-full min-w-0">
+          
+          {/* Sticky Single-Row Horizontal Navigation Bar */}
+          <div className="sticky top-24 z-30 bg-white/90 backdrop-blur-md border border-neutral-200/80 rounded-2xl p-2 shadow-xs mb-8 w-full min-w-0 relative group">
+            <div className="w-full overflow-x-auto overflow-y-hidden no-scrollbar scroll-smooth">
+              <div className="flex flex-nowrap items-center gap-2 w-max min-w-max px-1 py-1">
+                {SECTIONS.map((section) => {
+                  const Icon = section.icon;
+                  const isActive = activeSection === section.id;
+                  return (
+                    <button
+                      key={section.id}
+                      onClick={() => scrollToSection(section.id)}
+                      className={`flex-none shrink-0 px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 flex items-center gap-2 whitespace-nowrap ${
+                        isActive
+                          ? "bg-[#E31D2E] text-white shadow-xs"
+                          : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-neutral-900"
+                      }`}
+                    >
+                      <Icon className="w-3.5 h-3.5 shrink-0" />
+                      <span className="whitespace-nowrap">{section.label}</span>
+                    </button>
+                  );
+                })}
               </div>
             </div>
+            {/* Subtle Right-Side Gradient Fade Affordance */}
+            <div className="absolute right-2 top-2 bottom-2 w-12 bg-gradient-to-l from-white via-white/40 to-transparent pointer-events-none rounded-r-xl" />
+          </div>
 
-            {/* Document Content Sections */}
-            <div className="lg:col-span-8 space-y-8">
+          {/* Document Content Sections */}
+          <div className="space-y-8 w-full min-w-0">
 
               {/* 1. What Are Cookies */}
               <motion.div
@@ -286,7 +325,6 @@ const CookiePolicy = () => {
                 </div>
               </motion.div>
 
-            </div>
           </div>
         </div>
       </section>

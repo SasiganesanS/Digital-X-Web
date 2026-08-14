@@ -157,12 +157,15 @@ const Footer = ({ setShowContactForm }) => {
                 © {new Date().getFullYear()} Praskla Digital X. All rights reserved.
               </span>
 
-              <div className="flex items-center gap-6">
-                <Link to="/services" className="hover:text-white transition-colors">
+              <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
+                <Link to="/privacy-policy" className="hover:text-white transition-colors">
                   Privacy Policy
                 </Link>
-                <Link to="/services" className="hover:text-white transition-colors">
+                <Link to="/terms-and-conditions" className="hover:text-white transition-colors">
                   Terms of Service
+                </Link>
+                <Link to="/cookie-policy" className="hover:text-white transition-colors">
+                  Cookie Policy
                 </Link>
               </div>
             </div>

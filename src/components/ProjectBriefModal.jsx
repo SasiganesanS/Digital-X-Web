@@ -280,7 +280,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: 24 }}
             transition={{ type: "spring", duration: 0.45, bounce: 0.08 }}
-            className="w-full max-w-[1350px] h-[92vh] bg-[#ECECEC] rounded-[30px] shadow-[0_25px_60px_rgba(0,0,0,0.35)] border border-black/10 relative flex flex-col overflow-hidden text-[#111111] z-10"
+            className="w-full max-w-[1350px] h-[92vh] bg-[#FAFAFA] rounded-[30px] shadow-[0_25px_60px_rgba(0,0,0,0.15)] border border-black/10 relative flex flex-col overflow-hidden text-[#111111] z-10"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Top Progress Bar & Header Header */}
