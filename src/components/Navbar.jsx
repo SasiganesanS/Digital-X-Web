@@ -80,7 +80,10 @@ const navStyles = `
   pointer-events: auto;
 }
 
-.nav-brand-capsule {
+.nav-brand-capsule,
+.nav-brand-capsule:focus,
+.nav-brand-capsule:focus-visible,
+.nav-brand-capsule:active {
   position: relative;
   left: auto;
   top: auto;
@@ -90,6 +93,8 @@ const navStyles = `
   border-radius: 0 !important;
   box-shadow: none !important;
   border: none !important;
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
   display: flex;
   align-items: center;
   gap: 12px;
@@ -103,7 +108,21 @@ const navStyles = `
 
 .nav-brand-capsule:hover {
   box-shadow: none !important;
+  outline: none !important;
   opacity: 0.92;
+}
+
+.pill:focus,
+.pill:focus-visible,
+.pill:active,
+.nav-cta-btn:focus,
+.nav-cta-btn:focus-visible,
+.nav-cta-btn:active,
+.nav-search-pill:focus,
+.nav-search-pill:focus-visible,
+.nav-search-pill:active {
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 .nav-links-capsule {
