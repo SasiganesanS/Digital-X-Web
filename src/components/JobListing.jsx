@@ -195,44 +195,62 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
 
   // Filter jobs based on search query and filters
   const jobs = useMemo(() => {
-    const searchLower = searchQuery.trim().toLowerCase();
+    const searchLower = (searchQuery || "").trim().toLowerCase();
+    const safeFilters = filters || {};
 
     return allJobs.filter((job) => {
+      if (!job) return false;
+
+      const title = (job.title || "").toLowerCase();
+      const description = (job.description || "").toLowerCase();
+      const role = (job.role || "").toLowerCase();
+      const department = (job.department || "").toLowerCase();
+      const location = (job.location || "").toLowerCase();
+      const type = (job.type || "").toLowerCase();
+      const level = (job.level || "").toLowerCase();
+      const skills = Array.isArray(job.skills) ? job.skills : [];
+      const requirements = Array.isArray(job.requirements) ? job.requirements : [];
+
       // Search matching across all relevant fields
       const matchesSearch =
         !searchLower ||
-        job.title.toLowerCase().includes(searchLower) ||
-        job.description.toLowerCase().includes(searchLower) ||
-        job.role.toLowerCase().includes(searchLower) ||
-        job.department.toLowerCase().includes(searchLower) ||
-        job.location.toLowerCase().includes(searchLower) ||
-        job.type.toLowerCase().includes(searchLower) ||
-        job.level.toLowerCase().includes(searchLower) ||
-        job.skills.some((skill) => skill.toLowerCase().includes(searchLower)) ||
-        job.requirements.some((req) => req.toLowerCase().includes(searchLower));
+        title.includes(searchLower) ||
+        description.includes(searchLower) ||
+        role.includes(searchLower) ||
+        department.includes(searchLower) ||
+        location.includes(searchLower) ||
+        type.includes(searchLower) ||
+        level.includes(searchLower) ||
+        skills.some((skill) => (skill || "").toLowerCase().includes(searchLower)) ||
+        requirements.some((req) => (req || "").toLowerCase().includes(searchLower));
 
       // Filter matching
+      const filterRole = (safeFilters.role || "").toLowerCase();
       const matchesRole =
-        !filters.role ||
-        job.role.toLowerCase() === filters.role.toLowerCase() ||
-        job.title.toLowerCase().includes(filters.role.toLowerCase());
+        !filterRole ||
+        role === filterRole ||
+        title.includes(filterRole);
 
+      const filterDepartment = (safeFilters.department || "").toLowerCase();
       const matchesDepartment =
-        !filters.department ||
-        job.department.toLowerCase() === filters.department.toLowerCase();
+        !filterDepartment ||
+        department === filterDepartment;
 
+      const filterType = (safeFilters.type || "").toLowerCase();
       const matchesType =
-        !filters.type ||
-        job.type.toLowerCase() === filters.type.toLowerCase() ||
-        (filters.type.toLowerCase() === "full-time intern" && job.type.toLowerCase() === "full-time");
+        !filterType ||
+        type === filterType ||
+        (filterType === "full-time intern" && type === "full-time");
 
+      const filterLevel = (safeFilters.level || "").toLowerCase();
       const matchesLevel =
-        !filters.level ||
-        job.level.toLowerCase() === filters.level.toLowerCase();
+        !filterLevel ||
+        level === filterLevel;
 
+      const filterLocation = (safeFilters.location || "").toLowerCase();
       const matchesLocation =
-        !filters.location ||
-        job.location.toLowerCase() === filters.location.toLowerCase();
+        !filterLocation ||
+        location === filterLocation;
 
       return (
         matchesSearch &&
