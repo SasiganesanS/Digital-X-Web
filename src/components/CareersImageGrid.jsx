@@ -231,29 +231,31 @@ function TileCard({
       </div>
 
       {/* Label Subtitle */}
-      <div className="relative z-10 text-center pb-0.5 mt-1.5">
+      <div className="relative z-10 text-center pb-0.5 mt-1.5 w-full flex flex-col items-center">
         <span className={`tracking-tight block leading-tight ${
           isCenter
-            ? "font-inlander text-[12px] sm:text-[13.5px] font-black text-[#E31D2E] uppercase"
+            ? "font-inlander text-[12px] sm:text-[13.5px] font-black text-[#E31D2E] uppercase tracking-wide text-center"
             : isHovered
             ? "text-[10px] sm:text-[11px] font-black text-[#E31D2E]"
             : "text-[10px] sm:text-[11px] font-black text-[#111111]"
         }`}>
           {labelInfo.title}
         </span>
-        <span className={`block -mt-0.5 inline-flex items-center justify-center gap-0.5 leading-tight ${
-          isCenter
-            ? "font-inlander text-[9.5px] sm:text-[11px] font-black uppercase tracking-wider text-[#111111]"
-            : "text-[9px] font-bold uppercase tracking-widest text-[#575757]"
-        }`}>
-          {labelInfo.sub === "Digital X" ? (
-            <>
-              <span>Digital</span> <BrandX className="h-[11px] sm:h-[12px] w-auto text-[#E31D2E] translate-y-[1px]" />
-            </>
-          ) : (
-            labelInfo.sub
-          )}
-        </span>
+        <div className="flex items-center justify-center w-full">
+          <span className={`block -mt-0.5 inline-flex items-center justify-center gap-0.5 leading-tight ${
+            isCenter
+              ? "font-inlander text-[9.5px] sm:text-[11px] font-black uppercase tracking-wider text-[#111111] pl-1.5"
+              : "text-[9px] font-bold uppercase tracking-widest text-[#575757]"
+          }`}>
+            {labelInfo.sub === "Digital X" ? (
+              <>
+                <span>Digital</span> <BrandX className="h-[11px] sm:h-[12px] w-auto text-[#E31D2E] translate-y-[1px] -mr-2 sm:-mr-2.5" />
+              </>
+            ) : (
+              labelInfo.sub
+            )}
+          </span>
+        </div>
       </div>
     </motion.div>
   );

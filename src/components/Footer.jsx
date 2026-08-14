@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
 import BrandX from "./common/BrandX";
@@ -19,19 +19,6 @@ import {
 } from "react-icons/fi";
 
 const Footer = ({ setShowContactForm }) => {
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  const handleLogoClick = (e) => {
-    e.preventDefault();
-    if (location.pathname === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      navigate("/");
-      window.scrollTo(0, 0);
-    }
-  };
-
   return (
     <footer id="contact" className="relative w-full py-5 sm:py-7 z-10">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
@@ -94,7 +81,7 @@ const Footer = ({ setShowContactForm }) => {
           >
             {/* LEFT COLUMN: Logo, Tagline, Description */}
             <div className="md:col-span-7 space-y-2.5">
-              <Link to="/" onClick={handleLogoClick} className="flex items-center gap-3.5 group w-fit cursor-pointer">
+              <Link to="/" className="flex items-center gap-3.5 group w-fit">
                 <div className="w-[42px] h-[42px] rounded-[12px] bg-white p-[6px] flex items-center justify-center border border-black/[0.06] shadow-md shrink-0 transition-all duration-300 group-hover:scale-105">
                   <img
                     src={Logo}

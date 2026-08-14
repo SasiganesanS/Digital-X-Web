@@ -795,14 +795,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
     ['--pill-text']: resolvedPillTextColor
   };
 
-  const handleLogoClick = (e) => {
-    if (location.pathname === "/") {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      window.scrollTo(0, 0);
-    }
-  };
+  const shouldShowNavbar = isVisible || isTopHovered || isMobileMenuOpen;
 
   return (
     <>
@@ -812,7 +805,6 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
         {/* ── LEFT SEPARATE CAPSULE: DEDICATED BRAND BLOCK ── */}
         <Link
           to="/"
-          onClick={handleLogoClick}
           className="nav-brand-capsule group select-none cursor-pointer flex items-center gap-1 sm:gap-1.5"
           aria-label="Praskla Digital X Home"
           onMouseEnter={handleLogoEnter}
