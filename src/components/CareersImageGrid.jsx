@@ -192,9 +192,7 @@ function TileCard({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={`clay-card relative rounded-[24px] sm:rounded-[28px] lg:rounded-[30px] p-2.5 sm:p-3 flex flex-col items-center justify-between border backdrop-blur-xl transition-all duration-500 overflow-hidden cursor-pointer select-none ${
-        isCenter
-          ? "bg-white border-white shadow-[0_12px_32px_rgba(17,17,17,0.06)]"
-          : isHovered
+        isHovered
           ? "bg-white border-[#FF2B2B]/40 shadow-[0_12px_40px_rgba(0,0,0,0.08)] z-30"
           : "bg-white/80 border-white/80 shadow-[0_8px_24px_rgba(17,17,17,0.03)] hover:bg-white"
       }`}
@@ -205,12 +203,6 @@ function TileCard({
     >
       {/* Light Inner Glass Highlight */}
       <div className="absolute inset-0 rounded-[28px] bg-gradient-to-br from-white/80 via-transparent to-transparent pointer-events-none z-10" />
-
-      {/* Center Faint Glow */}
-      {/* Center Faint Glow */}
-      {isCenter && (
-        <div className="absolute inset-0 bg-[#E31D2E]/15 blur-xl pointer-events-none z-0" />
-      )}
 
       {/* Image Area */}
       <div className={`relative w-full aspect-square overflow-hidden flex items-center justify-center z-10 ${

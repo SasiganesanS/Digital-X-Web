@@ -809,14 +809,14 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
 
           {/* 2-line Text Column (PRASKLA DIGITAL + Animated Single-Line Tagline) */}
           <div className="flex flex-col justify-center min-w-0">
-            <span className="font-inlander text-[17px] sm:text-[20px] lg:text-[22px] font-black text-[#111111] leading-none tracking-[0.01em] uppercase whitespace-nowrap">
-              PRASKLA DIGITAL
-            </span>
+            <div className="flex items-center gap-1.5 leading-none">
+              <span className="font-inlander text-[17px] sm:text-[20px] lg:text-[22px] font-black text-[#111111] leading-none tracking-[0.01em] uppercase whitespace-nowrap">
+                PRASKLA DIGITAL
+              </span>
+              <BrandX className="h-[23px] sm:h-[27px] lg:h-[30px] w-auto shrink-0 select-none text-[#E31D2E] translate-y-[2px] drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
+            </div>
             <AnimatedBrandTagline />
           </div>
-
-          {/* Brand Stylized Red Swoosh X Graphic */}
-          <BrandX className="h-[34px] sm:h-[38px] lg:h-[42px] w-auto shrink-0 select-none text-[#E31D2E] -ml-2 sm:-ml-3 lg:-ml-3.5 self-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
         </Link>
 
         {/* ── RIGHT SEPARATE CAPSULE: NAVIGATION LINKS & CTA ── */}

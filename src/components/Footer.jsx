@@ -90,13 +90,13 @@ const Footer = ({ setShowContactForm }) => {
                   />
                 </div>
                 <div className="flex flex-col">
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-1.5 leading-none">
                     <span className="font-inlander text-base sm:text-lg font-black text-white tracking-tight group-hover:text-white transition-colors duration-300 leading-none">
                       Praskla Digital
                     </span>
-                    <BrandX className="h-[20px] sm:h-[22px] w-auto shrink-0 select-none text-[#FF2B2B] drop-shadow-[0_1px_4px_rgba(255,43,43,0.35)] -ml-0.5 translate-y-[3px]" />
+                    <BrandX className="h-[20px] sm:h-[22px] w-auto shrink-0 select-none text-[#FF2B2B] drop-shadow-[0_1px_4px_rgba(255,43,43,0.35)] translate-y-[2px]" />
                   </div>
-                  <span className="font-space-grotesk text-[11px] font-medium text-[#9CA3AF] tracking-[0.08em] mt-0.5">
+                  <span className="font-space-grotesk text-[11px] font-medium text-[#9CA3AF] tracking-[0.08em] mt-1">
                     A Mindful Marketing and Production Firm
                   </span>
                 </div>
@@ -168,8 +168,8 @@ const Footer = ({ setShowContactForm }) => {
           {/* BOTTOM LEGAL BAR */}
           <div className="relative z-10 border-t border-white/[0.06] pt-4 pb-0.5">
             <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-center md:text-left text-xs font-semibold text-[#9CA3AF]">
-              <span className="inline-flex items-center gap-1 justify-center md:justify-start">
-                © {new Date().getFullYear()} <span className="font-inlander">Praskla Digital</span> <BrandX className="h-[13px] w-auto inline-block text-[#FF2B2B] translate-y-[2px]" />. All rights reserved.
+              <span className="inline-flex items-center gap-1.5 justify-center md:justify-start">
+                © {new Date().getFullYear()} <span className="font-inlander font-bold">Praskla Digital</span> <BrandX className="h-[15px] w-auto inline-block text-[#FF2B2B] translate-y-[1.5px]" />. All rights reserved.
               </span>
 
               <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
