@@ -1,12 +1,12 @@
 import React, { useMemo, useState, useEffect, useRef } from "react";
 import HeroLayout from "./common/HeroLayout";
 import "./ServiceCalculator.css";
-import balajiPortraits from '../assets/tie/Balaji-Portraits.jpg';
-import ibodhiAcademy from '../assets/tie/ibodhi-academy-removebg.png';
-import vilcet from '../assets/tie/VILCET-removebg.png';
-import shipyon from '../assets/tie/Shipyon.png';
-import pt from '../assets/tie/pt.png';
-import ourServicesImg from "../assets/services-img/digital.jpeg";
+import balajiPortraits from '../assets/tie/Balaji-Portraits.webp';
+import ibodhiAcademy from '../assets/tie/ibodhi-academy-removebg.webp';
+import vilcet from '../assets/tie/VILCET-removebg.webp';
+import shipyon from '../assets/tie/Shipyon.webp';
+import pt from '../assets/tie/pt.webp';
+import ourServicesImg from "../assets/services-img/digital.webp";
 import servicesData from "../data/servicesData";
 import ProjectBriefModal from "./ProjectBriefModal";
 import SectionBadge from "./common/SectionBadge";
@@ -29,6 +29,7 @@ import {
   FaShieldAlt,
   FaLeaf,
   FaPalette,
+  FaVideo,
 } from "react-icons/fa";
 import {
   FiUsers,
@@ -61,6 +62,7 @@ const iconMap = {
   FaMobileAlt,
   FaLaptopCode,
   FaBullhorn,
+  FaVideo,
   FaShieldAlt,
   FaLeaf,
   FaTimesCircle,
@@ -763,7 +765,7 @@ export default function ServiceCalculator() {
 
     try {
       window.open(
-        `https://wa.me/919344305986?text=${encodeURIComponent(message)}`,
+        `https://wa.me/919566880740?text=${encodeURIComponent(message)}`,
         "_blank"
       );
     } catch (err) {
@@ -949,7 +951,7 @@ export default function ServiceCalculator() {
 
                           {/* Icon Capsule */}
                           <div className={`relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-full p-2 border transition-all duration-500 flex items-center justify-center bg-gradient-to-br from-white via-white/95 to-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.05)] ${
-                            isProgrammaticHover ? 'border-[#FF2B2B] shadow-[0_4px_16px_rgba(0,0,0,0.08)] -translate-y-1 rotate-[5deg]' : 'border-neutral-200 group-hover:border-[#FF2B2B] group-hover:-translate-y-1 group-hover:rotate-[5deg]'
+                            isProgrammaticHover ? 'border-black/40 shadow-[0_4px_16px_rgba(0,0,0,0.08)] -translate-y-1 rotate-[5deg]' : 'border-neutral-200 group-hover:border-black/30 group-hover:-translate-y-1 group-hover:rotate-[5deg]'
                           }`}>
                             <img
                               src={service.image}
@@ -1017,7 +1019,7 @@ export default function ServiceCalculator() {
                   aria-label={`Go to ${servicesData[i].title} service`}
                   className={`transition-all duration-500 cursor-pointer border border-transparent ${
                     isActive
-                      ? "w-9 h-2.5 bg-[#E31D2E] rounded-full scale-105 shadow-[0_2px_10px_rgba(227,29,46,0.4)]"
+                      ? "w-9 h-2.5 bg-[#E31D2E] rounded-full scale-105 shadow-[0_2px_10px_rgba(0,0,0,0.12)]"
                       : "w-2.5 h-2.5 bg-neutral-300 hover:bg-neutral-400 rounded-full"
                   }`}
                   onClick={() => goToIndex(i)}
@@ -1084,7 +1086,16 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                   {PLATFORMS.map((p) => {
                     if (!p) return null;
                     const isSelected = Array.isArray(selectedItems) && selectedItems.some((item) => item?.platform?.id === p.id);
-                    const PlatformIcon = typeof p.icon === 'function' || typeof p.icon === 'object' ? p.icon : null;
+                    const ICON_COMPONENT_MAP = {
+                      FaGlobe,
+                      FaLaptopCode,
+                      FaMobileAlt,
+                      FaBullhorn,
+                      FaVideo,
+                      FaShieldAlt,
+                      FaLeaf,
+                    };
+                    const PlatformIcon = typeof p.icon === 'function' || typeof p.icon === 'object' ? p.icon : (ICON_COMPONENT_MAP[p.icon] || FaGlobe);
                     const pPrice = typeof p.price === 'number' ? p.price : 0;
                     const pTitle = p.title || 'Service Pillar';
 
@@ -1095,16 +1106,16 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                         onClick={(e) => handlePlatformClick(p, e)}
                         className={`group relative p-5 rounded-[1.75rem] border transition-all duration-300 text-left overflow-hidden flex items-center justify-between cursor-pointer min-h-[105px] ${
                           isSelected
-                            ? "bg-gradient-to-br from-white via-red-50/40 to-white border-[#E31D2E] shadow-[0_14px_36px_rgba(227,29,46,0.14)] scale-[1.02] -translate-y-0.5"
-                            : "bg-slate-50/70 border-slate-200/80 hover:bg-white hover:border-[#E31D2E]/60 hover:shadow-[0_12px_32px_rgba(227,29,46,0.08)] hover:-translate-y-0.5"
+                            ? "bg-gradient-to-br from-white via-red-50/40 to-white border-[#E31D2E] shadow-[0_14px_36px_rgba(0,0,0,0.08)] scale-[1.02] -translate-y-0.5"
+                            : "bg-slate-50/70 border-slate-200/80 hover:bg-white hover:border-black/20 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] hover:-translate-y-0.5"
                         }`}
                       >
                         <div className="relative z-10 flex items-center gap-3.5">
                           {/* Floating Layered Icon Container */}
                           <div className={`relative w-11 h-11 rounded-2xl flex items-center justify-center border transition-all duration-300 shrink-0 ${
                             isSelected
-                              ? "bg-[#E31D2E] text-white border-[#E31D2E] shadow-[0_4px_16px_rgba(227,29,46,0.35)] scale-105"
-                              : "bg-white text-[#E31D2E] border-gray-200 group-hover:border-[#E31D2E]/40 group-hover:scale-105 group-hover:rotate-[6deg]"
+                              ? "bg-[#E31D2E] text-white border-[#E31D2E] shadow-[0_4px_16px_rgba(0,0,0,0.12)] scale-105"
+                              : "bg-white text-[#E31D2E] border-gray-200 group-hover:border-black/20 group-hover:scale-105 group-hover:rotate-[6deg]"
                           }`}>
                             {PlatformIcon ? <PlatformIcon className="text-lg transition-transform duration-300" /> : null}
                           </div>
@@ -1130,7 +1141,7 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                               <FaCheckCircle className="text-xs" />
                             </div>
                           ) : (
-                            <div className="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center bg-white group-hover:border-[#E31D2E] group-hover:bg-[#E31D2E]/10 transition-all shadow-2xs">
+                            <div className="w-7 h-7 rounded-full border border-gray-200 flex items-center justify-center bg-white group-hover:border-black/30 group-hover:bg-[#E31D2E]/10 transition-all shadow-2xs">
                               <FaArrowRight className="text-gray-400 text-[10px] group-hover:text-[#E31D2E] transition-colors" />
                             </div>
                           )}
@@ -1310,7 +1321,7 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                 key={`${partner.alt}-${i}`}
                 className="flex-shrink-0 mr-6 md:mr-8 w-[160px] h-[96px] md:w-[190px] md:h-[110px] rounded-2xl
                            bg-white/60 border border-white/80 flex items-center justify-center p-5
-                           hover:border-[#FF2B2B]/40 hover:shadow-[0_8px_24px_rgba(255,43,43,0.08)]
+                           hover:border-black/20 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)]
                            hover:scale-105 transition-all duration-500 shadow-sm"
               >
                 <img

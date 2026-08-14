@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { FaCheck, FaTimes, FaTimes as CloseIcon, FaShieldAlt, FaLock, FaUserShield, FaClipboardCheck, FaServer, FaEuroSign, FaRupeeSign } from 'react-icons/fa';
-import mock1 from "../../assets/pricing/mock1.png";
-import mock2 from "../../assets/pricing/mock2.png";
-import mock3 from "../../assets/pricing/mock3.png";
-import mock4 from "../../assets/pricing/mock4.png";
+import mock1 from "../../assets/pricing/mock1.webp";
+import mock2 from "../../assets/pricing/mock2.webp";
+import mock3 from "../../assets/pricing/mock3.webp";
+import mock4 from "../../assets/pricing/mock4.webp";
 import { sendPricingQuoteEmails } from '../../utils/emailService';
 
 const CybersecurityPricing = () => {

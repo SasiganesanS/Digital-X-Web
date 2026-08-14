@@ -248,20 +248,20 @@ export const searchIndex = [
 
   // --- Team Members from Teams.jsx ---
   {
-    id: "team-pranesh",
-    title: "Pranesh Kumar Baskaran - Founder / CEO",
+    id: "team-jaillesh",
+    title: "Jaillesh Kathirvel - Founder & Business Head & Manager",
     category: "Team",
-    description: "Committed to delivering quality-assured software solutions that generate sustainable value. Strategic vision & CEO.",
-    keywords: ["pranesh", "founder", "ceo", "baskaran", "leadership", "team", "executive"],
+    description: "Drives business growth and client partnerships with precision and strategic execution.",
+    keywords: ["jaillesh", "kathirvel", "founder", "business head", "manager", "leadership", "team"],
     target: "/about#team",
     type: "team"
   },
   {
-    id: "team-jaillesh",
-    title: "Jaillesh Kathirvel - Business Head & Manager",
+    id: "team-pranesh",
+    title: "Pranesh Kumar Baskaran - Co-Founder",
     category: "Team",
-    description: "Drives business growth and client partnerships with precision and strategic execution.",
-    keywords: ["jaillesh", "kathirvel", "business head", "manager", "leadership", "team"],
+    description: "Committed to delivering quality-assured software solutions that generate sustainable value. Strategic vision & Co-Founder.",
+    keywords: ["pranesh", "cofounder", "co-founder", "baskaran", "leadership", "team", "executive"],
     target: "/about#team",
     type: "team"
   },

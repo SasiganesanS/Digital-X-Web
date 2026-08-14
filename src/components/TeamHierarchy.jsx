@@ -1,20 +1,20 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { createPortal } from 'react-dom';
-import pranesh from "../assets/team/Pranesh.png";
-import Jaillesh from "../assets/team/Jaillesh-Kathirvel.png";
-import sathya from "../assets/team/Satya.jpg";
-import Bright from "../assets/team/Bright.png";
-import divakar from "../assets/team/Divakar.png";
-import rajkumar from "../assets/team/Rajkumar.png";
-import kamalesh from "../assets/team/Kamalesh.png";
-import ragavi from "../assets/team/ragavi.jpg";
-import vishnu from "../assets/team/vishnu.png";
-import vikash from "../assets/team/Vikash.png";
-import kamal from "../assets/team/kamal.jpg";
-import yogech from "../assets/team/Yogech.png";
-import ram from "../assets/team/Ramachandran.png";
-import tharun from "../assets/team/Tharun.png";
+import pranesh from "../assets/team/Pranesh.webp";
+import Jaillesh from "../assets/team/Jaillesh-Kathirvel.webp";
+import sathya from "../assets/team/Satya.webp";
+import Bright from "../assets/team/Bright.webp";
+import divakar from "../assets/team/Divakar.webp";
+import rajkumar from "../assets/team/Rajkumar.webp";
+import kamalesh from "../assets/team/Kamalesh.webp";
+import ragavi from "../assets/team/ragavi.webp";
+import vishnu from "../assets/team/vishnu.webp";
+import vikash from "../assets/team/Vikash.webp";
+import kamal from "../assets/team/kamal.webp";
+import yogech from "../assets/team/Yogech.webp";
+import ram from "../assets/team/Ramachandran.webp";
+import tharun from "../assets/team/Tharun.webp";
 
 const TeamHierarchy = ({
   showHierarchy,

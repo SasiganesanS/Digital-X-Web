@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 import SectionBadge from "../common/SectionBadge";
+import BrandX from "../common/BrandX";
 
 const containerVariants = {
   hidden: {},
@@ -28,7 +29,7 @@ const AboutSection = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={containerVariants}
-          className="relative flex flex-col lg:flex-row gap-12 lg:gap-20 rounded-[36px] p-8 md:p-14 lg:p-20 overflow-hidden bg-white/80 backdrop-blur-xl border border-neutral-200/80 shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.07)] hover:border-[#E31D2E]/30 transition-all duration-500"
+          className="relative flex flex-col lg:flex-row gap-12 lg:gap-20 rounded-[36px] p-8 md:p-14 lg:p-20 overflow-hidden bg-white/80 backdrop-blur-xl border border-neutral-200/80 shadow-[0_20px_50px_rgba(0,0,0,0.04)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.07)] hover:border-black/20 transition-all duration-500"
         >
           {/* Left — label + headline */}
           <div className="flex-1">
@@ -55,7 +56,7 @@ const AboutSection = () => {
             <motion.div variants={fadeUp} className="relative">
               <div className="absolute -left-5 sm:-left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-[#E31D2E] via-[#E31D2E]/60 to-transparent rounded-full" />
               <p className="text-[#111111] text-lg md:text-xl leading-relaxed font-semibold pl-1">
-                PRASKLA Digital X is a mindful marketing firm built on the belief that true growth
+                Praskla Digital <BrandX className="h-[1.1em] w-auto text-[#E31D2E] inline-block translate-y-[0.14em] -ml-0.5" /> is a mindful marketing firm built on the belief that true growth
                 comes from <span className="text-[#E31D2E] font-black">clarity, creativity, and collaboration</span>.
                 We partner with businesses and personal brands to transform their ideas into
                 measurable digital success.

@@ -142,13 +142,13 @@ const Homesection4 = () => {
                     className="w-full pt-1 flex flex-wrap gap-2.5"
                   >
                     <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-100/80 border border-neutral-200/60 text-xs font-semibold text-neutral-700">
-                      ⏱️ 3 Min Brief
+                      3 Min Brief
                     </span>
                     <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-100/80 border border-neutral-200/60 text-xs font-semibold text-neutral-700">
-                      🎯 Custom Strategy
+                      Custom Strategy
                     </span>
                     <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-100/80 border border-neutral-200/60 text-xs font-semibold text-neutral-700">
-                      ⚡ Quick Response
+                      Quick Response
                     </span>
                   </motion.div>
 

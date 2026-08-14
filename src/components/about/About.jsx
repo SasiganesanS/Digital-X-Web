@@ -11,11 +11,12 @@ import {
   Video,
   ArrowRight
 } from "lucide-react";
-import pyLogo from "../../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
+import pyLogo from "../../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
 import { motion, AnimatePresence } from "framer-motion";
 import Teams from "../Teams";
 import HeroLayout from "../common/HeroLayout";
 import SectionBadge from "../common/SectionBadge";
+import BrandX from "../common/BrandX";
 
 function AnimatedCounter({ target, suffix = "", prefix = "", duration = 1.6 }) {
   const [count, setCount] = useState(0);
@@ -100,12 +101,10 @@ const About = () => {
       variants={fadeUp}
       initial="hidden"
       animate="visible"
-      className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-[1.22] tracking-tight text-[#111111]"
+      className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[0.98] tracking-[-0.04em] text-[#111111]"
     >
-      Where Mindful Strategy{" "}
-      <span className="inline-block text-[#E31D2E]">
-        Meets Scalable Growth
-      </span>
+      <span className="block mb-1 sm:mb-1.5">Where Mindful Strategy</span>
+      <span className="block text-[#E31D2E]">Meets Scalable Growth.</span>
     </motion.h1>
   );
 
@@ -150,7 +149,7 @@ const About = () => {
           key={i}
           variants={fadeUp}
           whileHover={{ y: -3, scale: 1.01 }}
-          className="group flex items-center gap-4 bg-white/80 border border-neutral-200/80 rounded-[20px] p-4 shadow-xs hover:border-[#E31D2E]/40 hover:shadow-[0_12px_28px_rgba(0,0,0,0.05)] transition-all duration-300"
+          className="group flex items-center gap-4 bg-white/80 border border-neutral-200/80 rounded-[20px] p-4 shadow-xs hover:border-black/20 hover:shadow-[0_12px_28px_rgba(0,0,0,0.05)] transition-all duration-300"
         >
           <div className="w-10 h-10 rounded-xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#E31D2E] transition-colors duration-300">
             {React.cloneElement(item.icon, {
@@ -197,7 +196,9 @@ const About = () => {
               <img src={pyLogo} alt="Praskla Digital X" className="w-full h-full object-contain" />
             </div>
             <div>
-              <h3 className="text-sm font-black text-[#111111]">Praskla Digital X</h3>
+              <h3 className="text-sm font-black text-[#111111] flex items-center gap-1">
+                Praskla Digital <BrandX className="h-[14px] w-auto text-[#E31D2E] translate-y-[1.5px]" />
+              </h3>
               <p className="text-[11px] font-semibold text-neutral-400">Mindful Marketing Firm</p>
             </div>
           </div>
@@ -242,7 +243,7 @@ const About = () => {
         <div className="grid grid-cols-2 gap-3 mb-4">
           <motion.div
             whileHover={{ y: -3, scale: 1.02 }}
-            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-[#E31D2E]/30 hover:shadow-[0_10px_24px_rgba(227,29,46,0.12)] transition-all duration-300 overflow-hidden"
+            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
@@ -259,7 +260,7 @@ const About = () => {
 
           <motion.div
             whileHover={{ y: -3, scale: 1.02 }}
-            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-[#E31D2E]/30 hover:shadow-[0_10px_24px_rgba(227,29,46,0.12)] transition-all duration-300 overflow-hidden"
+            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
@@ -276,7 +277,7 @@ const About = () => {
 
           <motion.div
             whileHover={{ y: -3, scale: 1.02 }}
-            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-[#E31D2E]/30 hover:shadow-[0_10px_24px_rgba(227,29,46,0.12)] transition-all duration-300 overflow-hidden"
+            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
@@ -293,7 +294,7 @@ const About = () => {
 
           <motion.div
             whileHover={{ y: -3, scale: 1.02 }}
-            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-[#E31D2E]/30 hover:shadow-[0_10px_24px_rgba(227,29,46,0.12)] transition-all duration-300 overflow-hidden"
+            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
@@ -318,7 +319,9 @@ const About = () => {
 
         {/* Footer Bar */}
         <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-[11px] text-neutral-400 font-bold uppercase tracking-wider">
-          <span>Praskla Digital X</span>
+          <span className="inline-flex items-center gap-1">
+            Praskla Digital <BrandX className="h-[12px] w-auto text-[#E31D2E] translate-y-[1px]" />
+          </span>
           <span className="text-[#E31D2E]">Established Excellence</span>
         </div>
       </motion.div>
@@ -384,7 +387,7 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative rounded-[2.5rem] p-8 sm:p-10 border border-neutral-200/80 bg-white/80 shadow-[0_20px_50px_rgba(17,17,17,0.04),_inset_0_2px_4px_rgba(255,255,255,0.9)] backdrop-blur-xl hover:shadow-[0_30px_70px_rgba(227,29,46,0.12)] hover:border-[#E31D2E]/30 transition-all duration-500 flex flex-col justify-between"
+              className="group relative rounded-[2.5rem] p-8 sm:p-10 border border-neutral-200/80 bg-white/80 shadow-[0_20px_50px_rgba(17,17,17,0.04),_inset_0_2px_4px_rgba(255,255,255,0.9)] backdrop-blur-xl hover:shadow-[0_30px_70px_rgba(0,0,0,0.12)] hover:border-black/20 transition-all duration-500 flex flex-col justify-between"
             >
               <div>
                 {/* Header row with Icon & Number */}
@@ -392,7 +395,7 @@ const About = () => {
                   <div className="w-14 h-14 rounded-2xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center text-[#E31D2E] shadow-xs group-hover:scale-110 group-hover:bg-[#E31D2E] group-hover:text-white transition-all duration-500">
                     <Eye className="w-7 h-7 stroke-[2.2]" />
                   </div>
-                  <span className="px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] group-hover:border-[#E31D2E]/30 transition-colors duration-300">
+                  <span className="px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] group-hover:border-black/20 transition-colors duration-300">
                     01
                   </span>
                 </div>
@@ -428,7 +431,7 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-              className="group relative rounded-[2.5rem] p-8 sm:p-10 border border-neutral-200/80 bg-white/80 shadow-[0_20px_50px_rgba(17,17,17,0.04),_inset_0_2px_4px_rgba(255,255,255,0.9)] backdrop-blur-xl hover:shadow-[0_30px_70px_rgba(227,29,46,0.12)] hover:border-[#E31D2E]/30 transition-all duration-500 flex flex-col justify-between"
+              className="group relative rounded-[2.5rem] p-8 sm:p-10 border border-neutral-200/80 bg-white/80 shadow-[0_20px_50px_rgba(17,17,17,0.04),_inset_0_2px_4px_rgba(255,255,255,0.9)] backdrop-blur-xl hover:shadow-[0_30px_70px_rgba(0,0,0,0.12)] hover:border-black/20 transition-all duration-500 flex flex-col justify-between"
             >
               <div>
                 {/* Header row with Icon & Number */}
@@ -436,7 +439,7 @@ const About = () => {
                   <div className="w-14 h-14 rounded-2xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center text-[#E31D2E] shadow-xs group-hover:scale-110 group-hover:bg-[#E31D2E] group-hover:text-white transition-all duration-500">
                     <Target className="w-7 h-7 stroke-[2.2]" />
                   </div>
-                  <span className="px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] group-hover:border-[#E31D2E]/30 transition-colors duration-300">
+                  <span className="px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] group-hover:border-black/20 transition-colors duration-300">
                     02
                   </span>
                 </div>
@@ -451,7 +454,7 @@ const About = () => {
 
                 {/* Paragraph */}
                 <p className="text-[#575757] text-base leading-relaxed font-normal">
-                  At Praskla Digital X, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
+                  At Praskla Digital <BrandX className="h-[1em] w-auto text-[#E31D2E] inline-block translate-y-[0.12em]" />, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
                 </p>
               </div>
 
@@ -497,7 +500,7 @@ const About = () => {
               </h2>
 
               <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium">
-                At PRASKLA Digital X, we bring together creative visual creators, copywriting experts,
+                At Praskla Digital <BrandX className="h-[1.05em] w-auto text-[#E31D2E] inline-block translate-y-[0.14em]" />, we bring together creative visual creators, copywriting experts,
                 ad strategists, and performance analytics professionals.
               </p>
 
@@ -608,7 +611,7 @@ const About = () => {
                   transition={{ duration: 0.5, delay: index * 0.12, ease: "easeOut" }}
                   className="group relative"
                 >
-                  <div className="h-full bg-white border border-neutral-200/80 rounded-[28px] p-7 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)] hover:border-[#FF2B2B]/30 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                  <div className="h-full bg-white border border-neutral-200/80 rounded-[28px] p-7 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)] hover:border-black/20 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
                     
                     {/* Top Row: Icon Container + Category Number */}
                     <div>

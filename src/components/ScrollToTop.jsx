@@ -11,7 +11,7 @@ const styles = `
   border-radius: 50%;
   background-color: #E31D2E;
   border: none;
-  box-shadow: 0 10px 25px rgba(227, 29, 46, 0.35), 4px 4px 10px rgba(0, 0, 0, 0.08), -4px -4px 10px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16), 4px 4px 10px rgba(0, 0, 0, 0.08), -4px -4px 10px rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   color: #ffffff;
@@ -37,7 +37,7 @@ const styles = `
 .scroll-to-top-btn:hover {
   transform: translateY(-4px) scale(1);
   background-color: #FF4545;
-  box-shadow: 0 18px 42px rgba(255, 40, 40, 0.5);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
 }
 
 .scroll-to-top-btn .scroll-arrow-icon {

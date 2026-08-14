@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import pyLogo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.png";
-import career01 from "../assets/Careers/career01.png";
-import career02 from "../assets/Careers/career02.png";
-import career03 from "../assets/Careers/career03.png";
-import career04 from "../assets/Careers/career04.png";
-import career05 from "../assets/Careers/career05.png";
-import career06 from "../assets/Careers/career06.png";
-import career07 from "../assets/Careers/career07.png";
-import career08 from "../assets/Careers/career08.png";
+import pyLogo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
+import BrandX from "./common/BrandX";
+import career01 from "../assets/Careers/career01.webp";
+import career02 from "../assets/Careers/career02.webp";
+import career03 from "../assets/Careers/career03.webp";
+import career04 from "../assets/Careers/career04.webp";
+import career05 from "../assets/Careers/career05.webp";
+import career06 from "../assets/Careers/career06.webp";
+import career07 from "../assets/Careers/career07.webp";
+import career08 from "../assets/Careers/career08.webp";
 
 const DEFAULT_MEMBERS = [
   { id: 1, image: career01, alt: "Marketing Dashboard", title: "Marketing", sub: "Dashboard" },
@@ -233,8 +234,14 @@ function TileCard({
         }`}>
           {labelInfo.title}
         </span>
-        <span className="text-[9px] font-bold uppercase tracking-widest text-[#575757] block -mt-0.5">
-          {labelInfo.sub}
+        <span className="text-[9px] font-bold uppercase tracking-widest text-[#575757] block -mt-0.5 inline-flex items-center justify-center gap-0.5">
+          {labelInfo.sub === "Digital X" ? (
+            <>
+              Digital <BrandX className="h-[9px] w-auto text-[#E31D2E] translate-y-[1px]" />
+            </>
+          ) : (
+            labelInfo.sub
+          )}
         </span>
       </div>
     </motion.div>

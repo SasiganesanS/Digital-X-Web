@@ -1,8 +1,8 @@
-import vishnu from "../assets/clients/School.jpg";
-import vilcet from "../assets/clients/VILCET.png";
-import jkk_tex from "../assets/clients/JKK-TEX.png";
-import thilaga from "../assets/clients/Thilaga-Impex.png";
-import capturever from "../assets/clients/Captureever.png";
+import vishnu from "../assets/clients/School.webp";
+import vilcet from "../assets/clients/VILCET.webp";
+import jkk_tex from "../assets/clients/JKK-TEX.webp";
+import thilaga from "../assets/clients/Thilaga-Impex.webp";
+import capturever from "../assets/clients/Captureever.webp";
 
 export const clientData = [
   {
@@ -72,15 +72,15 @@ export const data = [
   },
 ];
 
-import mock1 from "../assets/pricing/mock1.png";
-import mock2 from "../assets/pricing/mock2.png";
-import mock3 from "../assets/pricing/mock3.png";
-import mock4 from "../assets/pricing/mock4.png";
-import PHero1 from "../assets/P-Hero-1.jpg";
-import tipyImg from "../assets/tipy.png";
-import PHero3 from "../assets/P-Hero-3.jpg";
-import PHero4 from "../assets/P-Hero-4.jpg";
-import PHero5 from "../assets/P-Hero-5.jpg";
+import mock1 from "../assets/pricing/mock1.webp";
+import mock2 from "../assets/pricing/mock2.webp";
+import mock3 from "../assets/pricing/mock3.webp";
+import mock4 from "../assets/pricing/mock4.webp";
+import PHero1 from "../assets/P-Hero-1.webp";
+import tipyImg from "../assets/tipy.webp";
+import PHero3 from "../assets/P-Hero-3.webp";
+import PHero4 from "../assets/P-Hero-4.webp";
+import PHero5 from "../assets/P-Hero-5.webp";
 export const ServiceHeroData = [
   {
     title: "Content Creation",
@@ -245,14 +245,16 @@ export const platforms = SERVICES_CONFIG.map((service) => ({
   title: service.title,
   price: service.basePrice,
   icon:
-    service.id === "web"
+    service.id === "marketing"
+      ? "FaBullhorn"
+      : service.id === "video"
+      ? "FaVideo"
+      : service.id === "web"
       ? "FaGlobe"
       : service.id === "software"
       ? "FaLaptopCode"
       : service.id === "app"
       ? "FaMobileAlt"
-      : service.id === "marketing"
-      ? "FaBullhorn"
       : service.id === "cyber"
       ? "FaShieldAlt"
       : "FaLeaf",
@@ -345,10 +347,10 @@ export const businessWebsitePricingPlans = [
   }
 ];
 
-import vp from "../assets/clients/vp.png";
-import jkk from "../assets/clients/jkk.png";
+import vp from "../assets/clients/vp.webp";
+import jkk from "../assets/clients/jkk.webp";
 // Removed duplicate import of vilcet
-import praskla from "../assets/py.jpg";
+import praskla from "../assets/py.webp";
 
 export const businessWebsiteExampleWorks = [
   {
@@ -371,14 +373,14 @@ export const businessWebsiteExampleWorks = [
   },
   {
     plan: "Premium",
-    name: "PRASKLA TECHNOLOGY",
+    name: "Praskla Technology",
     description: "Feature-rich, high-conversion website built for business growth and impact",
     logo: praskla
   }
 ];
-import germany from "../assets/germany.jpeg";
-import sus from "../assets/sus.jpeg";
-import web from "../assets/web.jpeg";
+import germany from "../assets/germany.webp";
+import sus from "../assets/sus.webp";
+import web from "../assets/web.webp";
 
 export const contentData = [
   {

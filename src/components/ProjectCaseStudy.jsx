@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useNavigate, useParams, Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   ArrowLeft,
@@ -16,10 +16,64 @@ import { projects } from "../data/projects";
 import SectionBadge from "./common/SectionBadge";
 import ContactForm from "./ContactForm";
 
+const renderStyledTitle = (title) => {
+  if (!title) return null;
+  if (title.includes("–")) {
+    const [part1, ...rest] = title.split("–");
+    return (
+      <>
+        <span className="block">{part1.trim()} –</span>
+        <span className="block text-[#E31D2E]">{rest.join("–").trim()}</span>
+      </>
+    );
+  }
+  if (title.includes("-")) {
+    const [part1, ...rest] = title.split("-");
+    return (
+      <>
+        <span className="block">{part1.trim()} –</span>
+        <span className="block text-[#E31D2E]">{rest.join("-").trim()}</span>
+      </>
+    );
+  }
+  const words = title.split(" ");
+  if (words.length > 2) {
+    const mainWords = words.slice(0, words.length - 2).join(" ");
+    const redWords = words.slice(words.length - 2).join(" ");
+    return (
+      <>
+        <span className="block">{mainWords}</span>
+        <span className="block text-[#E31D2E]">{redWords}</span>
+      </>
+    );
+  }
+  return <span className="block text-[#E31D2E]">{title}</span>;
+};
+
 const ProjectCaseStudy = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { id } = useParams();
   const [showContactForm, setShowContactForm] = useState(false);
+
+  const fromPath = location.state?.from;
+  const projectSlug = location.state?.projectSlug || id;
+
+  const handleBack = () => {
+    if (fromPath === '/' || fromPath === 'home') {
+      navigate('/', { replace: true });
+      setTimeout(() => {
+        const el = document.getElementById('projects');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else if (fromPath === '/projects') {
+      navigate('/projects', { state: { scrollToId: projectSlug } });
+    } else if (window.history.length > 2) {
+      navigate(-1);
+    } else {
+      navigate('/projects', { state: { scrollToId: projectSlug } });
+    }
+  };
 
   // Find project by id or slug
   const project = projects.find(
@@ -42,13 +96,14 @@ const ProjectCaseStudy = () => {
           <p className="text-gray-500 text-sm mb-8 leading-relaxed font-medium">
             The requested case study could not be located or may have moved.
           </p>
-          <Link
-            to="/projects"
-            className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-full font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5"
+          <button
+            type="button"
+            onClick={handleBack}
+            className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-full font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5 cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
-            Back to Projects
-          </Link>
+            <span>{fromPath === '/projects' ? "Back to Projects" : "Back to Case Studies"}</span>
+          </button>
         </div>
       </div>
     );
@@ -71,13 +126,14 @@ const ProjectCaseStudy = () => {
             >
               {/* Top Navigation Row: Back Button & Breadcrumb */}
               <div className="flex flex-wrap items-center gap-3 mb-5">
-                <Link
-                  to="/projects"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white shadow-2xs hover:border-[#E31D2E]/40 text-[#111111] text-xs font-bold uppercase tracking-wider transition-all duration-200 group"
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white shadow-2xs hover:border-black/20 text-[#111111] text-xs font-bold uppercase tracking-wider transition-all duration-200 group cursor-pointer"
                 >
                   <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#E31D2E]" />
-                  <span>Back to Case Studies</span>
-                </Link>
+                  <span>{fromPath === '/projects' ? "Back to Projects" : "Back to Case Studies"}</span>
+                </button>
 
                 <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50/90 border border-red-100/90 text-[#E31D2E] text-xs font-bold tracking-wide">
                   <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
@@ -86,25 +142,25 @@ const ProjectCaseStudy = () => {
               </div>
 
               {/* Title */}
-              <h1 className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.22] tracking-tight text-[#111111] mb-4 sm:mb-5">
-                {project.title}
+              <h1 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] mb-5 sm:mb-6 max-w-2xl font-sans">
+                {renderStyledTitle(project.title)}
               </h1>
 
               {/* Subtitle */}
-              <p className="text-[#575757] text-base sm:text-lg font-medium leading-relaxed mb-6 sm:mb-7 max-w-2xl">
+              <p className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] mb-7 sm:mb-8 max-w-2xl font-sans">
                 {project.description}
               </p>
 
               {/* Impact Metric Banner Card */}
-              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.04)] mb-7 w-full max-w-xl flex items-center gap-4">
-                <div className="w-11 h-11 rounded-xl bg-[#E31D2E] text-white flex items-center justify-center shrink-0 shadow-md shadow-red-500/25">
+              <div className="p-4 sm:p-5 rounded-2xl bg-white border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.04)] mb-7 sm:mb-8 w-full max-w-xl flex items-center gap-4">
+                <div className="w-11 h-11 rounded-xl bg-[#E31D2E] text-white flex items-center justify-center shrink-0 shadow-md shadow-red-500/20">
                   <TrendingUp className="w-5.5 h-5.5" />
                 </div>
                 <div>
-                  <div className="text-[10px] font-extrabold uppercase tracking-widest text-[#E31D2E] mb-0.5">
+                  <div className="text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.12em] text-[#E31D2E] mb-0.5 font-sans">
                     Impact Metric
                   </div>
-                  <div className="text-base sm:text-lg font-black text-[#111111]">
+                  <div className="text-lg sm:text-xl lg:text-[22px] font-extrabold text-[#111111] tracking-[-0.02em] font-sans">
                     {project.result}
                   </div>
                 </div>
@@ -115,7 +171,7 @@ const ProjectCaseStudy = () => {
                 {project.services.map((svc, i) => (
                   <span
                     key={i}
-                    className="px-3.5 py-1.5 rounded-lg border border-slate-200 bg-white text-[#333333] hover:text-[#E31D2E] hover:border-red-200 hover:bg-red-50/50 text-xs font-extrabold uppercase tracking-wider shadow-2xs transition-all"
+                    className="px-3.5 py-2 rounded-xl border border-slate-200/90 bg-white text-[#333333] hover:text-[#E31D2E] hover:border-red-200 hover:bg-red-50/50 text-xs sm:text-[13px] font-semibold tracking-[0.04em] shadow-2xs transition-all font-sans"
                   >
                     {svc}
                   </span>
@@ -132,11 +188,11 @@ const ProjectCaseStudy = () => {
             >
               <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
                 <div className="relative rounded-[2.5rem] p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden">
-                  <div className="relative rounded-[2rem] overflow-hidden aspect-[4/3] bg-gray-100">
+                  <div className="relative rounded-[2rem] overflow-hidden aspect-[4/3] bg-white">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                      className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
                     />
                   </div>
 
@@ -269,7 +325,7 @@ const ProjectCaseStudy = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.07 }}
                   whileHover={{ y: -5 }}
-                  className="group relative p-7 sm:p-8 rounded-[2rem] bg-white border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-[#E31D2E]/40 hover:shadow-[0_18px_44px_rgba(227,29,46,0.09)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                  className="group relative p-7 sm:p-8 rounded-[2rem] bg-white border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-black/20 hover:shadow-[0_18px_44px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
                 >
                   {/* Top Red Gradient Accent Line on Hover */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#E31D2E] to-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-[2rem]" />
@@ -297,7 +353,7 @@ const ProjectCaseStudy = () => {
         <section className="relative w-full py-16 sm:py-20 lg:py-24 bg-transparent">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
             
-            <div className="bg-gradient-to-br from-red-50/60 via-white to-slate-50/80 rounded-[2.5rem] p-8 sm:p-12 md:p-14 border border-red-100/80 shadow-[0_15px_45px_rgba(227,29,46,0.04)] relative overflow-hidden text-[#111111]">
+            <div className="bg-gradient-to-br from-red-50/60 via-white to-slate-50/80 rounded-[2.5rem] p-8 sm:p-12 md:p-14 border border-neutral-200/80 shadow-[0_15px_45px_rgba(0,0,0,0.04)] relative overflow-hidden text-[#111111]">
               
               {/* Header Row */}
               <motion.div
@@ -328,7 +384,7 @@ const ProjectCaseStudy = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.08 }}
                     whileHover={{ y: -4 }}
-                    className="p-7 sm:p-8 rounded-[1.75rem] bg-white border border-red-100/80 shadow-[0_8px_24px_rgba(17,17,17,0.03)] hover:border-[#E31D2E]/50 hover:shadow-[0_16px_36px_rgba(227,29,46,0.1)] flex flex-col justify-between group transition-all"
+                    className="p-7 sm:p-8 rounded-[1.75rem] bg-white border border-neutral-200/80 shadow-[0_8px_24px_rgba(17,17,17,0.03)] hover:border-black/20 hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] flex flex-col justify-between group transition-all"
                   >
                     <div>
                       <div className="flex items-center justify-between mb-4">
@@ -380,7 +436,7 @@ const ProjectCaseStudy = () => {
                 {project.techStack.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-5 py-2.5 rounded-full border border-gray-200 bg-white shadow-2xs hover:border-[#E31D2E] hover:text-[#E31D2E] text-[#333333] text-xs font-extrabold uppercase tracking-wider transition-all duration-200"
+                    className="px-5 py-2.5 rounded-full border border-gray-200 bg-white shadow-2xs hover:border-black/20 hover:text-[#E31D2E] text-[#333333] text-xs font-extrabold uppercase tracking-wider transition-all duration-200"
                   >
                     {tech}
                   </span>

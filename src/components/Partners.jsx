@@ -1,7 +1,7 @@
 import React from 'react';
-import balajipotraits from "../assets/tie/Balaji-Portraits.jpg"
-import ibodhiacademy from "../assets/tie/ibodhi-academy.jpg"
-import vilcet from "../assets/clients/VILCET.png"
+import balajipotraits from "../assets/tie/Balaji-Portraits.webp"
+import ibodhiacademy from "../assets/tie/ibodhi-academy.webp"
+import vilcet from "../assets/clients/VILCET.webp"
 
 const Partners = () => {
   const partners = [

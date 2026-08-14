@@ -3,16 +3,16 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import TiltedCard from "./TiltedCard";
 import SectionBadge from "./common/SectionBadge";
-import pranesh from "../assets/team/Pranesh.png";
-import Jaillesh from "../assets/team/Jaillesh-Kathirvel.png";
+import pranesh from "../assets/team/Pranesh.webp";
+import Jaillesh from "../assets/team/Jaillesh-Kathirvel.webp";
 import naveen from "../assets/team/Naveen.webp";
-import sathya from "../assets/team/Satya.jpg";
-import Bright from "../assets/team/Bright.png";
-import janarathanan from "../assets/team/Janarthanan.png";
-import yogech from "../assets/team/Yogech.png";
-import ram from "../assets/team/Ramachandran.png";
-import Balaji from "../assets/team/balaji.jpg";
-import BaskaranK from "../assets/team/Baskaran-Krishnaswamy.png";
+import sathya from "../assets/team/Satya.webp";
+import Bright from "../assets/team/Bright.webp";
+import janarathanan from "../assets/team/Janarthanan.webp";
+import yogech from "../assets/team/Yogech.webp";
+import ram from "../assets/team/Ramachandran.webp";
+import Balaji from "../assets/team/balaji.webp";
+import BaskaranK from "../assets/team/Baskaran-Krishnaswamy.webp";
 
 // Only these members show a bio popup — must match the `id` used in teamMembers below
 const BIO_MEMBERS = new Set([1, 3, 7]);
@@ -22,18 +22,18 @@ const Teams = () => {
 
   const teamMembers = [
     {
-      id: 1,
-      name: "Pranesh Kumar Baskaran",
-      role: "Founder",
-      image: pranesh,
-      bio: "Committed to delivering quality-assured software solutions that generate sustainable value for all stakeholders. With a strategic vision and a focus on long-term growth, the CEO leads the organization by empowering teams, fostering innovation, and steering the company toward enduring success.",
-    },
-    {
       id: 3,
       name: "Jaillesh Kathirvel",
-      role: "Business head & Manager",
+      role: "Founder & Business Head & Manager",
       image: Jaillesh,
-      bio: "Drives business growth and client partnerships with a sharp eye for opportunity and execution. As Business Head & Manager, Jaillesh bridges strategy and day-to-day operations, ensuring every engagement is handled with precision, accountability, and a genuine commitment to client success.",
+      bio: "Drives business growth and client partnerships with a sharp eye for opportunity and execution. As Founder & Business Head & Manager, Jaillesh bridges strategy and day-to-day operations, ensuring every engagement is handled with precision, accountability, and a genuine commitment to client success.",
+    },
+    {
+      id: 1,
+      name: "Pranesh Kumar Baskaran",
+      role: "Co-Founder",
+      image: pranesh,
+      bio: "Committed to delivering quality-assured software solutions that generate sustainable value for all stakeholders. With a strategic vision and a focus on long-term growth, the Co-Founder leads the organization by empowering teams, fostering innovation, and steering the company toward enduring success.",
     },
     {
       id: 7,

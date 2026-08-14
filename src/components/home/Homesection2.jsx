@@ -38,6 +38,60 @@ export default function FeaturedWorks() {
   // Derived active project object
   const activeProject = projects[activeIndex] || projects[0] || {};
 
+  // Click + Drag-to-scroll state & refs
+  const [isDraggingState, setIsDraggingState] = useState(false);
+  const isDraggingRef = useRef(false);
+  const hasDraggedRef = useRef(false);
+  const startYRef = useRef(0);
+  const startScrollTopRef = useRef(0);
+
+  const handlePointerDown = (e) => {
+    // Only trigger on primary mouse button (left-click) or touch
+    if (e.pointerType === "mouse" && e.button !== 0) return;
+
+    isDraggingRef.current = true;
+    hasDraggedRef.current = false;
+    startYRef.current = e.clientY;
+    startScrollTopRef.current = scrollContainerRef.current ? scrollContainerRef.current.scrollTop : 0;
+  };
+
+  const handlePointerMove = (e) => {
+    if (!isDraggingRef.current) return;
+
+    const deltaY = e.clientY - startYRef.current;
+    if (Math.abs(deltaY) > 10) {
+      if (!hasDraggedRef.current) {
+        hasDraggedRef.current = true;
+        setIsDraggingState(true);
+        if (scrollContainerRef.current) {
+          try {
+            scrollContainerRef.current.setPointerCapture(e.pointerId);
+          } catch (err) {}
+        }
+      }
+      if (scrollContainerRef.current) {
+        scrollContainerRef.current.scrollTop = startScrollTopRef.current - deltaY;
+      }
+    }
+  };
+
+  const handlePointerUp = (e) => {
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
+
+    if (scrollContainerRef.current && hasDraggedRef.current) {
+      try {
+        scrollContainerRef.current.releasePointerCapture(e.pointerId);
+      } catch (err) {}
+    }
+    setIsDraggingState(false);
+  };
+
+  const handlePointerCancel = () => {
+    isDraggingRef.current = false;
+    setIsDraggingState(false);
+  };
+
   // Safely scroll to a target project index inside the portfolio list container (NEVER scrolls window/page)
   const scrollToItem = (index) => {
     if (index < 0 || index >= totalProjects) return;
@@ -105,8 +159,11 @@ export default function FeaturedWorks() {
     if (scrollPage <= 0) return;
     const prevPage = scrollPage - 1;
     handlePageSelect(prevPage);
-    if (prevPage + 1 < windowStart) {
-      setWindowStart(prevPage + 1);
+    const prevPageNum = prevPage + 1;
+    if (prevPageNum < windowStart) {
+      setWindowStart(Math.max(1, prevPageNum));
+    } else if (windowStart > 1) {
+      setWindowStart((prev) => Math.max(1, prev - 1));
     }
   };
 
@@ -115,9 +172,10 @@ export default function FeaturedWorks() {
     if (scrollPage >= totalPages - 1) return;
     const nextPage = scrollPage + 1;
     handlePageSelect(nextPage);
-    const maxStart = Math.max(1, totalPages - 3);
-    if (nextPage + 1 > windowStart + 1 && windowStart < maxStart) {
-      setWindowStart((prev) => Math.min(prev + 1, maxStart));
+    const maxWStart = Math.max(1, totalPages - 6);
+    const nextPageNum = nextPage + 1;
+    if (nextPageNum > windowStart + 1 && windowStart < maxWStart) {
+      setWindowStart((prev) => Math.min(prev + 1, maxWStart));
     }
   };
 
@@ -127,23 +185,49 @@ export default function FeaturedWorks() {
     setActiveIndex(targetIndex);
     setScrollPage(targetPage);
     scrollToItem(targetIndex);
+
+    const pageNum = targetPage + 1;
+    const maxWStart = Math.max(1, totalPages - 6);
+    if (pageNum < windowStart) {
+      setWindowStart(Math.max(1, pageNum));
+    } else if (pageNum > windowStart + 6) {
+      setWindowStart(Math.min(maxWStart, pageNum - 6));
+    }
   };
 
   // Direct card click navigation
   const handleCardClick = (index) => {
+    if (hasDraggedRef.current) {
+      hasDraggedRef.current = false;
+      return;
+    }
     setActiveIndex(index);
     const targetPage = Math.floor(index / PROJECTS_PER_PAGE);
     setScrollPage(targetPage);
-    scrollToItem(index);
+
+    const pageNum = targetPage + 1;
+    const maxWStart = Math.max(1, totalPages - 6);
+    if (pageNum < windowStart) {
+      setWindowStart(Math.max(1, pageNum));
+    } else if (pageNum > windowStart + 6) {
+      setWindowStart(Math.min(maxWStart, pageNum - 6));
+    }
   };
 
-  // Ellipsis button click handler (moves windowStart forward by EXACTLY ONE position)
+  // Ellipsis button click handler (shifts windowStart forward and updates page/content)
   const handleEllipsisClick = () => {
-    const maxStart = Math.max(1, totalPages - 3);
-    setWindowStart((prev) => Math.min(prev + 1, maxStart));
+    const maxWStart = Math.max(1, totalPages - 6);
+    if (windowStart >= maxWStart) return;
+    const nextWin = Math.min(windowStart + 1, maxWStart);
+    setWindowStart(nextWin);
+    const targetPage = Math.min(nextWin - 1, totalPages - 1);
+    const targetIndex = Math.min(targetPage * PROJECTS_PER_PAGE, totalProjects - 1);
+    setActiveIndex(targetIndex);
+    setScrollPage(targetPage);
+    scrollToItem(targetIndex);
   };
 
-  // Calculate Sliding Window Pagination items array (e.g. 1 2 ... 7 8 -> 2 3 ... 7 8)
+  // Calculate Sliding Window Pagination items array (e.g. 1 2 ... 6 7 -> 2 3 ... 7 8 -> 3 4 ... 8 9 -> 4 5 ... 9 10)
   const getSlidingWindowItems = (winStart, total) => {
     if (total <= 1) return [];
 
@@ -152,21 +236,20 @@ export default function FeaturedWorks() {
       return Array.from({ length: total }, (_, i) => i + 1);
     }
 
-    const maxStart = total - 3;
+    const maxStart = Math.max(1, total - 6);
     const currentStart = Math.min(Math.max(1, winStart), maxStart);
 
-    // End of window reached (all remaining pages fit without ellipsis)
-    if (currentStart >= maxStart) {
-      return [total - 3, total - 2, total - 1, total];
-    }
+    const left1 = currentStart;
+    const left2 = currentStart + 1;
+    const right1 = Math.min(currentStart + 5, total - 1);
+    const right2 = Math.min(currentStart + 6, total);
 
-    // Standard sliding window format: [currentStart, currentStart + 1, "...", total - 1, total]
     return [
-      currentStart,
-      currentStart + 1,
+      left1,
+      left2,
       "...",
-      total - 1,
-      total
+      right1,
+      right2
     ];
   };
 
@@ -193,22 +276,22 @@ export default function FeaturedWorks() {
           className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch w-full h-auto sm:h-[clamp(460px,58vh,560px)] lg:h-[clamp(520px,62vh,640px)]"
         >
           {/* ── LEFT COLUMN: Compact Preview Screen (~65% width on Desktop) ── */}
-          <div className="lg:col-span-7 xl:col-span-8 relative h-[340px] sm:h-full w-full overflow-hidden rounded-[32px] border border-neutral-200/80 bg-neutral-950 shadow-[0_20px_50px_rgba(0,0,0,0.08)] group self-stretch">
+          <div className="lg:col-span-7 xl:col-span-8 relative h-[340px] sm:h-full w-full overflow-hidden rounded-[32px] border border-neutral-200/80 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)] group self-stretch">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeProject.id || activeIndex}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute inset-0 w-full h-full"
               >
                 <img
                   src={activeProject.image}
                   alt={activeProject.title || "Project preview"}
-                  className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                  className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40 pointer-events-none" />
               </motion.div>
             </AnimatePresence>
 
@@ -224,14 +307,21 @@ export default function FeaturedWorks() {
           {/* ── RIGHT COLUMN: Portfolio List Navigator ── */}
           <div className="lg:col-span-5 xl:col-span-4 relative h-full w-full rounded-[32px] border border-neutral-200/80 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.06)] p-5 sm:p-6 flex flex-col justify-between overflow-hidden self-stretch">
             
-            {/* Middle: Continuous Native Scroll Container */}
+            {/* Middle: Continuous Native Scroll Container with Click-and-Drag Scrolling */}
             <div
               ref={scrollContainerRef}
               tabIndex={0}
               onScroll={handleScroll}
               onKeyDown={handleKeyDown}
-              className="flex-1 my-1 py-1 flex flex-col gap-2.5 overflow-y-auto overscroll-contain scroll-smooth focus:outline-none select-none pr-1 custom-scrollbar"
-              style={{ overscrollBehavior: "contain" }}
+              onPointerDown={handlePointerDown}
+              onPointerMove={handlePointerMove}
+              onPointerUp={handlePointerUp}
+              onPointerCancel={handlePointerCancel}
+              onDragStart={(e) => e.preventDefault()}
+              className={`flex-1 my-1 py-1 flex flex-col gap-2.5 overflow-y-auto overscroll-contain focus:outline-none select-none pr-1 custom-scrollbar ${
+                isDraggingState ? "cursor-grabbing select-none scroll-auto" : "cursor-grab scroll-smooth"
+              }`}
+              style={{ overscrollBehavior: "contain", touchAction: "pan-y" }}
             >
               {projects.map((project, idx) => {
                 const isActive = idx === activeIndex;
@@ -254,7 +344,9 @@ export default function FeaturedWorks() {
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          draggable={false}
+                          onDragStart={(e) => e.preventDefault()}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 pointer-events-none select-none"
                         />
                       </div>
 
@@ -318,7 +410,7 @@ export default function FeaturedWorks() {
                             whileTap={{ scale: 0.9 }}
                             onClick={handleEllipsisClick}
                             className="flex h-7 px-1.5 items-center justify-center text-xs font-bold text-neutral-400 hover:text-[#E31D2E] transition-colors cursor-pointer select-none"
-                            aria-label="Shift pagination window forward by 1"
+                            aria-label="Jump forward 3 pages"
                           >
                             ...
                           </motion.button>
@@ -371,6 +463,7 @@ export default function FeaturedWorks() {
               {/* Pinned View Case Study Button */}
               <Link
                 to={`/case-study/${activeProject.slug || ""}`}
+                state={{ from: '/' }}
                 className="primary-btn flex items-center justify-between w-full rounded-full px-5 py-3 text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white shadow-md transition-all hover:scale-[1.01]"
               >
                 <span>View Case Study</span>

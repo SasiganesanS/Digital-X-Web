@@ -358,7 +358,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                 <button
                   type="button"
                   onClick={onClose}
-                  className="h-[56px] px-10 rounded-[18px] bg-[#E31D2E] hover:bg-[#c91827] text-white font-bold text-base shadow-[0_8px_20px_rgba(227,29,46,0.3)] hover:shadow-[0_12px_28px_rgba(227,29,46,0.4)] transition-all cursor-pointer"
+                  className="h-[56px] px-10 rounded-[18px] bg-[#E31D2E] hover:bg-[#c91827] text-white font-bold text-base shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.16)] transition-all cursor-pointer"
                 >
                   Close Window
                 </button>
@@ -385,9 +385,9 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                           onClick={() => setActiveSection(step.num)}
                           className={`w-full text-left px-4 py-3.5 rounded-[18px] transition-all flex items-center justify-between group cursor-pointer ${
                             isActive
-                              ? "bg-[#E31D2E] text-white shadow-[0_8px_20px_rgba(227,29,46,0.3)] scale-[1.02]"
+                              ? "bg-[#E31D2E] text-white shadow-[0_8px_20px_rgba(0,0,0,0.12)] scale-[1.02]"
                               : isComplete
-                              ? "bg-white text-neutral-800 border border-neutral-200/80 shadow-xs hover:border-[#E31D2E]/40"
+                              ? "bg-white text-neutral-800 border border-neutral-200/80 shadow-xs hover:border-black/20"
                               : "bg-transparent text-neutral-500 hover:bg-neutral-200/50 hover:text-neutral-800"
                           }`}
                         >
@@ -459,7 +459,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                           <span>{submitError}</span>
                         </div>
                         <a
-                          href={`https://wa.me/919344305986?text=${encodeURIComponent("Hello Praskla Digital X, I attempted to submit my project application for " + (formData.companyName || "my company") + " but encountered an issue. Here are my details:\nName: " + (formData.fullName || "") + "\nEmail: " + (formData.email || ""))}`}
+                          href={`https://wa.me/919566880740?text=${encodeURIComponent("Hello Praskla Digital X, I attempted to submit my project application for " + (formData.companyName || "my company") + " but encountered an issue. Here are my details:\nName: " + (formData.fullName || "") + "\nEmail: " + (formData.email || ""))}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-xs font-bold underline whitespace-nowrap text-[#E31D2E] hover:text-black shrink-0"
@@ -1686,7 +1686,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                       type="button"
                       onClick={handleNext}
                       disabled={isSubmitting}
-                      className="h-[56px] px-8 sm:px-10 rounded-[18px] bg-[#E31D2E] hover:bg-[#c91827] text-white font-bold text-sm sm:text-base shadow-[0_8px_20px_rgba(227,29,46,0.3)] hover:shadow-[0_12px_28px_rgba(227,29,46,0.4)] hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2.5 cursor-pointer disabled:opacity-60"
+                      className="h-[56px] px-8 sm:px-10 rounded-[18px] bg-[#E31D2E] hover:bg-[#c91827] text-white font-bold text-sm sm:text-base shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2.5 cursor-pointer disabled:opacity-60"
                     >
                       {isSubmitting ? (
                         <>

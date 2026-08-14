@@ -388,7 +388,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                     transition={{ duration: 0.4, delay: index * 0.07, ease: "easeOut" }}
                     whileHover={{ y: -5, scale: 1.015 }}
                     onClick={() => handleJobClick(job)}
-                    className="group relative rounded-[22px] bg-white border border-neutral-200/80 p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-[#E31D2E]/40 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+                    className="group relative rounded-[22px] bg-white border border-neutral-200/80 p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-black/20 transition-all duration-300 flex flex-col justify-between cursor-pointer"
                   >
                     <div>
                       {/* Title Header */}

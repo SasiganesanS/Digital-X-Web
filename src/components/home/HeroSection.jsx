@@ -6,38 +6,55 @@ import SolarSystemHero from "./SolarSystemHero";
 import HeroLayout from "../common/HeroLayout";
 import SectionBadge from "../common/SectionBadge";
 
-function AnimatedStat({ targetNum, suffix = "+", label }) {
+function AnimatedStat({ targetNum, suffix = "+", label, delay = 0 }) {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    const duration = 1800;
-    const start = performance.now();
+    const duration = 1800; // ms
     const numVal = parseInt(targetNum, 10) || 0;
+    let start = null;
+    let animFrameId = null;
 
-    const animate = (time) => {
-      const progress = Math.min((time - start) / duration, 1);
-      const current = Math.floor(progress * numVal);
-      setCount(current);
+    const step = (timestamp) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(easeOut * numVal));
       if (progress < 1) {
-        requestAnimationFrame(animate);
+        animFrameId = requestAnimationFrame(step);
+      } else {
+        setCount(numVal);
       }
     };
 
-    requestAnimationFrame(animate);
-  }, [targetNum]);
+    const timer = setTimeout(() => {
+      animFrameId = requestAnimationFrame(step);
+    }, delay * 1000);
+
+    return () => {
+      clearTimeout(timer);
+      if (animFrameId) cancelAnimationFrame(animFrameId);
+    };
+  }, [targetNum, delay]);
 
   return (
     <motion.div
-      whileHover={{ y: -3 }}
-      transition={{ type: "spring", stiffness: 300 }}
-      className="clay-card relative flex flex-col items-center text-center py-2.5 px-2.5 cursor-default"
+      initial={{ opacity: 0, y: 15, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.6, delay: 0.4 + delay, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ y: -5, scale: 1.02 }}
+      className="clay-card relative flex flex-col items-start p-3.5 px-4 sm:px-5 rounded-2xl border border-white/70 shadow-[0_10px_28px_rgba(17,17,17,0.03)] backdrop-blur-xl bg-white/75 hover:bg-white/90 cursor-default group transition-all duration-300 min-w-[120px] sm:min-w-[135px]"
     >
-      <p className="text-[#E31D2E] font-black text-lg sm:text-2xl">
-        {count}{suffix}
-      </p>
-      <p className="text-[#575757] text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.16em] mt-0.5">
-        {label}
-      </p>
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/70 via-transparent to-transparent pointer-events-none" />
+
+      <div className="relative z-10 flex flex-col">
+        <span className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight group-hover:text-[#E31D2E] transition-colors duration-300">
+          {count}{suffix}
+        </span>
+        <span className="text-[#575757] text-[10px] font-bold uppercase tracking-[0.18em] mt-0.5">
+          {label}
+        </span>
+      </div>
     </motion.div>
   );
 }
@@ -152,23 +169,23 @@ const HeroSection = () => {
       transition={{ duration: 0.8, delay: 0.95 }}
       className="flex flex-col items-center lg:items-start gap-3.5 w-full"
     >
-      <div className="grid grid-cols-3 gap-2.5 w-full max-w-[280px] sm:max-w-xs lg:max-w-md">
-        <AnimatedStat targetNum="15" suffix="+" label="Clients" />
-        <AnimatedStat targetNum="20" suffix="+" label="Projects" />
-        <AnimatedStat targetNum="20" suffix="+" label="Tie-ups" />
+      <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 w-full">
+        <AnimatedStat targetNum="50" suffix="+" label="Projects Delivered" delay={0.05} />
+        <AnimatedStat targetNum="15" suffix="+" label="Brands" delay={0.1} />
+        <AnimatedStat targetNum="98" suffix="%" label="Client Satisfaction" delay={0.15} />
+        <AnimatedStat targetNum="5" suffix="+" label="Years Experience" delay={0.2} />
       </div>
 
       <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 w-full">
-        <Link
-          to="/services"
-          className="primary-btn px-5 py-2 rounded-full text-[11px] font-black uppercase tracking-wider text-white shadow-md shadow-red-500/20 inline-flex items-center gap-2"
-        >
-          <span>Explore Services</span>
-          <ArrowRight className="w-3.5 h-3.5" />
-        </Link>
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E31D2E]/10 border border-[#E31D2E]/25 text-[#E31D2E] shadow-sm">
+          <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
+          <span className="text-[11px] font-black uppercase tracking-wider">
+            Mindful Marketing & Sustainable Growth
+          </span>
+        </div>
         <span className="text-[10px] sm:text-xs font-bold text-[#575757] flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-gray-200/80 shadow-2xs">
-          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-          <span>Data-Driven Strategy & Performance Scale</span>
+          <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+          <span>Crafting Scalable Digital Ecosystems</span>
         </span>
       </div>
     </motion.div>

@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroLayout from "./common/HeroLayout";
 import ContactForm from "./ContactForm";
-import { ArrowUpRight, ArrowRight, Star, Check, TrendingUp } from "lucide-react";
+import { ArrowUpRight, ArrowRight, Star, Check, TrendingUp, Filter, ChevronDown } from "lucide-react";
 import "../index.css";
 import { data, blogPosts } from "../constants";
 import { projects } from "../data/projects";
 import ProjectDetailModal from "./ProjectDetailModal";
 import "./Projects.css"
 
-import img1 from '../assets/project-cover/photo 1.png';
-import img2 from '../assets/project-cover/photo 2.png';
-import img3 from '../assets/project-cover/photo 3.png';
-import img4 from '../assets/project-cover/photo 4.png';
-import img5 from '../assets/project-cover/photo 5.png';
+import img1 from '../assets/project-cover/photo 1.webp';
+import img2 from '../assets/project-cover/photo 2.webp';
+import img3 from '../assets/project-cover/photo 3.webp';
+import img4 from '../assets/project-cover/photo 4.webp';
+import img5 from '../assets/project-cover/photo 5.webp';
 
 // ── Portfolio Hero Helper Components ──
 function ProjectCounter({ targetNum, suffix = "+", label, delay = 0 }) {
@@ -122,14 +122,14 @@ function ProjectShowcase({ projectImages, imageIndex }) {
           <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-tr from-white/80 via-transparent to-white/40 pointer-events-none z-10" />
 
           {/* Slideshow Image Container */}
-          <div className="relative rounded-[2rem] overflow-hidden aspect-square">
+          <div className="relative rounded-[2rem] overflow-hidden aspect-square bg-neutral-100">
             <AnimatePresence initial={false} mode="wait">
               {projectImages.map((img, idx) => (
                 idx === imageIndex && (
                   <motion.div
                     key={img.image}
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: 1, scale: isHovered ? 1.06 : 1 }}
+                    initial={{ opacity: 0, scale: 1.12 }}
+                    animate={{ opacity: 1, scale: isHovered ? 1.15 : 1.08 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.8 }}
                     className="absolute inset-0"
@@ -187,8 +187,28 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [counts, setCounts] = useState({ clients: 0, projects: 0, tieups: 0 });
   const [imageIndex, setImageIndex] = useState(0);
+  const [selectedYear, setSelectedYear] = useState("ALL");
   const sectionRef = useRef(null);
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const filteredProjects = projects.filter((project) => {
+    if (selectedYear === "ALL") return true;
+    return String(project.year) === selectedYear;
+  });
+
+  // Scroll to project card on return navigation
+  useEffect(() => {
+    if (location.state?.scrollToId) {
+      const targetSlug = location.state.scrollToId;
+      setTimeout(() => {
+        const element = document.getElementById(`project-card-${targetSlug}`);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 200);
+    }
+  }, [location.state]);
 
   const projectImages = [
     { image: img1, title: 'Web Development', desc: 'Responsive and fast-loading websites' },
@@ -262,7 +282,7 @@ const Projects = () => {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-[1.22] tracking-tight text-[#111111]"
+            className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[0.98] tracking-[-0.04em] text-[#111111]"
           >
             Collaborate for <br />
             <span className="relative inline-block text-[#E31D2E]">
@@ -296,7 +316,7 @@ const Projects = () => {
                 </span>
               </div>
               <span className="text-[10px] sm:text-xs font-bold text-[#575757] flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-gray-200/80 shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
                 <span>Crafting Scalable Digital Ecosystems</span>
               </span>
             </div>
@@ -454,10 +474,38 @@ const Projects = () => {
 
           {/* Unified Scrollable Project Container */}
           <div className="relative w-full rounded-[2.5rem] p-4 sm:p-6 lg:p-8 bg-neutral-50/60 border border-neutral-200/80 shadow-[0_20px_50px_rgba(0,0,0,0.03)] backdrop-blur-xl">
+            {/* Top Row: Year Filter Select Dropdown on Top Left */}
+            <div className="flex items-center justify-between gap-4 mb-6 px-1 flex-wrap">
+              <div className="flex items-center gap-2.5">
+                <label htmlFor="year-filter-select" className="text-xs font-black uppercase tracking-wider text-neutral-500 flex items-center gap-1.5 cursor-pointer">
+                  <Filter className="w-3.5 h-3.5 text-[#E31D2E]" />
+                  <span>Filter Year:</span>
+                </label>
+
+                <div className="relative">
+                  <select
+                    id="year-filter-select"
+                    value={selectedYear}
+                    onChange={(e) => setSelectedYear(e.target.value)}
+                    className="appearance-none bg-white text-neutral-900 font-extrabold text-xs tracking-wider px-3.5 py-1.5 pr-8 rounded-full border border-neutral-200/90 shadow-2xs hover:border-black/30 focus:border-[#E31D2E] focus:outline-none cursor-pointer transition-all duration-200"
+                  >
+                    <option value="ALL">All Years</option>
+                    <option value="2026">2026</option>
+                    <option value="2025">2025</option>
+                  </select>
+                  <ChevronDown className="w-3.5 h-3.5 text-neutral-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                </div>
+              </div>
+
+              <span className="text-[11px] font-extrabold text-neutral-500 tracking-wider uppercase bg-white/80 border border-neutral-200/80 px-3.5 py-1.5 rounded-full shadow-2xs">
+                Showing {filteredProjects.length} Projects
+              </span>
+            </div>
+
             {/* Scrollable Container with Custom Scrollbar */}
             <div className="max-h-[660px] sm:max-h-[720px] lg:max-h-[760px] overflow-y-auto overscroll-contain pr-2 sm:pr-3 custom-scrollbar">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch py-2">
-                {projects.map((project, index) => {
+                {filteredProjects.map((project, index) => {
                   const categoryTag = project.tags || "Featured Case Study";
                   const description = project.overview?.paragraph || project.description;
                   const techTags = project.services?.slice(0, 3) || ["Digital Strategy"];
@@ -465,16 +513,17 @@ const Projects = () => {
                   return (
                     <motion.div
                       key={project.id || index}
+                      id={`project-card-${project.slug || project.id}`}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
                       whileHover={{ y: -4 }}
-                      onClick={() => navigate(`/project/${project.slug || project.id}`)}
-                      className="group relative flex flex-col justify-between cursor-pointer p-3.5 sm:p-4 rounded-[1.75rem] border border-neutral-200/80 shadow-[0_8px_24px_rgba(0,0,0,0.03)] bg-white hover:border-[#E31D2E]/30 hover:shadow-[0_14px_36px_rgba(227,29,46,0.1)] transition-all duration-300 select-none"
+                      onClick={() => navigate(`/project/${project.slug || project.id}`, { state: { from: '/projects', projectSlug: project.slug || project.id } })}
+                      className="group relative flex flex-col justify-between cursor-pointer p-3.5 sm:p-4 rounded-[1.75rem] border border-neutral-200/80 shadow-[0_8px_24px_rgba(0,0,0,0.03)] bg-white hover:border-black/20 hover:shadow-[0_14px_36px_rgba(0,0,0,0.08)] transition-all duration-300 select-none"
                     >
                       {/* 1. Image Area — Crisp & Unobstructed */}
-                      <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl border border-neutral-200/60 mb-3 bg-neutral-900 shadow-2xs">
+                      <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl border border-neutral-200/60 mb-3 bg-white shadow-2xs">
                         <img
                           src={project.image}
                           alt={project.title}
@@ -493,7 +542,7 @@ const Projects = () => {
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
-                            navigate(`/case-study/${project.slug || project.id}`);
+                            navigate(`/case-study/${project.slug || project.id}`, { state: { from: '/projects', projectSlug: project.slug || project.id } });
                           }}
                           className="px-3 py-1.5 rounded-full bg-[#E31D2E] text-white font-black text-[10px] uppercase tracking-wider flex items-center gap-1 shrink-0 shadow-2xs hover:bg-[#c91827] hover:scale-105 transition-all duration-300 cursor-pointer"
                         >

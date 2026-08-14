@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import PHero from "../assets/P-Hero-3.jpg";
+import PHero from "../assets/P-Hero-3.webp";
 import { motion } from "framer-motion";
 import { FaCalendar, FaUser, FaArrowRight, FaClock } from "react-icons/fa";
 import "./MainBlog.css";
@@ -160,7 +160,7 @@ export default function BlogPage() {
               <button className="px-8 py-4 bg-[#E8192C] text-white rounded-full hover:bg-[#ff2235] transition-all font-bold">
                 Explore Events
               </button>
-              <button className="px-8 py-4 bg-transparent border-2 border-white/10 text-white rounded-full hover:border-[#E8192C] transition-all font-bold">
+              <button className="px-8 py-4 bg-transparent border-2 border-white/10 text-white rounded-full hover:border-white/40 transition-all font-bold">
                 Join Community
               </button>
             </div>
@@ -285,7 +285,7 @@ export default function BlogPage() {
                 viewport={{ once: true }}
                 onMouseEnter={() => setHoveredCard(post.id)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className="group relative bg-white/[0.02] border border-white/5 rounded-3xl overflow-hidden hover:border-[#E8192C]/30 hover:shadow-2xl hover:shadow-[#E8192C]/5 transition-all duration-500 cursor-pointer"
+                className="group relative bg-white/[0.02] border border-white/5 rounded-3xl overflow-hidden hover:border-white/20 hover:shadow-2xl hover:shadow-black/20 transition-all duration-500 cursor-pointer"
               >
                 {/* Card Image */}
                 <div className="relative h-64 overflow-hidden">
