@@ -106,15 +106,17 @@ const navStyles = `
 
 .nav-links-capsule {
   background: #111111;
-  padding: 5px 12px 5px 14px;
+  height: 44px;
+  padding: 0 6px;
   border-radius: 999px;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), inset 0 1px 2px rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 6px;
   margin: 0;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 
 .nav-search-pill {
@@ -149,8 +151,8 @@ const navStyles = `
 }
 
 .nav-cta-btn {
-  height: 46px;
-  padding: 0 24px;
+  height: 44px;
+  padding: 0 22px;
   border-radius: 999px;
   background: #111111;
   color: #ffffff;
@@ -162,7 +164,7 @@ const navStyles = `
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
   border: 1px solid rgba(255, 255, 255, 0.12);
   cursor: pointer;
@@ -173,20 +175,24 @@ const navStyles = `
   box-sizing: border-box;
 }
 
+.nav-cta-btn svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  fill: none !important;
+  transition: transform 250ms ease-out, color 250ms ease-out, stroke 250ms ease-out;
+}
+
 .nav-cta-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
   background: linear-gradient(135deg, #E51D1D 0%, #C81515 100%);
   border-color: rgba(255, 255, 255, 0.2);
+  color: #ffffff !important;
 }
 
-.nav-cta-btn .cta-arrow {
-  transition: transform 250ms ease-out;
-  display: inline-block;
-}
-
-.nav-cta-btn:hover .cta-arrow {
-  transform: translateX(4px);
+.nav-cta-btn:hover svg {
+  color: #111111 !important;
+  stroke: #111111 !important;
 }
 
 @media (max-width: 1024px) {
@@ -216,9 +222,9 @@ const navStyles = `
 }
 
 .pill-nav {
-  --nav-h: 42px;
-  --pill-pad-x: 18px;
-  --pill-gap: 4px;
+  --nav-h: 36px;
+  --pill-pad-x: 14px;
+  --pill-gap: 3px;
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -287,7 +293,7 @@ const navStyles = `
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  height: var(--nav-h);
   padding: 0 var(--pill-pad-x);
   background: transparent;
   color: #ffffff;
@@ -295,10 +301,10 @@ const navStyles = `
   border-radius: 9999px;
   box-sizing: border-box;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1;
   text-transform: uppercase;
-  letter-spacing: 0.3px;
+  letter-spacing: 0.03em;
   white-space: nowrap;
   cursor: pointer;
   position: relative;
@@ -974,7 +980,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                     <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E] group-hover:bg-white transition-colors duration-300" />
                   </span>
                   <span>Get in Touch</span>
-                  <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
+                  <ArrowUpRight className="w-4 h-4 text-white group-hover:!text-[#111111] group-hover:!stroke-[#111111] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0" />
                 </button>
               </li>
             </ul>
@@ -994,7 +1000,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#E31D2E] group-hover:bg-white transition-colors duration-300" />
             </span>
             <span>Get in Touch</span>
-            <ArrowUpRight className="w-4 h-4 text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform shrink-0" />
+            <ArrowUpRight className="w-4 h-4 text-white group-hover:!text-[#111111] group-hover:!stroke-[#111111] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 shrink-0" />
           </button>
         </div>
 

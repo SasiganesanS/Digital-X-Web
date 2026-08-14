@@ -99,31 +99,81 @@ const PrivacyPolicy = () => {
   return (
     <div className="w-full bg-transparent">
       {/* Hero Section */}
-      <HeroLayout
-        className="!min-h-0 py-6 sm:py-8 lg:py-10"
-        badge={
-          <SectionBadge text="Legal & Transparency" />
-        }
-        title={
-          <h1 className="text-[#111111] text-[36px] sm:text-[44px] lg:text-[52px] font-black leading-tight tracking-tight">
-            Privacy <span className="text-[#E31D2E]">Policy</span>
-          </h1>
-        }
-        description="We value your trust and are committed to protecting your personal information. Read our transparent privacy standards."
-        actions={
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-neutral-500">
-            <div className="flex items-center gap-1.5 bg-white border border-neutral-200 px-3.5 py-1.5 rounded-full shadow-xs">
-              <Clock className="w-3.5 h-3.5 text-[#E31D2E]" />
-              <span>Last Updated: January 31, 2026</span>
+      <HeroLayout className="py-4 sm:py-6 lg:py-8">
+        {/* Top Row: Standard Baseline Header & Data Protection Card */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          {/* Left Column: Badge -> Heading -> Description -> Badges */}
+          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
+            <div className="mb-4 flex justify-center lg:justify-start w-full">
+              <SectionBadge text="Legal & Transparency" />
             </div>
-            <div className="flex items-center gap-1.5 bg-white border border-neutral-200 px-3.5 py-1.5 rounded-full shadow-xs">
-              <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-              <span>GDPR & DPDP Compliant</span>
+            
+            <h1 className="text-[#111111] text-[36px] sm:text-[44px] lg:text-[52px] font-black leading-tight tracking-tight mb-4">
+              Privacy <span className="text-[#E31D2E]">Policy</span>
+            </h1>
+
+            <p className="text-[#575757] text-base sm:text-lg font-medium leading-relaxed mb-6 max-w-xl">
+              We value your trust and are committed to protecting your personal information. Read our transparent privacy standards.
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-neutral-500">
+              <div className="flex items-center gap-1.5 bg-white border border-neutral-200 px-3.5 py-1.5 rounded-full shadow-xs">
+                <Clock className="w-3.5 h-3.5 text-[#E31D2E]" />
+                <span>Last Updated: January 31, 2026</span>
+              </div>
+              <div className="flex items-center gap-1.5 bg-white border border-neutral-200 px-3.5 py-1.5 rounded-full shadow-xs">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                <span>GDPR & DPDP Compliant</span>
+              </div>
             </div>
           </div>
-        }
-        media={media}
-      />
+
+          {/* Right Column: Hero Media Card */}
+          <div className="lg:col-span-5 w-full flex justify-center lg:justify-end items-start pt-2 lg:pt-0">
+            {media}
+          </div>
+        </div>
+
+        {/* Bottom Feature Cards Grid: Covers the hero area gracefully */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 lg:mt-10"
+        >
+          <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-xs hover:border-[#E31D2E]/30 transition-all duration-300">
+            <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-3">
+              <Lock className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-bold text-[#111111] mb-1">256-Bit SSL Encryption</h3>
+            <p className="text-xs text-neutral-500 leading-relaxed">All user communications and form submissions are encrypted in transit.</p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-xs hover:border-[#E31D2E]/30 transition-all duration-300">
+            <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-3">
+              <UserCheck className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-bold text-[#111111] mb-1">Zero Data Selling</h3>
+            <p className="text-xs text-neutral-500 leading-relaxed">We never sell, rent, or trade client or visitor records with third parties.</p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-xs hover:border-[#E31D2E]/30 transition-all duration-300">
+            <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-3">
+              <Eye className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-bold text-[#111111] mb-1">Purpose-Driven Use</h3>
+            <p className="text-xs text-neutral-500 leading-relaxed">Data collection is strictly limited to fulfilling requested digital services.</p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-xs hover:border-[#E31D2E]/30 transition-all duration-300">
+            <div className="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-3">
+              <ShieldCheck className="w-5 h-5" />
+            </div>
+            <h3 className="text-sm font-bold text-[#111111] mb-1">Full Privacy Rights</h3>
+            <p className="text-xs text-neutral-500 leading-relaxed">Request data exports, access logs, or permanent deletion anytime.</p>
+          </div>
+        </motion.div>
+      </HeroLayout>
 
       {/* Main Content Grid */}
       <section className="w-full pb-16 lg:pb-24">

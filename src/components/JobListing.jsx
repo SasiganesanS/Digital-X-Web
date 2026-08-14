@@ -18,7 +18,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedJob, setSelectedJob] = useState(null);
   const containerRef = useRef(null);
-  const jobsPerPage = 5;
+  const jobsPerPage = 6;
 
   const allJobs = useMemo(
     () => [
@@ -378,81 +378,80 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
             </div>
           ) : (
             <>
-              <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
                 {currentJobs.map((job, index) => (
                   <motion.div
                     key={job.id}
                     id={`job-${job.id}`}
                     initial={{ opacity: 0, y: 24 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.4, delay: index * 0.07, ease: "easeOut" }}
-                    whileHover={{ y: -5, scale: 1.015 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.06, ease: "easeOut" }}
+                    whileHover={{ y: -6 }}
                     onClick={() => handleJobClick(job)}
-                    className="group relative rounded-[22px] bg-white border border-neutral-200/80 p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-black/20 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+                    className="group relative rounded-[28px] bg-white border border-neutral-200/80 p-5 sm:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-black/20 transition-all duration-300 flex flex-col justify-between h-full cursor-pointer min-h-[300px]"
                   >
                     <div>
-                      {/* Title Header */}
-                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
-                        <h3 className="text-[#111111] text-xl sm:text-2xl font-black tracking-tight group-hover:text-[#E31D2E] transition-colors duration-300">
+                      {/* 1. Job Title & Apply Pill Button Header (Fixed 52px height container) */}
+                      <div className="flex items-start justify-between gap-3 mb-3 h-[52px]">
+                        <h3 className="text-base sm:text-lg font-black text-[#111111] leading-snug group-hover:text-[#E31D2E] transition-colors duration-300 tracking-tight line-clamp-2 my-auto">
                           {job.title}
                         </h3>
+                        <button
+                          type="button"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleJobClick(job);
+                          }}
+                          className="px-3.5 py-1.5 rounded-full bg-[#E31D2E] text-white font-black text-[10px] uppercase tracking-wider flex items-center gap-1 shrink-0 shadow-2xs hover:bg-[#c91827] hover:scale-105 transition-all duration-300 cursor-pointer self-start"
+                        >
+                          <span>Apply</span>
+                          <FiArrowUpRight className="w-3 h-3" />
+                        </button>
                       </div>
 
-                      {/* Description */}
-                      <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-normal mb-6">
-                        {job.description}
-                      </p>
-
-                      {/* Metadata Pills */}
-                      <div className="flex gap-2.5 sm:gap-3 flex-wrap mb-6">
-                        <div className="flex items-center gap-2 border border-neutral-200/80 bg-neutral-50 rounded-full px-3.5 py-1.5 shadow-xs">
-                          <FiMapPin className="text-[#E31D2E] w-3.5 h-3.5" />
-                          <span className="text-neutral-700 font-semibold text-xs sm:text-sm">
+                      {/* 2. Location & Job Type Badges (Fixed 32px height container) */}
+                      <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar mb-3.5 h-[32px] shrink-0">
+                        <div className="flex items-center gap-1 border border-neutral-200/80 bg-neutral-50 rounded-full px-2.5 py-1 shadow-2xs shrink-0">
+                          <FiMapPin className="text-[#E31D2E] w-3 h-3" />
+                          <span className="text-neutral-700 font-bold text-[11px] whitespace-nowrap">
                             {job?.location || 'Remote'}
                           </span>
                         </div>
-                        <div className="flex items-center gap-2 border border-neutral-200/80 bg-neutral-50 rounded-full px-3.5 py-1.5 shadow-xs">
-                          <FiClock className="text-neutral-500 w-3.5 h-3.5" />
-                          <span className="text-neutral-700 font-semibold text-xs sm:text-sm">
+                        <div className="flex items-center gap-1 border border-neutral-200/80 bg-neutral-50 rounded-full px-2.5 py-1 shadow-2xs shrink-0">
+                          <FiClock className="text-neutral-500 w-3 h-3" />
+                          <span className="text-neutral-700 font-bold text-[11px] whitespace-nowrap">
                             {job?.type === 'Full-time' ? 'Full-time Intern' : (job?.type || 'Full-time Intern')}
                           </span>
                         </div>
                         {job?.level && job.level !== 'Intern' && (
-                          <div className="flex items-center gap-2 border border-neutral-200/80 bg-neutral-50 rounded-full px-3.5 py-1.5 shadow-xs">
-                            <FiBriefcase className="text-neutral-500 w-3.5 h-3.5" />
-                            <span className="text-neutral-700 font-semibold text-xs sm:text-sm">
+                          <div className="flex items-center gap-1 border border-neutral-200/80 bg-neutral-50 rounded-full px-2.5 py-1 shadow-2xs shrink-0">
+                            <FiBriefcase className="text-neutral-500 w-3 h-3" />
+                            <span className="text-neutral-700 font-bold text-[11px] whitespace-nowrap">
                               {job.level}
                             </span>
                           </div>
                         )}
                       </div>
+
+                      {/* 3. Short Description (Fixed 63px height paragraph container) */}
+                      <div className="h-[63px] mb-4 overflow-hidden">
+                        <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-medium line-clamp-3">
+                          {job.description}
+                        </p>
+                      </div>
                     </div>
 
-                    {/* Footer Row: Skill Tags + Primary CTA Button */}
-                    <div className="pt-5 border-t border-neutral-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                      {/* Technology / Skill Tags */}
-                      <div className="flex flex-wrap gap-2 items-center">
-                        {(job?.skills || []).map((skill, idx) => (
-                          <span
-                            key={idx}
-                            className="bg-white border border-neutral-200 text-neutral-600 text-xs font-medium px-3 py-1 rounded-lg shadow-xs"
-                          >
-                            {skill}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Primary CTA Button */}
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleJobClick(job);
-                        }}
-                        className="primary-btn px-6 py-3 rounded-full font-bold text-sm sm:text-base flex items-center justify-center gap-2 group/btn shadow-sm hover:scale-102 transition-all flex-shrink-0"
-                      >
-                        <span>Apply Now</span>
-                        <FiArrowUpRight className="text-base group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300" />
-                      </button>
+                    {/* 4. Skill / Tech Stack Chips (Fixed 52px height bottom container) */}
+                    <div className="h-[52px] pt-3 border-t border-neutral-100 flex flex-wrap gap-1.5 items-center overflow-hidden content-start">
+                      {(job?.skills || []).slice(0, 5).map((skill, idx) => (
+                        <span
+                          key={idx}
+                          className="px-2.5 py-0.5 rounded-md bg-neutral-100/90 text-neutral-600 text-[10px] font-bold tracking-wide group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] transition-colors duration-200 truncate max-w-[125px]"
+                        >
+                          {skill}
+                        </span>
+                      ))}
                     </div>
                   </motion.div>
                 ))}
