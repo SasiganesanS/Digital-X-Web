@@ -225,9 +225,9 @@ const navStyles = `
 }
 
 .pill-nav {
-  --nav-h: 36px;
-  --pill-pad-x: 14px;
-  --pill-gap: 3px;
+  --nav-h: 32px;
+  --pill-pad-x: 13px;
+  --pill-gap: 6px;
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -304,7 +304,7 @@ const navStyles = `
   border-radius: 9999px;
   box-sizing: border-box;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1;
   text-transform: uppercase;
   letter-spacing: 0.03em;
