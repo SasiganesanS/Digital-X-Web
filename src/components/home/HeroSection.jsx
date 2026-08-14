@@ -193,13 +193,10 @@ const HeroSection = () => {
 
   const media = (
     <motion.div
-      className="w-full max-w-[420px] sm:max-w-[460px] lg:max-w-none lg:w-[500px] flex-shrink-0 relative mx-auto lg:mx-0 transition-transform duration-300 ease-out"
-      style={{
-        transform: `translate3d(${mousePos.x * -0.5}px, ${mousePos.y * -0.5}px, 0)`,
-      }}
-      initial={{ opacity: 0, scale: 0.8, x: 40 }}
-      animate={{ opacity: 1, scale: 1, x: 0 }}
-      transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+      className="w-full max-w-[380px] flex-shrink-0 relative mx-auto lg:mx-0"
+      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
     >
       <SolarSystemHero />
     </motion.div>

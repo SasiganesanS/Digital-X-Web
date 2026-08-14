@@ -196,10 +196,10 @@ const About = () => {
               <img src={pyLogo} alt="Praskla Digital X" className="w-full h-full object-contain" />
             </div>
             <div>
-              <h3 className="font-inlander text-sm font-black text-[#111111] flex items-center gap-1">
-                Praskla Digital <BrandX className="h-[14px] w-auto text-[#E31D2E] translate-y-[1.5px]" />
+              <h3 className="font-inlander text-sm font-black text-[#111111] flex items-center gap-1.5 leading-none">
+                Praskla Digital <BrandX className="h-[18px] w-auto text-[#E31D2E] translate-y-[1px]" />
               </h3>
-              <p className="text-[11px] font-semibold text-neutral-400">Mindful Marketing Firm</p>
+              <p className="text-[11px] font-semibold text-neutral-400 mt-0.5">Mindful Marketing Firm</p>
             </div>
           </div>
 
@@ -319,8 +319,8 @@ const About = () => {
 
         {/* Footer Bar */}
         <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-[11px] text-neutral-400 font-bold uppercase tracking-wider">
-          <span className="inline-flex items-center gap-1 font-inlander">
-            Praskla Digital <BrandX className="h-[12px] w-auto text-[#E31D2E] translate-y-[1px]" />
+          <span className="inline-flex items-center gap-1.5 font-inlander font-bold">
+            Praskla Digital <BrandX className="h-[15px] w-auto text-[#E31D2E] translate-y-[1px]" />
           </span>
           <span className="text-[#E31D2E]">Established Excellence</span>
         </div>

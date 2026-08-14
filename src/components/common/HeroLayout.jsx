@@ -35,7 +35,7 @@ const HeroLayout = ({
         ) : (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
             {/* Left Column: Badge -> Heading -> Description -> Actions/Stats */}
-            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
+            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full relative z-20">
               {badge && <div className="mb-5 flex justify-center lg:justify-start w-full">{badge}</div>}
               {title && (
                 <div className="mb-5 w-full">
@@ -64,7 +64,7 @@ const HeroLayout = ({
 
             {/* Right Column: Hero Media / Interactive Feature Card */}
             {media && (
-              <div className="lg:col-span-5 w-full flex justify-center lg:justify-end items-start pt-2 lg:pt-0">
+              <div className="lg:col-span-5 w-full flex justify-center lg:justify-end items-start pt-2 lg:pt-0 relative z-10">
                 {media}
               </div>
             )}

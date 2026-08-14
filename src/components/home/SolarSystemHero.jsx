@@ -34,8 +34,8 @@ const ToyAstronaut = ({ style, className = "", seated = false }) => (
   </motion.div>
 );
 
-const CARD_W = 210;
-const CARD_H = 285;
+const CARD_W = 230;
+const CARD_H = 308;
 
 const ServicesCoverflow = () => {
   const navigate = useNavigate();
@@ -107,7 +107,7 @@ const ServicesCoverflow = () => {
   const handleDragEnd = (event, info) => {
     const offset = info.offset.x;
     const velocity = info.velocity.x;
-    const STEP_PX = 180;
+    const STEP_PX = 170;
 
     // Calculate exact continuous card shift based on drag distance & velocity momentum
     const totalShift = -(offset + velocity * 0.25) / STEP_PX;
@@ -120,12 +120,9 @@ const ServicesCoverflow = () => {
     triggerResumeTimer();
   };
 
-  /* ── Compute each card's 3D position in the circular ring ── */
-  const angleStep = 360 / total;
-  const radius = 360;
-
+  /* ── Compute each card's position tightly centered in the static box ── */
   const getCardStyle = (index) => {
-    const STEP_PX = 180;
+    const STEP_PX = 160;
     const activePos = isDragging
       ? (((active - dragX / STEP_PX) % total) + total) % total
       : active;
@@ -134,40 +131,35 @@ const ServicesCoverflow = () => {
     while (rawOffset > total / 2) rawOffset -= total;
     while (rawOffset < -total / 2) rawOffset += total;
 
-    const angle = rawOffset * angleStep;
-    const rad = (angle * Math.PI) / 180;
-    const distance = Math.abs(rawOffset);
+    const absOffset = Math.abs(rawOffset);
 
-    const x = Math.sin(rad) * radius;
-    const z = Math.cos(rad) * radius;
-    const y = Math.abs(Math.sin(rad)) * 10;
-
-    let scale = 1;
-    let opacity = 1;
-    let zIndex = 100;
-    let blurAmount = 0;
-    let mask = "none";
-
-    const isFront = distance < 0.35;
-    const isLeft = rawOffset < -0.35 && rawOffset >= -1.4;
-    const isRight = rawOffset > 0.35 && rawOffset <= 1.4;
-
-    if (isFront) {
-      scale = 1;
-      opacity = 1;
-      zIndex = 100;
-      blurAmount = 0;
-    } else if (isLeft || isRight) {
-      scale = 0.84;
-      opacity = 0.85;
-      zIndex = 80;
-      blurAmount = 5;
-    } else {
-      scale = 0.60;
-      opacity = 0;
-      zIndex = 0;
-      blurAmount = 10;
+    // Only 3 cards ever visible: 1 front, 1 left, 1 right
+    if (absOffset > 1.15) {
+      return {
+        x: 0,
+        y: 0,
+        z: -100,
+        scale: 0.7,
+        opacity: 0,
+        zIndex: 0,
+        blurAmount: 0,
+        isFront: false,
+        rawOffset,
+      };
     }
+
+    const isFront = absOffset < 0.35;
+    const isLeft = rawOffset < -0.35 && rawOffset >= -1.15;
+    const isRight = rawOffset > 0.35 && rawOffset <= 1.15;
+
+    // Horizontal offset for enlarged cards strictly bounded within outer box
+    const x = rawOffset * 76;
+    const z = isFront ? 0 : -40;
+    const y = isFront ? 0 : 3;
+    const scale = isFront ? 1 : 0.92;
+    const opacity = isFront ? 1 : 0.95;
+    const zIndex = isFront ? 100 : 80;
+    const blurAmount = isFront ? 0 : 0.5;
 
     return {
       x,
@@ -178,8 +170,6 @@ const ServicesCoverflow = () => {
       zIndex,
       blurAmount,
       isFront,
-      isLeft,
-      isRight,
       rawOffset,
     };
   };
@@ -235,17 +225,17 @@ const ServicesCoverflow = () => {
 
       {/* ── 3D Carousel Stage ── */}
       <motion.div
-        className="relative w-full flex items-center justify-center"
+        className="relative w-full max-w-[380px] flex items-center justify-center overflow-hidden"
         style={{
-          height: 310,
+          height: 330,
           perspective: 1200,
           perspectiveOrigin: "50% 45%",
-          WebkitMaskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 6%, black 16%, black 84%, rgba(0,0,0,0.4) 94%, transparent 100%)",
-          maskImage: "linear-gradient(to right, transparent 0%, rgba(0,0,0,0.4) 6%, black 16%, black 84%, rgba(0,0,0,0.4) 94%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%)",
+          maskImage: "linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%)",
         }}
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
-        dragElastic={0.18}
+        dragElastic={0.12}
         dragMomentum={false}
         onDragStart={() => setIsDragging(true)}
         onDrag={(e, info) => setDragX(info.offset.x)}
