@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ArrowRight, ArrowUpRight, Search } from 'lucide-react';
 import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
+import BrandX from "./common/BrandX";
 
 const navItemsList = [
   { label: "Home", href: "/" },
@@ -69,8 +70,8 @@ const navStyles = `
   align-items: center;
   justify-content: space-between;
   gap: 1.25rem;
-  box-sizing: border-box;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease-out;
+  transform: translateY(0);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
   pointer-events: auto;
 }
@@ -200,9 +201,10 @@ const navStyles = `
 }
 
 .pill-nav-container.nav-hidden {
-  transform: translateX(-50%) translateY(-160%);
+  transform: translateY(-115%);
   opacity: 0;
   pointer-events: none;
+  transition: transform 0.75s cubic-bezier(0.32, 0, 0.2, 1), opacity 0.65s cubic-bezier(0.32, 0, 0.2, 1);
 }
 
 .pill-nav {
@@ -486,7 +488,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
   // Reveal on Top Hover (Mouse entering top 70px of viewport)
   useEffect(() => {
     const handleMouseMove = (e) => {
-      const isTopZone = e.clientY <= 70;
+      const isTopZone = e.clientY <= 80;
 
       if (isTopZone) {
         if (topHoverDebounceRef.current) {
@@ -499,7 +501,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
           topHoverDebounceRef.current = setTimeout(() => {
             setIsTopHovered(false);
             topHoverDebounceRef.current = null;
-          }, 200);
+          }, 400);
         }
       }
     };
@@ -814,15 +816,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
           </div>
 
           {/* Brand Stylized Red Swoosh X Graphic */}
-          <svg
-            viewBox="155 125 705 455"
-            className="h-[34px] sm:h-[38px] lg:h-[42px] w-auto shrink-0 select-none text-[#E31D2E] -ml-2 sm:-ml-3 lg:-ml-3.5 self-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
-            fill="currentColor"
-            fillRule="evenodd"
-            aria-hidden="true"
-          >
-            <path d="M 162.344 127.547 C 161.972 128.516, 165.486 134.586, 171.752 143.797 C 216.594 209.714, 252 262.339, 252 263.072 C 252 263.556, 249.366 267.675, 246.147 272.226 C 240.970 279.544, 180.406 366.557, 162.614 392.238 C 158.903 397.594, 156.154 402.440, 156.504 403.006 C 156.924 403.687, 170.682 404.016, 197.040 403.977 C 231.438 403.926, 237.150 403.707, 238.467 402.390 C 239.307 401.550, 246.365 391.331, 254.151 379.681 C 261.937 368.032, 275.264 348.253, 283.766 335.730 L 299.225 312.960 307.951 327.230 C 352.104 399.438, 397.728 453.946, 446.013 492.176 C 537.703 564.772, 637.259 576.269, 738.133 525.909 C 776.265 506.873, 815.308 477.947, 847.500 444.882 C 858.201 433.891, 858.657 432.680, 848.509 442.200 C 831.870 457.809, 805.614 475.583, 781.090 487.838 C 754.801 500.975, 731.982 508.564, 703.421 513.669 C 690 516.068, 686.037 516.340, 664 516.377 C 643.070 516.411, 637.606 516.092, 626.500 514.184 C 598.849 509.435, 575.987 501.872, 550 488.878 C 479.268 453.511, 414.870 386.417, 354.795 285.500 C 345.954 270.648, 340 259.991, 340 259.018 C 340 258.576, 361.096 229.412, 386.879 194.208 C 412.662 159.004, 434.095 129.655, 434.507 128.989 C 434.923 128.316, 434.643 127.388, 433.878 126.904 C 433.120 126.423, 414.608 126.024, 392.740 126.015 L 352.981 126 350.338 129.750 C 348.884 131.813, 336.401 150.375, 322.597 171 C 308.794 191.625, 297.061 208.500, 296.526 208.500 C 295.990 208.500, 284.290 190.671, 270.526 168.880 C 256.761 147.089, 244.882 128.527, 244.128 127.630 C 242.901 126.173, 238.508 126, 202.846 126 C 167.757 126, 162.866 126.187, 162.344 127.547" />
-          </svg>
+          <BrandX className="h-[34px] sm:h-[38px] lg:h-[42px] w-auto shrink-0 select-none text-[#E31D2E] -ml-2 sm:-ml-3 lg:-ml-3.5 self-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
         </Link>
 
         {/* ── RIGHT SEPARATE CAPSULE: NAVIGATION LINKS & CTA ── */}

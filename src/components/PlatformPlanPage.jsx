@@ -96,14 +96,8 @@ export default function PlatformPlanPage() {
 
   const handleApplyPlan = (plan) => {
     const newItem = { platformId: platform.id, planId: plan.id };
-    const existingItems = JSON.parse(sessionStorage.getItem('serviceCalculatorItems') || '[]');
-    const exists = existingItems.find(item => item.platformId === platform.id && item.planId === plan.id);
-
-    if (!exists) {
-      existingItems.push(newItem);
-      sessionStorage.setItem('serviceCalculatorItems', JSON.stringify(existingItems));
-      window.dispatchEvent(new Event('serviceCalculatorUpdate'));
-    }
+    sessionStorage.setItem('serviceCalculatorItems', JSON.stringify([newItem]));
+    window.dispatchEvent(new Event('serviceCalculatorUpdate'));
     navigate(-1);
   };
 
