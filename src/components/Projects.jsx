@@ -122,14 +122,14 @@ function ProjectShowcase({ projectImages, imageIndex }) {
           <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-tr from-white/80 via-transparent to-white/40 pointer-events-none z-10" />
 
           {/* Slideshow Image Container */}
-          <div className="relative rounded-[2rem] overflow-hidden aspect-square">
+          <div className="relative rounded-[2rem] overflow-hidden aspect-square bg-neutral-100">
             <AnimatePresence initial={false} mode="wait">
               {projectImages.map((img, idx) => (
                 idx === imageIndex && (
                   <motion.div
                     key={img.image}
-                    initial={{ opacity: 0, scale: 1.1 }}
-                    animate={{ opacity: 1, scale: isHovered ? 1.06 : 1 }}
+                    initial={{ opacity: 0, scale: 1.12 }}
+                    animate={{ opacity: 1, scale: isHovered ? 1.15 : 1.08 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.8 }}
                     className="absolute inset-0"
@@ -316,7 +316,7 @@ const Projects = () => {
                 </span>
               </div>
               <span className="text-[10px] sm:text-xs font-bold text-[#575757] flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-gray-200/80 shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
                 <span>Crafting Scalable Digital Ecosystems</span>
               </span>
             </div>
@@ -523,7 +523,7 @@ const Projects = () => {
                       className="group relative flex flex-col justify-between cursor-pointer p-3.5 sm:p-4 rounded-[1.75rem] border border-neutral-200/80 shadow-[0_8px_24px_rgba(0,0,0,0.03)] bg-white hover:border-black/20 hover:shadow-[0_14px_36px_rgba(0,0,0,0.08)] transition-all duration-300 select-none"
                     >
                       {/* 1. Image Area — Crisp & Unobstructed */}
-                      <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl border border-neutral-200/60 mb-3 bg-neutral-900 shadow-2xs">
+                      <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl border border-neutral-200/60 mb-3 bg-white shadow-2xs">
                         <img
                           src={project.image}
                           alt={project.title}

@@ -588,53 +588,179 @@ app.post('/api/project-application', upload.any(), async (req, res) => {
         to: MARKETING_EMAIL,
         subject: `New Project Application — ${companyName} — ${applicationId}`,
         html: `
-          <div style="font-family: Arial, sans-serif; max-width: 680px; color: #111; line-height: 1.6; border: 1px solid #eee; padding: 28px; border-radius: 12px; background: #ffffff;">
-            <h2 style="color: #E31D2E; margin-top: 0; font-size: 22px;">New 10-Step Project Onboarding Application</h2>
-            <div style="background: #F8F9FA; padding: 12px 16px; border-left: 4px solid #E31D2E; font-weight: bold; margin-bottom: 20px;">
-              Application Reference ID: <span style="font-family: monospace; color: #E31D2E;">${applicationId}</span>
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <style>
+              body { margin: 0; padding: 0; background-color: #f4f5f7; font-family: 'Segoe UI', Arial, sans-serif; color: #111; }
+              .container { max-width: 680px; margin: 20px auto; background: #ffffff; border-radius: 14px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.05); }
+              .header { background-color: #0a0a0a; padding: 28px 32px; text-align: center; border-bottom: 3px solid #E31D2E; color: #fff; }
+              .header h1 { margin: 0; font-size: 22px; font-weight: 800; }
+              .header p { margin: 6px 0 0 0; color: #a1a1aa; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; }
+              .content { padding: 28px 32px; }
+              .lead-badge { background: #fff5f5; border-left: 4px solid #E31D2E; padding: 12px 16px; border-radius: 6px; margin-bottom: 24px; }
+              .section-title { font-size: 15px; font-weight: 700; color: #1e293b; margin: 24px 0 10px 0; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; }
+              .data-table { width: 100%; border-collapse: collapse; margin-bottom: 8px; border: 1px solid #e2e8f0; border-radius: 8px; overflow: hidden; }
+              .data-table tr { border-bottom: 1px solid #e2e8f0; }
+              .data-table tr:last-child { border-bottom: none; }
+              .data-table td.label-cell { width: 35%; padding: 10px 14px; background-color: #f8fafc; font-weight: 600; font-size: 13px; color: #475569; border-right: 1px solid #e2e8f0; vertical-align: top; }
+              .data-table td.value-cell { width: 65%; padding: 10px 14px; font-size: 13px; color: #0f172a; font-weight: 500; vertical-align: top; background-color: #ffffff; }
+              .highlight-val { color: #E31D2E; font-weight: 700; }
+              .alert-box { margin-top: 24px; padding: 14px 18px; background: #FFF5F5; border-radius: 8px; border: 1px solid #FED7D7; font-size: 13px; color: #4A5568; }
+              .footer { background-color: #f8fafc; padding: 18px 32px; text-align: center; border-top: 1px solid #e2e8f0; font-size: 12px; color: #64748b; }
+            </style>
+          </head>
+          <body>
+            <div class="container">
+              <div class="header">
+                <h1>PRASKLA <span style="color: #E31D2E;">DIGITAL X</span></h1>
+                <p>New Project Onboarding Application</p>
+              </div>
+
+              <div class="content">
+                <div class="lead-badge">
+                  <div style="font-size: 11px; font-weight: 700; color: #E31D2E; text-transform: uppercase; letter-spacing: 1px;">APPLICATION REFERENCE ID</div>
+                  <div style="font-size: 18px; font-weight: 800; color: #111; font-family: monospace; margin-top: 2px;">${applicationId}</div>
+                  <div style="font-size: 12px; color: #64748b; margin-top: 4px;">Submitted: ${new Date(timestamp).toLocaleString()}</div>
+                </div>
+
+                <div class="section-title">1. Company Information</div>
+                <table class="data-table">
+                  <tr>
+                    <td class="label-cell">Company Name</td>
+                    <td class="value-cell" style="font-weight: 700;">${companyName}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Business Type</td>
+                    <td class="value-cell">${businessType || 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Industry</td>
+                    <td class="value-cell">${industry || 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Company Website</td>
+                    <td class="value-cell">${companyWebsite ? `<a href="${companyWebsite}" style="color: #E31D2E; text-decoration: none;">${companyWebsite}</a>` : 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Years in Business</td>
+                    <td class="value-cell">${yearsInBusiness || 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Business Description</td>
+                    <td class="value-cell">${businessDescription || 'N/A'}</td>
+                  </tr>
+                </table>
+
+                <div class="section-title">2. Primary Contact Details</div>
+                <table class="data-table">
+                  <tr>
+                    <td class="label-cell">Full Name</td>
+                    <td class="value-cell" style="font-weight: 700;">${fullName}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Designation / Role</td>
+                    <td class="value-cell">${designation || 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Email Address</td>
+                    <td class="value-cell"><a href="mailto:${email}" style="color: #E31D2E; font-weight: 700; text-decoration: none;">${email}</a></td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Phone Number</td>
+                    <td class="value-cell"><a href="tel:${phone}" style="color: #0f172a; text-decoration: none;">${phone}</a></td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">WhatsApp Number</td>
+                    <td class="value-cell">${whatsapp || phone}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Preferred Contact</td>
+                    <td class="value-cell">${preferredContactMethod || 'Email'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Location / Address</td>
+                    <td class="value-cell">${[officeAddress, city, state, country, postalCode].filter(Boolean).join(', ') || 'N/A'}</td>
+                  </tr>
+                </table>
+
+                <div class="section-title">3. Project Scope & Requirements</div>
+                <table class="data-table">
+                  <tr>
+                    <td class="label-cell">Project Name</td>
+                    <td class="value-cell" style="font-weight: 700;">${projectName || 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Required Capabilities</td>
+                    <td class="value-cell"><span class="highlight-val">${projectType || 'N/A'}</span></td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Project Scope / Details</td>
+                    <td class="value-cell">${projectDescription || 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Primary Goal</td>
+                    <td class="value-cell">${primaryGoal || 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Target Audience</td>
+                    <td class="value-cell">${targetAudience || 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Required Features</td>
+                    <td class="value-cell">${requiredFeatures || 'N/A'}</td>
+                  </tr>
+                </table>
+
+                <div class="section-title">4. Timeline & Budget</div>
+                <table class="data-table">
+                  <tr>
+                    <td class="label-cell">Budget Range</td>
+                    <td class="value-cell"><span class="highlight-val">${budgetRange || 'N/A'}</span></td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Desired Start Date</td>
+                    <td class="value-cell">${desiredStartDate || 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Target Deadline</td>
+                    <td class="value-cell">${deadline || 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Competitor References</td>
+                    <td class="value-cell">${competitorWebsites || competitors || 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Inspiration / Style Links</td>
+                    <td class="value-cell">${inspirationWebsites || referenceWebsites || 'N/A'}</td>
+                  </tr>
+                  <tr>
+                    <td class="label-cell">Additional Notes</td>
+                    <td class="value-cell">${additionalRequirements || additionalNotes || 'N/A'}</td>
+                  </tr>
+                </table>
+
+                <div class="alert-box">
+                  <strong style="color: #E31D2E;">Full 10-Section PDF Attached:</strong>
+                  <div style="margin-top: 4px;">
+                    The comprehensive Project Brief PDF including branding rules, design guidelines, files, and quotations is attached as <strong>${applicationId}-ProjectBrief.pdf</strong>.
+                  </div>
+                </div>
+
+                <div style="margin-top: 28px; text-align: center;">
+                  <a href="mailto:${email}?subject=Re:%20Praskla%20Digital%20X%20Project%20Brief%20-%20${applicationId}" style="display: inline-block; background-color: #E31D2E; color: #ffffff; font-size: 14px; font-weight: 700; padding: 12px 32px; border-radius: 50px; text-decoration: none; box-shadow: 0 4px 14px rgba(227, 29, 46, 0.3);">
+                    Reply to Client →
+                  </a>
+                </div>
+              </div>
+
+              <div class="footer">
+                Praskla Digital X — Project Onboarding Notification System
+              </div>
             </div>
-
-            <h3 style="font-size: 16px; color: #111; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; margin-top: 20px;">1. Company Information</h3>
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 14px;">
-              <tr><td style="padding: 6px 0; font-weight: bold; width: 180px; color: #666;">Company Name:</td><td style="font-weight: 600;">${companyName}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Business Type:</td><td>${businessType || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Industry:</td><td>${industry || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Company Website:</td><td>${companyWebsite ? `<a href="${companyWebsite}">${companyWebsite}</a>` : 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Years in Business:</td><td>${yearsInBusiness || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Business Description:</td><td>${businessDescription || 'N/A'}</td></tr>
-            </table>
-
-            <h3 style="font-size: 16px; color: #111; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; margin-top: 20px;">2. Contact Person Details</h3>
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 14px;">
-              <tr><td style="padding: 6px 0; font-weight: bold; width: 180px; color: #666;">Full Name:</td><td style="font-weight: 600;">${fullName}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Designation:</td><td>${designation || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Email Address:</td><td><a href="mailto:${email}" style="color: #E31D2E; font-weight: 600;">${email}</a></td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Phone:</td><td><a href="tel:${phone}">${phone}</a></td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">WhatsApp:</td><td>${whatsapp || phone}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Preferred Contact:</td><td>${preferredContactMethod || 'Email'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Location:</td><td>${[city, state, country].filter(Boolean).join(', ') || 'N/A'}</td></tr>
-            </table>
-
-            <h3 style="font-size: 16px; color: #111; border-bottom: 2px solid #f0f0f0; padding-bottom: 6px; margin-top: 20px;">3. Project & Requirements</h3>
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 14px;">
-              <tr><td style="padding: 6px 0; font-weight: bold; width: 180px; color: #666;">Project Name:</td><td style="font-weight: 600;">${projectName || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Project Type / Services:</td><td>${projectType || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Project Scope/Details:</td><td>${projectDescription || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Primary Goal:</td><td>${primaryGoal || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Target Audience:</td><td>${targetAudience || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Required Features:</td><td>${requiredFeatures || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Budget Range:</td><td style="color: #E31D2E; font-weight: bold;">${budgetRange || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Desired Start Date:</td><td>${desiredStartDate || 'N/A'}</td></tr>
-              <tr><td style="padding: 6px 0; font-weight: bold; color: #666;">Deadline:</td><td>${deadline || 'N/A'}</td></tr>
-            </table>
-
-            <div style="margin-top: 20px; padding: 14px 18px; background: #FFF5F5; border-radius: 8px; border: 1px solid #FED7D7;">
-              <strong style="color: #E31D2E;">Full Project Brief Attached:</strong>
-              <p style="margin: 4px 0 0 0; font-size: 13px; color: #4A5568;">
-                The complete 10-section PDF brief with all design guidelines, references, competitor notes, and uploaded files is attached to this email as <strong>${applicationId}-ProjectBrief.pdf</strong>.
-              </p>
-            </div>
-          </div>
+          </body>
+          </html>
         `,
         attachments: pdfBuffer ? [
           {

@@ -345,7 +345,7 @@ const PrivacyPolicy = () => {
                     <MapPin className="w-5 h-5 text-[#E31D2E] shrink-0" />
                     <div>
                       <div className="text-xs text-neutral-400 font-semibold">Location</div>
-                      <div className="text-xs sm:text-sm font-bold text-[#111111]">Coimbatore, TN</div>
+                      <div className="text-xs sm:text-sm font-bold text-[#111111]">Tiruchengode, Namakkal, TN</div>
                     </div>
                   </div>
                 </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import pyLogo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
+import BrandX from "./common/BrandX";
 import career01 from "../assets/Careers/career01.webp";
 import career02 from "../assets/Careers/career02.webp";
 import career03 from "../assets/Careers/career03.webp";
@@ -233,8 +234,14 @@ function TileCard({
         }`}>
           {labelInfo.title}
         </span>
-        <span className="text-[9px] font-bold uppercase tracking-widest text-[#575757] block -mt-0.5">
-          {labelInfo.sub}
+        <span className="text-[9px] font-bold uppercase tracking-widest text-[#575757] block -mt-0.5 inline-flex items-center justify-center gap-0.5">
+          {labelInfo.sub === "Digital X" ? (
+            <>
+              Digital <BrandX className="h-[9px] w-auto text-[#E31D2E] translate-y-[1px]" />
+            </>
+          ) : (
+            labelInfo.sub
+          )}
         </span>
       </div>
     </motion.div>

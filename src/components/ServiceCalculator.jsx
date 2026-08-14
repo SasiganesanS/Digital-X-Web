@@ -765,7 +765,7 @@ export default function ServiceCalculator() {
 
     try {
       window.open(
-        `https://wa.me/919344305986?text=${encodeURIComponent(message)}`,
+        `https://wa.me/919566880740?text=${encodeURIComponent(message)}`,
         "_blank"
       );
     } catch (err) {

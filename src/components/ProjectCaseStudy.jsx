@@ -188,11 +188,11 @@ const ProjectCaseStudy = () => {
             >
               <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
                 <div className="relative rounded-[2.5rem] p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden">
-                  <div className="relative rounded-[2rem] overflow-hidden aspect-[4/3] bg-gray-100">
+                  <div className="relative rounded-[2rem] overflow-hidden aspect-[4/3] bg-white">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover object-center transition-transform duration-700 hover:scale-105"
+                      className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
                     />
                   </div>
 

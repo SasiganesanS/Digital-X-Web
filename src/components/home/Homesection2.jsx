@@ -276,22 +276,22 @@ export default function FeaturedWorks() {
           className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch w-full h-auto sm:h-[clamp(460px,58vh,560px)] lg:h-[clamp(520px,62vh,640px)]"
         >
           {/* ── LEFT COLUMN: Compact Preview Screen (~65% width on Desktop) ── */}
-          <div className="lg:col-span-7 xl:col-span-8 relative h-[340px] sm:h-full w-full overflow-hidden rounded-[32px] border border-neutral-200/80 bg-neutral-950 shadow-[0_20px_50px_rgba(0,0,0,0.08)] group self-stretch">
+          <div className="lg:col-span-7 xl:col-span-8 relative h-[340px] sm:h-full w-full overflow-hidden rounded-[32px] border border-neutral-200/80 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)] group self-stretch">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeProject.id || activeIndex}
-                initial={{ opacity: 0, scale: 0.98 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.98 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute inset-0 w-full h-full"
               >
                 <img
                   src={activeProject.image}
                   alt={activeProject.title || "Project preview"}
-                  className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.035]"
+                  className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40 pointer-events-none" />
               </motion.div>
             </AnimatePresence>
 

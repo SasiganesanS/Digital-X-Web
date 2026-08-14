@@ -10,6 +10,7 @@ import {
   Loader2,
   Send
 } from 'lucide-react';
+import { FaWhatsapp } from 'react-icons/fa6';
 import { sendContactFormEmails } from '../utils/emailService';
 
 const COUNTRIES = [
@@ -395,7 +396,7 @@ const ContactForm = ({ isOpen, onClose }) => {
                       <span>{submitError}</span>
                     </div>
                     <a
-                      href={`https://wa.me/919344305986?text=${encodeURIComponent("Hello Praskla Digital X, I attempted to submit a message on your website but encountered an issue. Here is my inquiry:\nName: " + (formData.name || "") + "\nMessage: " + (formData.message || ""))}`}
+                      href={`https://wa.me/919566880740?text=${encodeURIComponent("Hello Praskla Digital X, I attempted to submit a message on your website but encountered an issue. Here is my inquiry:\nName: " + (formData.name || "") + "\nMessage: " + (formData.message || ""))}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs font-bold underline whitespace-nowrap text-[#E31D2E] hover:text-black shrink-0"
@@ -622,29 +623,45 @@ const ContactForm = ({ isOpen, onClose }) => {
                 </div>
 
                 {/* Form Buttons Footer */}
-                <div className="flex items-center justify-end space-x-3 pt-3 border-t border-gray-100 mt-6">
-                  <button
-                    type="button"
-                    onClick={handleClose}
-                    disabled={isSubmitting}
-                    className="px-4 py-2.5 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-100 hover:text-gray-900 font-semibold text-xs uppercase tracking-wider transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-gray-100 mt-6">
+                  <a
+                    href={`https://wa.me/919566880740?text=${encodeURIComponent(
+                      formData.name || formData.message
+                        ? `Hi Praskla Digital X, my name is ${formData.name || "Client"}. ${formData.message || "I would like to discuss a project."}`
+                        : "Hi Praskla Digital X, I would like to discuss a project with your team."
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20BD5A] active:bg-[#1EB757] !text-black text-black font-extrabold text-xs uppercase tracking-wider shadow-[0_4px_16px_rgba(37,211,102,0.3)] hover:shadow-[0_6px_22px_rgba(37,211,102,0.45)] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer whitespace-nowrap"
                   >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="px-6 py-2.5 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] text-white font-semibold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-[#E31D2E]/20"
-                  >
-                    {isSubmitting ? (
-                      <span className="flex items-center justify-center gap-2">
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        <span>Sending...</span>
-                      </span>
-                    ) : (
-                      <span>Send Message</span>
-                    )}
-                  </button>
+                    <FaWhatsapp className="w-4 h-4 !text-black text-black shrink-0" />
+                    <span className="!text-black text-black font-extrabold whitespace-nowrap">WhatsApp</span>
+                  </a>
+
+                  <div className="flex items-center justify-end space-x-3 w-full sm:w-auto">
+                    <button
+                      type="button"
+                      onClick={handleClose}
+                      disabled={isSubmitting}
+                      className="px-4 py-2.5 rounded-xl border border-gray-200 text-gray-600 hover:bg-gray-100 hover:text-gray-900 font-semibold text-xs uppercase tracking-wider transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="px-6 py-2.5 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] text-white font-semibold text-xs uppercase tracking-wider shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed focus:outline-none focus:ring-4 focus:ring-[#E31D2E]/20"
+                    >
+                      {isSubmitting ? (
+                        <span className="flex items-center justify-center gap-2">
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Sending...</span>
+                        </span>
+                      ) : (
+                        <span>Send Message</span>
+                      )}
+                    </button>
+                  </div>
                 </div>
               </form>
             )}

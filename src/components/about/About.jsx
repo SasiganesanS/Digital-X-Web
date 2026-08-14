@@ -16,6 +16,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Teams from "../Teams";
 import HeroLayout from "../common/HeroLayout";
 import SectionBadge from "../common/SectionBadge";
+import BrandX from "../common/BrandX";
 
 function AnimatedCounter({ target, suffix = "", prefix = "", duration = 1.6 }) {
   const [count, setCount] = useState(0);
@@ -195,7 +196,9 @@ const About = () => {
               <img src={pyLogo} alt="Praskla Digital X" className="w-full h-full object-contain" />
             </div>
             <div>
-              <h3 className="text-sm font-black text-[#111111]">Praskla Digital X</h3>
+              <h3 className="text-sm font-black text-[#111111] flex items-center gap-1">
+                Praskla Digital <BrandX className="h-[14px] w-auto text-[#E31D2E] translate-y-[1.5px]" />
+              </h3>
               <p className="text-[11px] font-semibold text-neutral-400">Mindful Marketing Firm</p>
             </div>
           </div>
@@ -316,7 +319,9 @@ const About = () => {
 
         {/* Footer Bar */}
         <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-[11px] text-neutral-400 font-bold uppercase tracking-wider">
-          <span>Praskla Digital X</span>
+          <span className="inline-flex items-center gap-1">
+            Praskla Digital <BrandX className="h-[12px] w-auto text-[#E31D2E] translate-y-[1px]" />
+          </span>
           <span className="text-[#E31D2E]">Established Excellence</span>
         </div>
       </motion.div>
@@ -449,7 +454,7 @@ const About = () => {
 
                 {/* Paragraph */}
                 <p className="text-[#575757] text-base leading-relaxed font-normal">
-                  At Praskla Digital X, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
+                  At Praskla Digital <BrandX className="h-[1em] w-auto text-[#E31D2E] inline-block translate-y-[0.12em]" />, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
                 </p>
               </div>
 
@@ -495,7 +500,7 @@ const About = () => {
               </h2>
 
               <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium">
-                At Praskla Digital X, we bring together creative visual creators, copywriting experts,
+                At Praskla Digital <BrandX className="h-[1.05em] w-auto text-[#E31D2E] inline-block translate-y-[0.14em]" />, we bring together creative visual creators, copywriting experts,
                 ad strategists, and performance analytics professionals.
               </p>
 

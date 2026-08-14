@@ -300,7 +300,7 @@ const TermsAndConditions = () => {
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">7. Governing Law</h2>
                 </div>
                 <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-                  These Terms are governed by and construed in accordance with the laws of India. Any disputes arising shall be subject to the exclusive jurisdiction of courts located in Coimbatore, Tamil Nadu, India.
+                  These Terms are governed by and construed in accordance with the laws of India. Any disputes arising shall be subject to the exclusive jurisdiction of courts located in Namakkal, Tamil Nadu, India.
                 </p>
               </motion.div>
 

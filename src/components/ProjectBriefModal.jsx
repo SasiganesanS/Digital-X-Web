@@ -459,7 +459,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                           <span>{submitError}</span>
                         </div>
                         <a
-                          href={`https://wa.me/919344305986?text=${encodeURIComponent("Hello Praskla Digital X, I attempted to submit my project application for " + (formData.companyName || "my company") + " but encountered an issue. Here are my details:\nName: " + (formData.fullName || "") + "\nEmail: " + (formData.email || ""))}`}
+                          href={`https://wa.me/919566880740?text=${encodeURIComponent("Hello Praskla Digital X, I attempted to submit my project application for " + (formData.companyName || "my company") + " but encountered an issue. Here are my details:\nName: " + (formData.fullName || "") + "\nEmail: " + (formData.email || ""))}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-xs font-bold underline whitespace-nowrap text-[#E31D2E] hover:text-black shrink-0"
