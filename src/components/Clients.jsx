@@ -52,7 +52,7 @@ const Clients = () => {
         <SectionBadge text="Trusted Partners" />
       }
       title={
-        <h1 className="text-4xl sm:text-5xl lg:text-[52px] font-black text-[#111111]">
+        <h1 className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.18] tracking-tight text-[#111111]">
           Our Trusted <span className="text-[#E31D2E]">Clients</span>
         </h1>
       }

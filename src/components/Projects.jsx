@@ -282,9 +282,9 @@ const Projects = () => {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[0.98] tracking-[-0.04em] text-[#111111]"
+            className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.18] tracking-tight text-[#111111]"
           >
-            Collaborate for <br />
+            Collaborate for{" "}
             <span className="relative inline-block text-[#E31D2E]">
               meaningful brand growth
             </span>

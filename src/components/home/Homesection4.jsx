@@ -51,9 +51,9 @@ const Homesection4 = () => {
               {/* Large Heading */}
               <motion.h2
                 variants={fadeUp}
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.2] tracking-tight text-[#111111] mb-6"
+                className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.18] tracking-tight text-[#111111] mb-5"
               >
-                Let's Build Something <br className="hidden sm:inline" />
+                Let's Build Something{" "}
                 <span className="text-[#E31D2E]">Exceptional Together</span>
               </motion.h2>
 

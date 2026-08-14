@@ -494,7 +494,7 @@ const About = () => {
                 <SectionBadge text="Who we are" />
               </div>
 
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#111111] leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black text-[#111111] leading-[1.18] tracking-tight mb-4">
                 A Team Built for{" "}
                 <span className="text-[#E31D2E]">Impact and Scale</span>
               </h2>

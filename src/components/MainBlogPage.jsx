@@ -99,10 +99,10 @@ export default function BlogPage() {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-4xl sm:text-5xl lg:text-[52px] font-black text-white leading-tight"
+            className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.18] tracking-tight text-white"
           >
-            Latest Updates & <br />
-            <span className="text-[#E8192C]">
+            Latest Updates &{" "}
+            <span className="text-[#E31D2E]">
               Insights
             </span>
           </motion.h1>

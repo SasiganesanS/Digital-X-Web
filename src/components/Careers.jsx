@@ -176,9 +176,8 @@ const Careers = () => {
           <SectionBadge text="Careers @ Praskla Digital X" />
         }
         title={
-          <h1 className="text-[#111111] text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-tight">
-            Join us in creating <br />
-            software that drives <br />
+          <h1 className="text-[#111111] text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.18] tracking-tight max-w-2xl">
+            Join us in creating software that drives{" "}
             <span className="text-[#E31D2E]">innovation</span>
           </h1>
         }

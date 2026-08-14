@@ -121,7 +121,7 @@ const HeroSection = () => {
 
   const title = (
     <h1
-      className="font-black leading-[1.22] tracking-tight text-[#111111] w-full text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px]"
+      className="font-black leading-[1.18] tracking-tight text-[#111111] w-full text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px]"
     >
       <motion.span
         initial={{ opacity: 0, y: 24 }}

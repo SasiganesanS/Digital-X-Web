@@ -22,8 +22,8 @@ const renderStyledTitle = (title) => {
     const [part1, ...rest] = title.split("–");
     return (
       <>
-        <span className="block">{part1.trim()} –</span>
-        <span className="block text-[#E31D2E]">{rest.join("–").trim()}</span>
+        <span>{part1.trim()} – </span>
+        <span className="text-[#E31D2E]">{rest.join("–").trim()}</span>
       </>
     );
   }
@@ -31,8 +31,8 @@ const renderStyledTitle = (title) => {
     const [part1, ...rest] = title.split("-");
     return (
       <>
-        <span className="block">{part1.trim()} –</span>
-        <span className="block text-[#E31D2E]">{rest.join("-").trim()}</span>
+        <span>{part1.trim()} – </span>
+        <span className="text-[#E31D2E]">{rest.join("-").trim()}</span>
       </>
     );
   }
@@ -42,12 +42,12 @@ const renderStyledTitle = (title) => {
     const redWords = words.slice(words.length - 2).join(" ");
     return (
       <>
-        <span className="block">{mainWords}</span>
-        <span className="block text-[#E31D2E]">{redWords}</span>
+        <span>{mainWords} </span>
+        <span className="text-[#E31D2E]">{redWords}</span>
       </>
     );
   }
-  return <span className="block text-[#E31D2E]">{title}</span>;
+  return <span className="text-[#E31D2E]">{title}</span>;
 };
 
 const ProjectCaseStudy = () => {
