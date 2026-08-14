@@ -128,7 +128,7 @@ const navStyles = `
   border-radius: 9999px;
   background: transparent;
   border: none;
-  color: #333333;
+  color: #ffffff !important;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -136,9 +136,20 @@ const navStyles = `
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
+.nav-search-pill svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  transition: color 0.2s ease, stroke 0.2s ease;
+}
+
 .nav-search-pill:hover {
-  background-color: #F0F0F0;
-  color: #E31D2E;
+  background-color: rgba(255, 255, 255, 0.15) !important;
+  color: #FF2B2B !important;
+}
+
+.nav-search-pill:hover svg {
+  color: #FF2B2B !important;
+  stroke: #FF2B2B !important;
 }
 
 .nav-cta-btn {
@@ -288,7 +299,7 @@ const navStyles = `
   height: var(--nav-h);
   padding: 0 var(--pill-pad-x);
   background: transparent;
-  color: #333333;
+  color: #ffffff;
   text-decoration: none;
   border-radius: 9999px;
   box-sizing: border-box;
@@ -305,8 +316,8 @@ const navStyles = `
 }
 
 .pill:hover:not(.is-active) {
-  background-color: #F0F0F0;
-  color: #111111;
+  background-color: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
 }
 
 .pill .hover-circle {
