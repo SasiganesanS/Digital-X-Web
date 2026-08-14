@@ -253,89 +253,72 @@ const Careers = () => {
             </h2>
           </motion.div>
 
-          {/* Search Bar Block */}
+          {/* Unified Single-Line Search & Popular Filters Bar */}
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className="relative w-full max-w-3xl mx-auto space-y-3"
+            className="relative w-full max-w-5xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-3 bg-white/70 backdrop-blur-md p-2 sm:p-2.5 rounded-3xl sm:rounded-full border border-neutral-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.03)]"
           >
-            {/* Primary Focal Point Search Bar */}
+            {/* Compact Search Input (Left side) */}
             <div
-              className={`relative flex items-center h-[54px] sm:h-[58px] w-full rounded-full bg-white transition-all duration-300 ${isSearchFocused
-                  ? "border-2 border-[#FF2B2B] shadow-[0_4px_20px_rgba(0,0,0,0.08)] scale-[1.005]"
-                  : "border border-neutral-200/80 hover:border-neutral-300 shadow-[inset_0_2px_4px_rgba(0,0,0,0.03),_0_8px_24px_rgba(0,0,0,0.04)]"
-                }`}
+              className={`relative flex items-center h-11 w-full lg:w-72 xl:w-80 rounded-full bg-white transition-all duration-300 shrink-0 ${
+                isSearchFocused
+                  ? "border-2 border-[#FF2B2B] shadow-sm scale-[1.01]"
+                  : "border border-neutral-200/90 hover:border-neutral-300 shadow-2xs"
+              }`}
             >
               <label htmlFor="job-search" className="sr-only">
                 Search by role, skill or department
               </label>
-              <div className="pl-5 text-[#FF2B2B] flex items-center justify-center">
-                <FiSearch className="w-5 h-5 flex-shrink-0" />
+              <div className="pl-4 text-[#FF2B2B] flex items-center justify-center">
+                <FiSearch className="w-4 h-4 flex-shrink-0" />
               </div>
               <input
                 id="job-search"
                 type="search"
-                placeholder="Search by role, skill or department..."
+                placeholder="Search roles or skills..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
-                className="w-full h-full px-3.5 bg-transparent text-[#111111] placeholder:text-neutral-400 focus:outline-none text-sm sm:text-base font-medium rounded-full"
+                className="w-full h-full pl-2.5 pr-8 bg-transparent text-[#111111] placeholder:text-neutral-400 focus:outline-none text-xs sm:text-sm font-medium rounded-full"
                 aria-label="Search for job positions"
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="pr-5 text-neutral-400 hover:text-[#111111] transition-colors"
+                  className="absolute right-3 text-neutral-400 hover:text-[#111111] transition-colors"
                   aria-label="Clear search input"
                 >
-                  <FiX className="w-4 h-4" />
+                  <FiX className="w-3.5 h-3.5" />
                 </button>
               )}
             </div>
 
-            {/* Quick Search Chips */}
-            <motion.div
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              variants={{
-                hidden: {},
-                show: {
-                  transition: {
-                    staggerChildren: 0.04,
-                  },
-                },
-              }}
-              className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 pt-1"
-            >
-              <span className="text-[11px] uppercase tracking-wider text-neutral-400 font-bold mr-1">
+            {/* Popular Search Chips (Right side - Single line!) */}
+            <div className="flex flex-wrap items-center justify-center lg:justify-end gap-1.5 px-2 w-full lg:w-auto">
+              <span className="text-[11px] uppercase tracking-wider text-neutral-400 font-bold mr-1 shrink-0">
                 Popular:
               </span>
               {quickSearchOptions.map((chip) => {
                 const isActive = searchQuery.toLowerCase() === chip.toLowerCase();
                 return (
-                  <motion.button
+                  <button
                     key={chip}
-                    variants={{
-                      hidden: { opacity: 0, y: 6 },
-                      show: { opacity: 1, y: 0 },
-                    }}
-                    onClick={() =>
-                      setSearchQuery(isActive ? "" : chip)
-                    }
-                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ${isActive
+                    onClick={() => setSearchQuery(isActive ? "" : chip)}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ${
+                      isActive
                         ? "bg-[#E31D2E] text-white shadow-xs scale-105"
                         : "bg-white text-neutral-700 border border-neutral-200/80 hover:border-black/30 hover:bg-neutral-100 hover:text-[#111111] shadow-2xs"
-                      }`}
+                    }`}
                   >
                     {chip}
-                  </motion.button>
+                  </button>
                 );
               })}
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Premium Information Callout Banner */}
