@@ -207,18 +207,21 @@ function TileCard({
       <div className="absolute inset-0 rounded-[28px] bg-gradient-to-br from-white/80 via-transparent to-transparent pointer-events-none z-10" />
 
       {/* Center Faint Glow */}
+      {/* Center Faint Glow */}
       {isCenter && (
-        <div className="absolute inset-0 bg-[#E31D2E]/10 blur-xl pointer-events-none z-0" />
+        <div className="absolute inset-0 bg-[#E31D2E]/15 blur-xl pointer-events-none z-0" />
       )}
 
       {/* Image Area */}
-      <div className="relative w-full aspect-square rounded-[18px] sm:rounded-[22px] overflow-hidden flex items-center justify-center p-2 z-10 bg-gradient-to-br from-neutral-50/80 to-transparent">
+      <div className={`relative w-full aspect-square overflow-hidden flex items-center justify-center z-10 ${
+        isCenter ? "bg-transparent p-0" : "rounded-[18px] sm:rounded-[22px] p-2 bg-gradient-to-br from-neutral-50/80 to-transparent"
+      }`}>
         <motion.img
           src={member.image || member}
           alt={member.alt || "Praskla Work"}
           className={`w-full h-full object-contain transition-transform duration-500 ease-out ${
             isCenter
-              ? "p-2"
+              ? "scale-125 hover:scale-130"
               : isHovered
               ? "scale-110"
               : "scale-100"
@@ -228,16 +231,24 @@ function TileCard({
       </div>
 
       {/* Label Subtitle */}
-      <div className="relative z-10 text-center pb-0.5 mt-1">
-        <span className={`text-[10px] sm:text-[11px] font-black tracking-tight block ${
-          isCenter || isHovered ? "text-[#E31D2E]" : "text-[#111111]"
+      <div className="relative z-10 text-center pb-0.5 mt-1.5">
+        <span className={`tracking-tight block leading-tight ${
+          isCenter
+            ? "font-inlander text-[12px] sm:text-[13.5px] font-black text-[#E31D2E] uppercase"
+            : isHovered
+            ? "text-[10px] sm:text-[11px] font-black text-[#E31D2E]"
+            : "text-[10px] sm:text-[11px] font-black text-[#111111]"
         }`}>
           {labelInfo.title}
         </span>
-        <span className="text-[9px] font-bold uppercase tracking-widest text-[#575757] block -mt-0.5 inline-flex items-center justify-center gap-0.5">
+        <span className={`block -mt-0.5 inline-flex items-center justify-center gap-0.5 leading-tight ${
+          isCenter
+            ? "font-inlander text-[9.5px] sm:text-[11px] font-black uppercase tracking-wider text-[#111111]"
+            : "text-[9px] font-bold uppercase tracking-widest text-[#575757]"
+        }`}>
           {labelInfo.sub === "Digital X" ? (
             <>
-              Digital <BrandX className="h-[9px] w-auto text-[#E31D2E] translate-y-[1px]" />
+              <span>Digital</span> <BrandX className="h-[11px] sm:h-[12px] w-auto text-[#E31D2E] translate-y-[1px]" />
             </>
           ) : (
             labelInfo.sub

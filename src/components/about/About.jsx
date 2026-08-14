@@ -196,7 +196,7 @@ const About = () => {
               <img src={pyLogo} alt="Praskla Digital X" className="w-full h-full object-contain" />
             </div>
             <div>
-              <h3 className="text-sm font-black text-[#111111] flex items-center gap-1">
+              <h3 className="font-inlander text-sm font-black text-[#111111] flex items-center gap-1">
                 Praskla Digital <BrandX className="h-[14px] w-auto text-[#E31D2E] translate-y-[1.5px]" />
               </h3>
               <p className="text-[11px] font-semibold text-neutral-400">Mindful Marketing Firm</p>
@@ -243,68 +243,68 @@ const About = () => {
         <div className="grid grid-cols-2 gap-3 mb-4">
           <motion.div
             whileHover={{ y: -3, scale: 1.02 }}
-            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
+            className="relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
                 <AnimatedCounter target={50} suffix="+" />
               </span>
-              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white transition-colors duration-300">
+              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E]">
                 <Award className="w-3.5 h-3.5" />
               </div>
             </div>
-            <span className="text-[11px] font-bold text-[#111111] block mt-1 group-hover:text-[#E31D2E] transition-colors">
+            <span className="text-[11px] font-bold text-[#111111] block mt-1">
               Projects Delivered
             </span>
           </motion.div>
 
           <motion.div
             whileHover={{ y: -3, scale: 1.02 }}
-            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
+            className="relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
                 <AnimatedCounter target={98} suffix="%" />
               </span>
-              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white transition-colors duration-300">
+              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E]">
                 <TrendingUp className="w-3.5 h-3.5" />
               </div>
             </div>
-            <span className="text-[11px] font-bold text-[#111111] block mt-1 group-hover:text-[#E31D2E] transition-colors">
+            <span className="text-[11px] font-bold text-[#111111] block mt-1">
               Client Satisfaction
             </span>
           </motion.div>
 
           <motion.div
             whileHover={{ y: -3, scale: 1.02 }}
-            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
+            className="relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
                 <AnimatedCounter target={100} suffix="%" />
               </span>
-              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white transition-colors duration-300">
+              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E]">
                 <Target className="w-3.5 h-3.5" />
               </div>
             </div>
-            <span className="text-[11px] font-bold text-[#111111] block mt-1 group-hover:text-[#E31D2E] transition-colors">
+            <span className="text-[11px] font-bold text-[#111111] block mt-1">
               Tailored Strategy
             </span>
           </motion.div>
 
           <motion.div
             whileHover={{ y: -3, scale: 1.02 }}
-            className="group relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
+            className="relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
                 <AnimatedCounter target={24} suffix="/7" />
               </span>
-              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white transition-colors duration-300">
+              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E]">
                 <Shield className="w-3.5 h-3.5" />
               </div>
             </div>
-            <span className="text-[11px] font-bold text-[#111111] block mt-1 group-hover:text-[#E31D2E] transition-colors">
+            <span className="text-[11px] font-bold text-[#111111] block mt-1">
               Dedicated Support
             </span>
           </motion.div>
@@ -319,7 +319,7 @@ const About = () => {
 
         {/* Footer Bar */}
         <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-[11px] text-neutral-400 font-bold uppercase tracking-wider">
-          <span className="inline-flex items-center gap-1">
+          <span className="inline-flex items-center gap-1 font-inlander">
             Praskla Digital <BrandX className="h-[12px] w-auto text-[#E31D2E] translate-y-[1px]" />
           </span>
           <span className="text-[#E31D2E]">Established Excellence</span>

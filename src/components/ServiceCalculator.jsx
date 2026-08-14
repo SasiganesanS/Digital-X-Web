@@ -642,7 +642,8 @@ export default function ServiceCalculator() {
     if (storedItems) {
       try {
         const items = JSON.parse(storedItems);
-        setSelectedItems(restoreFromIds(items));
+        const restored = restoreFromIds(items);
+        setSelectedItems(restored.slice(-1));
       } catch (e) { }
     }
     setIsInitialLoad(false);
@@ -698,14 +699,10 @@ export default function ServiceCalculator() {
       includedFeatures: itemObj.includedFeatures || [],
     };
 
-    setSelectedItems((prev) => {
-      const current = Array.isArray(prev) ? prev : [];
-      const filtered = current.filter((i) => i?.platform?.id !== platformObj.id);
-      return [...filtered, itemToStore];
-    });
+    // Single option selection mode: replace with single selected item
+    setSelectedItems([itemToStore]);
 
     setModalPlatform(null);
-    setShowBriefModal(true);
   };
 
   // servicesData is imported from ../data/servicesData.js
@@ -946,17 +943,17 @@ export default function ServiceCalculator() {
                         <div className="relative mb-3.5">
                           {/* Outer Glow Ring */}
                           <div className={`absolute inset-0 rounded-full blur-md transition-all duration-500 ${
-                            isProgrammaticHover ? 'bg-[#FF2B2B]/15 scale-110' : 'bg-black/5 group-hover:bg-[#FF2B2B]/10 group-hover:scale-110'
+                            isProgrammaticHover ? 'bg-[#FF2B2B]/15 scale-110' : 'bg-black/5'
                           }`} />
 
                           {/* Icon Capsule */}
                           <div className={`relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-full p-2 border transition-all duration-500 flex items-center justify-center bg-gradient-to-br from-white via-white/95 to-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.05)] ${
-                            isProgrammaticHover ? 'border-black/40 shadow-[0_4px_16px_rgba(0,0,0,0.08)] -translate-y-1 rotate-[5deg]' : 'border-neutral-200 group-hover:border-black/30 group-hover:-translate-y-1 group-hover:rotate-[5deg]'
+                            isProgrammaticHover ? 'border-black/40 shadow-[0_4px_16px_rgba(0,0,0,0.08)] -translate-y-1 rotate-[5deg]' : 'border-neutral-200'
                           }`}>
                             <img
                               src={service.image}
                               alt={service.title}
-                              className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105"
+                              className="w-full h-full object-cover rounded-full"
                             />
                           </div>
                         </div>
@@ -971,13 +968,13 @@ export default function ServiceCalculator() {
 
                           {/* Title */}
                           <h3 className={`text-lg md:text-xl font-extrabold leading-[1.1] mb-2 tracking-tight transition-colors duration-300 ${
-                            isProgrammaticHover ? 'text-[#E31D2E]' : 'text-[#111111] group-hover:text-[#E31D2E]'
+                            isProgrammaticHover ? 'text-[#E31D2E]' : 'text-[#111111]'
                           }`}>
                             {service.title}
                           </h3>
 
                           {/* Description */}
-                          <p className="text-[#575757] font-medium text-xs sm:text-sm leading-relaxed line-clamp-3 mb-3.5 transition-colors duration-300">
+                          <p className="text-[#575757] font-medium text-xs sm:text-sm leading-relaxed line-clamp-3 mb-3.5">
                             {service.desc}
                           </p>
                         </div>
@@ -987,9 +984,9 @@ export default function ServiceCalculator() {
                           {getServiceHighlights(service.title).map((highlight, idx) => (
                             <span
                               key={idx}
-                              className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#E31D2E]/5 text-[#E31D2E] border border-[#E31D2E]/10 flex items-center gap-1 group-hover:bg-[#E31D2E] group-hover:text-white transition-colors duration-300"
+                              className="px-2 py-0.5 rounded-md text-[10px] font-bold bg-[#E31D2E]/5 text-[#E31D2E] border border-[#E31D2E]/10 flex items-center gap-1"
                             >
-                              <span className="w-1 h-1 rounded-full bg-[#E31D2E] group-hover:bg-white transition-colors" />
+                              <span className="w-1 h-1 rounded-full bg-[#E31D2E]" />
                               {highlight}
                             </span>
                           ))}
@@ -997,7 +994,7 @@ export default function ServiceCalculator() {
 
                         {/* Bottom Hover Accent Glow Line */}
                         <div className={`absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#E31D2E] to-transparent transition-transform duration-700 ${
-                          isProgrammaticHover ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-100'
+                          isProgrammaticHover ? 'scale-x-100' : 'scale-x-0'
                         }`} />
                       </div>
                     </div>

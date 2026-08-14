@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ArrowRight, ArrowUpRight, Search } from 'lucide-react';
 import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
+import BrandX from "./common/BrandX";
 
 const navItemsList = [
   { label: "Home", href: "/" },
@@ -33,6 +34,7 @@ function AnimatedBrandTagline() {
   }, []);
 
   const currentTagline = BRAND_TAGLINES[taglineIdx];
+
   return (
     <div className="h-[10px] sm:h-[11px] lg:h-[12px] overflow-hidden relative mt-[3px] w-full max-w-[220px] sm:max-w-[260px]">
       <AnimatePresence mode="wait">
@@ -68,8 +70,8 @@ const navStyles = `
   align-items: center;
   justify-content: space-between;
   gap: 1.25rem;
-  box-sizing: border-box;
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.35s ease-out;
+  transform: translateY(0);
+  transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
   pointer-events: auto;
 }
@@ -126,7 +128,7 @@ const navStyles = `
   border-radius: 9999px;
   background: transparent;
   border: none;
-  color: #ffffff !important;
+  color: #333333;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -134,20 +136,9 @@ const navStyles = `
   transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
-.nav-search-pill svg {
-  color: #ffffff !important;
-  stroke: #ffffff !important;
-  transition: color 0.2s ease, stroke 0.2s ease;
-}
-
 .nav-search-pill:hover {
-  background-color: rgba(255, 255, 255, 0.15) !important;
-  color: #FF2B2B !important;
-}
-
-.nav-search-pill:hover svg {
-  color: #FF2B2B !important;
-  stroke: #FF2B2B !important;
+  background-color: #F0F0F0;
+  color: #E31D2E;
 }
 
 .nav-cta-btn {
@@ -216,9 +207,10 @@ const navStyles = `
 }
 
 .pill-nav-container.nav-hidden {
-  transform: translateX(-50%) translateY(-160%);
+  transform: translateY(-115%);
   opacity: 0;
   pointer-events: none;
+  transition: transform 0.75s cubic-bezier(0.32, 0, 0.2, 1), opacity 0.65s cubic-bezier(0.32, 0, 0.2, 1);
 }
 
 .pill-nav {
@@ -296,7 +288,7 @@ const navStyles = `
   height: var(--nav-h);
   padding: 0 var(--pill-pad-x);
   background: transparent;
-  color: #ffffff;
+  color: #333333;
   text-decoration: none;
   border-radius: 9999px;
   box-sizing: border-box;
@@ -313,8 +305,8 @@ const navStyles = `
 }
 
 .pill:hover:not(.is-active) {
-  background-color: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
+  background-color: #F0F0F0;
+  color: #111111;
 }
 
 .pill .hover-circle {
@@ -355,7 +347,7 @@ const navStyles = `
 }
 
 .pill.is-active {
-  background: var(--pill-bg, #FF2B2B) !important;
+  background: var(--pill-bg, #E31D2E) !important;
   color: var(--hover-text, #ffffff) !important;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12) !important;
   border-radius: 9999px !important;
@@ -366,8 +358,8 @@ const navStyles = `
   height: var(--nav-h);
   border-radius: 50%;
   background: #FFFFFF;
-  border: 1px solid #F0F0F3;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  border: 1px solid #ECECEC;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
   display: none;
   flex-direction: column;
   align-items: center;
@@ -399,7 +391,7 @@ const navStyles = `
   right: 0;
   width: 240px;
   background: #FFFFFF;
-  border: 1px solid #F0F0F3;
+  border: 1px solid #ECECEC;
   border-radius: 24px;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
   z-index: 998;
@@ -480,7 +472,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
   const baseColor = '#ffffff';
   const pillColor = '#FF2B2B';
   const hoveredPillTextColor = '#ffffff';
-  const pillTextColor = '#ffffff';
+  const pillTextColor = '#111111';
   const initialLoadAnimation = false;
 
   const resolvedPillTextColor = pillTextColor ?? baseColor;
@@ -502,7 +494,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
   // Reveal on Top Hover (Mouse entering top 70px of viewport)
   useEffect(() => {
     const handleMouseMove = (e) => {
-      const isTopZone = e.clientY <= 70;
+      const isTopZone = e.clientY <= 80;
 
       if (isTopZone) {
         if (topHoverDebounceRef.current) {
@@ -515,7 +507,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
           topHoverDebounceRef.current = setTimeout(() => {
             setIsTopHovered(false);
             topHoverDebounceRef.current = null;
-          }, 200);
+          }, 400);
         }
       }
     };
@@ -830,15 +822,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
           </div>
 
           {/* Brand Stylized Red Swoosh X Graphic */}
-          <svg
-            viewBox="155 125 705 455"
-            className="h-[34px] sm:h-[38px] lg:h-[42px] w-auto shrink-0 select-none text-[#E31D2E] -ml-2 sm:-ml-3 lg:-ml-3.5 self-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]"
-            fill="currentColor"
-            fillRule="evenodd"
-            aria-hidden="true"
-          >
-            <path d="M 162.344 127.547 C 161.972 128.516, 165.486 134.586, 171.752 143.797 C 216.594 209.714, 252 262.339, 252 263.072 C 252 263.556, 249.366 267.675, 246.147 272.226 C 240.970 279.544, 180.406 366.557, 162.614 392.238 C 158.903 397.594, 156.154 402.440, 156.504 403.006 C 156.924 403.687, 170.682 404.016, 197.040 403.977 C 231.438 403.926, 237.150 403.707, 238.467 402.390 C 239.307 401.550, 246.365 391.331, 254.151 379.681 C 261.937 368.032, 275.264 348.253, 283.766 335.730 L 299.225 312.960 307.951 327.230 C 352.104 399.438, 397.728 453.946, 446.013 492.176 C 537.703 564.772, 637.259 576.269, 738.133 525.909 C 776.265 506.873, 815.308 477.947, 847.500 444.882 C 858.201 433.891, 858.657 432.680, 848.509 442.200 C 831.870 457.809, 805.614 475.583, 781.090 487.838 C 754.801 500.975, 731.982 508.564, 703.421 513.669 C 690 516.068, 686.037 516.340, 664 516.377 C 643.070 516.411, 637.606 516.092, 626.500 514.184 C 598.849 509.435, 575.987 501.872, 550 488.878 C 479.268 453.511, 414.870 386.417, 354.795 285.500 C 345.954 270.648, 340 259.991, 340 259.018 C 340 258.576, 361.096 229.412, 386.879 194.208 C 412.662 159.004, 434.095 129.655, 434.507 128.989 C 434.923 128.316, 434.643 127.388, 433.878 126.904 C 433.120 126.423, 414.608 126.024, 392.740 126.015 L 352.981 126 350.338 129.750 C 348.884 131.813, 336.401 150.375, 322.597 171 C 308.794 191.625, 297.061 208.500, 296.526 208.500 C 295.990 208.500, 284.290 190.671, 270.526 168.880 C 256.761 147.089, 244.882 128.527, 244.128 127.630 C 242.901 126.173, 238.508 126, 202.846 126 C 167.757 126, 162.866 126.187, 162.344 127.547" />
-          </svg>
+          <BrandX className="h-[34px] sm:h-[38px] lg:h-[42px] w-auto shrink-0 select-none text-[#E31D2E] -ml-2 sm:-ml-3 lg:-ml-3.5 self-center drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
         </Link>
 
         {/* ── RIGHT SEPARATE CAPSULE: NAVIGATION LINKS & CTA ── */}
@@ -909,7 +893,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                     aria-label="Search website"
                     title="Search website (⌘K)"
                   >
-                    <Search className="w-4 h-4 !text-white group-hover:!text-[#FF2B2B] transition-colors" />
+                    <Search className="w-4 h-4 text-[#111111] group-hover:text-[#E31D2E] transition-colors" />
                   </button>
                 </li>
               </ul>
