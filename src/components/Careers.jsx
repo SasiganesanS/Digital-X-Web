@@ -176,12 +176,16 @@ const Careers = () => {
           <SectionBadge text="Careers @ Praskla Digital X" />
         }
         title={
-          <h1 className="text-[#111111] text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.18] tracking-tight max-w-2xl">
+          <h1 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl">
             Join us in creating software that drives{" "}
             <span className="text-[#E31D2E]">innovation</span>
           </h1>
         }
-        description="Build high-impact digital experiences and grow with a team of strategic, creative, and engineering minds."
+        description={
+          <p className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
+            Build high-impact digital experiences and grow with a team of strategic, creative, and engineering minds.
+          </p>
+        }
         actions={
           <div className="flex flex-col items-center lg:items-start gap-3.5 w-full">
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 w-full">
@@ -247,7 +251,7 @@ const Careers = () => {
                 </span>
               </div>
             </div>
-            <h2 className="text-[#111111] text-2xl sm:text-3xl lg:text-4xl font-black leading-tight tracking-tight">
+            <h2 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] mb-5 sm:mb-6 max-w-2xl font-sans mx-auto">
               Find the position that fits your ambitions
             </h2>
           </motion.div>
@@ -297,8 +301,8 @@ const Careers = () => {
             </div>
 
             {/* Popular Search Chips (Right side - Single line!) */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-end gap-1.5 px-2 w-full lg:w-auto">
-              <span className="text-[11px] uppercase tracking-wider text-neutral-400 font-bold mr-1 shrink-0">
+            <div className="flex flex-nowrap items-center justify-start lg:justify-end gap-1.5 px-2 w-full lg:w-auto overflow-x-auto no-scrollbar py-0.5 max-w-full">
+              <span className="text-[11px] uppercase tracking-wider text-neutral-400 font-bold mr-1 shrink-0 whitespace-nowrap">
                 Popular:
               </span>
               {quickSearchOptions.map((chip) => {
@@ -307,7 +311,7 @@ const Careers = () => {
                   <button
                     key={chip}
                     onClick={() => setSearchQuery(isActive ? "" : chip)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 ${
+                    className={`px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-semibold whitespace-nowrap shrink-0 transition-all duration-200 ${
                       isActive
                         ? "bg-[#E31D2E] text-white shadow-xs scale-105"
                         : "bg-white text-neutral-700 border border-neutral-200/80 hover:border-black/30 hover:bg-neutral-100 hover:text-[#111111] shadow-2xs"

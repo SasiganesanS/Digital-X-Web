@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import HeroLayout from "./common/HeroLayout";
 import ContactForm from "./ContactForm";
 import { ArrowUpRight, ArrowRight, Star, Check, TrendingUp, Filter, ChevronDown } from "lucide-react";
@@ -19,8 +19,15 @@ import img5 from '../assets/project-cover/photo 5.webp';
 // ── Portfolio Hero Helper Components ──
 function ProjectCounter({ targetNum, suffix = "+", label, delay = 0 }) {
   const [count, setCount] = useState(0);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: false, margin: "-20px" });
 
   useEffect(() => {
+    if (!isInView) {
+      setCount(0);
+      return;
+    }
+
     const duration = 1800; // ms
     const numVal = parseInt(targetNum, 10) || 0;
     let start = null;
@@ -46,13 +53,14 @@ function ProjectCounter({ targetNum, suffix = "+", label, delay = 0 }) {
       clearTimeout(timer);
       if (animFrameId) cancelAnimationFrame(animFrameId);
     };
-  }, [targetNum, delay]);
+  }, [isInView, targetNum, delay]);
 
   return (
     <motion.div
+      ref={containerRef}
       initial={{ opacity: 0, y: 15, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.6, delay: 0.4 + delay, ease: [0.16, 1, 0.3, 1] }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 15, scale: 0.95 }}
+      transition={{ duration: 0.6, delay: delay * 0.3, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -5, scale: 1.02 }}
       className="clay-card relative flex flex-col items-start p-3.5 px-4 sm:px-5 rounded-2xl border border-white/70 shadow-[0_10px_28px_rgba(17,17,17,0.03)] backdrop-blur-xl bg-white/75 hover:bg-white/90 cursor-default group transition-all duration-300 min-w-[120px] sm:min-w-[135px]"
     >
@@ -282,10 +290,10 @@ const Projects = () => {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.18] tracking-tight text-[#111111]"
+            className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl"
           >
             Collaborate for{" "}
-            <span className="relative inline-block text-[#E31D2E]">
+            <span className="text-[#E31D2E]">
               meaningful brand growth
             </span>
           </motion.h1>
@@ -294,10 +302,10 @@ const Projects = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[#575757] text-xs sm:text-sm lg:text-base leading-relaxed font-medium max-w-xl"
+            transition={{ duration: 0.75, delay: 0.2 }}
+            className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
           >
-            A powerful blend of strategy, creativity and performance marketing designed to boost visibility and accelerate revenue growth.
+            A curated showcase of performance campaigns, digital products, and brand identity projects built for growth.
           </motion.p>
         }
         actions={
@@ -330,7 +338,7 @@ const Projects = () => {
       />
 
       {/* ------------------ Our Workflow Process Section ------------------ */}
-      <section className="projects-empower-section relative bg-transparent py-12 sm:py-14 lg:py-16 overflow-hidden">
+      <section className="projects-empower-section relative bg-transparent py-10 sm:py-12 lg:py-14 overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Section Header */}
           <motion.div
@@ -338,7 +346,7 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center justify-center text-center mb-16 md:mb-20 max-w-4xl mx-auto"
+            className="flex flex-col items-center justify-center text-center mb-8 sm:mb-10 lg:mb-12 max-w-4xl mx-auto"
           >
             {/* Small Badge */}
             <div className="mb-4">
@@ -448,7 +456,7 @@ const Projects = () => {
       </section>
 
       {/* ------------------ Featured Case Studies Section ------------------ */}
-      <section className="relative bg-transparent py-12 sm:py-14 lg:py-16 overflow-hidden">
+      <section className="relative bg-transparent py-10 sm:py-12 lg:py-14 overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Section Header */}
           <motion.div
@@ -456,7 +464,7 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center justify-center text-center mb-16 md:mb-20"
+            className="flex flex-col items-center justify-center text-center mb-8 sm:mb-10 lg:mb-12"
           >
             {/* Small Badge */}
             <div className="mb-4">

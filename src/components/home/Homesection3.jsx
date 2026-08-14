@@ -19,7 +19,7 @@ const AboutSection = () => {
   return (
     <section
       id="about"
-      className="relative w-full flex flex-col justify-center overflow-hidden py-12 sm:py-14 lg:py-16 bg-transparent"
+      className="relative w-full flex flex-col justify-center overflow-hidden py-10 sm:py-12 lg:py-14 bg-transparent"
     >
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
@@ -41,7 +41,7 @@ const AboutSection = () => {
             {/* Headline */}
             <motion.h2
               variants={fadeUp}
-              className="text-[clamp(1.8rem,5vw,3.2rem)] font-black leading-[1.2] tracking-tight text-[#111111] mb-6"
+              className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] mb-5 sm:mb-6 max-w-2xl font-sans"
             >
               Empowering Brands through{" "}
               <span className="text-[#E31D2E]">

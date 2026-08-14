@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import SolarSystemHero from "./SolarSystemHero";
@@ -8,8 +8,15 @@ import SectionBadge from "../common/SectionBadge";
 
 function AnimatedStat({ targetNum, suffix = "+", label, delay = 0 }) {
   const [count, setCount] = useState(0);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: false, margin: "-20px" });
 
   useEffect(() => {
+    if (!isInView) {
+      setCount(0);
+      return;
+    }
+
     const duration = 1800; // ms
     const numVal = parseInt(targetNum, 10) || 0;
     let start = null;
@@ -35,13 +42,14 @@ function AnimatedStat({ targetNum, suffix = "+", label, delay = 0 }) {
       clearTimeout(timer);
       if (animFrameId) cancelAnimationFrame(animFrameId);
     };
-  }, [targetNum, delay]);
+  }, [isInView, targetNum, delay]);
 
   return (
     <motion.div
+      ref={containerRef}
       initial={{ opacity: 0, y: 15, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.6, delay: 0.4 + delay, ease: [0.16, 1, 0.3, 1] }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 15, scale: 0.95 }}
+      transition={{ duration: 0.6, delay: delay * 0.3, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -5, scale: 1.02 }}
       className="clay-card relative flex flex-col items-start p-2.5 sm:p-3.5 px-3 sm:px-4 rounded-2xl border border-white/70 shadow-[0_10px_28px_rgba(17,17,17,0.03)] backdrop-blur-xl bg-white/75 hover:bg-white/90 cursor-default group transition-all duration-300 w-full overflow-hidden"
     >
@@ -121,7 +129,7 @@ const HeroSection = () => {
 
   const title = (
     <h1
-      className="font-black leading-[1.18] tracking-tight text-[#111111] w-full text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px]"
+      className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl"
     >
       <motion.span
         initial={{ opacity: 0, y: 24 }}
@@ -155,10 +163,11 @@ const HeroSection = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-      className="text-[#575757] text-xs sm:text-sm lg:text-base font-medium leading-relaxed max-w-xl"
+      className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
     >
       Your strategic growth partner for branding, performance marketing,
-      and long-term digital scale. We don't just create campaigns; we build legacies.
+      software development, and digital transformation. We convert creative vision
+      into measurable business results.
     </motion.p>
   );
 

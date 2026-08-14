@@ -98,6 +98,9 @@ const createTransporter = () => {
       user,
       pass,
     },
+    tls: {
+      rejectUnauthorized: false,
+    },
   });
 };
 
@@ -124,6 +127,7 @@ const loadEmailTemplate = (templateName, variables = {}) => {
 const dispatchEmail = async ({ to, subject, html, template, variables }) => {
   const mailApiUrl = process.env.MAIL_API_URL;
   const apiKey = process.env.MAIL_API_KEY || process.env.SMTP_API_KEY;
+  const mailOrigin = process.env.MAIL_API_ORIGIN || 'https://prasklatechnology.com';
 
   // 1. Primary Engine: Mail/PY REST API
   if (mailApiUrl && apiKey) {
@@ -151,7 +155,7 @@ const dispatchEmail = async ({ to, subject, html, template, variables }) => {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Origin': 'http://localhost:3001',
+          'Origin': mailOrigin,
           'Authorization': `Bearer ${apiKey}`,
           'X-API-Key': apiKey,
         },

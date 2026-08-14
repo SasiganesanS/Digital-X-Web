@@ -1,9 +1,5 @@
-/* ---------------- Google & Fontshare Fonts Import ---------------- */
-@import url('https://api.fontshare.com/v2/css?f[]=general-sans@600,700,800,900&f[]=satoshi@700,900&f[]=clash-display@600,700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@600;700;800;900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Great+Vibes&family=Alex+Brush&family=Satisfy&family=Montserrat:wght@800;900&display=swap');
+/* ---------------- Google Fonts Import ---------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
 @font-face {
   font-family: 'Inlander';
@@ -20,23 +16,27 @@
 
 /* ---------------- Centralized Inter Typography System ---------------- */
 :root {
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  --heading-display-font: var(--font-primary);
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-primary: "Inter", sans-serif;
+  --font-display: "Inter", sans-serif;
+  --font-heading: "Inter", sans-serif;
+
+  --heading-display-font: var(--font-display);
   --heading-display-weight: 800;
   --heading-display-line-height: 0.98;
   --heading-display-tracking: -0.04em;
 
-  --heading-section-font: var(--font-primary);
+  --heading-section-font: var(--font-heading);
   --heading-section-weight: 800;
   --heading-section-line-height: 1.05;
   --heading-section-tracking: -0.03em;
 
-  --body-font: var(--font-primary);
+  --body-font: var(--font-body);
   --body-line-height: 1.6;
 }
 
 html, body {
-  font-family: var(--font-primary) !important;
+  font-family: var(--font-body) !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -48,47 +48,47 @@ html, body {
 
 @layer utilities {
   .display-heading {
-    font-family: var(--font-primary) !important;
+    font-family: var(--font-display) !important;
     font-weight: 800;
     line-height: 0.98;
     letter-spacing: -0.04em;
   }
 
   .section-heading {
-    font-family: var(--font-primary) !important;
+    font-family: var(--font-heading) !important;
     font-weight: 800;
     line-height: 1.05;
     letter-spacing: -0.03em;
   }
 
   .body-text {
-    font-family: var(--font-primary) !important;
+    font-family: var(--font-body) !important;
     font-weight: 400;
     line-height: 1.6;
   }
 
   .font-space-grotesk {
-    font-family: 'Space Grotesk', 'Inter', sans-serif !important;
+    font-family: "Inter", sans-serif !important;
   }
 
   .font-brand {
-    font-family: 'Inter', sans-serif !important;
+    font-family: "Inter", sans-serif !important;
   }
 
   .font-signature {
-    font-family: 'Inter', sans-serif !important;
+    font-family: "Inter", sans-serif !important;
   }
 
   .font-inlander {
-    font-family: 'Inlander', 'Cinzel', 'Playfair Display', 'Bodoni Moda', serif !important;
+    font-family: 'Inlander', 'Cinzel', 'Playfair Display', serif !important;
   }
 
   .font-briteny {
-    font-family: 'Briteny', 'Britney', 'Great Vibes', 'Alex Brush', 'Satisfy', cursive !important;
+    font-family: 'Briteny', 'Britney', cursive !important;
   }
 
   .font-dingos {
-    font-family: 'Dingos', 'Montserrat', 'Space Grotesk', 'Inter', sans-serif !important;
+    font-family: 'Dingos', 'Inter', sans-serif !important;
   }
 
   .custom-scrollbar::-webkit-scrollbar {
@@ -1049,11 +1049,11 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg {
   width: 100%;
 }
 
-/* Adapt first hero sections to fill remaining viewport height gracefully */
+/* Hero sections use content-driven height to prevent huge empty whitespace gaps */
 .page-layout-wrapper>section:first-of-type,
 .page-layout-wrapper>div:first-child>section:first-of-type,
 .page-layout-wrapper>main:first-child>section:first-of-type {
-  min-height: calc(100vh - var(--hero-top-offset));
+  min-height: 0 !important;
 }
 
 .page-layout-wrapper section:first-of-type.h-screen,
@@ -1081,12 +1081,12 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg {
    Creates a compact, balanced, and premium vertical rhythm.
    =================================================================== */
 :root {
-  --section-py-desktop: 4rem;
-  /* 64px on desktop */
-  --section-py-tablet: 3.5rem;
-  /* 56px on tablet */
-  --section-py-mobile: 3rem;
-  /* 48px on mobile */
+  --section-py-desktop: 3rem;
+  /* 48px on desktop */
+  --section-py-tablet: 2.5rem;
+  /* 40px on tablet */
+  --section-py-mobile: 2rem;
+  /* 32px on mobile */
 }
 
 .section-vertical-spacing {

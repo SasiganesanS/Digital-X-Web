@@ -1,5 +1,5 @@
 .App {
-  font-family: sans-serif;
+  font-family: "Inter", sans-serif;
   text-align: center;
 }
 
@@ -14,8 +14,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: ".SFNSText", "SFProText-Regular", "SFUIText-Regular", ".SFUIText",
-    Helvetica, Arial, sans-serif;
+  font-family: "Inter", sans-serif;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 /* 

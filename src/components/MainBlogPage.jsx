@@ -99,7 +99,7 @@ export default function BlogPage() {
             initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
-            className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.18] tracking-tight text-white"
+            className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-white font-sans mb-5 sm:mb-6 max-w-2xl"
           >
             Latest Updates &{" "}
             <span className="text-[#E31D2E]">
@@ -109,12 +109,13 @@ export default function BlogPage() {
         }
         description={
           <motion.p
-            initial={{ y: 20, opacity: 0 }}
+            initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.7 }}
-            className="text-base sm:text-lg text-white/80 max-w-2xl leading-relaxed font-light blog-desc"
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
           >
-            Stay updated with the latest news, events, and insights from the tech world.
+            Discover our thoughts on technology, design, business growth, and
+            innovation.
           </motion.p>
         }
         actions={

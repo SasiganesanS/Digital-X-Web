@@ -101,10 +101,10 @@ const About = () => {
       variants={fadeUp}
       initial="hidden"
       animate="visible"
-      className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[0.98] tracking-[-0.04em] text-[#111111]"
+      className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl"
     >
-      <span className="block mb-1 sm:mb-1.5">Where Mindful Strategy</span>
-      <span className="block text-[#E31D2E]">Meets Scalable Growth.</span>
+      Where Mindful Strategy{" "}
+      <span className="text-[#E31D2E]">Meets Scalable Growth.</span>
     </motion.h1>
   );
 
@@ -113,7 +113,7 @@ const About = () => {
       variants={fadeUp}
       initial="hidden"
       animate="visible"
-      className="text-neutral-600 text-xs sm:text-sm lg:text-base leading-relaxed max-w-xl font-normal"
+      className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
     >
       A trusted marketing partner delivering brand transformation, performance campaigns,
       and high-impact digital ecosystems that accelerate business growth.
@@ -341,7 +341,7 @@ const About = () => {
       />
 
       {/* Vision & Mission Section */}
-      <section className="relative py-16 sm:py-20 lg:py-24 overflow-hidden bg-transparent">
+      <section className="relative py-10 sm:py-12 lg:py-14 overflow-hidden bg-transparent">
         {/* Background ambient glows */}
         <div className="absolute top-1/2 left-10 -translate-y-1/2 w-80 h-80 bg-[#E31D2E]/5 rounded-full blur-[100px] pointer-events-none" />
         <div className="absolute top-1/2 right-10 -translate-y-1/2 w-80 h-80 bg-[#E31D2E]/5 rounded-full blur-[100px] pointer-events-none" />
@@ -494,7 +494,7 @@ const About = () => {
                 <SectionBadge text="Who we are" />
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black text-[#111111] leading-[1.18] tracking-tight mb-4">
+              <h2 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.25] tracking-[-0.02em] text-[#111111] font-sans mb-5 sm:mb-6">
                 A Team Built for{" "}
                 <span className="text-[#E31D2E]">Impact and Scale</span>
               </h2>

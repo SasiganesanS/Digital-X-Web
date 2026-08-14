@@ -254,17 +254,17 @@ export default function FeaturedWorks() {
   };
 
   return (
-    <section id="projects" className="relative overflow-hidden bg-transparent py-12 sm:py-14 lg:py-16">
+    <section id="projects" className="relative overflow-hidden bg-transparent py-10 sm:py-12 lg:py-14">
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
         {/* Section Header */}
         <div className="mb-8 max-w-3xl space-y-2.5">
           <div className="mb-4">
             <SectionBadge text="Case Studies" />
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-[#111111]">
+          <h2 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] mb-5 sm:mb-6 max-w-2xl font-sans">
             Featured <span className="text-[#E31D2E]">Case Studies</span>.
           </h2>
-          <p className="max-w-xl text-sm sm:text-base leading-6 text-[#575757] font-medium">
+          <p className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] mb-7 sm:mb-8 max-w-2xl font-sans">
             Browse our curated case studies across branding, digital media, 3D studios, and production.
           </p>
         </div>

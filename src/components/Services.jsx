@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import "./Services.css";
 import servicesData from "../data/servicesData";
+import SectionBadge from "./common/SectionBadge";
 
 /** Stable sparkle positions (avoid Math.random() each render) */
 const SECTION_SPARKLES = Array.from({ length: 18 }, (_, i) => ({
@@ -49,11 +50,11 @@ const Services = () => {
   }, [location]);
 
   return (
-    <div className="bg-white min-h-screen text-[#111111] overflow-x-hidden">
+    <div className="bg-white text-[#111111] overflow-x-hidden">
       {/* Unified: intro copy (left) + Core Expertise grid (right) */}
       <section
         id="services-main"
-        className="services-unified-section relative w-full flex flex-col justify-center overflow-hidden py-12 sm:py-14 lg:py-16 scroll-mt-24 bg-white"
+        className="services-unified-section relative w-full flex flex-col justify-center overflow-hidden py-10 sm:py-12 lg:py-14 scroll-mt-24 bg-white"
       >
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-14 xl:gap-16 items-start lg:items-center">
@@ -63,19 +64,16 @@ const Services = () => {
               transition={{ duration: 0.75 }}
               className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-xl mx-auto lg:mx-0"
             >
-              <div className="inline-flex items-center border border-neutral-200 gap-2 px-4 py-1.5 bg-[#FF2B2B]/5 rounded-full mb-6">
-                <div className="w-2 h-2 rounded-full bg-[#FF2B2B]" />
-                <span className="text-xs font-bold text-[#FF2B2B] uppercase tracking-[0.2em] ml-1">
-                  Our Services
-                </span>
+              <div className="mb-5">
+                <SectionBadge text="Our Services" />
               </div>
 
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black mb-6 leading-[0.98] tracking-[-0.04em] text-[#111111]">
-                Transforming Brands into <br className="hidden sm:block" />
-                <span className="text-[#FF2B2B]">Digital Authority</span>
+              <h1 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl">
+                Transforming Brands into{" "}
+                <span className="text-[#E31D2E]">Digital Authority</span>
               </h1>
 
-              <p className="text-[#555555] text-base md:text-lg leading-relaxed font-medium mb-8">
+              <p className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
                 Comprehensive branding, media, and performance marketing solutions designed to help
                 your business grow strategically, creatively, and profitably.
               </p>
@@ -195,7 +193,7 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="py-12 sm:py-14 lg:py-16 bg-[#FAFAFA]">
+      <section className="py-10 sm:py-12 lg:py-14 bg-[#FAFAFA]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -30,10 +30,10 @@ const Homesection4 = () => {
     <>
       <section
         id="start-project"
-        className="relative w-full min-h-screen flex flex-col justify-center overflow-visible lg:overflow-hidden py-16 sm:py-20 lg:py-24 bg-transparent"
+        className="relative w-full overflow-visible lg:overflow-hidden py-10 sm:py-12 lg:py-14 bg-transparent"
         style={{ zIndex: 1 }}
       >
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-10 lg:px-16">
+        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* ── LEFT SIDE ── */}
             <motion.div
@@ -51,7 +51,7 @@ const Homesection4 = () => {
               {/* Large Heading */}
               <motion.h2
                 variants={fadeUp}
-                className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.18] tracking-tight text-[#111111] mb-5"
+                className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] mb-5 sm:mb-6 max-w-2xl font-sans"
               >
                 Let's Build Something{" "}
                 <span className="text-[#E31D2E]">Exceptional Together</span>
@@ -60,15 +60,11 @@ const Homesection4 = () => {
               {/* Description */}
               <motion.p
                 variants={fadeUp}
-                className="text-[#575757] text-base sm:text-lg md:text-xl leading-relaxed max-w-xl font-normal mb-8 space-y-2"
+                className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] mb-7 sm:mb-8 max-w-2xl font-sans"
               >
                 Every successful project starts with understanding your business.
-                <br />
-                Tell us about your company, your goals, your brand identity, and
-                your vision.
-                <br />
-                Complete our Project Brief and our team will review your
-                requirements before preparing a personalized proposal.
+                Tell us about your goals, timeline, and budget, and let's craft
+                a high-performance digital solution together.
               </motion.p>
 
               {/* Small benefits */}

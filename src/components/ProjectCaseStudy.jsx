@@ -110,7 +110,7 @@ const ProjectCaseStudy = () => {
   }
 
   return (
-    <div className="bg-[#F8FAFC] min-h-screen text-[#111111] font-sans overflow-x-hidden selection:bg-[#E31D2E] selection:text-white">
+    <div className="bg-[#F8FAFC] text-[#111111] font-sans overflow-x-hidden selection:bg-[#E31D2E] selection:text-white">
       
       {/* ── CASE STUDY HERO ── */}
       <section className="relative w-full pt-2 sm:pt-3 lg:pt-4 pb-10 sm:pb-12 lg:pb-14 bg-gradient-to-b from-[#F8FAFC] via-white to-[#F8FAFC]">

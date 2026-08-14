@@ -27,8 +27,8 @@ const Partners = () => {
   };
 
   return (
-    <div className="bg-white py-6 sm:py-8 md:py-10 md:pt-40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+    <div className="bg-white py-8 sm:py-10 lg:py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
         <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center text-[#371445] mb-6 sm:mb-8">
           In Tie-up with
         </h2>

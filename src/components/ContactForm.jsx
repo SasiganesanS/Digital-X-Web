@@ -78,6 +78,36 @@ const ContactForm = ({ isOpen, onClose }) => {
     onClose();
   };
 
+  // Build complete WhatsApp message with all filled form fields
+  const getWhatsAppUrl = () => {
+    const parts = ["Hi Praskla Digital X, I would like to discuss a project with your team.\n"];
+
+    if (formData.name?.trim()) {
+      parts.push(`• Full Name: ${formData.name.trim()}`);
+    }
+    if (formData.email?.trim()) {
+      parts.push(`• Email: ${formData.email.trim()}`);
+    }
+    if (formData.phone?.trim()) {
+      parts.push(`• Phone: ${selectedCountry.code} ${formData.phone.trim()}`);
+    }
+    if (formData.company?.trim()) {
+      parts.push(`• Company: ${formData.company.trim()}`);
+    }
+    if (formData.interestedService) {
+      parts.push(`• Interested Service: ${formData.interestedService}`);
+    }
+    if (formData.message?.trim()) {
+      parts.push(`• Message: ${formData.message.trim()}`);
+    }
+
+    const messageText = parts.length > 1
+      ? parts.join("\n")
+      : "Hi Praskla Digital X, I would like to discuss a project with your team.";
+
+    return `https://wa.me/919566880740?text=${encodeURIComponent(messageText)}`;
+  };
+
   // Keyboard navigation & Focus management
   useEffect(() => {
     if (!isOpen) return;
@@ -396,7 +426,7 @@ const ContactForm = ({ isOpen, onClose }) => {
                       <span>{submitError}</span>
                     </div>
                     <a
-                      href={`https://wa.me/919566880740?text=${encodeURIComponent("Hello Praskla Digital X, I attempted to submit a message on your website but encountered an issue. Here is my inquiry:\nName: " + (formData.name || "") + "\nMessage: " + (formData.message || ""))}`}
+                      href={getWhatsAppUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xs font-bold underline whitespace-nowrap text-[#E31D2E] hover:text-black shrink-0"
@@ -625,11 +655,7 @@ const ContactForm = ({ isOpen, onClose }) => {
                 {/* Form Buttons Footer */}
                 <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-gray-100 mt-6">
                   <a
-                    href={`https://wa.me/919566880740?text=${encodeURIComponent(
-                      formData.name || formData.message
-                        ? `Hi Praskla Digital X, my name is ${formData.name || "Client"}. ${formData.message || "I would like to discuss a project."}`
-                        : "Hi Praskla Digital X, I would like to discuss a project with your team."
-                    )}`}
+                    href={getWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20BD5A] active:bg-[#1EB757] !text-black text-black font-extrabold text-xs uppercase tracking-wider shadow-[0_4px_16px_rgba(37,211,102,0.3)] hover:shadow-[0_6px_22px_rgba(37,211,102,0.45)] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer whitespace-nowrap"

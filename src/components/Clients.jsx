@@ -52,11 +52,15 @@ const Clients = () => {
         <SectionBadge text="Trusted Partners" />
       }
       title={
-        <h1 className="text-3xl sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.18] tracking-tight text-[#111111]">
+        <h1 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl">
           Our Trusted <span className="text-[#E31D2E]">Clients</span>
         </h1>
       }
-      description="Partners and organizations who have trusted us with their brand identity and growth systems."
+      description={
+        <p className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
+          Partners and organizations who have trusted us with their brand identity and growth systems.
+        </p>
+      }
     >
       <div className="py-6 sm:py-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto w-full text-left">

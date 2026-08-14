@@ -17,6 +17,7 @@ import {
   useAnimationFrame,
   animate,
   useTransform,
+  useInView,
 } from "framer-motion";
 import { useNavigate, useLocation } from "react-router-dom";
 import {
@@ -180,8 +181,15 @@ function AnimatedPriceDisplay({ value = 5000, textColor = "text-[#111111]" }) {
 
 function HeroAnimatedStat({ targetNum, suffix = "+", label, icon: Icon, delay = 0 }) {
   const [count, setCount] = useState(0);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: false, margin: "-20px" });
 
   useEffect(() => {
+    if (!isInView) {
+      setCount(0);
+      return;
+    }
+
     const duration = 1800; // ms
     const numVal = parseInt(targetNum, 10) || 0;
     let start = null;
@@ -189,7 +197,6 @@ function HeroAnimatedStat({ targetNum, suffix = "+", label, icon: Icon, delay = 
     const step = (timestamp) => {
       if (!start) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
-      // Smooth easeOutCubic
       const easeOut = 1 - Math.pow(1 - progress, 3);
       setCount(Math.floor(easeOut * numVal));
       if (progress < 1) {
@@ -204,13 +211,14 @@ function HeroAnimatedStat({ targetNum, suffix = "+", label, icon: Icon, delay = 
     }, delay * 1000);
 
     return () => clearTimeout(timer);
-  }, [targetNum, delay]);
+  }, [isInView, targetNum, delay]);
 
   return (
     <motion.div
+      ref={containerRef}
       initial={{ opacity: 0, y: 20, scale: 0.92 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.6, delay: 0.3 + delay, ease: [0.16, 1, 0.3, 1] }}
+      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.92 }}
+      transition={{ duration: 0.6, delay: delay * 0.3, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -6, scale: 1.03 }}
       className="clay-card relative flex items-center gap-3.5 p-4 px-5 sm:px-6 rounded-[1.75rem] border border-white/70 shadow-[0_10px_28px_rgba(17,17,17,0.03)] backdrop-blur-xl bg-white/75 hover:bg-white/90 cursor-default group transition-all duration-300 min-w-[135px] sm:min-w-[160px]"
     >
@@ -774,7 +782,7 @@ export default function ServiceCalculator() {
   const handleWhatsAppClick = handleGetProposalClick;
 
   return (
-    <div className="bg-[#080808] min-h-screen text-white pt-0 overflow-hidden font-outfit">
+    <div className="bg-[#080808] min-h-screen text-white pt-0 overflow-hidden font-sans">
       {/* ── Hero Section — Shared HeroLayout baseline and vertical rhythm ── */}
       <HeroLayout
         bgElements={
@@ -802,10 +810,10 @@ export default function ServiceCalculator() {
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-3xl sm:text-4xl lg:text-[46px] xl:text-[50px] font-black leading-[1.22] tracking-tight text-[#111111]"
+            className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl"
           >
-            Transforming Brands into <br className="hidden sm:block" />
-            <span className="text-[#E31D2E] relative inline-block">
+            Transforming Brands into{" "}
+            <span className="text-[#E31D2E]">
               Digital Authority
             </span>
           </motion.h1>
@@ -815,7 +823,7 @@ export default function ServiceCalculator() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[#575757] text-xs sm:text-sm lg:text-base leading-relaxed font-medium max-w-xl"
+            className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
           >
             Comprehensive branding, media, and performance marketing solutions designed to help your business grow strategically, creatively, and profitably.
           </motion.p>
