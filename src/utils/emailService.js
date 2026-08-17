@@ -46,7 +46,7 @@ export const sendContactFormEmails = async (formData) => {
     return {
       success: true,
       leadId: data.leadId,
-      message: data.message || 'Message received! Thanks for contacting Praskla Digital X.',
+      message: data.message || 'Message received! Thanks for contacting PRASKLA DIGITAL X.',
     };
   } catch (error) {
     console.error('Error in sendContactFormEmails:', error);

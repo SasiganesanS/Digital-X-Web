@@ -73,7 +73,7 @@ export const searchIndex = [
   // --- Core Pages ---
   {
     id: "page-home",
-    title: "Home - Praskla Digital X",
+    title: "Home - PRASKLA DIGITAL X",
     category: "Pages",
     description: "Where Strategy Meets Creativity. Mindful Growth & Brand Scale with Data-Driven Digital Impact.",
     keywords: ["home", "praskla", "digital", "agency", "marketing", "branding", "web development"],
@@ -111,7 +111,7 @@ export const searchIndex = [
     id: "page-careers",
     title: "Careers & Open Positions",
     category: "Careers",
-    description: "Join the Praskla Digital X team. View current open roles in VISCOM, Engineering, Design, Sales, and Marketing.",
+    description: "Join the PRASKLA DIGITAL X team. View current open roles in VISCOM, Engineering, Design, Sales, and Marketing.",
     keywords: ["careers", "jobs", "hiring", "positions", "openings", "work with us", "internships"],
     target: "/careers",
     type: "page"
@@ -120,7 +120,7 @@ export const searchIndex = [
     id: "page-contact",
     title: "Contact Us / Get in Touch",
     category: "Contact",
-    description: "Connect with Praskla Digital X to discuss your project, request a consultation, or start a collaboration.",
+    description: "Connect with PRASKLA DIGITAL X to discuss your project, request a consultation, or start a collaboration.",
     keywords: ["contact", "get in touch", "phone", "email", "office", "consultation", "talk"],
     target: "#contact",
     type: "contact"
@@ -321,7 +321,7 @@ export const searchIndex = [
     id: "legal-privacy",
     title: "Privacy Policy",
     category: "Legal",
-    description: "Read Praskla Digital X's data privacy policies, information handling, and data security terms.",
+    description: "Read PRASKLA DIGITAL X's data privacy policies, information handling, and data security terms.",
     keywords: ["privacy", "policy", "terms", "data", "security", "legal"],
     target: "/privacy-policy",
     type: "page"
@@ -330,7 +330,7 @@ export const searchIndex = [
     id: "legal-terms",
     title: "Terms and Conditions",
     category: "Legal",
-    description: "Terms and conditions governing the use of Praskla Digital X services and website.",
+    description: "Terms and conditions governing the use of PRASKLA DIGITAL X services and website.",
     keywords: ["terms", "conditions", "legal", "agreement", "service"],
     target: "/terms-and-conditions",
     type: "page"

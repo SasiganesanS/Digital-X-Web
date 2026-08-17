@@ -16,7 +16,7 @@ const DEFAULT_MEMBERS = [
   { id: 2, image: career02, alt: "Team Collaboration", title: "Team", sub: "Collaboration" },
   { id: 3, image: career03, alt: "Email Marketing", title: "Email", sub: "Marketing" },
   { id: 4, image: career04, alt: "Analytics Dashboard", title: "Analytics", sub: "Insights" },
-  { id: 5, image: pyLogo, alt: "Praskla Digital X Logo", title: "Praskla", sub: "Digital X", isCenter: true },
+  { id: 5, image: pyLogo, alt: "PRASKLA DIGITAL X Logo", title: "PRASKLA", sub: "DIGITAL X", isCenter: true },
   { id: 6, image: career05, alt: "Strategy Presentation", title: "Strategy", sub: "Presentation" },
   { id: 7, image: career06, alt: "SEO", title: "SEO", sub: "Growth" },
   { id: 8, image: career07, alt: "Creative Content", title: "Creative", sub: "Content" },

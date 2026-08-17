@@ -340,7 +340,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                   Project Brief Received!
                 </h3>
                 <p className="text-neutral-600 text-base max-w-lg mb-4 leading-relaxed font-normal">
-                  Thank you for sharing your project requirements with Praskla Digital X. We have successfully received your project brief.
+                  Thank you for sharing your project requirements with PRASKLA DIGITAL X. We have successfully received your project brief.
                 </p>
                 {applicationId && (
                   <div className="bg-[#FAF9F6] border border-neutral-200 px-6 py-4 rounded-2xl mb-6 text-center">
@@ -459,7 +459,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                           <span>{submitError}</span>
                         </div>
                         <a
-                          href={`https://wa.me/919566880740?text=${encodeURIComponent("Hello Praskla Digital X, I attempted to submit my project application for " + (formData.companyName || "my company") + " but encountered an issue. Here are my details:\nName: " + (formData.fullName || "") + "\nEmail: " + (formData.email || ""))}`}
+                          href={`https://wa.me/919566880740?text=${encodeURIComponent("Hello PRASKLA DIGITAL X, I attempted to submit my project application for " + (formData.companyName || "my company") + " but encountered an issue. Here are my details:\nName: " + (formData.fullName || "") + "\nEmail: " + (formData.email || ""))}`}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="text-xs font-bold underline whitespace-nowrap text-[#E31D2E] hover:text-black shrink-0"

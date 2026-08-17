@@ -270,7 +270,7 @@ const BusinessWebsitePricing = () => {
             Portfolio's & Simple Static websites
           </h3>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            At Praskla Technology, we understand that starting your online journey can feel
+            At PRASKLA DIGITAL X, we understand that starting your online journey can feel
             overwhelming — that's why our Basic Plan is designed to be an affordable, hassle-free
             option, perfect for personal and simple static sites. We're here to help you get
             online smoothly and confidently, right from day one.

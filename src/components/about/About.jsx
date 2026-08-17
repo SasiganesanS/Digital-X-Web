@@ -197,14 +197,14 @@ const About = () => {
             </div>
             <div>
               <h3 className="font-inlander text-sm font-black text-[#111111] flex items-center gap-1.5 leading-none">
-                Praskla Digital <BrandX className="h-[18px] w-auto text-[#E31D2E] translate-y-[1px]" />
+                PRASKLA DIGITAL <BrandX className="h-[18px] w-auto text-[#E31D2E] translate-y-[1px]" />
               </h3>
               <p className="text-[11px] font-semibold text-neutral-400 mt-0.5">Mindful Marketing Firm</p>
             </div>
           </div>
 
-          <span className="px-3 py-1 rounded-full bg-[#E31D2E]/10 border border-[#E31D2E]/20 text-[10px] font-extrabold text-[#E31D2E] uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E] animate-pulse" />
+          <span className="px-3 py-1 rounded-full bg-black/5 border border-black/20 text-[10px] font-extrabold text-[#111111] uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#111111] animate-pulse" />
             Excellence
           </span>
         </div>
@@ -311,7 +311,7 @@ const About = () => {
         </div>
 
         {/* Quote Box */}
-        <div className="p-3.5 rounded-2xl bg-[#E31D2E]/5 border border-[#E31D2E]/15">
+        <div className="p-3.5 rounded-2xl bg-black/5 border border-black/15">
           <p className="text-[#575757] text-xs leading-relaxed font-medium italic text-center">
             "Creating impactful digital brand experiences that combine strategic clarity, high performance, and human connection."
           </p>
@@ -320,7 +320,7 @@ const About = () => {
         {/* Footer Bar */}
         <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-[11px] text-neutral-400 font-bold uppercase tracking-wider">
           <span className="inline-flex items-center gap-1.5 font-inlander font-bold">
-            Praskla Digital <BrandX className="h-[15px] w-auto text-[#E31D2E] translate-y-[1px]" />
+            PRASKLA DIGITAL <BrandX className="h-[15px] w-auto text-[#E31D2E] translate-y-[1px]" />
           </span>
           <span className="text-[#E31D2E]">Established Excellence</span>
         </div>
@@ -454,7 +454,7 @@ const About = () => {
 
                 {/* Paragraph */}
                 <p className="text-[#575757] text-base leading-relaxed font-normal">
-                  At Praskla Digital <BrandX className="h-[1em] w-auto text-[#E31D2E] inline-block translate-y-[0.12em]" />, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
+                  At PRASKLA DIGITAL <BrandX className="h-[1em] w-auto text-[#E31D2E] inline-block translate-y-[0.12em]" />, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
                 </p>
               </div>
 
@@ -473,7 +473,7 @@ const About = () => {
       </section>
 
       {/* ═══════════════════════════════════════════════
-          WHO WE ARE — Praskla Digital X identity section
+          WHO WE ARE — PRASKLA DIGITAL X identity section
       ═══════════════════════════════════════════════ */}
       <div
         className="relative py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent"
@@ -500,7 +500,7 @@ const About = () => {
               </h2>
 
               <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium">
-                At Praskla Digital <BrandX className="h-[1.05em] w-auto text-[#E31D2E] inline-block translate-y-[0.14em]" />, we bring together creative visual creators, copywriting experts,
+                At PRASKLA DIGITAL <BrandX className="h-[1.05em] w-auto text-[#E31D2E] inline-block translate-y-[0.14em]" />, we bring together creative visual creators, copywriting experts,
                 ad strategists, and performance analytics professionals.
               </p>
 

@@ -734,7 +734,7 @@ export default function ServiceCalculator() {
   }, [selectedItems]);
 
   const handleGetProposalClick = () => {
-    let message = `Hello Praskla DigitalX, I’m interested in your marketing services proposal.\n\n`;
+    let message = `Hello PRASKLA DIGITAL X, I’m interested in your marketing services proposal.\n\n`;
     message += `📋 *PROJECT PROPOSAL SUMMARY*\n`;
 
     if (Array.isArray(selectedItems) && selectedItems.length > 0) {

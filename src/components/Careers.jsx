@@ -173,7 +173,7 @@ const Careers = () => {
     <>
       <HeroLayout
         badge={
-          <SectionBadge text="Careers @ Praskla Digital X" />
+          <SectionBadge text="Careers @ PRASKLA DIGITAL X" />
         }
         title={
           <h1 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl">
@@ -246,8 +246,8 @@ const Careers = () => {
             {/* Left Column: Badge, Heading, and Search Bar */}
             <div className="lg:col-span-6 flex flex-col space-y-3">
               <div className="inline-flex">
-                <div className="border border-[#FF2B2B]/20 bg-red-50/60 px-3.5 py-1 rounded-full shadow-2xs">
-                  <span className="font-bold text-[11px] uppercase tracking-widest text-[#FF2B2B]">
+                <div className="border border-black/20 bg-black/5 px-3.5 py-1 rounded-full shadow-2xs">
+                  <span className="font-bold text-[11px] uppercase tracking-widest text-[#111111]">
                     We're growing our team
                   </span>
                 </div>
@@ -342,7 +342,7 @@ const Careers = () => {
                     setSelectedJob({
                       title: "General Application",
                       description:
-                        "Apply for future opportunities at Praskla Technology",
+                        "Apply for future opportunities at PRASKLA DIGITAL X",
                       requirements: [
                         "Share your skills and experience with us",
                       ],

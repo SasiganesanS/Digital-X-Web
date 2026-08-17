@@ -806,7 +806,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
         <Link
           to="/"
           className="nav-brand-capsule group select-none cursor-pointer flex items-center gap-1 sm:gap-1.5"
-          aria-label="Praskla Digital X Home"
+          aria-label="PRASKLA DIGITAL X Home"
           onMouseEnter={handleLogoEnter}
           onMouseLeave={handleLogoLeave}
           ref={el => {
@@ -817,7 +817,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
           <div className="pill-logo shrink-0 flex items-center">
             <img
               src={Logo}
-              alt="Praskla Digital X Logo"
+              alt="PRASKLA DIGITAL X Logo"
               ref={logoImgRef}
               className="h-[60px] sm:h-[68px] lg:h-[76px] !important w-auto object-contain transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.08)] group-hover:drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)]"
               style={{ willChange: 'transform, filter' }}

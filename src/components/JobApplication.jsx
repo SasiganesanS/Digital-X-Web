@@ -50,7 +50,7 @@ const JobApplication = ({ job, onClose }) => {
     department: 'General',
     location: 'Remote / On-site',
     type: 'Full-time',
-    description: 'Submit your resume for current or future career opportunities with Praskla Digital X.',
+    description: 'Submit your resume for current or future career opportunities with PRASKLA DIGITAL X.',
     ...(job || {})
   };
 
@@ -412,7 +412,7 @@ const JobApplication = ({ job, onClose }) => {
               <div>
                 <h3 className="text-xl font-bold text-[#111111]">Application Submitted Successfully</h3>
                 <p className="text-sm text-gray-500 mt-1 max-w-sm mx-auto leading-relaxed">
-                  Thank you for applying to Praskla Digital X! We have received your application and resume, and our recruitment team will get back to you soon.
+                  Thank you for applying to PRASKLA DIGITAL X! We have received your application and resume, and our recruitment team will get back to you soon.
                 </p>
               </div>
               <button

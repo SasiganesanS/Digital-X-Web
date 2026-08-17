@@ -377,7 +377,7 @@ const DigitalMarketingPricing = () => {
             For Small Businesses Starting Online
           </h3>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            At Praskla Technologies, we know that getting started online should be simple and stress‑free.
+            At PRASKLA DIGITAL X, we know that getting started online should be simple and stress‑free.
             Our Basic / Spark Plan delivers essential digital marketing services so you can build your
             presence without breaking the bank.
           </p>

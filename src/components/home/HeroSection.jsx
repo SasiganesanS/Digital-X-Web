@@ -186,8 +186,8 @@ const HeroSection = () => {
       </div>
 
       <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 w-full">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#E31D2E]/10 border border-[#E31D2E]/25 text-[#E31D2E] shadow-sm">
-          <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 border border-black/20 text-[#111111] shadow-2xs">
+          <span className="w-2 h-2 rounded-full bg-[#111111] animate-pulse" />
           <span className="text-[11px] font-black uppercase tracking-wider">
             Mindful Marketing & Sustainable Growth
           </span>

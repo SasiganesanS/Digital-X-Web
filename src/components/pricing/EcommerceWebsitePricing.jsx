@@ -358,7 +358,7 @@ const EcommerceWebsitePricing = () => {
             For Small Businesses Just Starting Online
           </h3>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            At Praskla Technologies, we make your first foray into e‑commerce simple and cost‑effective.
+            At PRASKLA DIGITAL X, we make your first foray into e‑commerce simple and cost‑effective.
             Our Basic / Starter Store gets you up and running quickly, with a clean, responsive online
             storefront that showcases your products and captures orders.
           </p>

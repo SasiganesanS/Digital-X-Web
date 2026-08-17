@@ -52,7 +52,7 @@ const TermsAndConditions = () => {
       className="w-full max-w-md p-6 rounded-3xl bg-white/90 backdrop-blur-md border border-neutral-200/80 shadow-[0_12px_40px_rgba(0,0,0,0.06)] space-y-4 relative overflow-hidden"
     >
       {/* Decorative Glow */}
-      <div className="absolute -top-12 -right-12 w-32 h-32 bg-[#E31D2E]/10 rounded-full blur-2xl pointer-events-none" />
+      <div className="absolute -top-12 -right-12 w-32 h-32 bg-black/5 rounded-full blur-2xl pointer-events-none" />
 
       {/* Header */}
       <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
@@ -60,7 +60,7 @@ const TermsAndConditions = () => {
           <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-xs font-bold text-neutral-600 uppercase tracking-wider">Agreement Standard</span>
         </div>
-        <span className="text-[10px] font-black uppercase tracking-widest text-[#E31D2E] bg-[#E31D2E]/5 px-2.5 py-1 rounded-full border border-[#E31D2E]/15">
+        <span className="text-[10px] font-black uppercase tracking-widest text-[#111111] bg-black/5 px-2.5 py-1 rounded-full border border-black/15">
           Legal Governance
         </span>
       </div>
@@ -99,86 +99,92 @@ const TermsAndConditions = () => {
   );
 
   return (
-    <div className="w-full bg-transparent">
-      {/* Hero Section */}
-      <HeroLayout className="py-4 sm:py-6 lg:py-8">
-        {/* Top Row: Standard Baseline Header & Agreement Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-          {/* Left Column: Badge -> Heading -> Description -> Badges */}
-          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
-            <div className="mb-4 flex justify-center lg:justify-start w-full">
-              <SectionBadge text="Terms of Agreement" />
+    <main className="w-full bg-transparent">
+      {/* SECTION 1 — HERO */}
+      <section className="legal-hero">
+        <HeroLayout className="py-4 sm:py-6 lg:py-8">
+          {/* Top Row: Standard Baseline Header & Agreement Card */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            {/* Left Column: Badge -> Heading -> Description -> Badges */}
+            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
+              <div className="mb-4 flex justify-center lg:justify-start w-full">
+                <SectionBadge text="Terms of Agreement" />
+              </div>
+              
+              <h1 className="text-[#111111] text-[36px] sm:text-[44px] lg:text-[52px] font-black leading-tight tracking-tight mb-4">
+                Terms & <span className="text-[#E31D2E]">Conditions</span>
+              </h1>
+
+              <p className="text-[#575757] text-base sm:text-lg font-medium leading-relaxed mb-6 max-w-xl">
+                Review the agreement governing your use of PRASKLA DIGITAL X website, applications, and professional digital services.
+              </p>
+
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-neutral-500">
+                <div className="flex items-center gap-1.5 bg-white border border-neutral-200 px-3.5 py-1.5 rounded-full shadow-xs">
+                  <Clock className="w-3.5 h-3.5 text-[#E31D2E]" />
+                  <span>Effective Date: January 31, 2026</span>
+                </div>
+                <div className="flex items-center gap-1.5 bg-white border border-neutral-200 px-3.5 py-1.5 rounded-full shadow-xs">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                  <span>Binding Legal Agreement</span>
+                </div>
+              </div>
             </div>
-            
-            <h1 className="text-[#111111] text-[36px] sm:text-[44px] lg:text-[52px] font-black leading-tight tracking-tight mb-4">
-              Terms & <span className="text-[#E31D2E]">Conditions</span>
-            </h1>
 
-            <p className="text-[#575757] text-base sm:text-lg font-medium leading-relaxed mb-6 max-w-xl">
-              Review the agreement governing your use of Praskla Digital X website, applications, and professional digital services.
-            </p>
-
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-neutral-500">
-              <div className="flex items-center gap-1.5 bg-white border border-neutral-200 px-3.5 py-1.5 rounded-full shadow-xs">
-                <Clock className="w-3.5 h-3.5 text-[#E31D2E]" />
-                <span>Effective Date: January 31, 2026</span>
-              </div>
-              <div className="flex items-center gap-1.5 bg-white border border-neutral-200 px-3.5 py-1.5 rounded-full shadow-xs">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
-                <span>Binding Legal Agreement</span>
-              </div>
+            {/* Right Column: Hero Media Card */}
+            <div className="lg:col-span-5 w-full flex justify-center lg:justify-end items-start pt-2 lg:pt-0">
+              {media}
             </div>
           </div>
+        </HeroLayout>
+      </section>
 
-          {/* Right Column: Hero Media Card */}
-          <div className="lg:col-span-5 w-full flex justify-center lg:justify-end items-start pt-2 lg:pt-0">
-            {media}
-          </div>
+      {/* SECTION 2 — KEY PRINCIPLES / FEATURES */}
+      <section className="legal-features w-full py-4 sm:py-6 lg:py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+          >
+            <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-xs hover:border-black/30 transition-all duration-300">
+              <div className="w-9 h-9 rounded-xl bg-black/5 border border-black/10 text-[#111111] flex items-center justify-center mb-3">
+                <Briefcase className="w-5 h-5" />
+              </div>
+              <h3 className="text-sm font-bold text-[#111111] mb-1">Defined Scope of Work</h3>
+              <p className="text-xs text-neutral-500 leading-relaxed">Structured project deliverables, SOW milestones, and timeline SLAs.</p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-xs hover:border-black/30 transition-all duration-300">
+              <div className="w-9 h-9 rounded-xl bg-black/5 border border-black/10 text-[#111111] flex items-center justify-center mb-3">
+                <Copyright className="w-5 h-5" />
+              </div>
+              <h3 className="text-sm font-bold text-[#111111] mb-1">Client IP Ownership</h3>
+              <p className="text-xs text-neutral-500 leading-relaxed">Full ownership and transfer of approved final creative assets upon settlement.</p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-xs hover:border-black/30 transition-all duration-300">
+              <div className="w-9 h-9 rounded-xl bg-black/5 border border-black/10 text-[#111111] flex items-center justify-center mb-3">
+                <CreditCard className="w-5 h-5" />
+              </div>
+              <h3 className="text-sm font-bold text-[#111111] mb-1">Transparent Billing</h3>
+              <p className="text-xs text-neutral-500 leading-relaxed">Itemized pricing quotes, structured milestones, and zero hidden costs.</p>
+            </div>
+
+            <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-xs hover:border-black/30 transition-all duration-300">
+              <div className="w-9 h-9 rounded-xl bg-black/5 border border-black/10 text-[#111111] flex items-center justify-center mb-3">
+                <Scale className="w-5 h-5" />
+              </div>
+              <h3 className="text-sm font-bold text-[#111111] mb-1">Governing Resolution</h3>
+              <p className="text-xs text-neutral-500 leading-relaxed">Structured dispute resolution mechanisms and fair limitation of liability.</p>
+            </div>
+          </motion.div>
         </div>
+      </section>
 
-        {/* Bottom Feature Cards Grid: Covers the hero area gracefully */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 lg:mt-10"
-        >
-          <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-xs hover:border-[#E31D2E]/30 transition-all duration-300">
-            <div className="w-9 h-9 rounded-xl bg-[#E31D2E]/10 text-[#E31D2E] flex items-center justify-center mb-3">
-              <Briefcase className="w-5 h-5" />
-            </div>
-            <h3 className="text-sm font-bold text-[#111111] mb-1">Defined Scope of Work</h3>
-            <p className="text-xs text-neutral-500 leading-relaxed">Structured project deliverables, SOW milestones, and timeline SLAs.</p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-xs hover:border-[#E31D2E]/30 transition-all duration-300">
-            <div className="w-9 h-9 rounded-xl bg-[#E31D2E]/10 text-[#E31D2E] flex items-center justify-center mb-3">
-              <Copyright className="w-5 h-5" />
-            </div>
-            <h3 className="text-sm font-bold text-[#111111] mb-1">Client IP Ownership</h3>
-            <p className="text-xs text-neutral-500 leading-relaxed">Full ownership and transfer of approved final creative assets upon settlement.</p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-xs hover:border-[#E31D2E]/30 transition-all duration-300">
-            <div className="w-9 h-9 rounded-xl bg-[#E31D2E]/10 text-[#E31D2E] flex items-center justify-center mb-3">
-              <CreditCard className="w-5 h-5" />
-            </div>
-            <h3 className="text-sm font-bold text-[#111111] mb-1">Transparent Billing</h3>
-            <p className="text-xs text-neutral-500 leading-relaxed">Itemized pricing quotes, structured milestones, and zero hidden costs.</p>
-          </div>
-
-          <div className="p-4 rounded-2xl bg-white/80 backdrop-blur-sm border border-neutral-200/80 shadow-xs hover:border-[#E31D2E]/30 transition-all duration-300">
-            <div className="w-9 h-9 rounded-xl bg-[#E31D2E]/10 text-[#E31D2E] flex items-center justify-center mb-3">
-              <Scale className="w-5 h-5" />
-            </div>
-            <h3 className="text-sm font-bold text-[#111111] mb-1">Governing Resolution</h3>
-            <p className="text-xs text-neutral-500 leading-relaxed">Structured dispute resolution mechanisms and fair limitation of liability.</p>
-          </div>
-        </motion.div>
-      </HeroLayout>
-
-      {/* Main Content Grid */}
-      <section className="w-full pb-16 lg:pb-24">
+      {/* SECTION 3 & 4 — LEGAL NAVIGATION & CONTENT */}
+      <section className="legal-content w-full pb-16 lg:pb-24 pt-2 sm:pt-4">
         <div className="site-container max-w-4xl mx-auto w-full min-w-0">
           
           {/* Sticky Single-Row Horizontal Navigation Bar */}
@@ -227,7 +233,7 @@ const TermsAndConditions = () => {
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">1. Acceptance of Terms</h2>
                 </div>
                 <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-                  By accessing, browsing, or utilizing the Praskla Digital X website and services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions and our Privacy Policy.
+                  By accessing, browsing, or utilizing the PRASKLA DIGITAL X website and services, you acknowledge that you have read, understood, and agree to be bound by these Terms and Conditions and our Privacy Policy.
                 </p>
                 <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
                   If you are agreeing to these terms on behalf of a company or organization, you represent that you possess authority to bind such entity to these obligations.
@@ -249,7 +255,7 @@ const TermsAndConditions = () => {
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">2. Services Scope</h2>
                 </div>
                 <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-                  Praskla Digital X offers digital agency solutions including UI/UX design, website development, performance marketing, search engine optimization (SEO), brand strategy, motion graphics, and software development.
+                  PRASKLA DIGITAL X offers digital agency solutions including UI/UX design, website development, performance marketing, search engine optimization (SEO), brand strategy, motion graphics, and software development.
                 </p>
                 <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
                   Specific deliverables, timelines, and pricing for client projects are defined in individual Master Service Agreements (MSA) or Statements of Work (SOW).
@@ -271,7 +277,7 @@ const TermsAndConditions = () => {
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">3. Intellectual Property Rights</h2>
                 </div>
                 <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-                  All branding, design graphics, software code, concepts, trademarks, and content on this website are the property of Praskla Digital X.
+                  All branding, design graphics, software code, concepts, trademarks, and content on this website are the property of PRASKLA DIGITAL X.
                 </p>
                 <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
                   Upon full payment for custom agency deliverables, ownership rights of final custom assets transfer to the client as specified in the applicable Statement of Work.
@@ -331,7 +337,7 @@ const TermsAndConditions = () => {
                   <h2 className="text-xl sm:text-2xl font-black text-[#111111]">6. Limitation of Liability</h2>
                 </div>
                 <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-                  To the maximum extent permitted by law, Praskla Digital X shall not be liable for indirect, incidental, or consequential damages resulting from website downtime or service interruptions.
+                  To the maximum extent permitted by law, PRASKLA DIGITAL X shall not be liable for indirect, incidental, or consequential damages resulting from website downtime or service interruptions.
                 </p>
               </motion.div>
 
@@ -357,7 +363,7 @@ const TermsAndConditions = () => {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
 

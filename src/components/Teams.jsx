@@ -24,9 +24,9 @@ const Teams = () => {
     {
       id: 3,
       name: "Jaillesh Kathirvel",
-      role: "Founder, Business Head",
+      role: "Founder & Business Head",
       image: Jaillesh,
-      bio: "Hi, this is Jaillesh, Founder of Praskla Digital X. We work with businesses on digital marketing, branding and content production. I came across your business and noticed a couple of areas where I think we could potentially help. Do you have a quick minute?",
+      bio: "Hi, this is Jaillesh, Founder of PRASKLA DIGITAL X. We work with businesses on digital marketing, branding and content production. I came across your business and noticed a couple of areas where I think we could potentially help. Do you have a quick minute?",
     },
     {
       id: 1,

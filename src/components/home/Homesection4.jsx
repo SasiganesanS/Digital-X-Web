@@ -99,16 +99,16 @@ const Homesection4 = () => {
                   <div className="w-full flex items-center justify-between">
                     <motion.div
                       variants={fadeUp}
-                      className="w-14 h-14 rounded-2xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center text-[#E31D2E] shadow-xs"
+                      className="w-14 h-14 rounded-2xl bg-black/5 border border-black/15 flex items-center justify-center text-[#111111] shadow-xs"
                     >
                       <Sparkles className="w-7 h-7 stroke-[2]" />
                     </motion.div>
 
                     <motion.span
                       variants={fadeUp}
-                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#E31D2E]/10 border border-[#E31D2E]/20 text-[11px] font-extrabold text-[#E31D2E] uppercase tracking-wider"
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/5 border border-black/20 text-[11px] font-extrabold text-[#111111] uppercase tracking-wider"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E] animate-pulse" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#111111] animate-pulse" />
                       Instant Onboarding
                     </motion.span>
                   </div>

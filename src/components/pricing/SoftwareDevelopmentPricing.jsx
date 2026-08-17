@@ -376,7 +376,7 @@ const SoftwareDevelopmentPricing = () => {
             Simple Tools for Smooth Internal Operations
           </h3>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            At Praskla Technologies, we know that even small tools can make a big impact. Our Basic / Spark Plan is
+            At PRASKLA DIGITAL X, we know that even small tools can make a big impact. Our Basic / Spark Plan is
             tailored for quick, reliable desktop applications that serve a focused internal purpose. Whether it's
             automating a repetitive task or simplifying a daily process, this plan delivers efficient functionality
             without the fluff.

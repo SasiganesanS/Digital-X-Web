@@ -135,8 +135,8 @@ const ProjectCaseStudy = () => {
                   <span>{fromPath === '/projects' ? "Back to Projects" : "Back to Case Studies"}</span>
                 </button>
 
-                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-red-50/90 border border-red-100/90 text-[#E31D2E] text-xs font-bold tracking-wide">
-                  <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/5 border border-black/20 text-[#111111] text-xs font-bold tracking-wide">
+                  <span className="w-2 h-2 rounded-full bg-[#111111] animate-pulse" />
                   <span>{project.breadcrumb || `Blog / ${project.title}`}</span>
                 </div>
               </div>
@@ -330,7 +330,7 @@ const ProjectCaseStudy = () => {
                   {/* Top Red Gradient Accent Line on Hover */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#E31D2E] to-red-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-t-[2rem]" />
                   <div>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-50/90 border border-red-100/90 text-[#E31D2E] text-[10px] font-black uppercase tracking-widest mb-4">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/5 border border-black/20 text-[#111111] text-[10px] font-black uppercase tracking-widest mb-4">
                       <span>Feature 0{i + 1}</span>
                     </div>
                     <h3 className="text-lg sm:text-xl font-black text-[#111111] mb-2.5 group-hover:text-[#E31D2E] transition-colors leading-snug tracking-tight">

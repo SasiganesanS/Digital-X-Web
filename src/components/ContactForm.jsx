@@ -80,7 +80,7 @@ const ContactForm = ({ isOpen, onClose }) => {
 
   // Build complete WhatsApp message with all filled form fields
   const getWhatsAppUrl = () => {
-    const parts = ["Hi Praskla Digital X, I would like to discuss a project with your team.\n"];
+    const parts = ["Hi PRASKLA DIGITAL X, I would like to discuss a project with your team.\n"];
 
     if (formData.name?.trim()) {
       parts.push(`• Full Name: ${formData.name.trim()}`);
@@ -103,7 +103,7 @@ const ContactForm = ({ isOpen, onClose }) => {
 
     const messageText = parts.length > 1
       ? parts.join("\n")
-      : "Hi Praskla Digital X, I would like to discuss a project with your team.";
+      : "Hi PRASKLA DIGITAL X, I would like to discuss a project with your team.";
 
     return `https://wa.me/919566880740?text=${encodeURIComponent(messageText)}`;
   };
@@ -403,7 +403,7 @@ const ContactForm = ({ isOpen, onClose }) => {
                 <div>
                   <h3 className="text-xl font-bold text-[#111111]">Message received!</h3>
                   <p className="text-sm text-gray-500 mt-2 max-w-xs mx-auto leading-relaxed">
-                    Thanks for contacting Praskla Digital X. Our team will review your enquiry and get back to you shortly.
+                    Thanks for contacting PRASKLA DIGITAL X. Our team will review your enquiry and get back to you shortly.
                   </p>
                 </div>
                 <button

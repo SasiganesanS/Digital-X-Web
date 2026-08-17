@@ -287,7 +287,7 @@ const MobileApplicationPricing = () => {
             Android/iOS Only
           </h3>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            At Praskla Technology, we understand that launching your first mobile app can feel overwhelming — that's why our Launch Plan is crafted to be a straightforward and cost-effective option, perfect for startups and MVPs. We're here to get your app into users' hands, quickly and confidently.
+            At PRASKLA DIGITAL X, we understand that launching your first mobile app can feel overwhelming — that's why our Launch Plan is crafted to be a straightforward and cost-effective option, perfect for startups and MVPs. We're here to get your app into users' hands, quickly and confidently.
           </p>
         </div>
 
