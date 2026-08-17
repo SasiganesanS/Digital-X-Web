@@ -16,26 +16,26 @@ function About() {
               </p>
               <div className="text-center bg-[#111111] rounded-2xl shadow-md p-6">
                 <div className="mb-6">
-                  <h2 className="text-3xl sm:text-4xl font-extrabold text-white">50+</h2>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold text-white">10+</h2>
                   <div className="w-12 h-1 bg-[#FF2B2B] mx-auto my-3 rounded-full"></div>
                   <p className="text-xs sm:text-sm text-gray-400">
-                    Certified full-time professionals
+                    Projects Delivered
                   </p>
                 </div>
 
                 <div className="mb-6">
-                  <h2 className="text-3xl sm:text-4xl font-extrabold text-white">30+</h2>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold text-white">8+</h2>
                   <div className="w-12 h-1 bg-[#FF2B2B] mx-auto my-3 rounded-full"></div>
                   <p className="text-xs sm:text-sm text-gray-400">
-                    Successful projects delivered
+                    Brands
                   </p>
                 </div>
 
                 <div>
-                  <h2 className="text-3xl sm:text-4xl font-extrabold text-white">4+</h2>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold text-white">1.5+</h2>
                   <div className="w-12 h-1 bg-[#FF2B2B] mx-auto my-3 rounded-full"></div>
                   <p className="text-xs sm:text-sm text-gray-400">
-                    Years of collaboration & innovation
+                    Years of Experience
                   </p>
                 </div>
               </div>
@@ -56,22 +56,22 @@ function About() {
                 Praskla is an agency that's forward-thinking, believing in the transformative power of collaboration. We offer full-service IT consulting, digital marketing, and software development services. Our team is passionate about digging into business challenges more profoundly and crafting innovative solutions for success; we believe collaboration unlocks new possibilities and delivers remarkable outcomes.
               </p>
               <div className="text-center mt-10 bg-[#111111] rounded-2xl shadow-md p-6 xl:p-8">
-                <h2 className="text-3xl xl:text-4xl font-extrabold text-white">50+</h2>
+                <h2 className="text-3xl xl:text-4xl font-extrabold text-white">10+</h2>
                 <div className="w-12 h-1 bg-[#FF2B2B] mx-auto my-3 rounded-full"></div>
                 <p className="text-xs xl:text-sm text-gray-400">
-                  Certified full-time professionals
+                  Projects Delivered
                 </p>
 
-                <h2 className="text-3xl xl:text-4xl font-extrabold text-white mt-6">30+</h2>
+                <h2 className="text-3xl xl:text-4xl font-extrabold text-white mt-6">8+</h2>
                 <div className="w-12 h-1 bg-[#FF2B2B] mx-auto my-3 rounded-full"></div>
                 <p className="text-xs xl:text-sm text-gray-400">
-                  Successful projects delivered
+                  Brands
                 </p>
 
-                <h2 className="text-3xl xl:text-4xl font-extrabold text-white mt-6">4+</h2>
+                <h2 className="text-3xl xl:text-4xl font-extrabold text-white mt-6">1.5+</h2>
                 <div className="w-12 h-1 bg-[#FF2B2B] mx-auto my-3 rounded-full"></div>
                 <p className="text-xs xl:text-sm text-gray-400">
-                  Years of collaboration & innovation
+                  Years of Experience
                 </p>
               </div>
             </div>
@@ -88,22 +88,22 @@ function About() {
                 Praskla is an agency that's forward-thinking, believing in the transformative power of collaboration. We offer full-service IT consulting, digital marketing, and software development services. Our team is passionate about digging into business challenges more profoundly and crafting innovative solutions for success; we believe collaboration unlocks new possibilities and delivers remarkable outcomes.
               </p>
               <div className="text-center mt-10 bg-[#111111] rounded-2xl shadow-md p-6 xl:p-8">
-                <h2 className="text-3xl xl:text-4xl font-extrabold text-white">50+</h2>
+                <h2 className="text-3xl xl:text-4xl font-extrabold text-white">10+</h2>
                 <div className="w-12 h-1 bg-[#FF2B2B] mx-auto my-3 rounded-full"></div>
                 <p className="text-xs xl:text-sm text-gray-400">
-                  Certified full-time professionals
+                  Projects Delivered
                 </p>
 
-                <h2 className="text-3xl xl:text-4xl font-extrabold text-white mt-6">30+</h2>
+                <h2 className="text-3xl xl:text-4xl font-extrabold text-white mt-6">8+</h2>
                 <div className="w-12 h-1 bg-[#FF2B2B] mx-auto my-3 rounded-full"></div>
                 <p className="text-xs xl:text-sm text-gray-400">
-                  Successful projects delivered
+                  Brands
                 </p>
 
-                <h2 className="text-3xl xl:text-4xl font-extrabold text-white mt-6">4+</h2>
+                <h2 className="text-3xl xl:text-4xl font-extrabold text-white mt-6">1.5+</h2>
                 <div className="w-12 h-1 bg-[#FF2B2B] mx-auto my-3 rounded-full"></div>
                 <p className="text-xs xl:text-sm text-gray-400">
-                  Years of collaboration & innovation
+                  Years of Experience
                 </p>
               </div>
             </div>

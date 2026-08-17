@@ -24,16 +24,21 @@ function AnimatedCounter({ target, suffix = "", prefix = "", duration = 1.6 }) {
   useEffect(() => {
     let startTimestamp = null;
     let animationFrameId;
+    const numVal = parseFloat(target) || 0;
+    const isFloat = target.toString().includes(".");
 
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
       const progress = Math.min((timestamp - startTimestamp) / (duration * 1000), 1);
       // Smooth deceleration curve
       const easeOut = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(easeOut * target));
+      const val = easeOut * numVal;
+      setCount(isFloat ? val.toFixed(1) : Math.floor(val));
 
       if (progress < 1) {
         animationFrameId = window.requestAnimationFrame(step);
+      } else {
+        setCount(isFloat ? numVal.toFixed(1) : numVal);
       }
     };
 
@@ -247,7 +252,7 @@ const About = () => {
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
-                <AnimatedCounter target={50} suffix="+" />
+                <AnimatedCounter target={10} suffix="+" />
               </span>
               <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E]">
                 <Award className="w-3.5 h-3.5" />
@@ -264,14 +269,14 @@ const About = () => {
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
-                <AnimatedCounter target={98} suffix="%" />
+                <AnimatedCounter target={8} suffix="+" />
               </span>
               <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E]">
                 <TrendingUp className="w-3.5 h-3.5" />
               </div>
             </div>
             <span className="text-[11px] font-bold text-[#111111] block mt-1">
-              Client Satisfaction
+              Brands
             </span>
           </motion.div>
 
@@ -281,14 +286,14 @@ const About = () => {
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
-                <AnimatedCounter target={100} suffix="%" />
+                <AnimatedCounter target={1.5} suffix="+" />
               </span>
               <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E]">
                 <Target className="w-3.5 h-3.5" />
               </div>
             </div>
             <span className="text-[11px] font-bold text-[#111111] block mt-1">
-              Tailored Strategy
+              Years Experience
             </span>
           </motion.div>
 
@@ -298,14 +303,14 @@ const About = () => {
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
-                <AnimatedCounter target={24} suffix="/7" />
+                <AnimatedCounter target={98} suffix="%" />
               </span>
               <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E]">
                 <Shield className="w-3.5 h-3.5" />
               </div>
             </div>
             <span className="text-[11px] font-bold text-[#111111] block mt-1">
-              Dedicated Support
+              Client Satisfaction
             </span>
           </motion.div>
         </div>
@@ -513,9 +518,9 @@ const About = () => {
             {/* Right side metric grid */}
             <div className="grid grid-cols-2 gap-4">
               {[
-                { count: "15+", text: "Happy Brands Reached" },
-                { count: "20+", text: "Successful Projects Executed" },
-                { count: "20+", text: "Ecosystem Collaborations" },
+                { count: "10+", text: "Successful Projects Delivered" },
+                { count: "8+", text: "Happy Brands Reached" },
+                { count: "1.5+", text: "Years of Experience" },
                 { count: "98%", text: "Client Partnership Retention" },
               ].map((metric, i) => (
                 <motion.div

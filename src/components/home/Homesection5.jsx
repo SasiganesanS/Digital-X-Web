@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // CLIENT LOGO IMPORTS
 import vishnu from "../../assets/clients/School.webp";
-import vilcet from "../../assets/clients/VILCET.webp";
 import jkk from "../../assets/clients/jkk.webp";
 import thilaga from "../../assets/clients/Thilaga-Impex.webp";
 import capturever from "../../assets/clients/Captureever.webp";
@@ -32,10 +31,6 @@ const reviews = [
   {
     id: 1, name: "Vishnu Lakshmi School", role: "Management", image: vishnu,
     review: "PRASKLA DIGITAL X has helped us strengthen our foundation. Their innovative digital solutions seamlessly integrated technology into our learning, enhancing student engagement and administrative efficiency."
-  },
-  {
-    id: 2, name: "VILCET", role: "Director", image: vilcet,
-    review: "PRASKLA DIGITAL X has been instrumental in bringing our vision to life. Their advanced digital tools and seamless automation have transformed our operations, ensuring efficiency and scalability."
   },
   {
     id: 3, name: "JKK TEX", role: "Founder", image: jkk,

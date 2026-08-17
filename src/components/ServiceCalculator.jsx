@@ -2,8 +2,6 @@ import React, { useMemo, useState, useEffect, useRef } from "react";
 import HeroLayout from "./common/HeroLayout";
 import "./ServiceCalculator.css";
 import balajiPortraits from '../assets/tie/Balaji-Portraits.webp';
-import ibodhiAcademy from '../assets/tie/ibodhi-academy-removebg.webp';
-import vilcet from '../assets/tie/VILCET-removebg.webp';
 import shipyon from '../assets/tie/Shipyon.webp';
 import pt from '../assets/tie/pt.webp';
 import ourServicesImg from "../assets/services-img/digital.webp";
@@ -128,9 +126,7 @@ const getServiceHighlights = (title) => {
 // Partner logos for the auto-scrolling "Ecosystem Partners" strip
 const PARTNERS = [
   { src: balajiPortraits, alt: "Balaji Portraits" },
-  { src: ibodhiAcademy, alt: "iBodhi Academy" },
-  { src: vilcet, alt: "VILCET" },
-  { src: pt, alt: "Praskla Technology" },
+  { src: pt, alt: "PRASKLA DIGITAL X" },
   { src: shipyon, alt: "Shipyon" },
 ];
 const LOOPED_PARTNERS = [...PARTNERS, ...PARTNERS, ...PARTNERS, ...PARTNERS];
@@ -1324,15 +1320,19 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
             {LOOPED_PARTNERS.map((partner, i) => (
               <div
                 key={`${partner.alt}-${i}`}
-                className="flex-shrink-0 mr-6 md:mr-8 w-[160px] h-[96px] md:w-[190px] md:h-[110px] rounded-2xl
-                           bg-white/60 border border-white/80 flex items-center justify-center p-5
-                           hover:border-black/20 hover:shadow-[0_8px_24px_rgba(0,0,0,0.08)]
-                           hover:scale-105 transition-all duration-500 shadow-sm"
+                className="flex-shrink-0 mr-6 md:mr-8 w-[180px] h-[104px] md:w-[220px] md:h-[120px] rounded-3xl
+                           bg-white/90 border border-neutral-200/80 flex items-center justify-center px-5 py-3.5
+                           hover:border-black/20 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)]
+                           hover:scale-105 transition-all duration-500 shadow-xs"
               >
                 <img
                   src={partner.src}
                   alt={partner.alt}
-                  className="max-w-full max-h-full w-auto h-auto object-contain"
+                  className={`object-contain max-h-[85%] max-w-[85%] transition-transform duration-300 ${
+                    partner.alt.includes("PRASKLA") || partner.alt.includes("Praskla")
+                      ? "scale-125 md:scale-135"
+                      : "scale-110 md:scale-120"
+                  }`}
                 />
               </div>
             ))}

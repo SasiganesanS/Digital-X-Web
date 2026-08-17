@@ -1,7 +1,5 @@
 import React from 'react';
-import balajipotraits from "../assets/tie/Balaji-Portraits.webp"
-import ibodhiacademy from "../assets/tie/ibodhi-academy.webp"
-import vilcet from "../assets/clients/VILCET.webp"
+import balajipotraits from "../assets/tie/Balaji-Portraits.webp";
 
 const Partners = () => {
   const partners = [
@@ -9,15 +7,6 @@ const Partners = () => {
       name: 'Balaji Portraits',
       logo: balajipotraits,
     },
-    {
-      name: 'IBODHI ACADEMY',
-      logo: ibodhiacademy,
-    },
-    {
-      name: 'VILCET',
-      logo: vilcet,
-    },
-    
   ];
 
   const handleImageError = (e) => {
@@ -51,7 +40,7 @@ const Partners = () => {
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-500 opacity-80 hover:opacity-100"
+                  className="h-10 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-500 hover:scale-105"
                   onError={handleImageError}
                   loading="lazy"
                 />
@@ -63,7 +52,7 @@ const Partners = () => {
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-500 opacity-80 hover:opacity-100"
+                  className="h-10 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-500 hover:scale-105"
                   onError={handleImageError}
                   loading="lazy"
                 />
@@ -75,7 +64,7 @@ const Partners = () => {
                 <img
                   src={partner.logo}
                   alt={partner.name}
-                  className="h-6 sm:h-8 md:h-10 lg:h-12 w-auto object-contain filter grayscale hover:grayscale-0 transition-all duration-500 opacity-80 hover:opacity-100"
+                  className="h-10 sm:h-12 md:h-16 lg:h-20 w-auto object-contain transition-all duration-500 hover:scale-105"
                   onError={handleImageError}
                   loading="lazy"
                 />

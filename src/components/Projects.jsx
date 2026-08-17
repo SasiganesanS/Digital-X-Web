@@ -29,7 +29,8 @@ function ProjectCounter({ targetNum, suffix = "+", label, delay = 0 }) {
     }
 
     const duration = 1800; // ms
-    const numVal = parseInt(targetNum, 10) || 0;
+    const numVal = parseFloat(targetNum) || 0;
+    const isFloat = targetNum.toString().includes(".");
     let start = null;
     let animFrameId = null;
 
@@ -37,11 +38,12 @@ function ProjectCounter({ targetNum, suffix = "+", label, delay = 0 }) {
       if (!start) start = timestamp;
       const progress = Math.min((timestamp - start) / duration, 1);
       const easeOut = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(easeOut * numVal));
+      const val = easeOut * numVal;
+      setCount(isFloat ? val.toFixed(1) : Math.floor(val));
       if (progress < 1) {
         animFrameId = requestAnimationFrame(step);
       } else {
-        setCount(numVal);
+        setCount(isFloat ? numVal.toFixed(1) : numVal);
       }
     };
 
@@ -311,10 +313,10 @@ const Projects = () => {
         actions={
           <div className="flex flex-col items-center lg:items-start gap-3.5 relative z-10 w-full">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full max-w-xl justify-center lg:justify-start">
-              <ProjectCounter targetNum="50" suffix="+" label="Projects Delivered" delay={0} />
-              <ProjectCounter targetNum="15" suffix="+" label="Brands" delay={0.1} />
+              <ProjectCounter targetNum="10" suffix="+" label="Projects Delivered" delay={0} />
+              <ProjectCounter targetNum="8" suffix="+" label="Brands" delay={0.1} />
               <ProjectCounter targetNum="98" suffix="%" label="Client Satisfaction" delay={0.2} />
-              <ProjectCounter targetNum="5" suffix="+" label="Years Experience" delay={0.3} />
+              <ProjectCounter targetNum="1.5" suffix="+" label="Years Experience" delay={0.3} />
             </div>
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 w-full">
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 border border-black/20 text-[#111111] shadow-2xs">

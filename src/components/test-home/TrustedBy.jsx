@@ -4,22 +4,17 @@ import "./TrustedBy.css"; // We'll create this for the marquee animation
 
 // Import your client logos
 import vishnu from "../../assets/clients/School.webp";
-import vilcet from "../../assets/clients/VILCET.webp";
 import jkk from "../../assets/clients/jkk.webp";
 import thilaga from "../../assets/clients/Thilaga-Impex.webp";
 import capturever from "../../assets/clients/Captureever.webp";
-// Add 1-3 more logos here if you have them for a smoother scroll
 
 // We'll put them in an array to make it easy to manage
 const logos = [
   { src: vishnu, alt: "Vishnu Lakshmi School" },
-  { src: vilcet, alt: "VILCET" },
   { src: jkk, alt: "JKK TEX" },
   { src: thilaga, alt: "Thilaga Impex" },
   { src: capturever, alt: "Captureever" },
-  // Let's duplicate them if you only have 5, to make the loop look full
   { src: vishnu, alt: "Vishnu Lakshmi School" },
-  { src: vilcet, alt: "VILCET" },
 ];
 
 function TrustedBy() {

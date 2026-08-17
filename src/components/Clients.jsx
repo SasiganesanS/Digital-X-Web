@@ -2,7 +2,6 @@ import React from 'react';
 import HeroLayout from "./common/HeroLayout";
 import SectionBadge from "./common/SectionBadge";
 import vishnu from "../assets/clients/School.webp"
-import vilcet from "../assets/clients/VILCET.webp"
 import jkk from "../assets/clients/jkk.webp"
 import thilaga from "../assets/clients/Thilaga-Impex.webp"
 import capturever from "../assets/clients/Captureever.webp"
@@ -14,13 +13,6 @@ const clientData = [
     description: "English medium school since 1988",
     year: "Education Partner",
     logo: vishnu
-  },
-  {
-    id: 2,
-    name: "VILCET",
-    description: "Empowering India by producing quality engineers.",
-    year: "Education Partner",
-    logo: vilcet
   },
   {
     id: 3,
@@ -74,7 +66,7 @@ const Clients = () => {
                   <img
                     src={client.logo}
                     alt={`${client.name} logo`}
-                    className={`max-w-full max-h-full object-contain ${client.name === "VILCET" ? "rounded-xl" : ""}`}
+                    className="max-w-full max-h-full object-contain"
                   />
                 </div>
                 <h3 className="text-xl font-black text-[#111111] mb-3 text-center">

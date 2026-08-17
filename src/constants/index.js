@@ -1,5 +1,4 @@
 import vishnu from "../assets/clients/School.webp";
-import vilcet from "../assets/clients/VILCET.webp";
 import jkk_tex from "../assets/clients/JKK-TEX.webp";
 import thilaga from "../assets/clients/Thilaga-Impex.webp";
 import capturever from "../assets/clients/Captureever.webp";
@@ -11,13 +10,6 @@ export const clientData = [
     description: "Nurturing young minds with quality English-medium education since 1988.",
     year: "Education Partner",
     logo: vishnu,
-  },
-  {
-    id: 2,
-    name: "VILCET",
-    description: "Empowering India by shaping skilled and innovative engineers.",
-    year: "Education Partner",
-    logo: vilcet,
   },
   {
     id: 3,
@@ -360,20 +352,14 @@ export const businessWebsiteExampleWorks = [
     logo: vp
   },
   {
-    plan: "Startup",
+    plan: "Basic",
     name: "JKK TEX",
     description: "Perfect for startups and personal brands looking to establish an online presence",
     logo: jkk
   },
   {
-    plan: "Standard",
-    name: "VILCET",
-    description: "For small to mid-sized businesses needing a polished, functional website",
-    logo: vilcet
-  },
-  {
     plan: "Premium",
-    name: "Praskla Technology",
+    name: "PRASKLA DIGITAL X",
     description: "Feature-rich, high-conversion website built for business growth and impact",
     logo: praskla
   }
