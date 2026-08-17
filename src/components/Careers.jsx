@@ -177,13 +177,13 @@ const Careers = () => {
         }
         title={
           <h1 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl">
-            Join us in creating software that drives{" "}
-            <span className="text-[#E31D2E]">innovation</span>
+            Join us in driving marketing strategies that power{" "}
+            <span className="text-[#E31D2E]">brand growth</span>
           </h1>
         }
         description={
           <p className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
-            Build high-impact digital experiences and grow with a team of strategic, creative, and engineering minds.
+            Craft high-impact digital campaigns, elevate brands, and grow alongside a team of strategic, creative, and performance marketing minds.
           </p>
         }
         actions={
@@ -232,122 +232,111 @@ const Careers = () => {
       {/* Job search section */}
       <section
         ref={jobSearchRef}
-        className="relative bg-transparent py-6 sm:py-8 lg:py-10 overflow-hidden"
+        className="relative bg-transparent py-4 sm:py-6 overflow-hidden"
         aria-label="Job search and filters"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 space-y-6 sm:space-y-8">
-          {/* Section Heading Block */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="text-center max-w-3xl mx-auto space-y-2.5"
+            className="bg-white/80 backdrop-blur-md p-4 sm:p-6 lg:p-7 rounded-3xl border border-neutral-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.03)] grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center"
           >
-            <div className="inline-block">
-              <div className="border border-[#FF2B2B]/20 bg-white/70 backdrop-blur-md px-4 py-1.5 rounded-full shadow-xs">
-                <span className="font-bold text-xs uppercase tracking-widest text-[#FF2B2B]">
-                  We're growing our team
-                </span>
+            {/* Left Column: Badge, Heading, and Search Bar */}
+            <div className="lg:col-span-6 flex flex-col space-y-3">
+              <div className="inline-flex">
+                <div className="border border-[#FF2B2B]/20 bg-red-50/60 px-3.5 py-1 rounded-full shadow-2xs">
+                  <span className="font-bold text-[11px] uppercase tracking-widest text-[#FF2B2B]">
+                    We're growing our team
+                  </span>
+                </div>
               </div>
-            </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] mb-5 sm:mb-6 max-w-2xl font-sans mx-auto">
-              Find the position that fits your ambitions
-            </h2>
-          </motion.div>
 
-          {/* Unified Single-Line Search & Popular Filters Bar */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className="relative w-full max-w-5xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-3 bg-white/70 backdrop-blur-md p-2 sm:p-2.5 rounded-3xl sm:rounded-full border border-neutral-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.03)]"
-          >
-            {/* Compact Search Input (Left side) */}
-            <div
-              className={`relative flex items-center h-11 w-full lg:w-72 xl:w-80 rounded-full bg-white transition-all duration-300 shrink-0 ${
-                isSearchFocused
-                  ? "border-2 border-[#FF2B2B] shadow-sm scale-[1.01]"
-                  : "border border-neutral-200/90 hover:border-neutral-300 shadow-2xs"
-              }`}
-            >
-              <label htmlFor="job-search" className="sr-only">
-                Search by role, skill or department
-              </label>
-              <div className="pl-4 text-[#FF2B2B] flex items-center justify-center">
-                <FiSearch className="w-4 h-4 flex-shrink-0" />
-              </div>
-              <input
-                id="job-search"
-                type="search"
-                placeholder="Search roles or skills..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => setIsSearchFocused(true)}
-                onBlur={() => setIsSearchFocused(false)}
-                className="w-full h-full pl-2.5 pr-8 bg-transparent text-[#111111] placeholder:text-neutral-400 focus:outline-none text-xs sm:text-sm font-medium rounded-full"
-                aria-label="Search for job positions"
-              />
-              {searchQuery && (
-                <button
-                  onClick={() => setSearchQuery("")}
-                  className="absolute right-3 text-neutral-400 hover:text-[#111111] transition-colors"
-                  aria-label="Clear search input"
-                >
-                  <FiX className="w-3.5 h-3.5" />
-                </button>
-              )}
-            </div>
+              <h2 className="text-xl sm:text-2xl lg:text-3xl font-black leading-tight tracking-[-0.025em] text-[#111111] font-sans">
+                Find the position that fits your ambitions
+              </h2>
 
-            {/* Popular Search Chips (Right side - Single line!) */}
-            <div className="flex flex-nowrap items-center justify-start lg:justify-end gap-1.5 px-2 w-full lg:w-auto overflow-x-auto no-scrollbar py-0.5 max-w-full">
-              <span className="text-[11px] uppercase tracking-wider text-neutral-400 font-bold mr-1 shrink-0 whitespace-nowrap">
-                Popular:
-              </span>
-              {quickSearchOptions.map((chip) => {
-                const isActive = searchQuery.toLowerCase() === chip.toLowerCase();
-                return (
+              {/* Compact Search Input */}
+              <div
+                className={`relative flex items-center h-11 w-full rounded-full bg-white transition-all duration-300 ${
+                  isSearchFocused
+                    ? "border-2 border-[#E31D2E] shadow-sm scale-[1.005]"
+                    : "border border-neutral-200/90 hover:border-neutral-300 shadow-2xs"
+                }`}
+              >
+                <label htmlFor="job-search" className="sr-only">
+                  Search by role, skill or department
+                </label>
+                <div className="pl-4 text-[#E31D2E] flex items-center justify-center">
+                  <FiSearch className="w-4 h-4 flex-shrink-0" />
+                </div>
+                <input
+                  id="job-search"
+                  type="search"
+                  placeholder="Search roles or skills..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => setIsSearchFocused(true)}
+                  onBlur={() => setIsSearchFocused(false)}
+                  className="w-full h-full pl-2.5 pr-8 bg-transparent text-[#111111] placeholder:text-neutral-400 focus:outline-none text-xs sm:text-sm font-medium rounded-full"
+                  aria-label="Search for job positions"
+                />
+                {searchQuery && (
                   <button
-                    key={chip}
-                    onClick={() => setSearchQuery(isActive ? "" : chip)}
-                    className={`px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-semibold whitespace-nowrap shrink-0 transition-all duration-200 ${
-                      isActive
-                        ? "bg-[#E31D2E] text-white shadow-xs scale-105"
-                        : "bg-white text-neutral-700 border border-neutral-200/80 hover:border-black/30 hover:bg-neutral-100 hover:text-[#111111] shadow-2xs"
-                    }`}
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-3 text-neutral-400 hover:text-[#111111] transition-colors"
+                    aria-label="Clear search input"
                   >
-                    {chip}
+                    <FiX className="w-3.5 h-3.5" />
                   </button>
-                );
-              })}
+                )}
+              </div>
             </div>
-          </motion.div>
 
-          {/* Premium Information Callout Banner */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: 0.2 }}
-            className="max-w-3xl mx-auto"
-          >
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-white via-white to-red-50/30 border border-neutral-200/80 p-4 sm:p-5 shadow-[0_8px_24px_rgba(0,0,0,0.03)] flex flex-col md:flex-row items-start md:items-center justify-between gap-4 group">
-              <div className="flex items-center gap-3.5 flex-1 z-10">
-                <div className="w-10 h-10 rounded-xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 text-[#E31D2E] flex items-center justify-center flex-shrink-0 shadow-2xs">
-                  <Sparkles className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="text-[#111111] text-base sm:text-lg font-black tracking-tight">
-                    Can't find your perfect role?
-                  </h3>
-                  <p className="text-neutral-600 text-xs leading-relaxed font-medium">
-                    Share your background with us, and our team will reach out when a suitable role opens.
-                  </p>
+            {/* Right Column: Quick Tags and Callout Banner */}
+            <div className="lg:col-span-6 flex flex-col justify-between space-y-3.5 lg:border-l lg:border-neutral-200/60 lg:pl-8">
+              {/* Popular Search Chips */}
+              <div>
+                <span className="block text-[10px] uppercase tracking-wider text-neutral-400 font-bold mb-1.5">
+                  Popular Searches:
+                </span>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  {quickSearchOptions.map((chip) => {
+                    const isActive = searchQuery.toLowerCase() === chip.toLowerCase();
+                    return (
+                      <button
+                        key={chip}
+                        onClick={() => setSearchQuery(isActive ? "" : chip)}
+                        className={`px-2.5 py-1 rounded-full text-[11px] font-semibold whitespace-nowrap transition-all duration-200 ${
+                          isActive
+                            ? "bg-[#E31D2E] text-white shadow-xs"
+                            : "bg-white text-neutral-700 border border-neutral-200/80 hover:border-black/30 hover:bg-neutral-100 hover:text-[#111111] shadow-2xs"
+                        }`}
+                      >
+                        {chip}
+                      </button>
+                    );
+                  })}
                 </div>
               </div>
 
-              <div className="z-10 w-full md:w-auto flex-shrink-0">
+              {/* Compact Callout Banner */}
+              <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-neutral-50/90 via-white to-red-50/40 border border-neutral-200/80 p-3 sm:p-3.5 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 group">
+                <div className="flex items-center gap-2.5 flex-1 min-w-0">
+                  <div className="w-8 h-8 rounded-xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 text-[#E31D2E] flex items-center justify-center flex-shrink-0 shadow-2xs">
+                    <Sparkles className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-[#111111] text-xs sm:text-sm font-black tracking-tight truncate">
+                      Can't find your perfect role?
+                    </h3>
+                    <p className="text-neutral-500 text-[11px] leading-tight font-medium truncate">
+                      Submit your profile and we'll reach out when a role opens.
+                    </p>
+                  </div>
+                </div>
+
                 <button
                   onClick={() =>
                     setSelectedJob({
@@ -360,11 +349,11 @@ const Careers = () => {
                       skills: [],
                     })
                   }
-                  className="w-full md:w-auto px-5 py-2.5 rounded-full font-bold text-xs border-2 border-[#E31D2E] text-[#E31D2E] bg-transparent hover:bg-[#E31D2E] hover:text-white transition-all duration-300 flex items-center justify-center gap-2 shadow-2xs group/btn"
+                  className="w-full sm:w-auto shrink-0 px-3.5 py-1.5 rounded-full font-bold text-[11px] sm:text-xs border border-[#E31D2E] text-[#E31D2E] bg-white hover:bg-[#E31D2E] hover:text-white transition-all duration-300 flex items-center justify-center gap-1.5 shadow-2xs group/btn"
                   aria-label="Submit a general application"
                 >
-                  <span>Submit Application</span>
-                  <FiExternalLink className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300" />
+                  <span className="whitespace-nowrap">Submit Application</span>
+                  <FiExternalLink className="w-3 h-3 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform duration-300" />
                 </button>
               </div>
             </div>

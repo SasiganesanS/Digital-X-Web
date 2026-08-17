@@ -24,9 +24,9 @@ const Teams = () => {
     {
       id: 3,
       name: "Jaillesh Kathirvel",
-      role: "Founder, Business Head & Manager",
+      role: "Founder, Business Head",
       image: Jaillesh,
-      bio: "Drives business growth and client partnerships with a sharp eye for opportunity and execution. As Founder & Business Head & Manager, Jaillesh bridges strategy and day-to-day operations, ensuring every engagement is handled with precision, accountability, and a genuine commitment to client success.",
+      bio: "Hi, this is Jaillesh, Founder of Praskla Digital X. We work with businesses on digital marketing, branding and content production. I came across your business and noticed a couple of areas where I think we could potentially help. Do you have a quick minute?",
     },
     {
       id: 1,
