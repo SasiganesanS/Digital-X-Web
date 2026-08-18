@@ -7,6 +7,8 @@ import pt from '../assets/tie/pt.webp';
 import ourServicesImg from "../assets/services-img/digital.webp";
 import servicesData from "../data/servicesData";
 import ProjectBriefModal from "./ProjectBriefModal";
+import ServiceDetailModal from "./ServiceDetailModal";
+import CollaboratorSection from "./collaborators/CollaboratorSection";
 import SectionBadge from "./common/SectionBadge";
 import {
   motion,
@@ -524,6 +526,7 @@ export default function ServiceCalculator() {
   });
 
   const [focusedService, setFocusedService] = useState(null);
+  const [selectedDetailService, setSelectedDetailService] = useState(null);
 
   const pauseThenResume = (delay = 3000) => {
     interactingRef.current = true;
@@ -533,7 +536,7 @@ export default function ServiceCalculator() {
     }, delay);
   };
 
-  const goToIndex = (index, resumeDelay = 3000) => {
+  const goToIndex = (index, resumeDelay = 3000, explicitCardIndex = null) => {
     const track = trackRef.current;
     const container = track?.parentElement;
     if (!track || !container || track.children.length < 2) return;
@@ -543,17 +546,43 @@ export default function ServiceCalculator() {
     const actualStep = (second.offsetLeft - first.offsetLeft) || cardStepRef.current || 360;
     cardStepRef.current = actualStep;
 
-    const normalized = ((index % servicesData.length) + servicesData.length) % servicesData.length;
-    // Align target card in Set 1 (offset by setLength) so left/right sides are pre-filled
-    const targetCardIndex = servicesData.length + normalized;
-
     const containerWidth = container.offsetWidth;
     const cardWidth = first.offsetWidth || 340;
     const centerOffset = (containerWidth - cardWidth) / 2;
-    const target = centerOffset - (targetCardIndex * actualStep);
+    const currentX = x.get();
+
+    const normalized = ((index % servicesData.length) + servicesData.length) % servicesData.length;
+
+    let targetCardIndex;
+    if (typeof explicitCardIndex === "number" && explicitCardIndex >= 0) {
+      targetCardIndex = explicitCardIndex;
+    } else {
+      let minDistance = Infinity;
+      let bestCardIndex = servicesData.length + normalized;
+
+      for (let k = normalized; k < LOOPED_SERVICES.length; k += servicesData.length) {
+        const testTarget = centerOffset - (k * actualStep);
+        const dist = Math.abs(testTarget - currentX);
+        if (dist < minDistance) {
+          minDistance = dist;
+          bestCardIndex = k;
+        }
+      }
+      targetCardIndex = bestCardIndex;
+    }
+
+    let target = centerOffset - (targetCardIndex * actualStep);
+
+    // If target position causes continuous set boundary wrap, adjust boundary offset
+    const setWidth = halfWidthRef.current || (actualStep * servicesData.length);
+    if (target <= -setWidth * 2.5) {
+      target += setWidth;
+    } else if (target >= -setWidth * 0.2) {
+      target -= setWidth;
+    }
 
     pauseThenResume(resumeDelay);
-    animate(x, target, { duration: 0.6, ease: "easeInOut" });
+    animate(x, target, { duration: 0.6, ease: [0.25, 1, 0.5, 1] });
     setActiveIndex(normalized);
   };
 
@@ -928,9 +957,9 @@ export default function ServiceCalculator() {
                       key={`${service.title}-${i}`}
                       className="w-[85vw] sm:w-[320px] md:w-[340px] lg:w-[360px] flex-shrink-0"
                       onClick={() => {
-                        goToIndex(originalIndex, 3000);
+                        goToIndex(originalIndex, 3000, i);
                         setFocusedService(service.title);
-                        setTimeout(() => setFocusedService(null), 2500);
+                        setSelectedDetailService(service);
                       }}
                     >
                       <div
@@ -1076,29 +1105,30 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                 <div className="flex items-center justify-between mb-7 pb-4 border-b border-gray-100">
                   <h3 className="text-xs font-black text-[#111111] uppercase tracking-[0.2em] flex items-center gap-2.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-[#E31D2E] animate-pulse" />
-                    Select Service Pillars
+                    SELECT THE PACKAGES
                   </h3>
                   <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider bg-gray-100 px-3 py-1 rounded-full">
                     {PLATFORMS.length} Available
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {PLATFORMS.map((p) => {
+                {(() => {
+                  const ICON_COMPONENT_MAP = {
+                    FaGlobe,
+                    FaLaptopCode,
+                    FaMobileAlt,
+                    FaBullhorn,
+                    FaVideo,
+                    FaShieldAlt,
+                    FaLeaf,
+                  };
+
+                  const renderCard = (p) => {
                     if (!p) return null;
                     const isSelected = Array.isArray(selectedItems) && selectedItems.some((item) => item?.platform?.id === p.id);
-                    const ICON_COMPONENT_MAP = {
-                      FaGlobe,
-                      FaLaptopCode,
-                      FaMobileAlt,
-                      FaBullhorn,
-                      FaVideo,
-                      FaShieldAlt,
-                      FaLeaf,
-                    };
                     const PlatformIcon = typeof p.icon === 'function' || typeof p.icon === 'object' ? p.icon : (ICON_COMPONENT_MAP[p.icon] || FaGlobe);
                     const pPrice = typeof p.price === 'number' ? p.price : 0;
-                    const pTitle = p.title || 'Service Pillar';
+                    const pTitle = p.title || 'Service Package';
 
                     return (
                       <button
@@ -1149,8 +1179,45 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                         </div>
                       </button>
                     );
-                  })}
-                </div>
+                  };
+
+                  const marketingList = PLATFORMS.filter((p) => p && (p.id === "marketing" || p.id === "video"));
+                  const techList = PLATFORMS.filter((p) => p && p.id !== "marketing" && p.id !== "video");
+
+                  return (
+                    <div className="space-y-7">
+                      {/* Group 1: Digital Marketing */}
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3">
+                          <span className="text-[11px] font-extrabold text-[#E31D2E] uppercase tracking-[0.18em] bg-red-50/90 border border-red-100 px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-2xs">
+                            <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
+                            Digital Marketing
+                          </span>
+                          <div className="h-[1px] flex-1 bg-gradient-to-r from-red-200/80 via-red-100/50 to-transparent" />
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {marketingList.map((p) => renderCard(p))}
+                        </div>
+                      </div>
+
+                      {/* Group 2: Technology */}
+                      <div className="space-y-4 pt-1">
+                        <div className="flex items-center gap-3">
+                          <span className="text-[11px] font-extrabold text-[#111111] uppercase tracking-[0.18em] bg-gray-100 border border-gray-200/90 px-3.5 py-1.5 rounded-full flex items-center gap-1.5 shadow-2xs">
+                            <span className="w-1.5 h-1.5 rounded-full bg-black/70" />
+                            Technology
+                          </span>
+                          <div className="h-[1px] flex-1 bg-gradient-to-r from-gray-300/80 via-gray-200/50 to-transparent" />
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {techList.map((p) => renderCard(p))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
               </div>
             </div>
 
@@ -1187,7 +1254,7 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                             <div>
                               <h4 className="text-xs font-extrabold text-[#111111]">No services selected yet</h4>
                               <p className="text-[11px] text-gray-500 font-medium mt-1 leading-relaxed max-w-[240px] mx-auto">
-                                Click one or more service pillars on the left to build your tailored growth plan.
+                                Click one or more packages on the left to build your tailored growth plan.
                               </p>
                             </div>
                           </motion.div>
@@ -1305,6 +1372,9 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
         </div>
       </div>
 
+      {/* ── Creative Collaborator Network ── */}
+      <CollaboratorSection />
+
       {/* ── Ecosystem Partners ── */}
       <section className="py-12 sm:py-14 lg:py-16 border-t border-gray-200 bg-transparent overflow-hidden">
         <div className="max-w-7xl mx-auto px-6">
@@ -1392,6 +1462,11 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
           animation-play-state: paused;
         }
       `}</style>
+      <ServiceDetailModal
+        service={selectedDetailService}
+        isOpen={Boolean(selectedDetailService)}
+        onClose={() => setSelectedDetailService(null)}
+      />
     </div>
   );
 }

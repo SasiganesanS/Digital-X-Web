@@ -204,7 +204,7 @@ const About = () => {
               <h3 className="font-inlander text-sm font-black text-[#111111] flex items-center gap-1.5 leading-none">
                 PRASKLA DIGITAL <BrandX className="h-[18px] w-auto text-[#E31D2E] translate-y-[1px]" />
               </h3>
-              <p className="text-[11px] font-semibold text-neutral-400 mt-0.5">Mindful Marketing Firm</p>
+              <p className="text-[10px] sm:text-[11px] font-semibold text-neutral-400 mt-0.5 whitespace-nowrap">A Mindful Marketing and Production Firm</p>
             </div>
           </div>
 
@@ -415,7 +415,7 @@ const About = () => {
 
                 {/* Paragraph */}
                 <p className="text-[#575757] text-base leading-relaxed font-normal">
-                  To become a leading mindful marketing firm known for innovative strategies, measurable growth, and long-term brand impact. We envision building a collaborative ecosystem where businesses scale confidently through creative storytelling, data intelligence, and sustainable growth practices — becoming a trusted partner in every stage of their journey.
+                  To become a leading mindful marketing and production firm known for innovative strategies, measurable growth, and long-term brand impact. We envision building a collaborative ecosystem where businesses scale confidently through creative storytelling, data intelligence, and sustainable growth practices — becoming a trusted partner in every stage of their journey.
                 </p>
               </div>
 

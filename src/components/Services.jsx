@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import "./Services.css";
 import servicesData from "../data/servicesData";
 import SectionBadge from "./common/SectionBadge";
+import ServiceDetailModal from "./ServiceDetailModal";
 
 /** Stable sparkle positions (avoid Math.random() each render) */
 const SECTION_SPARKLES = Array.from({ length: 18 }, (_, i) => ({
@@ -17,6 +18,7 @@ const Services = () => {
   const location = useLocation();
   const cardRefs = useRef({});
   const [selectedTitle, setSelectedTitle] = useState(null);
+  const [selectedDetailService, setSelectedDetailService] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
@@ -144,6 +146,10 @@ const Services = () => {
                           ? "2px solid #FF2B2B"
                           : "1px solid rgba(0, 0, 0, 0.1)",
                       }}
+                      onClick={() => {
+                        setSelectedTitle(service.title);
+                        setSelectedDetailService(service);
+                      }}
                       className={`relative bg-white rounded-2xl p-5 md:p-6 pt-7 flex flex-col items-center text-center min-h-[260px] sm:min-h-[280px] cursor-pointer transition-all duration-500 group overflow-hidden ${
                         isSelected
                           ? "shadow-[0_18px_45px_rgba(0,0,0,0.1)] -translate-y-2 z-20"
@@ -215,6 +221,11 @@ const Services = () => {
           </motion.div>
         </div>
       </section>
+      <ServiceDetailModal
+        service={selectedDetailService}
+        isOpen={Boolean(selectedDetailService)}
+        onClose={() => setSelectedDetailService(null)}
+      />
     </div>
   );
 };

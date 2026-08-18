@@ -40,22 +40,15 @@ import CinematicUniverse from "./components/CinematicUniverse";
 import ScrollToTop from "./components/ScrollToTop";
 import RocketScrollbar from "./components/RocketScrollbar";
 import SearchOverlay from "./components/SearchOverlay";
+import CollaboratorDirectory from "./components/collaborators/CollaboratorDirectory";
+import CollaboratorProfilePage from "./components/collaborators/CollaboratorProfilePage";
 
 // Legal Page Imports
 import PrivacyPolicy from "./components/legal/PrivacyPolicy";
 import TermsAndConditions from "./components/legal/TermsAndConditions";
 import CookiePolicy from "./components/legal/CookiePolicy";
 
-// Test Home Components
-import Hero from "./components/test-home/Hero";
-import TrustedBy from "./components/test-home/TrustedBy";
-import FeaturedProjects from "./components/test-home/FeaturedProjects";
-import Services1 from "./components/test-home/Services1";
-import About1 from "./components/test-home/About1";
-import Testimonials1 from "./components/test-home/Testimonials1";
-import Contact from "./components/test-home/Contact";
 import ServiceCard from "./components/serviceCard-reveal/ServiceCard";
-import Contact_page from "./components/test-home/Contact_page";
 
 // Animation Wrapper
 import AnimatedPage from "./components/AnimatedPage";
@@ -142,6 +135,22 @@ const AppRoutes = () => {
         element={
           <AnimatedPage>
             <Careers />
+          </AnimatedPage>
+        }
+      />
+      <Route
+        path="/collaborators"
+        element={
+          <AnimatedPage>
+            <CollaboratorDirectory />
+          </AnimatedPage>
+        }
+      />
+      <Route
+        path="/collaborators/:slug"
+        element={
+          <AnimatedPage>
+            <CollaboratorProfilePage />
           </AnimatedPage>
         }
       />
