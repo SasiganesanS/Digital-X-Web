@@ -188,19 +188,6 @@ const ServicesCoverflow = () => {
       role="region"
       aria-label="Services Carousel"
     >
-      {/* Soft clay-like background glow highlight */}
-      <div
-        className="absolute pointer-events-none"
-        style={{
-          top: "40%",
-          left: "50%",
-          width: 450,
-          height: 450,
-          transform: "translate(-50%, -50%)",
-          background: "radial-gradient(circle, rgba(255,255,255,0.8) 0%, transparent 70%)",
-          filter: "blur(40px)",
-        }}
-      />
 
       {/* Section label */}
       <motion.div
@@ -208,9 +195,15 @@ const ServicesCoverflow = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mb-1 z-10"
+        className="mb-1.5 z-10"
       >
-        <SectionBadge text="Our Services" />
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 border border-white/25 !text-white shadow-lg backdrop-blur-md">
+          <span className="w-2 h-2 rounded-full bg-[#FF2B2B] animate-pulse" />
+          <span className="text-xs font-mono font-bold tracking-wider uppercase !text-white">
+            OUR SERVICES
+          </span>
+          <span className="!text-neutral-300 text-xs font-mono">:::</span>
+        </div>
       </motion.div>
 
       <motion.p
@@ -218,9 +211,9 @@ const ServicesCoverflow = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.15 }}
-        className="text-[#8B8B8B] text-[9px] font-medium tracking-[0.2em] uppercase mb-2.5 z-10"
+        className="!text-neutral-300 text-[9px] font-bold tracking-[0.2em] uppercase mb-2.5 z-10"
       >
-        Tactile digital solutions
+        TACTILE DIGITAL SOLUTIONS
       </motion.p>
 
       {/* ── 3D Carousel Stage ── */}
@@ -299,16 +292,18 @@ const ServicesCoverflow = () => {
                 <div
                   className="relative w-full h-full overflow-hidden flex flex-col p-3 transition-all duration-300"
                   style={{
-                    background: "#FFFFFF",
-                    border: "1px solid #F0F0F3",
+                    background: s.isFront ? "#FFFFFF" : "rgba(255, 255, 255, 0.08)",
+                    backdropFilter: s.isFront ? "none" : "blur(16px)",
+                    WebkitBackdropFilter: s.isFront ? "none" : "blur(16px)",
+                    border: s.isFront ? "1px solid #FFFFFF" : "1px solid rgba(255, 255, 255, 0.2)",
                     borderRadius: "30px",
                     boxShadow: s.isFront
-                      ? "8px 8px 20px rgba(0, 0, 0, 0.05), -8px -8px 20px rgba(255, 255, 255, 1)"
-                      : "4px 4px 12px rgba(0, 0, 0, 0.03), -4px -4px 12px rgba(255, 255, 255, 1)",
+                      ? "0 20px 45px rgba(0, 0, 0, 0.6)"
+                      : "0 10px 30px rgba(0, 0, 0, 0.4)",
                   }}
                 >
-                  {/* Image container frame */}
-                  <div className="relative w-full h-[48%] rounded-[22px] overflow-hidden bg-[#000000] flex items-center justify-center p-2 border border-black/10 shadow-[inset_3px_3px_8px_rgba(0,0,0,0.06),inset_-3px_-3px_8px_rgba(255,255,255,0.9)]">
+                  {/* Image container frame: Pitch black inner box matching screenshot */}
+                  <div className="relative w-full h-[48%] rounded-[22px] overflow-hidden bg-[#000000] flex items-center justify-center p-2 border border-black/10">
                     <img
                       src={service.image}
                       alt={service.title}
@@ -370,9 +365,9 @@ const ServicesCoverflow = () => {
       {/* View Services Button */}
       <button
         onClick={() => navigate("/services")}
-        className="primary-btn mt-2.5 z-10 text-[9px] font-black uppercase tracking-[0.25em] text-white px-5 py-2 rounded-full whitespace-nowrap"
+        className="mt-2.5 z-10 text-[10px] font-extrabold uppercase tracking-[0.25em] bg-[#FF2B2B] hover:bg-[#E51D1D] text-white px-6 py-2.5 rounded-full whitespace-nowrap shadow-[0_8px_20px_rgba(255,43,43,0.4)] transition-all duration-300 hover:scale-105 cursor-pointer"
       >
-        View Services
+        VIEW SERVICES
       </button>
     </div>
   );

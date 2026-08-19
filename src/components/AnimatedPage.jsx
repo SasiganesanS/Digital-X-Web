@@ -1,36 +1,15 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import ErrorBoundary from './ErrorBoundary';
-
-// Pure opacity crossfade — no Y-slide to avoid layout gaps that expose the background
-const pageVariants = {
-  initial: { opacity: 0 },
-  in: { opacity: 1 },
-  out: { opacity: 0 },
-};
-
-const pageTransition = {
-  type: "tween",
-  ease: "easeInOut",
-  duration: 0.3,
-};
+import IrisOverlay from './IrisOverlay';
 
 const AnimatedPage = ({ children }) => {
   return (
-    <motion.div
-      initial="initial"
-      animate="in"
-      exit="out"
-      variants={pageVariants}
-      transition={pageTransition}
-      className="page-layout-wrapper"
-      // Always fill the viewport with a transparent bg so the universe background shows through
-      style={{ minHeight: "100vh", backgroundColor: "transparent" }}
-    >
+    <div className="page-layout-wrapper relative" style={{ minHeight: "100vh", backgroundColor: "transparent" }}>
+      <IrisOverlay color="#0a0a0a" duration={0.65} />
       <ErrorBoundary>
         {children}
       </ErrorBoundary>
-    </motion.div>
+    </div>
   );
 };
 

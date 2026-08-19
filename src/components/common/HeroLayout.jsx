@@ -40,7 +40,7 @@ const HeroLayout = ({
               {title && (
                 <div className="w-full">
                   {typeof title === "string" ? (
-                    <h1 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl">
+                    <h1 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-inherit font-sans mb-5 sm:mb-6 max-w-2xl">
                       {title}
                     </h1>
                   ) : (
@@ -51,7 +51,7 @@ const HeroLayout = ({
               {description && (
                 <div className="w-full">
                   {typeof description === "string" ? (
-                    <p className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
+                    <p className="text-inherit opacity-85 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
                       {description}
                     </p>
                   ) : (
@@ -70,6 +70,11 @@ const HeroLayout = ({
             )}
           </div>
         )}
+
+        {/* Sleek Hero Section Separator Line */}
+        <div className="w-full pt-8 sm:pt-10">
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-neutral-300/80 to-transparent" />
+        </div>
       </div>
     </section>
   );
