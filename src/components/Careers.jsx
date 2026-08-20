@@ -178,7 +178,7 @@ const Careers = () => {
       <div className="relative z-10 w-full">
         <HeroLayout
           badge={
-            <SectionBadge text="Careers @ PRASKLA DIGITAL X" />
+            <SectionBadge text="Careers @ PRASKLA DIGITAL X" theme="dark" />
           }
           title={
             <h1 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-white font-sans mb-5 sm:mb-6 max-w-2xl">
@@ -214,7 +214,7 @@ const Careers = () => {
                 return (
                   <span
                     key={idx}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-200/90 bg-white/90 shadow-2xs text-[#111111] text-[11px] font-bold tracking-tight hover:border-black/20 transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#111111] border border-white/90 shadow-md text-xs font-extrabold tracking-tight hover:bg-neutral-100 transition-all duration-300"
                   >
                     <IconComponent className="w-3.5 h-3.5 text-[#E31D2E]" />
                     <span>{perk.text}</span>
@@ -246,12 +246,12 @@ const Careers = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="bg-white/80 backdrop-blur-md p-4 sm:p-6 lg:p-7 rounded-3xl border border-neutral-200/80 shadow-[0_8px_30px_rgba(0,0,0,0.03)] grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center"
+            className="clay-card bg-white p-5 sm:p-7 lg:p-8 rounded-2xl border border-white/90 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center text-[#111111]"
           >
             {/* Left Column: Badge, Heading, and Search Bar */}
             <div className="lg:col-span-6 flex flex-col space-y-3">
               <div className="inline-flex">
-                <div className="border border-black/20 bg-black/5 px-3.5 py-1 rounded-full shadow-2xs">
+                <div className="border border-neutral-200/80 bg-neutral-100 px-3.5 py-1 rounded-full shadow-2xs">
                   <span className="font-bold text-[11px] uppercase tracking-widest text-[#111111]">
                     We're growing our team
                   </span>

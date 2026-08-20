@@ -66,7 +66,7 @@ function ProjectCounter({ targetNum, suffix = "+", label, delay = 0 }) {
       animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 15, scale: 0.95 }}
       transition={{ duration: 0.6, delay: delay * 0.3, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -5, scale: 1.02 }}
-      className="clay-card relative flex flex-col items-start p-3.5 px-4 sm:px-5 rounded-2xl border border-white/70 shadow-[0_10px_28px_rgba(17,17,17,0.03)] backdrop-blur-xl bg-white/75 hover:bg-white/90 cursor-default group transition-all duration-300 min-w-[120px] sm:min-w-[135px]"
+      className="clay-card relative flex flex-col items-start p-3.5 px-4 sm:px-5 rounded-2xl border border-white/90 shadow-xl bg-white hover:bg-white cursor-default group transition-all duration-300 min-w-[120px] sm:min-w-[135px]"
     >
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/70 via-transparent to-transparent pointer-events-none" />
 
@@ -127,14 +127,14 @@ function ProjectShowcase({ projectImages, imageIndex }) {
         }}
       >
         {/* Outer Claymorphic Showcase Frame */}
-        <div className={`relative rounded-[2.5rem] p-3.5 sm:p-4 bg-white/50 backdrop-blur-2xl border border-white/60 shadow-[0_20px_50px_rgba(17,17,17,0.06)] transition-all duration-500 overflow-hidden ${
-          isHovered ? "border-[#ECECEC] shadow-[0_12px_40px_rgba(0,0,0,0.08)] bg-white/70" : ""
+        <div className={`relative rounded-2xl p-3.5 sm:p-4 bg-white border border-white/90 shadow-2xl transition-all duration-500 overflow-hidden ${
+          isHovered ? "shadow-[0_25px_60px_rgba(0,0,0,0.15)] bg-white" : ""
         }`}>
           {/* Inner Light Highlight */}
-          <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-tr from-white/80 via-transparent to-white/40 pointer-events-none z-10" />
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-white/80 via-transparent to-white/40 pointer-events-none z-10" />
 
           {/* Slideshow Image Container */}
-          <div className="relative rounded-[2rem] overflow-hidden aspect-square bg-neutral-100">
+          <div className="relative rounded-xl overflow-hidden aspect-square bg-neutral-100">
             <AnimatePresence initial={false} mode="wait">
               {projectImages.map((img, idx) => (
                 idx === imageIndex && (
@@ -165,7 +165,7 @@ function ProjectShowcase({ projectImages, imageIndex }) {
             initial={{ opacity: 0, y: 15, scale: 0.92 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 z-20 p-3.5 px-4.5 rounded-2xl bg-white/85 backdrop-blur-xl border border-white/70 shadow-[0_16px_36px_rgba(17,17,17,0.08)] flex items-center gap-3"
+            className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 z-20 p-3.5 px-4.5 rounded-2xl bg-white border border-white/90 shadow-xl flex items-center gap-3"
           >
             <div className="w-8 h-8 rounded-xl bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] font-black text-sm">
               ★
@@ -288,7 +288,7 @@ const Projects = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <SectionBadge text="OUR PORTFOLIO" />
+              <SectionBadge text="OUR PORTFOLIO" theme="dark" />
             </motion.div>
           }
           title={
@@ -323,14 +323,14 @@ const Projects = () => {
               <ProjectCounter targetNum="1.5" suffix="+" label="Years Experience" delay={0.3} />
             </div>
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 w-full">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/5 border border-black/20 text-[#111111] shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-[#111111] animate-pulse" />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-white/90 text-[#111111] shadow-md">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#E31D2E] animate-pulse" />
                 <span className="text-[11px] font-black uppercase tracking-wider">
                   Proven Results & Scalable Performance
                 </span>
               </div>
-              <span className="text-[10px] sm:text-xs font-bold text-[#575757] flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-full border border-gray-200/80 shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
+              <span className="text-[11px] font-extrabold text-[#111111] flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-white/90 shadow-md">
+                <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
                 <span>Crafting Scalable Digital Ecosystems</span>
               </span>
             </div>
@@ -356,17 +356,17 @@ const Projects = () => {
           >
             {/* Small Badge */}
             <div className="mb-4">
-              <SectionBadge text="OUR WORKFLOW" />
+              <SectionBadge text="OUR WORKFLOW" theme="dark" />
             </div>
 
             {/* Heading */}
-            <h2 className="text-3xl md:text-5xl lg:text-[46px] font-black text-[#111111] leading-tight tracking-tight mb-4">
+            <h2 className="text-3xl md:text-5xl lg:text-[46px] font-black text-white leading-tight tracking-tight mb-4">
               Empowering progress through{" "}
               <span className="relative inline-block text-[#E31D2E]">
                 mindful strategy and creative execution.
               </span>
             </h2>
-            <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium max-w-3xl">
+            <p className="text-neutral-300 text-base sm:text-lg leading-relaxed font-medium max-w-3xl">
               We transform insights into impactful brand experiences strategically created, seamlessly launched and constantly optimized for growth.
             </p>
           </motion.div>
@@ -402,7 +402,7 @@ const Projects = () => {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     whileHover={{ y: -6, scale: 1.02 }}
-                    className="clay-card relative group p-6 sm:p-7 pt-8 flex flex-col justify-between rounded-[1.75rem] md:rounded-[2rem] border border-white/80 shadow-[0_8px_24px_rgba(17,17,17,0.03)] backdrop-blur-xl bg-white/75 hover:bg-white transition-all duration-500 min-h-[250px] sm:min-h-[270px] overflow-visible select-none"
+                    className="clay-card relative group p-6 sm:p-7 pt-8 flex flex-col justify-between rounded-[1.75rem] md:rounded-[2rem] border border-white/90 shadow-xl bg-white hover:bg-white transition-all duration-500 min-h-[250px] sm:min-h-[270px] overflow-visible select-none"
                   >
                     {/* Light Inner Glass Highlight */}
                     <div className="absolute inset-0 rounded-[1.75rem] md:rounded-[2rem] bg-gradient-to-br from-white/80 via-transparent to-transparent pointer-events-none" />
@@ -445,17 +445,17 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* Bottom Framework Note */}
+          {/* Bottom Framework Note — Bright White Section Divider */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="text-center text-[#575757] text-xs font-black uppercase tracking-[0.25em] mt-16 flex items-center justify-center gap-3"
+            className="text-center text-white text-xs sm:text-sm font-black uppercase tracking-[0.28em] mt-16 flex items-center justify-center gap-4 drop-shadow-sm"
           >
-            <span className="w-12 h-[1px] bg-neutral-200 hidden sm:block" />
-            <span>Every project follows a structured growth framework.</span>
-            <span className="w-12 h-[1px] bg-neutral-200 hidden sm:block" />
+            <span className="w-16 h-[1.5px] bg-gradient-to-r from-transparent via-white/70 to-white hidden sm:block" />
+            <span className="text-white drop-shadow-[0_2px_10px_rgba(255,255,255,0.4)]">Every project follows a structured growth framework.</span>
+            <span className="w-16 h-[1.5px] bg-gradient-to-l from-transparent via-white/70 to-white hidden sm:block" />
           </motion.div>
 
         </div>
@@ -474,11 +474,11 @@ const Projects = () => {
           >
             {/* Small Badge */}
             <div className="mb-4">
-              <SectionBadge text="SELECTED CASE STUDIES" />
+              <SectionBadge text="SELECTED CASE STUDIES" theme="dark" />
             </div>
 
             {/* Heading with Animated Underline */}
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#111111] leading-tight max-w-4xl tracking-tight">
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight max-w-4xl tracking-tight">
               Building Brands That{" "}
               <span className="relative inline-block text-[#FF2B2B]">
                 Perform
@@ -487,7 +487,7 @@ const Projects = () => {
           </motion.div>
 
           {/* Unified Scrollable Project Container */}
-          <div className="relative w-full rounded-[2.5rem] p-4 sm:p-6 lg:p-8 bg-neutral-50/60 border border-neutral-200/80 shadow-[0_20px_50px_rgba(0,0,0,0.03)] backdrop-blur-xl">
+          <div className="clay-card relative w-full rounded-2xl p-6 sm:p-8 lg:p-10 bg-white border border-white/90 shadow-2xl text-[#111111]">
             {/* Top Row: Year Filter Select Dropdown on Top Left */}
             <div className="flex items-center justify-between gap-4 mb-6 px-1 flex-wrap">
               <div className="flex items-center gap-2.5">

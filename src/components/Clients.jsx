@@ -62,7 +62,7 @@ const Clients = () => {
               className="clay-card relative flex flex-col justify-between overflow-hidden p-8 hover:-translate-y-2 transition-all duration-300"
             >
               <div className="flex flex-col items-center">
-                <div className="w-32 h-32 mb-6 flex items-center justify-center bg-white/40 rounded-2xl p-3 border border-white/60">
+                <div className="w-32 h-32 mb-6 flex items-center justify-center bg-neutral-100 rounded-2xl p-3 border border-neutral-200/80">
                   <img
                     src={client.logo}
                     alt={`${client.name} logo`}

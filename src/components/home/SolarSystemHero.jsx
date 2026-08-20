@@ -197,13 +197,7 @@ const ServicesCoverflow = () => {
         transition={{ duration: 0.6 }}
         className="mb-1.5 z-10"
       >
-        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-neutral-100 border border-neutral-200 text-[#111111]">
-          <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
-          <span className="text-xs font-mono font-bold tracking-wider uppercase text-[#111111]">
-            OUR SERVICES
-          </span>
-          <span className="text-neutral-400 text-xs font-mono">:::</span>
-        </div>
+        <SectionBadge text="OUR SERVICES" theme="dark" />
       </motion.div>
 
       <motion.p
@@ -296,14 +290,14 @@ const ServicesCoverflow = () => {
                     backdropFilter: "none",
                     WebkitBackdropFilter: "none",
                     border: s.isFront ? "1px solid #FFFFFF" : "1px solid rgba(255, 255, 255, 0.95)",
-                    borderRadius: "30px",
+                    borderRadius: "16px",
                     boxShadow: s.isFront
                       ? "0 20px 45px rgba(0, 0, 0, 0.6)"
                       : "0 10px 25px rgba(0, 0, 0, 0.35)",
                   }}
                 >
                   {/* Image container frame */}
-                  <div className={`relative w-full h-[48%] rounded-[22px] overflow-hidden flex items-center justify-center p-2 border border-black/10 transition-colors duration-300 ${
+                  <div className={`relative w-full h-[48%] rounded-xl overflow-hidden flex items-center justify-center p-2 border border-black/10 transition-colors duration-300 ${
                     s.isFront ? "bg-[#000000]" : "bg-[#111111]"
                   }`}>
                     <img

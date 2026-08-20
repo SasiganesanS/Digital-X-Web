@@ -97,83 +97,65 @@ const About = () => {
       variants={fadeUp}
       initial="hidden"
       animate="visible"
+      className="w-full rounded-[28px] bg-white border border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.4)] text-[#111111] p-6 sm:p-7 lg:p-8 flex flex-col items-start"
     >
-      <SectionBadge text="About Us" />
+      <div className="mb-4">
+        <SectionBadge text="About Us" />
+      </div>
+
+      <h1 className="text-xl sm:text-2xl lg:text-3xl font-black leading-[1.1] tracking-[-0.03em] text-[#111111] font-sans mb-3 max-w-xl">
+        Where Mindful Strategy{" "}
+        <span className="text-[#E31D2E]">Meets Scalable Growth.</span>
+      </h1>
+
+      <p className="text-[#575757] text-xs sm:text-sm font-normal leading-[1.55] font-sans mb-5 max-w-xl">
+        A trusted marketing partner delivering brand transformation, performance campaigns,
+        and high-impact digital ecosystems that accelerate business growth.
+      </p>
+
+      <div className="space-y-2.5 w-full">
+        {[
+          {
+            icon: <TrendingUp className="w-4 h-4 text-[#E31D2E]" />,
+            title: "Growth-Driven Strategy",
+            desc: "Designed for real-world market challenges",
+          },
+          {
+            icon: <Award className="w-4 h-4 text-[#E31D2E]" />,
+            title: "Proven Execution",
+            desc: "Across diverse industries and personal brands",
+          },
+          {
+            icon: <Users className="w-4 h-4 text-[#E31D2E]" />,
+            title: "Dedicated Team",
+            desc: "Creative, analytical, and performance-focused professionals",
+          },
+        ].map((item, i) => (
+          <motion.div
+            key={i}
+            whileHover={{ y: -2 }}
+            className="flex items-center gap-3 bg-neutral-50 border border-neutral-200/80 rounded-xl p-3 hover:border-black/20 hover:bg-neutral-100 transition-all duration-200"
+          >
+            <div className="w-8 h-8 rounded-lg bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center shrink-0">
+              {item.icon}
+            </div>
+            <div>
+              <h4 className="text-xs font-extrabold text-[#111111]">
+                {item.title}
+              </h4>
+              <p className="text-[11px] text-neutral-500 font-normal leading-tight">
+                {item.desc}
+              </p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </motion.div>
   );
 
-  const title = (
-    <motion.h1
-      variants={fadeUp}
-      initial="hidden"
-      animate="visible"
-      className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-white font-sans mb-5 sm:mb-6 max-w-2xl"
-    >
-      Where Mindful Strategy{" "}
-      <span className="text-[#E31D2E]">Meets Scalable Growth.</span>
-    </motion.h1>
-  );
-
-  const description = (
-    <motion.p
-      variants={fadeUp}
-      initial="hidden"
-      animate="visible"
-      className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
-    >
-      A trusted marketing partner delivering brand transformation, performance campaigns,
-      and high-impact digital ecosystems that accelerate business growth.
-    </motion.p>
-  );
-
-  const actions = (
-    <motion.div
-      className="space-y-3.5 pt-2 w-full"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      transition={{ staggerChildren: 0.12 }}
-    >
-      {[
-        {
-          icon: <TrendingUp />,
-          title: "Growth-Driven Strategy",
-          desc: "Designed for real-world market challenges",
-        },
-        {
-          icon: <Award />,
-          title: "Proven Execution",
-          desc: "Across diverse industries and personal brands",
-        },
-        {
-          icon: <Users />,
-          title: "Dedicated Team",
-          desc: "Creative, analytical, and performance-focused professionals",
-        },
-      ].map((item, i) => (
-        <motion.div
-          key={i}
-          variants={fadeUp}
-          whileHover={{ y: -3, scale: 1.01 }}
-          className="group flex items-center gap-4 bg-white/80 border border-neutral-200/80 rounded-[20px] p-4 shadow-xs hover:border-black/20 hover:shadow-[0_12px_28px_rgba(0,0,0,0.05)] transition-all duration-300"
-        >
-          <div className="w-10 h-10 rounded-xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#E31D2E] transition-colors duration-300">
-            {React.cloneElement(item.icon, {
-              className: "w-5 h-5 text-[#E31D2E] group-hover:text-white transition-colors duration-300",
-            })}
-          </div>
-          <div>
-            <h4 className="text-sm font-black text-[#111111] group-hover:text-[#E31D2E] transition-colors duration-300">
-              {item.title}
-            </h4>
-            <p className="text-xs text-neutral-500 font-normal mt-0.5">
-              {item.desc}
-            </p>
-          </div>
-        </motion.div>
-      ))}
-    </motion.div>
-  );
+  const title = null;
+  const description = null;
+  const actions = null;
 
   const media = (
     <motion.div
@@ -190,11 +172,8 @@ const About = () => {
           y: panelMouse.y,
         }}
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
-        className="group relative rounded-[32px] p-6 sm:p-7 overflow-hidden border border-neutral-200/80 bg-white/90 backdrop-blur-2xl shadow-[0_20px_50px_rgba(17,17,17,0.06)] hover:shadow-[0_25px_60px_rgba(17,17,17,0.09)] transition-all duration-500"
+        className="group relative rounded-2xl p-6 sm:p-7 overflow-hidden border border-neutral-200/80 bg-white/90 backdrop-blur-2xl shadow-[0_20px_50px_rgba(17,17,17,0.06)] hover:shadow-[0_25px_60px_rgba(17,17,17,0.09)] transition-all duration-500"
       >
-        {/* Soft Background Radial Glow */}
-        <div className="absolute top-0 right-0 w-48 h-48 rounded-full bg-[#E31D2E]/5 blur-[80px] pointer-events-none" />
-
         {/* Header Row: Logo Orb + Title + Pill Badge */}
         <div className="flex items-center justify-between gap-4 mb-5">
           <div className="flex items-center gap-3">
@@ -249,13 +228,13 @@ const About = () => {
         <div className="grid grid-cols-2 gap-3 mb-4">
           <motion.div
             whileHover={{ y: -3, scale: 1.02 }}
-            className="relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
+            className="relative p-3.5 rounded-2xl bg-white border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
                 <AnimatedCounter target={10} suffix="+" />
               </span>
-              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E]">
+              <div className="w-6 h-6 rounded-lg bg-neutral-100 flex items-center justify-center text-[#111111]">
                 <Award className="w-3.5 h-3.5" />
               </div>
             </div>
@@ -266,13 +245,13 @@ const About = () => {
 
           <motion.div
             whileHover={{ y: -3, scale: 1.02 }}
-            className="relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
+            className="relative p-3.5 rounded-2xl bg-white border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
                 <AnimatedCounter target={8} suffix="+" />
               </span>
-              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E]">
+              <div className="w-6 h-6 rounded-lg bg-neutral-100 flex items-center justify-center text-[#111111]">
                 <TrendingUp className="w-3.5 h-3.5" />
               </div>
             </div>
@@ -283,13 +262,13 @@ const About = () => {
 
           <motion.div
             whileHover={{ y: -3, scale: 1.02 }}
-            className="relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
+            className="relative p-3.5 rounded-2xl bg-white border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
                 <AnimatedCounter target={1.5} suffix="+" />
               </span>
-              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E]">
+              <div className="w-6 h-6 rounded-lg bg-neutral-100 flex items-center justify-center text-[#111111]">
                 <Target className="w-3.5 h-3.5" />
               </div>
             </div>
@@ -300,13 +279,13 @@ const About = () => {
 
           <motion.div
             whileHover={{ y: -3, scale: 1.02 }}
-            className="relative p-3.5 rounded-2xl bg-gradient-to-br from-white via-neutral-50/80 to-[#E31D2E]/5 border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
+            className="relative p-3.5 rounded-2xl bg-white border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
           >
             <div className="flex items-center justify-between">
               <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
                 <AnimatedCounter target={98} suffix="%" />
               </span>
-              <div className="w-6 h-6 rounded-lg bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E]">
+              <div className="w-6 h-6 rounded-lg bg-neutral-100 flex items-center justify-center text-[#111111]">
                 <Shield className="w-3.5 h-3.5" />
               </div>
             </div>
@@ -367,7 +346,7 @@ const About = () => {
                 transition={{ duration: 0.6 }}
                 className="mb-4"
               >
-                <SectionBadge text="Vision & Mission" />
+                <SectionBadge text="Vision & Mission" theme="dark" />
               </motion.div>
 
               <motion.h2
@@ -398,7 +377,7 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative rounded-[2.5rem] p-8 sm:p-10 border border-neutral-200/80 bg-white/80 shadow-[0_20px_50px_rgba(17,17,17,0.04),_inset_0_2px_4px_rgba(255,255,255,0.9)] backdrop-blur-xl hover:shadow-[0_30px_70px_rgba(0,0,0,0.12)] hover:border-black/20 transition-all duration-500 flex flex-col justify-between"
+              className="group relative rounded-2xl p-8 sm:p-10 border border-white/90 bg-white shadow-2xl hover:shadow-[0_30px_70px_rgba(0,0,0,0.15)] transition-all duration-500 flex flex-col justify-between"
             >
               <div>
                 {/* Header row with Icon & Number */}
@@ -428,7 +407,7 @@ const About = () => {
               {/* Mini Highlight Tags */}
               <div className="mt-8 pt-6 border-t border-neutral-100 flex flex-wrap gap-2.5">
                 {["Innovative Strategies", "Data Intelligence", "Sustainable Growth"].map((tag, i) => (
-                  <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-100/80 text-xs font-bold text-[#111111]">
+                  <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-100 border border-neutral-200/60 text-xs font-extrabold text-[#111111]">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
                     {tag}
                   </span>
@@ -442,7 +421,7 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
-              className="group relative rounded-[2.5rem] p-8 sm:p-10 border border-neutral-200/80 bg-white/80 shadow-[0_20px_50px_rgba(17,17,17,0.04),_inset_0_2px_4px_rgba(255,255,255,0.9)] backdrop-blur-xl hover:shadow-[0_30px_70px_rgba(0,0,0,0.12)] hover:border-black/20 transition-all duration-500 flex flex-col justify-between"
+              className="group relative rounded-2xl p-8 sm:p-10 border border-white/90 bg-white shadow-2xl hover:shadow-[0_30px_70px_rgba(0,0,0,0.15)] transition-all duration-500 flex flex-col justify-between"
             >
               <div>
                 {/* Header row with Icon & Number */}
@@ -472,7 +451,7 @@ const About = () => {
               {/* Mini Highlight Tags */}
               <div className="mt-8 pt-6 border-t border-neutral-100 flex flex-wrap gap-2.5">
                 {["Performance Marketing", "Creative Excellence", "Measurable ROI"].map((tag, i) => (
-                  <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-100/80 text-xs font-bold text-[#111111]">
+                  <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-100 border border-neutral-200/60 text-xs font-extrabold text-[#111111]">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
                     {tag}
                   </span>
@@ -483,72 +462,62 @@ const About = () => {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════
-          WHO WE ARE — PRASKLA DIGITAL X identity section
-      ═══════════════════════════════════════════════ */}
-      <div
-        className="relative py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent"
-      >
+      {/* ── Section: Who We Are / Agency Impact Highlights ── */}
+      <div className="relative py-12 sm:py-16 overflow-hidden bg-transparent">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="clay-card p-8 sm:p-10 md:p-12 rounded-2xl bg-white border border-white/90 shadow-2xl text-[#111111]"
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+              {/* Left side text copy */}
+              <div className="lg:col-span-7 flex flex-col items-start text-left">
+                <div className="mb-4">
+                  <SectionBadge text="Who We Are" />
+                </div>
 
-            {/* Left side text container */}
-            <motion.div
-              className="space-y-7"
-              initial={{ opacity: 0, x: 40 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-            >
-              {/* Eyebrow badge */}
-              <div className="mb-2">
-                <SectionBadge text="Who we are" />
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight tracking-tight text-[#111111] font-sans mb-6">
+                  A Team Built for{" "}
+                  <span className="text-[#E31D2E]">Impact and Scale</span>
+                </h2>
+
+                <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium mb-4">
+                  At PRASKLA DIGITAL <BrandX className="h-[1.05em] w-auto text-[#E31D2E] inline-block translate-y-[0.14em]" />, we bring together creative visual creators, copywriting experts,
+                  ad strategists, and performance analytics professionals.
+                </p>
+
+                <p className="text-[#575757] text-base leading-relaxed">
+                  By bridging strategy, visual production, and media buying, we eliminate the friction 
+                  between branding and ROI — making campaign scale faster and more predictable for your company.
+                </p>
               </div>
 
-              {/* Eyebrow badge */}
-              <div className="mb-2">
-                <SectionBadge text="Who we are" />
+              {/* Right side metric grid */}
+              <div className="lg:col-span-5 grid grid-cols-2 gap-4">
+                {[
+                  { count: "10+", text: "Successful Projects Delivered" },
+                  { count: "8+", text: "Happy Brands Reached" },
+                  { count: "1.5+", text: "Years of Experience" },
+                  { count: "98%", text: "Client Partnership Retention" },
+                ].map((metric, i) => (
+                  <motion.div
+                    key={i}
+                    className="rounded-xl p-6 md:p-8 flex flex-col justify-center items-center text-center bg-neutral-50 border border-neutral-200/80 text-[#111111] shadow-xs"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: i * 0.1 }}
+                  >
+                    <span className="text-[#E31D2E] text-3xl sm:text-4xl font-black mb-2">{metric.count}</span>
+                    <span className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-bold">{metric.text}</span>
+                  </motion.div>
+                ))}
               </div>
-
-              <h2 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.25] tracking-[-0.02em] !text-white font-sans mb-5 sm:mb-6">
-                A Team Built for{" "}
-                <span className="text-[#E31D2E]">Impact and Scale</span>
-              </h2>
-
-              <p className="!text-neutral-300 text-base sm:text-lg leading-relaxed font-medium">
-                At PRASKLA DIGITAL <BrandX className="h-[1.05em] w-auto text-[#E31D2E] inline-block translate-y-[0.14em]" />, we bring together creative visual creators, copywriting experts,
-                ad strategists, and performance analytics professionals.
-              </p>
-
-              <p className="!text-neutral-300 text-base leading-relaxed">
-                By bridging strategy, visual production, and media buying, we eliminate the friction 
-                between branding and ROI — making campaign scale faster and more predictable for your company.
-              </p>
-            </motion.div>
-
-            {/* Right side metric grid */}
-            <div className="grid grid-cols-2 gap-4">
-              {[
-                { count: "10+", text: "Successful Projects Delivered" },
-                { count: "8+", text: "Happy Brands Reached" },
-                { count: "1.5+", text: "Years of Experience" },
-                { count: "98%", text: "Client Partnership Retention" },
-              ].map((metric, i) => (
-                <motion.div
-                  key={i}
-                  className="clay-card rounded-2xl p-6 md:p-8 flex flex-col justify-center items-center text-center bg-white text-[#111111]"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                >
-                  <span className="text-[#E31D2E] text-3xl sm:text-4xl font-black mb-2">{metric.count}</span>
-                  <span className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-bold">{metric.text}</span>
-                </motion.div>
-              ))}
             </div>
-
-          </div>
+          </motion.div>
         </div>
       </div>
 
@@ -557,104 +526,92 @@ const About = () => {
       </section>
 
       {/* What We Bring to the Table — Expertise Section */}
-      <section className="relative w-full py-16 sm:py-20 lg:py-24 bg-transparent overflow-hidden">
-
+      <section className="relative w-full py-12 sm:py-16 bg-transparent overflow-hidden">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-          {/* Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-            <motion.div 
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              className="flex justify-center mb-4"
-            >
-              <SectionBadge text="Our Core Expertise" />
-            </motion.div>
-            
-            <motion.h2 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-black !text-white leading-tight tracking-tight"
-            >
-              What We <span className="text-[#E31D2E]">Bring to the Table</span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 15 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="!text-neutral-300 text-sm sm:text-base font-medium leading-relaxed mt-4 max-w-xl mx-auto"
-            >
-              Strategic brand positioning, growth marketing, and visual production engineered to scale your business.
-            </motion.p>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="clay-card p-8 sm:p-10 md:p-12 rounded-2xl bg-white border border-white/90 shadow-2xl text-[#111111]"
+          >
+            {/* Section Header inside Box */}
+            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+              <div className="flex justify-center mb-4">
+                <SectionBadge text="Our Core Expertise" />
+              </div>
+              
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111111] leading-tight tracking-tight">
+                What We <span className="text-[#E31D2E]">Bring to the Table</span>
+              </h2>
+              <p className="text-[#575757] text-sm sm:text-base font-medium leading-relaxed mt-4 max-w-xl mx-auto">
+                Strategic brand positioning, growth marketing, and visual production engineered to scale your business.
+              </p>
+            </div>
 
-          {/* Cards Grid: Desktop 3 col, Tablet 2+1, Mobile 1 col */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-            {[
-              {
-                id: "01",
-                icon: Target,
-                title: "Mindful Brand Strategy",
-                desc: "Strategic brand positioning, identity frameworks, and content ecosystems designed to build authority, clarity, and long-term market recognition.",
-                link: "/services"
-              },
-              {
-                id: "02",
-                icon: TrendingUp,
-                title: "Performance Marketing",
-                desc: "Data-driven growth campaigns including technical SEO, Meta Ads, targeted PPC, and conversion optimization focused on measurable ROI.",
-                link: "/services"
-              },
-              {
-                id: "03",
-                icon: Video,
-                title: "Creative Media & Production",
-                desc: "High-impact brand videography, photography, motion graphics, and digital storytelling that transform businesses into visual powerhouses.",
-                link: "/services"
-              }
-            ].map((item, index) => {
-              const IconComponent = item.icon;
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.12, ease: "easeOut" }}
-                  className="group relative"
-                >
-                  <div className="h-full bg-white border border-neutral-200/80 rounded-[28px] p-7 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.06)] hover:border-black/20 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
-                    
-                    {/* Top Row: Icon Container + Category Number */}
-                    <div>
-                      <div className="flex items-center justify-between gap-4 mb-6">
-                        <div className="w-14 h-14 rounded-2xl bg-[#FF2B2B]/10 border border-[#FF2B2B]/20 flex items-center justify-center text-[#FF2B2B] group-hover:bg-[#FF2B2B] group-hover:text-white group-hover:border-[#FF2B2B] transition-all duration-300 shrink-0 shadow-xs">
-                          <IconComponent className="w-7 h-7 stroke-[2.2]" />
+            {/* Cards Grid inside Box */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+              {[
+                {
+                  id: "01",
+                  icon: Target,
+                  title: "Mindful Brand Strategy",
+                  desc: "Strategic brand positioning, identity frameworks, and content ecosystems designed to build authority, clarity, and long-term market recognition.",
+                  link: "/services"
+                },
+                {
+                  id: "02",
+                  icon: TrendingUp,
+                  title: "Performance Marketing",
+                  desc: "Data-driven growth campaigns including technical SEO, Meta Ads, targeted PPC, and conversion optimization focused on measurable ROI.",
+                  link: "/services"
+                },
+                {
+                  id: "03",
+                  icon: Video,
+                  title: "Creative Media & Production",
+                  desc: "High-impact brand videography, photography, motion graphics, and digital storytelling that transform businesses into visual powerhouses.",
+                  link: "/services"
+                }
+              ].map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <motion.div
+                    key={item.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.12 }}
+                    className="group relative"
+                  >
+                    <div className="h-full bg-neutral-50/90 border border-neutral-200/80 rounded-xl p-7 sm:p-8 hover:border-black/20 hover:bg-neutral-100 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                      {/* Top Row: Icon Container + Category Number */}
+                      <div>
+                        <div className="flex items-center justify-between gap-4 mb-6">
+                          <div className="w-14 h-14 rounded-2xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white transition-all duration-300 shrink-0 shadow-xs">
+                            <IconComponent className="w-7 h-7 stroke-[2.2]" />
+                          </div>
+                          <span className="font-mono text-sm font-bold text-[#E31D2E] tracking-wider bg-[#E31D2E]/10 px-3 py-1 rounded-full border border-[#E31D2E]/20">
+                            {item.id}
+                          </span>
                         </div>
-                        <span className="font-space-grotesk text-sm font-bold text-[#FF2B2B] tracking-wider bg-[#FF2B2B]/10 px-3 py-1 rounded-full border border-[#FF2B2B]/20">
-                          {item.id}
-                        </span>
+
+                        {/* Headline */}
+                        <h3 className="text-xl sm:text-2xl font-black text-[#111111] mb-3 leading-snug">
+                          {item.title}
+                        </h3>
+
+                        {/* Description */}
+                        <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal">
+                          {item.desc}
+                        </p>
                       </div>
-
-                      {/* Headline */}
-                      <h3 className="text-xl sm:text-2xl font-black text-[#111111] mb-3 leading-snug">
-                        {item.title}
-                      </h3>
-
-                      {/* Description */}
-                      <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-normal">
-                        {item.desc}
-                      </p>
                     </div>
-                  </div>
-                </motion.div>
-              );
-            })}
-          </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -665,7 +622,7 @@ const About = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="clay-card p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden group text-[#111111] bg-white border border-white/90 shadow-2xl"
+            className="clay-card p-8 md:p-12 rounded-2xl relative overflow-hidden group text-[#111111] bg-white border border-white/90 shadow-2xl"
           >
             <h2 className="text-3xl md:text-4xl font-black text-[#111111] mb-6 leading-tight">
               Ready to Transform <br />

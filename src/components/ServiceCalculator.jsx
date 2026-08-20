@@ -219,7 +219,7 @@ function HeroAnimatedStat({ targetNum, suffix = "+", label, icon: Icon, delay = 
       animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 20, scale: 0.92 }}
       transition={{ duration: 0.6, delay: delay * 0.3, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -6, scale: 1.03 }}
-      className="clay-card relative flex items-center gap-3.5 p-4 px-5 sm:px-6 rounded-[1.75rem] border border-white/70 shadow-[0_10px_28px_rgba(17,17,17,0.03)] backdrop-blur-xl bg-white/75 hover:bg-white/90 cursor-default group transition-all duration-300 min-w-[135px] sm:min-w-[160px]"
+      className="clay-card relative flex items-center gap-3.5 p-4 px-5 sm:px-6 rounded-[1.75rem] border border-white/90 shadow-xl bg-white hover:bg-white cursor-default group transition-all duration-300 min-w-[135px] sm:min-w-[160px]"
     >
       {/* Light glass highlight overlay */}
       <div className="absolute inset-0 rounded-[1.75rem] bg-gradient-to-br from-white/70 via-transparent to-transparent pointer-events-none" />
@@ -292,15 +292,15 @@ function HeroShowcase({ ourServicesImg }) {
         }}
       >
         {/* Claymorphic Outer Showcase Frame */}
-        <div className={`relative rounded-[2.5rem] p-3.5 sm:p-4 bg-white/50 backdrop-blur-2xl border border-white/60 shadow-[0_20px_50px_rgba(17,17,17,0.06)] transition-all duration-500 overflow-visible ${
-          isHovered ? "border-neutral-300 shadow-[0_16px_50px_rgba(0,0,0,0.08)] bg-white/70" : ""
+        <div className={`relative rounded-2xl p-3.5 sm:p-4 bg-white border border-white/90 shadow-2xl transition-all duration-500 overflow-visible ${
+          isHovered ? "shadow-[0_25px_60px_rgba(0,0,0,0.15)] bg-white" : ""
         }`}>
           
           {/* Inner Light Highlight Reflection */}
-          <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-tr from-white/80 via-transparent to-white/40 pointer-events-none z-10" />
+          <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-white/80 via-transparent to-white/40 pointer-events-none z-10" />
 
           {/* Image Container with Parallax Effect */}
-          <div className="relative rounded-[2rem] overflow-hidden aspect-[4/3]">
+          <div className="relative rounded-xl overflow-hidden aspect-[4/3]">
             <img
               src={ourServicesImg}
               alt="Digital Marketing Strategy"
@@ -833,7 +833,7 @@ export default function ServiceCalculator() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <SectionBadge text="Our Services" />
+              <SectionBadge text="Our Services" theme="dark" />
             </motion.div>
           }
           title={
@@ -918,11 +918,11 @@ export default function ServiceCalculator() {
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-center justify-center text-center gap-2 mb-16"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#111111] tracking-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight">
               Our <span className="text-[#FF2B2B]">Core Expertise</span>
             </h2>
             <div className="h-1.5 w-24 bg-[#FF2B2B] rounded-full mb-1" />
-            <p className="text-[#575757] text-sm md:text-base font-medium max-w-md tracking-wide">
+            <p className="text-neutral-300 text-sm md:text-base font-medium max-w-md tracking-wide">
               Strategic services designed to accelerate modern brands.
             </p>
           </motion.div>
@@ -969,7 +969,7 @@ export default function ServiceCalculator() {
                       }}
                     >
                       <div
-                        className={`relative rounded-[2.25rem] md:rounded-[2.5rem] p-6 md:p-7 pt-7 md:pt-8 flex flex-col justify-between items-start text-left min-h-[335px] md:min-h-[355px] cursor-pointer transition-all duration-500 ease-out group overflow-hidden select-none bg-white border ${
+                        className={`relative rounded-2xl p-6 md:p-7 pt-7 md:pt-8 flex flex-col justify-between items-start text-left min-h-[335px] md:min-h-[355px] cursor-pointer transition-all duration-500 ease-out group overflow-hidden select-none bg-white border ${
                           isProgrammaticHover
                             ? 'border-[#E31D2E] shadow-[0_22px_45px_rgba(0,0,0,0.15)] -translate-y-4 scale-[1.05] z-30'
                             : 'border-neutral-300 shadow-[0_10px_28px_rgba(0,0,0,0.07)] hover:border-neutral-400 hover:-translate-y-2 hover:shadow-[0_18px_40px_rgba(0,0,0,0.1)] opacity-95 hover:opacity-100 z-10'
@@ -1090,16 +1090,16 @@ export default function ServiceCalculator() {
           >
             {/* Small Badge */}
             <div className="mb-4">
-              <SectionBadge text="BUILD YOUR PLAN" />
+              <SectionBadge text="BUILD YOUR PLAN" theme="dark" />
             </div>
 
             {/* Large Heading */}
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#111111] tracking-tight mb-4">
-Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
+            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight mb-4">
+              Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
             </h2>
 
             {/* Small Supporting Paragraph */}
-            <p className="text-[#575757] text-base md:text-lg max-w-xl font-medium">
+            <p className="text-neutral-300 text-base md:text-lg max-w-xl font-medium">
               Select the services you need and instantly preview your investment.
             </p>
           </motion.div>
@@ -1107,7 +1107,7 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left Column: Pillars */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="bg-white p-6 sm:p-8 md:p-9 rounded-[2.5rem] border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.05)] relative overflow-hidden">
+              <div className="bg-white p-6 sm:p-8 md:p-9 rounded-2xl border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.05)] relative overflow-hidden">
                 <div className="flex items-center justify-between mb-7 pb-4 border-b border-gray-100">
                   <h3 className="text-xs font-black text-[#111111] uppercase tracking-[0.2em] flex items-center gap-2.5">
                     <span className="w-2.5 h-2.5 rounded-full bg-[#E31D2E] animate-pulse" />
@@ -1141,7 +1141,7 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
                         key={p.id || pTitle}
                         type="button"
                         onClick={(e) => handlePlatformClick(p, e)}
-                        className={`group relative p-5 rounded-[1.75rem] border transition-all duration-300 text-left overflow-hidden flex items-center justify-between cursor-pointer min-h-[105px] ${
+                        className={`group relative p-5 rounded-xl border transition-all duration-300 text-left overflow-hidden flex items-center justify-between cursor-pointer min-h-[105px] ${
                           isSelected
                             ? "bg-gradient-to-br from-white via-red-50/40 to-white border-[#E31D2E] shadow-[0_14px_36px_rgba(0,0,0,0.08)] scale-[1.02] -translate-y-0.5"
                             : "bg-slate-50/70 border-slate-200/80 hover:bg-white hover:border-black/20 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] hover:-translate-y-0.5"
@@ -1230,7 +1230,7 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
             {/* Right Column: Redesigned Dashboard-Style Sticky Summary Card */}
             <div className="lg:col-span-5">
               <div className="sticky top-28">
-                <div className="bg-white p-6 sm:p-8 rounded-[2.5rem] border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.05)] relative overflow-hidden">
+                <div className="bg-white p-6 sm:p-8 rounded-2xl border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.05)] relative overflow-hidden">
                   <div className="relative z-10 space-y-5">
                     {/* Header with Inline Status Badge */}
                     <div className="flex items-center justify-between pb-4 border-b border-gray-100">

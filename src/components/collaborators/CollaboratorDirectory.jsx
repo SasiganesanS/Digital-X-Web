@@ -87,8 +87,8 @@ export default function CollaboratorDirectory() {
                 onClick={() => setActiveCategory(cat.id)}
                 className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer ${
                   isActive
-                    ? "bg-[#111111] text-white shadow-md scale-105"
-                    : "bg-neutral-100 text-neutral-600 hover:bg-neutral-200 hover:text-black"
+                    ? "bg-[#E31D2E] text-white shadow-md scale-105"
+                    : "bg-white text-[#111111] hover:bg-neutral-100 border border-white/90 shadow-sm"
                 }`}
               >
                 {cat.label}
@@ -105,7 +105,7 @@ export default function CollaboratorDirectory() {
         </div>
 
         {/* How Collaboration Works — Process Section */}
-        <div className="rounded-[2.5rem] bg-neutral-50 border border-neutral-200/80 p-8 sm:p-12 lg:p-14 mb-16">
+        <div className="rounded-2xl bg-neutral-50 border border-neutral-200/80 p-8 sm:p-12 lg:p-14 mb-16">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <span className="text-xs font-black uppercase tracking-[0.2em] text-[#E31D2E] block mb-2">
               Agency Managed Engagement

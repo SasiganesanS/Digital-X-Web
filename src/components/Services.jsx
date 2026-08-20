@@ -70,7 +70,7 @@ const Services = () => {
                 className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-xl mx-auto lg:mx-0"
               >
                 <div className="mb-5">
-                  <SectionBadge text="Our Services" />
+                  <SectionBadge text="Our Services" theme="dark" />
                 </div>
 
                 <h1 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-white font-sans mb-5 sm:mb-6 max-w-2xl">
@@ -92,7 +92,7 @@ const Services = () => {
                 </Link>
                 <a
                   href="#expertise"
-                  className="px-8 py-4 rounded-full font-bold border border-neutral-200 text-[#111111] hover:border-black/30 hover:text-[#FF2B2B] transition-all"
+                  className="px-8 py-4 rounded-full font-bold border border-white/20 text-white hover:border-white/50 hover:text-[#FF2B2B] transition-all"
                 >
                   Core Expertise
                 </a>
@@ -107,7 +107,7 @@ const Services = () => {
               className="w-full min-w-0"
             >
               <div className="flex flex-col gap-2 mb-8 text-center lg:text-left">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-[#111111] tracking-tight">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight">
                   Our <span className="text-[#FF2B2B]">Core Expertise</span>
                 </h2>
                 <div className="h-1 w-24 bg-[#FF2B2B] rounded-full mx-auto lg:mx-0" />

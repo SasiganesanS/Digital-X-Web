@@ -241,7 +241,7 @@ const SearchOverlay = ({ isOpen, onClose, setShowContactForm }) => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.98, y: -8 }}
           transition={{ duration: 0.18, ease: "easeOut" }}
-          className="w-full max-w-xl sm:max-w-2xl bg-white rounded-2xl sm:rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-200/60 overflow-hidden flex flex-col transition-all duration-200"
+          className="w-full max-w-xl sm:max-w-2xl bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-200/60 overflow-hidden flex flex-col transition-all duration-200"
           onClick={(e) => e.stopPropagation()}
         >
           {/* BEAUTIFULLY ALIGNED SINGLE TYPING ROW */}

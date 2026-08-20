@@ -11,7 +11,7 @@ const styles = `
   border-radius: 50%;
   background-color: #E31D2E;
   border: none;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16), 4px 4px 10px rgba(0, 0, 0, 0.08), -4px -4px 10px rgba(255, 255, 255, 0.6);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   color: #ffffff;

@@ -141,7 +141,7 @@ const ProjectDetail = () => {
                     <span>{fromPath === '/' ? "Back to Home" : "Back to Projects"}</span>
                   </button>
 
-                  <SectionBadge text="Project Showcase" />
+                  <SectionBadge text="Project Showcase" theme="dark" />
                 </div>
 
                 {/* Title */}
@@ -195,8 +195,8 @@ const ProjectDetail = () => {
               className="lg:col-span-5 w-full flex justify-center lg:justify-end"
             >
               <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
-                <div className="relative rounded-[2.5rem] p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden">
-                  <div className="relative rounded-[2rem] overflow-hidden aspect-[4/3] bg-white">
+                <div className="relative rounded-2xl p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden">
+                  <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-white">
                     <img
                       src={project.image}
                       alt={project.title}
@@ -227,18 +227,18 @@ const ProjectDetail = () => {
 
       {/* ── PROJECT HIGHLIGHTS & SCOPE ── */}
       {project.overview && (
-        <section className="relative w-full py-16 sm:py-20 lg:py-24 bg-transparent border-t border-gray-200/60">
+        <section className="relative w-full py-14 sm:py-16 lg:py-20 bg-transparent">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-            <div className="bg-white p-8 sm:p-12 md:p-14 rounded-[2.5rem] border border-gray-200/90 shadow-sm relative overflow-hidden">
-              <div className="max-w-3xl mb-10">
+            <div className="bg-white p-8 sm:p-10 md:p-12 rounded-2xl border border-white/90 shadow-2xl relative overflow-hidden text-[#111111]">
+              <div className="max-w-3xl mb-8">
                 <div className="inline-flex items-center gap-2 text-[#E31D2E] text-xs font-black uppercase tracking-[0.25em] mb-4">
                   <span className="w-6 h-[2px] bg-[#E31D2E]" />
                   Project Scope
                 </div>
-                <h2 className="text-3xl sm:text-4xl font-black text-[#111111] leading-tight mb-4 tracking-tight">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#111111] leading-tight mb-4 tracking-tight font-sans">
                   {project.overview.headline}
                 </h2>
-                <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium">
+                <p className="text-[#575757] text-base leading-relaxed font-medium font-sans">
                   {project.overview.paragraph}
                 </p>
               </div>
@@ -246,19 +246,19 @@ const ProjectDetail = () => {
               {/* Deliverables & Features Grid */}
               {project.overview.features && (
                 <div>
-                  <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#111111] mb-6">
+                  <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#111111] mb-5 font-sans">
                     Deliverables & Highlights
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {project.overview.features.map((item, idx) => (
                       <div
                         key={idx}
-                        className="p-5 rounded-2xl bg-slate-50 border border-slate-200/80 flex items-start gap-3"
+                        className="p-4 rounded-xl bg-neutral-50 border border-neutral-200/80 flex items-start gap-3"
                       >
-                        <span className="w-6 h-6 rounded-full bg-red-50 text-[#E31D2E] font-black text-xs flex items-center justify-center shrink-0 mt-0.5">
+                        <span className="w-5 h-5 rounded-full bg-neutral-200/80 text-[#111111] font-black text-xs flex items-center justify-center shrink-0 mt-0.5">
                           ✓
                         </span>
-                        <span className="text-sm font-semibold text-[#333333] leading-relaxed">
+                        <span className="text-sm font-semibold text-[#111111] leading-relaxed font-sans">
                           {item}
                         </span>
                       </div>
@@ -298,7 +298,7 @@ const ProjectDetail = () => {
           )}
 
           {/* CTA Box */}
-          <div className="p-8 sm:p-12 md:p-14 rounded-[2.5rem] bg-gradient-to-br from-[#111111] via-[#1A1A1A] to-[#111111] text-white shadow-2xl relative overflow-hidden">
+          <div className="p-8 sm:p-12 md:p-14 rounded-2xl bg-gradient-to-br from-[#111111] via-[#1A1A1A] to-[#111111] text-white shadow-2xl relative overflow-hidden">
             <span className="text-[#E31D2E] text-xs font-black tracking-[0.3em] uppercase mb-3 block">
               Work With Us
             </span>
@@ -321,7 +321,7 @@ const ProjectDetail = () => {
 
               <Link
                 to={`/case-study/${project.slug || project.id}`}
-                className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/20 hover:border-white/40 bg-white/10 text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2"
+                className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/90 bg-white text-[#111111] hover:bg-neutral-100 font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md"
               >
                 <span>View Full Case Study</span>
               </Link>

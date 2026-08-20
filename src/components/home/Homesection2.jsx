@@ -257,7 +257,7 @@ export default function FeaturedWorks() {
     <section id="projects" className="relative overflow-hidden bg-transparent py-10 sm:py-12 lg:py-14">
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
         {/* Main Unified Card Container — Header & Showcase in ONE Box (matching Hero Section card) */}
-        <div className="relative flex flex-col items-start p-6 sm:p-8 lg:p-9 rounded-[32px] border border-white/90 shadow-[0_25px_60px_rgba(0,0,0,0.4)] bg-white text-[#111111] transition-all duration-300 w-full overflow-hidden">
+        <div className="relative flex flex-col items-start p-6 sm:p-8 lg:p-9 rounded-2xl border border-white/90 shadow-[0_25px_60px_rgba(0,0,0,0.4)] bg-white text-[#111111] transition-all duration-300 w-full overflow-hidden">
           
           {/* Section Header (Inside the Card Box) */}
           <div className="mb-6 w-full max-w-3xl space-y-2">
@@ -301,7 +301,7 @@ export default function FeaturedWorks() {
               {/* Category Pill Tag Overlay */}
               <div className="absolute top-4 left-4 z-20">
                 <span className="px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.18)] text-[#111111] text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#E31D2E]" />
+                  <span className="w-2 h-2 rounded-full bg-[#111111]" />
                   <span>{activeProject.category || activeProject.services?.[0] || "Featured Work"}</span>
                 </span>
               </div>

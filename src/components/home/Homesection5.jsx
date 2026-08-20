@@ -192,7 +192,7 @@ const Homesection5 = () => {
                   className="absolute w-72 h-72 md:w-80 md:h-80"
                 >
                   {/* THIS IS THE LIQUID GLASS CARD FROM THE HERO */}
-                  <div className="relative w-full h-full bg-white/30 rounded-3xl shadow-lg border border-white/20 backdrop-blur-lg transform -rotate-12 flex items-center justify-center p-8">
+                  <div className="relative w-full h-full bg-white/30 rounded-2xl shadow-lg border border-white/20 backdrop-blur-lg transform -rotate-12 flex items-center justify-center p-8">
                     <img
                       src={review.image}
                       alt={review.name}

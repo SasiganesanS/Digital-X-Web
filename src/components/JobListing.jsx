@@ -335,20 +335,20 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
       <div ref={containerRef} className="bg-transparent py-4 sm:py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Dynamic Animated Job Count Header */}
-          <div className="flex items-center justify-between mb-6 sm:mb-8 pb-4 border-b border-neutral-200/60">
+          <div className="flex items-center justify-between mb-6 sm:mb-8 pb-4 border-b border-white/10">
             <div className="flex items-center gap-3">
               <span className="relative flex h-3 w-3">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-[#E31D2E]" />
               </span>
-              <span className="text-[#111111] text-base sm:text-lg font-bold tracking-tight flex items-center gap-2">
+              <span className="text-white text-base sm:text-lg font-bold tracking-tight flex items-center gap-2">
                 Showing{" "}
                 <motion.span
                   key={jobs.length}
                   initial={{ opacity: 0, y: -8, scale: 0.8 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="inline-block px-2.5 py-0.5 rounded-full bg-[#E31D2E]/10 text-[#E31D2E] font-black"
+                  className="inline-block px-2.5 py-0.5 rounded-full bg-[#E31D2E]/20 text-[#E31D2E] font-black shadow-xs"
                 >
                   {jobs.length}
                 </motion.span>{" "}
@@ -389,7 +389,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                     transition={{ duration: 0.4, delay: index * 0.06, ease: "easeOut" }}
                     whileHover={{ y: -6 }}
                     onClick={() => handleJobClick(job)}
-                    className="group relative rounded-[28px] bg-white border border-neutral-200/80 p-5 sm:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-black/20 transition-all duration-300 flex flex-col justify-between h-full cursor-pointer min-h-[300px]"
+                    className="group relative rounded-2xl bg-white border border-neutral-200/80 p-5 sm:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-black/20 transition-all duration-300 flex flex-col justify-between h-full cursor-pointer min-h-[300px]"
                   >
                     <div>
                       {/* 1. Job Title & Apply Pill Button Header (Fixed 52px height container) */}

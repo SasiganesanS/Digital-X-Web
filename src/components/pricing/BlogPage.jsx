@@ -126,7 +126,7 @@ const BlogPage = () => {
               <button
                 type="button"
                 onClick={() => navigate("/projects")}
-                className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white text-xs font-bold uppercase tracking-wider transition-all duration-200 group cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-white/90 bg-white text-[#111111] hover:bg-neutral-100 shadow-md text-xs font-extrabold uppercase tracking-wider transition-all duration-200 group cursor-pointer"
               >
                 <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#E31D2E]" />
                 <span>Back to Projects</span>
@@ -134,7 +134,7 @@ const BlogPage = () => {
             </div>
 
             {/* Breadcrumb Pill */}
-            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/20 bg-white/10 backdrop-blur-md text-white/90 text-xs font-bold tracking-wider mb-5">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/90 bg-white text-[#111111] shadow-md text-xs font-extrabold tracking-wider mb-5">
               <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
               <span>Blog / {post.title || post.name}</span>
             </div>
@@ -158,7 +158,7 @@ const BlogPage = () => {
         <section className="relative w-full py-16 sm:py-20 lg:py-24 bg-transparent">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
             
-            <div className="bg-white p-8 sm:p-12 md:p-14 rounded-[2.5rem] border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.04)] relative overflow-hidden">
+            <div className="bg-white p-8 sm:p-12 md:p-14 rounded-2xl border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.04)] relative overflow-hidden">
               
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start relative z-10">
                 
@@ -174,10 +174,10 @@ const BlogPage = () => {
                     <span className="w-6 h-[2px] bg-[#E31D2E]" />
                     Overview
                   </div>
-                  <h2 className="text-3xl sm:text-4xl font-black text-[#111111] leading-tight tracking-tight">
+                  <h2 className="text-3xl sm:text-4xl font-black text-white leading-tight tracking-tight">
                     {overview.headline || "Client Overview"}
                   </h2>
-                  <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium">
+                  <p className="text-neutral-300 text-base sm:text-lg leading-relaxed font-medium">
                     {overview.paragraph}
                   </p>
 
@@ -231,11 +231,11 @@ const BlogPage = () => {
                   transition={{ duration: 0.7 }}
                   className="lg:col-span-5 flex justify-center lg:justify-end"
                 >
-                  <div className="relative rounded-[2rem] p-3 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden w-full max-w-md">
+                  <div className="relative rounded-2xl p-3 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden w-full max-w-md">
                     <img
                       src={overview.image || heroImage || DEFAULT_CLIENT_IMAGE}
                       alt={overview.headline || post.title || post.name}
-                      className="w-full h-auto aspect-[4/3] object-cover rounded-[1.5rem]"
+                      className="w-full h-auto aspect-[4/3] object-cover rounded-xl"
                     />
                   </div>
                 </motion.div>
@@ -263,7 +263,7 @@ const BlogPage = () => {
                 <span className="w-6 h-[2px] bg-[#E31D2E]" />
                 Measurable Impact
               </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111111] tracking-tight">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
                 Value <span className="text-[#E31D2E]">Addition</span>
               </h2>
             </motion.div>
@@ -302,7 +302,7 @@ const BlogPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="p-8 sm:p-12 md:p-14 rounded-[2.5rem] bg-gradient-to-br from-[#111111] via-[#1A1A1A] to-[#111111] text-white shadow-2xl relative overflow-hidden"
+            className="p-8 sm:p-12 md:p-14 rounded-2xl bg-gradient-to-br from-[#111111] via-[#1A1A1A] to-[#111111] text-white shadow-2xl relative overflow-hidden"
           >
             <span className="text-[#E31D2E] text-xs font-black tracking-[0.3em] uppercase mb-3 block">
               Transform Your Digital Reach
@@ -327,7 +327,7 @@ const BlogPage = () => {
               <button
                 type="button"
                 onClick={() => navigate("/projects")}
-                className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/20 hover:border-white/40 bg-white/10 text-white font-bold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer"
+                className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/90 bg-white text-[#111111] hover:bg-neutral-100 font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
                 <span>Explore All Projects</span>
               </button>

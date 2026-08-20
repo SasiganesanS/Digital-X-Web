@@ -9,12 +9,9 @@ export default function CollaboratorSection() {
     <section className="py-14 sm:py-16 lg:py-20 bg-transparent overflow-hidden border-t border-neutral-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Card Banner */}
-        <div className="relative rounded-[2.5rem] bg-gradient-to-br from-white via-neutral-50/80 to-white border border-neutral-200/90 shadow-[0_16px_45px_rgba(0,0,0,0.04)] p-8 sm:p-10 lg:p-12 overflow-hidden">
+        {/* Section Card Banner — 100% Solid White Container */}
+        <div className="relative rounded-2xl bg-white border border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.4)] p-8 sm:p-10 lg:p-12 overflow-hidden text-[#111111]">
           
-          {/* Decorative Subtle Background Element */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-[#E31D2E]/5 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
-
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
             
             {/* Left Content Area (7 Cols) */}

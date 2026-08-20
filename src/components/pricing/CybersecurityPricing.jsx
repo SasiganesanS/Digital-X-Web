@@ -256,7 +256,7 @@ const CybersecurityPricing = () => {
             return (
               <div
                 key={index}
-                className="bg-gray-100 rounded-3xl overflow-hidden h-full flex flex-col"
+                className="bg-gray-100 rounded-2xl overflow-hidden h-full flex flex-col"
               >
                 {/* Service Header */}
                 <div className="p-6">

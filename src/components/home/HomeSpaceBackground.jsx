@@ -4,18 +4,20 @@ import CanvasPlanet from "./CanvasPlanet";
 
 import MarsMainImg from "../../assets/planets/mars_main.png";
 import MarsPolarImg from "../../assets/planets/mars_polar.png";
-import MarsCrescentImg from "../../assets/planets/mars_crescent.png";
-import BigMeteorImg from "../../assets/planets/big_meteor.png";
+import SpaceStationImg from "../../assets/planets/space_station.png";
+import ExplodingAsteroidImg from "../../assets/planets/exploding_asteroid.png";
+import FieryMeteorImg from "../../assets/planets/fiery_meteor.png";
+import SatelliteImg from "../../assets/planets/satellite.png";
 
-/** Generate 100 stable twinkling star positions for continuous full-page galaxy field */
-const FULLPAGE_STARS = Array.from({ length: 100 }, (_, i) => ({
+/** Generate 180 twinkling stars with 3D glow spread across full height */
+const FULLPAGE_STARS = Array.from({ length: 180 }, (_, i) => ({
   id: i,
-  top: `${(i * 13 + 3) % 97}%`,
-  left: `${(i * 19 + 7) % 97}%`,
-  size: i % 7 === 0 ? 3.5 : i % 3 === 0 ? 2.2 : 1.2,
-  delay: (i * 0.17) % 4,
-  duration: 1.8 + (i % 5) * 0.6,
-  glow: i % 4 === 0,
+  top: `${(i * 9.7 + 2) % 98}%`,
+  left: `${(i * 13.3 + 4) % 96}%`,
+  size: i % 8 === 0 ? 6.5 : i % 4 === 0 ? 4.5 : i % 2 === 0 ? 3.0 : 2.0,
+  delay: (i * 0.13) % 4,
+  duration: 1.5 + (i % 6) * 0.4,
+  glow: i % 3 === 0,
 }));
 
 /** Shooting stars / Comets data positioned along outer open margins */
@@ -30,9 +32,9 @@ export default function HomeSpaceBackground() {
   const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
 
-  // Multi-layered Parallax depth transforms (GPU transform-only)
+  // Multi-layered Parallax depth transforms
   const layer1Y = useTransform(scrollYProgress, [0, 1], ["0px", "-120px"]); // Far Background (Stars)
-  const layer2Y = useTransform(scrollYProgress, [0, 1], ["0px", "-260px"]); // Mid Background (Nebula & Meteors)
+  const layer2Y = useTransform(scrollYProgress, [0, 1], ["0px", "-260px"]); // Mid Background (Space Station, Asteroids, Satellite)
   const layer3Y = useTransform(scrollYProgress, [0, 1], ["0px", "-420px"]); // Foreground (Mars Planet Views)
 
   return (
@@ -43,19 +45,19 @@ export default function HomeSpaceBackground() {
 
       {/* Brand Red & Mars Crimson Cosmic Ambient Glows */}
       <div
-        className="absolute top-[8%] left-[15%] w-[850px] h-[520px] rounded-full opacity-35 blur-[140px] pointer-events-none"
+        className="absolute top-[8%] right-[2%] w-[850px] h-[520px] rounded-full opacity-35 blur-[140px] pointer-events-none"
         style={{
           background: "radial-gradient(ellipse at center, rgba(239,32,41,0.22) 0%, rgba(15,18,28,0.1) 60%, transparent 80%)",
         }}
       />
       <div
-        className="absolute top-[45%] right-[10%] w-[950px] h-[650px] rounded-full opacity-30 blur-[150px] pointer-events-none"
+        className="absolute top-[45%] left-[2%] w-[950px] h-[650px] rounded-full opacity-30 blur-[150px] pointer-events-none"
         style={{
           background: "radial-gradient(ellipse at center, rgba(239,32,41,0.18) 0%, rgba(20,24,38,0.1) 65%, transparent 80%)",
         }}
       />
       <div
-        className="absolute top-[75%] left-[20%] w-[800px] h-[550px] rounded-full opacity-25 blur-[140px] pointer-events-none"
+        className="absolute top-[75%] right-[4%] w-[800px] h-[550px] rounded-full opacity-25 blur-[140px] pointer-events-none"
         style={{
           background: "radial-gradient(ellipse at center, rgba(227,29,46,0.16) 0%, rgba(10,12,20,0.1) 60%, transparent 80%)",
         }}
@@ -106,82 +108,71 @@ export default function HomeSpaceBackground() {
         ))}
       </motion.div>
 
-      {/* ── LAYER 2: MID BACKGROUND (NEBULA, BIG METEORS & SHOOTING STARS) ── */}
+      {/* ── LAYER 2: MID BACKGROUND (ALTERNATING SPACE STATION, ASTEROIDS, METEORS & SATELLITE) ── */}
       <motion.div
         className="absolute inset-0 w-full h-full"
         style={{ y: shouldReduceMotion ? 0 : layer2Y }}
       >
-        {/* Rotating Galaxy Core Ambient Blur */}
+        {/* ITEM 2 (Upper-Left ~ 22%): Photorealistic 3D Space Station */}
         <motion.div
-          className="absolute top-[20%] left-1/2 -translate-x-1/2 w-[1100px] h-[650px] rounded-[100%] opacity-35 blur-[130px]"
-          style={{
-            background:
-              "radial-gradient(ellipse at center, rgba(239,32,41,0.2) 0%, rgba(20,24,36,0.15) 50%, transparent 80%)",
-          }}
-          animate={
-            shouldReduceMotion
-              ? {}
-              : {
-                  rotate: [0, 360],
-                  scale: [0.96, 1.05, 0.96],
-                }
-          }
-          transition={{
-            rotate: { duration: 140, repeat: Infinity, ease: "linear" },
-            scale: { duration: 18, repeat: Infinity, ease: "easeInOut" },
-          }}
-        />
-
-        {/* ── BIG METEOR 1 (Upper-Mid Right Space Field) ── */}
-        <motion.div
-          className="absolute top-[16%] right-[6%] sm:right-[10%] lg:right-[12%] z-0 pointer-events-none opacity-85"
-          animate={
-            shouldReduceMotion
-              ? {}
-              : {
-                  y: [-12, 14, -12],
-                  x: [8, -8, 8],
-                  rotate: [0, 360],
-                }
-          }
-          transition={{
-            y: { duration: 12, repeat: Infinity, ease: "easeInOut" },
-            x: { duration: 14, repeat: Infinity, ease: "easeInOut" },
-            rotate: { duration: 90, repeat: Infinity, ease: "linear" },
-          }}
+          className="absolute top-[22%] -left-8 sm:-left-10 lg:left-0 pointer-events-none opacity-90 z-10"
+          animate={shouldReduceMotion ? {} : { y: [-10, 10, -10], rotate: [0, 6, 0] }}
+          transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
         >
-          <div className="relative w-28 h-28 sm:w-40 sm:h-40 lg:w-48 lg:h-48 drop-shadow-[0_0_35px_rgba(255,60,40,0.6)]">
+          <div className="relative w-40 h-40 sm:w-56 sm:h-56 lg:w-64 lg:h-64">
             <CanvasPlanet
-              src={BigMeteorImg}
-              alt="Giant Meteor Asteroid"
+              src={SpaceStationImg}
+              alt="3D Space Station"
               className="w-full h-full object-contain"
+              threshold={25}
             />
           </div>
         </motion.div>
 
-        {/* ── BIG METEOR 2 (Lower Right Space Field) ── */}
+        {/* ITEM 3 (Mid-Right ~ 38%): Exploding Fiery Asteroid */}
         <motion.div
-          className="absolute top-[62%] right-[4%] sm:right-[8%] lg:right-[10%] z-0 pointer-events-none opacity-80"
-          animate={
-            shouldReduceMotion
-              ? {}
-              : {
-                  y: [10, -10, 10],
-                  x: [-6, 6, -6],
-                  rotate: [360, 0],
-                }
-          }
-          transition={{
-            y: { duration: 14, repeat: Infinity, ease: "easeInOut" },
-            x: { duration: 12, repeat: Infinity, ease: "easeInOut" },
-            rotate: { duration: 110, repeat: Infinity, ease: "linear" },
-          }}
+          className="absolute top-[38%] -right-6 sm:-right-8 lg:right-0 pointer-events-none opacity-90 z-10"
+          animate={shouldReduceMotion ? {} : { y: [8, -8, 8], rotate: [-4, 4, -4] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
         >
-          <div className="relative w-24 h-24 sm:w-36 sm:h-36 lg:w-44 lg:h-44 drop-shadow-[0_0_30px_rgba(239,32,41,0.5)]">
+          <div className="relative w-36 h-36 sm:w-48 sm:h-48 lg:w-56 lg:h-56">
             <CanvasPlanet
-              src={BigMeteorImg}
-              alt="Giant Meteor Asteroid"
+              src={ExplodingAsteroidImg}
+              alt="Exploding Fiery Asteroid"
               className="w-full h-full object-contain"
+              threshold={25}
+            />
+          </div>
+        </motion.div>
+
+        {/* ITEM 5 (Lower-Right ~ 68%): Burning Fiery Plasma Meteor */}
+        <motion.div
+          className="absolute top-[68%] -right-6 sm:-right-8 lg:right-0 pointer-events-none z-10 opacity-90"
+          animate={shouldReduceMotion ? {} : { y: [-10, 10, -10], rotate: [-6, 6, -6] }}
+          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="relative w-36 h-36 sm:w-48 sm:h-48 lg:w-56 lg:h-56">
+            <CanvasPlanet
+              src={FieryMeteorImg}
+              alt="Fiery Plasma Meteor"
+              className="w-full h-full object-contain"
+              threshold={25}
+            />
+          </div>
+        </motion.div>
+
+        {/* ITEM 6 (Bottom-Left ~ 82%): Photorealistic 3D Space Satellite Orbiter */}
+        <motion.div
+          className="absolute top-[82%] -left-6 sm:-left-8 lg:left-0 pointer-events-none opacity-90 z-10"
+          animate={shouldReduceMotion ? {} : { y: [12, -12, 12], rotate: [5, -5, 5] }}
+          transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <div className="relative w-36 h-36 sm:w-48 sm:h-48 lg:w-56 lg:h-56">
+            <CanvasPlanet
+              src={SatelliteImg}
+              alt="3D Space Satellite Orbiter"
+              className="w-full h-full object-contain"
+              threshold={25}
             />
           </div>
         </motion.div>
@@ -224,52 +215,37 @@ export default function HomeSpaceBackground() {
           ))}
       </motion.div>
 
-      {/* ── LAYER 3: FOREGROUND (3 UNIQUE MARS PLANET VIEWS FOR HOME PAGE) ── */}
+      {/* ── LAYER 3: FOREGROUND (2 MARS PLANET VIEWS - TOP RIGHT & MID LEFT) ── */}
       <motion.div
         className="absolute inset-0 w-full h-full"
         style={{ y: shouldReduceMotion ? 0 : layer3Y }}
       >
-        {/* ── MARS VIEW 1: Main Valles Marineris Canyon View (Hero Top-Left Edge) ── */}
+        {/* ITEM 1 (Top-Right ~ 3%): Mars Main Canyon View */}
         <motion.div
-          className="absolute top-[2%] -left-12 sm:-left-16 lg:-left-10 z-0 pointer-events-none opacity-90"
-          animate={shouldReduceMotion ? {} : { y: [-8, 8, -8], rotate: [0, 6, 0] }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute top-[3%] -right-10 sm:-right-14 lg:-right-4 z-0 pointer-events-none opacity-95"
+          animate={shouldReduceMotion ? {} : { y: [-10, 10, -10], rotate: [-4, 6, -4] }}
+          transition={{ duration: 9.5, repeat: Infinity, ease: "easeInOut" }}
         >
-          <div className="relative w-36 h-36 sm:w-48 sm:h-48 lg:w-60 lg:h-60">
+          <div className="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-76 lg:h-76">
             <CanvasPlanet
               src={MarsMainImg}
               alt="Mars Planet - Canyon View"
-              className="w-full h-full object-contain drop-shadow-[0_0_40px_rgba(239,32,41,0.55)]"
+              className="w-full h-full object-contain drop-shadow-[0_0_55px_rgba(239,32,41,0.65)]"
             />
           </div>
         </motion.div>
 
-        {/* ── MARS VIEW 2: Polar Ice Cap Orbital Perspective (Mid Page Outer-Right Edge) ── */}
+        {/* ITEM 4 (Mid-Left ~ 52%): Mars Polar Ice Cap View */}
         <motion.div
-          className="absolute top-[34%] -right-10 sm:-right-14 lg:-right-8 z-0 pointer-events-none opacity-90"
-          animate={shouldReduceMotion ? {} : { y: [10, -10, 10], rotate: [-4, 4, -4] }}
-          transition={{ duration: 9.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+          className="absolute top-[52%] -left-10 sm:-left-14 lg:-left-4 z-0 pointer-events-none opacity-95"
+          animate={shouldReduceMotion ? {} : { y: [12, -12, 12], rotate: [5, -5, 5] }}
+          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
         >
-          <div className="relative w-40 h-40 sm:w-56 sm:h-56 lg:w-64 lg:h-64">
+          <div className="relative w-44 h-44 sm:w-60 sm:h-60 lg:w-68 lg:h-68">
             <CanvasPlanet
               src={MarsPolarImg}
               alt="Mars Planet - Polar View"
-              className="w-full h-full object-contain drop-shadow-[0_0_40px_rgba(255,80,60,0.5)]"
-            />
-          </div>
-        </motion.div>
-
-        {/* ── MARS VIEW 3: Crescent Horizon Shadow View (Lower Left Outer Edge) ── */}
-        <motion.div
-          className="absolute top-[72%] -left-10 sm:-left-12 lg:left-2 z-0 pointer-events-none opacity-85"
-          animate={shouldReduceMotion ? {} : { y: [-7, 7, -7], rotate: [0, -5, 0] }}
-          transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-        >
-          <div className="relative w-36 h-36 sm:w-48 sm:h-48 lg:w-56 lg:h-56">
-            <CanvasPlanet
-              src={MarsCrescentImg}
-              alt="Mars Planet - Crescent View"
-              className="w-full h-full object-contain drop-shadow-[0_0_35px_rgba(227,29,46,0.6)]"
+              className="w-full h-full object-contain drop-shadow-[0_0_50px_rgba(227,29,46,0.7)]"
             />
           </div>
         </motion.div>

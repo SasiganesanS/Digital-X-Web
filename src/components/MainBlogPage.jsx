@@ -98,7 +98,7 @@ export default function BlogPage() {
           </div>
         }
         badge={
-          <SectionBadge text="Latest Insights" />
+          <SectionBadge text="Latest Insights" theme="dark" />
         }
         title={
           <motion.h1
@@ -292,7 +292,7 @@ export default function BlogPage() {
                 viewport={{ once: true }}
                 onMouseEnter={() => setHoveredCard(post.id)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className="group relative bg-white/[0.02] border border-white/5 rounded-3xl overflow-hidden hover:border-white/20 hover:shadow-2xl hover:shadow-black/20 transition-all duration-500 cursor-pointer"
+                className="group relative bg-white/[0.02] border border-white/5 rounded-2xl overflow-hidden hover:border-white/20 hover:shadow-2xl hover:shadow-black/20 transition-all duration-500 cursor-pointer"
               >
                 {/* Card Image */}
                 <div className="relative h-64 overflow-hidden">

@@ -35,7 +35,7 @@ const Homesection4 = () => {
       >
         <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 md:px-8">
           {/* ── SLEEK COMPACT CONTAINER BOX ── */}
-          <div className="relative rounded-[28px] sm:rounded-[32px] p-5 sm:p-8 lg:p-10 overflow-hidden bg-[#FFFFFF] border border-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.18)] hover:shadow-[0_30px_80px_rgba(0,0,0,0.25)] transition-all duration-500">
+          <div className="relative rounded-2xl p-5 sm:p-8 lg:p-10 overflow-hidden bg-[#FFFFFF] border border-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.18)] hover:shadow-[0_30px_80px_rgba(0,0,0,0.25)] transition-all duration-500">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
               
               {/* ── LEFT COLUMN INSIDE BIG BOX ── */}

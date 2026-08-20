@@ -60,7 +60,7 @@ export default function CollaboratorProfilePage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="rounded-[2.5rem] bg-gradient-to-br from-neutral-50 via-white to-neutral-50 border border-neutral-200/90 p-6 sm:p-10 lg:p-12 shadow-[0_16px_50px_rgba(0,0,0,0.05)] mb-14"
+          className="rounded-2xl bg-gradient-to-br from-neutral-50 via-white to-neutral-50 border border-neutral-200/90 p-6 sm:p-10 lg:p-12 shadow-[0_16px_50px_rgba(0,0,0,0.05)] mb-14"
         >
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             
@@ -242,7 +242,7 @@ export default function CollaboratorProfilePage() {
         </div>
 
         {/* Bottom CTA Card */}
-        <div className="rounded-[2.5rem] bg-[#111111] p-8 sm:p-12 text-center text-white relative overflow-hidden shadow-xl">
+        <div className="rounded-2xl bg-[#111111] p-8 sm:p-12 text-center text-white relative overflow-hidden shadow-xl">
           <h3 className="text-2xl sm:text-3xl font-black mb-4">
             Ready to Collaborate with {collaborator.name}?
           </h3>

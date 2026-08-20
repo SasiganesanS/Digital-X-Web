@@ -148,7 +148,7 @@ export default function PlatformPlanPage() {
               <button
                 key={plan.id || plan.title}
                 onClick={() => setSelectedPlan(plan)}
-                className={`flex items-center gap-4 p-5 rounded-3xl border-2 transition-all duration-300 ${selectedPlan?.id === plan.id
+                className={`flex items-center gap-4 p-5 rounded-2xl border-2 transition-all duration-300 ${selectedPlan?.id === plan.id
                     ? "bg-[#E8192C]/10 border-[#E8192C]/40"
                     : "bg-white/5 border-white/5"
                   }`}
@@ -168,7 +168,7 @@ export default function PlatformPlanPage() {
         {/* Plan Features */}
         {selectedPlan && (
           <div className="space-y-8 animate-fadeIn">
-            <div className="p-6 rounded-[40px] bg-white/[0.03] border border-white/10">
+            <div className="p-6 rounded-2xl bg-white/[0.03] border border-white/10">
               <h4 className="text-[10px] font-black text-[#E8192C] uppercase tracking-[0.3em] mb-6 flex items-center gap-3">
                 <span className="w-8 h-[1px] bg-[#E8192C]/30" />
                 What's Included
@@ -185,7 +185,7 @@ export default function PlatformPlanPage() {
 
             <button
               onClick={() => handleApplyPlan(selectedPlan)}
-              className="w-full py-6 rounded-3xl bg-white text-[#080808] font-black uppercase tracking-[0.2em] text-xs hover:bg-[#E8192C] hover:text-white transition-all shadow-2xl"
+              className="w-full py-6 rounded-full bg-white text-[#080808] font-black uppercase tracking-[0.2em] text-xs hover:bg-[#E8192C] hover:text-white transition-all shadow-2xl"
             >
               Apply Strategy
             </button>

@@ -60,27 +60,27 @@ const Teams = () => {
       <div className="relative py-12 px-4 sm:px-6 lg:px-8 overflow-hidden bg-transparent">
         <div className="relative z-10 max-w-7xl mx-auto">
 
-          {/* ── Header ── */}
+          {/* ── Standalone Section Header (Outside of Boxes) ── */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-12 sm:mb-16"
           >
-            {/* New UI Badge */}
-            <div className="flex justify-center mb-6">
-              <SectionBadge text="Our Team" />
+            <div className="flex justify-center mb-4">
+              <SectionBadge text="Our Team" theme="dark" />
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-black text-[#111111] mb-6 tracking-tight">
-              Division Champions
-            </h1>
-            <p className="text-lg text-[#111111]/60 max-w-2xl mx-auto font-medium">
-              We're building the future of technology and marketing through focused leadership and expert execution.
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 tracking-tight font-sans">
+              Division <span className="text-[#E31D2E]">Champions</span>
+            </h2>
+            <p className="text-neutral-300 text-base sm:text-lg max-w-2xl mx-auto font-medium leading-relaxed font-sans">
+              We&apos;re building the future of technology and marketing through focused leadership and expert execution.
             </p>
           </motion.div>
 
-          {/* ── Team Grid ── */}
+          {/* ── Separate Individual Team Member Cards ── */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {teamMembers.map((member, idx) => {
               const clickable = BIO_MEMBERS.has(member.id);
@@ -88,36 +88,34 @@ const Teams = () => {
                 <motion.div
                   key={member.id}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
-                  className="flex flex-col items-center group text-center"
+                  onClick={() => handleCardClick(member)}
+                  className={`flex flex-col items-center p-5 rounded-3xl bg-white border border-neutral-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 group text-center ${clickable ? "cursor-pointer" : ""}`}
                 >
-                  <div
-                    className={`relative flex justify-center w-full max-w-[330px] ${clickable ? "cursor-pointer" : ""}`}
-                    onClick={() => handleCardClick(member)}
-                  >
+                  {/* Image Container with White Background */}
+                  <div className="relative w-full rounded-2xl overflow-hidden bg-white mb-5 border border-neutral-100 shadow-xs flex justify-center">
                     <TiltedCard
                       imageSrc={member.image}
                       altText={member.name}
                       captionText={member.name}
-                      containerHeight="420px"
+                      containerHeight="380px"
                       containerWidth="100%"
-                      imageHeight="420px"
+                      imageHeight="380px"
                       imageWidth="100%"
-                      rotateAmplitude={12}
-                      scaleOnHover={1.06}
+                      rotateAmplitude={10}
+                      scaleOnHover={1.04}
                       showTooltip={false}
                       displayOverlayContent={false}
                       showMobileWarning={false}
                     />
                   </div>
 
-                  <div
-                    className={`mt-7 sm:mt-8 ${clickable ? "cursor-pointer" : ""}`}
-                    onClick={() => handleCardClick(member)}
-                  >
-                    <h3 className="text-lg font-bold text-[#111111] mb-1 tracking-tight">{member.name}</h3>
-                    <p className="text-sm font-semibold tracking-wide" style={{ color: "#E31D2E" }}>
+                  {/* Name and Role */}
+                  <div className="w-full pb-2">
+                    <h3 className="text-lg font-bold text-[#111111] mb-1 tracking-tight group-hover:text-[#E31D2E] transition-colors">{member.name}</h3>
+                    <p className="text-sm font-semibold tracking-wide text-[#E31D2E]">
                       {member.role}
                     </p>
                   </div>
@@ -125,6 +123,7 @@ const Teams = () => {
               );
             })}
           </div>
+
         </div>
 
       </div>

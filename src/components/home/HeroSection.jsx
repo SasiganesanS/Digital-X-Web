@@ -109,7 +109,7 @@ const HeroSection = () => {
       initial={{ opacity: 0, y: 20, scale: 0.98 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="relative flex flex-col items-start p-6 sm:p-8 lg:p-9 rounded-[32px] border border-white/90 shadow-[0_25px_60px_rgba(0,0,0,0.5)] bg-white text-[#111111] transition-all duration-300 w-full max-w-2xl overflow-hidden group"
+      className="relative flex flex-col items-start p-6 sm:p-8 lg:p-9 rounded-2xl border border-white/90 shadow-[0_25px_60px_rgba(0,0,0,0.5)] bg-white text-[#111111] transition-all duration-300 w-full max-w-2xl overflow-hidden group"
     >
       {/* ── Badge ── */}
       <div className="mb-4 flex justify-start w-full">

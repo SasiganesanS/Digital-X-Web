@@ -59,7 +59,7 @@ export default function CareersImageGrid({ teamMembers }) {
       className="relative w-full max-w-[480px] sm:max-w-[530px] lg:max-w-[560px] aspect-square mx-auto select-none"
     >
       {/* Outer Claymorphism Showcase Container */}
-      <div className="relative w-full h-full rounded-[2.5rem] p-3.5 sm:p-4 md:p-5 bg-white/40 backdrop-blur-2xl border border-white/70 shadow-[0_20px_50px_rgba(17,17,17,0.04)] overflow-hidden flex items-center justify-center">
+      <div className="relative w-full h-full rounded-2xl p-3.5 sm:p-4 md:p-5 bg-white/40 backdrop-blur-2xl border border-white/70 shadow-[0_20px_50px_rgba(17,17,17,0.04)] overflow-hidden flex items-center justify-center">
         {/* Soft Radial Ambient Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] bg-[#E31D2E]/7 rounded-full blur-[90px] pointer-events-none z-0" />
         <div
@@ -104,7 +104,7 @@ export default function CareersImageGrid({ teamMembers }) {
         </svg>
 
         {/* Inner Light Reflection */}
-        <div className="absolute inset-0 rounded-[2.5rem] bg-gradient-to-tr from-white/70 via-transparent to-white/40 pointer-events-none z-10" />
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-white/70 via-transparent to-white/40 pointer-events-none z-10" />
 
         {/* 3×3 Grid Container */}
         <div className="grid grid-cols-3 gap-3.5 sm:gap-4 lg:gap-5 w-full h-full relative z-20">
@@ -191,10 +191,10 @@ function TileCard({
       onMouseEnter={onMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`clay-card relative rounded-[24px] sm:rounded-[28px] lg:rounded-[30px] p-2.5 sm:p-3 flex flex-col items-center justify-between border backdrop-blur-xl transition-all duration-500 overflow-hidden cursor-pointer select-none ${
+      className={`clay-card relative rounded-xl sm:rounded-2xl p-2.5 sm:p-3 flex flex-col items-center justify-between border backdrop-blur-xl transition-all duration-500 overflow-hidden cursor-pointer select-none ${
         isHovered
           ? "bg-white border-[#FF2B2B]/40 shadow-[0_12px_40px_rgba(0,0,0,0.08)] z-30"
-          : "bg-white/80 border-white/80 shadow-[0_8px_24px_rgba(17,17,17,0.03)] hover:bg-white"
+          : "bg-white border-white/90 shadow-xl hover:bg-white"
       }`}
       style={{
         transform: isHovered ? `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` : "none",

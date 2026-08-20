@@ -468,7 +468,7 @@ const MainLayout = () => {
         isOpen={showContactForm}
         onClose={() => setShowContactForm(false)}
       />
-      <main className="relative z-10 w-full overflow-hidden rounded-b-[24px] sm:rounded-b-[32px] lg:rounded-b-[36px] shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
+      <main className="relative z-10 w-full">
         <AppRoutes />
       </main>
       <FooterReveal setShowContactForm={setShowContactForm} />
