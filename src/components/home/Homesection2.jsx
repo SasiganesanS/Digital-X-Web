@@ -256,219 +256,223 @@ export default function FeaturedWorks() {
   return (
     <section id="projects" className="relative overflow-hidden bg-transparent py-10 sm:py-12 lg:py-14">
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-        {/* Section Header */}
-        <div className="mb-8 max-w-3xl space-y-2.5">
-          <div className="mb-4">
-            <SectionBadge text="Case Studies" />
+        {/* Main Unified Card Container — Header & Showcase in ONE Box (matching Hero Section card) */}
+        <div className="relative flex flex-col items-start p-6 sm:p-8 lg:p-9 rounded-[32px] border border-white/90 shadow-[0_25px_60px_rgba(0,0,0,0.4)] bg-white text-[#111111] transition-all duration-300 w-full overflow-hidden">
+          
+          {/* Section Header (Inside the Card Box) */}
+          <div className="mb-6 w-full max-w-3xl space-y-2">
+            <div className="mb-3 flex justify-start">
+              <SectionBadge text="Case Studies" />
+            </div>
+            <h2 className="text-2xl sm:text-3xl lg:text-[36px] font-black leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans">
+              Featured <span className="text-[#E31D2E]">Case Studies</span>.
+            </h2>
+            <p className="text-neutral-600 text-sm sm:text-base font-normal leading-[1.6] max-w-2xl font-sans">
+              Browse our curated case studies across branding, digital media, 3D studios, and production.
+            </p>
           </div>
-          <h2 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] mb-5 sm:mb-6 max-w-2xl font-sans">
-            Featured <span className="text-[#E31D2E]">Case Studies</span>.
-          </h2>
-          <p className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] mb-7 sm:mb-8 max-w-2xl font-sans">
-            Browse our curated case studies across branding, digital media, 3D studios, and production.
-          </p>
-        </div>
 
-        {/* ── Main Portfolio Showcase Grid (65% Left Image / 35% Right Project List) ── */}
-        <div
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
-          className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch w-full h-auto sm:h-[clamp(460px,58vh,560px)] lg:h-[clamp(520px,62vh,640px)]"
-        >
-          {/* ── LEFT COLUMN: Compact Preview Screen (~65% width on Desktop) ── */}
-          <div className="lg:col-span-7 xl:col-span-8 relative h-[340px] sm:h-full w-full overflow-hidden rounded-[32px] border border-neutral-200/80 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.08)] group self-stretch">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeProject.id || activeIndex}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 w-full h-full"
+          {/* ── Main Portfolio Showcase Grid (Reduced Box Size) ── */}
+          <div
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch w-full h-auto sm:h-[380px] lg:h-[420px]"
+          >
+            {/* ── LEFT COLUMN: Compact Preview Screen ── */}
+            <div className="lg:col-span-7 xl:col-span-8 relative h-[260px] sm:h-full w-full overflow-hidden rounded-2xl border border-neutral-200/80 bg-neutral-100 shadow-sm transition-all duration-300 group self-stretch">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeProject.id || activeIndex}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                  className="absolute inset-0 w-full h-full"
+                >
+                  <img
+                    src={activeProject.image}
+                    alt={activeProject.title || "Project preview"}
+                    className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40 pointer-events-none" />
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Category Pill Tag Overlay */}
+              <div className="absolute top-4 left-4 z-20">
+                <span className="px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.18)] text-[#111111] text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#E31D2E]" />
+                  <span>{activeProject.category || activeProject.services?.[0] || "Featured Work"}</span>
+                </span>
+              </div>
+            </div>
+
+            {/* ── RIGHT COLUMN: Portfolio List Navigator ── */}
+            <div className="lg:col-span-5 xl:col-span-4 relative h-full w-full rounded-2xl border border-neutral-200/80 bg-neutral-50/70 shadow-xs transition-all duration-300 p-4 sm:p-5 flex flex-col justify-between overflow-hidden self-stretch">
+              
+              {/* Middle: Continuous Native Scroll Container */}
+              <div
+                ref={scrollContainerRef}
+                tabIndex={0}
+                onScroll={handleScroll}
+                onKeyDown={handleKeyDown}
+                onPointerDown={handlePointerDown}
+                onPointerMove={handlePointerMove}
+                onPointerUp={handlePointerUp}
+                onPointerCancel={handlePointerCancel}
+                onDragStart={(e) => e.preventDefault()}
+                className={`flex-1 my-1 py-1 flex flex-col gap-2 overflow-y-auto overscroll-contain focus:outline-none select-none pr-1 custom-scrollbar ${
+                  isDraggingState ? "cursor-grabbing select-none scroll-auto" : "cursor-grab scroll-smooth"
+                }`}
+                style={{ overscrollBehavior: "contain", touchAction: "pan-y" }}
               >
-                <img
-                  src={activeProject.image}
-                  alt={activeProject.title || "Project preview"}
-                  className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40 pointer-events-none" />
-              </motion.div>
-            </AnimatePresence>
+                {projects.map((project, idx) => {
+                  const isActive = idx === activeIndex;
 
-            {/* Category Pill Tag Overlay — High Contrast & Visible on All Images */}
-            <div className="absolute top-5 left-5 z-20">
-              <span className="px-4 py-2 rounded-full bg-white/95 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.18)] text-[#111111] text-[11px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#E31D2E]" />
-                <span>{activeProject.category || activeProject.services?.[0] || "Featured Work"}</span>
-              </span>
-            </div>
-          </div>
-
-          {/* ── RIGHT COLUMN: Portfolio List Navigator ── */}
-          <div className="lg:col-span-5 xl:col-span-4 relative h-full w-full rounded-[32px] border border-neutral-200/80 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.06)] p-5 sm:p-6 flex flex-col justify-between overflow-hidden self-stretch">
-            
-            {/* Middle: Continuous Native Scroll Container with Click-and-Drag Scrolling */}
-            <div
-              ref={scrollContainerRef}
-              tabIndex={0}
-              onScroll={handleScroll}
-              onKeyDown={handleKeyDown}
-              onPointerDown={handlePointerDown}
-              onPointerMove={handlePointerMove}
-              onPointerUp={handlePointerUp}
-              onPointerCancel={handlePointerCancel}
-              onDragStart={(e) => e.preventDefault()}
-              className={`flex-1 my-1 py-1 flex flex-col gap-2.5 overflow-y-auto overscroll-contain focus:outline-none select-none pr-1 custom-scrollbar ${
-                isDraggingState ? "cursor-grabbing select-none scroll-auto" : "cursor-grab scroll-smooth"
-              }`}
-              style={{ overscrollBehavior: "contain", touchAction: "pan-y" }}
-            >
-              {projects.map((project, idx) => {
-                const isActive = idx === activeIndex;
-
-                return (
-                  <button
-                    key={project.id || idx}
-                    ref={(el) => (itemRefs.current[idx] = el)}
-                    type="button"
-                    onClick={() => handleCardClick(idx)}
-                    className={`group relative flex items-center justify-between w-full p-2.5 sm:p-3 rounded-2xl border text-left transition-all duration-300 min-w-[230px] lg:min-w-0 flex-shrink-0 overflow-hidden box-border ${
-                      isActive
-                        ? "border-[#FF2B2B] bg-neutral-100/70 text-[#111111] shadow-[0_4px_16px_rgba(255,43,43,0.08)]"
-                        : "border-neutral-100 bg-neutral-50/60 text-neutral-600 hover:border-neutral-200 hover:bg-neutral-100/80 hover:text-[#111111]"
-                    }`}
-                  >
-                    {/* Project Cover Thumbnail + Details */}
-                    <div className="flex items-center gap-3 truncate pr-2 pointer-events-none">
-                      <div className="relative w-[42px] h-[42px] sm:w-[48px] sm:h-[48px] lg:w-[50px] lg:h-[50px] rounded-xl overflow-hidden border border-neutral-200/80 flex-shrink-0 bg-neutral-100 shadow-xs">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          draggable={false}
-                          onDragStart={(e) => e.preventDefault()}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 pointer-events-none select-none"
-                        />
-                      </div>
-
-                      <div className="truncate">
-                        <h4
-                          className={`text-xs sm:text-sm font-extrabold truncate transition-colors ${
-                            isActive ? "text-[#111111]" : "text-neutral-700 group-hover:text-[#111111]"
-                          }`}
-                        >
-                          {project.title}
-                        </h4>
-                        <span className="text-[10px] sm:text-[11px] font-medium text-neutral-400 block truncate mt-0.5">
-                          {project.category || project.services?.[0] || "Portfolio Showcase"}
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Arrow Icon */}
-                    <ArrowUpRight
-                      className={`w-3.5 h-3.5 flex-shrink-0 transition-all duration-300 pointer-events-none ${
-                        isActive
-                          ? "text-[#E31D2E] translate-x-0.5 -translate-y-0.5"
-                          : "text-neutral-300 group-hover:text-neutral-500"
-                      }`}
-                    />
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Bottom Section: Glass Capsule Segmented Page Controller & Pinned CTA Button */}
-            <div className="flex-shrink-0 pt-3 flex flex-col gap-3">
-              {/* Premium Glass Segmented Controller (Formatted like 1 2 ... 50 with smooth spring animations) */}
-              {totalPages > 1 && (
-                <div className="flex items-center justify-center select-none">
-                  <motion.div 
-                    layout
-                    className="inline-flex items-center gap-1 p-1 rounded-full bg-neutral-100/90 border border-neutral-200/80 shadow-xs backdrop-blur-md"
-                  >
-                    {/* Left Chevron Button */}
-                    <motion.button
+                  return (
+                    <button
+                      key={project.id || idx}
+                      ref={(el) => (itemRefs.current[idx] = el)}
                       type="button"
-                      whileHover={{ scale: 1.15 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={handlePrev}
-                      disabled={scrollPage === 0}
-                      className="flex h-7 w-7 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-white/80 transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
-                      aria-label="Previous page"
+                      onClick={() => handleCardClick(idx)}
+                      className={`group relative flex items-center justify-between w-full p-2 sm:p-2.5 rounded-xl border text-left transition-all duration-300 min-w-[230px] lg:min-w-0 flex-shrink-0 overflow-hidden box-border ${
+                        isActive
+                          ? "border-[#FF2B2B] bg-white text-[#111111] shadow-[0_4px_16px_rgba(255,43,43,0.1)]"
+                          : "border-neutral-200/60 bg-white/60 text-neutral-600 hover:border-neutral-300 hover:bg-white hover:text-[#111111]"
+                      }`}
                     >
-                      <ChevronLeft className="w-3.5 h-3.5" />
-                    </motion.button>
+                      {/* Project Cover Thumbnail + Details */}
+                      <div className="flex items-center gap-2.5 truncate pr-2 pointer-events-none">
+                        <div className="relative w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] rounded-lg overflow-hidden border border-neutral-200/80 flex-shrink-0 bg-neutral-100 shadow-xs">
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            draggable={false}
+                            onDragStart={(e) => e.preventDefault()}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 pointer-events-none select-none"
+                          />
+                        </div>
 
-                    {/* Sliding Window Page Numbers & Interactive Ellipsis */}
-                    {getSlidingWindowItems(windowStart, totalPages).map((item, idx) => {
-                      if (item === "...") {
+                        <div className="truncate">
+                          <h4
+                            className={`text-xs sm:text-sm font-extrabold truncate transition-colors ${
+                              isActive ? "text-[#111111]" : "text-neutral-700 group-hover:text-[#111111]"
+                            }`}
+                          >
+                            {project.title}
+                          </h4>
+                          <span className="text-[10px] sm:text-[11px] font-medium text-neutral-400 block truncate mt-0.5">
+                            {project.category || project.services?.[0] || "Portfolio Showcase"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Arrow Icon */}
+                      <ArrowUpRight
+                        className={`w-3.5 h-3.5 flex-shrink-0 transition-all duration-300 pointer-events-none ${
+                          isActive
+                            ? "text-[#E31D2E] translate-x-0.5 -translate-y-0.5"
+                            : "text-neutral-300 group-hover:text-neutral-500"
+                        }`}
+                      />
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Bottom Section: Glass Capsule Segmented Page Controller & Pinned CTA Button */}
+              <div className="flex-shrink-0 pt-2.5 flex flex-col gap-2.5">
+                {/* Segmented Controller */}
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-center select-none">
+                    <motion.div 
+                      layout
+                      className="inline-flex items-center gap-1 p-1 rounded-full bg-white border border-neutral-200/80 shadow-xs"
+                    >
+                      {/* Left Chevron Button */}
+                      <motion.button
+                        type="button"
+                        whileHover={{ scale: 1.15 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={handlePrev}
+                        disabled={scrollPage === 0}
+                        className="flex h-6 w-6 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-neutral-100 transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                        aria-label="Previous page"
+                      >
+                        <ChevronLeft className="w-3.5 h-3.5" />
+                      </motion.button>
+
+                      {/* Sliding Window Page Numbers */}
+                      {getSlidingWindowItems(windowStart, totalPages).map((item, idx) => {
+                        if (item === "...") {
+                          return (
+                            <motion.button
+                              key={`ellipsis-${idx}`}
+                              type="button"
+                              whileHover={{ scale: 1.15 }}
+                              whileTap={{ scale: 0.9 }}
+                              onClick={handleEllipsisClick}
+                              className="flex h-6 px-1 items-center justify-center text-xs font-bold text-neutral-400 hover:text-[#E31D2E] transition-colors cursor-pointer select-none"
+                              aria-label="Jump forward 3 pages"
+                            >
+                              ...
+                            </motion.button>
+                          );
+                        }
+
+                        const pageIdx = item - 1;
+                        const isCurrent = pageIdx === scrollPage;
+
                         return (
                           <motion.button
-                            key={`ellipsis-${idx}`}
+                            key={pageIdx}
                             type="button"
-                            whileHover={{ scale: 1.15 }}
-                            whileTap={{ scale: 0.9 }}
-                            onClick={handleEllipsisClick}
-                            className="flex h-7 px-1.5 items-center justify-center text-xs font-bold text-neutral-400 hover:text-[#E31D2E] transition-colors cursor-pointer select-none"
-                            aria-label="Jump forward 3 pages"
+                            onClick={() => handlePageSelect(pageIdx)}
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            className={`relative flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-black transition-colors cursor-pointer ${
+                              isCurrent ? "text-white" : "text-neutral-600 hover:text-[#111111] hover:bg-neutral-100"
+                            }`}
+                            aria-label={`Page ${item}`}
                           >
-                            ...
+                            {isCurrent && (
+                              <motion.span
+                                layoutId="activePagePill"
+                                className="absolute inset-0 rounded-full bg-[#E31D2E] shadow-[0_4px_12px_rgba(227,29,46,0.35)]"
+                                transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                              />
+                            )}
+                            <span className="relative z-10">{item}</span>
                           </motion.button>
                         );
-                      }
+                      })}
 
-                      const pageIdx = item - 1;
-                      const isCurrent = pageIdx === scrollPage;
+                      {/* Right Chevron Button */}
+                      <motion.button
+                        type="button"
+                        whileHover={{ scale: 1.15 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={handleNext}
+                        disabled={scrollPage === totalPages - 1}
+                        className="flex h-6 w-6 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-neutral-100 transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                        aria-label="Next page"
+                      >
+                        <ChevronRight className="w-3.5 h-3.5" />
+                      </motion.button>
+                    </motion.div>
+                  </div>
+                )}
 
-                      return (
-                        <motion.button
-                          key={pageIdx}
-                          type="button"
-                          onClick={() => handlePageSelect(pageIdx)}
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                          className={`relative flex h-7 w-7 items-center justify-center rounded-full text-xs font-black transition-colors cursor-pointer ${
-                            isCurrent ? "text-white" : "text-neutral-600 hover:text-[#111111] hover:bg-white/80"
-                          }`}
-                          aria-label={`Page ${item}`}
-                        >
-                          {isCurrent && (
-                            <motion.span
-                              layoutId="activePagePill"
-                              className="absolute inset-0 rounded-full bg-[#E31D2E] shadow-[0_4px_12px_rgba(227,29,46,0.35)]"
-                              transition={{ type: "spring", stiffness: 450, damping: 35 }}
-                            />
-                          )}
-                          <span className="relative z-10">{item}</span>
-                        </motion.button>
-                      );
-                    })}
-
-                    {/* Right Chevron Button */}
-                    <motion.button
-                      type="button"
-                      whileHover={{ scale: 1.15 }}
-                      whileTap={{ scale: 0.9 }}
-                      onClick={handleNext}
-                      disabled={scrollPage === totalPages - 1}
-                      className="flex h-7 w-7 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-white/80 transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
-                      aria-label="Next page"
-                    >
-                      <ChevronRight className="w-3.5 h-3.5" />
-                    </motion.button>
-                  </motion.div>
-                </div>
-              )}
-
-              {/* Pinned View Case Study Button */}
-              <Link
-                to={`/case-study/${activeProject.slug || ""}`}
-                state={{ from: '/' }}
-                className="primary-btn flex items-center justify-between w-full rounded-full px-5 py-3 text-[11px] sm:text-xs font-bold uppercase tracking-[0.2em] text-white shadow-md transition-all hover:scale-[1.01]"
-              >
-                <span>View Case Study</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-white" />
-              </Link>
+                {/* Pinned View Case Study Button */}
+                <Link
+                  to={`/case-study/${activeProject.slug || ""}`}
+                  state={{ from: '/' }}
+                  className="primary-btn flex items-center justify-between w-full rounded-full px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] text-white shadow-md transition-all hover:scale-[1.01]"
+                >
+                  <span>View Case Study</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 text-white" />
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { motion, useInView } from "framer-motion";
 import SolarSystemHero from "./SolarSystemHero";
 import SpaceHeroBackground from "./SpaceHeroBackground";
 import HeroLayout from "../common/HeroLayout";
+import SectionBadge from "../common/SectionBadge";
 
 function AnimatedStat({ targetNum, suffix = "+", label, delay = 0 }) {
   const [count, setCount] = useState(0);
@@ -50,14 +51,14 @@ function AnimatedStat({ targetNum, suffix = "+", label, delay = 0 }) {
       initial={{ opacity: 0, y: 15, scale: 0.95 }}
       animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 15, scale: 0.95 }}
       transition={{ duration: 0.6, delay: delay * 0.3, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -4, scale: 1.02 }}
-      className="relative flex flex-col items-start p-3 sm:p-3.5 px-3.5 sm:px-4 rounded-2xl border border-white/25 shadow-[0_10px_30px_rgba(0,0,0,0.6)] backdrop-blur-md bg-black/40 hover:bg-black/60 cursor-default group transition-all duration-300 w-full overflow-hidden"
+      whileHover={{ y: -3, scale: 1.02 }}
+      className="relative flex flex-col items-start p-2.5 sm:p-3 px-3 sm:px-3.5 rounded-2xl border border-neutral-200/80 bg-neutral-50/90 hover:bg-neutral-100/90 cursor-default group transition-all duration-300 w-full overflow-hidden"
     >
       <div className="relative z-10 flex flex-col w-full min-w-0">
-        <span className="text-2xl sm:text-3xl font-black !text-white tracking-tight group-hover:!text-[#FF2B2B] transition-colors duration-300">
+        <span className="text-xl sm:text-2xl lg:text-3xl font-black text-[#111111] tracking-tight group-hover:text-[#E31D2E] transition-colors duration-300">
           {count}{suffix}
         </span>
-        <span className="!text-neutral-300 text-[8.5px] sm:text-[9.5px] lg:text-[10px] font-bold uppercase tracking-[0.12em] sm:tracking-[0.14em] mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
+        <span className="text-neutral-500 text-[8px] sm:text-[9px] lg:text-[9.5px] font-bold uppercase tracking-[0.1em] sm:tracking-[0.12em] mt-1 whitespace-nowrap overflow-hidden text-ellipsis">
           {label}
         </span>
       </div>
@@ -78,9 +79,6 @@ const HeroSection = () => {
 
   const bgElements = (
     <>
-      {/* ── Space Theme Background (Pitch Black Space, Twinkling Stars & 3 Small Planets) ── */}
-      <SpaceHeroBackground />
-
       {/* ── Scroll Indicator ── */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
@@ -100,99 +98,83 @@ const HeroSection = () => {
           transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
           className="w-4 h-6 rounded-full border border-neutral-600 flex items-start justify-center p-1 bg-black/60 backdrop-blur-md"
         >
-          <span className="w-1 h-1.5 rounded-full bg-[#FF2B2B]" />
+          <span className="w-1 h-1.5 rounded-full bg-[#E31D2E]" />
         </motion.div>
       </motion.div>
     </>
   );
 
-  const badge = (
+  const heroCard = (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className="will-change-transform transform-gpu"
+      initial={{ opacity: 0, y: 20, scale: 0.98 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      className="relative flex flex-col items-start p-6 sm:p-8 lg:p-9 rounded-[32px] border border-white/90 shadow-[0_25px_60px_rgba(0,0,0,0.5)] bg-white text-[#111111] transition-all duration-300 w-full max-w-2xl overflow-hidden group"
     >
-      <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/60 border border-white/25 !text-white shadow-lg backdrop-blur-md">
-        <span className="w-2 h-2 rounded-full bg-[#FF2B2B] animate-pulse" />
-        <span className="text-xs font-mono font-bold tracking-wider uppercase !text-white">
-          WHERE STRATEGY MEETS PERFORMANCE
-        </span>
-        <span className="!text-neutral-300 text-xs font-mono">:::</span>
+      {/* ── Badge ── */}
+      <div className="mb-4 flex justify-start w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="will-change-transform transform-gpu"
+        >
+          <SectionBadge text="WHERE STRATEGY MEETS PERFORMANCE" />
+        </motion.div>
       </div>
-    </motion.div>
-  );
 
-  const title = (
-    <h1
-      className="text-3xl sm:text-4xl lg:text-[44px] xl:text-[48px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] !text-white font-sans mb-5 sm:mb-6 max-w-2xl"
-    >
-      <motion.span
-        initial={{ opacity: 0, y: 24 }}
+      {/* ── Title ── */}
+      <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-4 sm:mb-5 w-full">
+        <motion.span
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+          className="inline-block text-[#111111]"
+        >
+          Where brands evolve into
+        </motion.span>{" "}
+        <motion.span
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.45, ease: "easeOut" }}
+          className="relative inline-block text-[#E31D2E]"
+        >
+          powerful
+        </motion.span>{" "}
+        <motion.span
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.65, ease: "easeOut" }}
+          className="inline-block text-[#111111]"
+        >
+          digital movements.
+        </motion.span>
+      </h1>
+
+      {/* ── Description ── */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-        className="inline-block !text-white"
+        transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
+        className="text-neutral-600 text-base sm:text-lg lg:text-[18px] font-normal leading-[1.6] font-sans w-full mb-6 sm:mb-8"
       >
-        Where brands evolve into
-      </motion.span>{" "}
-      <motion.span
-        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.45, ease: "easeOut" }}
-        className="relative inline-block !text-[#FF2B2B]"
-      >
-        powerful
-      </motion.span>{" "}
-      <motion.span
-        initial={{ opacity: 0, y: 24 }}
+        Your strategic growth partner for branding, performance marketing,
+        software development, and digital transformation. We convert creative vision
+        into measurable business results.
+      </motion.p>
+
+      {/* ── Stat Counter Grid inside the Card Box ── */}
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.65, ease: "easeOut" }}
-        className="inline-block !text-white"
+        transition={{ duration: 0.8, delay: 0.9 }}
+        className="grid grid-cols-4 gap-2 sm:gap-2.5 w-full"
       >
-        digital movements.
-      </motion.span>
-    </h1>
-  );
-
-  const description = (
-    <motion.p
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-      className="!text-neutral-200 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
-    >
-      Your strategic growth partner for branding, performance marketing,
-      software development, and digital transformation. We convert creative vision
-      into measurable business results.
-    </motion.p>
-  );
-
-  const actions = (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.95 }}
-      className="flex flex-col items-center lg:items-start gap-4 w-full"
-    >
-      <div className="grid grid-cols-4 gap-2.5 sm:gap-3 w-full max-w-xl">
         <AnimatedStat targetNum="10" suffix="+" label="PROJECTS DEL..." delay={0.05} />
         <AnimatedStat targetNum="8" suffix="+" label="BRANDS" delay={0.1} />
         <AnimatedStat targetNum="98" suffix="%" label="CLIENT SATISF..." delay={0.15} />
         <AnimatedStat targetNum="1.5" suffix="+" label="YEARS EXPERI..." delay={0.2} />
-      </div>
-
-      <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 w-full">
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/60 border border-white/25 !text-white shadow-md backdrop-blur-md">
-          <span className="w-2 h-2 rounded-full bg-white animate-pulse" />
-          <span className="text-[11px] font-black uppercase tracking-wider !text-white">
-            MINDFUL MARKETING & SUSTAINABLE GROWTH
-          </span>
-        </div>
-        <span className="text-[10px] sm:text-xs font-bold !text-white flex items-center gap-2 bg-black/60 px-4 py-2 rounded-full border border-white/25 shadow-md backdrop-blur-md">
-          <span className="w-2 h-2 rounded-full bg-[#10B981] animate-pulse" />
-          <span className="!text-white">Crafting Scalable Digital Ecosystems</span>
-        </span>
-      </div>
+      </motion.div>
     </motion.div>
   );
 
@@ -213,10 +195,7 @@ const HeroSection = () => {
       onMouseMove={handleMouseMove}
       className="bg-[#050508] !text-white"
       bgElements={bgElements}
-      badge={badge}
-      title={title}
-      description={description}
-      actions={actions}
+      title={heroCard}
       media={media}
     />
   );

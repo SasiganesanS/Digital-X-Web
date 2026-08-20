@@ -10,6 +10,7 @@ import ProjectBriefModal from "./ProjectBriefModal";
 import ServiceDetailModal from "./ServiceDetailModal";
 import CollaboratorSection from "./collaborators/CollaboratorSection";
 import SectionBadge from "./common/SectionBadge";
+import ServicesSpaceBackground from "./ServicesSpaceBackground";
 import {
   motion,
   AnimatePresence,
@@ -807,52 +808,57 @@ export default function ServiceCalculator() {
   const handleWhatsAppClick = handleGetProposalClick;
 
   return (
-    <div className="bg-[#080808] min-h-screen text-white pt-0 overflow-hidden font-sans">
-      {/* ── Hero Section — Shared HeroLayout baseline and vertical rhythm ── */}
-      <HeroLayout
-        bgElements={
-          <>
-            <div
-              className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
-              style={{
-                backgroundImage: "radial-gradient(circle, #fff 1.2px, transparent 1.2px)",
-                backgroundSize: "44px 44px",
-              }}
-            />
-          </>
-        }
-        badge={
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <SectionBadge text="Our Services" />
-          </motion.div>
-        }
-        title={
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl"
-          >
-            Transforming Brands into{" "}
-            <span className="text-[#E31D2E]">
-              Digital Authority
-            </span>
-          </motion.h1>
-        }
-        description={
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
-          >
-            Comprehensive branding, media, and performance marketing solutions designed to help your business grow strategically, creatively, and profitably.
-          </motion.p>
-        }
+    <div className="relative w-full overflow-hidden bg-[#050609]">
+      {/* Services-scoped Continuous Parallax Neptune Space Environment */}
+      <ServicesSpaceBackground />
+
+      {/* Main Services Content Sections */}
+      <div className="relative z-10 w-full">
+        {/* ── Hero Section — Shared HeroLayout baseline and vertical rhythm ── */}
+        <HeroLayout
+          bgElements={
+            <>
+              <div
+                className="absolute inset-0 opacity-[0.03] pointer-events-none z-0"
+                style={{
+                  backgroundImage: "radial-gradient(circle, #fff 1.2px, transparent 1.2px)",
+                  backgroundSize: "44px 44px",
+                }}
+              />
+            </>
+          }
+          badge={
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <SectionBadge text="Our Services" />
+            </motion.div>
+          }
+          title={
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-white font-sans mb-5 sm:mb-6 max-w-2xl"
+            >
+              Transforming Brands into{" "}
+              <span className="text-[#E31D2E]">
+                Digital Authority
+              </span>
+            </motion.h1>
+          }
+          description={
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
+            >
+              Comprehensive branding, media, and performance marketing solutions designed to help your business grow strategically, creatively, and profitably.
+            </motion.p>
+          }
         actions={
           <div className="flex flex-col items-center lg:items-start gap-3.5 relative z-10 w-full">
             <div className="flex flex-wrap items-center gap-3.5 sm:gap-4 w-full justify-center lg:justify-start">
@@ -1467,6 +1473,7 @@ Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
         isOpen={Boolean(selectedDetailService)}
         onClose={() => setSelectedDetailService(null)}
       />
+      </div>
     </div>
   );
 }

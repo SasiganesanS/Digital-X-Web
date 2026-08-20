@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import SectionBadge from "../common/SectionBadge";
 import CollaborationRequestModal from "./CollaborationRequestModal";
 import { getCollaboratorBySlug } from "../../data/collaborators";
+import CollaboratorSpaceBackground from "./CollaboratorSpaceBackground";
 
 export default function CollaboratorProfilePage() {
   const { slug } = useParams();
@@ -32,8 +33,12 @@ export default function CollaboratorProfilePage() {
   }
 
   return (
-    <div className="bg-white text-[#111111] min-h-screen py-10 sm:py-14 lg:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="relative w-full overflow-hidden bg-[#050609]">
+      {/* Collaborator-scoped Continuous Parallax Uranus Space Environment */}
+      <CollaboratorSpaceBackground />
+
+      {/* Main Content Sections */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
         
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="mb-8">

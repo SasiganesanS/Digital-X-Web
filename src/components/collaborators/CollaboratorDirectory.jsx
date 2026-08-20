@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import SectionBadge from "../common/SectionBadge";
 import CollaboratorCard from "./CollaboratorCard";
 import { COLLABORATORS_DATA } from "../../data/collaborators";
+import CollaboratorSpaceBackground from "./CollaboratorSpaceBackground";
 
 const CATEGORIES = [
   { id: "all", label: "All" },
@@ -48,8 +49,12 @@ export default function CollaboratorDirectory() {
     : COLLABORATORS_DATA.filter((c) => c.category === activeCategory);
 
   return (
-    <div className="bg-white text-[#111111] min-h-screen py-10 sm:py-14 lg:py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="relative w-full overflow-hidden bg-[#050609]">
+      {/* Collaborator-scoped Continuous Parallax Uranus Space Environment */}
+      <CollaboratorSpaceBackground />
+
+      {/* Main Content Sections */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
         
         {/* Header Hero Section */}
         <motion.div
@@ -62,11 +67,11 @@ export default function CollaboratorDirectory() {
             <SectionBadge text="Collaborator Network" />
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#111111] tracking-tight leading-tight mb-5">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-5">
             Creative <span className="text-[#E31D2E]">Collaborators</span>
           </h1>
 
-          <p className="text-neutral-600 text-base sm:text-lg font-medium leading-relaxed">
+          <p className="text-neutral-300 text-base sm:text-lg font-medium leading-relaxed">
             A curated network of creative professionals working with DigitalX to bring ideas to life. DigitalX coordinates every engagement from project scope to final delivery.
           </p>
         </motion.div>

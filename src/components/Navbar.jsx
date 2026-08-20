@@ -490,6 +490,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [isTopHovered, setIsTopHovered] = useState(false);
+  const [isSparkAnimating, setIsSparkAnimating] = useState(false);
   const topHoverDebounceRef = useRef(null);
   const lastScrollY = useRef(0);
   const circleRefs = useRef([]);
@@ -501,6 +502,23 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
   const mobileMenuRef = useRef(null);
   const navItemsRef = useRef(null);
   const logoRef = useRef(null);
+
+  // Periodic 15-Second Logo Spark Animation ("Google Doodle-style surprise")
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (mediaQuery.matches) return;
+
+    const triggerSpark = () => {
+      setIsSparkAnimating(true);
+      setTimeout(() => {
+        setIsSparkAnimating(false);
+      }, 1600);
+    };
+
+    const intervalId = setInterval(triggerSpark, 15000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   // Reveal on Top Hover (Mouse entering top 70px of viewport)
   useEffect(() => {
@@ -795,6 +813,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
     ['--pill-text']: resolvedPillTextColor
   };
 
+  const isHomePage = location.pathname === '/' || location.pathname === '';
   const shouldShowNavbar = isVisible || isTopHovered || isMobileMenuOpen;
 
   return (
@@ -813,8 +832,23 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
             logoRef.current = el;
           }}
         >
-          {/* Logo Emblem (Big logo emblem) */}
-          <div className="pill-logo shrink-0 flex items-center">
+          {/* Logo Emblem (Big logo emblem with periodic 15s spark animation) */}
+          <motion.div
+            className="pill-logo shrink-0 flex items-center relative overflow-hidden"
+            animate={
+              isSparkAnimating
+                ? {
+                    y: [0, -3, -1, -2, 0],
+                    scale: [1, 1.025, 1.035, 1.01, 1],
+                  }
+                : { y: 0, scale: 1 }
+            }
+            transition={{
+              duration: 1.5,
+              ease: [0.25, 1, 0.5, 1],
+              times: [0, 0.3, 0.6, 0.85, 1],
+            }}
+          >
             <img
               src={Logo}
               alt="PRASKLA DIGITAL X Logo"
@@ -822,7 +856,17 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
               className="h-[60px] sm:h-[68px] lg:h-[76px] !important w-auto object-contain transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.08)] group-hover:drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)]"
               style={{ willChange: 'transform, filter' }}
             />
-          </div>
+
+            {/* Phase 3: Premium Light Highlight Sweep Across Logo */}
+            {isSparkAnimating && (
+              <motion.div
+                className="absolute inset-0 pointer-events-none bg-gradient-to-r from-transparent via-white/50 to-transparent -skew-x-12"
+                initial={{ x: "-100%", opacity: 0 }}
+                animate={{ x: "200%", opacity: [0, 0.45, 0] }}
+                transition={{ duration: 1.2, delay: 0.15, ease: "easeInOut" }}
+              />
+            )}
+          </motion.div>
 
           {/* 2-line Text Column (PRASKLA DIGITAL + Animated Single-Line Tagline) */}
           <div className="flex flex-col justify-center min-w-0">
@@ -830,7 +874,19 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
               <span className="font-inlander text-[17px] sm:text-[20px] lg:text-[22px] font-black text-[#111111] leading-none tracking-[0.01em] uppercase whitespace-nowrap">
                 PRASKLA DIGITAL
               </span>
-              <BrandX className="h-[23px] sm:h-[27px] lg:h-[30px] w-auto shrink-0 select-none text-[#E31D2E] translate-y-[2px] drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
+              <motion.div
+                animate={
+                  isSparkAnimating
+                    ? {
+                        scale: [1, 1.08, 1],
+                        rotate: [0, 2, -2, 0],
+                      }
+                    : { scale: 1, rotate: 0 }
+                }
+                transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
+              >
+                <BrandX className="h-[23px] sm:h-[27px] lg:h-[30px] w-auto shrink-0 select-none text-[#E31D2E] translate-y-[2px] drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
+              </motion.div>
             </div>
             <AnimatedBrandTagline />
           </div>

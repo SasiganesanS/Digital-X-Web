@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight, ArrowLeft, ArrowRight, Check, Sparkles, Zap, Layers } from "lucide-react";
 import { blogPosts, clientData } from "../../constants";
 import ContactForm from "../ContactForm";
+import BlogSpaceBackground from "../BlogSpaceBackground";
 import "../MainBlog.css";
 
 const DEFAULT_CLIENT_IMAGE =
@@ -90,7 +91,12 @@ const BlogPage = () => {
   const heroImage = post.heroImage || post.image || overview?.image;
 
   return (
-    <div className="bg-[#F8FAFC] min-h-screen text-[#111111] font-sans overflow-x-hidden selection:bg-[#E31D2E] selection:text-white">
+    <div className="relative w-full overflow-hidden bg-[#050609]">
+      {/* Article-scoped Continuous Parallax Pluto Space Environment */}
+      <BlogSpaceBackground />
+
+      {/* Main Content Sections */}
+      <div className="relative z-10 w-full">
       
       {/* ── HERO SECTION: NATURAL COVER IMAGE WITH NO RED OVERLAY ── */}
       <section className="relative w-full min-h-[75vh] lg:min-h-[82vh] flex items-end overflow-hidden pt-28 pb-16 lg:pb-20">
@@ -336,7 +342,7 @@ const BlogPage = () => {
         isOpen={showContactForm}
         onClose={() => setShowContactForm(false)}
       />
-
+      </div>
     </div>
   );
 };

@@ -2,9 +2,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import CanvasPlanet from "./CanvasPlanet";
 
-import MarsImg from "../../assets/planets/mars.png";
-import SaturnImg from "../../assets/planets/saturn.png";
-import NeptuneImg from "../../assets/planets/neptune.png";
+import MarsMainImg from "../../assets/planets/mars_main.png";
+import MarsPolarImg from "../../assets/planets/mars_polar.png";
+import MarsCrescentImg from "../../assets/planets/mars_crescent.png";
+import BigMeteorImg from "../../assets/planets/big_meteor.png";
 
 /** Generate 65 stable twinkling star positions for rich galaxy field */
 const GALAXY_STARS = Array.from({ length: 65 }, (_, i) => ({
@@ -36,10 +37,10 @@ export default function SpaceHeroBackground() {
 
       {/* 1. Rotating Galaxy Core Spiral */}
       <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[750px] rounded-[100%] opacity-45 blur-[120px]"
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[750px] rounded-[100%] opacity-40 blur-[120px]"
         style={{
           background:
-            "radial-gradient(ellipse at center, rgba(227,29,46,0.25) 0%, rgba(139,92,246,0.2) 35%, rgba(59,130,246,0.12) 65%, transparent 80%)",
+            "radial-gradient(ellipse at center, rgba(227,29,46,0.22) 0%, rgba(20,20,30,0.15) 45%, transparent 80%)",
         }}
         animate={{
           rotate: [0, 360],
@@ -51,25 +52,28 @@ export default function SpaceHeroBackground() {
         }}
       />
 
-      {/* 2. Diagonal Galaxy Stardust River Stream */}
+      {/* 2. Big Meteor Asteroid Drifting in Space */}
       <motion.div
-        className="absolute -top-[25%] -left-[15%] w-[150%] h-[90%] -rotate-12 opacity-40 blur-[110px] pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(115deg, transparent 15%, rgba(227,29,46,0.28) 35%, rgba(168,85,247,0.22) 55%, rgba(59,130,246,0.18) 75%, transparent 90%)",
-        }}
+        className="absolute top-[12%] right-[10%] z-0 pointer-events-none opacity-85"
         animate={{
-          x: [-25, 25, -25],
-          opacity: [0.35, 0.5, 0.35],
+          y: [-10, 10, -10],
+          rotate: [0, 360],
         }}
         transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut",
+          y: { duration: 10, repeat: Infinity, ease: "easeInOut" },
+          rotate: { duration: 80, repeat: Infinity, ease: "linear" },
         }}
-      />
+      >
+        <div className="relative w-32 h-32 sm:w-44 sm:h-44 lg:w-48 lg:h-48 drop-shadow-[0_0_30px_rgba(239,32,41,0.5)]">
+          <CanvasPlanet
+            src={BigMeteorImg}
+            alt="Big Meteor Asteroid"
+            className="w-full h-full object-contain"
+          />
+        </div>
+      </motion.div>
 
-      {/* 3. DYNAMIC LUMINOUS SHOOTING STARS / COMETS (Ignites -> Peaks -> Vanishes along Diagonal Trajectory) */}
+      {/* 3. DYNAMIC LUMINOUS SHOOTING STARS / COMETS */}
       {COMETS.map((comet) => (
         <motion.div
           key={comet.id}
@@ -98,16 +102,10 @@ export default function SpaceHeroBackground() {
             repeatDelay: 4.5,
           }}
         >
-          {/* Flame Tail (Trailing behind the head, fading from transparent to red to white) */}
           <div className="h-[2.5px] w-[200px] bg-gradient-to-r from-transparent via-[#FF2B2B]/70 via-[#FF2B2B] to-white rounded-full shadow-[0_0_12px_rgba(255,43,43,0.85)] flex-shrink-0" />
-          {/* Glowing Meteor Head (Leading at the front tip) */}
           <div className="w-3 h-3 rounded-full bg-white shadow-[0_0_16px_#FFFFFF,0_0_28px_rgba(255,43,43,1)] -ml-1 z-10 flex-shrink-0" />
         </motion.div>
       ))}
-
-      {/* 4. Cosmic Space Horizon Curve at Bottom */}
-      <div className="absolute bottom-0 left-0 right-0 h-[260px] bg-gradient-to-t from-[#200512]/60 via-[#12040b]/35 to-transparent pointer-events-none" />
-      <div className="absolute bottom-[-90px] left-1/2 -translate-x-1/2 w-[140%] h-[180px] rounded-[100%] bg-gradient-to-t from-[#E31D2E]/25 via-[#E31D2E]/8 to-transparent blur-2xl pointer-events-none" />
 
       {/* Star Grid Overlay */}
       <div
@@ -118,7 +116,7 @@ export default function SpaceHeroBackground() {
         }}
       />
 
-      {/* 5. Bright Twinkling Stars */}
+      {/* 4. Bright Twinkling Stars */}
       {GALAXY_STARS.map((star) => (
         <motion.div
           key={star.id}
@@ -145,13 +143,13 @@ export default function SpaceHeroBackground() {
         />
       ))}
 
-      {/* ── 100% TRANSPARENT PNG PLANET CUTOUTS (ZERO BLACK BACKGROUND) ── */}
+      {/* ── 3 UNIQUE MARS PLANET VIEWS ── */}
 
-      {/* Planet 1: Photorealistic Mars (Top-Left) */}
+      {/* Planet 1: Mars Canyon View (Top-Left Edge) */}
       <motion.div
-        className="absolute top-4 -left-4 sm:top-6 sm:left-4 z-0 pointer-events-none opacity-90"
+        className="absolute top-1 -left-12 sm:top-2 sm:-left-16 lg:-left-10 z-0 pointer-events-none opacity-85"
         animate={{
-          y: [-8, 8, -8],
+          y: [-6, 6, -6],
           rotate: [0, 6, 0],
         }}
         transition={{
@@ -160,16 +158,16 @@ export default function SpaceHeroBackground() {
           ease: "easeInOut",
         }}
       >
-        <div className="relative w-28 h-28 sm:w-40 sm:h-40">
+        <div className="relative w-32 h-32 sm:w-44 sm:h-44 lg:w-52 lg:h-52">
           <CanvasPlanet
-            src={MarsImg}
-            alt="Mars Planet"
-            className="w-full h-full object-contain drop-shadow-[0_0_25px_rgba(255,60,40,0.6)]"
+            src={MarsMainImg}
+            alt="Mars Planet - Canyon View"
+            className="w-full h-full object-contain drop-shadow-[0_0_35px_rgba(255,60,40,0.5)]"
           />
         </div>
       </motion.div>
 
-      {/* Planet 2: Photorealistic Saturn (Top-Right) */}
+      {/* Planet 2: Mars Polar View (Top-Right Edge) */}
       <motion.div
         className="absolute top-2 -right-4 sm:top-4 sm:right-6 z-0 pointer-events-none opacity-90"
         animate={{
@@ -185,14 +183,14 @@ export default function SpaceHeroBackground() {
       >
         <div className="relative w-36 h-36 sm:w-52 sm:h-52">
           <CanvasPlanet
-            src={SaturnImg}
-            alt="Saturn Planet"
-            className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(245,158,11,0.5)]"
+            src={MarsPolarImg}
+            alt="Mars Planet - Polar View"
+            className="w-full h-full object-contain drop-shadow-[0_0_35px_rgba(255,80,60,0.5)]"
           />
         </div>
       </motion.div>
 
-      {/* Planet 3: Photorealistic Neptune (Bottom-Right) */}
+      {/* Planet 3: Mars Crescent View (Bottom-Right Edge) */}
       <motion.div
         className="absolute bottom-8 right-6 sm:bottom-12 sm:right-16 z-0 pointer-events-none opacity-85"
         animate={{
@@ -206,11 +204,11 @@ export default function SpaceHeroBackground() {
           delay: 1,
         }}
       >
-        <div className="relative w-24 h-24 sm:w-36 sm:h-36">
+        <div className="relative w-28 h-28 sm:w-40 sm:h-40">
           <CanvasPlanet
-            src={NeptuneImg}
-            alt="Neptune Planet"
-            className="w-full h-full object-contain drop-shadow-[0_0_24px_rgba(59,130,246,0.6)]"
+            src={MarsCrescentImg}
+            alt="Mars Planet - Crescent View"
+            className="w-full h-full object-contain drop-shadow-[0_0_30px_rgba(227,29,46,0.6)]"
           />
         </div>
       </motion.div>

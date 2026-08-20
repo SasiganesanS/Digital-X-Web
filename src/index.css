@@ -1019,25 +1019,21 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg {
    and the first hero/banner section across all pages.
    =================================================================== */
 :root {
-  /* 
-    Floating Navbar top position: 2rem (32px) + floating card height 72px = 104px bottom edge.
-    Desktop: 40px gap below navbar -> 104px + 40px = 144px top offset.
-  */
   --nav-bottom-edge: 76px;
-  --hero-top-offset: 96px;
+  --hero-top-offset: 76px;
 }
 
 @media (max-width: 1023px) {
   :root {
     --nav-bottom-edge: 72px;
-    --hero-top-offset: 88px;
+    --hero-top-offset: 72px;
   }
 }
 
 @media (max-width: 767px) {
   :root {
     --nav-bottom-edge: 68px;
-    --hero-top-offset: 80px;
+    --hero-top-offset: 68px;
   }
 }
 

@@ -43,6 +43,8 @@ import SearchOverlay from "./components/SearchOverlay";
 import CollaboratorDirectory from "./components/collaborators/CollaboratorDirectory";
 import CollaboratorProfilePage from "./components/collaborators/CollaboratorProfilePage";
 
+import FooterReveal from "./components/FooterReveal";
+
 // Legal Page Imports
 import PrivacyPolicy from "./components/legal/PrivacyPolicy";
 import TermsAndConditions from "./components/legal/TermsAndConditions";
@@ -466,8 +468,10 @@ const MainLayout = () => {
         isOpen={showContactForm}
         onClose={() => setShowContactForm(false)}
       />
-      <AppRoutes />
-      <Footer setShowContactForm={setShowContactForm} />
+      <main className="relative z-10 w-full overflow-hidden rounded-b-[24px] sm:rounded-b-[32px] lg:rounded-b-[36px] shadow-[0_20px_60px_rgba(0,0,0,0.12)]">
+        <AppRoutes />
+      </main>
+      <FooterReveal setShowContactForm={setShowContactForm} />
       <ScrollToTop />
       <RocketScrollbar />
       </div>

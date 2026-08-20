@@ -40,8 +40,8 @@ import {
 } from "react-icons/fi";
 
 import CareersImageGrid from "./CareersImageGrid";
-
 import SectionBadge from "./common/SectionBadge";
+import CareersSpaceBackground from "./CareersSpaceBackground";
 
 const Careers = () => {
   const [selectedJob, setSelectedJob] = useState(null);
@@ -170,22 +170,27 @@ const Careers = () => {
   }, [openFilter]);
 
   return (
-    <>
-      <HeroLayout
-        badge={
-          <SectionBadge text="Careers @ PRASKLA DIGITAL X" />
-        }
-        title={
-          <h1 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl">
-            Join us in driving marketing strategies that power{" "}
-            <span className="text-[#E31D2E]">brand growth</span>
-          </h1>
-        }
-        description={
-          <p className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
-            Craft high-impact digital campaigns, elevate brands, and grow alongside a team of strategic, creative, and performance marketing minds.
-          </p>
-        }
+    <div className="relative w-full overflow-hidden bg-[#050609]">
+      {/* Careers-scoped Continuous Parallax Venus Space Environment */}
+      <CareersSpaceBackground />
+
+      {/* Main Careers Content Sections */}
+      <div className="relative z-10 w-full">
+        <HeroLayout
+          badge={
+            <SectionBadge text="Careers @ PRASKLA DIGITAL X" />
+          }
+          title={
+            <h1 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-white font-sans mb-5 sm:mb-6 max-w-2xl">
+              Join us in driving marketing strategies that power{" "}
+              <span className="text-[#E31D2E]">brand growth</span>
+            </h1>
+          }
+          description={
+            <p className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
+              Craft high-impact digital campaigns, elevate brands, and grow alongside a team of strategic, creative, and performance marketing minds.
+            </p>
+          }
         actions={
           <div className="flex flex-col items-center lg:items-start gap-3.5 w-full">
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 w-full">
@@ -375,7 +380,8 @@ const Careers = () => {
           onClose={() => setSelectedJob(null)}
         />
       )}
-    </>
+      </div>
+    </div>
   );
 };
 

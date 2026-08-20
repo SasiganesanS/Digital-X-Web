@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { FaCheck, FaTimes, FaTimes as CloseIcon, FaEuroSign, FaRupeeSign } from 'react-icons/fa';
 
 import { businessWebsitePricingPlans, businessWebsiteExampleWorks } from '../../constants';
+import LegalSpaceBackground from '../legal/LegalSpaceBackground';
 
 
 const BusinessWebsitePricing = () => {
@@ -158,18 +159,20 @@ const BusinessWebsitePricing = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-4 pb-10">
-      <div className="w-[90%] max-w-[1280px] mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-[#371445] mb-4">
-            Business Website Pricing-plan
-          </h1>
-          <div className="w-24 h-1 bg-[#371445] mx-auto mb-6 rounded-full"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Find the Perfect plan that suits you or your business
-          </p>
-        </div>
+    <div className="relative w-full overflow-hidden bg-[#050609]">
+      <LegalSpaceBackground />
+      <div className="relative z-10 w-full pt-4 pb-10">
+        <div className="w-[90%] max-w-[1280px] mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h1 className="text-5xl font-bold text-white mb-4">
+              Business Website Pricing-plan
+            </h1>
+            <div className="w-24 h-1 bg-[#E31D2E] mx-auto mb-6 rounded-full"></div>
+            <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
+              Find the Perfect plan that suits you or your business
+            </p>
+          </div>
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
@@ -754,6 +757,7 @@ const BusinessWebsitePricing = () => {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 };

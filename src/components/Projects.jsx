@@ -8,6 +8,8 @@ import "../index.css";
 import { data, blogPosts } from "../constants";
 import { projects } from "../data/projects";
 import ProjectDetailModal from "./ProjectDetailModal";
+import ProjectsSpaceBackground from "./ProjectsSpaceBackground";
+import SectionBadge from "./common/SectionBadge";
 import "./Projects.css"
 
 import img1 from '../assets/project-cover/photo 1.webp';
@@ -190,8 +192,6 @@ const WORKFLOW_LABELS = [
   "Continuous Growth",
 ];
 
-import SectionBadge from "./common/SectionBadge";
-
 const Projects = () => {
   const [showContactForm, setShowContactForm] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -273,43 +273,47 @@ const Projects = () => {
   }, []);
 
   return (
-    <div className="w-full hero-project-container bg-transparent text-[#111111] overflow-x-hidden">
-      
-      {/* ------------------ Hero Section ------------------ */}
-      <HeroLayout
-        bgElements={null}
-        badge={
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <SectionBadge text="OUR PORTFOLIO" />
-          </motion.div>
-        }
-        title={
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl"
-          >
-            Collaborate for{" "}
-            <span className="text-[#E31D2E]">
-              meaningful brand growth
-            </span>
-          </motion.h1>
-        }
-        description={
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.75, delay: 0.2 }}
-            className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
-          >
-            A curated showcase of performance campaigns, digital products, and brand identity projects built for growth.
-          </motion.p>
-        }
+    <div className="relative w-full overflow-hidden bg-[#050609]">
+      {/* Projects-scoped Continuous Parallax Earth Space Environment */}
+      <ProjectsSpaceBackground />
+
+      {/* Main Projects Content Sections */}
+      <div className="relative z-10 w-full">
+        {/* ------------------ Hero Section ------------------ */}
+        <HeroLayout
+          bgElements={null}
+          badge={
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <SectionBadge text="OUR PORTFOLIO" />
+            </motion.div>
+          }
+          title={
+            <motion.h1
+              initial={{ opacity: 0, y: 25 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-white font-sans mb-5 sm:mb-6 max-w-2xl"
+            >
+              Collaborate for{" "}
+              <span className="text-[#E31D2E]">
+                meaningful brand growth
+              </span>
+            </motion.h1>
+          }
+          description={
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.75, delay: 0.2 }}
+              className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
+            >
+              A curated showcase of performance campaigns, digital products, and brand identity projects built for growth.
+            </motion.p>
+          }
         actions={
           <div className="flex flex-col items-center lg:items-start gap-3.5 relative z-10 w-full">
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full max-w-xl justify-center lg:justify-start">
@@ -587,6 +591,7 @@ const Projects = () => {
           onClose={() => setShowContactForm(false)}
         />
       )}
+      </div>
     </div>
   );
 };

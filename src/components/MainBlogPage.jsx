@@ -6,6 +6,7 @@ import "./MainBlog.css";
 
 import HeroLayout from "./common/HeroLayout";
 import SectionBadge from "./common/SectionBadge";
+import BlogSpaceBackground from "./BlogSpaceBackground";
 
 export default function BlogPage() {
   const [hoveredCard, setHoveredCard] = useState(null);
@@ -74,10 +75,15 @@ export default function BlogPage() {
   ];
 
   return (
-    <div className="w-full min-h-screen bg-[#080808]">
-      {/* HERO SECTION */}
-      <HeroLayout
-        className="bg-white"
+    <div className="relative w-full overflow-hidden bg-[#050609]">
+      {/* Blog-scoped Continuous Parallax Pluto Space Environment */}
+      <BlogSpaceBackground />
+
+      {/* Main Content Sections */}
+      <div className="relative z-10 w-full">
+        {/* HERO SECTION */}
+        <HeroLayout
+          className="bg-transparent"
         bgElements={
           <div
             className="absolute inset-0 bg-cover bg-center"
@@ -344,6 +350,7 @@ export default function BlogPage() {
           </div>
         </div>
       </section>
+      </div>
     </div>
   );
 }

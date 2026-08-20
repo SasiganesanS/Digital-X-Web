@@ -17,6 +17,7 @@ import Teams from "../Teams";
 import HeroLayout from "../common/HeroLayout";
 import SectionBadge from "../common/SectionBadge";
 import BrandX from "../common/BrandX";
+import AboutSpaceBackground from "./AboutSpaceBackground";
 
 function AnimatedCounter({ target, suffix = "", prefix = "", duration = 1.6 }) {
   const [count, setCount] = useState(0);
@@ -106,7 +107,7 @@ const About = () => {
       variants={fadeUp}
       initial="hidden"
       animate="visible"
-      className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-5 sm:mb-6 max-w-2xl"
+      className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-white font-sans mb-5 sm:mb-6 max-w-2xl"
     >
       Where Mindful Strategy{" "}
       <span className="text-[#E31D2E]">Meets Scalable Growth.</span>
@@ -118,7 +119,7 @@ const About = () => {
       variants={fadeUp}
       initial="hidden"
       animate="visible"
-      className="text-[#575757] text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
+      className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
     >
       A trusted marketing partner delivering brand transformation, performance campaigns,
       and high-impact digital ecosystems that accelerate business growth.
@@ -334,55 +335,60 @@ const About = () => {
   );
 
   return (
-    <div className="min-h-screen bg-transparent" style={{ backgroundColor: "transparent" }}>
-      {/* ── About Hero Section ── */}
-      <HeroLayout
-        bgElements={bgElements}
-        badge={badge}
-        title={title}
-        description={description}
-        actions={actions}
-        media={media}
-      />
+    <div className="relative w-full overflow-hidden bg-[#050609]">
+      {/* About-scoped Continuous Parallax Saturn Space Environment */}
+      <AboutSpaceBackground />
 
-      {/* Vision & Mission Section */}
-      <section className="relative py-10 sm:py-12 lg:py-14 overflow-hidden bg-transparent">
-        {/* Background ambient glows */}
-        <div className="absolute top-1/2 left-10 -translate-y-1/2 w-80 h-80 bg-[#E31D2E]/5 rounded-full blur-[100px] pointer-events-none" />
-        <div className="absolute top-1/2 right-10 -translate-y-1/2 w-80 h-80 bg-[#E31D2E]/5 rounded-full blur-[100px] pointer-events-none" />
+      {/* Main About Content Sections */}
+      <div className="relative z-10 w-full">
+        {/* ── About Hero Section ── */}
+        <HeroLayout
+          bgElements={bgElements}
+          badge={badge}
+          title={title}
+          description={description}
+          actions={actions}
+          media={media}
+        />
 
-        <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-          {/* Section Header */}
-          <div className="text-center mb-12 sm:mb-16">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="mb-4"
-            >
-              <SectionBadge text="Vision & Mission" />
-            </motion.div>
+        {/* Vision & Mission Section */}
+        <section className="relative py-10 sm:py-12 lg:py-14 overflow-hidden bg-transparent">
+          {/* Background ambient glows */}
+          <div className="absolute top-1/2 left-10 -translate-y-1/2 w-80 h-80 bg-[#E31D2E]/5 rounded-full blur-[100px] pointer-events-none" />
+          <div className="absolute top-1/2 right-10 -translate-y-1/2 w-80 h-80 bg-[#E31D2E]/5 rounded-full blur-[100px] pointer-events-none" />
 
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-black text-[#111111] tracking-tight mt-4"
-            >
-              Pioneering Purpose & Direction
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-[#575757] text-base sm:text-lg max-w-2xl mx-auto mt-3 font-normal"
-            >
-              Building long-term brand impact through creative storytelling, data intelligence, and measurable results.
-            </motion.p>
-          </div>
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
+            {/* Section Header */}
+            <div className="text-center mb-12 sm:mb-16">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+                className="mb-4"
+              >
+                <SectionBadge text="Vision & Mission" />
+              </motion.div>
+
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="text-3xl sm:text-4xl md:text-5xl font-black !text-white tracking-tight mt-4"
+              >
+                Pioneering Purpose & Direction
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.15 }}
+                className="!text-neutral-300 text-base sm:text-lg max-w-2xl mx-auto mt-3 font-normal"
+              >
+                Building long-term brand impact through creative storytelling, data intelligence, and measurable results.
+              </motion.p>
+            </div>
 
           {/* 2-Column Grid Layout */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 max-w-6xl mx-auto">
@@ -499,17 +505,22 @@ const About = () => {
                 <SectionBadge text="Who we are" />
               </div>
 
-              <h2 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.25] tracking-[-0.02em] text-[#111111] font-sans mb-5 sm:mb-6">
+              {/* Eyebrow badge */}
+              <div className="mb-2">
+                <SectionBadge text="Who we are" />
+              </div>
+
+              <h2 className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.25] tracking-[-0.02em] !text-white font-sans mb-5 sm:mb-6">
                 A Team Built for{" "}
                 <span className="text-[#E31D2E]">Impact and Scale</span>
               </h2>
 
-              <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium">
+              <p className="!text-neutral-300 text-base sm:text-lg leading-relaxed font-medium">
                 At PRASKLA DIGITAL <BrandX className="h-[1.05em] w-auto text-[#E31D2E] inline-block translate-y-[0.14em]" />, we bring together creative visual creators, copywriting experts,
                 ad strategists, and performance analytics professionals.
               </p>
 
-              <p className="text-[#575757] text-base leading-relaxed">
+              <p className="!text-neutral-300 text-base leading-relaxed">
                 By bridging strategy, visual production, and media buying, we eliminate the friction 
                 between branding and ROI — making campaign scale faster and more predictable for your company.
               </p>
@@ -525,14 +536,14 @@ const About = () => {
               ].map((metric, i) => (
                 <motion.div
                   key={i}
-                  className="clay-card rounded-2xl p-6 md:p-8 flex flex-col justify-center items-center text-center"
+                  className="clay-card rounded-2xl p-6 md:p-8 flex flex-col justify-center items-center text-center bg-white text-[#111111]"
                   initial={{ opacity: 0, scale: 0.9 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                 >
                   <span className="text-[#E31D2E] text-3xl sm:text-4xl font-black mb-2">{metric.count}</span>
-                  <span className="text-[#575757] text-xs sm:text-sm leading-relaxed font-bold">{metric.text}</span>
+                  <span className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-bold">{metric.text}</span>
                 </motion.div>
               ))}
             </div>
@@ -566,7 +577,7 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1, ease: "easeOut" }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111111] leading-tight tracking-tight"
+              className="text-3xl sm:text-4xl lg:text-5xl font-black !text-white leading-tight tracking-tight"
             >
               What We <span className="text-[#E31D2E]">Bring to the Table</span>
             </motion.h2>
@@ -575,7 +586,7 @@ const About = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-              className="text-neutral-500 text-sm sm:text-base font-medium leading-relaxed mt-4 max-w-xl mx-auto"
+              className="!text-neutral-300 text-sm sm:text-base font-medium leading-relaxed mt-4 max-w-xl mx-auto"
             >
               Strategic brand positioning, growth marketing, and visual production engineered to scale your business.
             </motion.p>
@@ -654,7 +665,7 @@ const About = () => {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="clay-card p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden group text-[#111111]"
+            className="clay-card p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden group text-[#111111] bg-white border border-white/90 shadow-2xl"
           >
             <h2 className="text-3xl md:text-4xl font-black text-[#111111] mb-6 leading-tight">
               Ready to Transform <br />
@@ -673,7 +684,8 @@ const About = () => {
           </motion.div>
         </div>
       </div>
-    </div >
+      </div>
+    </div>
   );
 };
 

@@ -15,6 +15,7 @@ import mock2 from "../../assets/pricing/mock2.webp";
 import mock3 from "../../assets/pricing/mock3.webp";
 import mock4 from "../../assets/pricing/mock4.webp";
 import { sendPricingQuoteEmails } from '../../utils/emailService';
+import LegalSpaceBackground from '../legal/LegalSpaceBackground';
 
 const SoftwareDevelopmentPricing = () => {
   const [showModal, setShowModal] = useState(false);
@@ -267,18 +268,20 @@ const SoftwareDevelopmentPricing = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-4 pb-10">
-      <div className="w-[90%] max-w-[1280px] mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-5xl font-bold text-[#371445] mb-4">
-            Software Development Pricing
-          </h1>
-          <div className="w-24 h-1 bg-[#371445] mx-auto mb-6 rounded-full"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Custom software solutions tailored to your business needs
-          </p>
-        </div>
+    <div className="relative w-full overflow-hidden bg-[#050609]">
+      <LegalSpaceBackground />
+      <div className="relative z-10 w-full pt-4 pb-10">
+        <div className="w-[90%] max-w-[1280px] mx-auto">
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h1 className="text-5xl font-bold text-white mb-4">
+              Software Development Pricing
+            </h1>
+            <div className="w-24 h-1 bg-[#E31D2E] mx-auto mb-6 rounded-full"></div>
+            <p className="text-lg text-neutral-300 max-w-2xl mx-auto">
+              Custom software solutions tailored to your business needs
+            </p>
+          </div>
 
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -970,6 +973,7 @@ const SoftwareDevelopmentPricing = () => {
           </div>
         </div>
       )}
+      </div>
     </div>
   );
 };

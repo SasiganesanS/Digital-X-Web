@@ -20,6 +20,7 @@ import {
 } from "lucide-react";
 import HeroLayout from "../common/HeroLayout";
 import SectionBadge from "../common/SectionBadge";
+import LegalSpaceBackground from "./LegalSpaceBackground";
 
 const SECTIONS = [
   { id: "acceptance", label: "1. Acceptance of Terms", icon: FileCheck },
@@ -99,25 +100,30 @@ const TermsAndConditions = () => {
   );
 
   return (
-    <main className="w-full bg-transparent">
-      {/* SECTION 1 — HERO */}
-      <section className="legal-hero">
-        <HeroLayout className="py-4 sm:py-6 lg:py-8">
-          {/* Top Row: Standard Baseline Header & Agreement Card */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-            {/* Left Column: Badge -> Heading -> Description -> Badges */}
-            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
-              <div className="mb-4 flex justify-center lg:justify-start w-full">
-                <SectionBadge text="Terms of Agreement" />
-              </div>
-              
-              <h1 className="text-[#111111] text-[36px] sm:text-[44px] lg:text-[52px] font-black leading-tight tracking-tight mb-4">
-                Terms & <span className="text-[#E31D2E]">Conditions</span>
-              </h1>
+    <div className="relative w-full overflow-hidden bg-[#050609]">
+      {/* Legal-scoped Continuous Parallax Mercury Space Environment */}
+      <LegalSpaceBackground />
 
-              <p className="text-[#575757] text-base sm:text-lg font-medium leading-relaxed mb-6 max-w-xl">
-                Review the agreement governing your use of PRASKLA DIGITAL X website, applications, and professional digital services.
-              </p>
+      {/* Main Content Sections */}
+      <div className="relative z-10 w-full">
+        {/* SECTION 1 — HERO */}
+        <section className="legal-hero relative bg-transparent">
+          <HeroLayout className="py-4 sm:py-6 lg:py-8">
+            {/* Top Row: Standard Baseline Header & Agreement Card */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+              {/* Left Column: Badge -> Heading -> Description -> Badges */}
+              <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
+                <div className="mb-4 flex justify-center lg:justify-start w-full">
+                  <SectionBadge text="Terms of Agreement" />
+                </div>
+                
+                <h1 className="text-white text-[36px] sm:text-[44px] lg:text-[52px] font-black leading-tight tracking-tight mb-4">
+                  Terms & <span className="text-[#E31D2E]">Conditions</span>
+                </h1>
+
+                <p className="text-neutral-300 text-base sm:text-lg font-medium leading-relaxed mb-6 max-w-xl">
+                  Review the agreement governing your use of PRASKLA DIGITAL X website, applications, and professional digital services.
+                </p>
 
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-neutral-500">
                 <div className="flex items-center gap-1.5 bg-white border border-neutral-200 px-3.5 py-1.5 rounded-full shadow-xs">
@@ -363,7 +369,8 @@ const TermsAndConditions = () => {
           </div>
         </div>
       </section>
-    </main>
+      </div>
+    </div>
   );
 };
 
