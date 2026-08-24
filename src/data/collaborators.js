@@ -133,6 +133,89 @@ export const COLLABORATORS_DATA = [
       { id: 2, title: "Brand Identity System", category: "Branding", image: sampleProj4 },
       { id: 3, title: "Interactive Media Assets", category: "Production", image: sampleProj6 }
     ]
+  },
+  {
+    slug: "rohan",
+    name: "Rohan",
+    role: "Digital Influencer & Key Opinion Leader",
+    category: "influencers",
+    categoryLabel: "Influencer",
+    image: sampleProj1,
+    shortDescription: "Lifestyle & tech influencer driving authentic audience engagement, brand partnerships, and promotional campaigns.",
+    bio: "Rohan collaborates with DigitalX to deliver high-converting influencer campaigns, sponsored content, and brand ambassadorships across major digital platforms.",
+    experience: "4+ Years",
+    availability: "Available for selected projects",
+    skills: [
+      "Brand Partnerships",
+      "Influencer Campaigns",
+      "Sponsored Content",
+      "Audience Engagement",
+      "Social Media Reach"
+    ],
+    services: [
+      "Influencer Brand Integration",
+      "Product Placement Reels",
+      "Social Media Takeovers",
+      "Sponsored Campaign Shoots"
+    ],
+    portfolio: [
+      { id: 1, title: "Tech Brand Takeover", category: "Influencer", image: sampleProj1 },
+      { id: 2, title: "Lifestyle Product Launch", category: "Campaign", image: sampleProj3 }
+    ]
+  },
+  {
+    slug: "siddharth",
+    name: "Siddharth",
+    role: "Executive Producer & Strategy Director",
+    category: "executives",
+    categoryLabel: "Executive",
+    image: sampleProj4,
+    shortDescription: "Senior executive director overseeing high-value media production, creative direction, and campaign strategy.",
+    bio: "Siddharth brings executive-level strategic leadership to complex brand productions, managing creative teams and enterprise campaign execution.",
+    experience: "8+ Years",
+    availability: "Available for selected projects",
+    skills: [
+      "Executive Direction",
+      "Production Leadership",
+      "Brand Strategy",
+      "Enterprise Campaigns"
+    ],
+    services: [
+      "Executive Production Management",
+      "High-Value Campaign Strategy",
+      "Creative Team Direction"
+    ],
+    portfolio: [
+      { id: 1, title: "Enterprise Rebrand Film", category: "Production", image: sampleProj5 },
+      { id: 2, title: "Global Campaign Strategy", category: "Strategy", image: sampleProj7 }
+    ]
+  },
+  {
+    slug: "ananya",
+    name: "Ananya",
+    role: "SEO & Growth Marketing Expert",
+    category: "experts",
+    categoryLabel: "Specialist & Expert",
+    image: sampleProj6,
+    shortDescription: "Specialist in technical SEO, performance marketing analytics, and conversion rate optimization.",
+    bio: "Ananya works with DigitalX as a growth specialist, helping brands maximize organic visibility, search rankings, and paid campaign performance.",
+    experience: "5+ Years",
+    availability: "Available for selected projects",
+    skills: [
+      "Technical SEO",
+      "Growth Marketing",
+      "Conversion Optimization",
+      "Analytics & Insights"
+    ],
+    services: [
+      "Advanced SEO Audits & Execution",
+      "Performance Funnel Optimization",
+      "Search Engine Marketing Strategy"
+    ],
+    portfolio: [
+      { id: 1, title: "Organic Growth Case Study", category: "SEO", image: sampleProj8 },
+      { id: 2, title: "Conversion Funnel Scale", category: "Growth", image: sampleProj2 }
+    ]
   }
 ];
 

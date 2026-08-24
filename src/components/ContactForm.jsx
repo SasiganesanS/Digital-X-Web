@@ -505,10 +505,10 @@ const ContactForm = ({ isOpen, onClose }) => {
                     />
                   </div>
 
-                  {/* Interested Service (Optional) */}
+                  {/* Area of Expertise (Optional) */}
                   <div>
                     <label htmlFor="contact-service" className="block text-xs font-semibold text-gray-700 mb-1.5">
-                      Interested Service <span className="text-gray-400 font-normal">(Optional)</span>
+                      Area of Expertise <span className="text-gray-400 font-normal">(Optional)</span>
                     </label>
                     <select
                       id="contact-service"

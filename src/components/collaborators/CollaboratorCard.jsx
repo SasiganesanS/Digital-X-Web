@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { User } from "lucide-react";
 
 export default function CollaboratorCard({ collaborator }) {
   if (!collaborator) return null;
@@ -14,15 +15,9 @@ export default function CollaboratorCard({ collaborator }) {
       transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
       className="group relative bg-white rounded-[2rem] p-6 flex flex-col justify-between items-start text-left border border-neutral-200/90 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:border-neutral-300 hover:shadow-[0_20px_45px_rgba(0,0,0,0.09)] transition-all duration-500 overflow-hidden"
     >
-      {/* Top Image Container */}
-      <div className="relative w-full h-56 sm:h-64 rounded-[1.5rem] overflow-hidden mb-5 bg-neutral-100 border border-neutral-200/60">
-        <img
-          src={collaborator.image}
-          alt={collaborator.name}
-          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-        />
-        {/* Subtle Dark Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+      {/* Top Image Container — Default DP Avatar */}
+      <div className="relative w-full h-56 sm:h-64 rounded-[1.5rem] overflow-hidden mb-5 bg-neutral-100 border border-neutral-200/80 flex items-center justify-center group-hover:bg-neutral-200/70 transition-colors">
+        <User className="w-20 h-20 text-neutral-400 stroke-[1.4] group-hover:scale-110 transition-transform duration-500" />
 
         {/* Availability Badge Overlay */}
         <div className="absolute top-3.5 left-3.5 px-3 py-1 rounded-full text-[10px] font-extrabold bg-white/90 backdrop-blur-md text-[#111111] border border-white/40 shadow-sm flex items-center gap-1.5">
@@ -39,8 +34,8 @@ export default function CollaboratorCard({ collaborator }) {
       {/* Main Info */}
       <div className="w-full flex-1 flex flex-col items-start">
         {/* Category Tag */}
-        <span className="px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-[0.2em] bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/15 mb-2.5 inline-flex items-center gap-1.5">
-          <span className="w-1 h-1 rounded-full bg-[#E31D2E]" />
+        <span className="px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase tracking-[0.2em] bg-neutral-100 text-[#111111] border border-neutral-200/90 mb-2.5 inline-flex items-center gap-1.5">
+          <span className="w-1 h-1 rounded-full bg-[#111111]" />
           {collaborator.categoryLabel}
         </span>
 
@@ -53,7 +48,7 @@ export default function CollaboratorCard({ collaborator }) {
         </p>
 
         {/* Short Description */}
-        <p className="text-neutral-600 text-xs sm:text-sm font-medium leading-relaxed line-clamp-3 mb-4">
+        <p className="text-neutral-600 text-xs sm:text-sm font-medium leading-relaxed mb-4">
           {collaborator.shortDescription}
         </p>
 
@@ -62,7 +57,7 @@ export default function CollaboratorCard({ collaborator }) {
           {collaborator.skills.slice(0, 4).map((skill, idx) => (
             <span
               key={idx}
-              className="px-2.5 py-1 rounded-md text-[10px] font-bold bg-neutral-100 text-neutral-700 border border-neutral-200/80 group-hover:bg-[#E31D2E]/5 group-hover:text-[#E31D2E] group-hover:border-[#E31D2E]/15 transition-all duration-300"
+              className="px-2.5 py-1 rounded-md text-[10px] font-bold bg-neutral-100 text-neutral-700 border border-neutral-200/80 group-hover:bg-[#111111] group-hover:text-white transition-all duration-300"
             >
               {skill}
             </span>

@@ -186,7 +186,7 @@ const ServicesCoverflow = () => {
       }}
       tabIndex={0}
       role="region"
-      aria-label="Services Carousel"
+      aria-label="Expertise Carousel"
     >
 
       {/* Section label */}
@@ -197,7 +197,7 @@ const ServicesCoverflow = () => {
         transition={{ duration: 0.6 }}
         className="mb-1.5 z-10"
       >
-        <SectionBadge text="OUR SERVICES" theme="dark" />
+        <SectionBadge text="OUR EXPERTISE" theme="dark" />
       </motion.div>
 
       <motion.p
@@ -318,12 +318,12 @@ const ServicesCoverflow = () => {
                   >
                     <div className="flex flex-col gap-1.5">
                       <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#ef2029]">
-                        Service
+                        Expertise
                       </span>
                       <h3 className="text-[#111111] font-black uppercase tracking-wide leading-tight text-xs">
                         {service.title}
                       </h3>
-                      <p className="text-[#575757] leading-relaxed font-normal text-[10px] line-clamp-3">
+                      <p className="text-[#575757] leading-relaxed font-normal text-[10px]">
                         {service.desc}
                       </p>
                     </div>
@@ -358,12 +358,12 @@ const ServicesCoverflow = () => {
         ))}
       </div>
 
-      {/* View Services Button */}
+      {/* View Expertise Button */}
       <button
         onClick={() => navigate("/services")}
         className="mt-2.5 z-10 text-[10px] font-extrabold uppercase tracking-[0.25em] bg-[#FF2B2B] hover:bg-[#E51D1D] text-white px-6 py-2.5 rounded-full whitespace-nowrap shadow-[0_8px_20px_rgba(255,43,43,0.4)] transition-all duration-300 hover:scale-105 cursor-pointer"
       >
-        VIEW SERVICES
+        VIEW EXPERTISE
       </button>
     </div>
   );

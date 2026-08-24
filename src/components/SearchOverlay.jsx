@@ -58,7 +58,7 @@ function HighlightedText({ text = "", query = "" }) {
  */
 function getCategoryIcon(category = "") {
   const cat = category.toUpperCase();
-  if (cat.includes("SERVICE")) return <Briefcase className="w-4 h-4 text-[#E31D2E]" />;
+  if (cat.includes("SERVICE") || cat.includes("EXPERTISE")) return <Briefcase className="w-4 h-4 text-[#E31D2E]" />;
   if (cat.includes("PROJECT")) return <FolderGit2 className="w-4 h-4 text-[#E31D2E]" />;
   if (cat.includes("CAREER")) return <Sparkles className="w-4 h-4 text-[#E31D2E]" />;
   if (cat.includes("TEAM")) return <Users className="w-4 h-4 text-[#E31D2E]" />;
@@ -252,7 +252,7 @@ const SearchOverlay = ({ isOpen, onClose, setShowContactForm }) => {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search services, projects, pages..."
+              placeholder="Search expertise, projects, pages..."
               className="search-input w-full bg-transparent text-[#111111] placeholder:text-gray-400 text-base sm:text-lg font-medium border-0 outline-none shadow-none"
               aria-label="Search input"
             />
@@ -352,7 +352,7 @@ const SearchOverlay = ({ isOpen, onClose, setShowContactForm }) => {
                       No results for "{searchQuery}"
                     </p>
                     <p className="text-xs text-gray-400 mt-1">
-                      Try searching for services, projects, careers, or about us.
+                      Try searching for expertise, projects, careers, or about us.
                     </p>
                   </div>
                 )}

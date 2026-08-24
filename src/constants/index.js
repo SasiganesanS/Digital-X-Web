@@ -240,16 +240,16 @@ export const platforms = SERVICES_CONFIG.map((service) => ({
     service.id === "marketing"
       ? "FaBullhorn"
       : service.id === "video"
-      ? "FaVideo"
-      : service.id === "web"
-      ? "FaGlobe"
-      : service.id === "software"
-      ? "FaLaptopCode"
-      : service.id === "app"
-      ? "FaMobileAlt"
-      : service.id === "cyber"
-      ? "FaShieldAlt"
-      : "FaLeaf",
+        ? "FaVideo"
+        : service.id === "web"
+          ? "FaGlobe"
+          : service.id === "software"
+            ? "FaLaptopCode"
+            : service.id === "app"
+              ? "FaMobileAlt"
+              : service.id === "cyber"
+                ? "FaShieldAlt"
+                : "FaLeaf",
   plans: service.packages.map((pkg) => ({
     id: pkg.id,
     title: pkg.title,
@@ -259,8 +259,8 @@ export const platforms = SERVICES_CONFIG.map((service) => ({
       pkg.id === "standard"
         ? "MdDiamond"
         : pkg.id === "business"
-        ? "MdStars"
-        : "MdWorkspacePremium",
+          ? "MdStars"
+          : "MdWorkspacePremium",
     availableDetails: pkg.features,
   })),
 }));

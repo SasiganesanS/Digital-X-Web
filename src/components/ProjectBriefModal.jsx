@@ -241,7 +241,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
     { num: 1, label: "Company", icon: Building2, desc: "Organization details" },
     { num: 2, label: "Contact", icon: User, desc: "Primary contact info" },
     { num: 3, label: "Branding", icon: Palette, desc: "Logo & brand style" },
-    { num: 4, label: "Services", icon: Layers, desc: "Required capabilities" },
+    { num: 4, label: "Expertise", icon: Layers, desc: "Required capabilities" },
     { num: 5, label: "Goals", icon: Target, desc: "Objectives & vision" },
     { num: 6, label: "Timeline", icon: Calendar, desc: "Project schedule" },
     { num: 7, label: "Budget", icon: Wallet, desc: "Investment range" },
@@ -1009,7 +1009,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 SECTION 4 OF 10
                               </span>
                               <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mt-1">
-                                Services Needed
+                                Expertise Needed
                               </h3>
                               <p className="text-sm text-neutral-500 font-normal mt-1.5">
                                 Select all digital, branding, media, and development capabilities required.
@@ -1061,7 +1061,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
 
                             <div>
                               <label className="block text-xs font-bold text-neutral-800 mb-2">
-                                Other Custom Services
+                                Other Custom Expertise
                               </label>
                               <input
                                 type="text"
@@ -1518,11 +1518,11 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   </div>
                                 </div>
 
-                                {/* 4. Selected Services */}
+                                {/* 4. Selected Expertise */}
                                 <div className="space-y-2 pb-4 border-b border-neutral-200/60">
                                   <div className="flex items-center justify-between">
                                     <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
-                                      <Layers className="w-3.5 h-3.5 text-[#E31D2E]" /> 4. Selected Services
+                                      <Layers className="w-3.5 h-3.5 text-[#E31D2E]" /> 4. Selected Expertise
                                     </span>
                                     <button type="button" onClick={() => setActiveSection(4)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
                                       Edit Section 4
@@ -1538,10 +1538,10 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                         ))}
                                       </div>
                                     ) : (
-                                      <span className="text-neutral-400 italic">No specific services pre-checked</span>
+                                      <span className="text-neutral-400 italic">No specific expertise pre-checked</span>
                                     )}
                                     {formData.otherService && (
-                                      <p className="text-neutral-700 text-xs mt-1.5"><strong>Custom Service:</strong> {formData.otherService}</p>
+                                      <p className="text-neutral-700 text-xs mt-1.5"><strong>Custom Expertise:</strong> {formData.otherService}</p>
                                     )}
                                   </div>
                                 </div>

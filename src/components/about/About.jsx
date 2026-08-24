@@ -382,10 +382,10 @@ const About = () => {
               <div>
                 {/* Header row with Icon & Number */}
                 <div className="flex items-center justify-between mb-8">
-                  <div className="w-14 h-14 rounded-2xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center text-[#E31D2E] shadow-xs group-hover:scale-110 group-hover:bg-[#E31D2E] group-hover:text-white transition-all duration-500">
+                  <div className="w-14 h-14 rounded-2xl bg-neutral-100 border border-neutral-200/80 flex items-center justify-center text-[#111111] shadow-xs group-hover:scale-110 group-hover:bg-[#111111] group-hover:text-white transition-all duration-500">
                     <Eye className="w-7 h-7 stroke-[2.2]" />
                   </div>
-                  <span className="px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] group-hover:border-black/20 transition-colors duration-300">
+                  <span className="px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#111111] group-hover:text-white transition-colors duration-300">
                     01
                   </span>
                 </div>
@@ -408,7 +408,7 @@ const About = () => {
               <div className="mt-8 pt-6 border-t border-neutral-100 flex flex-wrap gap-2.5">
                 {["Innovative Strategies", "Data Intelligence", "Sustainable Growth"].map((tag, i) => (
                   <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-100 border border-neutral-200/60 text-xs font-extrabold text-[#111111]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#111111]" />
                     {tag}
                   </span>
                 ))}
@@ -426,10 +426,10 @@ const About = () => {
               <div>
                 {/* Header row with Icon & Number */}
                 <div className="flex items-center justify-between mb-8">
-                  <div className="w-14 h-14 rounded-2xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center text-[#E31D2E] shadow-xs group-hover:scale-110 group-hover:bg-[#E31D2E] group-hover:text-white transition-all duration-500">
+                  <div className="w-14 h-14 rounded-2xl bg-neutral-100 border border-neutral-200/80 flex items-center justify-center text-[#111111] shadow-xs group-hover:scale-110 group-hover:bg-[#111111] group-hover:text-white transition-all duration-500">
                     <Target className="w-7 h-7 stroke-[2.2]" />
                   </div>
-                  <span className="px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] group-hover:border-black/20 transition-colors duration-300">
+                  <span className="px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#111111] group-hover:text-white transition-colors duration-300">
                     02
                   </span>
                 </div>
@@ -452,7 +452,7 @@ const About = () => {
               <div className="mt-8 pt-6 border-t border-neutral-100 flex flex-wrap gap-2.5">
                 {["Performance Marketing", "Creative Excellence", "Measurable ROI"].map((tag, i) => (
                   <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-100 border border-neutral-200/60 text-xs font-extrabold text-[#111111]">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#111111]" />
                     {tag}
                   </span>
                 ))}
@@ -505,7 +505,7 @@ const About = () => {
                 ].map((metric, i) => (
                   <motion.div
                     key={i}
-                    className="rounded-xl p-6 md:p-8 flex flex-col justify-center items-center text-center bg-neutral-50 border border-neutral-200/80 text-[#111111] shadow-xs"
+                    className="group rounded-xl p-6 md:p-8 flex flex-col justify-center items-center text-center bg-neutral-50 border border-neutral-200/80 text-[#111111] shadow-xs hover:border-neutral-300 transition-all"
                     initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
@@ -588,7 +588,7 @@ const About = () => {
                       {/* Top Row: Icon Container + Category Number */}
                       <div>
                         <div className="flex items-center justify-between gap-4 mb-6">
-                          <div className="w-14 h-14 rounded-2xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center text-[#E31D2E] group-hover:bg-[#E31D2E] group-hover:text-white transition-all duration-300 shrink-0 shadow-xs">
+                          <div className="w-14 h-14 rounded-2xl bg-white border border-neutral-200/80 flex items-center justify-center text-[#111111] group-hover:bg-[#111111] group-hover:text-white transition-all duration-300 shrink-0 shadow-xs">
                             <IconComponent className="w-7 h-7 stroke-[2.2]" />
                           </div>
                           <span className="font-mono text-sm font-bold text-[#E31D2E] tracking-wider bg-[#E31D2E]/10 px-3 py-1 rounded-full border border-[#E31D2E]/20">
@@ -636,7 +636,7 @@ const About = () => {
               to="/services"
               className="primary-btn inline-flex items-center gap-3 text-white px-8 py-4 rounded-full font-bold text-lg"
             >
-              Explore Our Services
+              Explore Our Expertise
             </Link>
           </motion.div>
         </div>

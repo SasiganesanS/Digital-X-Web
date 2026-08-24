@@ -216,7 +216,7 @@ const Careers = () => {
                     key={idx}
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-[#111111] border border-white/90 shadow-md text-xs font-extrabold tracking-tight hover:bg-neutral-100 transition-all duration-300"
                   >
-                    <IconComponent className="w-3.5 h-3.5 text-[#E31D2E]" />
+                    <IconComponent className="w-3.5 h-3.5 text-[#111111]" />
                     <span>{perk.text}</span>
                   </span>
                 );
@@ -329,14 +329,14 @@ const Careers = () => {
               {/* Compact Callout Banner */}
               <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-neutral-50/90 via-white to-red-50/40 border border-neutral-200/80 p-3 sm:p-3.5 shadow-2xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 group">
                 <div className="flex items-center gap-2.5 flex-1 min-w-0">
-                  <div className="w-8 h-8 rounded-xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 text-[#E31D2E] flex items-center justify-center flex-shrink-0 shadow-2xs">
+                  <div className="w-8 h-8 rounded-xl bg-neutral-100 border border-neutral-200 text-[#111111] flex items-center justify-center flex-shrink-0 shadow-2xs">
                     <Sparkles className="w-4 h-4" />
                   </div>
-                  <div className="min-w-0">
-                    <h3 className="text-[#111111] text-xs sm:text-sm font-black tracking-tight truncate">
+                  <div>
+                    <h3 className="text-[#111111] text-xs sm:text-sm font-black tracking-tight">
                       Can't find your perfect role?
                     </h3>
-                    <p className="text-neutral-500 text-[11px] leading-tight font-medium truncate">
+                    <p className="text-neutral-500 text-[11px] leading-tight font-medium">
                       Submit your profile and we'll reach out when a role opens.
                     </p>
                   </div>

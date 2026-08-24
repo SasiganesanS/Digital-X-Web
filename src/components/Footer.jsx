@@ -56,7 +56,7 @@ const Footer = ({ setShowContactForm }) => {
 
             {/* Secondary Dark Button */}
             <a
-              href="https://wa.me/919566880740?text=Hi%20Praskla%20Digital%20X%2C%20I%27m%20interested%20in%20your%20services%20and%20would%20like%20to%20discuss%20a%20project."
+              href="https://wa.me/919566880740?text=Hi%20Praskla%20Digital%20X%2C%20I%27m%20interested%20in%20your%20expertise%20and%20would%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto lg:w-[240px] px-6 py-3 rounded-full font-bold text-xs sm:text-sm border border-white/20 !text-white bg-[#1F1F1F] hover:bg-[#2A2A2A] hover:border-white/40 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm text-center cursor-pointer"
@@ -147,7 +147,7 @@ const Footer = ({ setShowContactForm }) => {
                 { href: "https://x.com/praskladigitalx", icon: FaXTwitter, label: "X" },
                 { href: "https://www.youtube.com/channel/UCE0yRo7bylROw5l5wSoXRTw", icon: FaYoutube, label: "YouTube" },
                 { href: "https://www.linkedin.com/in/praskla-digital-x-a39a73429/", icon: FaLinkedinIn, label: "LinkedIn" },
-                { href: "https://wa.me/919566880740?text=Hi%20Praskla%20Digital%20X%2C%20I%27m%20interested%20in%20your%20services%20and%20would%20like%20to%20discuss%20a%20project.", icon: FaWhatsapp, label: "WhatsApp" },
+                { href: "https://wa.me/919566880740?text=Hi%20Praskla%20Digital%20X%2C%20I%27m%20interested%20in%20your%20expertise%20and%20would%20like%20to%20discuss%20a%20project.", icon: FaWhatsapp, label: "WhatsApp" },
               ].map((social) => {
                 const SocialIcon = social.icon;
                 return (

@@ -878,7 +878,7 @@ export default function ServiceCalculator() {
               />
               <HeroAnimatedStat
                 targetNum="6"
-                suffix=""
+                suffix="+"
                 label="Services"
                 icon={FiLayers}
                 delay={0.2}
@@ -907,7 +907,7 @@ export default function ServiceCalculator() {
       />
 
       {/* ── Auto-Scrolling Marquee Section with manual arrow/dot control ── */}
-      <section ref={expertiseRef} id="expertise" className="relative w-full py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent">
+      <section ref={expertiseRef} id="services" className="relative w-full py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 min-h-[520px]">
           
           {/* Section Heading & Subtitle */}
@@ -919,7 +919,7 @@ export default function ServiceCalculator() {
             className="flex flex-col items-center justify-center text-center gap-2 mb-16"
           >
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight">
-              Our <span className="text-[#FF2B2B]">Core Expertise</span>
+              Our <span className="text-[#FF2B2B]">Core Services</span>
             </h2>
             <div className="h-1.5 w-24 bg-[#FF2B2B] rounded-full mb-1" />
             <p className="text-neutral-300 text-sm md:text-base font-medium max-w-md tracking-wide">
@@ -937,14 +937,14 @@ export default function ServiceCalculator() {
               }`}
               style={{
                 WebkitMaskImage:
-                  "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+                  "linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)",
                 maskImage:
-                  "linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%)",
+                  "linear-gradient(to right, transparent 0%, black 2%, black 98%, transparent 100%)",
               }}
             >
-              {/* Left/right fade masks */}
-              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-r from-[#ffffff] to-transparent opacity-80" />
-              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-10 md:w-24 z-20 bg-gradient-to-l from-[#ffffff] to-transparent opacity-80" />
+              {/* Left/right edge fade masks */}
+              <div className="pointer-events-none absolute left-0 top-0 bottom-0 w-3 md:w-6 z-20 bg-gradient-to-r from-white/30 to-transparent opacity-30" />
+              <div className="pointer-events-none absolute right-0 top-0 bottom-0 w-3 md:w-6 z-20 bg-gradient-to-l from-white/30 to-transparent opacity-30" />
 
               <motion.div
                 ref={trackRef}
@@ -1013,7 +1013,7 @@ export default function ServiceCalculator() {
                           </h3>
 
                           {/* Description */}
-                          <p className="text-[#575757] font-medium text-xs sm:text-sm leading-relaxed line-clamp-3 mb-3.5">
+                          <p className="text-[#575757] font-medium text-xs sm:text-sm leading-relaxed mb-3.5">
                             {service.desc}
                           </p>
                         </div>

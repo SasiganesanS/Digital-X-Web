@@ -54,6 +54,7 @@ import ServiceCard from "./components/serviceCard-reveal/ServiceCard";
 
 // Animation Wrapper
 import AnimatedPage from "./components/AnimatedPage";
+import PageTransitionOverlay from "./components/PageTransitionOverlay";
 
 // ===================================================================
 // HomePage Wrapper with Scroll Restoration
@@ -440,6 +441,7 @@ const MainLayout = () => {
   // Regular pages: with navbar and footer
   return (
     <div style={{ minHeight: "100vh", overflowX: "hidden", position: "relative", width: "100%" }}>
+      <PageTransitionOverlay />
       <ScrollToTopOnNavigate />
       <CinematicUniverse />
       <div style={{ position: "relative", zIndex: 1 }}>

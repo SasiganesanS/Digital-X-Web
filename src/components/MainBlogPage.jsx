@@ -323,11 +323,11 @@ export default function BlogPage() {
                     </div>
                   </div>
 
-                  <h3 className="text-xl md:text-2xl font-bold text-white line-clamp-2 my-4 group-hover:text-[#E8192C] transition-colors duration-300">
+                  <h3 className="text-xl md:text-2xl font-bold text-white my-4 group-hover:text-[#E8192C] transition-colors duration-300">
                     {post.title}
                   </h3>
 
-                  <p className="text-white/40 text-sm leading-relaxed line-clamp-3 mb-6">
+                  <p className="text-white/40 text-sm leading-relaxed mb-6">
                     {post.description}
                   </p>
 

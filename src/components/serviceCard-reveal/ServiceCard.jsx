@@ -54,7 +54,7 @@ const servicesData = [
     category: "Infrastructure",
 
     description:
-      "Scalable cloud infrastructure and deployment services. We help you leverage AWS, Azure, and GCP for optimal performance.",
+      "Scalable cloud infrastructure and deployment expertise. We help you leverage AWS, Azure, and GCP for optimal performance.",
 
     image: cloudImg,
   },

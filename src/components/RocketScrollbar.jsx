@@ -14,20 +14,19 @@ export default function RocketScrollbar() {
   const lastDragYRef = useRef(0);
 
   const ROCKET_HEIGHT = 44; // Total thumb height including thruster flame area
-  const TRACK_PADDING = 88; // Reduced track length with 88px top & bottom inset
+  const TRACK_PADDING = 88; // Track length with 88px top & bottom inset
 
-  // Calculate & update scroll position smoothly with INVERTED rocket motion direction
+  // Calculate & update scroll position with natural rocket motion:
+  // Scrolling DOWN page => Rocket moves DOWN track ("descending")
+  // Scrolling UP page   => Rocket moves UP track ("ascending")
   const updateScrollProgress = useCallback(() => {
     const scrollY = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
 
-    // Detect page scroll direction & invert rocket physical movement:
-    // Scrolling DOWN page => Rocket moves UPWARDS ("ascending")
-    // Scrolling UP page   => Rocket moves DOWNWARDS ("descending")
     if (scrollY > lastScrollYRef.current + 1) {
-      setRocketMotion("ascending"); // Rocket launches UP
-    } else if (scrollY < lastScrollYRef.current - 1) {
       setRocketMotion("descending"); // Rocket moves DOWN
+    } else if (scrollY < lastScrollYRef.current - 1) {
+      setRocketMotion("ascending"); // Rocket moves UP
     }
     lastScrollYRef.current = scrollY;
 
@@ -67,7 +66,7 @@ export default function RocketScrollbar() {
     };
   }, [updateScrollProgress]);
 
-  // Convert inverted rocket progress (0..1) to page scroll Y
+  // Convert natural scroll progress (0..1) to page scroll Y
   const scrollPageToProgress = (pageProgress, smooth = false) => {
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     if (docHeight <= 0) return;
@@ -79,7 +78,7 @@ export default function RocketScrollbar() {
     });
   };
 
-  // Track Click Handler (Inverted: Click Top => Scroll to Bottom, Click Bottom => Scroll to Top)
+  // Track Click Handler (Click Top => Scroll to Top, Click Bottom => Scroll to Bottom)
   const handleTrackClick = (e) => {
     if (isDragging || !trackRef.current) return;
 
@@ -89,21 +88,19 @@ export default function RocketScrollbar() {
 
     if (availableHeight <= 0) return;
 
-    // Invert clicked ratio so top of track = bottom of page
-    const clickedRatio = Math.min(Math.max(clickY / availableHeight, 0), 1);
-    const targetPageProgress = 1 - clickedRatio;
+    const targetPageProgress = Math.min(Math.max(clickY / availableHeight, 0), 1);
 
     if (targetPageProgress > scrollProgress) {
-      setRocketMotion("ascending");
-    } else {
       setRocketMotion("descending");
+    } else {
+      setRocketMotion("ascending");
     }
 
     setScrollProgress(targetPageProgress);
     scrollPageToProgress(targetPageProgress, true);
   };
 
-  // Dragging Handlers (Pointer Capture with Inverted Control)
+  // Dragging Handlers
   const handlePointerDown = (e) => {
     e.stopPropagation();
     e.preventDefault();
@@ -119,12 +116,10 @@ export default function RocketScrollbar() {
     if (!isDragging || !trackRef.current) return;
 
     const currentDragY = e.clientY;
-    // Moving cursor UP (dragY decreasing) => Rocket physical movement UP => "ascending"
-    // Moving cursor DOWN (dragY increasing) => Rocket physical movement DOWN => "descending"
-    if (currentDragY < lastDragYRef.current - 0.5) {
-      setRocketMotion("ascending");
-    } else if (currentDragY > lastDragYRef.current + 0.5) {
+    if (currentDragY > lastDragYRef.current + 0.5) {
       setRocketMotion("descending");
+    } else if (currentDragY < lastDragYRef.current - 0.5) {
+      setRocketMotion("ascending");
     }
     lastDragYRef.current = currentDragY;
 
@@ -134,8 +129,7 @@ export default function RocketScrollbar() {
 
     if (availableHeight <= 0) return;
 
-    const dragRatio = Math.min(Math.max(dragY / availableHeight, 0), 1);
-    const targetPageProgress = 1 - dragRatio;
+    const targetPageProgress = Math.min(Math.max(dragY / availableHeight, 0), 1);
 
     setScrollProgress(targetPageProgress);
     scrollPageToProgress(targetPageProgress, false);
@@ -151,15 +145,14 @@ export default function RocketScrollbar() {
     }
   };
 
-  // Convert scroll progress to INVERTED Y translation in track:
-  // Page at TOP (0% scroll)   => Rocket at BOTTOM of track
-  // Page at BOTTOM (100% scroll) => Rocket at TOP of track
+  // Convert scroll progress to natural Y translation in track:
+  // Page at TOP (0% scroll)      => Rocket at TOP of track
+  // Page at BOTTOM (100% scroll) => Rocket at BOTTOM of track
   const viewportHeight = typeof window !== "undefined" ? window.innerHeight : 800;
   const availableTrackHeight = Math.max(viewportHeight - TRACK_PADDING * 2 - ROCKET_HEIGHT, 0);
-  const currentRocketY = TRACK_PADDING + (1 - scrollProgress) * availableTrackHeight;
+  const currentRocketY = TRACK_PADDING + scrollProgress * availableTrackHeight;
 
-  // Effects: Thruster Fire when rocket is ASCENDING (moving UP)
-  // Reentry Smoke when rocket is DESCENDING (moving DOWN)
+  // Effects: Thruster Fire when moving UP ("ascending"), Smoke when moving DOWN ("descending")
   const isFlameActive = rocketMotion === "ascending";
   const isSmokeActive = rocketMotion === "descending";
 
@@ -173,11 +166,11 @@ export default function RocketScrollbar() {
       {/* ── Background Track Line ── */}
       <div className="absolute top-[88px] bottom-[88px] w-[1.5px] bg-[#111111]/10 rounded-full pointer-events-none" />
 
-      {/* ── Subtle Red Scroll Trail (Connecting Rocket to Track Bottom) ── */}
+      {/* ── Subtle Red Scroll Trail (Connecting Top of Track to Rocket Position) ── */}
       <div
-        className="absolute bottom-[88px] w-[2px] bg-gradient-to-t from-transparent via-[#E31D2E]/40 to-[#E31D2E] rounded-full pointer-events-none"
+        className="absolute top-[88px] w-[2px] bg-gradient-to-b from-[#E31D2E]/20 via-[#E31D2E]/60 to-[#E31D2E] rounded-full pointer-events-none"
         style={{
-          height: Math.max(0, (TRACK_PADDING + availableTrackHeight) - currentRocketY),
+          height: Math.max(0, currentRocketY - TRACK_PADDING),
           willChange: "height",
         }}
       />
@@ -249,7 +242,7 @@ export default function RocketScrollbar() {
             <circle cx="12.8" cy="13.2" r="0.8" fill="#FFFFFF" />
           </svg>
 
-          {/* ── Engine Thruster Flame (Fires ONLY when rocket moves UPWARD) ── */}
+          {/* ── Engine Thruster Flame (Fires when rocket moves UPWARD) ── */}
           <AnimatePresence>
             {isFlameActive && (
               <motion.div
@@ -275,12 +268,10 @@ export default function RocketScrollbar() {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  {/* Outer Red Flame */}
                   <path
                     d="M8 0C10 4 14 7 14 11C14 14 11.5 16 8 16C4.5 16 2 14 2 11C2 7 6 4 8 0Z"
                     fill="#E31D2E"
                   />
-                  {/* Inner Bright Orange/Yellow Flame Core */}
                   <path
                     d="M8 4C9.5 6.5 11.5 8.5 11.5 11C11.5 13 10 14.5 8 14.5C6 14.5 4.5 13 4.5 11C4.5 8.5 6.5 6.5 8 4Z"
                     fill="#FF9F1C"
@@ -294,7 +285,7 @@ export default function RocketScrollbar() {
             )}
           </AnimatePresence>
 
-          {/* ── Reentry Exhaust Smoke Puffs (Emits ONLY when rocket moves DOWNWARD) ── */}
+          {/* ── Reentry Exhaust Smoke Puffs (Emits when rocket moves DOWNWARD) ── */}
           <AnimatePresence>
             {isSmokeActive && (
               <motion.div
@@ -320,7 +311,6 @@ export default function RocketScrollbar() {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  {/* Soft translucent exhaust smoke particles */}
                   <circle cx="10" cy="4" r="3.5" fill="rgba(203, 213, 225, 0.8)" />
                   <circle cx="6" cy="10" r="4.5" fill="rgba(148, 163, 184, 0.65)" />
                   <circle cx="14" cy="12" r="5" fill="rgba(226, 232, 240, 0.55)" />

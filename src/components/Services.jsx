@@ -91,16 +91,16 @@ const Services = () => {
                   View Our Portfolio
                 </Link>
                 <a
-                  href="#expertise"
+                  href="#services"
                   className="px-8 py-4 rounded-full font-bold border border-white/20 text-white hover:border-white/50 hover:text-[#FF2B2B] transition-all"
                 >
-                  Core Expertise
+                  Core Services
                 </a>
               </div>
             </motion.div>
 
             <motion.div
-              id="expertise"
+              id="services"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.1 }}
@@ -108,7 +108,7 @@ const Services = () => {
             >
               <div className="flex flex-col gap-2 mb-8 text-center lg:text-left">
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-white tracking-tight">
-                  Our <span className="text-[#FF2B2B]">Core Expertise</span>
+                  Our <span className="text-[#FF2B2B]">Core Services</span>
                 </h2>
                 <div className="h-1 w-24 bg-[#FF2B2B] rounded-full mx-auto lg:mx-0" />
               </div>

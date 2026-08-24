@@ -26,6 +26,7 @@ const Teams = () => {
       name: "Jaillesh Kathirvel",
       role: "Founder & Business Head & Manager",
       image: Jaillesh,
+      imagePosition: "center 15%",
       bio: "Drives business growth and client partnerships with a sharp eye for opportunity and execution. As Founder & Business Head & Manager, Jaillesh bridges strategy and day-to-day operations, ensuring every engagement is handled with precision, accountability, and a genuine commitment to client success.",
     },
     {
@@ -104,6 +105,7 @@ const Teams = () => {
                       containerWidth="100%"
                       imageHeight="380px"
                       imageWidth="100%"
+                      imagePosition={member.imagePosition || "center"}
                       rotateAmplitude={10}
                       scaleOnHover={1.04}
                       showTooltip={false}
@@ -167,7 +169,8 @@ const Teams = () => {
                     <div className="relative flex-shrink-0">
                       {selectedMember.image ? (
                         <img src={selectedMember.image} alt={selectedMember.name}
-                          className="w-16 h-16 rounded-2xl object-cover border border-neutral-200 shadow-md" />
+                          className="w-16 h-16 rounded-2xl object-cover border border-neutral-200 shadow-md"
+                          style={{ objectPosition: selectedMember.imagePosition || "center" }} />
                       ) : (
                         <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-neutral-100 border border-neutral-200 shadow-md">
                           <span className="text-2xl text-neutral-400 font-black uppercase">{selectedMember.name.charAt(0)}</span>

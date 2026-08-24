@@ -167,7 +167,7 @@ function ProjectShowcase({ projectImages, imageIndex }) {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 z-20 p-3.5 px-4.5 rounded-2xl bg-white border border-white/90 shadow-xl flex items-center gap-3"
           >
-            <div className="w-8 h-8 rounded-xl bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] font-black text-sm">
+            <div className="w-8 h-8 rounded-xl bg-neutral-100 border border-neutral-200/80 flex items-center justify-center text-[#111111] font-black text-sm">
               ★
             </div>
             <div>
@@ -223,7 +223,7 @@ const Projects = () => {
   const projectImages = [
     { image: img1, title: 'Web Development', desc: 'Responsive and fast-loading websites' },
     { image: img2, title: 'Mobile Application', desc: 'User-friendly interface with smooth navigation' },
-    { image: img3, title: 'Cloud Solutions', desc: 'Scalable cloud infrastructure and services' },
+    { image: img3, title: 'Cloud Solutions', desc: 'Scalable cloud infrastructure and expertise' },
     { image: img4, title: 'UI/UX Design', desc: 'Intuitive designs that users love' },
     { image: img5, title: 'Honeybee Platform', desc: 'Modern e-commerce solution' },
   ];
@@ -547,7 +547,7 @@ const Projects = () => {
 
                       {/* 2. Project Name & Case Study CTA Row */}
                       <div className="flex items-start justify-between gap-3 mb-3 px-0.5">
-                        <h3 className="text-base sm:text-lg font-black text-[#111111] leading-snug group-hover:text-[#E31D2E] transition-colors duration-300 tracking-tight line-clamp-2">
+                        <h3 className="text-base sm:text-lg font-black text-[#111111] leading-snug group-hover:text-[#E31D2E] transition-colors duration-300 tracking-tight">
                           {project.title}
                         </h3>
 
@@ -570,7 +570,7 @@ const Projects = () => {
                         {techTags.map((tag, i) => (
                           <span
                             key={i}
-                            className="px-2.5 py-0.5 rounded-md bg-neutral-100/90 text-neutral-600 text-[10px] font-bold tracking-wide group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] transition-colors duration-200 truncate max-w-[140px]"
+                            className="px-2.5 py-1 rounded-md bg-neutral-100/90 text-neutral-600 text-[10px] font-bold tracking-wide group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] transition-colors duration-200"
                           >
                             {tag}
                           </span>

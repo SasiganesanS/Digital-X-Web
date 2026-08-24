@@ -36,7 +36,9 @@ const SectionBadge = ({ text, children, theme = "auto", className = "" }) => {
 
       {/* Badge Text */}
       <span
-        className={`relative z-10 font-brand text-[10px] sm:text-[11px] font-black uppercase tracking-[0.22em] whitespace-nowrap antialiased pr-0.5 !text-white drop-shadow-sm`}
+        className={`relative z-10 font-brand text-[10px] sm:text-[11px] font-black uppercase tracking-[0.22em] whitespace-nowrap antialiased pr-0.5 ${
+          isDarkTheme ? "text-white" : "text-[#111111]"
+        }`}
       >
         {content}
       </span>

@@ -392,9 +392,9 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                     className="group relative rounded-2xl bg-white border border-neutral-200/80 p-5 sm:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-black/20 transition-all duration-300 flex flex-col justify-between h-full cursor-pointer min-h-[300px]"
                   >
                     <div>
-                      {/* 1. Job Title & Apply Pill Button Header (Fixed 52px height container) */}
-                      <div className="flex items-start justify-between gap-3 mb-3 h-[52px]">
-                        <h3 className="text-base sm:text-lg font-black text-[#111111] leading-snug group-hover:text-[#E31D2E] transition-colors duration-300 tracking-tight line-clamp-2 my-auto">
+                      {/* 1. Job Title & Apply Pill Button Header */}
+                      <div className="flex items-start justify-between gap-3 mb-3">
+                        <h3 className="text-base sm:text-lg font-black text-[#111111] leading-snug group-hover:text-[#E31D2E] transition-colors duration-300 tracking-tight my-auto">
                           {job.title}
                         </h3>
                         <button
@@ -410,8 +410,8 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                         </button>
                       </div>
 
-                      {/* 2. Location & Job Type Badges (Fixed 32px height container) */}
-                      <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar mb-3.5 h-[32px] shrink-0">
+                      {/* 2. Location & Job Type Badges */}
+                      <div className="flex flex-wrap items-center gap-1.5 mb-3.5">
                         <div className="flex items-center gap-1 border border-neutral-200/80 bg-neutral-50 rounded-full px-2.5 py-1 shadow-2xs shrink-0">
                           <FiMapPin className="text-[#E31D2E] w-3 h-3" />
                           <span className="text-neutral-700 font-bold text-[11px] whitespace-nowrap">
@@ -434,20 +434,20 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                         )}
                       </div>
 
-                      {/* 3. Short Description (Fixed 63px height paragraph container) */}
-                      <div className="h-[63px] mb-4 overflow-hidden">
-                        <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-medium line-clamp-3">
+                      {/* 3. Short Description */}
+                      <div className="mb-4">
+                        <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-medium">
                           {job.description}
                         </p>
                       </div>
                     </div>
 
-                    {/* 4. Skill / Tech Stack Chips (Fixed 52px height bottom container) */}
-                    <div className="h-[52px] pt-3 border-t border-neutral-100 flex flex-wrap gap-1.5 items-center overflow-hidden content-start">
-                      {(job?.skills || []).slice(0, 5).map((skill, idx) => (
+                    {/* 4. Skill / Tech Stack Chips */}
+                    <div className="pt-3 border-t border-neutral-100 flex flex-wrap gap-1.5 items-center">
+                      {(job?.skills || []).map((skill, idx) => (
                         <span
                           key={idx}
-                          className="px-2.5 py-0.5 rounded-md bg-neutral-100/90 text-neutral-600 text-[10px] font-bold tracking-wide group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] transition-colors duration-200 truncate max-w-[125px]"
+                          className="px-2.5 py-1 rounded-md bg-neutral-100/90 text-neutral-600 text-[10px] font-bold tracking-wide group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] transition-colors duration-200"
                         >
                           {skill}
                         </span>

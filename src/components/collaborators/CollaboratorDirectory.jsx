@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import SectionBadge from "../common/SectionBadge";
 import CollaboratorCard from "./CollaboratorCard";
 import { COLLABORATORS_DATA } from "../../data/collaborators";
 import CollaboratorSpaceBackground from "./CollaboratorSpaceBackground";
+import CollaboratorApplyModal from "./CollaboratorApplyModal";
 
 const CATEGORIES = [
   { id: "all", label: "All" },
+  { id: "influencers", label: "Influencers" },
+  { id: "executives", label: "Executives" },
+  { id: "experts", label: "Specialists & Experts" },
   { id: "content-creators", label: "Content Creators" },
   { id: "models", label: "Models" },
   { id: "video-editors", label: "Video Editors" },
@@ -38,9 +43,10 @@ const PROCESS_STEPS = [
 
 export default function CollaboratorDirectory() {
   const [activeCategory, setActiveCategory] = useState("all");
+  const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
 
   useEffect(() => {
-    document.title = "DigitalX Creative Collaborators | Creators, Models & Freelancers";
+    document.title = "DigitalX Creative Collaborators | Influencers, Executives, Experts & Creators";
     window.scrollTo(0, 0);
   }, []);
 
@@ -61,19 +67,31 @@ export default function CollaboratorDirectory() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+          className="relative text-center max-w-3xl mx-auto mb-12 sm:mb-16"
         >
           <div className="flex justify-center mb-4">
-            <SectionBadge text="Collaborator Network" />
+            <SectionBadge text="Collaborator Network" theme="dark" />
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-5">
             Creative <span className="text-[#E31D2E]">Collaborators</span>
           </h1>
 
-          <p className="text-neutral-300 text-base sm:text-lg font-medium leading-relaxed">
-            A curated network of creative professionals working with DigitalX to bring ideas to life. DigitalX coordinates every engagement from project scope to final delivery.
+          <p className="text-neutral-300 text-base sm:text-lg font-medium leading-relaxed mb-8">
+            A curated network of creative professionals, influencers, executives, and specialists working with DigitalX to bring ideas to life. DigitalX coordinates every engagement from project scope to final delivery.
           </p>
+
+          {/* Top Apply Button Action */}
+          <div className="flex justify-center">
+            <button
+              type="button"
+              onClick={() => setIsApplyModalOpen(true)}
+              className="px-6 py-3.5 rounded-full bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white font-black text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
+            >
+              <span>Apply as Collaborator</span>
+              <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+            </button>
+          </div>
         </motion.div>
 
         {/* Category Filters Pill Bar */}
@@ -117,7 +135,7 @@ export default function CollaboratorDirectory() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {PROCESS_STEPS.map((step) => (
-              <div key={step.num} className="flex flex-col items-start text-left relative">
+              <div key={step.num} className="group flex flex-col items-start text-left relative">
                 <span className="text-3xl sm:text-4xl font-black text-[#E31D2E] mb-3">
                   {step.num}
                 </span>
@@ -140,6 +158,12 @@ export default function CollaboratorDirectory() {
         </div>
 
       </div>
+
+      {/* Apply Modal */}
+      <CollaboratorApplyModal
+        isOpen={isApplyModalOpen}
+        onClose={() => setIsApplyModalOpen(false)}
+      />
     </div>
   );
 }

@@ -15,6 +15,8 @@ export default function TiltedCard({
   containerWidth = "100%",
   imageHeight = "420px",
   imageWidth = "330px",
+  imagePosition = "center",
+  imageFit = "cover",
   scaleOnHover = 1.06,
   rotateAmplitude = 12,
   showMobileWarning = false,
@@ -104,10 +106,12 @@ export default function TiltedCard({
         <motion.img
           src={imageSrc}
           alt={altText}
-          className="absolute top-0 left-0 object-cover rounded-[22px] will-change-transform [transform:translateZ(0)] shadow-[0_12px_28px_rgba(0,0,0,0.12)]"
+          className="absolute top-0 left-0 rounded-[22px] will-change-transform [transform:translateZ(0)] shadow-[0_12px_28px_rgba(0,0,0,0.12)]"
           style={{
             width: imageWidth,
             height: imageHeight,
+            objectFit: imageFit,
+            objectPosition: imagePosition,
           }}
         />
 

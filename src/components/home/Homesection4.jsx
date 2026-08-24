@@ -75,7 +75,7 @@ const Homesection4 = () => {
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                     {benefits.map((item, index) => (
                       <li key={index} className="flex items-center gap-2.5">
-                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-[#E31D2E]/10 flex items-center justify-center text-[#E31D2E] font-bold text-xs">
+                        <span className="flex-shrink-0 w-5 h-5 rounded-full bg-neutral-100 border border-neutral-200/80 flex items-center justify-center text-[#111111] font-bold text-xs">
                           ✓
                         </span>
                         <span className="text-[#111111] text-xs sm:text-sm font-semibold">
@@ -104,14 +104,14 @@ const Homesection4 = () => {
                         variants={fadeUp}
                         className="w-13 h-13 rounded-2xl bg-white border border-neutral-200/80 flex items-center justify-center text-[#111111] shadow-xs"
                       >
-                        <Sparkles className="w-6 h-6 stroke-[2] text-[#E31D2E]" />
+                        <Sparkles className="w-6 h-6 stroke-[2] text-[#111111]" />
                       </motion.div>
 
                       <motion.span
                         variants={fadeUp}
                         className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-neutral-200/80 text-[11px] font-extrabold text-[#111111] uppercase tracking-wider shadow-xs"
                       >
-                        <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E] animate-pulse" />
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#111111] animate-pulse" />
                         Instant Onboarding
                       </motion.span>
                     </div>

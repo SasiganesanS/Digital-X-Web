@@ -122,8 +122,8 @@ export default function CollaborationRequestModal({ collaborator, isOpen, onClos
                 <>
                   {/* Header Area */}
                   <div className="mb-6 pr-10">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/20 mb-3 inline-flex items-center gap-1.5">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E] animate-pulse" />
+                    <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] bg-neutral-100 text-[#111111] border border-neutral-200/80 mb-3 inline-flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#111111] animate-pulse" />
                       DigitalX Agency Coordination
                     </span>
 
@@ -296,7 +296,7 @@ export default function CollaborationRequestModal({ collaborator, isOpen, onClos
                       <button
                         type="submit"
                         disabled={loading}
-                        className="w-full py-4 px-8 rounded-full bg-gradient-to-r from-[#E31D2E] via-[#FF2B2B] to-[#E31D2E] text-white font-extrabold text-sm tracking-wide shadow-[0_10px_25px_rgba(227,29,46,0.32)] hover:shadow-[0_16px_35px_rgba(227,29,46,0.45)] hover:scale-[1.01] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                        className="w-full py-4 px-8 rounded-full bg-[#111111] hover:bg-[#FF2B2B] text-white font-extrabold text-sm tracking-wide shadow-[0_10px_25px_rgba(0,0,0,0.18)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.28)] hover:scale-[1.01] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
                       >
                         {loading ? (
                           <span>Processing Request...</span>
@@ -315,7 +315,7 @@ export default function CollaborationRequestModal({ collaborator, isOpen, onClos
               ) : (
                 /* Success Confirmation State */
                 <div className="py-8 text-center flex flex-col items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-[#E31D2E]/10 border border-[#E31D2E]/20 text-[#E31D2E] flex items-center justify-center mb-5">
+                  <div className="w-16 h-16 rounded-full bg-neutral-100 border border-neutral-200 text-[#111111] flex items-center justify-center mb-5">
                     <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                     </svg>

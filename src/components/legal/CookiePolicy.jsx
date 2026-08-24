@@ -112,7 +112,7 @@ const CookiePolicy = () => {
               {/* Left Column: Badge -> Heading -> Description -> Badges */}
               <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
                 <div className="mb-4 flex justify-center lg:justify-start w-full">
-                  <SectionBadge text="Web Technology & Privacy" />
+                  <SectionBadge text="Web Technology & Privacy" theme="dark" />
                 </div>
                 
                 <h1 className="text-white text-[36px] sm:text-[44px] lg:text-[52px] font-black leading-tight tracking-tight mb-4">
