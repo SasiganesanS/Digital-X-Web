@@ -16,9 +16,7 @@ export default function CollaboratorProfilePage() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (collaborator) {
-      document.title = `${collaborator.name} — ${collaborator.role} | DigitalX Collaborator Network`;
-    }
+    document.title = "Praskle Digital X";
   }, [collaborator, slug]);
 
   if (!collaborator) {
@@ -43,13 +41,13 @@ export default function CollaboratorProfilePage() {
         
         {/* Breadcrumb Navigation */}
         <nav aria-label="Breadcrumb" className="mb-8">
-          <ol className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-neutral-500">
+          <ol className="flex items-center gap-2 text-xs sm:text-sm font-semibold text-neutral-400">
             <li>
-              <Link to="/" className="hover:text-black transition-colors">Home</Link>
+              <Link to="/" className="text-neutral-300 hover:text-[#E31D2E] transition-colors">Home</Link>
             </li>
             <li>/</li>
             <li>
-              <Link to="/collaborators" className="hover:text-black transition-colors">Collaborators</Link>
+              <Link to="/collaborators" className="text-neutral-300 hover:text-[#E31D2E] transition-colors">Collaborators</Link>
             </li>
             <li>/</li>
             <li className="text-[#E31D2E] font-bold">{collaborator.name}</li>
@@ -110,7 +108,7 @@ export default function CollaboratorProfilePage() {
                     Engagement Status
                   </span>
                   <span className="text-base font-black text-[#111111]">
-                    DigitalX Network Partner
+                    Praskla DigitalX Network Partner
                   </span>
                 </div>
               </div>
@@ -128,7 +126,7 @@ export default function CollaboratorProfilePage() {
               </button>
 
               <p className="text-[11px] font-semibold text-neutral-400 mt-3">
-                DigitalX coordinates every collaboration from project requirements to execution.
+                Praskla DigitalX coordinates every collaboration from project requirements to execution.
               </p>
             </div>
 
@@ -188,7 +186,7 @@ export default function CollaboratorProfilePage() {
                 Collaborator Engagement
               </span>
               <p className="text-xs font-medium text-neutral-600">
-                Project scheduling, scope definition, contracts, and commercial terms are fully managed by DigitalX.
+                Project scheduling, scope definition, contracts, and commercial terms are fully managed by Praskla DigitalX.
               </p>
             </div>
           </div>
@@ -208,7 +206,7 @@ export default function CollaboratorProfilePage() {
             </div>
 
             <span className="text-xs font-bold text-neutral-400 uppercase tracking-wider hidden sm:block">
-              Curated by DigitalX
+              Curated by Praskla DigitalX
             </span>
           </div>
 
@@ -244,7 +242,7 @@ export default function CollaboratorProfilePage() {
             Ready to Collaborate with {collaborator.name}?
           </h3>
           <p className="text-neutral-400 text-sm sm:text-base font-medium max-w-xl mx-auto mb-6">
-            Submit your project details to DigitalX. We handle project scoping, terms, commercial arrangements, and team coordination.
+            Submit your project details to Praskla DigitalX. We handle project scoping, terms, commercial arrangements, and team coordination.
           </p>
 
           <button

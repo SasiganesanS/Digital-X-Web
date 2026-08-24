@@ -22,7 +22,7 @@ const PROCESS_STEPS = [
   {
     num: "01",
     title: "Tell Us What You Need",
-    desc: "Share your project requirements, goals, and preferred creative scope with DigitalX."
+    desc: "Share your project requirements, goals, and preferred creative scope with Praskla DigitalX."
   },
   {
     num: "02",
@@ -32,12 +32,12 @@ const PROCESS_STEPS = [
   {
     num: "03",
     title: "We Coordinate Everything",
-    desc: "DigitalX manages communication, requirements, commercial terms, and agreements."
+    desc: "Praskla DigitalX manages communication, requirements, commercial terms, and agreements."
   },
   {
     num: "04",
     title: "Your Project Gets Delivered",
-    desc: "The selected creative partner executes the project while DigitalX oversees quality & delivery."
+    desc: "The selected creative partner executes the project while Praskla DigitalX oversees quality & delivery."
   }
 ];
 
@@ -46,7 +46,7 @@ export default function CollaboratorDirectory() {
   const [isApplyModalOpen, setIsApplyModalOpen] = useState(false);
 
   useEffect(() => {
-    document.title = "DigitalX Creative Collaborators | Influencers, Executives, Experts & Creators";
+    document.title = "Praskla Digital X";
     window.scrollTo(0, 0);
   }, []);
 
@@ -78,7 +78,7 @@ export default function CollaboratorDirectory() {
           </h1>
 
           <p className="text-neutral-300 text-base sm:text-lg font-medium leading-relaxed mb-8">
-            A curated network of creative professionals, influencers, executives, and specialists working with DigitalX to bring ideas to life. DigitalX coordinates every engagement from project scope to final delivery.
+            A curated network of creative professionals, influencers, executives, and specialists working with Praskla DigitalX to bring ideas to life. Praskla DigitalX coordinates every engagement from project scope to final delivery.
           </p>
 
           {/* Top Apply Button Action */}
@@ -153,7 +153,7 @@ export default function CollaboratorDirectory() {
         {/* Bottom Trust & Contact Safeguard Note */}
         <div className="text-center max-w-xl mx-auto py-4 border-t border-neutral-200">
           <p className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
-            Collaborator availability and commercial terms are coordinated through DigitalX.
+            Collaborator availability and commercial terms are coordinated through Praskla DigitalX.
           </p>
         </div>
 

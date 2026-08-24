@@ -429,7 +429,7 @@ const ContactForm = ({ isOpen, onClose }) => {
                       href={getWhatsAppUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-bold underline whitespace-nowrap text-[#E31D2E] hover:text-black shrink-0"
+                      className="text-xs font-bold underline whitespace-nowrap text-[#E31D2E] hover:text-[#FF2B2B] shrink-0"
                     >
                       Chat on WhatsApp →
                     </a>

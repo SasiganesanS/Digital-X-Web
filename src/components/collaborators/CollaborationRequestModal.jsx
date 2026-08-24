@@ -124,14 +124,14 @@ export default function CollaborationRequestModal({ collaborator, isOpen, onClos
                   <div className="mb-6 pr-10">
                     <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] bg-neutral-100 text-[#111111] border border-neutral-200/80 mb-3 inline-flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#111111] animate-pulse" />
-                      DigitalX Agency Coordination
+                      Praskla DigitalX Agency Coordination
                     </span>
 
                     <h2 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight leading-tight mb-2">
                       Request Collaboration
                     </h2>
                     <p className="text-xs sm:text-sm text-neutral-500 font-medium leading-relaxed">
-                      DigitalX manages the collaboration from scope definition to commercial terms and delivery.
+                      Praskla DigitalX manages the collaboration from scope definition to commercial terms and delivery.
                     </p>
                   </div>
 
@@ -288,7 +288,7 @@ export default function CollaborationRequestModal({ collaborator, isOpen, onClos
 
                     {/* Notice */}
                     <p className="text-[11px] font-semibold text-neutral-400 italic pt-1">
-                      * Collaborator availability and commercial terms are coordinated through DigitalX.
+                      * Collaborator availability and commercial terms are coordinated through Praskla DigitalX.
                     </p>
 
                     {/* Submit Button */}
@@ -326,7 +326,7 @@ export default function CollaborationRequestModal({ collaborator, isOpen, onClos
                   </h3>
 
                   <p className="text-neutral-600 text-sm sm:text-base font-medium leading-relaxed max-w-md mx-auto mb-8">
-                    Your collaboration request for <strong className="text-[#111111]">{collaborator.name}</strong> has been received. Our DigitalX agency team will review your requirements and contact you shortly.
+                    Your collaboration request for <strong className="text-[#111111]">{collaborator.name}</strong> has been received. Our Praskla DigitalX agency team will review your requirements and contact you shortly.
                   </p>
 
                   <button

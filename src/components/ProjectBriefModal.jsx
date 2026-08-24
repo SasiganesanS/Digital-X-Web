@@ -462,7 +462,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                           href={`https://wa.me/919566880740?text=${encodeURIComponent("Hello PRASKLA DIGITAL X, I attempted to submit my project application for " + (formData.companyName || "my company") + " but encountered an issue. Here are my details:\nName: " + (formData.fullName || "") + "\nEmail: " + (formData.email || ""))}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-xs font-bold underline whitespace-nowrap text-[#E31D2E] hover:text-black shrink-0"
+                          className="text-xs font-bold underline whitespace-nowrap text-[#E31D2E] hover:text-[#FF2B2B] shrink-0"
                         >
                           Submit via WhatsApp →
                         </a>

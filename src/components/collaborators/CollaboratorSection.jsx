@@ -40,12 +40,12 @@ export default function CollaboratorSection() {
               {/* Main Heading */}
               <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[#111111] leading-[1.12] tracking-tight mb-5">
                 Meet the Creative Network <br className="hidden sm:block" />
-                Behind <span className="text-[#E31D2E]">DigitalX</span>
+                Behind <span className="text-[#E31D2E]">Praskla DigitalX</span>
               </h2>
 
               {/* Supporting Text */}
               <p className="text-neutral-600 text-sm sm:text-base lg:text-lg font-medium leading-relaxed mb-7 max-w-2xl">
-                From content creators and models to editors, influencers, executives, and specialist freelancers, DigitalX works with a curated network of creative professionals to bring ambitious brand projects to life.
+                From content creators and models to editors, influencers, executives, and specialist freelancers, Praskla DigitalX works with a curated network of creative professionals to bring ambitious brand projects to life.
               </p>
 
               {/* Action CTA Row */}

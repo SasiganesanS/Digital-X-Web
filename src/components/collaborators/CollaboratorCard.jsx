@@ -68,7 +68,7 @@ export default function CollaboratorCard({ collaborator }) {
       {/* Action Footer CTA */}
       <div className="w-full pt-4 border-t border-neutral-200/70 flex items-center justify-between mt-auto">
         <span className="text-[11px] font-extrabold text-neutral-400 tracking-wider uppercase">
-          DigitalX Network
+          Praskla DigitalX Network
         </span>
 
         <Link

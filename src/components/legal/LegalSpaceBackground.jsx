@@ -109,9 +109,9 @@ export default function LegalSpaceBackground() {
         className="absolute inset-0 w-full h-full"
         style={{ y: shouldReduceMotion ? 0 : layer2Y }}
       >
-        {/* Giant Meteor 1 (Top Left Edge) */}
+        {/* Giant Meteor 1 (Upper-Left Edge ~ 14%) */}
         <motion.div
-          className="absolute top-[17%] -left-12 sm:-left-16 lg:left-4 pointer-events-none opacity-80"
+          className="absolute top-[14%] -left-12 sm:-left-16 lg:left-4 pointer-events-none opacity-80"
           animate={shouldReduceMotion ? {} : { y: [-10, 10, -10], rotate: [0, 8, 0] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         >
@@ -124,9 +124,9 @@ export default function LegalSpaceBackground() {
           </div>
         </motion.div>
 
-        {/* Giant Meteor 2 (Lower Right Edge) */}
+        {/* Giant Meteor 2 (Mid-Right Edge ~ 48% - Staggered away from Mercury views) */}
         <motion.div
-          className="absolute top-[67%] -right-10 sm:-right-12 lg:right-4 pointer-events-none opacity-75"
+          className="absolute top-[48%] -right-10 sm:-right-12 lg:right-4 pointer-events-none opacity-75"
           animate={shouldReduceMotion ? {} : { y: [8, -8, 8], rotate: [-5, 5, -5] }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 1 }}
         >
@@ -182,7 +182,7 @@ export default function LegalSpaceBackground() {
         className="absolute inset-0 w-full h-full"
         style={{ y: shouldReduceMotion ? 0 : layer3Y }}
       >
-        {/* ── MERCURY VIEW 1: Main Cratered Silver Atmosphere (Hero Top-Right Outer Edge) ── */}
+        {/* ── MERCURY VIEW 1: Main Cratered Silver Atmosphere (Hero Top-Right Outer Edge ~ 2%) ── */}
         <motion.div
           className="absolute top-[2%] -right-12 sm:-right-16 lg:-right-6 z-0 pointer-events-none opacity-90"
           animate={shouldReduceMotion ? {} : { y: [-10, 10, -10], rotate: [-4, 6, -4] }}
@@ -197,9 +197,9 @@ export default function LegalSpaceBackground() {
           </div>
         </motion.div>
 
-        {/* ── MERCURY VIEW 2: Mid-Page Orbital Perspective (Mid Page Outer-Left Edge) ── */}
+        {/* ── MERCURY VIEW 2: Mid-Page Orbital Perspective (Mid Page Outer-Left Edge ~ 42%) ── */}
         <motion.div
-          className="absolute top-[35%] -left-10 sm:-left-14 lg:-left-6 z-0 pointer-events-none opacity-90"
+          className="absolute top-[42%] -left-10 sm:-left-14 lg:-left-6 z-0 pointer-events-none opacity-90"
           animate={shouldReduceMotion ? {} : { y: [12, -12, 12], rotate: [5, -5, 5] }}
           transition={{ duration: 11, repeat: Infinity, ease: "easeInOut", delay: 0.6 }}
         >
@@ -212,9 +212,9 @@ export default function LegalSpaceBackground() {
           </div>
         </motion.div>
 
-        {/* ── MERCURY VIEW 3: Lower Horizon View (Lower Right Outer Edge) ── */}
+        {/* ── MERCURY VIEW 3: Lower Horizon View (Lower Right Outer Edge ~ 82%) ── */}
         <motion.div
-          className="absolute top-[72%] -right-10 sm:-right-12 lg:right-4 z-0 pointer-events-none opacity-85"
+          className="absolute top-[82%] -right-10 sm:-right-12 lg:right-4 z-0 pointer-events-none opacity-85"
           animate={shouldReduceMotion ? {} : { y: [-8, 8, -8], rotate: [-3, 3, -3] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
         >

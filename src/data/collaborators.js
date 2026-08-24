@@ -22,7 +22,7 @@ export const COLLABORATORS_DATA = [
     categoryLabel: "Content Creator",
     image: naveenImg,
     shortDescription: "Creative content creator specializing in social media campaigns, branded content, product storytelling, and short-form video concepts.",
-    bio: "Naveen is an experienced content creator working in partnership with DigitalX to deliver engaging social media stories, high-converting video concepts, and brand storytelling. Through DigitalX's production pipeline, Naveen helps brands connect authentically with their audiences through creative visual concepts, product showcases, and viral Reels.",
+    bio: "Naveen is an experienced content creator working in partnership with Praskla DigitalX to deliver engaging social media stories, high-converting video concepts, and brand storytelling. Through Praskla DigitalX's production pipeline, Naveen helps brands connect authentically with their audiences through creative visual concepts, product showcases, and viral Reels.",
     experience: "3+ Years",
     availability: "Available for selected projects",
     skills: [
@@ -52,7 +52,7 @@ export const COLLABORATORS_DATA = [
     categoryLabel: "Video Editor",
     image: hariImg,
     shortDescription: "Video editor focused on polished short-form and long-form content for brands, campaigns, social media, and promotional videos.",
-    bio: "Hari is a high-precision video editing specialist collaborating with DigitalX on brand media production. With expertise in motion graphics, color grading, and dynamic fast-paced cuts, Hari transforms raw footage into cinematic brand stories that drive viewer retention and high engagement.",
+    bio: "Hari is a high-precision video editing specialist collaborating with Praskla DigitalX on brand media production. With expertise in motion graphics, color grading, and dynamic fast-paced cuts, Hari transforms raw footage into cinematic brand stories that drive viewer retention and high engagement.",
     experience: "4+ Years",
     availability: "Available for selected projects",
     skills: [
@@ -82,7 +82,7 @@ export const COLLABORATORS_DATA = [
     categoryLabel: "Model",
     image: kaviImg,
     shortDescription: "Professional model available for fashion, lifestyle, product, promotional, and brand campaign shoots.",
-    bio: "Kavi is a versatile commercial and fashion model represented in DigitalX's collaborator network. Kavi works alongside DigitalX's creative directors and photography team for brand lookbooks, e-commerce product shoots, lifestyle commercials, and promotional digital campaigns.",
+    bio: "Kavi is a versatile commercial and fashion model represented in Praskla DigitalX's collaborator network. Kavi works alongside Praskla DigitalX's creative directors and photography team for brand lookbooks, e-commerce product shoots, lifestyle commercials, and promotional digital campaigns.",
     experience: "2+ Years",
     availability: "Available for selected projects",
     skills: [
@@ -112,7 +112,7 @@ export const COLLABORATORS_DATA = [
     categoryLabel: "Creative Specialist",
     image: jogarImg,
     shortDescription: "Independent creative professional supporting brands with flexible project-based creative and digital production requirements.",
-    bio: "Jogar is a multidisciplinary creative specialist partner supporting DigitalX on high-impact digital design and campaign productions. Bringing versatile skills across creative direction, digital asset creation, and campaign support, Jogar enables agile execution for complex client projects.",
+    bio: "Jogar is a multidisciplinary creative specialist partner supporting Praskla DigitalX on high-impact digital design and campaign productions. Bringing versatile skills across creative direction, digital asset creation, and campaign support, Jogar enables agile execution for complex client projects.",
     experience: "3+ Years",
     availability: "Available for selected projects",
     skills: [
@@ -142,7 +142,7 @@ export const COLLABORATORS_DATA = [
     categoryLabel: "Influencer",
     image: sampleProj1,
     shortDescription: "Lifestyle & tech influencer driving authentic audience engagement, brand partnerships, and promotional campaigns.",
-    bio: "Rohan collaborates with DigitalX to deliver high-converting influencer campaigns, sponsored content, and brand ambassadorships across major digital platforms.",
+    bio: "Rohan collaborates with Praskla DigitalX to deliver high-converting influencer campaigns, sponsored content, and brand ambassadorships across major digital platforms.",
     experience: "4+ Years",
     availability: "Available for selected projects",
     skills: [
@@ -198,7 +198,7 @@ export const COLLABORATORS_DATA = [
     categoryLabel: "Specialist & Expert",
     image: sampleProj6,
     shortDescription: "Specialist in technical SEO, performance marketing analytics, and conversion rate optimization.",
-    bio: "Ananya works with DigitalX as a growth specialist, helping brands maximize organic visibility, search rankings, and paid campaign performance.",
+    bio: "Ananya works with Praskla DigitalX as a growth specialist, helping brands maximize organic visibility, search rankings, and paid campaign performance.",
     experience: "5+ Years",
     availability: "Available for selected projects",
     skills: [

@@ -291,57 +291,7 @@ const navStyles = `
   white-space: nowrap;
   cursor: pointer;
   position: relative;
-  overflow: hidden;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.pill:hover:not(.is-active) {
-  background-color: rgba(255, 255, 255, 0.12);
-  color: #ffffff;
-}
-
-.pill .hover-circle {
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  border-radius: 50%;
-  background: var(--pill-bg, #FF2B2B);
-  z-index: 1;
-  display: block;
-  pointer-events: none;
-  will-change: transform;
-}
-
-.pill .label-stack {
-  position: relative;
-  display: inline-block;
-  line-height: 1;
-  z-index: 2;
-}
-
-.pill .pill-label {
-  position: relative;
-  z-index: 2;
-  display: inline-block;
-  line-height: 1;
-  will-change: transform;
-}
-
-.pill .pill-label-hover {
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--hover-text, #fff);
-  z-index: 3;
-  display: inline-block;
-  will-change: transform, opacity;
-}
-
-.pill.is-active {
-  background: var(--pill-bg, #E31D2E) !important;
-  color: var(--hover-text, #ffffff) !important;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12) !important;
-  border-radius: 9999px !important;
+  transition: color 0.2s ease;
 }
 
 .mobile-menu-button {
@@ -569,6 +519,14 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
   const location = useLocation();
   const activeHref = location.pathname;
 
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+
+  const activeIndex = navItemsList.findIndex(
+    item => item.href === activeHref || (item.href !== '/' && activeHref.startsWith(item.href))
+  );
+  const resolvedActiveIndex = activeIndex !== -1 ? activeIndex : 0;
+  const currentHighlightIndex = hoveredIndex !== null ? hoveredIndex : resolvedActiveIndex;
+
   const ease = 'power3.easeOut';
   const baseColor = '#ffffff';
   const pillColor = '#FF2B2B';
@@ -710,20 +668,18 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
 
         const pill = circle.parentElement;
         const rect = pill.getBoundingClientRect();
-        const { width: w, height: h } = rect;
-        const R = ((w * w) / 4 + h * h) / (2 * h);
-        const D = Math.ceil(2 * R) + 2;
-        const delta = Math.ceil(R - Math.sqrt(Math.max(0, R * R - (w * w) / 4))) + 1;
-        const originY = D - delta;
+        const { height: h } = rect;
 
-        circle.style.width = `${D}px`;
-        circle.style.height = `${D}px`;
-        circle.style.bottom = `-${delta}px`;
+        circle.style.width = '100%';
+        circle.style.height = '100%';
+        circle.style.top = '0';
+        circle.style.left = '0';
+        circle.style.bottom = 'auto';
 
         gsap.set(circle, {
-          xPercent: -50,
-          scale: 0,
-          transformOrigin: `50% ${originY}px`
+          scaleX: 0,
+          scaleY: 1,
+          transformOrigin: 'left center'
         });
 
         const label = pill.querySelector('.pill-label');
@@ -731,25 +687,6 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
 
         if (label) gsap.set(label, { y: 0 });
         if (white) gsap.set(white, { y: h + 12, opacity: 0 });
-
-        const index = circleRefs.current.indexOf(circle);
-        if (index === -1) return;
-
-        tlRefs.current[index]?.kill();
-        const tl = gsap.timeline({ paused: true });
-
-        tl.to(circle, { scale: 1.2, xPercent: -50, duration: 2, ease, overwrite: 'auto' }, 0);
-
-        if (label) {
-          tl.to(label, { y: -(h + 8), duration: 2, ease, overwrite: 'auto' }, 0);
-        }
-
-        if (white) {
-          gsap.set(white, { y: Math.ceil(h + 100), opacity: 0 });
-          tl.to(white, { y: 0, opacity: 1, duration: 2, ease, overwrite: 'auto' }, 0);
-        }
-
-        tlRefs.current[index] = tl;
       });
     };
 
@@ -792,28 +729,6 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
 
     return () => window.removeEventListener('resize', onResize);
   }, [ease, initialLoadAnimation]);
-
-  const handleEnter = i => {
-    const tl = tlRefs.current[i];
-    if (!tl) return;
-    activeTweenRefs.current[i]?.kill();
-    activeTweenRefs.current[i] = tl.tweenTo(tl.duration(), {
-      duration: 0.3,
-      ease,
-      overwrite: 'auto'
-    });
-  };
-
-  const handleLeave = i => {
-    const tl = tlRefs.current[i];
-    if (!tl) return;
-    activeTweenRefs.current[i]?.kill();
-    activeTweenRefs.current[i] = tl.tweenTo(0, {
-      duration: 0.2,
-      ease,
-      overwrite: 'auto'
-    });
-  };
 
   const handleLogoEnter = () => {
     const img = logoImgRef.current;
@@ -1037,58 +952,57 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
         <div className="nav-links-capsule relative">
           <nav className="pill-nav" aria-label="Primary" style={cssVars}>
             <div className="pill-nav-items desktop-only" ref={navItemsRef}>
-              <ul className="pill-list" role="menubar">
-                {navItemsList.map((item, i) => (
-                  <li key={item.href || `item-${i}`} role="none">
-                    {isRouterLink(item.href) ? (
-                      <Link
-                        role="menuitem"
-                        to={item.href}
-                        className={`pill${activeHref === item.href ? ' is-active' : ''}`}
-                        aria-label={item.label}
-                        onMouseEnter={() => handleEnter(i)}
-                        onMouseLeave={() => handleLeave(i)}
-                      >
-                        <span
-                          className="hover-circle"
-                          aria-hidden="true"
-                          ref={el => {
-                            circleRefs.current[i] = el;
-                          }}
-                        />
-                        <span className="label-stack">
-                          <span className="pill-label">{item.label}</span>
-                          <span className="pill-label-hover" aria-hidden="true">
+              <ul
+                className="pill-list"
+                role="menubar"
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                {navItemsList.map((item, i) => {
+                  const isHighlighted = i === currentHighlightIndex;
+                  return (
+                    <li key={item.href || `item-${i}`} role="none">
+                      {isRouterLink(item.href) ? (
+                        <Link
+                          role="menuitem"
+                          to={item.href}
+                          className="pill group"
+                          aria-label={item.label}
+                          onMouseEnter={() => setHoveredIndex(i)}
+                        >
+                          {isHighlighted && (
+                            <motion.span
+                              layoutId="activeNavPill"
+                              className="absolute inset-0 bg-[#E31D2E] rounded-full z-0 shadow-[0_4px_14px_rgba(227,29,46,0.4)]"
+                              transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                            />
+                          )}
+                          <span className="relative z-10 font-bold text-[12px] uppercase tracking-[0.03em] select-none text-white transition-colors duration-200">
                             {item.label}
                           </span>
-                        </span>
-                      </Link>
-                    ) : (
-                      <a
-                        role="menuitem"
-                        href={item.href}
-                        className={`pill${activeHref === item.href ? ' is-active' : ''}`}
-                        aria-label={item.label}
-                        onMouseEnter={() => handleEnter(i)}
-                        onMouseLeave={() => handleLeave(i)}
-                      >
-                        <span
-                          className="hover-circle"
-                          aria-hidden="true"
-                          ref={el => {
-                            circleRefs.current[i] = el;
-                          }}
-                        />
-                        <span className="label-stack">
-                          <span className="pill-label">{item.label}</span>
-                          <span className="pill-label-hover" aria-hidden="true">
+                        </Link>
+                      ) : (
+                        <a
+                          role="menuitem"
+                          href={item.href}
+                          className="pill group"
+                          aria-label={item.label}
+                          onMouseEnter={() => setHoveredIndex(i)}
+                        >
+                          {isHighlighted && (
+                            <motion.span
+                              layoutId="activeNavPill"
+                              className="absolute inset-0 bg-[#E31D2E] rounded-full z-0 shadow-[0_4px_14px_rgba(227,29,46,0.4)]"
+                              transition={{ type: "spring", stiffness: 450, damping: 35 }}
+                            />
+                          )}
+                          <span className="relative z-10 font-bold text-[12px] uppercase tracking-[0.03em] select-none text-white transition-colors duration-200">
                             {item.label}
                           </span>
-                        </span>
-                      </a>
-                    )}
-                  </li>
-                ))}
+                        </a>
+                      )}
+                    </li>
+                  );
+                })}
                 {/* SEARCH BUTTON (Adopted to navbar UI as pill item) */}
                 <li role="none">
                   <button
