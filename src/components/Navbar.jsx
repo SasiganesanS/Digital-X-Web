@@ -524,7 +524,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
   const activeIndex = navItemsList.findIndex(
     item => item.href === activeHref || (item.href !== '/' && activeHref.startsWith(item.href))
   );
-  const resolvedActiveIndex = activeIndex !== -1 ? activeIndex : 0;
+  const resolvedActiveIndex = activeIndex !== -1 ? activeIndex : -1;
   const currentHighlightIndex = hoveredIndex !== null ? hoveredIndex : resolvedActiveIndex;
 
   const ease = 'power3.easeOut';

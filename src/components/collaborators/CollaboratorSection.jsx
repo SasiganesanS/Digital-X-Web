@@ -78,7 +78,7 @@ export default function CollaboratorSection() {
                       to={`/collaborators/${c.slug}`}
                       className="group flex flex-col justify-between items-start h-[165px] p-4 rounded-2xl bg-white border border-neutral-200/90 shadow-sm hover:border-black/30 hover:shadow-md transition-all duration-300 cursor-pointer w-full"
                     >
-                      <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden border border-neutral-200 shadow-xs flex-shrink-0 bg-neutral-100 flex items-center justify-center text-neutral-400 group-hover:bg-neutral-200 group-hover:text-neutral-600 transition-colors">
+                      <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden border border-neutral-200 shadow-xs flex-shrink-0 bg-neutral-100 group-hover:bg-neutral-200 text-neutral-400 group-hover:text-neutral-700 flex items-center justify-center transition-colors duration-300">
                         <User className="w-6 h-6 sm:w-7 sm:h-7 stroke-[1.7]" />
                         <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white" />
                       </div>

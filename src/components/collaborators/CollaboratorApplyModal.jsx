@@ -74,38 +74,38 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
 
           {/* Modal Window */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative z-10 w-full max-w-xl bg-white rounded-2xl p-6 sm:p-8 shadow-2xl border border-neutral-200 text-[#111111] overflow-hidden my-auto"
+            exit={{ opacity: 0, scale: 0.95, y: 15 }}
+            className="relative z-10 w-full max-w-lg max-h-[88vh] bg-white rounded-2xl p-5 sm:p-7 shadow-2xl border border-neutral-200 text-[#111111] overflow-y-auto custom-scrollbar my-auto"
           >
             {/* Close Button */}
             <button
               type="button"
               onClick={handleClose}
-              className="absolute top-5 right-5 w-9 h-9 rounded-full bg-neutral-100 hover:bg-[#111111] hover:text-white transition-colors flex items-center justify-center text-neutral-500 cursor-pointer"
+              className="absolute top-5 right-5 w-8 h-8 rounded-full bg-neutral-100 hover:bg-[#111111] hover:text-white transition-colors flex items-center justify-center text-neutral-500 cursor-pointer z-20"
             >
-              <X className="w-5 h-5" />
+              <X className="w-4 h-4" />
             </button>
 
             {!submitted ? (
               <div>
-                <div className="mb-6">
-                  <span className="px-3 py-1 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] bg-neutral-100 text-[#111111] border border-neutral-200 mb-3 inline-flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
+                <div className="mb-5 pr-6">
+                  <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] bg-neutral-100 text-[#111111] border border-neutral-200/80 mb-2.5 inline-flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E] animate-pulse" />
                     Join Our Network
                   </span>
-                  <h2 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight">
+                  <h2 className="text-2xl font-black text-[#111111] tracking-tight">
                     Apply as a Collaborator
                   </h2>
-                  <p className="text-neutral-500 text-xs sm:text-sm font-medium mt-1">
+                  <p className="text-neutral-500 text-xs sm:text-sm font-medium mt-1 leading-relaxed">
                     Are you an Influencer, Executive, Specialist, Creator, Model, or Editor? Join Praskla DigitalX’s creative network.
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-3.5">
                   <div>
-                    <label className="block text-xs font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
+                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
                       Full Name *
                     </label>
                     <input
@@ -115,13 +115,13 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="e.g. Alex Morgan"
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-[#111111] focus:ring-2 focus:ring-black/10 outline-none text-sm font-medium transition-all"
+                      className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-[#111111] focus:ring-2 focus:ring-black/5 outline-none text-xs font-medium text-[#111111] transition-all"
                     />
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div>
-                      <label className="block text-xs font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
+                      <label className="block text-[11px] font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
                         Email Address *
                       </label>
                       <input
@@ -131,12 +131,12 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="alex@domain.com"
-                        className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-[#111111] focus:ring-2 focus:ring-black/10 outline-none text-sm font-medium transition-all"
+                        className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-[#111111] focus:ring-2 focus:ring-black/5 outline-none text-xs font-medium text-[#111111] transition-all"
                       />
                     </div>
 
                     <div>
-                      <label className="block text-xs font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
+                      <label className="block text-[11px] font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
                         Phone Number *
                       </label>
                       <input
@@ -146,21 +146,21 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
                         value={formData.phone}
                         onChange={handleChange}
                         placeholder="+1 (555) 000-0000"
-                        className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-[#111111] focus:ring-2 focus:ring-black/10 outline-none text-sm font-medium transition-all"
+                        className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-[#111111] focus:ring-2 focus:ring-black/5 outline-none text-xs font-medium text-[#111111] transition-all"
                       />
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                     <div>
-                      <label className="block text-xs font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
+                      <label className="block text-[11px] font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
                         Primary Role / Category *
                       </label>
                       <select
                         name="role"
                         value={formData.role}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-[#111111] focus:ring-2 focus:ring-black/10 outline-none text-sm font-medium bg-white transition-all"
+                        className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-[#111111] focus:ring-2 focus:ring-black/5 outline-none text-xs font-medium text-[#111111] transition-all"
                       >
                         <option value="Influencer">Influencer</option>
                         <option value="Executive">Executive</option>
@@ -173,14 +173,14 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
+                      <label className="block text-[11px] font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
                         Experience Level *
                       </label>
                       <select
                         name="experience"
                         value={formData.experience}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-[#111111] focus:ring-2 focus:ring-black/10 outline-none text-sm font-medium bg-white transition-all"
+                        className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-[#111111] focus:ring-2 focus:ring-black/5 outline-none text-xs font-medium text-[#111111] transition-all"
                       >
                         <option value="1-2 Years">1-2 Years</option>
                         <option value="3-5 Years">3-5 Years</option>
@@ -190,7 +190,7 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
                   </div>
 
                   <div>
-                    <label className="block text-xs font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
+                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
                       Portfolio / Social Profile Link *
                     </label>
                     <input
@@ -200,28 +200,28 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
                       value={formData.portfolioUrl}
                       onChange={handleChange}
                       placeholder="https://instagram.com/yourprofile or portfolio site"
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-[#111111] focus:ring-2 focus:ring-black/10 outline-none text-sm font-medium transition-all"
+                      className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-[#111111] focus:ring-2 focus:ring-black/5 outline-none text-xs font-medium text-[#111111] transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
+                    <label className="block text-[11px] font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
                       Brief Introduction / Highlights
                     </label>
                     <textarea
-                      rows={3}
+                      rows={2}
                       name="bio"
                       value={formData.bio}
                       onChange={handleChange}
                       placeholder="Tell us about your recent campaigns, audience reach, or key expertise..."
-                      className="w-full px-4 py-3 rounded-xl border border-neutral-200 focus:border-[#111111] focus:ring-2 focus:ring-black/10 outline-none text-sm font-medium transition-all resize-none"
+                      className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-[#111111] focus:ring-2 focus:ring-black/5 outline-none text-xs font-medium text-[#111111] transition-all resize-none"
                     />
                   </div>
 
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-4 px-6 rounded-xl bg-[#111111] hover:bg-[#E31D2E] text-white font-extrabold text-sm tracking-wide shadow-md transition-all cursor-pointer disabled:opacity-50 mt-2"
+                    className="w-full py-3.5 px-6 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs sm:text-sm tracking-wider uppercase shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-[0.99] transition-all cursor-pointer disabled:opacity-50 mt-2"
                   >
                     {loading ? "Submitting Application..." : "Submit Collaborator Application"}
                   </button>

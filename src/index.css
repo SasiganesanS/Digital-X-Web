@@ -587,8 +587,8 @@ textarea:focus,
 select:focus,
 .neu-input:focus {
   background-color: #FFFFFF !important;
-  border-color: #E31D2E !important;
-  box-shadow: 0 0 0 4px rgba(227, 29, 46, 0.14) !important;
+  border-color: #111111 !important;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.05) !important;
   outline: none !important;
 }
 

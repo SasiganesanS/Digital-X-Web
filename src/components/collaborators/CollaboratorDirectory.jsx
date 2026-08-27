@@ -151,8 +151,8 @@ export default function CollaboratorDirectory() {
         </div>
 
         {/* Bottom Trust & Contact Safeguard Note */}
-        <div className="text-center max-w-xl mx-auto py-4 border-t border-neutral-200">
-          <p className="text-xs font-bold text-neutral-500 uppercase tracking-wider">
+        <div className="text-center max-w-xl mx-auto py-6 border-t border-white/10">
+          <p className="text-xs font-semibold text-neutral-400 tracking-wide">
             Collaborator availability and commercial terms are coordinated through Praskla DigitalX.
           </p>
         </div>
