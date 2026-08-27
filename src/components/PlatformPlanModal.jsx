@@ -375,18 +375,18 @@ export default function PlatformPlanModal({
                           onClick={() => setSelectedPackage(pkg)}
                           className={`p-5 rounded-[22px] text-left transition-all duration-300 border flex flex-col justify-between relative cursor-pointer min-h-[270px] ${
                             isSelected
-                              ? "bg-white border-[#E31D2E] shadow-[0_12px_36px_rgba(0,0,0,0.1)] scale-[1.02] ring-2 ring-[#E31D2E]/15"
+                              ? "bg-white border-black shadow-[0_12px_36px_rgba(0,0,0,0.1)] scale-[1.02] ring-2 ring-black/15"
                               : "bg-white/80 border-neutral-200/80 hover:border-neutral-300 hover:bg-white"
                           }`}
                         >
                           <div>
                             <div className="flex items-center justify-between mb-2">
-                              <span className="text-[10px] font-black uppercase tracking-widest text-[#E31D2E]">
+                              <span className="text-[10px] font-black uppercase tracking-widest text-[#111111]">
                                 {pkg.title}
                               </span>
                               {isSelected && (
-                                <div className="w-5 h-5 rounded-full bg-[#E31D2E] text-white flex items-center justify-center">
-                                  <Check className="w-3 h-3" />
+                                <div className="w-5 h-5 rounded-full bg-[#111111] text-white flex items-center justify-center">
+                                  <Check className="w-3 h-3 text-white" />
                                 </div>
                               )}
                             </div>
@@ -398,7 +398,7 @@ export default function PlatformPlanModal({
                               <span>{pkg.idealFor}</span>
                               <span>•</span>
                               <span className="inline-flex items-center gap-1">
-                                <Clock className="w-3 h-3 text-[#E31D2E]" /> {pkg.timeline}
+                                <Clock className="w-3 h-3 text-[#111111]" /> {pkg.timeline}
                               </span>
                             </div>
 
@@ -411,7 +411,7 @@ export default function PlatformPlanModal({
                                   key={idx}
                                   className="flex items-start gap-2 text-xs font-semibold text-neutral-700"
                                 >
-                                  <Check className="w-3.5 h-3.5 text-[#E31D2E] shrink-0 mt-0.5" />
+                                  <Check className="w-3.5 h-3.5 text-[#111111] shrink-0 mt-0.5" />
                                   <span className="leading-tight">{feat}</span>
                                 </div>
                               ))}
@@ -434,7 +434,7 @@ export default function PlatformPlanModal({
                   <button
                     type="button"
                     onClick={handleSkipToSummary}
-                    className="py-3.5 px-7 rounded-full bg-[#E31D2E] hover:bg-[#c91827] active:bg-[#b01422] text-white font-extrabold text-xs uppercase tracking-wider transition-all duration-200 shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 flex items-center justify-center gap-2.5 cursor-pointer group"
+                    className="py-3.5 px-7 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] active:bg-[#b01422] text-white font-extrabold text-xs uppercase tracking-wider transition-all duration-200 shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 flex items-center justify-center gap-2.5 cursor-pointer group"
                   >
                     <span>Continue With Package</span>
                     <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -444,7 +444,7 @@ export default function PlatformPlanModal({
                   <button
                     type="button"
                     onClick={handleGoToCustomization}
-                    className="py-3.5 px-7 rounded-full bg-white hover:bg-neutral-50 active:bg-neutral-100 text-[#E31D2E] border-2 border-[#E31D2E] font-extrabold text-xs uppercase tracking-wider transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 flex items-center justify-center gap-2.5 cursor-pointer group"
+                    className="py-3.5 px-7 rounded-xl bg-white hover:bg-neutral-50 active:bg-neutral-100 text-[#111111] border-2 border-[#111111] font-extrabold text-xs uppercase tracking-wider transition-all duration-200 shadow-[0_4px_16px_rgba(0,0,0,0.08)] hover:shadow-[0_8px_24px_rgba(0,0,0,0.12)] hover:-translate-y-0.5 flex items-center justify-center gap-2.5 cursor-pointer group"
                   >
                     <Sliders className="w-4 h-4 transition-transform group-hover:rotate-12" />
                     <span>Customize Package</span>
@@ -579,14 +579,14 @@ export default function PlatformPlanModal({
                   <button
                     type="button"
                     onClick={handlePrevStep}
-                    className="px-5 py-2.5 rounded-full border border-neutral-300 hover:bg-neutral-100 text-xs font-bold text-neutral-700 transition-all cursor-pointer"
+                    className="px-5 py-2.5 rounded-xl border border-neutral-300 hover:bg-neutral-100 text-xs font-bold text-neutral-700 transition-all cursor-pointer"
                   >
                     Back
                   </button>
                   <button
                     type="button"
                     onClick={handleNextStep}
-                    className="px-6 py-3 rounded-full bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_8px_20px_rgba(0,0,0,0.12)] flex items-center gap-2 cursor-pointer"
+                    className="px-6 py-3 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_8px_20px_rgba(0,0,0,0.12)] flex items-center gap-2 cursor-pointer"
                   >
                     <span>Final Proposal</span>
                     <ArrowRight className="w-3.5 h-3.5" />
@@ -609,7 +609,7 @@ export default function PlatformPlanModal({
               >
                 <div>
                   <div className="mb-4">
-                    <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/20 inline-block mb-2">
+                    <span className="px-3 py-1 rounded-xl text-[10px] font-black uppercase tracking-widest bg-neutral-100 text-[#111111] border border-black inline-block mb-2">
                       PROPOSAL SUMMARY
                     </span>
                     <h3 className="text-2xl font-black text-[#111111] tracking-tight">
@@ -617,7 +617,7 @@ export default function PlatformPlanModal({
                     </h3>
                   </div>
 
-                  <div className="p-6 rounded-[22px] bg-white border border-neutral-200/80 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                  <div className="p-6 rounded-2xl bg-white border border-neutral-200/80 shadow-md grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
                     {/* Summary Columns */}
                     <div className="lg:col-span-7 space-y-4">
                       <div>
@@ -631,7 +631,7 @@ export default function PlatformPlanModal({
                           <span>Package Price: ₹{packagePrice.toLocaleString()}</span>
                           <span>•</span>
                           <span className="inline-flex items-center gap-1">
-                            <Clock className="w-3.5 h-3.5 text-[#E31D2E]" /> {selectedPackage?.timeline}
+                            <Clock className="w-3.5 h-3.5 text-[#111111]" /> {selectedPackage?.timeline}
                           </span>
                         </div>
                       </div>
@@ -644,7 +644,7 @@ export default function PlatformPlanModal({
                         <div className="grid grid-cols-2 gap-1.5 text-xs font-bold text-neutral-700">
                           {selectedPackage?.features.map((feat, idx) => (
                             <div key={idx} className="flex items-center gap-1.5">
-                              <Check className="w-3.5 h-3.5 text-[#E31D2E] shrink-0" />
+                              <Check className="w-3.5 h-3.5 text-[#111111] shrink-0" />
                               <span className="truncate">{feat}</span>
                             </div>
                           ))}
@@ -654,7 +654,7 @@ export default function PlatformPlanModal({
                       {/* Extras Added (If customized) */}
                       {hasCustomized && activeExtrasList.length > 0 && (
                         <div>
-                          <span className="text-[10px] font-extrabold text-[#E31D2E] uppercase tracking-widest block mb-1.5">
+                          <span className="text-[10px] font-extrabold text-[#111111] uppercase tracking-widest block mb-1.5">
                             OPTIONAL EXTRAS ADDED
                           </span>
                           <div className="space-y-1 text-xs font-semibold text-neutral-700">
@@ -676,7 +676,7 @@ export default function PlatformPlanModal({
                       <span className="text-[10px] font-black text-neutral-400 uppercase tracking-widest">
                         TOTAL INVESTMENT
                       </span>
-                      <div className="text-3xl font-black text-[#E31D2E] tracking-tight">
+                      <div className="text-3xl font-black text-[#111111] tracking-tight">
                         ₹{grandTotal.toLocaleString()}
                       </div>
                       <p className="text-[10px] text-neutral-500 font-medium max-w-[200px]">
@@ -692,14 +692,14 @@ export default function PlatformPlanModal({
                   <button
                     type="button"
                     onClick={handlePrevStep}
-                    className="px-5 py-2.5 rounded-full border border-neutral-300 hover:bg-neutral-100 text-xs font-bold text-neutral-700 transition-all cursor-pointer"
+                    className="px-5 py-2.5 rounded-xl border border-neutral-300 hover:bg-neutral-100 text-xs font-bold text-neutral-700 transition-all cursor-pointer"
                   >
                     Back
                   </button>
                   <button
                     type="button"
                     onClick={handleFinalSubmit}
-                    className="px-8 py-3.5 rounded-full bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_10px_25px_rgba(0,0,0,0.14)] hover:scale-102 flex items-center gap-2 cursor-pointer"
+                    className="px-8 py-3.5 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs uppercase tracking-wider transition-all shadow-[0_10px_25px_rgba(0,0,0,0.14)] hover:scale-102 flex items-center gap-2 cursor-pointer"
                   >
                     <span>REQUEST THIS PROPOSAL</span>
                     <ArrowRight className="w-4 h-4" />

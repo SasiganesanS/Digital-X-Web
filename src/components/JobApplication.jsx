@@ -385,7 +385,7 @@ const JobApplication = ({ job, onClose }) => {
           {/* Header */}
           <div className="mb-5">
             <div className="flex items-center gap-2 mb-1.5">
-              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#FF2B2B]/5 text-[#FF2B2B] border border-[#FF2B2B]/20">
+              <span className="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-neutral-100 text-[#111111] border border-neutral-200/80">
                 {activeJob.department || 'Career Opportunity'}
               </span>
               <span className="text-gray-400 text-xs">•</span>

@@ -90,7 +90,7 @@ const navStyles = `
   background: #111111;
   height: 44px;
   padding: 0 6px;
-  border-radius: 999px;
+  border-radius: 14px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.16);
   border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
@@ -105,7 +105,7 @@ const navStyles = `
   height: var(--nav-h);
   width: var(--nav-h);
   padding: 0;
-  border-radius: 9999px;
+  border-radius: 10px;
   background: transparent;
   border: none;
   color: #ffffff !important;
@@ -135,7 +135,7 @@ const navStyles = `
 .nav-cta-btn {
   height: 44px;
   padding: 0 22px;
-  border-radius: 999px;
+  border-radius: 14px;
   background: #111111;
   color: #ffffff;
   font-weight: 700;
@@ -281,7 +281,7 @@ const navStyles = `
   background: transparent;
   color: #ffffff;
   text-decoration: none;
-  border-radius: 9999px;
+  border-radius: 10px;
   box-sizing: border-box;
   font-weight: 700;
   font-size: 12px;
@@ -972,7 +972,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                           {isHighlighted && (
                             <motion.span
                               layoutId="activeNavPill"
-                              className="absolute inset-0 bg-[#E31D2E] rounded-full z-0 shadow-[0_4px_14px_rgba(227,29,46,0.4)]"
+                              className="absolute inset-0 bg-[#E31D2E] rounded-xl z-0 shadow-[0_4px_14px_rgba(227,29,46,0.4)]"
                               transition={{ type: "spring", stiffness: 450, damping: 35 }}
                             />
                           )}
@@ -991,7 +991,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                           {isHighlighted && (
                             <motion.span
                               layoutId="activeNavPill"
-                              className="absolute inset-0 bg-[#E31D2E] rounded-full z-0 shadow-[0_4px_14px_rgba(227,29,46,0.4)]"
+                              className="absolute inset-0 bg-[#E31D2E] rounded-xl z-0 shadow-[0_4px_14px_rgba(227,29,46,0.4)]"
                               transition={{ type: "spring", stiffness: 450, damping: 35 }}
                             />
                           )}
@@ -1063,7 +1063,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                     setIsMobileMenuOpen(false);
                     if (onOpenSearch) onOpenSearch();
                   }}
-                  className="w-full flex items-center justify-between px-4 py-2 rounded-full bg-[#FAFAFA] hover:bg-[#F4F4F4] text-[#111111] font-semibold text-sm transition-colors border border-gray-200/80"
+                  className="w-full flex items-center justify-between px-4 py-2 rounded-xl bg-[#FAFAFA] hover:bg-[#F4F4F4] text-[#111111] font-semibold text-sm transition-colors border border-gray-200/80"
                 >
                   <div className="flex items-center gap-2">
                     <Search className="w-4 h-4 text-[#E31D2E]" />

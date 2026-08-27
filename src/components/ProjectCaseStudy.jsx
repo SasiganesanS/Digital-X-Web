@@ -104,8 +104,8 @@ const ProjectCaseStudy = () => {
   if (!project) {
     return (
       <div className="min-h-screen bg-[#F8FAFC] text-[#111111] flex items-center justify-center px-6">
-        <div className="text-center max-w-md bg-white p-8 sm:p-10 rounded-[2.5rem] border border-gray-200">
-          <div className="w-16 h-16 rounded-full bg-neutral-100 border border-neutral-200 text-[#111111] flex items-center justify-center mx-auto mb-6">
+        <div className="text-center max-w-md bg-white p-8 sm:p-10 rounded-2xl border border-gray-200">
+          <div className="w-16 h-16 rounded-xl bg-neutral-100 border border-neutral-200 text-[#111111] flex items-center justify-center mx-auto mb-6">
             <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
@@ -115,7 +115,7 @@ const ProjectCaseStudy = () => {
           <button
             type="button"
             onClick={handleBack}
-            className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-full font-extrabold text-xs uppercase tracking-wider shadow-none transition-all hover:-translate-y-0.5 cursor-pointer"
+            className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-xl font-extrabold text-xs uppercase tracking-wider shadow-none transition-all hover:-translate-y-0.5 cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>{fromPath === '/projects' ? "Back to Projects" : "Back to Case Studies"}</span>
@@ -144,13 +144,13 @@ const ProjectCaseStudy = () => {
                   <button
                     type="button"
                     onClick={handleBack}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white shadow-none hover:border-black/20 text-[#111111] text-xs font-bold uppercase tracking-wider transition-all duration-200 group cursor-pointer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white shadow-none hover:border-black/20 text-[#111111] text-xs font-bold uppercase tracking-wider transition-all duration-200 group cursor-pointer"
                   >
                     <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#E31D2E]" />
                     <span>{fromPath === '/projects' ? "Back to Projects" : "Back to Case Studies"}</span>
                   </button>
 
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-white/90 text-[#111111] text-xs font-black tracking-wide shadow-none">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-white/90 text-[#111111] text-xs font-black tracking-wide shadow-none">
                     <span className="w-2 h-2 rounded-full bg-[#E31D2E]" />
                     <span>{project.breadcrumb || `Blog / ${project.title}`}</span>
                   </div>
@@ -324,10 +324,10 @@ const ProjectCaseStudy = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.07 }}
                   whileHover={{ y: -5 }}
-                  className="group relative p-7 sm:p-8 rounded-[2rem] bg-white border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-black/20 hover:shadow-[0_18px_44px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                  className="group relative p-7 sm:p-8 rounded-2xl bg-white border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-black/20 hover:shadow-[0_18px_44px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
                 >
                   <div>
-                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/5 border border-black/20 text-[#111111] text-[10px] font-black uppercase tracking-widest mb-4">
+                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-black/5 border border-black/20 text-[#111111] text-[10px] font-black uppercase tracking-widest mb-4">
                       <span>Feature 0{i + 1}</span>
                     </div>
                     <h3 className="text-lg sm:text-xl font-black text-[#111111] mb-2.5 leading-snug tracking-tight font-sans">
@@ -444,7 +444,7 @@ const ProjectCaseStudy = () => {
                 {project.techStack.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-5 py-2.5 rounded-full border border-gray-200 bg-white shadow-2xs hover:border-black/20 hover:text-[#E31D2E] text-[#333333] text-xs font-extrabold uppercase tracking-wider transition-all duration-200"
+                    className="px-5 py-2.5 rounded-xl border border-gray-200 bg-white shadow-2xs hover:border-black/20 hover:text-[#E31D2E] text-[#333333] text-xs font-extrabold uppercase tracking-wider transition-all duration-200"
                   >
                     {tech}
                   </span>
@@ -478,7 +478,7 @@ const ProjectCaseStudy = () => {
               <button
                 type="button"
                 onClick={() => setShowContactForm(true)}
-                className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-red-500/25 hover:-translate-y-0.5 transition-all cursor-pointer flex items-center justify-center gap-2.5"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-red-500/25 hover:-translate-y-0.5 transition-all cursor-pointer flex items-center justify-center gap-2.5"
               >
                 <span>Get Detailed Proposal</span>
                 <ArrowRight className="w-4 h-4" />
@@ -486,7 +486,7 @@ const ProjectCaseStudy = () => {
 
               <Link
                 to="/projects"
-                className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/90 bg-white text-[#111111] hover:bg-neutral-100 font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl border border-white/90 bg-white text-[#111111] hover:bg-neutral-100 font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md"
               >
                 <span>Explore All Projects</span>
               </Link>

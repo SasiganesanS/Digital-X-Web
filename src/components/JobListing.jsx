@@ -317,7 +317,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
         <button
           key={item}
           onClick={() => handlePageChange(item)}
-          className={`h-9 w-9 rounded-full font-black transition-all text-xs sm:text-sm flex items-center justify-center cursor-pointer ${
+          className={`h-9 w-9 rounded-xl font-black transition-all text-xs sm:text-sm flex items-center justify-center cursor-pointer ${
             currentPage === item
               ? "bg-[#E31D2E] text-white shadow-md scale-105"
               : "bg-white text-neutral-700 hover:bg-neutral-100 border border-neutral-200"
@@ -338,8 +338,8 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
           <div className="flex items-center justify-between mb-6 sm:mb-8 pb-4 border-b border-white/10">
             <div className="flex items-center gap-3">
               <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-[#E31D2E]" />
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-white" />
               </span>
               <span className="text-white text-base sm:text-lg font-bold tracking-tight flex items-center gap-2">
                 Showing{" "}
@@ -348,7 +348,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                   initial={{ opacity: 0, y: -8, scale: 0.8 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="inline-block px-2.5 py-0.5 rounded-full bg-[#E31D2E]/20 text-[#E31D2E] font-black shadow-xs"
+                  className="inline-block px-2.5 py-0.5 rounded-xl bg-white/15 text-white border border-white/25 font-black shadow-xs"
                 >
                   {jobs.length}
                 </motion.span>{" "}
@@ -358,8 +358,8 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
           </div>
 
           {jobs.length === 0 ? (
-            <div className="text-center py-12 sm:py-16 bg-white/60 border border-neutral-200/80 rounded-[22px] shadow-xs px-6">
-              <div className="w-12 h-12 rounded-full bg-[#E31D2E]/10 text-[#E31D2E] flex items-center justify-center mx-auto mb-4">
+            <div className="text-center py-12 sm:py-16 bg-white/60 border border-neutral-200/80 rounded-2xl shadow-xs px-6">
+              <div className="w-12 h-12 rounded-xl bg-[#E31D2E]/10 text-[#E31D2E] flex items-center justify-center mx-auto mb-4">
                 <FiSearch className="w-6 h-6" />
               </div>
               <p className="text-[#111111] text-lg sm:text-xl font-bold mb-2">No jobs match your search.</p>
@@ -369,7 +369,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
               {onClearFilters && (
                 <button
                   onClick={onClearFilters}
-                  className="primary-btn px-6 py-3 rounded-full font-bold text-xs sm:text-sm inline-flex items-center gap-2"
+                  className="primary-btn px-6 py-3 rounded-xl font-bold text-xs sm:text-sm inline-flex items-center gap-2"
                 >
                   <FiX className="w-4 h-4" />
                   <span>Clear Search & Filters</span>
@@ -392,40 +392,47 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                     className="group relative rounded-2xl bg-white border border-neutral-200/80 p-5 sm:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-black/20 transition-all duration-300 flex flex-col justify-between h-full cursor-pointer min-h-[300px]"
                   >
                     <div>
-                      {/* 1. Job Title & Apply Pill Button Header */}
-                      <div className="flex items-start justify-between gap-3 mb-3">
-                        <h3 className="text-base sm:text-lg font-black text-[#111111] leading-snug group-hover:text-[#E31D2E] transition-colors duration-300 tracking-tight my-auto">
-                          {job.title}
-                        </h3>
+                      {/* 1. Header: Department Badge & Apply Action */}
+                      <div className="flex items-center justify-between gap-3 mb-3">
+                        <div className="flex items-center gap-2">
+                          <span className="font-mono text-[10px] font-black text-[#111111] tracking-wider uppercase bg-neutral-100 px-2.5 py-1 rounded-lg border border-neutral-200/80">
+                            {job.department}
+                          </span>
+                        </div>
                         <button
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
                             handleJobClick(job);
                           }}
-                          className="px-3.5 py-1.5 rounded-full bg-[#E31D2E] text-white font-black text-[10px] uppercase tracking-wider flex items-center gap-1 shrink-0 shadow-2xs hover:bg-[#c91827] hover:scale-105 transition-all duration-300 cursor-pointer self-start"
+                          className="px-3.5 py-1.5 rounded-xl bg-[#E31D2E] text-white font-black text-[10px] uppercase tracking-wider flex items-center gap-1 shrink-0 shadow-2xs hover:bg-[#c91827] hover:scale-105 transition-all duration-300 cursor-pointer self-start"
+                          aria-label={`Apply for ${job.title}`}
                         >
                           <span>Apply</span>
                           <FiArrowUpRight className="w-3 h-3" />
                         </button>
                       </div>
 
-                      {/* 2. Location & Job Type Badges */}
-                      <div className="flex flex-wrap items-center gap-1.5 mb-3.5">
-                        <div className="flex items-center gap-1 border border-neutral-200/80 bg-neutral-50 rounded-full px-2.5 py-1 shadow-2xs shrink-0">
-                          <FiMapPin className="text-[#E31D2E] w-3 h-3" />
+                      <h3 className="text-base sm:text-lg font-black text-[#111111] leading-snug tracking-tight mb-2">
+                        {job.title}
+                      </h3>
+
+                      {/* 2. Metadata Chips (Location, Type, Level) */}
+                      <div className="flex items-center gap-2 flex-wrap mb-3.5 mt-2">
+                        <div className="flex items-center gap-1 border border-neutral-200/80 bg-neutral-50 rounded-xl px-2.5 py-1 shadow-2xs shrink-0">
+                          <FiMapPin className="text-neutral-500 w-3 h-3" />
                           <span className="text-neutral-700 font-bold text-[11px] whitespace-nowrap">
                             {job?.location || 'Remote'}
                           </span>
                         </div>
-                        <div className="flex items-center gap-1 border border-neutral-200/80 bg-neutral-50 rounded-full px-2.5 py-1 shadow-2xs shrink-0">
+                        <div className="flex items-center gap-1 border border-neutral-200/80 bg-neutral-50 rounded-xl px-2.5 py-1 shadow-2xs shrink-0">
                           <FiClock className="text-neutral-500 w-3 h-3" />
                           <span className="text-neutral-700 font-bold text-[11px] whitespace-nowrap">
                             {job?.type === 'Full-time' ? 'Full-time Intern' : (job?.type || 'Full-time Intern')}
                           </span>
                         </div>
                         {job?.level && job.level !== 'Intern' && (
-                          <div className="flex items-center gap-1 border border-neutral-200/80 bg-neutral-50 rounded-full px-2.5 py-1 shadow-2xs shrink-0">
+                          <div className="flex items-center gap-1 border border-neutral-200/80 bg-neutral-50 rounded-xl px-2.5 py-1 shadow-2xs shrink-0">
                             <FiBriefcase className="text-neutral-500 w-3 h-3" />
                             <span className="text-neutral-700 font-bold text-[11px] whitespace-nowrap">
                               {job.level}
@@ -447,7 +454,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                       {(job?.skills || []).map((skill, idx) => (
                         <span
                           key={idx}
-                          className="px-2.5 py-1 rounded-md bg-neutral-100/90 text-neutral-600 text-[10px] font-bold tracking-wide group-hover:bg-[#E31D2E]/10 group-hover:text-[#E31D2E] transition-colors duration-200"
+                          className="px-2.5 py-1 rounded-lg bg-neutral-100 text-neutral-700 text-[10px] font-bold tracking-wide border border-neutral-200/80 group-hover:bg-neutral-200 group-hover:text-[#111111] transition-colors duration-200"
                         >
                           {skill}
                         </span>
@@ -464,7 +471,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                   <button
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
-                    className={`px-4 py-2 rounded-full font-medium transition-colors flex items-center gap-1 sm:gap-2 text-sm sm:text-[15px] ${currentPage === 1
+                    className={`px-4 py-2 rounded-xl font-medium transition-colors flex items-center gap-1 sm:gap-2 text-sm sm:text-[15px] ${currentPage === 1
                         ? "bg-neutral-100 text-neutral-400 cursor-not-allowed border border-neutral-200"
                         : "bg-white text-neutral-700 hover:bg-neutral-100 border border-neutral-200 shadow-xs"
                       }`}
@@ -480,7 +487,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                   <button
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === totalPages}
-                    className={`px-4 py-2 rounded-full font-medium transition-colors flex items-center gap-1 sm:gap-2 text-sm sm:text-[15px] ${currentPage === totalPages
+                    className={`px-4 py-2 rounded-xl font-medium transition-colors flex items-center gap-1 sm:gap-2 text-sm sm:text-[15px] ${currentPage === totalPages
                         ? "bg-neutral-100 text-neutral-400 cursor-not-allowed border border-neutral-200"
                         : "bg-white text-neutral-700 hover:bg-neutral-100 border border-neutral-200 shadow-xs"
                       }`}

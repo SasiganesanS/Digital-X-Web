@@ -296,7 +296,7 @@ const SoftwareDevelopmentPricing = () => {
             return (
               <div
                 key={index}
-                className="bg-gray-100 rounded-3xl overflow-hidden h-full flex flex-col"
+                className="bg-gray-100 rounded-2xl overflow-hidden h-full flex flex-col"
               >
                 {/* Plan Header */}
                 <div className="p-6">
@@ -446,7 +446,7 @@ const SoftwareDevelopmentPricing = () => {
           </div>
 
           {/* Right Content */}
-          <div className="flex flex-col justify-center p-4 md:p-8 bg-gray-100 rounded-3xl md:order-4">
+          <div className="flex flex-col justify-center p-4 md:p-8 bg-gray-100 rounded-2xl md:order-4">
             <h4 className="text-2xl font-bold text-gray-800 mb-6">Perfect For:</h4>
             <ul className="space-y-4">
               <li className="flex items-center text-lg">
@@ -554,7 +554,7 @@ const SoftwareDevelopmentPricing = () => {
           </div>
 
           {/* Right Content */}
-          <div className="flex flex-col justify-center p-4 md:p-8 bg-gray-100 rounded-3xl md:order-4">
+          <div className="flex flex-col justify-center p-4 md:p-8 bg-gray-100 rounded-2xl md:order-4">
             <h4 className="text-2xl font-bold text-gray-800 mb-6">Perfect For:</h4>
             <ul className="space-y-4">
               <li className="flex items-center text-lg">
@@ -666,7 +666,7 @@ const SoftwareDevelopmentPricing = () => {
           </div>
 
           {/* Right Content */}
-          <div className="flex flex-col justify-center p-4 md:p-8 bg-gray-100 rounded-3xl md:order-4">
+          <div className="flex flex-col justify-center p-4 md:p-8 bg-gray-100 rounded-2xl md:order-4">
             <h4 className="text-2xl font-bold text-gray-800 mb-6">Perfect For:</h4>
             <ul className="space-y-4">
               <li className="flex items-center text-lg">
@@ -782,7 +782,7 @@ const SoftwareDevelopmentPricing = () => {
           </div>
 
           {/* Right Content */}
-          <div className="flex flex-col justify-center p-4 md:p-8 bg-gray-100 rounded-3xl md:order-4">
+          <div className="flex flex-col justify-center p-4 md:p-8 bg-gray-100 rounded-2xl md:order-4">
             <h4 className="text-2xl font-bold text-gray-800 mb-6">Perfect For:</h4>
             <ul className="space-y-4">
               <li className="flex items-center text-lg">

@@ -86,7 +86,7 @@ export default function CollaboratorDirectory() {
             <button
               type="button"
               onClick={() => setIsApplyModalOpen(true)}
-              className="px-6 py-3.5 rounded-full bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white font-black text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
+              className="px-6 py-3.5 rounded-xl bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white font-black text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
             >
               <span>Apply as Collaborator</span>
               <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
@@ -103,7 +103,7 @@ export default function CollaboratorDirectory() {
                 key={cat.id}
                 type="button"
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer ${
+                className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer ${
                   isActive
                     ? "bg-[#E31D2E] text-white shadow-md scale-105"
                     : "bg-white text-[#111111] hover:bg-neutral-100 border border-white/90 shadow-sm"

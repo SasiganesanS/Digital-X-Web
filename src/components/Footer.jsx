@@ -47,7 +47,7 @@ const Footer = ({ setShowContactForm }) => {
             {/* Primary Red Button */}
             <motion.button
               onClick={() => setShowContactForm && setShowContactForm(true)}
-              className="w-full sm:w-auto lg:w-[240px] px-6 py-3.5 rounded-full font-bold text-xs sm:text-sm bg-[#FF2B2B] !text-white hover:bg-[#E51D1D] transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:-translate-y-0.5 group cursor-pointer"
+              className="w-full sm:w-auto lg:w-[240px] px-6 py-3.5 rounded-xl font-bold text-xs sm:text-sm bg-[#FF2B2B] !text-white hover:bg-[#E51D1D] transition-all duration-300 flex items-center justify-center gap-2 shadow-md hover:-translate-y-0.5 group cursor-pointer"
               style={{ color: "#FFFFFF", opacity: 1 }}
             >
               <span className="!text-white text-white font-bold" style={{ color: "#FFFFFF" }}>Start Your Project</span>
@@ -59,7 +59,7 @@ const Footer = ({ setShowContactForm }) => {
               href="https://wa.me/919566880740?text=Hi%20Praskla%20Digital%20X%2C%20I%27m%20interested%20in%20your%20expertise%20and%20would%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto lg:w-[240px] px-6 py-3 rounded-full font-bold text-xs sm:text-sm border border-white/20 !text-white bg-[#1F1F1F] hover:bg-[#2A2A2A] hover:border-white/40 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm text-center cursor-pointer"
+              className="w-full sm:w-auto lg:w-[240px] px-6 py-3 rounded-xl font-bold text-xs sm:text-sm border border-white/20 !text-white bg-[#1F1F1F] hover:bg-[#2A2A2A] hover:border-white/40 transition-all duration-300 flex items-center justify-center gap-2 shadow-sm text-center cursor-pointer"
               style={{ color: "#FFFFFF", opacity: 1 }}
             >
               <span className="!text-white text-white font-bold" style={{ color: "#FFFFFF" }}>
@@ -170,9 +170,14 @@ const Footer = ({ setShowContactForm }) => {
         {/* BOTTOM LEGAL BAR */}
         <div className="relative z-10 border-t border-white/[0.08] pt-5 pb-1">
           <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-center md:text-left text-xs font-semibold text-[#9CA3AF] font-sans">
-            <span className="inline-flex items-center gap-1.5 justify-center md:justify-start">
-              © {new Date().getFullYear()} <span className="font-inlander font-bold">PRASKLA DIGITAL</span> <BrandX className="h-[15px] w-auto inline-block text-[#FF2B2B] translate-y-[1.5px]" />. All rights reserved.
-            </span>
+            <div className="flex flex-col items-center md:items-start justify-center text-center md:text-left">
+              <span className="inline-flex items-center gap-1.5 justify-center md:justify-start">
+                © {new Date().getFullYear()} <span className="font-inlander font-bold">PRASKLA DIGITAL</span> <BrandX className="h-[15px] w-auto inline-block text-[#FF2B2B] translate-y-[1.5px]" />
+              </span>
+              <span className="text-[#9CA3AF] text-[11px] mt-0.5">
+                All rights reserved.
+              </span>
+            </div>
 
             <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
               <Link to="/privacy-policy" className="hover:text-white transition-colors">

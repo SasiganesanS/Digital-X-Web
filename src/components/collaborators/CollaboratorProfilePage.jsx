@@ -24,7 +24,7 @@ export default function CollaboratorProfilePage() {
       <div className="min-h-screen flex flex-col items-center justify-center py-20 px-4 text-center">
         <h2 className="text-3xl font-black text-[#111111] mb-4">Collaborator Not Found</h2>
         <p className="text-neutral-600 font-medium mb-6">The requested collaborator profile does not exist.</p>
-        <Link to="/collaborators" className="px-6 py-3 rounded-full bg-[#111111] text-white font-bold text-sm hover:bg-[#E31D2E] transition-all">
+        <Link to="/collaborators" className="px-6 py-3 rounded-xl bg-[#111111] text-white font-bold text-sm hover:bg-[#E31D2E] transition-all">
           Back to Collaborators
         </Link>
       </div>
@@ -65,9 +65,9 @@ export default function CollaboratorProfilePage() {
             
             {/* Left Image Column (5 Cols) — Default DP Avatar */}
             <div className="lg:col-span-5">
-              <div className="relative w-full aspect-[4/5] max-h-[460px] rounded-[2rem] overflow-hidden border border-neutral-200 shadow-md bg-neutral-100 flex items-center justify-center">
+              <div className="relative w-full aspect-[4/5] max-h-[460px] rounded-2xl overflow-hidden border border-neutral-200 shadow-md bg-neutral-100 flex items-center justify-center">
                 <User className="w-28 h-28 text-neutral-400 stroke-[1.4]" />
-                <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-white/90 backdrop-blur-md text-[#111111] border border-white/50 shadow-sm flex items-center gap-2">
+                <div className="absolute top-4 left-4 px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-white/90 backdrop-blur-md text-[#111111] border border-white/50 shadow-sm flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
                   <span>{collaborator.availability}</span>
                 </div>
@@ -76,7 +76,7 @@ export default function CollaboratorProfilePage() {
 
             {/* Right Info Column (7 Cols) */}
             <div className="lg:col-span-7 flex flex-col items-start text-left">
-              <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] bg-neutral-100 text-[#111111] border border-neutral-200/90 mb-3 inline-flex items-center gap-1.5">
+              <span className="px-3 py-1 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] bg-neutral-100 text-[#111111] border border-neutral-200/90 mb-3 inline-flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#111111]" />
                 {collaborator.categoryLabel}
               </span>
@@ -117,7 +117,7 @@ export default function CollaboratorProfilePage() {
               <button
                 type="button"
                 onClick={() => setIsModalOpen(true)}
-                className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#111111] hover:bg-[#FF2B2B] text-white font-extrabold text-sm tracking-wide shadow-[0_10px_25px_rgba(0,0,0,0.18)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.28)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer group"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#111111] hover:bg-[#FF2B2B] text-white font-extrabold text-sm tracking-wide shadow-[0_10px_25px_rgba(0,0,0,0.18)] hover:shadow-[0_16px_35px_rgba(0,0,0,0.28)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer group"
               >
                 <span>Request This Collaborator</span>
                 <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -137,7 +137,7 @@ export default function CollaboratorProfilePage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-14">
           
           {/* Left Bio Box (7 Cols) */}
-          <div className="lg:col-span-7 bg-white rounded-[2rem] p-8 border border-neutral-200/90 shadow-sm">
+          <div className="lg:col-span-7 bg-white rounded-2xl p-8 border border-neutral-200/90 shadow-sm">
             <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#E31D2E] mb-3 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-[#111111]" />
               About {collaborator.name}
@@ -162,7 +162,7 @@ export default function CollaboratorProfilePage() {
           </div>
 
           {/* Right Skills Box (5 Cols) */}
-          <div className="lg:col-span-5 bg-neutral-50 rounded-[2rem] p-8 border border-neutral-200/90 flex flex-col justify-between">
+          <div className="lg:col-span-5 bg-neutral-50 rounded-2xl p-8 border border-neutral-200/90 flex flex-col justify-between">
             <div>
               <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#111111] mb-4 flex items-center gap-2">
                 <span className="w-2 h-2 rounded-full bg-[#111111]" />
@@ -173,7 +173,7 @@ export default function CollaboratorProfilePage() {
                 {collaborator.skills.map((skill, idx) => (
                   <span
                     key={idx}
-                    className="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-white text-[#111111] border border-neutral-200 shadow-2xs"
+                    className="px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-white text-[#111111] border border-neutral-200 shadow-2xs"
                   >
                     {skill}
                   </span>

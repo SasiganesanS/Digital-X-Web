@@ -619,7 +619,7 @@ select::placeholder {
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
   color: #111111 !important;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
-  border-radius: 9999px !important;
+  border-radius: 12px !important;
   transition: all 0.3s ease;
 }
 
@@ -640,14 +640,14 @@ select::placeholder {
   background: rgba(255, 255, 255, 0.95) !important;
   border: 1px solid rgba(0, 0, 0, 0.08) !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important;
-  border-radius: 9999px !important;
+  border-radius: 16px !important;
 }
 
 /* Soft Neumorphic Modal Container */
 .neu-modal {
   background: #FFFFFF !important;
   border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  border-radius: 30px !important;
+  border-radius: 16px !important;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15) !important;
 }
 
@@ -661,7 +661,7 @@ select::placeholder {
     0 24px 50px rgba(0, 0, 0, 0.35),
     0 4px 12px rgba(0, 0, 0, 0.2),
     inset 0 1.5px 0 rgba(255, 255, 255, 0.1);
-  border-radius: 2rem;
+  border-radius: 16px;
 }
 
 /* Reusable Primary Button styling for premium hover interaction */
@@ -821,54 +821,16 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover [class*="text-white"
   color: #FFFFFF !important;
 }
 
-/* Subtle highlight on the top edge on hover - excluded for rounded icon buttons & footer social links */
+/* Explicit Reset: Remove white top line pseudo-elements on hover for buttons */
 .primary-btn::after,
-button[class*="bg-[#E31D2E]"]:not(footer *):not([class*="rounded-full"])::after,
-a[class*="bg-[#E31D2E]"]:not(footer *):not([class*="rounded-full"])::after,
-button[class*="bg-[#E8192C]"]:not(footer *):not([class*="rounded-full"])::after,
-a[class*="bg-[#E8192C]"]:not(footer *):not([class*="rounded-full"])::after,
-button[class*="bg-[#ef2029]"]:not(footer *):not([class*="rounded-full"])::after,
-a[class*="bg-[#ef2029]"]:not(footer *):not([class*="rounded-full"])::after,
-button[class*="bg-[#371445]"]:not(footer *):not([class*="rounded-full"])::after,
-a[class*="bg-[#371445]"]:not(footer *):not([class*="rounded-full"])::after,
-button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:not(footer *):not([class*="rounded-full"])::after,
-a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:not(footer *):not([class*="rounded-full"])::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.4);
-  opacity: 0;
-  transition: opacity 300ms cubic-bezier(.22, .61, .36, 1);
-  pointer-events: none;
-  border-radius: inherit;
-}
-
-.primary-btn:hover::after,
-button[class*="bg-[#E31D2E]"]:not(footer *):not([class*="rounded-full"]):hover::after,
-a[class*="bg-[#E31D2E]"]:not(footer *):not([class*="rounded-full"]):hover::after,
-button[class*="bg-[#E8192C]"]:not(footer *):not([class*="rounded-full"]):hover::after,
-a[class*="bg-[#E8192C]"]:not(footer *):not([class*="rounded-full"]):hover::after,
-button[class*="bg-[#ef2029]"]:not(footer *):not([class*="rounded-full"]):hover::after,
-a[class*="bg-[#ef2029]"]:not(footer *):not([class*="rounded-full"]):hover::after,
-button[class*="bg-[#371445]"]:not(footer *):not([class*="rounded-full"]):hover::after,
-a[class*="bg-[#371445]"]:not(footer *):not([class*="rounded-full"]):hover::after,
-button[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:not(footer *):not([class*="rounded-full"]):hover::after,
-a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:not(footer *):not([class*="rounded-full"]):hover::after {
-  opacity: 1;
-}
-
-/* Explicit Reset: Remove any pseudo-element top lines or artifacts on footer social media icons */
-footer a[class*="rounded-full"]::after,
-footer a[class*="rounded-full"]::before,
-footer .social-icon-link::after,
-footer .social-icon-link::before {
-  content: none !important;
+.primary-btn::before,
+button::after,
+button::before,
+a::after,
+a::before {
   display: none !important;
+  content: none !important;
   opacity: 0 !important;
-  background: none !important;
 }
 
 /* Active State compression */
@@ -1069,5 +1031,17 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg {
     padding-left: 4rem;
     /* lg:px-16 (64px) */
     padding-right: 4rem;
+  }
+}
+
+/* Reduced Motion Accessibility Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

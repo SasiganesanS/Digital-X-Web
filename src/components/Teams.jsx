@@ -24,15 +24,15 @@ const Teams = () => {
     {
       id: 3,
       name: "Jaillesh Kathirvel",
-      role: "Founder & Business Head & Manager",
+      role: "Co-Founder & CEO",
       image: Jaillesh,
-      imagePosition: "center 15%",
-      bio: "Drives business growth and client partnerships with a sharp eye for opportunity and execution. As Founder & Business Head & Manager, Jaillesh bridges strategy and day-to-day operations, ensuring every engagement is handled with precision, accountability, and a genuine commitment to client success.",
+      imagePosition: "center",
+      bio: "Drives business growth and client partnerships with a sharp eye for opportunity and execution. As Co-Founder & CEO of Praskla Digital X, Jaillesh bridges strategy and day-to-day operations, ensuring every engagement is handled with precision, accountability, and a genuine commitment to client success.",
     },
     {
       id: 1,
       name: "Pranesh Kumar Baskaran",
-      role: "Co-Founder & Business Head",
+      role: "Co-Founder, Board Member & Consultant",
       image: pranesh,
       bio: "Committed to delivering quality-assured software solutions that generate sustainable value for all stakeholders. With a strategic vision and a focus on long-term growth, the Co-Founder leads the organization by empowering teams, fostering innovation, and steering the company toward enduring success.",
     },
@@ -93,7 +93,7 @@ const Teams = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: idx * 0.1 }}
                   onClick={() => handleCardClick(member)}
-                  className={`flex flex-col items-center p-5 rounded-3xl bg-white border border-neutral-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 group text-center ${clickable ? "cursor-pointer" : ""}`}
+                  className={`flex flex-col items-center p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 group text-center ${clickable ? "cursor-pointer" : ""}`}
                 >
                   {/* Image Container with White Background */}
                   <div className="relative w-full rounded-2xl overflow-hidden bg-white mb-5 border border-neutral-100 shadow-xs flex justify-center">
@@ -116,8 +116,8 @@ const Teams = () => {
 
                   {/* Name and Role */}
                   <div className="w-full pb-2">
-                    <h3 className="text-lg font-bold text-[#111111] mb-1 tracking-tight group-hover:text-[#E31D2E] transition-colors">{member.name}</h3>
-                    <p className="text-sm font-semibold tracking-wide text-[#E31D2E]">
+                    <h3 className="text-lg font-bold text-[#111111] mb-1 tracking-tight">{member.name}</h3>
+                    <p className="text-sm font-semibold tracking-wide text-neutral-500">
                       {member.role}
                     </p>
                   </div>
@@ -176,13 +176,13 @@ const Teams = () => {
                           <span className="text-2xl text-neutral-400 font-black uppercase">{selectedMember.name.charAt(0)}</span>
                         </div>
                       )}
-                      <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center bg-[#E31D2E] shadow-sm">
+                      <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full flex items-center justify-center bg-[#111111] shadow-sm">
                         <span className="text-white text-[8px] font-black">✓</span>
                       </div>
                     </div>
                     <div>
                       <h3 className="text-[#111111] font-black text-xl md:text-2xl leading-tight">{selectedMember.name}</h3>
-                      <span className="text-xs font-bold px-3 py-1 rounded-full mt-1.5 inline-block text-[#E31D2E] bg-[#E31D2E]/10 border border-[#E31D2E]/20">
+                      <span className="text-xs font-bold px-3 py-1 rounded-xl mt-1.5 inline-block text-[#111111] bg-neutral-100 border border-neutral-200/80">
                         {selectedMember.role}
                       </span>
                     </div>

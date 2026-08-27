@@ -276,7 +276,7 @@ export default function FeaturedWorks() {
           <div
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch w-full h-auto sm:h-[380px] lg:h-[420px]"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch w-full h-auto sm:h-[395px] lg:h-[415px]"
           >
             {/* ── LEFT COLUMN: Compact Preview Screen ── */}
             <div className="lg:col-span-7 xl:col-span-8 relative h-[260px] sm:h-full w-full overflow-hidden rounded-2xl border border-neutral-200/80 bg-neutral-100 shadow-sm transition-all duration-300 group self-stretch">
@@ -300,7 +300,7 @@ export default function FeaturedWorks() {
 
               {/* Category Pill Tag Overlay */}
               <div className="absolute top-4 left-4 z-20">
-                <span className="px-3.5 py-1.5 rounded-full bg-white/95 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.18)] text-[#111111] text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
+                <span className="px-3.5 py-1.5 rounded-xl bg-white/95 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.18)] text-[#111111] text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#111111]" />
                   <span>{activeProject.category || activeProject.services?.[0] || "Featured Work"}</span>
                 </span>
@@ -308,7 +308,7 @@ export default function FeaturedWorks() {
             </div>
 
             {/* ── RIGHT COLUMN: Portfolio List Navigator ── */}
-            <div className="lg:col-span-5 xl:col-span-4 relative h-full w-full rounded-2xl border border-neutral-200/80 bg-neutral-50/70 shadow-xs transition-all duration-300 p-4 sm:p-5 flex flex-col justify-between overflow-hidden self-stretch">
+            <div className="lg:col-span-5 xl:col-span-4 relative h-full w-full rounded-2xl border border-neutral-200/80 bg-neutral-50/70 shadow-xs transition-all duration-300 p-3.5 sm:p-4 flex flex-col justify-between overflow-hidden self-stretch">
               
               {/* Middle: Continuous Native Scroll Container */}
               <div
@@ -321,7 +321,7 @@ export default function FeaturedWorks() {
                 onPointerUp={handlePointerUp}
                 onPointerCancel={handlePointerCancel}
                 onDragStart={(e) => e.preventDefault()}
-                className={`flex-1 my-1 py-1 flex flex-col gap-2 overflow-y-auto overscroll-contain focus:outline-none select-none pr-1 custom-scrollbar ${
+                className={`flex-1 my-0.5 p-1 flex flex-col gap-2 overflow-y-auto overscroll-contain focus:outline-none select-none custom-scrollbar ${
                   isDraggingState ? "cursor-grabbing select-none scroll-auto" : "cursor-grab scroll-smooth"
                 }`}
                 style={{ overscrollBehavior: "contain", touchAction: "pan-y" }}
@@ -335,9 +335,9 @@ export default function FeaturedWorks() {
                       ref={(el) => (itemRefs.current[idx] = el)}
                       type="button"
                       onClick={() => handleCardClick(idx)}
-                      className={`group relative flex items-center justify-between w-full p-2 sm:p-2.5 rounded-xl border text-left transition-all duration-300 min-w-[230px] lg:min-w-0 flex-shrink-0 overflow-hidden box-border ${
+                      className={`group relative flex items-center justify-between w-full p-2 sm:p-2.5 rounded-xl border text-left transition-all duration-300 min-w-[230px] lg:min-w-0 flex-shrink-0 box-border ${
                         isActive
-                          ? "border-[#FF2B2B] bg-white text-[#111111] shadow-[0_4px_16px_rgba(255,43,43,0.1)]"
+                          ? "border-[#111111] bg-white text-[#111111] shadow-[0_4px_16px_rgba(17,17,17,0.12)]"
                           : "border-neutral-200/60 bg-white/60 text-neutral-600 hover:border-neutral-300 hover:bg-white hover:text-[#111111]"
                       }`}
                     >
@@ -371,7 +371,7 @@ export default function FeaturedWorks() {
                       <ArrowUpRight
                         className={`w-3.5 h-3.5 flex-shrink-0 transition-all duration-300 pointer-events-none ${
                           isActive
-                            ? "text-[#E31D2E] translate-x-0.5 -translate-y-0.5"
+                            ? "text-[#111111] translate-x-0.5 -translate-y-0.5"
                             : "text-neutral-300 group-hover:text-neutral-500"
                         }`}
                       />
@@ -387,7 +387,7 @@ export default function FeaturedWorks() {
                   <div className="flex items-center justify-center select-none">
                     <motion.div 
                       layout
-                      className="inline-flex items-center gap-1 p-1 rounded-full bg-white border border-neutral-200/80 shadow-xs"
+                      className="inline-flex items-center gap-1 p-1 rounded-xl bg-white border border-neutral-200/80 shadow-xs"
                     >
                       {/* Left Chevron Button */}
                       <motion.button
@@ -412,7 +412,7 @@ export default function FeaturedWorks() {
                               whileHover={{ scale: 1.15 }}
                               whileTap={{ scale: 0.9 }}
                               onClick={handleEllipsisClick}
-                              className="flex h-6 px-1 items-center justify-center text-xs font-bold text-neutral-400 hover:text-[#E31D2E] transition-colors cursor-pointer select-none"
+                              className="flex h-6 px-1 items-center justify-center text-xs font-bold text-neutral-400 hover:text-[#111111] transition-colors cursor-pointer select-none"
                               aria-label="Jump forward 3 pages"
                             >
                               ...
@@ -438,7 +438,7 @@ export default function FeaturedWorks() {
                             {isCurrent && (
                               <motion.span
                                 layoutId="activePagePill"
-                                className="absolute inset-0 rounded-full bg-[#E31D2E] shadow-[0_4px_12px_rgba(227,29,46,0.35)]"
+                                className="absolute inset-0 rounded-full bg-[#111111] shadow-[0_4px_12px_rgba(17,17,17,0.35)]"
                                 transition={{ type: "spring", stiffness: 450, damping: 35 }}
                               />
                             )}
@@ -467,7 +467,7 @@ export default function FeaturedWorks() {
                 <Link
                   to={`/case-study/${activeProject.slug || ""}`}
                   state={{ from: '/' }}
-                  className="primary-btn flex items-center justify-between w-full rounded-full px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] text-white shadow-md transition-all hover:scale-[1.01]"
+                  className="primary-btn flex items-center justify-between w-full rounded-xl px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] text-white shadow-md transition-all hover:scale-[1.01]"
                 >
                   <span>View Case Study</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-white" />

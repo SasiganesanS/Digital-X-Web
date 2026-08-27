@@ -29,19 +29,19 @@ const AboutSection = () => {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={containerVariants}
-          className="relative flex flex-col lg:flex-row gap-12 lg:gap-20 rounded-2xl p-8 md:p-14 lg:p-20 overflow-hidden bg-[#FFFFFF] border border-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.18)] hover:shadow-[0_30px_80px_rgba(0,0,0,0.25)] transition-all duration-500"
+          className="relative flex flex-col lg:flex-row gap-8 lg:gap-14 rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 overflow-hidden bg-[#FFFFFF] border border-white/40 shadow-[0_20px_60px_rgba(0,0,0,0.18)] hover:shadow-[0_30px_80px_rgba(0,0,0,0.25)] transition-all duration-500"
         >
           {/* Left — label + headline */}
           <div className="flex-1">
             {/* Eyebrow badge */}
             <motion.div variants={fadeUp} className="mb-6">
-              <SectionBadge text="About Us" />
+              <SectionBadge text="our goal" />
             </motion.div>
 
             {/* Headline */}
             <motion.h2
               variants={fadeUp}
-              className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] mb-5 sm:mb-6 max-w-2xl font-sans"
+              className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans"
             >
               Empowering Brands through{" "}
               <span className="text-[#E31D2E]">
@@ -52,7 +52,7 @@ const AboutSection = () => {
           </div>
 
           {/* Right — body copy */}
-          <div className="flex-1 flex flex-col justify-center gap-6">
+          <div className="flex-1 flex flex-col justify-center gap-5">
             <motion.div variants={fadeUp} className="relative">
               <div className="absolute -left-5 sm:-left-6 top-0 bottom-0 w-1 bg-gradient-to-b from-[#E31D2E] via-[#E31D2E]/60 to-transparent rounded-full" />
               <p className="text-[#111111] text-lg md:text-xl leading-relaxed font-semibold pl-1">
@@ -71,18 +71,6 @@ const AboutSection = () => {
               optimization, we help brands build <span className="text-[#111111] font-bold">visibility, credibility,
                 and sustainable growth</span> — growing alongside them at every stage.
             </motion.p>
-
-            <motion.div variants={fadeUp} className="mt-4">
-              <Link
-                to="/about"
-                className="primary-btn group inline-flex items-center gap-3 text-white text-xs font-bold uppercase tracking-widest px-8 py-4 rounded-full shadow-md hover:scale-102 transition-all"
-              >
-                <span>Learn more about us</span>
-                <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </Link>
-            </motion.div>
           </div>
         </motion.div>
       </div>

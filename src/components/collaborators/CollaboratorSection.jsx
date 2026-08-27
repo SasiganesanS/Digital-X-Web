@@ -16,15 +16,17 @@ export default function CollaboratorSection() {
         {/* Section Card Banner — 100% Solid White Container */}
         <div className="relative rounded-2xl bg-white border border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.4)] p-8 sm:p-10 lg:p-12 overflow-hidden text-[#111111]">
           
-          {/* Top Right Corner "Apply" Button */}
-          <div className="absolute top-6 right-6 sm:top-8 sm:right-8 z-20">
+          {/* Top Header Row — Eyebrow Badge on Left + Separate Apply Button on Right */}
+          <div className="flex items-center justify-between w-full mb-6 sm:mb-8 gap-4 flex-wrap">
+            <SectionBadge text="CREATIVE COLLABORATOR NETWORK" />
+
             <button
               type="button"
               onClick={() => setIsApplyModalOpen(true)}
-              className="px-4 py-2 sm:px-5 sm:py-2.5 rounded-full bg-[#111111] hover:bg-[#E31D2E] text-white font-black text-xs tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 flex items-center gap-1.5 cursor-pointer"
+              className="px-5 py-2.5 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] text-white font-black text-xs tracking-wider uppercase transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 flex items-center gap-1.5 cursor-pointer shrink-0"
             >
-              <span>Apply</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <span>Apply as Collaborator</span>
+              <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
             </button>
           </div>
 
@@ -32,11 +34,6 @@ export default function CollaboratorSection() {
             
             {/* Left Content Area (7 Cols) */}
             <div className="lg:col-span-7 flex flex-col items-start text-left pr-0 sm:pr-12">
-              {/* Eyebrow Badge */}
-              <div className="mb-4">
-                <SectionBadge text="CREATIVE COLLABORATOR NETWORK" />
-              </div>
-
               {/* Main Heading */}
               <h2 className="text-3xl sm:text-4xl lg:text-[42px] font-black text-[#111111] leading-[1.12] tracking-tight mb-5">
                 Meet the Creative Network <br className="hidden sm:block" />
@@ -52,7 +49,7 @@ export default function CollaboratorSection() {
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 w-full sm:w-auto">
                 <Link
                   to="/collaborators"
-                  className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#111111] hover:bg-[#E31D2E] text-white font-extrabold text-sm tracking-wide transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 flex items-center justify-center gap-2 group cursor-pointer"
+                  className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-sm tracking-wide transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 active:scale-95 flex items-center justify-center gap-2 group cursor-pointer"
                 >
                   <span>Explore Collaborators</span>
                   <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -63,12 +60,10 @@ export default function CollaboratorSection() {
 
               {/* Small Supporting Line */}
               <p className="text-[#575757] text-xs font-semibold mt-4 flex items-center gap-1.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#111111]" />
-                Need someone specific? Tell us what you&apos;re looking for and we&apos;ll coordinate the right creative partner for your project.
               </p>
             </div>
 
-            {/* Right Preview Grid Area (5 Cols) — Default Avatar DP Previews */}
+            {/* Right Preview Grid Area (5 Cols) — Equal Height DP Cards */}
             <div className="lg:col-span-5 w-full">
               <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 gap-4">
                 {COLLABORATORS_DATA.slice(0, 4).map((c, i) => (
@@ -81,19 +76,21 @@ export default function CollaboratorSection() {
                   >
                     <Link
                       to={`/collaborators/${c.slug}`}
-                      className="group flex flex-col items-center sm:items-start p-4 rounded-2xl bg-white border border-neutral-200/90 shadow-sm hover:border-black/30 hover:shadow-md transition-all duration-300 cursor-pointer"
+                      className="group flex flex-col justify-between items-start h-[165px] p-4 rounded-2xl bg-white border border-neutral-200/90 shadow-sm hover:border-black/30 hover:shadow-md transition-all duration-300 cursor-pointer w-full"
                     >
-                      <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-2xl overflow-hidden mb-3 border border-neutral-200 shadow-xs flex-shrink-0 bg-neutral-100 flex items-center justify-center text-neutral-400 group-hover:bg-neutral-200 group-hover:text-neutral-600 transition-colors">
-                        <User className="w-7 h-7 sm:w-8 sm:h-8 stroke-[1.7]" />
-                        <div className="absolute top-1 right-1 w-3 h-3 rounded-full bg-emerald-500 border-2 border-white" />
+                      <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-2xl overflow-hidden border border-neutral-200 shadow-xs flex-shrink-0 bg-neutral-100 flex items-center justify-center text-neutral-400 group-hover:bg-neutral-200 group-hover:text-neutral-600 transition-colors">
+                        <User className="w-6 h-6 sm:w-7 sm:h-7 stroke-[1.7]" />
+                        <div className="absolute top-1 right-1 w-2.5 h-2.5 rounded-full bg-emerald-500 border-2 border-white" />
                       </div>
 
-                      <h4 className="text-sm font-black text-[#111111] group-hover:text-[#E31D2E] transition-colors">
-                        {c.name}
-                      </h4>
-                      <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider">
-                        {c.role}
-                      </span>
+                      <div className="mt-auto">
+                        <h4 className="text-sm font-black text-[#111111] group-hover:text-black transition-colors leading-tight">
+                          {c.name}
+                        </h4>
+                        <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider line-clamp-2 block leading-tight mt-0.5">
+                          {c.role}
+                        </span>
+                      </div>
                     </Link>
                   </motion.div>
                 ))}

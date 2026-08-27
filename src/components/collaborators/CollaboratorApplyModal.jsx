@@ -77,7 +77,7 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative z-10 w-full max-w-xl bg-white rounded-[2rem] p-6 sm:p-8 shadow-2xl border border-neutral-200 text-[#111111] overflow-hidden my-auto"
+            className="relative z-10 w-full max-w-xl bg-white rounded-2xl p-6 sm:p-8 shadow-2xl border border-neutral-200 text-[#111111] overflow-hidden my-auto"
           >
             {/* Close Button */}
             <button
@@ -91,7 +91,7 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
             {!submitted ? (
               <div>
                 <div className="mb-6">
-                  <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.2em] bg-neutral-100 text-[#111111] border border-neutral-200 mb-3 inline-flex items-center gap-1.5">
+                  <span className="px-3 py-1 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] bg-neutral-100 text-[#111111] border border-neutral-200 mb-3 inline-flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
                     Join Our Network
                   </span>
@@ -221,7 +221,7 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full py-4 px-6 rounded-full bg-[#111111] hover:bg-[#E31D2E] text-white font-extrabold text-sm tracking-wide shadow-md transition-all cursor-pointer disabled:opacity-50 mt-2"
+                    className="w-full py-4 px-6 rounded-xl bg-[#111111] hover:bg-[#E31D2E] text-white font-extrabold text-sm tracking-wide shadow-md transition-all cursor-pointer disabled:opacity-50 mt-2"
                   >
                     {loading ? "Submitting Application..." : "Submit Collaborator Application"}
                   </button>
@@ -229,7 +229,7 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
               </div>
             ) : (
               <div className="py-8 text-center flex flex-col items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-neutral-100 border border-neutral-200 text-[#111111] flex items-center justify-center mb-5">
+                <div className="w-16 h-16 rounded-xl bg-neutral-100 border border-neutral-200 text-[#111111] flex items-center justify-center mb-5">
                   <CheckCircle2 className="w-8 h-8 text-emerald-600" />
                 </div>
                 <h3 className="text-2xl font-black text-[#111111] mb-2 tracking-tight">
@@ -241,7 +241,7 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
                 <button
                   type="button"
                   onClick={handleClose}
-                  className="px-8 py-3 rounded-full bg-[#111111] text-white font-extrabold text-xs tracking-wider uppercase cursor-pointer"
+                  className="px-8 py-3 rounded-xl bg-[#111111] text-white font-extrabold text-xs tracking-wider uppercase cursor-pointer"
                 >
                   Close
                 </button>

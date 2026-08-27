@@ -9,7 +9,11 @@ import {
   Target,
   Award,
   Video,
-  ArrowRight
+  ArrowRight,
+  Zap,
+  Layers,
+  ShieldCheck,
+  Sparkles
 } from "lucide-react";
 import pyLogo from "../../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
 import { motion, AnimatePresence } from "framer-motion";
@@ -90,72 +94,83 @@ const About = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
   };
 
-  const bgElements = null;
-
   const badge = (
     <motion.div
-      variants={fadeUp}
-      initial="hidden"
-      animate="visible"
-      className="w-full rounded-[28px] bg-white border border-white/90 shadow-[0_20px_50px_rgba(0,0,0,0.4)] text-[#111111] p-6 sm:p-7 lg:p-8 flex flex-col items-start"
+      initial={{ opacity: 0, y: -10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
     >
-      <div className="mb-4">
-        <SectionBadge text="About Us" />
-      </div>
+      <SectionBadge text="About Us" theme="dark" />
+    </motion.div>
+  );
 
-      <h1 className="text-xl sm:text-2xl lg:text-3xl font-black leading-[1.1] tracking-[-0.03em] text-[#111111] font-sans mb-3 max-w-xl">
-        Where Mindful Strategy{" "}
-        <span className="text-[#E31D2E]">Meets Scalable Growth.</span>
-      </h1>
+  const title = (
+    <motion.h1
+      initial={{ opacity: 0, y: 25 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.75, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="text-2xl sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-white font-sans mb-5 sm:mb-6 max-w-2xl text-center lg:text-left mx-auto lg:mx-0"
+    >
+      Where Mindful Strategy{" "}
+      <span className="text-[#E31D2E]">Meets Scalable Growth.</span>
+    </motion.h1>
+  );
 
-      <p className="text-[#575757] text-xs sm:text-sm font-normal leading-[1.55] font-sans mb-5 max-w-xl">
-        A trusted marketing partner delivering brand transformation, performance campaigns,
-        and high-impact digital ecosystems that accelerate business growth.
-      </p>
+  const description = (
+    <motion.p
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8 text-center lg:text-left mx-auto lg:mx-0"
+    >
+      A trusted marketing partner delivering brand transformation, performance campaigns,
+      and high-impact digital ecosystems that accelerate business growth.
+    </motion.p>
+  );
 
-      <div className="space-y-2.5 w-full">
+  const actions = (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.75, delay: 0.3 }}
+      className="w-full max-w-xl"
+    >
+      {/* 3 Compact Horizontal White Feature Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 w-full">
         {[
           {
-            icon: <TrendingUp className="w-4 h-4 text-[#E31D2E]" />,
-            title: "Growth-Driven Strategy",
-            desc: "Designed for real-world market challenges",
+            icon: <TrendingUp className="w-4 h-4 text-[#111111]" />,
+            title: "Growth Strategy",
+            sub: "Real-World Impact",
           },
           {
-            icon: <Award className="w-4 h-4 text-[#E31D2E]" />,
+            icon: <Award className="w-4 h-4 text-[#111111]" />,
             title: "Proven Execution",
-            desc: "Across diverse industries and personal brands",
+            sub: "Cross-Industry",
           },
           {
-            icon: <Users className="w-4 h-4 text-[#E31D2E]" />,
+            icon: <Users className="w-4 h-4 text-[#111111]" />,
             title: "Dedicated Team",
-            desc: "Creative, analytical, and performance-focused professionals",
+            sub: "Performance Focused",
           },
         ].map((item, i) => (
           <motion.div
             key={i}
-            whileHover={{ y: -2 }}
-            className="flex items-center gap-3 bg-neutral-50 border border-neutral-200/80 rounded-xl p-3 hover:border-black/20 hover:bg-neutral-100 transition-all duration-200"
+            whileHover={{ y: -3, scale: 1.02 }}
+            className="p-3.5 rounded-2xl bg-white border border-neutral-200/80 shadow-md hover:border-neutral-300 hover:shadow-lg transition-all duration-300 flex flex-col items-start gap-2 text-[#111111]"
           >
-            <div className="w-8 h-8 rounded-lg bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center shrink-0">
+            <div className="w-8 h-8 rounded-xl bg-black/5 border border-black/10 flex items-center justify-center text-[#111111]">
               {item.icon}
             </div>
             <div>
-              <h4 className="text-xs font-extrabold text-[#111111]">
-                {item.title}
-              </h4>
-              <p className="text-[11px] text-neutral-500 font-normal leading-tight">
-                {item.desc}
-              </p>
+              <h4 className="text-xs font-black text-[#111111]">{item.title}</h4>
+              <p className="text-[10px] text-neutral-500 font-medium leading-none mt-0.5">{item.sub}</p>
             </div>
           </motion.div>
         ))}
       </div>
     </motion.div>
   );
-
-  const title = null;
-  const description = null;
-  const actions = null;
 
   const media = (
     <motion.div
@@ -172,30 +187,30 @@ const About = () => {
           y: panelMouse.y,
         }}
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
-        className="group relative rounded-2xl p-6 sm:p-7 overflow-hidden border border-neutral-200/80 bg-white/90 backdrop-blur-2xl shadow-[0_20px_50px_rgba(17,17,17,0.06)] hover:shadow-[0_25px_60px_rgba(17,17,17,0.09)] transition-all duration-500"
+        className="group relative rounded-2xl p-6 sm:p-7 overflow-hidden border border-neutral-200 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.12)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.18)] transition-all duration-500"
       >
         {/* Header Row: Logo Orb + Title + Pill Badge */}
         <div className="flex items-center justify-between gap-4 mb-5">
           <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-white border border-neutral-200/80 p-2 shadow-xs flex items-center justify-center flex-shrink-0 group-hover:rotate-6 transition-transform duration-500">
+            <div className="w-12 h-12 rounded-2xl bg-white border border-neutral-200 p-2 shadow-xs flex items-center justify-center flex-shrink-0 group-hover:rotate-6 transition-transform duration-500">
               <img src={pyLogo} alt="Praskla Digital X" className="w-full h-full object-contain" />
             </div>
             <div>
               <h3 className="font-inlander text-sm font-black text-[#111111] flex items-center gap-1.5 leading-none">
                 PRASKLA DIGITAL <BrandX className="h-[18px] w-auto text-[#E31D2E] translate-y-[1px]" />
               </h3>
-              <p className="text-[10px] sm:text-[11px] font-semibold text-neutral-400 mt-0.5 whitespace-nowrap">A Mindful Marketing and Production Firm</p>
+              <p className="text-[10px] sm:text-[11px] font-semibold text-neutral-500 mt-0.5 whitespace-nowrap">A Mindful Marketing and Production Firm</p>
             </div>
           </div>
 
-          <span className="px-3 py-1 rounded-full bg-black/5 border border-black/20 text-[10px] font-extrabold text-[#111111] uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#111111] animate-pulse" />
+          <span className="px-3 py-1 rounded-xl bg-neutral-100 border border-neutral-200/80 text-[10px] font-extrabold text-[#111111] uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E] animate-pulse" />
             Excellence
           </span>
         </div>
 
         {/* Cycling phrase banner card */}
-        <div className="relative rounded-2xl p-4 bg-neutral-50/80 border border-neutral-200/60 mb-4 min-h-[72px] flex flex-col justify-center items-center text-center">
+        <div className="relative rounded-2xl p-4 bg-neutral-50 border border-neutral-200/80 mb-4 min-h-[72px] flex flex-col justify-center items-center text-center shadow-2xs">
           <AnimatePresence mode="wait">
             <motion.p
               key={index}
@@ -203,7 +218,7 @@ const About = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.3 }}
-              className="text-[#111111] font-black text-sm leading-snug"
+              className="text-[#111111] font-black text-sm sm:text-[15px] leading-snug tracking-tight"
             >
               {phrases[index]}
             </motion.p>
@@ -217,97 +232,70 @@ const About = () => {
                 className="h-1 rounded-full transition-all duration-300"
                 style={{
                   width: idx === index ? "20px" : "6px",
-                  background: idx === index ? "#E31D2E" : "rgba(17,17,17,0.15)",
+                  background: idx === index ? "#111111" : "rgba(17,17,17,0.18)",
                 }}
               />
             ))}
           </div>
         </div>
 
-        {/* 2x2 Agency Impact Highlights Grid */}
-        <div className="grid grid-cols-2 gap-3 mb-4">
-          <motion.div
-            whileHover={{ y: -3, scale: 1.02 }}
-            className="relative p-3.5 rounded-2xl bg-white border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
-                <AnimatedCounter target={10} suffix="+" />
-              </span>
-              <div className="w-6 h-6 rounded-lg bg-neutral-100 flex items-center justify-center text-[#111111]">
-                <Award className="w-3.5 h-3.5" />
+        {/* 2x2 Agency Core Focus Grid */}
+        <div className="grid grid-cols-2 gap-2.5 mb-4">
+          {[
+            {
+              icon: <Zap className="w-4 h-4" />,
+              title: "Performance First",
+              desc: "ROI-Focused Execution",
+            },
+            {
+              icon: <Layers className="w-4 h-4" />,
+              title: "Brand Systems",
+              desc: "Cohesive Identity & Tech",
+            },
+            {
+              icon: <ShieldCheck className="w-4 h-4" />,
+              title: "Mindful Strategy",
+              desc: "Transparent & Scalable",
+            },
+            {
+              icon: <Sparkles className="w-4 h-4" />,
+              title: "Creative Mastery",
+              desc: "High-Impact Content",
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              whileHover={{ y: -2 }}
+              className="p-3 rounded-xl bg-white border border-neutral-200/90 shadow-2xs hover:border-black/30 hover:shadow-md transition-all duration-300 flex items-center gap-2.5 group/box cursor-pointer"
+            >
+              <div className="w-8 h-8 rounded-xl bg-neutral-100 border border-neutral-200/80 flex items-center justify-center shrink-0 text-[#111111] group-hover/box:bg-[#111111] group-hover/box:text-white group-hover/box:border-[#111111] transition-all duration-300 shadow-2xs">
+                {item.icon}
               </div>
-            </div>
-            <span className="text-[11px] font-bold text-[#111111] block mt-1">
-              Projects Delivered
-            </span>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ y: -3, scale: 1.02 }}
-            className="relative p-3.5 rounded-2xl bg-white border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
-                <AnimatedCounter target={8} suffix="+" />
-              </span>
-              <div className="w-6 h-6 rounded-lg bg-neutral-100 flex items-center justify-center text-[#111111]">
-                <TrendingUp className="w-3.5 h-3.5" />
+              <div className="min-w-0">
+                <h4 className="text-xs font-black text-[#111111] leading-tight truncate">
+                  {item.title}
+                </h4>
+                <p className="text-[10px] text-neutral-500 font-bold leading-tight truncate mt-0.5">
+                  {item.desc}
+                </p>
               </div>
-            </div>
-            <span className="text-[11px] font-bold text-[#111111] block mt-1">
-              Brands
-            </span>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ y: -3, scale: 1.02 }}
-            className="relative p-3.5 rounded-2xl bg-white border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
-                <AnimatedCounter target={1.5} suffix="+" />
-              </span>
-              <div className="w-6 h-6 rounded-lg bg-neutral-100 flex items-center justify-center text-[#111111]">
-                <Target className="w-3.5 h-3.5" />
-              </div>
-            </div>
-            <span className="text-[11px] font-bold text-[#111111] block mt-1">
-              Years Experience
-            </span>
-          </motion.div>
-
-          <motion.div
-            whileHover={{ y: -3, scale: 1.02 }}
-            className="relative p-3.5 rounded-2xl bg-white border border-neutral-200/80 shadow-2xs hover:border-black/20 hover:shadow-[0_10px_24px_rgba(0,0,0,0.08)] transition-all duration-300 overflow-hidden"
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-xl font-black text-[#E31D2E] block tracking-tight">
-                <AnimatedCounter target={98} suffix="%" />
-              </span>
-              <div className="w-6 h-6 rounded-lg bg-neutral-100 flex items-center justify-center text-[#111111]">
-                <Shield className="w-3.5 h-3.5" />
-              </div>
-            </div>
-            <span className="text-[11px] font-bold text-[#111111] block mt-1">
-              Client Satisfaction
-            </span>
-          </motion.div>
+            </motion.div>
+          ))}
         </div>
 
         {/* Quote Box */}
-        <div className="p-3.5 rounded-2xl bg-black/5 border border-black/15">
-          <p className="text-[#575757] text-xs leading-relaxed font-medium italic text-center">
+        <div className="p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 shadow-2xs">
+          <p className="text-neutral-700 text-xs sm:text-[13px] leading-relaxed font-semibold italic text-center">
             "Creating impactful digital brand experiences that combine strategic clarity, high performance, and human connection."
           </p>
         </div>
 
         {/* Footer Bar */}
-        <div className="mt-4 pt-3 border-t border-neutral-100 flex items-center justify-between text-[11px] text-neutral-400 font-bold uppercase tracking-wider">
-          <span className="inline-flex items-center gap-1.5 font-inlander font-bold">
-            PRASKLA DIGITAL <BrandX className="h-[15px] w-auto text-[#E31D2E] translate-y-[1px]" />
+        <div className="mt-4 pt-3 border-t border-neutral-200/80 flex items-center justify-between text-[11px] text-neutral-500 font-bold uppercase tracking-wider">
+          <span className="inline-flex items-center gap-1.5 font-inlander font-bold text-[#111111]">
+            PRASKLA DIGITAL <BrandX className="h-[15px] w-auto text-[#111111] translate-y-[1px]" />
           </span>
-          <span className="text-[#E31D2E]">Established Excellence</span>
+          <span className="text-[#111111]">Established Excellence</span>
         </div>
       </motion.div>
     </motion.div>
@@ -322,7 +310,7 @@ const About = () => {
       <div className="relative z-10 w-full">
         {/* ── About Hero Section ── */}
         <HeroLayout
-          bgElements={bgElements}
+          bgElements={null}
           badge={badge}
           title={title}
           description={description}
@@ -385,7 +373,7 @@ const About = () => {
                   <div className="w-14 h-14 rounded-2xl bg-neutral-100 border border-neutral-200/80 flex items-center justify-center text-[#111111] shadow-xs group-hover:scale-110 group-hover:bg-[#111111] group-hover:text-white transition-all duration-500">
                     <Eye className="w-7 h-7 stroke-[2.2]" />
                   </div>
-                  <span className="px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#111111] group-hover:text-white transition-colors duration-300">
+                  <span className="px-3.5 py-1 rounded-xl bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#111111] group-hover:text-white transition-colors duration-300">
                     01
                   </span>
                 </div>
@@ -407,7 +395,7 @@ const About = () => {
               {/* Mini Highlight Tags */}
               <div className="mt-8 pt-6 border-t border-neutral-100 flex flex-wrap gap-2.5">
                 {["Innovative Strategies", "Data Intelligence", "Sustainable Growth"].map((tag, i) => (
-                  <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-100 border border-neutral-200/60 text-xs font-extrabold text-[#111111]">
+                  <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-100 border border-neutral-200/60 text-xs font-extrabold text-[#111111]">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#111111]" />
                     {tag}
                   </span>
@@ -429,7 +417,7 @@ const About = () => {
                   <div className="w-14 h-14 rounded-2xl bg-neutral-100 border border-neutral-200/80 flex items-center justify-center text-[#111111] shadow-xs group-hover:scale-110 group-hover:bg-[#111111] group-hover:text-white transition-all duration-500">
                     <Target className="w-7 h-7 stroke-[2.2]" />
                   </div>
-                  <span className="px-3.5 py-1 rounded-full bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#111111] group-hover:text-white transition-colors duration-300">
+                  <span className="px-3.5 py-1 rounded-xl bg-neutral-100 border border-neutral-200/80 text-xs font-black font-mono text-neutral-500 group-hover:bg-[#111111] group-hover:text-white transition-colors duration-300">
                     02
                   </span>
                 </div>
@@ -444,14 +432,14 @@ const About = () => {
 
                 {/* Paragraph */}
                 <p className="text-[#575757] text-base leading-relaxed font-normal">
-                  At PRASKLA DIGITAL <BrandX className="h-[1em] w-auto text-[#E31D2E] inline-block translate-y-[0.12em]" />, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
+                  At PRASKLA DIGITAL<BrandX className="h-[1em] w-auto text-[#E31D2E] inline-block translate-y-[0.12em]" />, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
                 </p>
               </div>
 
               {/* Mini Highlight Tags */}
               <div className="mt-8 pt-6 border-t border-neutral-100 flex flex-wrap gap-2.5">
                 {["Performance Marketing", "Creative Excellence", "Measurable ROI"].map((tag, i) => (
-                  <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-neutral-100 border border-neutral-200/60 text-xs font-extrabold text-[#111111]">
+                  <span key={i} className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-neutral-100 border border-neutral-200/60 text-xs font-extrabold text-[#111111]">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#111111]" />
                     {tag}
                   </span>
@@ -495,26 +483,52 @@ const About = () => {
                 </p>
               </div>
 
-              {/* Right side metric grid */}
-              <div className="lg:col-span-5 grid grid-cols-2 gap-4">
+              {/* Right side capability pillar grid */}
+              <div className="lg:col-span-5 grid grid-cols-2 gap-3.5">
                 {[
-                  { count: "10+", text: "Successful Projects Delivered" },
-                  { count: "8+", text: "Happy Brands Reached" },
-                  { count: "1.5+", text: "Years of Experience" },
-                  { count: "98%", text: "Client Partnership Retention" },
-                ].map((metric, i) => (
-                  <motion.div
-                    key={i}
-                    className="group rounded-xl p-6 md:p-8 flex flex-col justify-center items-center text-center bg-neutral-50 border border-neutral-200/80 text-[#111111] shadow-xs hover:border-neutral-300 transition-all"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: i * 0.1 }}
-                  >
-                    <span className="text-[#E31D2E] text-3xl sm:text-4xl font-black mb-2">{metric.count}</span>
-                    <span className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-bold">{metric.text}</span>
-                  </motion.div>
-                ))}
+                  {
+                    icon: Target,
+                    title: "Strategic Clarity",
+                    sub: "Brand Positioning",
+                  },
+                  {
+                    icon: Zap,
+                    title: "High ROI Execution",
+                    sub: "Performance Marketing",
+                  },
+                  {
+                    icon: Sparkles,
+                    title: "Creative Production",
+                    sub: "Visuals & Design",
+                  },
+                  {
+                    icon: Layers,
+                    title: "Scalable Systems",
+                    sub: "Digital Ecosystems",
+                  },
+                ].map((item, i) => {
+                  const IconComp = item.icon;
+                  return (
+                    <motion.div
+                      key={i}
+                      className="group rounded-2xl p-5 flex flex-col items-start text-left bg-neutral-50/90 border border-neutral-200/80 text-[#111111] shadow-2xs hover:bg-white hover:border-black/20 hover:shadow-md transition-all duration-300"
+                      initial={{ opacity: 0, y: 15 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: i * 0.08 }}
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-white border border-neutral-200 flex items-center justify-center text-[#111111] mb-3 shadow-2xs group-hover:scale-105 group-hover:bg-[#111111] group-hover:text-white transition-all duration-300">
+                        <IconComp className="w-5 h-5 stroke-[2]" />
+                      </div>
+                      <h4 className="text-sm font-black text-[#111111] leading-tight mb-1">
+                        {item.title}
+                      </h4>
+                      <p className="text-neutral-500 text-xs font-bold leading-tight">
+                        {item.sub}
+                      </p>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </motion.div>
@@ -533,12 +547,12 @@ const About = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="clay-card p-8 sm:p-10 md:p-12 rounded-2xl bg-white border border-white/90 shadow-2xl text-[#111111]"
+            className="clay-card p-8 sm:p-10 md:p-12 rounded-2xl bg-white border border-white/90 shadow-2xl text-[#111111] text-center"
           >
             {/* Section Header inside Box */}
-            <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-              <div className="flex justify-center mb-4">
-                <SectionBadge text="Our Core Expertise" />
+            <div className="max-w-3xl mx-auto mb-10 sm:mb-12">
+              <div className="mb-4 flex justify-center">
+                <SectionBadge text="CORE EXPERTISE" />
               </div>
               
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#111111] leading-tight tracking-tight">
@@ -584,14 +598,14 @@ const About = () => {
                     transition={{ duration: 0.5, delay: index * 0.12 }}
                     className="group relative"
                   >
-                    <div className="h-full bg-neutral-50/90 border border-neutral-200/80 rounded-xl p-7 sm:p-8 hover:border-black/20 hover:bg-neutral-100 transition-all duration-300 flex flex-col justify-between relative overflow-hidden">
+                    <div className="h-full bg-neutral-50/90 border border-neutral-200/80 rounded-xl p-7 sm:p-8 hover:border-black/20 hover:bg-neutral-100 transition-all duration-300 flex flex-col justify-between relative overflow-hidden text-left">
                       {/* Top Row: Icon Container + Category Number */}
                       <div>
                         <div className="flex items-center justify-between gap-4 mb-6">
                           <div className="w-14 h-14 rounded-2xl bg-white border border-neutral-200/80 flex items-center justify-center text-[#111111] group-hover:bg-[#111111] group-hover:text-white transition-all duration-300 shrink-0 shadow-xs">
                             <IconComponent className="w-7 h-7 stroke-[2.2]" />
                           </div>
-                          <span className="font-mono text-sm font-bold text-[#E31D2E] tracking-wider bg-[#E31D2E]/10 px-3 py-1 rounded-full border border-[#E31D2E]/20">
+                          <span className="font-mono text-xs font-bold text-[#111111] tracking-wider bg-neutral-100 px-3 py-1 rounded-xl border border-neutral-200/80">
                             {item.id}
                           </span>
                         </div>
@@ -634,7 +648,7 @@ const About = () => {
 
             <Link
               to="/services"
-              className="primary-btn inline-flex items-center gap-3 text-white px-8 py-4 rounded-full font-bold text-lg"
+              className="primary-btn inline-flex items-center gap-3 text-white px-8 py-4 rounded-xl font-bold text-lg"
             >
               Explore Our Expertise
             </Link>

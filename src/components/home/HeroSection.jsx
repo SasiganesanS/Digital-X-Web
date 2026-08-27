@@ -6,13 +6,13 @@ import HeroLayout from "../common/HeroLayout";
 import SectionBadge from "../common/SectionBadge";
 
 function AnimatedStat({ targetNum, suffix = "+", label, delay = 0 }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(targetNum || 0);
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: false, margin: "-20px" });
 
   useEffect(() => {
     if (!isInView) {
-      setCount(0);
+      setCount(targetNum || 0);
       return;
     }
 
@@ -104,80 +104,6 @@ const HeroSection = () => {
     </>
   );
 
-  const heroCard = (
-    <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.98 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-      className="relative flex flex-col items-start p-6 sm:p-8 lg:p-9 rounded-2xl border border-white/90 shadow-[0_25px_60px_rgba(0,0,0,0.5)] bg-white text-[#111111] transition-all duration-300 w-full max-w-2xl overflow-hidden group"
-    >
-      {/* ── Badge ── */}
-      <div className="mb-4 flex justify-start w-full">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="will-change-transform transform-gpu"
-        >
-          <SectionBadge text="WHERE STRATEGY MEETS PERFORMANCE" />
-        </motion.div>
-      </div>
-
-      {/* ── Title ── */}
-      <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans mb-4 sm:mb-5 w-full">
-        <motion.span
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
-          className="inline-block text-[#111111]"
-        >
-          Where brands evolve into
-        </motion.span>{" "}
-        <motion.span
-          initial={{ opacity: 0, scale: 0.9, y: 20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.45, ease: "easeOut" }}
-          className="relative inline-block text-[#E31D2E]"
-        >
-          powerful
-        </motion.span>{" "}
-        <motion.span
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.65, ease: "easeOut" }}
-          className="inline-block text-[#111111]"
-        >
-          digital movements.
-        </motion.span>
-      </h1>
-
-      {/* ── Description ── */}
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.8, ease: "easeOut" }}
-        className="text-neutral-600 text-base sm:text-lg lg:text-[18px] font-normal leading-[1.6] font-sans w-full mb-6 sm:mb-8"
-      >
-        Your strategic growth partner for branding, performance marketing,
-        software development, and digital transformation. We convert creative vision
-        into measurable business results.
-      </motion.p>
-
-      {/* ── Stat Counter Grid inside the Card Box ── */}
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.9 }}
-        className="grid grid-cols-4 gap-2 sm:gap-2.5 w-full"
-      >
-        <AnimatedStat targetNum="10" suffix="+" label="PROJECTS DEL..." delay={0.05} />
-        <AnimatedStat targetNum="8" suffix="+" label="BRANDS" delay={0.1} />
-        <AnimatedStat targetNum="98" suffix="%" label="CLIENT SATISF..." delay={0.15} />
-        <AnimatedStat targetNum="1.5" suffix="+" label="YEARS EXPERI..." delay={0.2} />
-      </motion.div>
-    </motion.div>
-  );
-
   const media = (
     <motion.div
       className="w-full max-w-[380px] flex-shrink-0 relative mx-auto lg:mx-0"
@@ -195,7 +121,20 @@ const HeroSection = () => {
       onMouseMove={handleMouseMove}
       className="bg-[#050508] !text-white"
       bgElements={bgElements}
-      title={heroCard}
+      badge={
+        <SectionBadge text="Home" theme="dark" />
+      }
+      title={
+        <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-white font-sans mb-5 sm:mb-6 max-w-2xl">
+          Where brands evolve into{" "}
+          <span className="text-[#E31D2E]">powerful</span> digital movements.
+        </h1>
+      }
+      description={
+        <p className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
+          Your strategic growth partner for branding, performance marketing, software development, and digital transformation. We convert creative vision into measurable business results.
+        </p>
+      }
       media={media}
     />
   );

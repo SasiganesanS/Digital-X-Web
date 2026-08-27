@@ -17,25 +17,27 @@ const HeroLayout = ({
   onMouseMove,
   className = "",
   containerClassName = "",
+  leftColClass = "lg:col-span-6",
+  rightColClass = "lg:col-span-6",
   bgElements,
 }) => {
   return (
     <section
       id={sectionId}
       onMouseMove={onMouseMove}
-      className={`relative w-full overflow-hidden bg-transparent flex items-start justify-center pt-2 sm:pt-4 lg:pt-6 pb-6 sm:pb-8 lg:pb-10 ${className}`}
+      className={`relative w-full overflow-hidden bg-transparent flex flex-col justify-start items-center pt-2 sm:pt-3 lg:pt-4 pb-6 sm:pb-8 lg:pb-10 ${className}`}
     >
       {/* Background Decorative Layer */}
       {bgElements}
 
       {/* Standardized Content Container */}
-      <div className={`relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 pt-2 sm:pt-3 lg:pt-4 pb-4 sm:pb-6 lg:pb-8 ${containerClassName}`}>
+      <div className={`relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 pt-1 sm:pt-1.5 pb-4 sm:pb-6 lg:pb-8 ${containerClassName}`}>
         {children ? (
           children
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-12 items-center">
             {/* Left Column: Badge -> Heading -> Description -> Actions/Stats */}
-            <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
+            <div className={`${leftColClass || "lg:col-span-6"} flex flex-col items-center lg:items-start text-center lg:text-left w-full`}>
               {badge && <div className="mb-5 flex justify-center lg:justify-start w-full">{badge}</div>}
               {title && (
                 <div className="w-full">
@@ -64,7 +66,7 @@ const HeroLayout = ({
 
             {/* Right Column: Hero Media / Interactive Feature Card */}
             {media && (
-              <div className="lg:col-span-5 w-full flex justify-center lg:justify-end items-start pt-2 lg:pt-0 relative z-10">
+              <div className={`${rightColClass || "lg:col-span-6"} w-full flex justify-center lg:justify-end items-center pt-2 lg:pt-0 relative z-10`}>
                 {media}
               </div>
             )}

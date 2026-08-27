@@ -217,8 +217,6 @@ const ServicesCoverflow = () => {
           height: 330,
           perspective: 1200,
           perspectiveOrigin: "50% 45%",
-          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%)",
-          maskImage: "linear-gradient(to right, transparent 0%, black 4%, black 96%, transparent 100%)",
         }}
         drag="x"
         dragConstraints={{ left: 0, right: 0 }}
@@ -361,7 +359,7 @@ const ServicesCoverflow = () => {
       {/* View Expertise Button */}
       <button
         onClick={() => navigate("/services")}
-        className="mt-2.5 z-10 text-[10px] font-extrabold uppercase tracking-[0.25em] bg-[#FF2B2B] hover:bg-[#E51D1D] text-white px-6 py-2.5 rounded-full whitespace-nowrap shadow-[0_8px_20px_rgba(255,43,43,0.4)] transition-all duration-300 hover:scale-105 cursor-pointer"
+        className="mt-2.5 z-10 text-[10px] font-extrabold uppercase tracking-[0.25em] bg-[#FF2B2B] hover:bg-[#E51D1D] text-white px-6 py-2.5 rounded-xl whitespace-nowrap shadow-[0_8px_20px_rgba(255,43,43,0.4)] transition-all duration-300 hover:scale-105 cursor-pointer"
       >
         VIEW EXPERTISE
       </button>

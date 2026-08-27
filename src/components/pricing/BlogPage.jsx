@@ -51,7 +51,7 @@ const BlogPage = () => {
           </p>
           <button
             type="button"
-            className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-full font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5 cursor-pointer"
+            className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-xl font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5 cursor-pointer"
             onClick={() => navigate("/projects")}
           >
             <ArrowLeft className="w-4 h-4" />
@@ -126,7 +126,7 @@ const BlogPage = () => {
               <button
                 type="button"
                 onClick={() => navigate("/projects")}
-                className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-full border border-white/90 bg-white text-[#111111] hover:bg-neutral-100 shadow-md text-xs font-extrabold uppercase tracking-wider transition-all duration-200 group cursor-pointer"
+                className="inline-flex items-center gap-2.5 px-4.5 py-2 rounded-xl border border-white/90 bg-white text-[#111111] hover:bg-neutral-100 shadow-md text-xs font-extrabold uppercase tracking-wider transition-all duration-200 group cursor-pointer"
               >
                 <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#E31D2E]" />
                 <span>Back to Projects</span>
@@ -134,8 +134,8 @@ const BlogPage = () => {
             </div>
 
             {/* Breadcrumb Pill */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/90 bg-white text-[#111111] shadow-md text-xs font-extrabold tracking-wider mb-5">
-              <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse" />
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-white/90 bg-white text-[#111111] shadow-md text-xs font-extrabold tracking-wider mb-5">
+              <span className="w-2 h-2 rounded-xl bg-[#E31D2E] animate-pulse" />
               <span>Blog / {post.title || post.name}</span>
             </div>
 
@@ -187,7 +187,7 @@ const BlogPage = () => {
                       <ul className="space-y-3">
                         {featuresLeft.map((f, i) => (
                           <li key={i} className="flex items-start gap-3 text-sm text-[#333333]">
-                            <span className="w-5 h-5 rounded-full bg-red-50 border border-red-100 text-[#E31D2E] font-black text-[10px] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                            <span className="w-5 h-5 rounded-xl bg-red-50 border border-red-100 text-[#E31D2E] font-black text-[10px] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
                               0{i + 1}
                             </span>
                             <span className="leading-relaxed font-semibold">{f}</span>
@@ -197,7 +197,7 @@ const BlogPage = () => {
                       <ul className="space-y-3">
                         {featuresRight.map((f, i) => (
                           <li key={i} className="flex items-start gap-3 text-sm text-[#333333]">
-                            <span className="w-5 h-5 rounded-full bg-red-50 border border-red-100 text-[#E31D2E] font-black text-[10px] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                            <span className="w-5 h-5 rounded-xl bg-red-50 border border-red-100 text-[#E31D2E] font-black text-[10px] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
                               0{i + featuresLeft.length + 1}
                             </span>
                             <span className="leading-relaxed font-semibold">{f}</span>
@@ -214,7 +214,7 @@ const BlogPage = () => {
                         href={overview.caseStudy}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#E31D2E] to-[#C71B2B] hover:from-[#EE2436] hover:to-[#E31D2E] text-white px-8 py-4 rounded-full font-black text-xs uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5 group cursor-pointer"
+                        className="inline-flex items-center gap-2.5 bg-gradient-to-r from-[#E31D2E] to-[#C71B2B] hover:from-[#EE2436] hover:to-[#E31D2E] text-white px-8 py-4 rounded-xl font-black text-xs uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5 group cursor-pointer"
                       >
                         <span>View Live Project</span>
                         <ArrowUpRight className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -277,7 +277,7 @@ const BlogPage = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.08 }}
                   whileHover={{ y: -4 }}
-                  className="group flex items-start gap-5 bg-white p-7 rounded-[2rem] border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-black/20 hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] transition-all duration-300"
+                  className="group flex items-start gap-5 bg-white p-7 rounded-2xl border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-black/20 hover:shadow-[0_16px_36px_rgba(0,0,0,0.08)] transition-all duration-300"
                 >
                   <div className="w-11 h-11 rounded-2xl bg-red-50 text-[#E31D2E] flex items-center justify-center text-sm font-black shrink-0 border border-red-100 group-hover:bg-[#E31D2E] group-hover:text-white transition-all duration-300 italic shadow-2xs">
                     0{item.id || i + 1}
@@ -318,7 +318,7 @@ const BlogPage = () => {
               <button
                 type="button"
                 onClick={() => setShowContactForm(true)}
-                className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-red-500/25 hover:-translate-y-0.5 transition-all cursor-pointer flex items-center justify-center gap-2.5"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-red-500/25 hover:-translate-y-0.5 transition-all cursor-pointer flex items-center justify-center gap-2.5"
               >
                 <span>Get Detailed Proposal</span>
                 <ArrowRight className="w-4 h-4" />
@@ -327,7 +327,7 @@ const BlogPage = () => {
               <button
                 type="button"
                 onClick={() => navigate("/projects")}
-                className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/90 bg-white text-[#111111] hover:bg-neutral-100 font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl border border-white/90 bg-white text-[#111111] hover:bg-neutral-100 font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 cursor-pointer shadow-md"
               >
                 <span>Explore All Projects</span>
               </button>

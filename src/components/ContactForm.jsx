@@ -658,7 +658,7 @@ const ContactForm = ({ isOpen, onClose }) => {
                     href={getWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-[#25D366] hover:bg-[#20BD5A] active:bg-[#1EB757] !text-black text-black font-extrabold text-xs uppercase tracking-wider shadow-[0_4px_16px_rgba(37,211,102,0.3)] hover:shadow-[0_6px_22px_rgba(37,211,102,0.45)] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer whitespace-nowrap"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#20BD5A] active:bg-[#1EB757] !text-black text-black font-extrabold text-xs uppercase tracking-wider shadow-[0_4px_16px_rgba(37,211,102,0.3)] hover:shadow-[0_6px_22px_rgba(37,211,102,0.45)] hover:-translate-y-0.5 transition-all duration-200 cursor-pointer whitespace-nowrap"
                   >
                     <FaWhatsapp className="w-4 h-4 !text-black text-black shrink-0" />
                     <span className="!text-black text-black font-extrabold whitespace-nowrap">WhatsApp</span>

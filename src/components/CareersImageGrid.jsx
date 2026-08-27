@@ -58,8 +58,8 @@ export default function CareersImageGrid({ teamMembers }) {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="relative w-full max-w-[480px] sm:max-w-[530px] lg:max-w-[560px] aspect-square mx-auto select-none"
     >
-      {/* Outer Claymorphism Showcase Container */}
-      <div className="relative w-full h-full rounded-2xl p-3.5 sm:p-4 md:p-5 bg-white/40 backdrop-blur-2xl border border-white/70 shadow-[0_20px_50px_rgba(17,17,17,0.04)] overflow-hidden flex items-center justify-center">
+      {/* Outer Showcase Container */}
+      <div className="relative w-full h-full rounded-2xl p-3.5 sm:p-4 md:p-5 bg-white border border-neutral-200/90 shadow-2xl overflow-hidden flex items-center justify-center">
         {/* Soft Radial Ambient Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] bg-[#E31D2E]/7 rounded-full blur-[90px] pointer-events-none z-0" />
         <div
@@ -85,7 +85,7 @@ export default function CareersImageGrid({ teamMembers }) {
               />
               <motion.circle
                 r="2.5"
-                fill="#FF2B2B"
+                fill="#111111"
                 initial={{ offsetDistance: "0%" }}
                 animate={{
                   cx: ["50%", line.x2],
@@ -191,10 +191,10 @@ function TileCard({
       onMouseEnter={onMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`clay-card relative rounded-xl sm:rounded-2xl p-2.5 sm:p-3 flex flex-col items-center justify-between border backdrop-blur-xl transition-all duration-500 overflow-hidden cursor-pointer select-none ${
+      className={`relative rounded-xl sm:rounded-2xl p-2.5 sm:p-3 flex flex-col items-center justify-between border transition-all duration-300 overflow-hidden cursor-pointer select-none ${
         isHovered
-          ? "bg-white border-[#FF2B2B]/40 shadow-[0_12px_40px_rgba(0,0,0,0.08)] z-30"
-          : "bg-white border-white/90 shadow-xl hover:bg-white"
+          ? "bg-white border-black shadow-xl z-30 scale-[1.02]"
+          : "bg-white border-neutral-200/80 shadow-md hover:bg-white"
       }`}
       style={{
         transform: isHovered ? `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` : "none",
@@ -227,8 +227,6 @@ function TileCard({
         <span className={`tracking-tight block leading-tight ${
           isCenter
             ? "font-inlander text-[12px] sm:text-[13.5px] font-black text-[#E31D2E] uppercase tracking-wide text-center"
-            : isHovered
-            ? "text-[10px] sm:text-[11px] font-black text-[#E31D2E]"
             : "text-[10px] sm:text-[11px] font-black text-[#111111]"
         }`}>
           {labelInfo.title}

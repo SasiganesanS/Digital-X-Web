@@ -13,75 +13,81 @@ import ecommerceImg from "../assets/services-img/Ecommerce marketing (2).webp";
 
 /**
  * Single source of truth for all services.
- * Add a new service here → it automatically appears on the Home page AND Services page.
+ * Enhanced with outcome-driven copywriting and industry-standard classifications.
  */
 const servicesData = [
   {
     image: seoImg,
-    title: "SEO",
-    desc: "SEO helps improve the website's visibility in search engines.",
+    title: "Search Engine Optimization (SEO)",
+    category: "Organic Growth",
+    desc: "Strengthen your search visibility through keyword strategy, technical optimization, local SEO, and content built to attract high-intent customers.",
   },
   {
     image: smmImg,
-    title: "SSM",
-    desc: "SSM (Social Media Management) is used to manage and grow social media presence.",
+    title: "Social Media Management",
+    category: "Social Growth",
+    desc: "Build strong brand authority and engaged communities across platforms with structured content planning, reels, and active account management.",
   },
   {
     image: adsImg,
-    title: "ADS",
-    desc: "ADS include platforms like Google, Facebook, and Instagram for promotions.",
+    title: "Paid Advertising",
+    category: "Paid Growth",
+    desc: "Drive targeted traffic and immediate inquiries with high-converting Meta and Google ad funnels built for maximum return on ad spend.",
   },
- 
- 
-    {
+  {
     image: webDesignImg,
-    title: "Website Design",
-    desc: "Website design focuses on creating user-friendly and effective UI/UX websites.",
+    title: "Website Design & Development",
+    category: "Digital Experience",
+    desc: "Craft responsive, high-converting digital storefronts and web applications engineered for seamless user experience, speed, and brand credibility.",
   },
-   {
+  {
     image: videoProdImg,
-    title: "Video Production",
-    desc: "We enhance your images with professional editing. Whether you share your photos or require custom visuals, we ensure high-quality results that match your requirements.",
+    title: "Video Production & Editing",
+    category: "Creative Production",
+    desc: "From concept and production to editing and delivery, we create reels, advertisements, product videos, and brand films designed to capture attention and communicate your story.",
   },
   {
     image: contentImg,
     title: "Content Marketing",
-    desc: "Content marketing involves creating and sharing valuable content like videos and blogs.",
+    category: "Content Strategy",
+    desc: "Engage and nurture your audience with strategic content, high-impact video scripts, and visual storytelling that establishes market leadership.",
   },
-   {
+  {
     image: ecommerceImg,
-    title: "E-commerce Marketing",
-    desc: "E-commerce marketing focuses on promoting online stores and increasing sales.",
+    title: "E-commerce Growth Marketing",
+    category: "Commerce Growth",
+    desc: "Scale storefront revenue and customer lifetime value through funnel optimization, retargeting campaigns, and conversion-focused product merchandising.",
   },
   {
     image: emailImg,
-    title: "Email Marketing",
-    desc: "Email marketing is used to communicate offers, updates, and build customer relationships.",
+    title: "Email & Lifecycle Marketing",
+    category: "Lifecycle Marketing",
+    desc: "Turn subscribers into repeat customers through targeted promotional campaigns, automated customer journeys, and performance tracking.",
   },
-   {
+  {
     image: influencerImg,
-    title: "Influencer Marketing",
-    desc: "Influencer marketing is used to promote the brand through popular personalities.",
+    title: "Influencer Partnerships",
+    category: "Creator Partnerships",
+    desc: "Expand brand reach and build trust by pairing your products with aligned content creators and industry figures for authentic brand endorsement.",
   },
-   {
+  {
     image: performanceImg,
     title: "Performance Marketing",
-    desc: "Our optimized campaigns are designed to increase brand visibility, generate quality leads, and drive measurable business growth.",
+    category: "Paid Growth",
+    desc: "Execute data-driven acquisition campaigns designed to generate qualified business leads, lower acquisition costs, and accelerate scalable growth.",
   },
-
   {
     image: ormImg,
-    title: "ORM",
-    desc: "ORM (Online Reputation Management) helps in managing brand ratings, reviews, and customer feedback.",
+    title: "Online Reputation Management",
+    category: "Brand Reputation",
+    desc: "Protect and elevate your brand perception by monitoring online sentiment, managing customer reviews, and highlighting positive brand stories.",
   },
- 
   {
     image: analyticsImg,
-    title: "Analytics & Reporting",
-    desc: "Analytics and reporting help track performance and improve strategies.",
+    title: "Analytics & Business Intelligence",
+    category: "Insights",
+    desc: "Gain actionable clarity into user behavior, funnel drop-offs, and marketing performance with automated dashboards and custom reporting.",
   },
-  
- 
 ];
 
 export default servicesData;

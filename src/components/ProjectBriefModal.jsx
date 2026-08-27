@@ -297,12 +297,12 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
 
               <div className="px-6 sm:px-10 py-5 flex items-center justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-2xl bg-[#E31D2E]/10 border border-[#E31D2E]/20 flex items-center justify-center text-[#E31D2E]">
-                    {React.createElement(currentStepInfo.icon, { className: "w-5 h-5" })}
+                  <div className="w-10 h-10 rounded-2xl bg-[#111111] text-white flex items-center justify-center shadow-xs">
+                    {React.createElement(currentStepInfo.icon, { className: "w-5 h-5 text-white" })}
                   </div>
                   <div>
                     <div className="flex items-center gap-3">
-                      <span className="text-[11px] font-black text-[#E31D2E] tracking-[0.25em] uppercase">
+                      <span className="text-[11px] font-black text-[#111111] tracking-[0.25em] uppercase">
                         STEP {activeSection} OF 10
                       </span>
                       <span className="text-xs font-bold text-neutral-400">
@@ -358,7 +358,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                 <button
                   type="button"
                   onClick={onClose}
-                  className="h-[56px] px-10 rounded-[18px] bg-[#E31D2E] hover:bg-[#c91827] text-white font-bold text-base shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.16)] transition-all cursor-pointer"
+                  className="h-[56px] px-10 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] text-white font-bold text-base shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.16)] transition-all cursor-pointer"
                 >
                   Close Window
                 </button>
@@ -383,7 +383,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                           key={step.num}
                           type="button"
                           onClick={() => setActiveSection(step.num)}
-                          className={`w-full text-left px-4 py-3.5 rounded-[18px] transition-all flex items-center justify-between group cursor-pointer ${
+                          className={`w-full text-left px-4 py-3.5 rounded-xl transition-all flex items-center justify-between group cursor-pointer ${
                             isActive
                               ? "bg-[#E31D2E] text-white shadow-[0_8px_20px_rgba(0,0,0,0.12)] scale-[1.02]"
                               : isComplete
@@ -482,7 +482,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                         {activeSection === 1 && (
                           <div className="space-y-6">
                             <div className="border-b border-neutral-100 pb-5">
-                              <span className="text-[11px] font-black text-[#E31D2E] tracking-[0.25em] uppercase">
+                              <span className="text-[11px] font-black text-[#111111] tracking-[0.25em] uppercase">
                                 SECTION 1 OF 10
                               </span>
                               <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mt-1">
@@ -606,7 +606,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 onChange={handleInputChange}
                                 rows={4}
                                 placeholder="Briefly describe what your company does, your products or services, and target customers..."
-                                className="w-full p-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[20px] transition-all outline-none resize-y min-h-[120px]"
+                                className="w-full p-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[20px] transition-all outline-none resize-y min-h-[120px]"
                               />
                             </div>
                           </div>
@@ -616,7 +616,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                         {activeSection === 2 && (
                           <div className="space-y-6">
                             <div className="border-b border-neutral-100 pb-5">
-                              <span className="text-[11px] font-black text-[#E31D2E] tracking-[0.25em] uppercase">
+                              <span className="text-[11px] font-black text-[#111111] tracking-[0.25em] uppercase">
                                 SECTION 2 OF 10
                               </span>
                               <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mt-1">
@@ -630,7 +630,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                               <div>
                                 <label className="block text-xs font-bold text-neutral-800 mb-2">
-                                  Full Name <span className="text-[#E31D2E]">*</span>
+                                  Full Name <span className="text-[#111111]">*</span>
                                 </label>
                                 <input
                                   type="text"
@@ -641,7 +641,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   className={`w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border rounded-[16px] transition-all outline-none ${
                                     errors.fullName
                                       ? "border-red-500 focus:ring-4 focus:ring-red-500/10"
-                                      : "border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15"
+                                      : "border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200"
                                   }`}
                                 />
                                 {errors.fullName && (
@@ -661,7 +661,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   value={formData.designation}
                                   onChange={handleInputChange}
                                   placeholder="e.g. Founder, Chief Marketing Officer"
-                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
+                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[16px] transition-all outline-none"
                                 />
                               </div>
                             </div>
@@ -669,7 +669,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                               <div>
                                 <label className="block text-xs font-bold text-neutral-800 mb-2">
-                                  Email Address <span className="text-[#E31D2E]">*</span>
+                                  Email Address <span className="text-[#111111]">*</span>
                                 </label>
                                 <input
                                   type="email"
@@ -680,7 +680,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   className={`w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border rounded-[16px] transition-all outline-none ${
                                     errors.email
                                       ? "border-red-500 focus:ring-4 focus:ring-red-500/10"
-                                      : "border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15"
+                                      : "border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200"
                                   }`}
                                 />
                                 {errors.email && (
@@ -692,7 +692,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
 
                               <div>
                                 <label className="block text-xs font-bold text-neutral-800 mb-2">
-                                  Phone Number <span className="text-[#E31D2E]">*</span>
+                                  Phone Number <span className="text-[#111111]">*</span>
                                 </label>
                                 <input
                                   type="tel"
@@ -703,7 +703,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   className={`w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border rounded-[16px] transition-all outline-none ${
                                     errors.phone
                                       ? "border-red-500 focus:ring-4 focus:ring-red-500/10"
-                                      : "border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15"
+                                      : "border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200"
                                   }`}
                                 />
                                 {errors.phone && (
@@ -725,7 +725,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   value={formData.altPhone}
                                   onChange={handleInputChange}
                                   placeholder="Secondary contact phone"
-                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
+                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[16px] transition-all outline-none"
                                 />
                               </div>
 
@@ -739,7 +739,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   value={formData.whatsapp}
                                   onChange={handleInputChange}
                                   placeholder="WhatsApp number"
-                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
+                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[16px] transition-all outline-none"
                                 />
                               </div>
                             </div>
@@ -755,7 +755,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   value={formData.city}
                                   onChange={handleInputChange}
                                   placeholder="e.g. Mumbai"
-                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
+                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[16px] transition-all outline-none"
                                 />
                               </div>
 
@@ -769,7 +769,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   value={formData.state}
                                   onChange={handleInputChange}
                                   placeholder="e.g. Maharashtra"
-                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
+                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[16px] transition-all outline-none"
                                 />
                               </div>
 
@@ -783,7 +783,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   value={formData.country}
                                   onChange={handleInputChange}
                                   placeholder="e.g. India"
-                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
+                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[16px] transition-all outline-none"
                                 />
                               </div>
                             </div>
@@ -796,9 +796,9 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 {["Email", "Phone", "WhatsApp"].map((method) => (
                                   <label
                                     key={method}
-                                    className={`flex items-center gap-3 cursor-pointer text-xs font-bold px-6 py-4 rounded-[16px] border transition-all ${
+                                    className={`flex items-center gap-3 cursor-pointer text-xs font-bold p-4 border rounded-[16px] transition-all ${
                                       formData.preferredContactMethod === method
-                                        ? "border-[#E31D2E] bg-[#E31D2E]/5 text-[#E31D2E]"
+                                        ? "border-[#111111] bg-neutral-100 text-[#111111]"
                                         : "border-neutral-200/80 bg-neutral-50/60 text-neutral-700 hover:bg-neutral-100"
                                     }`}
                                   >
@@ -808,7 +808,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                       value={method}
                                       checked={formData.preferredContactMethod === method}
                                       onChange={handleInputChange}
-                                      className="accent-[#E31D2E]"
+                                      className="accent-[#111111]"
                                     />
                                     {method}
                                   </label>
@@ -822,7 +822,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                         {activeSection === 3 && (
                           <div className="space-y-6">
                             <div className="border-b border-neutral-100 pb-5">
-                              <span className="text-[11px] font-black text-[#E31D2E] tracking-[0.25em] uppercase">
+                              <span className="text-[11px] font-black text-[#111111] tracking-[0.25em] uppercase">
                                 SECTION 3 OF 10
                               </span>
                               <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mt-1">
@@ -843,7 +843,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                     key={opt}
                                     className={`flex items-center gap-3 cursor-pointer text-xs font-bold px-6 py-4 rounded-[16px] border transition-all ${
                                       formData.hasLogo === opt
-                                        ? "border-[#E31D2E] bg-[#E31D2E]/5 text-[#E31D2E]"
+                                        ? "border-[#111111] bg-neutral-100 text-[#111111]"
                                         : "border-neutral-200/80 bg-neutral-50/60 text-neutral-700 hover:bg-neutral-100"
                                     }`}
                                   >
@@ -853,7 +853,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                       value={opt}
                                       checked={formData.hasLogo === opt}
                                       onChange={handleInputChange}
-                                      className="accent-[#E31D2E]"
+                                      className="accent-[#111111]"
                                     />
                                     {opt}
                                   </label>
@@ -888,7 +888,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                       key={asset}
                                       className={`flex items-center gap-3 cursor-pointer text-xs font-bold p-4 border rounded-[16px] transition-all ${
                                         formData.existingAssets.includes(asset)
-                                          ? "border-[#E31D2E] bg-[#E31D2E]/5 text-[#E31D2E]"
+                                          ? "border-[#111111] bg-neutral-100 text-[#111111]"
                                           : "border-neutral-200/80 bg-neutral-50/60 text-neutral-700 hover:bg-neutral-100"
                                       }`}
                                     >
@@ -896,7 +896,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                         type="checkbox"
                                         checked={formData.existingAssets.includes(asset)}
                                         onChange={() => handleArrayToggle("existingAssets", asset)}
-                                        className="accent-[#E31D2E]"
+                                        className="accent-[#111111]"
                                       />
                                       {asset}
                                     </label>
@@ -1001,11 +1001,11 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                           </div>
                         )}
 
-                        {/* SECTION 4: Project Details */}
+                        {/* SECTION 4: Services */}
                         {activeSection === 4 && (
                           <div className="space-y-6">
                             <div className="border-b border-neutral-100 pb-5">
-                              <span className="text-[11px] font-black text-[#E31D2E] tracking-[0.25em] uppercase">
+                              <span className="text-[11px] font-black text-[#111111] tracking-[0.25em] uppercase">
                                 SECTION 4 OF 10
                               </span>
                               <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mt-1">
@@ -1044,7 +1044,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   key={srv}
                                   className={`flex items-center gap-3 cursor-pointer text-xs font-bold p-4 border rounded-[16px] transition-all ${
                                     formData.services.includes(srv)
-                                      ? "border-[#E31D2E] bg-[#E31D2E]/5 text-[#E31D2E]"
+                                      ? "border-[#111111] bg-neutral-100 text-[#111111]"
                                       : "border-neutral-200/80 bg-neutral-50/60 text-neutral-700 hover:bg-neutral-100"
                                   }`}
                                 >
@@ -1052,7 +1052,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                     type="checkbox"
                                     checked={formData.services.includes(srv)}
                                     onChange={() => handleArrayToggle("services", srv)}
-                                    className="accent-[#E31D2E]"
+                                    className="accent-[#111111]"
                                   />
                                   <span className="truncate">{srv}</span>
                                 </label>
@@ -1069,7 +1069,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 value={formData.otherService}
                                 onChange={handleInputChange}
                                 placeholder="Specify any other custom requirements"
-                                className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
+                                className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[16px] transition-all outline-none"
                               />
                             </div>
                           </div>
@@ -1079,7 +1079,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                         {activeSection === 5 && (
                           <div className="space-y-6">
                             <div className="border-b border-neutral-100 pb-5">
-                              <span className="text-[11px] font-black text-[#E31D2E] tracking-[0.25em] uppercase">
+                              <span className="text-[11px] font-black text-[#111111] tracking-[0.25em] uppercase">
                                 SECTION 5 OF 10
                               </span>
                               <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mt-1">
@@ -1109,7 +1109,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                     key={goal}
                                     className={`flex items-center gap-3 cursor-pointer text-xs font-bold p-4 border rounded-[16px] transition-all ${
                                       formData.projectGoals.includes(goal)
-                                        ? "border-[#E31D2E] bg-[#E31D2E]/5 text-[#E31D2E]"
+                                        ? "border-[#111111] bg-neutral-100 text-[#111111]"
                                         : "border-neutral-200/80 bg-neutral-50/60 text-neutral-700 hover:bg-neutral-100"
                                     }`}
                                   >
@@ -1117,7 +1117,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                       type="checkbox"
                                       checked={formData.projectGoals.includes(goal)}
                                       onChange={() => handleArrayToggle("projectGoals", goal)}
-                                      className="accent-[#E31D2E]"
+                                      className="accent-[#111111]"
                                     />
                                     {goal}
                                   </label>
@@ -1135,17 +1135,17 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 onChange={handleInputChange}
                                 rows={5}
                                 placeholder="Share comprehensive details about your vision, target market, specific features, and overall business objectives..."
-                                className="w-full p-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[20px] transition-all outline-none resize-y min-h-[140px]"
+                                className="w-full p-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[20px] transition-all outline-none resize-y min-h-[140px]"
                               />
                             </div>
                           </div>
                         )}
 
-                        {/* SECTION 6: Timeline */}
+                        {/* SECTION 6: Project Timeline */}
                         {activeSection === 6 && (
                           <div className="space-y-6">
                             <div className="border-b border-neutral-100 pb-5">
-                              <span className="text-[11px] font-black text-[#E31D2E] tracking-[0.25em] uppercase">
+                              <span className="text-[11px] font-black text-[#111111] tracking-[0.25em] uppercase">
                                 SECTION 6 OF 10
                               </span>
                               <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mt-1">
@@ -1165,9 +1165,9 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   (time) => (
                                     <label
                                       key={time}
-                                      className={`flex items-center gap-3 cursor-pointer text-xs font-bold p-5 border rounded-[18px] transition-all ${
+                                      className={`flex items-center gap-3 cursor-pointer text-xs font-bold p-5 border rounded-xl transition-all ${
                                         formData.startDate === time
-                                          ? "border-[#E31D2E] bg-[#E31D2E]/5 text-[#E31D2E]"
+                                          ? "border-[#111111] bg-neutral-100 text-[#111111]"
                                           : "border-neutral-200/80 bg-neutral-50/60 text-neutral-700 hover:bg-neutral-100"
                                       }`}
                                     >
@@ -1177,7 +1177,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                         value={time}
                                         checked={formData.startDate === time}
                                         onChange={handleInputChange}
-                                        className="accent-[#E31D2E]"
+                                        className="accent-[#111111]"
                                       />
                                       {time}
                                     </label>
@@ -1195,17 +1195,17 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 name="expectedCompletionDate"
                                 value={formData.expectedCompletionDate}
                                 onChange={handleInputChange}
-                                className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
+                                className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[16px] transition-all outline-none"
                               />
                             </div>
                           </div>
                         )}
 
-                        {/* SECTION 7: Budget */}
+                        {/* SECTION 7: Investment & Budget */}
                         {activeSection === 7 && (
                           <div className="space-y-6">
                             <div className="border-b border-neutral-100 pb-5">
-                              <span className="text-[11px] font-black text-[#E31D2E] tracking-[0.25em] uppercase">
+                              <span className="text-[11px] font-black text-[#111111] tracking-[0.25em] uppercase">
                                 SECTION 7 OF 10
                               </span>
                               <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mt-1">
@@ -1230,9 +1230,9 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 ].map((b) => (
                                   <label
                                     key={b}
-                                    className={`flex items-center gap-3 cursor-pointer text-sm font-bold p-5 border rounded-[18px] transition-all ${
+                                    className={`flex items-center gap-3 cursor-pointer text-sm font-bold p-5 border rounded-xl transition-all ${
                                       formData.budgetRange === b
-                                        ? "border-[#E31D2E] bg-[#E31D2E]/5 text-[#E31D2E] shadow-sm"
+                                        ? "border-[#111111] bg-neutral-100 text-[#111111] shadow-sm"
                                         : "border-neutral-200/80 bg-neutral-50/60 text-neutral-800 hover:bg-neutral-100"
                                     }`}
                                   >
@@ -1242,7 +1242,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                       value={b}
                                       checked={formData.budgetRange === b}
                                       onChange={handleInputChange}
-                                      className="accent-[#E31D2E]"
+                                      className="accent-[#111111]"
                                     />
                                     {b}
                                   </label>
@@ -1252,11 +1252,11 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                           </div>
                         )}
 
-                        {/* SECTION 8: References */}
+                        {/* SECTION 8: References & Inspirations */}
                         {activeSection === 8 && (
                           <div className="space-y-6">
                             <div className="border-b border-neutral-100 pb-5">
-                              <span className="text-[11px] font-black text-[#E31D2E] tracking-[0.25em] uppercase">
+                              <span className="text-[11px] font-black text-[#111111] tracking-[0.25em] uppercase">
                                 SECTION 8 OF 10
                               </span>
                               <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mt-1">
@@ -1278,7 +1278,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   value={formData.referenceWebsites}
                                   onChange={handleInputChange}
                                   placeholder="URLs of websites you like"
-                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
+                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[16px] transition-all outline-none"
                                 />
                               </div>
 
@@ -1292,7 +1292,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   value={formData.competitorWebsites}
                                   onChange={handleInputChange}
                                   placeholder="URLs of key competitors"
-                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
+                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[16px] transition-all outline-none"
                                 />
                               </div>
                             </div>
@@ -1308,7 +1308,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   value={formData.pinterestLinks}
                                   onChange={handleInputChange}
                                   placeholder="Pinterest board or pin URL"
-                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
+                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[16px] transition-all outline-none"
                                 />
                               </div>
 
@@ -1322,7 +1322,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   value={formData.instagramPages}
                                   onChange={handleInputChange}
                                   placeholder="Instagram handles or links"
-                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
+                                  className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[16px] transition-all outline-none"
                                 />
                               </div>
                             </div>
@@ -1337,7 +1337,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 value={formData.driveLinks}
                                 onChange={handleInputChange}
                                 placeholder="Google Drive link with moodboards, images, or assets"
-                                className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[16px] transition-all outline-none"
+                                className="w-full h-[56px] px-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[16px] transition-all outline-none"
                               />
                               <div className="mt-2.5">
                                 <label className="block text-[11px] font-semibold text-neutral-500 mb-1">
@@ -1347,7 +1347,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   type="file"
                                   accept="image/*,.pdf,.doc,.docx,.zip"
                                   onChange={(e) => setFiles((prev) => ({ ...prev, referenceFile: e.target.files[0] }))}
-                                  className="block w-full text-xs text-neutral-600 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-[#E31D2E]/10 file:text-[#E31D2E] hover:file:bg-[#E31D2E]/20"
+                                  className="block w-full text-xs text-neutral-600 file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-neutral-200/50 file:text-[#111111] hover:file:bg-neutral-200"
                                 />
                                 {files.referenceFile && (
                                   <p className="text-xs text-emerald-600 font-semibold mt-1">✓ Attached: {files.referenceFile.name}</p>
@@ -1357,11 +1357,11 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                           </div>
                         )}
 
-                        {/* SECTION 9: Additional Info */}
+                        {/* SECTION 9: Additional Information */}
                         {activeSection === 9 && (
                           <div className="space-y-6">
                             <div className="border-b border-neutral-100 pb-5">
-                              <span className="text-[11px] font-black text-[#E31D2E] tracking-[0.25em] uppercase">
+                              <span className="text-[11px] font-black text-[#111111] tracking-[0.25em] uppercase">
                                 SECTION 9 OF 10
                               </span>
                               <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mt-1">
@@ -1382,25 +1382,27 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 onChange={handleInputChange}
                                 rows={6}
                                 placeholder="Share any extra thoughts, technical constraints, team preferences, or special requests..."
-                                className="w-full p-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#E31D2E] focus:ring-4 focus:ring-[#E31D2E]/15 rounded-[20px] transition-all outline-none resize-y min-h-[160px]"
+                                className="w-full p-5 text-sm font-medium text-[#111111] bg-neutral-50/60 border border-neutral-200/80 focus:bg-white focus:border-[#111111] focus:ring-4 focus:ring-neutral-200 rounded-[20px] transition-all outline-none resize-y min-h-[160px]"
                               />
                             </div>
                           </div>
                         )}
 
-                        {/* SECTION 10: Agreement */}
+                        {/* SECTION 10: Final Review & Confirmation */}
                         {activeSection === 10 && (
                           <div className="space-y-6">
-                            <div className="border-b border-neutral-100 pb-5">
-                              <span className="text-[11px] font-black text-[#E31D2E] tracking-[0.25em] uppercase">
-                                SECTION 10 OF 10
-                              </span>
-                              <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mt-1">
-                                Review & Confirmation
-                              </h3>
-                              <p className="text-sm text-neutral-500 font-normal mt-1.5">
-                                Please confirm accuracy before submitting your project brief to our team.
-                              </p>
+                            <div className="border-b border-neutral-100 pb-5 flex items-center justify-between">
+                              <div>
+                                <span className="text-[11px] font-black text-[#111111] tracking-[0.25em] uppercase">
+                                  SECTION 10 OF 10
+                                </span>
+                                <h3 className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight mt-1">
+                                  Review & Confirmation
+                                </h3>
+                                <p className="text-sm text-neutral-500 font-normal mt-1.5">
+                                  Please confirm accuracy before submitting your project brief to our team.
+                                </p>
+                              </div>
                             </div>
 
                             {/* Comprehensive Scrollable Brief Summary Box */}
@@ -1410,7 +1412,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   <h4 className="text-sm font-extrabold text-[#111111]">Comprehensive Application Summary</h4>
                                   <p className="text-[11px] text-neutral-500 font-medium">Verify your answers across all 10 project onboarding sections below</p>
                                 </div>
-                                <span className="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-full bg-[#E31D2E]/10 text-[#E31D2E]">
+                                <span className="text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-xl bg-neutral-100 text-[#111111] border border-black">
                                   10 / 10 Sections
                                 </span>
                               </div>
@@ -1420,9 +1422,9 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 <div className="space-y-2 pb-4 border-b border-neutral-200/60">
                                   <div className="flex items-center justify-between">
                                     <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
-                                      <Building2 className="w-3.5 h-3.5 text-[#E31D2E]" /> 1. Company Profile
+                                      <Building2 className="w-3.5 h-3.5 text-[#111111]" /> 1. Company Profile
                                     </span>
-                                    <button type="button" onClick={() => setActiveSection(1)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                    <button type="button" onClick={() => setActiveSection(1)} className="text-[11px] font-bold text-[#111111] hover:underline cursor-pointer">
                                       Edit Section 1
                                     </button>
                                   </div>
@@ -1454,9 +1456,9 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 <div className="space-y-2 pb-4 border-b border-neutral-200/60">
                                   <div className="flex items-center justify-between">
                                     <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
-                                      <User className="w-3.5 h-3.5 text-[#E31D2E]" /> 2. Primary Contact
+                                      <User className="w-3.5 h-3.5 text-[#111111]" /> 2. Primary Contact
                                     </span>
-                                    <button type="button" onClick={() => setActiveSection(2)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                    <button type="button" onClick={() => setActiveSection(2)} className="text-[11px] font-bold text-[#111111] hover:underline cursor-pointer">
                                       Edit Section 2
                                     </button>
                                   </div>
@@ -1486,9 +1488,9 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 <div className="space-y-2 pb-4 border-b border-neutral-200/60">
                                   <div className="flex items-center justify-between">
                                     <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
-                                      <Palette className="w-3.5 h-3.5 text-[#E31D2E]" /> 3. Brand Identity & Assets
+                                      <Palette className="w-3.5 h-3.5 text-[#111111]" /> 3. Brand Identity & Assets
                                     </span>
-                                    <button type="button" onClick={() => setActiveSection(3)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                    <button type="button" onClick={() => setActiveSection(3)} className="text-[11px] font-bold text-[#111111] hover:underline cursor-pointer">
                                       Edit Section 3
                                     </button>
                                   </div>
@@ -1522,9 +1524,9 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 <div className="space-y-2 pb-4 border-b border-neutral-200/60">
                                   <div className="flex items-center justify-between">
                                     <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
-                                      <Layers className="w-3.5 h-3.5 text-[#E31D2E]" /> 4. Selected Expertise
+                                      <Layers className="w-3.5 h-3.5 text-[#111111]" /> 4. Selected Expertise
                                     </span>
-                                    <button type="button" onClick={() => setActiveSection(4)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                    <button type="button" onClick={() => setActiveSection(4)} className="text-[11px] font-bold text-[#111111] hover:underline cursor-pointer">
                                       Edit Section 4
                                     </button>
                                   </div>
@@ -1532,7 +1534,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                     {formData.services?.length > 0 ? (
                                       <div className="flex flex-wrap gap-1.5 mt-1">
                                         {formData.services.map((srv) => (
-                                          <span key={srv} className="px-3 py-1 rounded-full bg-[#E31D2E]/10 text-[#E31D2E] text-[11px] font-bold">
+                                          <span key={srv} className="px-3 py-1 rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200 text-[11px] font-bold">
                                             {srv}
                                           </span>
                                         ))}
@@ -1550,9 +1552,9 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 <div className="space-y-2 pb-4 border-b border-neutral-200/60">
                                   <div className="flex items-center justify-between">
                                     <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
-                                      <Target className="w-3.5 h-3.5 text-[#E31D2E]" /> 5. Project Goals & Vision
+                                      <Target className="w-3.5 h-3.5 text-[#111111]" /> 5. Project Goals & Vision
                                     </span>
-                                    <button type="button" onClick={() => setActiveSection(5)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                    <button type="button" onClick={() => setActiveSection(5)} className="text-[11px] font-bold text-[#111111] hover:underline cursor-pointer">
                                       Edit Section 5
                                     </button>
                                   </div>
@@ -1560,7 +1562,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                     {formData.projectGoals?.length > 0 ? (
                                       <div className="flex flex-wrap gap-1.5 mt-1">
                                         {formData.projectGoals.map((g) => (
-                                          <span key={g} className="px-3 py-1 rounded-full bg-neutral-200/80 text-neutral-800 text-[11px] font-extrabold">
+                                          <span key={g} className="px-3 py-1 rounded-xl bg-neutral-200/80 text-neutral-800 text-[11px] font-extrabold">
                                             {g}
                                           </span>
                                         ))}
@@ -1580,16 +1582,16 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                 <div className="space-y-2 pb-4 border-b border-neutral-200/60">
                                   <div className="flex items-center justify-between">
                                     <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
-                                      <Calendar className="w-3.5 h-3.5 text-[#E31D2E]" /> 6 & 7. Timeline & Investment
+                                      <Calendar className="w-3.5 h-3.5 text-[#111111]" /> 6 & 7. Timeline & Investment
                                     </span>
-                                    <button type="button" onClick={() => setActiveSection(6)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                    <button type="button" onClick={() => setActiveSection(6)} className="text-[11px] font-bold text-[#111111] hover:underline cursor-pointer">
                                       Edit Section 6/7
                                     </button>
                                   </div>
                                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-neutral-600">
                                     <div>
                                       <span className="text-neutral-400 block text-[10px] font-bold uppercase">Budget Range</span>
-                                      <span className="font-extrabold text-[#E31D2E] text-sm">{formData.budgetRange}</span>
+                                      <span className="font-extrabold text-[#111111] text-sm">{formData.budgetRange}</span>
                                     </div>
                                     <div>
                                       <span className="text-neutral-400 block text-[10px] font-bold uppercase">Start Schedule</span>
@@ -1609,9 +1611,9 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   <div className="space-y-2 pb-4 border-b border-neutral-200/60">
                                     <div className="flex items-center justify-between">
                                       <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
-                                        <Link2 className="w-3.5 h-3.5 text-[#E31D2E]" /> 8. References & Inspirations
+                                        <Link2 className="w-3.5 h-3.5 text-[#111111]" /> 8. References & Inspirations
                                       </span>
-                                      <button type="button" onClick={() => setActiveSection(8)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                      <button type="button" onClick={() => setActiveSection(8)} className="text-[11px] font-bold text-[#111111] hover:underline cursor-pointer">
                                         Edit Section 8
                                       </button>
                                     </div>
@@ -1628,9 +1630,9 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                                   <div className="space-y-2">
                                     <div className="flex items-center justify-between">
                                       <span className="font-extrabold text-[#111111] text-xs uppercase tracking-wide flex items-center gap-1.5">
-                                        <FileText className="w-3.5 h-3.5 text-[#E31D2E]" /> 9. Additional Notes
+                                        <FileText className="w-3.5 h-3.5 text-[#111111]" /> 9. Additional Notes
                                       </span>
-                                      <button type="button" onClick={() => setActiveSection(9)} className="text-[11px] font-bold text-[#E31D2E] hover:underline cursor-pointer">
+                                      <button type="button" onClick={() => setActiveSection(9)} className="text-[11px] font-bold text-[#111111] hover:underline cursor-pointer">
                                         Edit Section 9
                                       </button>
                                     </div>
@@ -1673,7 +1675,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                       <button
                         type="button"
                         onClick={handlePrev}
-                        className="h-[56px] px-8 rounded-[18px] border border-neutral-200 text-neutral-700 hover:bg-neutral-100 font-bold text-sm transition-all flex items-center gap-2 cursor-pointer"
+                        className="h-[56px] px-8 rounded-xl border border-neutral-200 text-neutral-700 hover:bg-neutral-100 font-bold text-sm transition-all flex items-center gap-2 cursor-pointer"
                       >
                         <ArrowLeft className="w-4 h-4" />
                         <span>Previous</span>
@@ -1686,7 +1688,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                       type="button"
                       onClick={handleNext}
                       disabled={isSubmitting}
-                      className="h-[56px] px-8 sm:px-10 rounded-[18px] bg-[#E31D2E] hover:bg-[#c91827] text-white font-bold text-sm sm:text-base shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2.5 cursor-pointer disabled:opacity-60"
+                      className="h-[56px] px-8 sm:px-10 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] text-white font-bold text-sm sm:text-base shadow-[0_8px_20px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_28px_rgba(0,0,0,0.16)] hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2.5 cursor-pointer disabled:opacity-60"
                     >
                       {isSubmitting ? (
                         <>

@@ -282,7 +282,7 @@ const SearchOverlay = ({ isOpen, onClose, setShowContactForm }) => {
                         <span className="text-[11px] font-extrabold text-[#E31D2E] uppercase tracking-widest">
                           {category}
                         </span>
-                        <span className="text-[10px] font-semibold text-gray-400 bg-gray-200/70 px-2 py-0.5 rounded-full">
+                        <span className="text-[10px] font-semibold text-gray-400 bg-gray-200/70 px-2 py-0.5 rounded-xl">
                           {groupedResults[category].length}
                         </span>
                       </div>

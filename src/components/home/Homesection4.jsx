@@ -96,20 +96,13 @@ const Homesection4 = () => {
                 className="lg:col-span-5 relative w-full"
               >
                 {/* Inner Separate Card Box */}
-                <div className="relative w-full rounded-[24px] sm:rounded-[28px] border border-neutral-200/90 bg-[#F8F9FA] p-5 sm:p-6 shadow-sm text-left">
+                <div className="relative w-full rounded-2xl border border-neutral-200/90 bg-[#F8F9FA] p-5 sm:p-6 shadow-sm text-left">
                   <div className="flex flex-col items-start space-y-5">
-                    {/* Top Header Row with Icon & Badge */}
-                    <div className="w-full flex items-center justify-between">
-                      <motion.div
-                        variants={fadeUp}
-                        className="w-13 h-13 rounded-2xl bg-white border border-neutral-200/80 flex items-center justify-center text-[#111111] shadow-xs"
-                      >
-                        <Sparkles className="w-6 h-6 stroke-[2] text-[#111111]" />
-                      </motion.div>
-
+                    {/* Top Header Row with Badge */}
+                    <div className="w-full flex items-center justify-end">
                       <motion.span
                         variants={fadeUp}
-                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-neutral-200/80 text-[11px] font-extrabold text-[#111111] uppercase tracking-wider shadow-xs"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white border border-neutral-200/80 text-[11px] font-extrabold text-[#111111] uppercase tracking-wider shadow-xs"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-[#111111] animate-pulse" />
                         Instant Onboarding
@@ -156,7 +149,7 @@ const Homesection4 = () => {
                       <button
                         type="button"
                         onClick={() => setIsBriefModalOpen(true)}
-                        className="w-full inline-flex items-center justify-center gap-2.5 bg-[#E31D2E] hover:bg-[#C1121F] text-white px-7 py-3.5 rounded-full font-bold text-base shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 cursor-pointer group/btn"
+                        className="w-full inline-flex items-center justify-center gap-2.5 bg-[#E31D2E] hover:bg-[#C1121F] text-white px-7 py-3.5 rounded-xl font-bold text-base shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 cursor-pointer group/btn"
                       >
                         <span>Apply for Your Project</span>
                         <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />

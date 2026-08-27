@@ -86,13 +86,13 @@ const Services = () => {
               <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
                 <Link
                   to="/projects"
-                  className="primary-btn px-8 py-4 text-white rounded-full font-bold"
+                  className="primary-btn px-8 py-4 text-white rounded-xl font-bold"
                 >
                   View Our Portfolio
                 </Link>
                 <a
                   href="#services"
-                  className="px-8 py-4 rounded-full font-bold border border-white/20 text-white hover:border-white/50 hover:text-[#FF2B2B] transition-all"
+                  className="px-8 py-4 rounded-xl font-bold border border-white/20 text-white hover:border-white/50 hover:text-[#FF2B2B] transition-all"
                 >
                   Core Services
                 </a>
@@ -161,7 +161,7 @@ const Services = () => {
                     >
                       {/* Active Red Tag Indicator */}
                       {isSelected && (
-                        <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FF2B2B]/10 border border-[#FF2B2B]/30">
+                        <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#FF2B2B]/10 border border-[#FF2B2B]/30">
                           <span className="h-2 w-2 rounded-full bg-[#FF2B2B] animate-pulse" />
                           <span className="text-[10px] font-bold text-[#FF2B2B] uppercase tracking-wider">
                             Selected
@@ -208,7 +208,7 @@ const Services = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-[2rem] bg-[#111111] p-8 md:p-12 text-center relative overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
+            className="rounded-2xl bg-[#111111] p-8 md:p-12 text-center relative overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
           >
             <h2 className="text-2xl md:text-3xl font-black text-white mb-6 relative z-10 leading-tight">
               See the Impact <br className="hidden md:block" />
@@ -217,7 +217,7 @@ const Services = () => {
 
             <Link
               to="/projects"
-              className="inline-flex items-center justify-center bg-white text-black px-7 py-3.5 rounded-full font-bold text-sm hover:bg-neutral-100 transition-all duration-300 hover:scale-105 active:scale-95 relative z-10 shadow-md"
+              className="inline-flex items-center justify-center bg-white text-black px-7 py-3.5 rounded-xl font-bold text-sm hover:bg-neutral-100 transition-all duration-300 hover:scale-105 active:scale-95 relative z-10 shadow-md"
             >
               View Our Portfolio
             </Link>

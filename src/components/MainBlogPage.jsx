@@ -131,7 +131,7 @@ export default function BlogPage() {
                 .getElementById("blog-posts")
                 .scrollIntoView({ behavior: "smooth" })
             }
-            className="group relative inline-flex items-center justify-center gap-3 bg-[#E8192C] text-white px-8 py-4 rounded-full font-bold transition-all hover:bg-[#ff2235] hover:scale-105"
+            className="group relative inline-flex items-center justify-center gap-3 bg-[#E8192C] text-white px-8 py-4 rounded-xl font-bold transition-all hover:bg-[#ff2235] hover:scale-105"
           >
             Explore Posts
             <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
@@ -164,10 +164,10 @@ export default function BlogPage() {
               experiences that drive real growth.
             </p>
             <div className="flex flex-wrap gap-4">
-              <button className="px-8 py-4 bg-[#E8192C] text-white rounded-full hover:bg-[#ff2235] transition-all font-bold">
+              <button className="px-8 py-4 bg-[#E8192C] text-white rounded-xl hover:bg-[#ff2235] transition-all font-bold">
                 Explore Events
               </button>
-              <button className="px-8 py-4 bg-transparent border-2 border-white/10 text-white rounded-full hover:border-white/40 transition-all font-bold">
+              <button className="px-8 py-4 bg-transparent border-2 border-white/10 text-white rounded-xl hover:border-white/40 transition-all font-bold">
                 Join Community
               </button>
             </div>
@@ -253,7 +253,7 @@ export default function BlogPage() {
               applications, creating meaningful connections that help individuals
               and organizations thrive in the digital age.
             </p>
-            <button className="px-8 py-4 bg-[#E8192C] text-white rounded-full hover:bg-[#ff2235] transition-all font-bold">
+            <button className="px-8 py-4 bg-[#E8192C] text-white rounded-xl hover:bg-[#ff2235] transition-all font-bold">
               Get Started Today
             </button>
           </motion.div>
@@ -305,7 +305,7 @@ export default function BlogPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent opacity-80" />
 
                   {/* Category Chip */}
-                  <span className="absolute top-4 left-4 px-4 py-1.5 bg-[#E8192C] text-white rounded-full text-[10px] font-bold uppercase tracking-widest">
+                  <span className="absolute top-4 left-4 px-4 py-1.5 bg-[#E8192C] text-white rounded-xl text-[10px] font-bold uppercase tracking-widest">
                     {post.category}
                   </span>
                 </div>

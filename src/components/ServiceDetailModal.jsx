@@ -221,7 +221,7 @@ export default function ServiceDetailModal({ service, isOpen, onClose }) {
 
           {/* Premium Service Modal Card */}
           <motion.div
-            className="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-[2.5rem] bg-white border border-neutral-200/90 shadow-[0_30px_80px_rgba(0,0,0,0.4)] overflow-hidden z-10 text-[#111111]"
+            className="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-2xl bg-white border border-neutral-200/90 shadow-[0_30px_80px_rgba(0,0,0,0.4)] overflow-hidden z-10 text-[#111111]"
             initial={{ opacity: 0, scale: 0.94, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
@@ -261,7 +261,7 @@ export default function ServiceDetailModal({ service, isOpen, onClose }) {
 
                 {/* Category Tag & Service Title */}
                 <div className="flex flex-col items-start justify-center">
-                  <span className="px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.22em] bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/20 mb-2 inline-flex items-center gap-1.5">
+                  <span className="px-3 py-1 rounded-xl text-[10px] font-black uppercase tracking-[0.22em] bg-[#E31D2E]/10 text-[#E31D2E] border border-[#E31D2E]/20 mb-2 inline-flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E] animate-pulse" />
                     {details.categoryTag}
                   </span>
@@ -295,7 +295,7 @@ export default function ServiceDetailModal({ service, isOpen, onClose }) {
                     <span className="w-2 h-2 rounded-full bg-[#E31D2E]" />
                     What We Deliver
                   </h3>
-                  <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#E31D2E]/10 text-[#E31D2E]">
+                  <span className="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-0.5 rounded-xl bg-[#E31D2E]/10 text-[#E31D2E]">
                     6 Core Capabilities
                   </span>
                 </div>
@@ -326,7 +326,7 @@ export default function ServiceDetailModal({ service, isOpen, onClose }) {
                   {details.highlights.map((highlight, idx) => (
                     <span
                       key={idx}
-                      className="px-3.5 py-1.5 rounded-full text-xs font-extrabold bg-neutral-100 hover:bg-[#E31D2E]/10 text-[#111111] hover:text-[#E31D2E] border border-neutral-200 hover:border-[#E31D2E]/20 transition-all duration-200 inline-flex items-center gap-1.5"
+                      className="px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-neutral-100 hover:bg-[#E31D2E]/10 text-[#111111] hover:text-[#E31D2E] border border-neutral-200 hover:border-[#E31D2E]/20 transition-all duration-200 inline-flex items-center gap-1.5"
                     >
                       <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
                       {highlight}

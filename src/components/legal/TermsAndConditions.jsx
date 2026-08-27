@@ -61,7 +61,7 @@ const TermsAndConditions = () => {
           <div className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
           <span className="text-xs font-bold text-neutral-600 uppercase tracking-wider">Agreement Standard</span>
         </div>
-        <span className="text-[10px] font-black uppercase tracking-widest text-[#111111] bg-black/5 px-2.5 py-1 rounded-full border border-black/15">
+        <span className="text-[10px] font-black uppercase tracking-widest text-[#111111] bg-black/5 px-2.5 py-1 rounded-xl border border-black/15">
           Legal Governance
         </span>
       </div>
@@ -126,11 +126,11 @@ const TermsAndConditions = () => {
                 </p>
 
               <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs font-semibold text-neutral-500">
-                <div className="flex items-center gap-1.5 bg-white border border-neutral-200 px-3.5 py-1.5 rounded-full shadow-xs">
+                <div className="flex items-center gap-1.5 bg-white border border-neutral-200 px-3.5 py-1.5 rounded-xl shadow-xs">
                   <Clock className="w-3.5 h-3.5 text-[#E31D2E]" />
                   <span>Effective Date: January 31, 2026</span>
                 </div>
-                <div className="flex items-center gap-1.5 bg-white border border-neutral-200 px-3.5 py-1.5 rounded-full shadow-xs">
+                <div className="flex items-center gap-1.5 bg-white border border-neutral-200 px-3.5 py-1.5 rounded-xl shadow-xs">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
                   <span>Binding Legal Agreement</span>
                 </div>
@@ -230,7 +230,7 @@ const TermsAndConditions = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
+                className="bg-white border border-neutral-200/80 rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
                 <div className="flex items-center gap-3 text-[#FF2B2B]">
                   <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
@@ -252,7 +252,7 @@ const TermsAndConditions = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
+                className="bg-white border border-neutral-200/80 rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
                 <div className="flex items-center gap-3 text-[#FF2B2B]">
                   <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
@@ -274,7 +274,7 @@ const TermsAndConditions = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
+                className="bg-white border border-neutral-200/80 rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
                 <div className="flex items-center gap-3 text-[#FF2B2B]">
                   <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
@@ -296,7 +296,7 @@ const TermsAndConditions = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
+                className="bg-white border border-neutral-200/80 rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
                 <div className="flex items-center gap-3 text-[#FF2B2B]">
                   <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">
@@ -315,7 +315,7 @@ const TermsAndConditions = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="bg-white border border-neutral-200/80 rounded-[28px] p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
+                className="bg-white border border-neutral-200/80 rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.03)] space-y-4"
               >
                 <div className="flex items-center gap-3 text-[#FF2B2B]">
                   <div className="w-10 h-10 rounded-2xl bg-[#FF2B2B]/5 flex items-center justify-center border border-[#FF2B2B]/20">

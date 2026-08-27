@@ -11,7 +11,7 @@ const SectionBadge = ({ text, children, theme = "auto", className = "" }) => {
     <div className={`relative inline-flex items-center gap-2 select-none py-1 px-1.5 transform-gpu will-change-transform ${className}`}>
       {/* Motion Trail Background Streak */}
       <div 
-        className="absolute left-1 top-1/2 -translate-y-1/2 h-6 w-full pointer-events-none rounded-l-full"
+        className="absolute left-1 top-1/2 -translate-y-1/2 h-6 w-full pointer-events-none rounded-l-xl"
         style={{
           background: isDarkTheme
             ? "linear-gradient(to right, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 50%, transparent 90%)"

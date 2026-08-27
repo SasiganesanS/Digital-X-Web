@@ -89,8 +89,8 @@ const ProjectDetail = () => {
   if (!project) {
     return (
       <div className="min-h-screen bg-[#F8FAFC] text-[#111111] flex items-center justify-center px-6">
-        <div className="text-center max-w-md bg-white p-8 sm:p-10 rounded-[2.5rem] border border-gray-200 shadow-xl">
-          <div className="w-16 h-16 rounded-full bg-red-50 border border-red-100 text-[#E31D2E] flex items-center justify-center mx-auto mb-6">
+        <div className="text-center max-w-md bg-white p-8 sm:p-10 rounded-2xl border border-gray-200 shadow-xl">
+          <div className="w-16 h-16 rounded-xl bg-red-50 border border-red-100 text-[#E31D2E] flex items-center justify-center mx-auto mb-6">
             <Zap className="w-8 h-8" />
           </div>
           <h2 className="text-2xl font-black text-[#111111] mb-2">Project Not Found</h2>
@@ -100,7 +100,7 @@ const ProjectDetail = () => {
           <button
             type="button"
             onClick={handleBack}
-            className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-full font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5 cursor-pointer"
+            className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-xl font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5 cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>{fromPath === '/' ? "Back to Home" : "Back to Projects"}</span>
@@ -135,7 +135,7 @@ const ProjectDetail = () => {
                   <button
                     type="button"
                     onClick={handleBack}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-200 bg-white shadow-2xs hover:border-black/20 text-[#111111] text-xs font-bold uppercase tracking-wider transition-all duration-200 group cursor-pointer"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white shadow-2xs hover:border-black/20 text-[#111111] text-xs font-bold uppercase tracking-wider transition-all duration-200 group cursor-pointer"
                   >
                     <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#E31D2E]" />
                     <span>{fromPath === '/' ? "Back to Home" : "Back to Projects"}</span>
@@ -159,7 +159,7 @@ const ProjectDetail = () => {
                 <Link
                   to={`/case-study/${project.slug || project.id}`}
                   state={{ from: fromPath || '/projects' }}
-                  className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-full font-bold text-[13px] sm:text-[14px] uppercase tracking-[0.02em] shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5 font-sans"
+                  className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-xl font-bold text-[13px] sm:text-[14px] uppercase tracking-[0.02em] shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5 font-sans"
                 >
                   <span>Read Full Case Study</span>
                   <ArrowRight className="w-4 h-4" />
@@ -168,7 +168,7 @@ const ProjectDetail = () => {
                 <button
                   type="button"
                   onClick={() => setShowContactForm(true)}
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-gray-300 bg-white hover:border-gray-400 text-[#111111] font-bold text-[13px] sm:text-[14px] uppercase tracking-[0.02em] transition-all font-sans cursor-pointer"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-gray-300 bg-white hover:border-gray-400 text-[#111111] font-bold text-[13px] sm:text-[14px] uppercase tracking-[0.02em] transition-all font-sans cursor-pointer"
                 >
                   <span>Request Similar Project</span>
                 </button>
@@ -288,7 +288,7 @@ const ProjectDetail = () => {
                 {project.techStack.map((tech, i) => (
                   <span
                     key={i}
-                    className="px-5 py-2.5 rounded-full border border-gray-200 bg-white text-[#333333] text-xs font-extrabold uppercase tracking-wider shadow-2xs"
+                    className="px-5 py-2.5 rounded-xl border border-gray-200 bg-white text-[#333333] text-xs font-extrabold uppercase tracking-wider shadow-2xs"
                   >
                     {tech}
                   </span>
@@ -313,7 +313,7 @@ const ProjectDetail = () => {
               <button
                 type="button"
                 onClick={() => setShowContactForm(true)}
-                className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-red-500/25 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#E31D2E] hover:bg-[#c91827] text-white font-extrabold text-xs sm:text-sm uppercase tracking-wider shadow-xl shadow-red-500/25 transition-all flex items-center justify-center gap-2.5 cursor-pointer"
               >
                 <span>Get Started Now</span>
                 <ArrowRight className="w-4 h-4" />
@@ -321,7 +321,7 @@ const ProjectDetail = () => {
 
               <Link
                 to={`/case-study/${project.slug || project.id}`}
-                className="w-full sm:w-auto px-8 py-4 rounded-full border border-white/90 bg-white text-[#111111] hover:bg-neutral-100 font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl border border-white/90 bg-white text-[#111111] hover:bg-neutral-100 font-extrabold text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md"
               >
                 <span>View Full Case Study</span>
               </Link>
