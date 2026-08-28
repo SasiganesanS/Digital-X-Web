@@ -40,8 +40,9 @@ const navStyles = `
   left: 0;
   right: 0;
   width: 100%;
-  height: 76px;
-  padding: 0 2rem;
+  max-width: 100vw;
+  height: 64px;
+  padding: 0 0.75rem;
   background: #FFFFFF !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.07);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
@@ -49,11 +50,20 @@ const navStyles = `
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem;
+  gap: 0.5rem;
+  box-sizing: border-box;
   transform: translateY(0);
   transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
   pointer-events: auto;
+}
+
+@media (min-width: 640px) {
+  .pill-nav-container {
+    height: 76px;
+    padding: 0 2rem;
+    gap: 1.25rem;
+  }
 }
 
 .pill-nav-container > * {
@@ -914,7 +924,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
               src={Logo}
               alt="PRASKLA DIGITAL X Logo"
               ref={logoImgRef}
-              className="h-[60px] sm:h-[68px] lg:h-[76px] !important w-auto object-contain transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.08)] group-hover:drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)] relative z-10"
+              className="h-[44px] xs:h-[52px] sm:h-[68px] lg:h-[76px] !important w-auto object-contain transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.08)] group-hover:drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)] relative z-10"
               style={{ willChange: 'transform, filter' }}
             />
 
@@ -931,8 +941,8 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
 
           {/* 2-line Text Column (PRASKLA DIGITAL + Animated Single-Line Tagline) */}
           <div className="flex flex-col justify-center min-w-0">
-            <div className="flex items-center gap-1 sm:gap-1.5 leading-none">
-              <span className="font-inlander text-[17px] sm:text-[20px] lg:text-[22px] font-black text-[#111111] leading-none tracking-[0.01em] uppercase whitespace-nowrap">
+            <div className="flex items-center gap-0.5 sm:gap-1.5 leading-none">
+              <span className="font-inlander text-[13px] xs:text-[15px] sm:text-[20px] lg:text-[22px] font-black text-[#111111] leading-none tracking-[0.01em] uppercase whitespace-nowrap">
                 PRASKLA DIGITAL
               </span>
               <motion.div
@@ -946,10 +956,12 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                 }
                 transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
               >
-                <BrandX className="text-[38px] sm:text-[46px] lg:text-[52px] leading-none shrink-0 text-[#E31D2E] -mt-1.5 sm:-mt-2 -ml-1 sm:-ml-1.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
+                <BrandX className="text-[26px] xs:text-[32px] sm:text-[46px] lg:text-[52px] leading-none shrink-0 text-[#E31D2E] -mt-1 sm:-mt-2 -ml-0.5 sm:-ml-1.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
               </motion.div>
             </div>
-            <AnimatedBrandTagline />
+            <div className="hidden xs:block">
+              <AnimatedBrandTagline />
+            </div>
           </div>
         </Link>
 

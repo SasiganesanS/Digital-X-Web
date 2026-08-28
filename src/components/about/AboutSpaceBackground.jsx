@@ -114,11 +114,11 @@ export default function AboutSpaceBackground() {
       >
         {/* ITEM 2 (Upper-Left ~ 22%): NEW Photorealistic 3D Futuristic Space Station */}
         <motion.div
-          className="absolute top-[22%] -left-8 sm:-left-10 lg:left-0 pointer-events-none opacity-90 z-10"
+          className="absolute top-[22%] -left-12 sm:-left-10 lg:left-0 pointer-events-none opacity-40 sm:opacity-90 z-0"
           animate={shouldReduceMotion ? {} : { y: [-10, 10, -10], rotate: [0, 6, 0] }}
           transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
         >
-          <div className="relative w-40 h-40 sm:w-56 sm:h-56 lg:w-64 lg:h-64">
+          <div className="relative w-32 h-32 sm:w-56 sm:h-56 lg:w-64 lg:h-64">
             <CanvasPlanet
               src={SpaceStationImg}
               alt="3D Futuristic Space Station"
@@ -130,11 +130,11 @@ export default function AboutSpaceBackground() {
 
         {/* ITEM 3 (Mid-Right ~ 38%): NEW Photorealistic 3D Ringed Purple Exoplanet */}
         <motion.div
-          className="absolute top-[38%] -right-8 sm:-right-10 lg:right-2 pointer-events-none opacity-90 z-10"
+          className="absolute top-[38%] -right-12 sm:-right-10 lg:right-2 pointer-events-none opacity-40 sm:opacity-90 z-0"
           animate={shouldReduceMotion ? {} : { y: [8, -8, 8], rotate: [-4, 4, -4] }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
         >
-          <div className="relative w-44 h-44 sm:w-60 sm:h-60 lg:w-72 lg:h-72">
+          <div className="relative w-32 h-32 sm:w-60 sm:h-60 lg:w-72 lg:h-72">
             <CanvasPlanet
               src={ExoplanetImg}
               alt="3D Ringed Purple Exoplanet"
@@ -146,11 +146,11 @@ export default function AboutSpaceBackground() {
 
         {/* ITEM 5 (Lower-Right ~ 68%): Exploding Fiery Asteroid */}
         <motion.div
-          className="absolute top-[68%] -right-6 sm:-right-8 lg:right-0 pointer-events-none z-10 opacity-90"
+          className="absolute top-[68%] -right-10 sm:-right-8 lg:right-0 pointer-events-none z-0 opacity-40 sm:opacity-90"
           animate={shouldReduceMotion ? {} : { y: [-10, 10, -10], rotate: [-6, 6, -6] }}
           transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
         >
-          <div className="relative w-36 h-36 sm:w-48 sm:h-48 lg:w-56 lg:h-56">
+          <div className="relative w-28 h-28 sm:w-48 sm:h-48 lg:w-56 lg:h-56">
             <CanvasPlanet
               src={ExplodingAsteroidImg}
               alt="Exploding Fiery Asteroid"
@@ -162,11 +162,11 @@ export default function AboutSpaceBackground() {
 
         {/* ITEM 6 (Bottom-Left ~ 82%): Photorealistic 3D Floating Astronaut */}
         <motion.div
-          className="absolute top-[82%] -left-6 sm:-left-8 lg:left-0 pointer-events-none opacity-90 z-10"
+          className="absolute top-[82%] -left-10 sm:-left-8 lg:left-0 pointer-events-none opacity-40 sm:opacity-90 z-0"
           animate={shouldReduceMotion ? {} : { y: [12, -12, 12], rotate: [5, -5, 5] }}
           transition={{ duration: 14, repeat: Infinity, ease: "easeInOut" }}
         >
-          <div className="relative w-32 h-32 sm:w-44 sm:h-44 lg:w-52 lg:h-52">
+          <div className="relative w-28 h-28 sm:w-44 sm:h-44 lg:w-52 lg:h-52">
             <CanvasPlanet
               src={AstronautImg}
               alt="3D Space Astronaut"
