@@ -172,7 +172,7 @@ const Footer = ({ setShowContactForm }) => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-center md:text-left text-xs font-semibold text-[#9CA3AF] font-sans">
             <div className="flex flex-col items-center md:items-start justify-center text-center md:text-left">
               <span className="inline-flex items-center gap-1.5 justify-center md:justify-start">
-                © {new Date().getFullYear()} <span className="font-inlander font-bold">PRASKLA DIGITAL</span> <BrandX className="text-[34px] sm:text-[38px] font-pdx inline-block text-[#FF2B2B] -mt-1 -ml-1 translate-y-[2px]" />
+                © {new Date().getFullYear()} <span className="font-inlander font-bold">PRASKLA DIGITAL</span> <BrandX className="text-[18px] sm:text-[20px] font-pdx inline-block text-[#FF2B2B] translate-y-[1px] ml-0.5" />
               </span>
               <span className="text-[#9CA3AF] text-[11px] mt-0.5">
                 All rights reserved.
