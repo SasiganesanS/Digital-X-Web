@@ -56,10 +56,10 @@ export default function CareersImageGrid({ teamMembers }) {
       initial={{ opacity: 0, scale: 0.96 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full max-w-[480px] sm:max-w-[530px] lg:max-w-[560px] aspect-square mx-auto select-none"
+      className="relative w-full max-w-[380px] sm:max-w-[440px] lg:max-w-[470px] aspect-square mx-auto select-none"
     >
       {/* Outer Showcase Container */}
-      <div className="relative w-full h-full rounded-2xl p-3.5 sm:p-4 md:p-5 bg-white border border-neutral-200/90 shadow-2xl overflow-hidden flex items-center justify-center">
+      <div className="relative w-full h-full rounded-2xl p-2 sm:p-2.5 md:p-3 bg-white border border-neutral-200/90 shadow-2xl overflow-hidden flex items-center justify-center">
         {/* Soft Radial Ambient Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] bg-[#E31D2E]/7 rounded-full blur-[90px] pointer-events-none z-0" />
         <div

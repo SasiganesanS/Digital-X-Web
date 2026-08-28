@@ -292,7 +292,7 @@ function HeroShowcase({ ourServicesImg }) {
         }}
       >
         {/* Outer Showcase Frame */}
-        <div className={`relative w-full rounded-2xl p-4 sm:p-5 lg:p-6 bg-white border border-neutral-200/90 shadow-2xl transition-all duration-500 overflow-visible ${
+        <div className={`relative w-full rounded-2xl p-2 sm:p-2.5 lg:p-3 bg-white border border-neutral-200/90 shadow-2xl transition-all duration-500 overflow-visible ${
           isHovered ? "shadow-[0_30px_70px_rgba(0,0,0,0.18)] bg-white" : ""
         }`}>
           {/* Image Container with Parallax Effect */}
@@ -874,10 +874,6 @@ export default function ServiceCalculator() {
                 <span>Calculate Plan Estimate</span>
                 <FiZap className="w-3.5 h-3.5" />
               </button>
-              <span className="text-[10px] sm:text-xs font-bold text-[#575757] flex items-center gap-1.5 bg-white/80 px-3 py-1.5 rounded-xl border border-gray-200/80 shadow-2xs">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span>Instant Custom Quote & Transparent Deliverables</span>
-              </span>
             </div>
           </div>
         }
@@ -906,16 +902,15 @@ export default function ServiceCalculator() {
           </motion.div>
 
           <div className="relative w-full flex items-center justify-center">
-
-            {/* Marquee viewport with smooth edge alpha fade mask */}
+            {/* Marquee viewport with smooth edge alpha fade mask (no square background boxes) */}
             <div
               onPointerDown={handlePointerDown}
               className={`relative w-full overflow-hidden select-none ${
                 isDragging ? "cursor-grabbing" : "cursor-grab"
               }`}
               style={{
-                WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
-                maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+                maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
               }}
             >
               <motion.div

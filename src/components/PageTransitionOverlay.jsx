@@ -53,7 +53,7 @@ export default function PageTransitionOverlay() {
       {active && (
         <motion.div
           key="page-transition-overlay"
-          className="fixed inset-0 pointer-events-auto z-[9999999] bg-white flex flex-col items-center justify-center overflow-hidden"
+          className="fixed inset-0 pointer-events-auto z-[9999999] bg-white flex flex-col items-center justify-center overflow-hidden border-2 sm:border-[3px] border-black box-border"
           initial={{ opacity: 1 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -68,7 +68,7 @@ export default function PageTransitionOverlay() {
             />
           </div>
 
-          {/* Pure Black GPU Hardware-Accelerated Loading Line (0% -> 70%) */}
+          {/* Pure Black GPU Hardware-Accelerated Loading Line (0% -> 85%) */}
           <div className="fixed bottom-12 sm:bottom-16 left-0 right-0 w-full h-[5px] pointer-events-none z-[9999999]">
             <div className="w-full h-full bg-[#000000] origin-left animate-load-progress shadow-md" />
           </div>
@@ -79,7 +79,7 @@ export default function PageTransitionOverlay() {
                 transform: scaleX(0);
               }
               100% {
-                transform: scaleX(0.7);
+                transform: scaleX(0.85);
               }
             }
             .animate-load-progress {

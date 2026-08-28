@@ -203,25 +203,6 @@ const Careers = () => {
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1 w-full max-w-xl">
-              {[
-                { icon: TrendingUp, text: "Fast Career Growth" },
-                { icon: Globe, text: "Remote & Hybrid Flex" },
-                { icon: Zap, text: "Creative Freedom" },
-                { icon: Users, text: "Supportive Team Vibe" }
-              ].map((perk, idx) => {
-                const IconComponent = perk.icon;
-                return (
-                  <span
-                    key={idx}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white text-[#111111] border border-white/90 shadow-md text-xs font-extrabold tracking-tight hover:bg-neutral-100 transition-all duration-300"
-                  >
-                    <IconComponent className="w-3.5 h-3.5 text-[#111111]" />
-                    <span>{perk.text}</span>
-                  </span>
-                );
-              })}
-            </div>
           </div>
         }
         media={

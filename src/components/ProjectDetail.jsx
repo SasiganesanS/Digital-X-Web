@@ -165,18 +165,6 @@ const ProjectDetail = () => {
                     <span>Request Similar Project</span>
                   </button>
                 </div>
-
-                {/* Deliverables Badges — Sleek Dark Glassmorphism Pills */}
-                <div className="flex flex-wrap gap-2.5">
-                  {project.services.map((svc, i) => (
-                    <span
-                      key={i}
-                      className="px-3.5 py-1.5 rounded-xl border border-white/15 bg-white/10 backdrop-blur-md text-white hover:text-[#E31D2E] hover:border-[#E31D2E]/50 text-xs font-bold uppercase tracking-wider transition-all duration-300 font-sans"
-                    >
-                      {svc}
-                    </span>
-                  ))}
-                </div>
               </motion.div>
 
               {/* Right Column: Project Media Card */}

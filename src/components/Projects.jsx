@@ -114,7 +114,7 @@ function ProjectShowcase({ projectImages, imageIndex }) {
       initial={{ opacity: 0, scale: 0.95, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full max-w-lg mx-auto lg:max-w-none perspective-[1000px] select-none"
+      className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[450px] mx-auto perspective-[1000px] select-none"
     >
       <div
         onMouseMove={handleMouseMove}
@@ -127,7 +127,7 @@ function ProjectShowcase({ projectImages, imageIndex }) {
         }}
       >
         {/* Outer Claymorphic Showcase Frame */}
-        <div className={`relative rounded-2xl p-3.5 sm:p-4 bg-white border border-white/90 shadow-2xl transition-all duration-500 overflow-hidden ${
+        <div className={`relative rounded-2xl p-2 sm:p-2.5 bg-white border border-white/90 shadow-2xl transition-all duration-500 overflow-hidden ${
           isHovered ? "shadow-[0_25px_60px_rgba(0,0,0,0.15)] bg-white" : ""
         }`}>
           {/* Inner Light Highlight */}
@@ -321,18 +321,6 @@ const Projects = () => {
               <ProjectCounter targetNum="8" suffix="+" label="Brands Supported" delay={0.1} />
               <ProjectCounter targetNum="90" suffix="%+" label="Client Retention" delay={0.2} />
               <ProjectCounter targetNum="1.5" suffix="+" label="Years Experience" delay={0.3} />
-            </div>
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-1 w-full">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white border border-white/90 text-[#111111] shadow-md">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#E31D2E] animate-pulse" />
-                <span className="text-[11px] font-black uppercase tracking-wider">
-                  Proven Results & Scalable Performance
-                </span>
-              </div>
-              <span className="text-[11px] font-extrabold text-[#111111] flex items-center gap-2 bg-white px-4 py-2 rounded-xl border border-white/90 shadow-md">
-                <span className="w-2.5 h-2.5 rounded-full bg-[#10B981] animate-pulse" />
-                <span>Crafting Scalable Digital Ecosystems</span>
-              </span>
             </div>
           </div>
         }

@@ -122,18 +122,6 @@ const ProjectCaseStudy = () => {
                 <p className="text-neutral-300 text-base sm:text-lg font-medium leading-relaxed mb-6 max-w-2xl font-sans">
                   {project.description}
                 </p>
-
-                {/* Service Badges — Sleek Dark Glassmorphism Pills */}
-                <div className="flex flex-wrap gap-2.5">
-                  {project.services.map((svc, i) => (
-                    <span
-                      key={i}
-                      className="px-3.5 py-1.5 rounded-xl border border-white/15 bg-white/10 backdrop-blur-md text-white hover:text-[#E31D2E] hover:border-[#E31D2E]/50 text-xs font-bold uppercase tracking-wider transition-all duration-300"
-                    >
-                      {svc}
-                    </span>
-                  ))}
-                </div>
               </motion.div>
 
               {/* Right Column: High-Impact Showcase Frame */}

@@ -977,19 +977,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
               <span className="font-inlander text-[13px] xs:text-[15px] sm:text-[20px] lg:text-[22px] font-black text-[#111111] leading-none tracking-[0.01em] uppercase whitespace-nowrap">
                 PRASKLA DIGITAL
               </span>
-              <motion.div
-                animate={
-                  isSparkAnimating
-                    ? {
-                        scale: [1, 1.08, 1],
-                        rotate: [0, 2, -2, 0],
-                      }
-                    : { scale: 1, rotate: 0 }
-                }
-                transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
-              >
-                <BrandX className="text-[26px] xs:text-[32px] sm:text-[46px] lg:text-[52px] leading-none shrink-0 text-[#E31D2E] -mt-1 sm:-mt-2 -ml-0.5 sm:-ml-1.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
-              </motion.div>
+              <BrandX className="text-[26px] xs:text-[32px] sm:text-[46px] lg:text-[52px] leading-none shrink-0 text-[#E31D2E] -mt-1 sm:-mt-2 -ml-0.5 sm:-ml-1.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
             </div>
             <div className="hidden xs:block">
               <AnimatedBrandTagline />
