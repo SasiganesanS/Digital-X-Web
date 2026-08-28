@@ -77,13 +77,13 @@ const Careers = () => {
   const filterOptions = useMemo(
     () => ({
       role: [
-        "Lead Quality Executive",
         "Jr. Video Editor / Motion Graphic Designer",
-        "SEO Specialist",
-        "Social Media Executive",
+        "Videographer / Photographer",
+        "Lead Quality Executive",
         "Client Acquisition Executive",
-        "Videography/Photography",
-        "Content Creator",
+        "SEO & Performance Marketing Analyst",
+        "Social Media Executive",
+        "Content Creator & Strategist",
       ],
       department: ["Engineering", "Design", "Marketing", "VISCOM", "Sales", "Quality"],
       type: ["Full-time Intern", "Internship", "Part-time", "Contract"],

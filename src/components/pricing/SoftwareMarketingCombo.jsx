@@ -374,7 +374,7 @@ const SoftwareMarketingCombo = () => {
         {/* Comparison View */}
         {activeTab === "compare" && (
           <div className="bg-white rounded-2xl shadow-lg p-4 md:p-8 overflow-x-auto">
-            <div className="min-w-[800px]">
+            <div className="min-w-[650px] sm:min-w-[800px]">
               <table className="w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>

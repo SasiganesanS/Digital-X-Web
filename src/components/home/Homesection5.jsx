@@ -139,41 +139,32 @@ const Homesection5 = () => {
         </motion.div>
 
         {/* New Slider Layout */}
-        <div className="relative min-h-[400px]">
+        <div className="relative min-h-[380px] sm:min-h-[400px]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 items-center">
 
             {/* Left Side: Text Content */}
-            <div className="relative flex flex-col justify-center h-[350px] md:h-[400px]">
+            <div className="relative flex flex-col justify-between min-h-[300px] sm:min-h-[340px] md:min-h-[380px] py-2">
               <QuoteIcon />
-              {/* Animated Quote */}
-              <AnimatePresence initial={false} custom={direction}>
-                <motion.p
-                  key={page}
-                  custom={direction}
-                  variants={textVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  className="absolute text-xl md:text-2xl italic text-gray-700 leading-relaxed"
-                >
-                  "{review.review}"
-                </motion.p>
-              </AnimatePresence>
-
-              {/* Animated Author */}
-              <div className="absolute bottom-0 left-0">
-                <AnimatePresence initial={false} custom={direction}>
+              {/* Animated Quote & Author */}
+              <div className="relative flex-1 flex flex-col justify-between pt-2 pb-2">
+                <AnimatePresence mode="wait" initial={false} custom={direction}>
                   <motion.div
-                    key={page + "author"} // Unique key for author
+                    key={page}
                     custom={direction}
                     variants={textVariants}
                     initial="enter"
                     animate="center"
                     exit="exit"
-                    transition={{ delay: 0.1 }} // Stagger author animation
+                    className="flex flex-col justify-between space-y-6"
                   >
-                    <h3 className="text-xl font-bold text-[#301045]">{review.name}</h3>
-                    <p className="text-md font-medium text-[#301045]/70">{review.role}</p>
+                    <p className="text-base sm:text-lg md:text-xl italic text-gray-700 leading-relaxed font-medium">
+                      "{review.review}"
+                    </p>
+
+                    <div className="pt-2">
+                      <h3 className="text-lg sm:text-xl font-bold text-[#301045]">{review.name}</h3>
+                      <p className="text-sm font-medium text-[#301045]/70">{review.role}</p>
+                    </div>
                   </motion.div>
                 </AnimatePresence>
               </div>

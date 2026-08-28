@@ -21,7 +21,7 @@ export const COLLABORATORS_DATA = [
     category: "content-creators",
     categoryLabel: "Content Creator",
     image: naveenImg,
-    shortDescription: "Creative content creator specializing in social media campaigns, branded content, product storytelling, and short-form video concepts.",
+    shortDescription: "Creative content creator specializing in social media campaigns, branded content, and short-form video concepts.",
     bio: "Naveen is an experienced content creator working in partnership with Praskla DigitalX to deliver engaging social media stories, high-converting video concepts, and brand storytelling. Through Praskla DigitalX's production pipeline, Naveen helps brands connect authentically with their audiences through creative visual concepts, product showcases, and viral Reels.",
     experience: "3+ Years",
     availability: "Available for selected projects",
@@ -51,7 +51,7 @@ export const COLLABORATORS_DATA = [
     category: "video-editors",
     categoryLabel: "Video Editor",
     image: hariImg,
-    shortDescription: "Video editor focused on polished short-form and long-form content for brands, campaigns, social media, and promotional videos.",
+    shortDescription: "Video editor focused on polished short-form and long-form content for brand campaigns and social media.",
     bio: "Hari is a high-precision video editing specialist collaborating with Praskla DigitalX on brand media production. With expertise in motion graphics, color grading, and dynamic fast-paced cuts, Hari transforms raw footage into cinematic brand stories that drive viewer retention and high engagement.",
     experience: "4+ Years",
     availability: "Available for selected projects",
@@ -81,7 +81,7 @@ export const COLLABORATORS_DATA = [
     category: "models",
     categoryLabel: "Model",
     image: kaviImg,
-    shortDescription: "Professional model available for fashion, lifestyle, product, promotional, and brand campaign shoots.",
+    shortDescription: "Professional model available for fashion, lifestyle, product showcases, and brand campaign shoots.",
     bio: "Kavi is a versatile commercial and fashion model represented in Praskla DigitalX's collaborator network. Kavi works alongside Praskla DigitalX's creative directors and photography team for brand lookbooks, e-commerce product shoots, lifestyle commercials, and promotional digital campaigns.",
     experience: "2+ Years",
     availability: "Available for selected projects",
@@ -107,11 +107,11 @@ export const COLLABORATORS_DATA = [
   {
     slug: "jogar",
     name: "Jogar",
-    role: "Freelance Creative Specialist",
+    role: "Creative Specialist",
     category: "freelancers",
     categoryLabel: "Creative Specialist",
     image: jogarImg,
-    shortDescription: "Independent creative professional supporting brands with flexible project-based creative and digital production requirements.",
+    shortDescription: "Independent creative professional supporting brands with flexible project-based digital production.",
     bio: "Jogar is a multidisciplinary creative specialist partner supporting Praskla DigitalX on high-impact digital design and campaign productions. Bringing versatile skills across creative direction, digital asset creation, and campaign support, Jogar enables agile execution for complex client projects.",
     experience: "3+ Years",
     availability: "Available for selected projects",
@@ -137,11 +137,11 @@ export const COLLABORATORS_DATA = [
   {
     slug: "rohan",
     name: "Rohan",
-    role: "Digital Influencer & Key Opinion Leader",
+    role: "Digital Influencer & KOL",
     category: "influencers",
     categoryLabel: "Influencer",
     image: sampleProj1,
-    shortDescription: "Lifestyle & tech influencer driving authentic audience engagement, brand partnerships, and promotional campaigns.",
+    shortDescription: "Lifestyle & tech influencer driving authentic audience engagement, brand partnerships, and campaigns.",
     bio: "Rohan collaborates with Praskla DigitalX to deliver high-converting influencer campaigns, sponsored content, and brand ambassadorships across major digital platforms.",
     experience: "4+ Years",
     availability: "Available for selected projects",
@@ -166,11 +166,11 @@ export const COLLABORATORS_DATA = [
   {
     slug: "siddharth",
     name: "Siddharth",
-    role: "Executive Producer & Strategy Director",
+    role: "Executive Producer & Director",
     category: "executives",
     categoryLabel: "Executive",
     image: sampleProj4,
-    shortDescription: "Senior executive director overseeing high-value media production, creative direction, and campaign strategy.",
+    shortDescription: "Senior executive director overseeing high-value media production, creative direction, and strategy.",
     bio: "Siddharth brings executive-level strategic leadership to complex brand productions, managing creative teams and enterprise campaign execution.",
     experience: "8+ Years",
     availability: "Available for selected projects",
@@ -215,6 +215,62 @@ export const COLLABORATORS_DATA = [
     portfolio: [
       { id: 1, title: "Organic Growth Case Study", category: "SEO", image: sampleProj8 },
       { id: 2, title: "Conversion Funnel Scale", category: "Growth", image: sampleProj2 }
+    ]
+  },
+  {
+    slug: "arjun",
+    name: "Arjun",
+    role: "Visual Artist & Illustrator",
+    category: "artists",
+    categoryLabel: "Artist",
+    image: sampleProj3,
+    shortDescription: "Digital artist and visual illustrator crafting unique brand artwork, concepts, and custom graphics.",
+    bio: "Arjun collaborates with Praskla DigitalX to deliver distinctive digital artwork, custom illustrations, and visual concept designs for high-impact brand campaigns.",
+    experience: "5+ Years",
+    availability: "Available for selected projects",
+    skills: [
+      "Digital Illustration",
+      "Visual Arts",
+      "Brand Concepts",
+      "Character Design",
+      "Creative Artwork"
+    ],
+    services: [
+      "Custom Brand Illustration",
+      "Digital Key Visual Art",
+      "Creative Concept Artwork"
+    ],
+    portfolio: [
+      { id: 1, title: "Key Visual Artwork", category: "Illustration", image: sampleProj3 },
+      { id: 2, title: "Brand Character Concept", category: "Art", image: sampleProj5 }
+    ]
+  },
+  {
+    slug: "priya",
+    name: "Priya",
+    role: "Celebrity & Brand Ambassador",
+    category: "celebrities",
+    categoryLabel: "Celebrity",
+    image: sampleProj7,
+    shortDescription: "Prominent media personality & celebrity brand ambassador driving premium brand reach & trust.",
+    bio: "Priya works with Praskla DigitalX on exclusive celebrity endorsements, high-profile commercial appearances, and major brand launch events.",
+    experience: "6+ Years",
+    availability: "Available for selected projects",
+    skills: [
+      "Celebrity Endorsements",
+      "Brand Ambassador",
+      "Media Appearances",
+      "Commercial Shoots",
+      "PR Events"
+    ],
+    services: [
+      "Celebrity Brand Endorsements",
+      "High-Profile Commercial Shoots",
+      "Exclusive Event Launch Appearances"
+    ],
+    portfolio: [
+      { id: 1, title: "Flagship Commercial Shoot", category: "Endorsement", image: sampleProj7 },
+      { id: 2, title: "PR Brand Launch Event", category: "Celebrity", image: sampleProj1 }
     ]
   }
 ];

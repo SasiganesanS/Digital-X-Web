@@ -179,8 +179,12 @@ const navStyles = `
 
 @media (max-width: 1024px) {
   .pill-nav-container {
-    width: calc(100% - 2rem);
-    top: 1.25rem;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 0 1rem;
+    height: 68px;
     justify-content: space-between;
   }
   .nav-brand-capsule {
@@ -189,7 +193,8 @@ const navStyles = `
     top: auto;
     transform: none;
     min-width: auto;
-    padding: 6px 16px;
+    padding: 0;
+    gap: 8px;
   }
   .nav-links-capsule {
     margin: 0;

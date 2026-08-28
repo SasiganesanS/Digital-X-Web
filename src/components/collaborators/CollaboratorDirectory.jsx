@@ -14,6 +14,8 @@ const CATEGORIES = [
   { id: "experts", label: "Specialists & Experts" },
   { id: "content-creators", label: "Content Creators" },
   { id: "models", label: "Models" },
+  { id: "artists", label: "Artists" },
+  { id: "celebrities", label: "Celebrities" },
   { id: "video-editors", label: "Video Editors" },
   { id: "freelancers", label: "Freelancers" },
 ];
@@ -26,7 +28,7 @@ const PROCESS_STEPS = [
   },
   {
     num: "02",
-    title: "We Match the Right Creative",
+    title: "Match the Right Creative",
     desc: "Our agency team evaluates the most suitable collaborator for your brand & project."
   },
   {
@@ -135,14 +137,14 @@ export default function CollaboratorDirectory() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {PROCESS_STEPS.map((step) => (
-              <div key={step.num} className="group flex flex-col items-start text-left relative">
+              <div key={step.num} className="group flex flex-col items-start text-left relative h-full">
                 <span className="text-3xl sm:text-4xl font-black text-[#E31D2E] mb-3">
                   {step.num}
                 </span>
-                <h4 className="text-lg font-black text-[#111111] mb-2 leading-snug">
+                <h4 className="text-base sm:text-lg font-black text-[#111111] mb-2 leading-snug">
                   {step.title}
                 </h4>
-                <p className="text-xs sm:text-sm text-neutral-600 font-medium leading-relaxed">
+                <p className="text-xs sm:text-sm text-neutral-600 font-medium leading-relaxed min-h-[3.25rem]">
                   {step.desc}
                 </p>
               </div>

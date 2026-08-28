@@ -38,12 +38,12 @@ export default function CollaboratorCard({ collaborator }) {
           <h3 className="text-lg sm:text-xl font-black text-[#111111] tracking-tight leading-snug group-hover:text-black transition-colors duration-300 mb-0.5">
             {collaborator.name}
           </h3>
-          <p className="text-[11px] font-extrabold text-neutral-500 tracking-wider uppercase mb-2">
+          <p className="text-[11px] font-extrabold text-neutral-500 tracking-wider uppercase mb-2.5 block">
             {collaborator.role}
           </p>
 
           {/* Full Short Description */}
-          <p className="text-neutral-600 text-xs font-medium leading-relaxed mb-4">
+          <p className="text-neutral-600 text-xs font-medium leading-relaxed mb-4 min-h-[3.6rem]">
             {collaborator.shortDescription}
           </p>
         </div>

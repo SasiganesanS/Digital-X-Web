@@ -26,19 +26,18 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
         id: 1,
         title: "Jr. Video Editor / Motion Graphic Designer",
         description:
-          "Bring our brand stories to life through compelling edits and motion graphics. Work on reels, brand videos, and campaign content for a range of clients.",
+          "Bring our brand stories to life through compelling video edits and motion graphics. Create engaging reels, promo videos, and campaign content for diverse clients.",
         location: "On-site",
-        type: "Full-time",
+        type: "Full-time Intern",
         role: "Jr. Video Editor / Motion Graphic Designer",
         department: "VISCOM",
         level: "Entry Level",
         skills: [
-          "Adobe Premiere Pro",
+          "Adobe Premiere",
           "After Effects",
           "CapCut",
           "Motion Graphics",
           "Video Editing",
-          "Designer",
         ],
         requirements: [
           "Hands-on experience with Premiere Pro and After Effects",
@@ -47,19 +46,41 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
         ],
       },
       {
+        id: 7,
+        title: "Videographer / Photographer",
+        description:
+          "Capture high-quality photo and video content for brand shoots, events, and ad campaigns. Collaborate on set to bring creative concepts to life with technical precision.",
+        location: "On-site",
+        type: "Full-time Intern",
+        role: "Videographer / Photographer",
+        department: "VISCOM",
+        level: "Entry Level",
+        skills: [
+          "DSLR Camera",
+          "Lightroom",
+          "Photoshop",
+          "Cinematography",
+          "Photo Editing",
+        ],
+        requirements: [
+          "Solid understanding of camera equipment, lighting, and composition",
+          "Portfolio showcasing photography and/or videography work",
+          "Willingness to travel for shoots when required",
+        ],
+      },
+      {
         id: 2,
         title: "Lead Quality Executive",
         description:
-          "Ensure the quality and accuracy of leads generated through digital marketing campaigns. Monitor lead data, identify invalid or low-quality leads, coordinate with marketing and sales teams, and maintain consistent lead quality standards.",
+          "Audit and verify the accuracy of leads generated through digital marketing campaigns. Identify low-quality data and maintain strict lead quality standards.",
         location: "Remote",
-        type: "Full-time",
+        type: "Full-time Intern",
         role: "Lead Quality Executive",
         department: "Quality",
         level: "Mid Level",
         skills: [
-          "Lead Quality",
           "Lead Validation",
-          "CRM",
+          "CRM Systems",
           "Data Analysis",
           "Digital Marketing",
           "Quality Control",
@@ -71,22 +92,44 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
         ],
       },
       {
-        id: 4,
-        title: "SEO & Performance Marketing Specialist",
+        id: 6,
+        title: "Client Acquisition Executive",
         description:
-          "Lead search engine optimization strategies, conduct technical SEO audits, and optimize organic performance to drive scalable traffic and leads.",
+          "Drive new business growth by identifying, pitching, and onboarding target clients. Build lasting brand relationships and expand our agency portfolio.",
+        location: "On-site",
+        type: "Full-time Intern",
+        role: "Client Acquisition Executive",
+        department: "Sales",
+        level: "Entry Level",
+        skills: [
+          "Lead Generation",
+          "Cold Outreach",
+          "CRM Systems",
+          "Sales Pitching",
+          "Client Pitching",
+        ],
+        requirements: [
+          "Strong communication and interpersonal skills",
+          "Comfortable with cold outreach and client pitching",
+          "Prior experience in sales or business development is a plus",
+        ],
+      },
+      {
+        id: 4,
+        title: "SEO & Performance Marketing Analyst",
+        description:
+          "Lead search engine optimization strategies, conduct technical SEO audits, and optimize organic performance to drive scalable traffic, rankings, and lead growth.",
         location: "Hybrid",
-        type: "Full-time",
-        role: "SEO Specialist",
+        type: "Full-time Intern",
+        role: "SEO & Performance Marketing Analyst",
         department: "Marketing",
         level: "Mid Level",
         skills: [
-          "SEO",
-          "Marketing",
-          "Google Search Console",
+          "SEO Strategy",
+          "Google Search",
           "Google Analytics",
-          "Digital Marketing",
           "Keyword Research",
+          "SEM & Ads",
         ],
         requirements: [
           "Proven track record of improving organic search rankings",
@@ -98,19 +141,18 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
         id: 5,
         title: "Social Media Executive",
         description:
-          "Manage social media channels, create engaging campaign posts, analyze engagement metrics, and track digital marketing trends.",
+          "Manage social media channels, craft engaging campaign posts, analyze performance metrics, and stay ahead of emerging digital marketing trends for client growth.",
         location: "Hybrid",
         type: "Internship",
         role: "Social Media Executive",
         department: "Marketing",
         level: "Intern",
         skills: [
-          "Marketing",
-          "Meta Business Suite",
-          "Canva",
+          "Meta Suite",
+          "Canva Pro",
           "Content Planning",
-          "Instagram Marketing",
-          "Social Media Strategy",
+          "Instagram Growth",
+          "Social Strategy",
         ],
         requirements: [
           "Active understanding of social media platforms and trends",
@@ -119,69 +161,21 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
         ],
       },
       {
-        id: 6,
-        title: "Client Acquisition Executive",
-        description:
-          "Drive new business growth by identifying, pitching, and onboarding clients. Build lasting relationships and help expand our client portfolio.",
-        location: "On-site",
-        type: "Full-time",
-        role: "Client Acquisition Executive",
-        department: "Sales",
-        level: "Entry Level",
-        skills: [
-          "Lead Generation",
-          "Cold Calling",
-          "CRM",
-          "Sales Pitching",
-          "Client Communication",
-        ],
-        requirements: [
-          "Strong communication and interpersonal skills",
-          "Comfortable with cold outreach and client pitching",
-          "Prior experience in sales or business development is a plus",
-        ],
-      },
-      {
-        id: 7,
-        title: "Videography / Photography Specialist",
-        description:
-          "Capture high-quality photo and video content for brand shoots, events, and campaigns. Collaborate closely with the creative team to bring concepts to life on set.",
-        location: "On-site",
-        type: "Full-time",
-        role: "Videography/Photography",
-        department: "VISCOM",
-        level: "Entry Level",
-        skills: [
-          "DSLR Camera",
-          "Adobe Lightroom",
-          "Adobe Photoshop",
-          "Cinematography",
-          "Photo Editing",
-          "Photography",
-        ],
-        requirements: [
-          "Solid understanding of camera equipment, lighting, and composition",
-          "Portfolio showcasing photography and/or videography work",
-          "Willingness to travel for shoots when required",
-        ],
-      },
-      {
         id: 8,
         title: "Content Creator & Strategist",
         description:
-          "Ideate and create engaging content for brand and client social channels, including short-form video, captions, and campaign concepts.",
+          "Ideate and produce compelling content for brand channels, including short-form video scripts, caption copy, and creative campaign concepts.",
         location: "Hybrid",
         type: "Internship",
-        role: "Content Creator",
+        role: "Content Creator & Strategist",
         department: "Marketing",
         level: "Intern",
         skills: [
           "Copywriting",
-          "Canva",
-          "Content Creation",
+          "Canva Pro",
+          "Content Strategy",
           "Storytelling",
-          "Branding",
-          "Marketing",
+          "Brand Marketing",
         ],
         requirements: [
           "A creative eye and strong storytelling instinct",
@@ -224,7 +218,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
       const matchesType =
         !filters.type ||
         job.type.toLowerCase() === filters.type.toLowerCase() ||
-        (filters.type.toLowerCase() === "full-time intern" && job.type.toLowerCase() === "full-time");
+        (filters.type.toLowerCase() === "full-time intern" && job.type.toLowerCase().includes("full-time"));
 
       const matchesLevel =
         !filters.level ||
@@ -334,27 +328,11 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
     <>
       <div ref={containerRef} className="bg-transparent py-4 sm:py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-          {/* Dynamic Animated Job Count Header */}
-          <div className="flex items-center justify-between mb-6 sm:mb-8 pb-4 border-b border-white/10">
-            <div className="flex items-center gap-3">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75" />
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-white" />
-              </span>
-              <span className="text-white text-base sm:text-lg font-bold tracking-tight flex items-center gap-2">
-                Showing{" "}
-                <motion.span
-                  key={jobs.length}
-                  initial={{ opacity: 0, y: -8, scale: 0.8 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                  className="inline-block px-2.5 py-0.5 rounded-xl bg-white/15 text-white border border-white/25 font-black shadow-xs"
-                >
-                  {jobs.length}
-                </motion.span>{" "}
-                {jobs.length === 1 ? "Opportunity" : "Opportunities"}
-              </span>
-            </div>
+          {/* Centered Premium Section Header */}
+          <div className="flex flex-col items-center justify-center mb-8 sm:mb-10 text-center">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight">
+              Open <span className="text-[#E31D2E]">Opportunities</span>
+            </h2>
           </div>
 
           {jobs.length === 0 ? (
@@ -389,23 +367,21 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                     transition={{ duration: 0.4, delay: index * 0.06, ease: "easeOut" }}
                     whileHover={{ y: -6 }}
                     onClick={() => handleJobClick(job)}
-                    className="group relative rounded-2xl bg-white border border-neutral-200/80 p-5 sm:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-black/20 transition-all duration-300 flex flex-col justify-between h-full cursor-pointer min-h-[300px]"
+                    className="group relative rounded-2xl bg-white border border-neutral-200/80 p-5 sm:p-6 shadow-[0_8px_30px_rgba(0,0,0,0.04)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] hover:border-black/20 transition-all duration-300 flex flex-col justify-between h-full cursor-pointer box-border"
                   >
-                    <div>
+                    <div className="flex flex-col flex-1">
                       {/* 1. Header: Department Badge & Apply Action */}
                       <div className="flex items-center justify-between gap-3 mb-3">
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono text-[10px] font-black text-[#111111] tracking-wider uppercase bg-neutral-100 px-2.5 py-1 rounded-lg border border-neutral-200/80">
-                            {job.department}
-                          </span>
-                        </div>
+                        <span className="font-mono text-[10px] font-black text-[#111111] tracking-wider uppercase bg-neutral-100 px-2.5 py-1 rounded-lg border border-neutral-200/80">
+                          {job.department}
+                        </span>
                         <button
                           type="button"
                           onClick={(e) => {
                             e.stopPropagation();
                             handleJobClick(job);
                           }}
-                          className="px-3.5 py-1.5 rounded-xl bg-[#E31D2E] text-white font-black text-[10px] uppercase tracking-wider flex items-center gap-1 shrink-0 shadow-2xs hover:bg-[#c91827] hover:scale-105 transition-all duration-300 cursor-pointer self-start"
+                          className="px-3.5 py-1.5 rounded-xl bg-[#E31D2E] text-white font-black text-[10px] uppercase tracking-wider flex items-center gap-1 shrink-0 shadow-2xs hover:bg-[#c91827] hover:scale-105 transition-all duration-300 cursor-pointer"
                           aria-label={`Apply for ${job.title}`}
                         >
                           <span>Apply</span>
@@ -413,12 +389,13 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                         </button>
                       </div>
 
-                      <h3 className="text-base sm:text-lg font-black text-[#111111] leading-snug tracking-tight mb-2">
-                        {job.title}
+                      {/* 2. Job Title — Equalized Min Height */}
+                      <h3 className="text-base sm:text-lg font-black text-[#111111] leading-snug tracking-tight mb-2.5 min-h-[3rem] flex items-center">
+                        <span>{job.title}</span>
                       </h3>
 
-                      {/* 2. Metadata Chips (Location, Type, Level) */}
-                      <div className="flex items-center gap-2 flex-wrap mb-3.5 mt-2">
+                      {/* 3. Metadata Chips (Location, Type, Level) — Equalized Min Height */}
+                      <div className="flex items-center gap-2 flex-wrap mb-3.5 min-h-[2rem]">
                         <div className="flex items-center gap-1 border border-neutral-200/80 bg-neutral-50 rounded-xl px-2.5 py-1 shadow-2xs shrink-0">
                           <FiMapPin className="text-neutral-500 w-3 h-3" />
                           <span className="text-neutral-700 font-bold text-[11px] whitespace-nowrap">
@@ -441,7 +418,7 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                         )}
                       </div>
 
-                      {/* 3. Short Description */}
+                      {/* 4. Short Description */}
                       <div className="mb-4">
                         <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed font-medium">
                           {job.description}
@@ -449,8 +426,8 @@ function JobListing({ searchQuery = "", filters = {}, onSelectJob, onClearFilter
                       </div>
                     </div>
 
-                    {/* 4. Skill / Tech Stack Chips */}
-                    <div className="pt-3 border-t border-neutral-100 flex flex-wrap gap-1.5 items-center">
+                    {/* 5. Skill / Tech Stack Chips — Fixed Top Border Alignment */}
+                    <div className="pt-3 border-t border-neutral-100 flex flex-wrap gap-1.5 items-center min-h-[4.25rem] content-start">
                       {(job?.skills || []).map((skill, idx) => (
                         <span
                           key={idx}

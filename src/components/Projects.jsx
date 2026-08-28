@@ -66,7 +66,7 @@ function ProjectCounter({ targetNum, suffix = "+", label, delay = 0 }) {
       animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 15, scale: 0.95 }}
       transition={{ duration: 0.6, delay: delay * 0.3, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -5, scale: 1.02 }}
-      className="clay-card relative flex flex-col items-start p-3.5 px-4 sm:px-5 rounded-2xl border border-white/90 shadow-xl bg-white hover:bg-white cursor-default group transition-all duration-300 min-w-[120px] sm:min-w-[135px]"
+      className="clay-card relative flex flex-col items-start p-3.5 px-4 sm:px-5 rounded-2xl border border-white/90 shadow-xl bg-white hover:bg-white cursor-default group transition-all duration-300 w-full min-w-0"
     >
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/70 via-transparent to-transparent pointer-events-none" />
 

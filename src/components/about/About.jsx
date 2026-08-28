@@ -484,7 +484,7 @@ const About = () => {
               </div>
 
               {/* Right side capability pillar grid */}
-              <div className="lg:col-span-5 grid grid-cols-2 gap-3.5">
+              <div className="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 {[
                   {
                     icon: Target,
@@ -633,24 +633,26 @@ const About = () => {
       <div className="relative py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent">
         <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="clay-card p-8 md:p-12 rounded-2xl relative overflow-hidden group text-[#111111] bg-white border border-white/90 shadow-2xl"
+            transition={{ duration: 0.6 }}
+            className="flex flex-col items-center justify-center text-center"
           >
-            <h2 className="text-3xl md:text-4xl font-black text-[#111111] mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mb-4 leading-tight tracking-tight">
               Ready to Transform <br />
               <span className="text-[#E31D2E]">Your Digital Presence?</span>
             </h2>
-            <p className="text-[#575757] text-base md:text-lg mb-10 max-w-2xl mx-auto font-medium">
+            <p className="text-neutral-300 text-base md:text-lg mb-8 max-w-2xl mx-auto font-medium leading-relaxed">
               From mindful strategy to high-performance execution, we bring the tools and expertise to scale your brand effectively.
             </p>
 
             <Link
               to="/services"
-              className="primary-btn inline-flex items-center gap-3 text-white px-8 py-4 rounded-xl font-bold text-lg"
+              className="px-8 py-4 rounded-xl border border-white/80 bg-white text-[#111111] hover:bg-neutral-100 font-black text-xs sm:text-sm uppercase tracking-wider transition-all inline-flex items-center justify-center gap-2 shadow-md"
             >
-              Explore Our Expertise
+              <span>Explore Our Expertise</span>
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </motion.div>
         </div>

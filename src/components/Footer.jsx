@@ -113,10 +113,10 @@ const Footer = ({ setShowContactForm }) => {
             <div className="flex flex-col gap-2.5 text-xs sm:text-sm font-semibold text-[#9CA3AF] max-w-sm w-full sm:w-auto font-sans">
               <a
                 href="mailto:marketing@prasklatechnology.com"
-                className="flex items-center gap-2.5 hover:text-white transition-colors group text-left"
+                className="flex items-center gap-2.5 hover:text-white transition-colors group text-left min-w-0"
               >
                 <FiMail className="w-4 h-4 text-[#FF2B2B] shrink-0" />
-                <span>marketing@prasklatechnology.com</span>
+                <span className="break-all sm:break-normal">marketing@prasklatechnology.com</span>
               </a>
               <a
                 href="tel:+919566880740"

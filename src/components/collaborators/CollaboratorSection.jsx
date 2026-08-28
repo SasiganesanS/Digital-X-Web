@@ -87,7 +87,7 @@ export default function CollaboratorSection() {
                         <h4 className="text-sm font-black text-[#111111] group-hover:text-black transition-colors leading-tight">
                           {c.name}
                         </h4>
-                        <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider line-clamp-2 block leading-tight mt-0.5">
+                        <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-wider line-clamp-1 truncate block leading-tight mt-0.5">
                           {c.role}
                         </span>
                       </div>
