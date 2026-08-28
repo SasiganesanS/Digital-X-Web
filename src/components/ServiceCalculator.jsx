@@ -296,7 +296,7 @@ function HeroShowcase({ ourServicesImg }) {
           isHovered ? "shadow-[0_30px_70px_rgba(0,0,0,0.18)] bg-white" : ""
         }`}>
           {/* Image Container with Parallax Effect */}
-          <div className="relative w-full rounded-2xl overflow-hidden aspect-[16/10] sm:aspect-[16/9.5] min-h-[320px] sm:min-h-[400px] lg:min-h-[440px] bg-white border border-neutral-200/60">
+          <div className="relative w-full rounded-2xl overflow-hidden aspect-[16/10] sm:aspect-[16/9.5] min-h-[220px] sm:min-h-[400px] lg:min-h-[440px] bg-white border border-neutral-200/60">
             <img
               src={ourServicesImg}
               alt="Digital Marketing Strategy"
@@ -391,20 +391,26 @@ export default function ServiceCalculator() {
         halfWidthRef.current = setWidth;
 
         // Initialize x position so preceding set pre-fills the left viewport edge
-        if (x.get() === 0) {
-          const container = track.parentElement;
-          if (container) {
-            const containerWidth = container.offsetWidth;
-            const cardWidth = first.offsetWidth || step;
-            const centerOffset = (containerWidth - cardWidth) / 2;
+        const container = track.parentElement;
+        if (container) {
+          const containerWidth = container.offsetWidth;
+          const cardWidth = first.offsetWidth || step;
+          const centerOffset = (containerWidth - cardWidth) / 2;
+          if (x.get() === 0) {
             x.set(centerOffset - setWidth);
           }
         }
       }
     };
     measure();
+    const t1 = setTimeout(measure, 150);
+    const t2 = setTimeout(measure, 600);
     window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+      window.removeEventListener("resize", measure);
+    };
   }, []);
 
   // Click & Drag physics refs & state
