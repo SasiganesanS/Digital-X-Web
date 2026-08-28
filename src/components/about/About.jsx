@@ -190,20 +190,20 @@ const About = () => {
         className="group relative rounded-2xl p-6 sm:p-7 overflow-hidden border border-neutral-200 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.12)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.18)] transition-all duration-500"
       >
         {/* Header Row: Logo Orb + Title + Pill Badge */}
-        <div className="flex items-center justify-between gap-4 mb-5">
-          <div className="flex items-center gap-3">
-            <div className="w-12 h-12 rounded-2xl bg-white border border-neutral-200 p-2 shadow-xs flex items-center justify-center flex-shrink-0 group-hover:rotate-6 transition-transform duration-500">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-5">
+          <div className="flex items-center gap-3 min-w-0">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white border border-neutral-200 p-2 shadow-xs flex items-center justify-center flex-shrink-0 group-hover:rotate-6 transition-transform duration-500">
               <img src={pyLogo} alt="Praskla Digital X" className="w-full h-full object-contain" />
             </div>
-            <div>
-              <h3 className="font-inlander text-sm font-black text-[#111111] flex items-center gap-1.5 leading-none">
-                PRASKLA DIGITAL <BrandX className="text-[26px] sm:text-[30px] leading-none shrink-0 text-[#E31D2E] -mt-1 -ml-1" />
+            <div className="min-w-0">
+              <h3 className="font-inlander text-xs sm:text-sm font-black text-[#111111] flex items-center gap-1.5 leading-none">
+                PRASKLA DIGITAL <BrandX className="text-[22px] sm:text-[30px] leading-none shrink-0 text-[#E31D2E] -mt-1 -ml-1" />
               </h3>
-              <p className="text-[10px] sm:text-[11px] font-semibold text-neutral-500 mt-0.5 whitespace-nowrap">A Mindful Marketing and Production Firm</p>
+              <p className="text-[10px] sm:text-[11px] font-semibold text-neutral-500 mt-0.5 truncate max-w-[210px] sm:max-w-none">A Mindful Marketing and Production Firm</p>
             </div>
           </div>
 
-          <span className="px-3 py-1 rounded-xl bg-neutral-100 border border-neutral-200/80 text-[10px] font-extrabold text-[#111111] uppercase tracking-wider flex items-center gap-1.5 flex-shrink-0">
+          <span className="px-2.5 py-1 rounded-xl bg-neutral-100 border border-neutral-200/80 text-[9px] sm:text-[10px] font-extrabold text-[#111111] uppercase tracking-wider flex items-center gap-1.5 shrink-0 self-start sm:self-auto">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E] animate-pulse" />
             Excellence
           </span>

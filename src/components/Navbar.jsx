@@ -660,6 +660,12 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
     let ticking = false;
 
     const updateNavbarVisibility = () => {
+      // On mobile screens, keep navbar stably pinned to prevent scroll flickering
+      if (window.innerWidth < 768) {
+        setIsVisible(true);
+        return;
+      }
+
       const currentScrollY = window.scrollY;
       const scrollDelta = currentScrollY - lastScrollY.current;
 
@@ -787,52 +793,62 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
     });
   };
 
-  const toggleMobileMenu = () => {
-    const newState = !isMobileMenuOpen;
-    setIsMobileMenuOpen(newState);
-
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
     const hamburger = hamburgerRef.current;
     const menu = mobileMenuRef.current;
 
     if (hamburger) {
       const lines = hamburger.querySelectorAll('.hamburger-line');
-      if (newState) {
-        gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease });
-        gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease });
-      } else {
-        gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease });
-        gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3, ease });
-      }
+      gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.25, ease });
+      gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.25, ease });
     }
 
     if (menu) {
-      if (newState) {
-        gsap.set(menu, { visibility: 'visible' });
-        gsap.fromTo(
-          menu,
-          { opacity: 0, y: 10, scaleY: 1 },
-          {
-            opacity: 1,
-            y: 0,
-            scaleY: 1,
-            duration: 0.3,
-            ease,
-            transformOrigin: 'top center'
-          }
-        );
-      } else {
-        gsap.to(menu, {
-          opacity: 0,
-          y: 10,
+      gsap.to(menu, {
+        opacity: 0,
+        y: 10,
+        scaleY: 1,
+        duration: 0.2,
+        ease,
+        transformOrigin: 'top center',
+        onComplete: () => {
+          gsap.set(menu, { visibility: 'hidden' });
+        }
+      });
+    }
+  };
+
+  const toggleMobileMenu = () => {
+    if (isMobileMenuOpen) {
+      closeMobileMenu();
+      return;
+    }
+
+    setIsMobileMenuOpen(true);
+    const hamburger = hamburgerRef.current;
+    const menu = mobileMenuRef.current;
+
+    if (hamburger) {
+      const lines = hamburger.querySelectorAll('.hamburger-line');
+      gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease });
+      gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease });
+    }
+
+    if (menu) {
+      gsap.set(menu, { visibility: 'visible' });
+      gsap.fromTo(
+        menu,
+        { opacity: 0, y: 10, scaleY: 1 },
+        {
+          opacity: 1,
+          y: 0,
           scaleY: 1,
-          duration: 0.2,
+          duration: 0.3,
           ease,
-          transformOrigin: 'top center',
-          onComplete: () => {
-            gsap.set(menu, { visibility: 'hidden' });
-          }
-        });
-      }
+          transformOrigin: 'top center'
+        }
+      );
     }
   };
 
@@ -1074,7 +1090,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                     <Link
                       to={item.href}
                       className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={closeMobileMenu}
                     >
                       {item.label}
                     </Link>
@@ -1082,7 +1098,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                     <a
                       href={item.href}
                       className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
-                      onClick={() => setIsMobileMenuOpen(false)}
+                      onClick={closeMobileMenu}
                     >
                       {item.label}
                     </a>
@@ -1093,7 +1109,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                 <button
                   type="button"
                   onClick={() => {
-                    setIsMobileMenuOpen(false);
+                    closeMobileMenu();
                     if (onOpenSearch) onOpenSearch();
                   }}
                   className="w-full flex items-center justify-between px-4 py-2 rounded-xl bg-[#FAFAFA] hover:bg-[#F4F4F4] text-[#111111] font-semibold text-sm transition-colors border border-gray-200/80"
