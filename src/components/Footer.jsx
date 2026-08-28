@@ -91,11 +91,11 @@ const Footer = ({ setShowContactForm }) => {
 
               {/* 2-line Text Column */}
               <div className="flex flex-col justify-center min-w-0">
-                <div className="flex items-center gap-1.5 leading-none">
+                <div className="flex items-center gap-1 sm:gap-1.5 leading-none">
                   <span className="font-inlander text-[17px] sm:text-[20px] lg:text-[22px] font-black text-white leading-none tracking-[0.01em] uppercase whitespace-nowrap">
                     PRASKLA DIGITAL
                   </span>
-                  <BrandX className="h-[23px] sm:h-[27px] lg:h-[30px] w-auto shrink-0 select-none text-[#FF2B2B] drop-shadow-[0_1px_4px_rgba(255,43,43,0.35)] translate-y-[2px]" />
+                  <BrandX className="text-[38px] sm:text-[46px] lg:text-[52px] leading-none shrink-0 text-[#FF2B2B] -mt-1.5 sm:-mt-2 -ml-1 sm:-ml-1.5 drop-shadow-[0_1px_4px_rgba(255,43,43,0.35)]" />
                 </div>
                 <span className="font-dingos text-[9px] sm:text-[10px] lg:text-[11px] font-bold text-[#FF2B2B] block tracking-tight leading-none whitespace-nowrap mt-1">
                   A Mindful Marketing and Production Firm
@@ -172,7 +172,7 @@ const Footer = ({ setShowContactForm }) => {
           <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-center md:text-left text-xs font-semibold text-[#9CA3AF] font-sans">
             <div className="flex flex-col items-center md:items-start justify-center text-center md:text-left">
               <span className="inline-flex items-center gap-1.5 justify-center md:justify-start">
-                © {new Date().getFullYear()} <span className="font-inlander font-bold">PRASKLA DIGITAL</span> <BrandX className="h-[15px] w-auto inline-block text-[#FF2B2B] translate-y-[1.5px]" />
+                © {new Date().getFullYear()} <span className="font-inlander font-bold">PRASKLA DIGITAL</span> <BrandX className="text-[34px] sm:text-[38px] font-pdx inline-block text-[#FF2B2B] -mt-1 -ml-1 translate-y-[2px]" />
               </span>
               <span className="text-[#9CA3AF] text-[11px] mt-0.5">
                 All rights reserved.

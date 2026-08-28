@@ -56,7 +56,7 @@ const AboutSection = () => {
             <motion.div variants={fadeUp} className="relative pl-3.5 sm:pl-5">
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#E31D2E] via-[#E31D2E]/60 to-transparent rounded-full" />
               <p className="text-[#111111] text-base sm:text-lg md:text-xl leading-relaxed font-semibold">
-                <span className="font-inlander font-bold">PRASKLA DIGITAL</span> <BrandX className="h-[1.1em] w-auto text-[#E31D2E] inline-block translate-y-[0.14em] -ml-0.5" /> is a mindful marketing and production firm built on the belief that true growth
+                <span className="font-inlander font-bold">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.1em] -ml-0.5" /> is a mindful marketing and production firm built on the belief that true growth
                 comes from <span className="text-[#E31D2E] font-black">clarity, creativity, and collaboration</span>.
                 We partner with businesses and personal brands to transform their ideas into
                 measurable digital success.

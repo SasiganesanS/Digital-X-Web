@@ -15,6 +15,7 @@ import mock2 from "../../assets/pricing/mock2.webp";
 import mock3 from "../../assets/pricing/mock3.webp";
 import mock4 from "../../assets/pricing/mock4.webp";
 import { sendPricingQuoteEmails } from '../../utils/emailService';
+import BrandX from '../common/BrandX';
 import LegalSpaceBackground from '../legal/LegalSpaceBackground';
 
 const EcommerceWebsitePricing = () => {
@@ -361,7 +362,7 @@ const EcommerceWebsitePricing = () => {
             For Small Businesses Just Starting Online
           </h3>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            At PRASKLA DIGITAL X, we make your first foray into e‑commerce simple and cost‑effective.
+            At <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.08em] -ml-0.5" />, we make your first foray into e‑commerce simple and cost‑effective.
             Our Basic / Starter Store gets you up and running quickly, with a clean, responsive online
             storefront that showcases your products and captures orders.
           </p>

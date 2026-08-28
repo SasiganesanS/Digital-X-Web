@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import SectionBadge from './common/SectionBadge';
+import BrandX from './common/BrandX';
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -340,7 +342,7 @@ export default function ProjectBriefModal({ isOpen, onClose, initialQuotationDat
                   Project Brief Received!
                 </h3>
                 <p className="text-neutral-600 text-base max-w-lg mb-4 leading-relaxed font-normal">
-                  Thank you for sharing your project requirements with PRASKLA DIGITAL X. We have successfully received your project brief.
+                  Thank you for sharing your project requirements with <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.08em] -ml-0.5" />. We have successfully received your project brief.
                 </p>
                 {applicationId && (
                   <div className="bg-[#FAF9F6] border border-neutral-200 px-6 py-4 rounded-2xl mb-6 text-center">

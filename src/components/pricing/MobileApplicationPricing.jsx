@@ -5,6 +5,7 @@ import mock2 from "../../assets/pricing/mock2.webp"
 import mock3 from "../../assets/pricing/mock3.webp"
 import mock4 from "../../assets/pricing/mock4.webp"
 import { sendPricingQuoteEmails } from '../../utils/emailService';
+import BrandX from '../common/BrandX';
 
 const MobileApplicationPricing = () => {
   const [showModal, setShowModal] = useState(false);
@@ -287,7 +288,7 @@ const MobileApplicationPricing = () => {
             Android/iOS Only
           </h3>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            At PRASKLA DIGITAL X, we understand that launching your first mobile app can feel overwhelming — that's why our Launch Plan is crafted to be a straightforward and cost-effective option, perfect for startups and MVPs. We're here to get your app into users' hands, quickly and confidently.
+            At <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.08em] -ml-0.5" />, we understand that launching your first mobile app can feel overwhelming — that's why our Launch Plan is crafted to be a straightforward and cost-effective option, perfect for startups and MVPs. We're here to get your app into users' hands, quickly and confidently.
           </p>
         </div>
 

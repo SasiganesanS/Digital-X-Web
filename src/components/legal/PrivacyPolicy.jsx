@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import HeroLayout from "../common/HeroLayout";
 import SectionBadge from "../common/SectionBadge";
+import BrandX from "../common/BrandX";
 import LegalSpaceBackground from "./LegalSpaceBackground";
 
 const PrivacyPolicy = () => {
@@ -171,7 +172,7 @@ const PrivacyPolicy = () => {
                     </h2>
                   </div>
                   <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-medium">
-                    PRASKLA DIGITAL X ("we", "us", "our") respects your privacy and is committed to protecting the personal information you share with us when visiting our website or using our digital agency services.
+                    <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.08em] -ml-0.5" /> ("we", "us", "our") respects your privacy and is committed to protecting the personal information you share with us when visiting our website or using our digital agency services.
                   </p>
                   <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-medium">
                     This Privacy Policy explains how we collect, use, disclose, and safeguard your information across all interaction points, including our web applications, client portals, and communication channels.

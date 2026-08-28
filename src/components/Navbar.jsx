@@ -931,7 +931,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
 
           {/* 2-line Text Column (PRASKLA DIGITAL + Animated Single-Line Tagline) */}
           <div className="flex flex-col justify-center min-w-0">
-            <div className="flex items-center gap-1.5 leading-none">
+            <div className="flex items-center gap-1 sm:gap-1.5 leading-none">
               <span className="font-inlander text-[17px] sm:text-[20px] lg:text-[22px] font-black text-[#111111] leading-none tracking-[0.01em] uppercase whitespace-nowrap">
                 PRASKLA DIGITAL
               </span>
@@ -946,7 +946,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                 }
                 transition={{ duration: 1.2, delay: 0.2, ease: "easeOut" }}
               >
-                <BrandX className="h-[23px] sm:h-[27px] lg:h-[30px] w-auto shrink-0 select-none text-[#E31D2E] translate-y-[2px] drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
+                <BrandX className="text-[38px] sm:text-[46px] lg:text-[52px] leading-none shrink-0 text-[#E31D2E] -mt-1.5 sm:-mt-2 -ml-1 sm:-ml-1.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
               </motion.div>
             </div>
             <AnimatedBrandTagline />

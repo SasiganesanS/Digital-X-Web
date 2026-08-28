@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import HeroLayout from "../common/HeroLayout";
 import SectionBadge from "../common/SectionBadge";
+import BrandX from "../common/BrandX";
 import LegalSpaceBackground from "./LegalSpaceBackground";
 
 const TermsAndConditions = () => {
@@ -169,7 +170,7 @@ const TermsAndConditions = () => {
                     </h2>
                   </div>
                   <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-medium">
-                    By accessing or using the website and digital services of PRASKLA DIGITAL X ("we", "us", "our"), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you should refrain from using our services.
+                    By accessing or using the website and digital services of <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.08em] -ml-0.5" /> ("we", "us", "our"), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you should refrain from using our services.
                   </p>
                 </motion.div>
 
@@ -190,7 +191,7 @@ const TermsAndConditions = () => {
                     </h2>
                   </div>
                   <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-medium">
-                    PRASKLA DIGITAL X provides digital marketing, web application development, branding, content creation, and creative collaborator coordination. Specific deliverables, timelines, and budgets are governed by individual project Statements of Work (SOW).
+                    <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.08em] -ml-0.5" /> provides digital marketing, web application development, branding, content creation, and creative collaborator coordination. Specific deliverables, timelines, and budgets are governed by individual project Statements of Work (SOW).
                   </p>
                 </motion.div>
 
@@ -211,7 +212,7 @@ const TermsAndConditions = () => {
                     </h2>
                   </div>
                   <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-medium">
-                    Upon full settlement of agreed invoices, clients receive ownership rights to custom visual deliverables and code written specifically for their engagement. PRASKLA DIGITAL X retains rights to pre-existing proprietary tools, frameworks, and unselected draft concepts.
+                    Upon full settlement of agreed invoices, clients receive ownership rights to custom visual deliverables and code written specifically for their engagement. <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.08em] -ml-0.5" /> retains rights to pre-existing proprietary tools, frameworks, and unselected draft concepts.
                   </p>
                 </motion.div>
 
@@ -274,7 +275,7 @@ const TermsAndConditions = () => {
                     </h2>
                   </div>
                   <p className="text-neutral-600 text-sm sm:text-base leading-relaxed font-medium">
-                    PRASKLA DIGITAL X will execute services with professional due care. Our maximum liability for any claims arising from an engagement shall not exceed the total fees paid by the client for the specific project phase giving rise to the claim.
+                    <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.08em] -ml-0.5" /> will execute services with professional due care. Our maximum liability for any claims arising from an engagement shall not exceed the total fees paid by the client for the specific project phase giving rise to the claim.
                   </p>
                 </motion.div>
 

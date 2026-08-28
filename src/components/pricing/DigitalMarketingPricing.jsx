@@ -13,6 +13,7 @@ import {
 import mock1 from "../../assets/pricing/mock1.webp";
 import mock2 from "../../assets/pricing/mock2.webp";
 import mock3 from "../../assets/pricing/mock3.webp";
+import BrandX from "../common/BrandX";
 import mock4 from "../../assets/pricing/mock4.webp";
 import { sendPricingQuoteEmails } from '../../utils/emailService';
 
@@ -377,7 +378,7 @@ const DigitalMarketingPricing = () => {
             For Small Businesses Starting Online
           </h3>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            At PRASKLA DIGITAL X, we know that getting started online should be simple and stress‑free.
+            At <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.08em] -ml-0.5" />, we know that getting started online should be simple and stress‑free.
             Our Basic / Spark Plan delivers essential digital marketing services so you can build your
             presence without breaking the bank.
           </p>

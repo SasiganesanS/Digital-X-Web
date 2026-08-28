@@ -15,6 +15,7 @@ import mock2 from "../../assets/pricing/mock2.webp";
 import mock3 from "../../assets/pricing/mock3.webp";
 import mock4 from "../../assets/pricing/mock4.webp";
 import { sendPricingQuoteEmails } from '../../utils/emailService';
+import BrandX from '../common/BrandX';
 import LegalSpaceBackground from '../legal/LegalSpaceBackground';
 
 const SoftwareDevelopmentPricing = () => {
@@ -379,7 +380,7 @@ const SoftwareDevelopmentPricing = () => {
             Simple Tools for Smooth Internal Operations
           </h3>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            At PRASKLA DIGITAL X, we know that even small tools can make a big impact. Our Basic / Spark Plan is
+            At <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.08em] -ml-0.5" />, we know that even small tools can make a big impact. Our Basic / Spark Plan is
             tailored for quick, reliable desktop applications that serve a focused internal purpose. Whether it's
             automating a repetitive task or simplifying a daily process, this plan delivers efficient functionality
             without the fluff.

@@ -17,6 +17,7 @@ import {
   Clock
 } from 'lucide-react';
 import usePreventScroll from '../hooks/usePreventScroll';
+import BrandX from './common/BrandX';
 import { sendJobApplicationEmails } from '../utils/emailService';
 
 const COUNTRIES = [
@@ -412,7 +413,7 @@ const JobApplication = ({ job, onClose }) => {
               <div>
                 <h3 className="text-xl font-bold text-[#111111]">Application Submitted Successfully</h3>
                 <p className="text-sm text-gray-500 mt-1 max-w-sm mx-auto leading-relaxed">
-                  Thank you for applying to PRASKLA DIGITAL X! We have received your application and resume, and our recruitment team will get back to you soon.
+                  Thank you for applying to <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.08em] -ml-0.5" />! We have received your application and resume, and our recruitment team will get back to you soon.
                 </p>
               </div>
               <button

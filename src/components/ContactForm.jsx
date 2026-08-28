@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { FaWhatsapp } from 'react-icons/fa6';
 import { sendContactFormEmails } from '../utils/emailService';
+import BrandX from './common/BrandX';
 
 const COUNTRIES = [
   { code: '+91', country: 'IN', flag: 'in', name: 'India', minLen: 10, maxLen: 10 },
@@ -403,7 +404,7 @@ const ContactForm = ({ isOpen, onClose }) => {
                 <div>
                   <h3 className="text-xl font-bold text-[#111111]">Message received!</h3>
                   <p className="text-sm text-gray-500 mt-2 max-w-xs mx-auto leading-relaxed">
-                    Thanks for contacting PRASKLA DIGITAL X. Our team will review your enquiry and get back to you shortly.
+                    Thanks for contacting <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.08em] -ml-0.5" />. Our team will review your enquiry and get back to you shortly.
                   </p>
                 </div>
                 <button

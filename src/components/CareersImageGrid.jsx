@@ -239,7 +239,7 @@ function TileCard({
           }`}>
             {labelInfo.sub === "Digital X" ? (
               <>
-                <span>Digital</span> <BrandX className="h-[11px] sm:h-[12px] w-auto text-[#E31D2E] translate-y-[1px] -mr-2 sm:-mr-2.5" />
+                <span>Digital</span> <BrandX className="text-[20px] sm:text-[22px] font-pdx text-[#E31D2E] inline-block -ml-0.5 -mt-0.5" />
               </>
             ) : (
               labelInfo.sub

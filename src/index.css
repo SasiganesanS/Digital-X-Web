@@ -13,6 +13,16 @@
   font-family: 'Dingos';
   src: local('Dingos'), local('Dingos-Bold');
 }
+@font-face {
+  font-family: 'PdxFont';
+  src: url('./assets/fonts/Pdx-Regular.otf') format('opentype'),
+       url('./assets/fonts/Pdx-Regular.ttf') format('truetype'),
+       url('/fonts/Pdx-Regular.otf') format('opentype'),
+       url('/fonts/Pdx-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ---------------- Centralized Inter Typography System ---------------- */
 :root {
@@ -89,6 +99,10 @@ html, body {
 
   .font-dingos {
     font-family: 'Dingos', 'Inter', sans-serif !important;
+  }
+
+  .font-pdx {
+    font-family: 'PdxFont', sans-serif !important;
   }
 
   .custom-scrollbar::-webkit-scrollbar {

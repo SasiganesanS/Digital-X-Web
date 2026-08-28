@@ -197,7 +197,7 @@ const About = () => {
             </div>
             <div>
               <h3 className="font-inlander text-sm font-black text-[#111111] flex items-center gap-1.5 leading-none">
-                PRASKLA DIGITAL <BrandX className="h-[18px] w-auto text-[#E31D2E] translate-y-[1px]" />
+                PRASKLA DIGITAL <BrandX className="text-[26px] sm:text-[30px] leading-none shrink-0 text-[#E31D2E] -mt-1 -ml-1" />
               </h3>
               <p className="text-[10px] sm:text-[11px] font-semibold text-neutral-500 mt-0.5 whitespace-nowrap">A Mindful Marketing and Production Firm</p>
             </div>
@@ -293,7 +293,7 @@ const About = () => {
         {/* Footer Bar */}
         <div className="mt-4 pt-3 border-t border-neutral-200/80 flex items-center justify-between text-[11px] text-neutral-500 font-bold uppercase tracking-wider">
           <span className="inline-flex items-center gap-1.5 font-inlander font-bold text-[#111111]">
-            PRASKLA DIGITAL <BrandX className="h-[15px] w-auto text-[#111111] translate-y-[1px]" />
+            PRASKLA DIGITAL <BrandX className="text-[22px] leading-none shrink-0 text-[#111111] -mt-0.5 -ml-0.5" />
           </span>
           <span className="text-[#111111]">Established Excellence</span>
         </div>
@@ -432,7 +432,7 @@ const About = () => {
 
                 {/* Paragraph */}
                 <p className="text-[#575757] text-base leading-relaxed font-normal">
-                  At PRASKLA DIGITAL<BrandX className="h-[1em] w-auto text-[#E31D2E] inline-block translate-y-[0.12em]" />, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
+                  At <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.1em] -ml-0.5" />, our mission is to deliver performance-driven marketing strategies and impactful brand experiences that accelerate visibility, credibility, and revenue growth. We are committed to transforming investments into measurable returns through continuous optimization, creative excellence, and transparent partnerships that prioritize shared success.
                 </p>
               </div>
 
@@ -473,7 +473,7 @@ const About = () => {
                 </h2>
 
                 <p className="text-[#575757] text-base sm:text-lg leading-relaxed font-medium mb-4">
-                  At PRASKLA DIGITAL <BrandX className="h-[1.05em] w-auto text-[#E31D2E] inline-block translate-y-[0.14em]" />, we bring together creative visual creators, copywriting experts,
+                  At <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.1em] -ml-0.5" />, we bring together creative visual creators, copywriting experts,
                   ad strategists, and performance analytics professionals.
                 </p>
 

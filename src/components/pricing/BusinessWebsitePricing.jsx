@@ -273,7 +273,7 @@ const BusinessWebsitePricing = () => {
             Portfolio's & Simple Static websites
           </h3>
           <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            At PRASKLA DIGITAL X, we understand that starting your online journey can feel
+            At <span className="font-inlander font-bold text-[#111111]">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.08em] -ml-0.5" />, we understand that starting your online journey can feel
             overwhelming — that's why our Basic Plan is designed to be an affordable, hassle-free
             option, perfect for personal and simple static sites. We're here to help you get
             online smoothly and confidently, right from day one.
