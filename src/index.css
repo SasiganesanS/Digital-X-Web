@@ -1059,3 +1059,26 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg {
     scroll-behavior: auto !important;
   }
 }
+
+/* ===================================================================
+   Cross-Device & Responsive Production Safeguards
+   =================================================================== */
+/* Global responsive media rules */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent accidental horizontal overflow globally on root wrapper */
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
+  box-sizing: border-box;
+}
+
+/* Mobile Touch Device Hover Fallbacks */
+@media (hover: none) {
+  .group:hover .group-hover\:scale-105 {
+    transform: none;
+  }
+}
