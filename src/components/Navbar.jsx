@@ -658,6 +658,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
 
   const closeMobileMenu = () => {
     setIsMobileMenuOpen(false);
+    document.body.style.overflow = "";
     const hamburger = hamburgerRef.current;
     const menu = mobileMenuRef.current;
 

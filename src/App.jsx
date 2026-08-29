@@ -354,6 +354,10 @@ const ScrollToTopOnNavigate = () => {
   const { pathname, hash, state } = useLocation();
 
   useEffect(() => {
+    document.body.style.overflow = "";
+    if (pathname === "/" && !hash && !state?.scrollToProjects) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+    }
     if (state?.scrollToProjects) {
       return;
     }
