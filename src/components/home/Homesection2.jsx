@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { projects } from "../../data/projects";
 import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -9,6 +9,7 @@ import SectionBadge from "../common/SectionBadge";
 const PROJECTS_PER_PAGE = 4;
 
 export default function FeaturedWorks() {
+  const navigate = useNavigate();
   // Single master source of truth state
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
@@ -272,43 +273,48 @@ export default function FeaturedWorks() {
             </p>
           </div>
 
-          {/* ── Main Portfolio Showcase Grid (Reduced Box Size) ── */}
+          {/* ── Main Portfolio Showcase Grid ── */}
           <div
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch w-full h-auto sm:h-[395px] lg:h-[415px]"
+            className="flex flex-col lg:flex-row gap-5 items-stretch w-full h-auto sm:h-[395px] lg:h-[415px]"
           >
-            {/* ── LEFT COLUMN: Compact Preview Screen ── */}
-            <div className="lg:col-span-7 xl:col-span-8 relative h-[260px] sm:h-full w-full overflow-hidden rounded-2xl border border-neutral-200/80 bg-neutral-100 shadow-sm transition-all duration-300 group self-stretch">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeProject.id || activeIndex}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="absolute inset-0 w-full h-full"
-                >
-                  <img
-                    src={activeProject.image}
-                    alt={activeProject.title || "Project preview"}
-                    className="h-full w-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.025]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-40 pointer-events-none" />
-                </motion.div>
-              </AnimatePresence>
+            {/* ── LEFT COLUMN: Fitted Aspect-Square Preview Card (Zero Wasted Space) ── */}
+            <div className="flex-shrink-0 flex items-center justify-center w-full lg:w-auto h-[280px] sm:h-full">
+              <div 
+                onClick={() => navigate(`/case-study/${activeProject.slug || activeProject.id}`)}
+                className="relative h-full aspect-square max-w-full overflow-hidden rounded-2xl border border-neutral-200/90 bg-neutral-900 shadow-md transition-all duration-300 group cursor-pointer"
+              >
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeProject.id || activeIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    className="absolute inset-0 w-full h-full"
+                  >
+                    <img
+                      src={activeProject.image}
+                      alt={activeProject.title || "Project preview"}
+                      className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-50 pointer-events-none" />
+                  </motion.div>
+                </AnimatePresence>
 
-              {/* Category Pill Tag Overlay */}
-              <div className="absolute top-4 left-4 z-20">
-                <span className="px-3.5 py-1.5 rounded-xl bg-white/95 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.18)] text-[#111111] text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[#111111]" />
-                  <span>{activeProject.category || activeProject.services?.[0] || "Featured Work"}</span>
-                </span>
+                {/* Category Pill Tag Overlay */}
+                <div className="absolute top-4 left-4 z-20">
+                  <span className="px-3.5 py-1.5 rounded-xl bg-white/95 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.18)] text-[#111111] text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#E31D2E]" />
+                    <span>{activeProject.category || activeProject.services?.[0] || "Featured Work"}</span>
+                  </span>
+                </div>
               </div>
             </div>
 
             {/* ── RIGHT COLUMN: Portfolio List Navigator ── */}
-            <div className="lg:col-span-5 xl:col-span-4 relative h-full w-full rounded-2xl border border-neutral-200/80 bg-neutral-50/70 shadow-xs transition-all duration-300 p-3.5 sm:p-4 flex flex-col justify-between overflow-hidden self-stretch">
+            <div className="flex-1 relative h-full w-full rounded-2xl border border-neutral-200/80 bg-neutral-50/70 shadow-xs transition-all duration-300 p-3.5 sm:p-4 flex flex-col justify-between overflow-hidden self-stretch">
               
               {/* Middle: Continuous Native Scroll Container */}
               <div

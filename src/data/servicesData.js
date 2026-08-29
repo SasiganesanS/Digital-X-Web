@@ -23,7 +23,7 @@ const servicesData = [
     shortTitle: "SEO",
     category: "Organic Growth",
     headline: "Be found when your customers are searching.",
-    desc: "We help your business rank higher on search engines, attract the right audience, and turn organic traffic into meaningful business opportunities. From keyword strategy and on-page optimization to technical SEO and authority building, we create a sustainable search presence that grows over time.",
+    desc: "We help your business rank higher on search engines, attract high-intent visitors, and convert organic traffic into sustainable growth.",
   },
   {
     id: "02",
@@ -32,7 +32,7 @@ const servicesData = [
     shortTitle: "SMM — Social Media Marketing",
     category: "Social Growth",
     headline: "Turn social media into a growth engine.",
-    desc: "Your social media should do more than fill a feed. We build engaging social strategies that make your brand visible, relatable, and memorable while creating genuine connections with your audience.",
+    desc: "We build engaging social strategies that make your brand visible, relatable, and memorable while creating genuine connections.",
   },
   {
     id: "03",
@@ -41,7 +41,7 @@ const servicesData = [
     shortTitle: "Paid Advertising",
     category: "Paid Growth",
     headline: "Put your brand in front of the right people.",
-    desc: "Great advertising isn't about spending more. It's about reaching the right audience with the right message at the right moment. We create and manage targeted advertising campaigns designed to generate awareness, leads, sales, and measurable business growth.",
+    desc: "We create and manage targeted ad campaigns designed to reach the right audience, generate leads, and accelerate measurable business growth.",
   },
   {
     id: "04",
@@ -50,7 +50,7 @@ const servicesData = [
     shortTitle: "Website Design & Development",
     category: "Digital Experience",
     headline: "Your website is your digital first impression. Make it count.",
-    desc: "We create modern, responsive, conversion-focused websites that don't just look beautiful—they work hard for your business. From user experience and visual design to development and conversion optimization, we build websites that communicate your value clearly.",
+    desc: "We build modern, conversion-focused websites that look stunning and perform seamlessly to communicate your brand value clearly.",
   },
   {
     id: "05",
@@ -59,7 +59,7 @@ const servicesData = [
     shortTitle: "Content Marketing",
     category: "Content Strategy",
     headline: "Content that earns attention—and builds trust.",
-    desc: "People don't buy from brands they don't understand or trust. We create strategic content that educates your audience, answers their questions, strengthens your authority, and moves potential customers closer to choosing you.",
+    desc: "We create strategic content that educates your audience, builds authority, and guides potential customers to choose your brand.",
   },
   {
     id: "06",
@@ -68,7 +68,7 @@ const servicesData = [
     shortTitle: "Video Production",
     category: "Creative Production",
     headline: "Tell your story. Show your value. Make it unforgettable.",
-    desc: "Video is one of the most powerful ways to communicate your brand. We create engaging video content designed to capture attention, communicate your message, and make your brand easier to remember—from concept to final edit.",
+    desc: "We produce captivating video content designed to capture attention, communicate your message clearly, and leave a lasting impression.",
   },
   {
     id: "07",
@@ -77,7 +77,7 @@ const servicesData = [
     shortTitle: "E-Commerce Solutions",
     category: "Commerce Growth",
     headline: "Build an online store designed to sell.",
-    desc: "A successful e-commerce business needs more than an attractive storefront. It needs a smooth customer journey, compelling product presentation, strong conversion strategy, and continuous optimization.",
+    desc: "We optimize customer journeys and storefront conversions to transform your e-commerce store into a high-revenue sales engine.",
   },
   {
     id: "08",
@@ -86,7 +86,7 @@ const servicesData = [
     shortTitle: "Email Marketing",
     category: "Lifecycle Marketing",
     headline: "Turn subscribers into repeat revenue.",
-    desc: "Nurture relationships and maximize customer retention with automated, personalized email sequences. From welcome flows to promotional blasts, we deliver emails that land straight in the primary inbox.",
+    desc: "Nurture relationships and maximize customer retention with automated, personalized email sequences that land straight in the primary inbox.",
   },
   {
     id: "09",
@@ -104,7 +104,7 @@ const servicesData = [
     shortTitle: "Performance Marketing",
     category: "Paid Growth",
     headline: "Scale customer acquisition with data precision.",
-    desc: "Execute data-driven acquisition campaigns designed to generate qualified business leads, lower acquisition costs, and accelerate scalable growth.",
+    desc: "Execute data-driven acquisition campaigns designed to generate qualified leads, lower acquisition costs, and accelerate scalable growth.",
   },
   {
     id: "11",
@@ -113,7 +113,7 @@ const servicesData = [
     shortTitle: "ORM",
     category: "Brand Reputation",
     headline: "Protect and elevate your brand perception.",
-    desc: "Protect and elevate your brand perception by monitoring online sentiment, managing customer reviews, and highlighting positive brand stories.",
+    desc: "Protect and elevate your brand perception by monitoring online sentiment, managing reviews, and highlighting positive brand stories.",
   },
   {
     id: "12",

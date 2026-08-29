@@ -126,38 +126,32 @@ function ProjectShowcase({ projectImages, imageIndex }) {
           transformStyle: "preserve-3d",
         }}
       >
-        {/* Outer Claymorphic Showcase Frame */}
+        {/* Outer Showcase Frame */}
         <div className={`relative rounded-2xl p-2 sm:p-2.5 bg-white border border-white/90 shadow-2xl transition-all duration-500 overflow-hidden ${
           isHovered ? "shadow-[0_25px_60px_rgba(0,0,0,0.15)] bg-white" : ""
         }`}>
-          {/* Inner Light Highlight */}
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-white/80 via-transparent to-white/40 pointer-events-none z-10" />
-
           {/* Slideshow Image Container */}
-          <div className="relative rounded-xl overflow-hidden aspect-square bg-neutral-100">
+          <div className="relative rounded-xl overflow-hidden aspect-square bg-neutral-900">
             <AnimatePresence initial={false} mode="wait">
               {projectImages.map((img, idx) => (
                 idx === imageIndex && (
                   <motion.div
                     key={img.image}
-                    initial={{ opacity: 0, scale: 1.12 }}
-                    animate={{ opacity: 1, scale: isHovered ? 1.15 : 1.08 }}
+                    initial={{ opacity: 0, scale: 1 }}
+                    animate={{ opacity: 1, scale: isHovered ? 1.03 : 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="absolute inset-0"
-                    style={{
-                      backgroundImage: `url(${img.image})`,
-                      backgroundSize: "cover",
-                      backgroundPosition: "center",
-                      transform: isHovered ? `translate(${tilt.px}px, ${tilt.py}px)` : "none",
-                    }}
-                  />
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0 flex items-center justify-center"
+                  >
+                    <img
+                      src={img.image}
+                      alt={img.title || "Project showcase"}
+                      className="w-full h-full object-contain"
+                    />
+                  </motion.div>
                 )
               ))}
             </AnimatePresence>
-
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none z-10" />
           </div>
 
           {/* SUCCESS BADGE Overlay */}
@@ -521,12 +515,12 @@ const Projects = () => {
                       onClick={() => navigate(`/project/${project.slug || project.id}`, { state: { from: '/projects', projectSlug: project.slug || project.id } })}
                       className="group relative flex flex-col justify-between cursor-pointer p-3.5 sm:p-4 rounded-2xl border border-neutral-200/80 shadow-[0_8px_24px_rgba(0,0,0,0.03)] bg-white hover:border-black/20 hover:shadow-[0_14px_36px_rgba(0,0,0,0.08)] transition-all duration-300 select-none"
                     >
-                      {/* 1. Image Area — Crisp & Unobstructed */}
-                      <div className="relative w-full aspect-[16/10] overflow-hidden rounded-xl border border-neutral-200/60 mb-3 bg-white shadow-2xs">
+                      {/* 1. Image Area — Box fits 1:1 image exactly */}
+                      <div className="relative w-full aspect-square overflow-hidden rounded-xl border border-neutral-200/60 mb-3 bg-white shadow-2xs">
                         <img
                           src={project.image}
                           alt={project.title}
-                          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                         />
                       </div>
 

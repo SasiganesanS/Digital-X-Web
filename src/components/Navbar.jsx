@@ -434,116 +434,6 @@ const navStyles = `
     margin-right: 6px;
   }
 }
-
-/* ── Atomic Orbital Rings Animation around Logo ── */
-.atom-orbit-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 52px;
-  height: 52px;
-  pointer-events: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  perspective: 600px;
-  transform-style: preserve-3d;
-  z-index: 5;
-  transition: opacity 0.5s ease-in-out;
-}
-
-@media (min-width: 640px) {
-  .atom-orbit-container {
-    width: 60px;
-    height: 60px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .atom-orbit-container {
-    width: 66px;
-    height: 66px;
-  }
-}
-
-.atom-ring {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  border: 1px solid rgba(227, 29, 46, 0.55);
-  box-shadow: none !important;
-  transform-style: preserve-3d;
-}
-
-.atom-ring-1 {
-  transform: rotateX(68deg) rotateY(20deg);
-}
-
-.atom-ring-2 {
-  transform: rotateX(68deg) rotateY(-50deg) rotateZ(60deg);
-}
-
-.atom-ring-3 {
-  transform: rotateX(72deg) rotateY(60deg) rotateZ(-50deg);
-}
-
-.atom-electron-orbit {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  transform-style: preserve-3d;
-}
-
-.atom-electron-orbit-1 {
-  animation: atomOrbitSpin1 3.5s linear infinite;
-}
-
-.atom-electron-orbit-2 {
-  animation: atomOrbitSpin2 4.2s linear infinite reverse;
-}
-
-.atom-electron-orbit-3 {
-  animation: atomOrbitSpin3 3.8s linear infinite;
-}
-
-.atom-electron {
-  position: absolute;
-  top: -2.5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background-color: #111111;
-  box-shadow: none !important;
-}
-
-.nav-brand-capsule:hover .atom-electron-orbit-1 {
-  animation-duration: 1.8s;
-}
-.nav-brand-capsule:hover .atom-electron-orbit-2 {
-  animation-duration: 2.2s;
-}
-.nav-brand-capsule:hover .atom-electron-orbit-3 {
-  animation-duration: 2s;
-}
-
-@keyframes atomOrbitSpin1 {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes atomOrbitSpin2 {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes atomOrbitSpin3 {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
 `;
 
 const Navbar = ({ setShowContactForm, onOpenSearch }) => {
@@ -597,33 +487,6 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
     const intervalId = setInterval(triggerSpark, 15000);
 
     return () => clearInterval(intervalId);
-  }, []);
-
-  // Atom Rings Timing Cycle: Visible for 5 seconds, then Hidden for 15 seconds (repeats every 20s)
-  const [showAtomRings, setShowAtomRings] = useState(true);
-
-  useEffect(() => {
-    let hideTimer;
-    let cycleInterval;
-
-    const startCycle = () => {
-      setShowAtomRings(true);
-      hideTimer = setTimeout(() => {
-        setShowAtomRings(false);
-      }, 5000); // Stays visible for 5 seconds
-    };
-
-    startCycle();
-
-    // Repeat cycle every 20s (5s visible + 15s hidden)
-    cycleInterval = setInterval(() => {
-      startCycle();
-    }, 20000);
-
-    return () => {
-      clearTimeout(hideTimer);
-      clearInterval(cycleInterval);
-    };
   }, []);
 
   // Reveal on Top Hover (Mouse entering top 70px of viewport)
@@ -911,7 +774,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
             logoRef.current = el;
           }}
         >
-          {/* Logo Emblem (Big logo emblem with 3D Atomic Orbit Rings & periodic 15s spark animation) */}
+          {/* Logo Emblem */}
           <motion.div
             className="pill-logo shrink-0 flex items-center justify-center relative overflow-visible"
             animate={
@@ -928,30 +791,6 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
               times: [0, 0.3, 0.6, 0.85, 1],
             }}
           >
-            {/* 3D Atomic Orbital Rings Surrounding Logo Nucleus */}
-            <div className={`atom-orbit-container ${showAtomRings ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-              {/* Orbital Ring 1 & Black Electron */}
-              <div className="atom-ring atom-ring-1">
-                <div className="atom-electron-orbit atom-electron-orbit-1">
-                  <div className="atom-electron" />
-                </div>
-              </div>
-
-              {/* Orbital Ring 2 & Black Electron */}
-              <div className="atom-ring atom-ring-2">
-                <div className="atom-electron-orbit atom-electron-orbit-2">
-                  <div className="atom-electron" />
-                </div>
-              </div>
-
-              {/* Orbital Ring 3 & Black Electron */}
-              <div className="atom-ring atom-ring-3">
-                <div className="atom-electron-orbit atom-electron-orbit-3">
-                  <div className="atom-electron" />
-                </div>
-              </div>
-            </div>
-
             <img
               src={Logo}
               alt="PRASKLA DIGITAL X Logo"

@@ -206,12 +206,12 @@ const ProjectDetail = () => {
               className="w-full flex justify-center lg:justify-end"
             >
               <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
-                <div className="relative rounded-2xl p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden">
-                  <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-white">
+                <div className="relative rounded-2xl p-3 sm:p-4 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden max-w-md mx-auto lg:max-w-none">
+                  <div className="relative rounded-xl overflow-hidden aspect-square bg-[#050609]">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-contain transition-transform duration-700"
                     />
                   </div>
 

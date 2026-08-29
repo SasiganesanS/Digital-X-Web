@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import SectionBadge from "../common/SectionBadge";
+import HeroLayout from "../common/HeroLayout";
 import CollaboratorCard from "./CollaboratorCard";
 import { COLLABORATORS_DATA } from "../../data/collaborators";
 import CollaboratorSpaceBackground from "./CollaboratorSpaceBackground";
@@ -61,41 +62,41 @@ export default function CollaboratorDirectory() {
       {/* Collaborator-scoped Continuous Parallax Uranus Space Environment */}
       <CollaboratorSpaceBackground />
 
-      {/* Main Content Sections */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
-        
-        {/* Header Hero Section */}
+      {/* ── HERO SECTION ── */}
+      <HeroLayout sectionId="collaborators-hero" verticalCenter={true}>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="relative text-center max-w-3xl mx-auto mb-12 sm:mb-16"
+          className="relative text-center max-w-3xl mx-auto flex flex-col items-center"
         >
-          <div className="flex justify-center mb-4">
+          <div className="flex justify-center mb-4 sm:mb-5">
             <SectionBadge text="Collaborator Network" theme="dark" />
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-5">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight mb-5 font-sans">
             Creative <span className="text-[#E31D2E]">Collaborators</span>
           </h1>
 
-          <p className="text-neutral-300 text-base sm:text-lg font-medium leading-relaxed mb-8">
+          <p className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-medium leading-relaxed max-w-2xl mx-auto mb-8 font-sans">
             A curated network of creative professionals, influencers, executives, and specialists working with Praskla DigitalX to bring ideas to life. Praskla DigitalX coordinates every engagement from project scope to final delivery.
           </p>
 
-          {/* Top Apply Button Action */}
           <div className="flex justify-center">
             <button
               type="button"
               onClick={() => setIsApplyModalOpen(true)}
-              className="px-6 py-3.5 rounded-xl bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white font-black text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
+              className="px-7 py-3.5 rounded-xl bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white font-black text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-lg shadow-red-500/20 hover:scale-105 active:scale-95 flex items-center gap-2.5 cursor-pointer font-sans"
             >
               <span>Apply as Collaborator</span>
               <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
             </button>
           </div>
         </motion.div>
+      </HeroLayout>
 
+      {/* ── DIRECTORY & PROCESS CONTENT (SCROLL SECTION) ── */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
         {/* Category Filters Pill Bar */}
         <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-12 sm:mb-16">
           {CATEGORIES.map((cat) => {

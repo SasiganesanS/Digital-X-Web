@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
+import { User } from "lucide-react";
 
 export default function CollaborationRequestModal({ collaborator, isOpen, onClose }) {
   const [formData, setFormData] = useState({
@@ -137,11 +138,9 @@ export default function CollaborationRequestModal({ collaborator, isOpen, onClos
 
                   {/* Prefilled Collaborator Info Card */}
                   <div className="mb-6 p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 flex items-center gap-4">
-                    <img
-                      src={collaborator.image}
-                      alt={collaborator.name}
-                      className="w-12 h-12 rounded-xl object-cover border border-neutral-200 shadow-sm flex-shrink-0"
-                    />
+                    <div className="w-12 h-12 rounded-xl bg-neutral-200/80 border border-neutral-300 shadow-2xs flex items-center justify-center flex-shrink-0">
+                      <User className="w-6 h-6 text-neutral-600 stroke-[1.5]" />
+                    </div>
                     <div>
                       <span className="text-[10px] font-extrabold text-[#E31D2E] uppercase tracking-wider block">
                         Requested Collaborator

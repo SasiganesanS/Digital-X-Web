@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, CheckCircle2 } from "lucide-react";
+import { X, CheckCircle2, ChevronDown } from "lucide-react";
 
 export default function CollaboratorApplyModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
@@ -156,36 +156,42 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
                       <label className="block text-[11px] font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
                         Primary Role / Category *
                       </label>
-                      <select
-                        name="role"
-                        value={formData.role}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-[#111111] focus:ring-2 focus:ring-black/5 outline-none text-xs font-medium text-[#111111] transition-all"
-                      >
-                        <option value="Influencer">Influencer</option>
-                        <option value="Executive">Executive</option>
-                        <option value="Specialist & Expert">Specialist & Expert</option>
-                        <option value="Content Creator">Content Creator</option>
-                        <option value="Model">Model</option>
-                        <option value="Video Editor">Video Editor</option>
-                        <option value="Freelancer">Freelancer</option>
-                      </select>
+                      <div className="relative w-full">
+                        <select
+                          name="role"
+                          value={formData.role}
+                          onChange={handleChange}
+                          className="w-full pl-4 pr-10 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-[#111111] focus:ring-2 focus:ring-black/5 outline-none text-xs font-medium text-[#111111] transition-all cursor-pointer appearance-none"
+                        >
+                          <option value="Influencer">Influencer</option>
+                          <option value="Executive">Executive</option>
+                          <option value="Specialist & Expert">Specialist & Expert</option>
+                          <option value="Content Creator">Content Creator</option>
+                          <option value="Model">Model</option>
+                          <option value="Video Editor">Video Editor</option>
+                          <option value="Freelancer">Freelancer</option>
+                        </select>
+                        <ChevronDown className="w-3.5 h-3.5 text-neutral-400 pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2" />
+                      </div>
                     </div>
 
                     <div>
                       <label className="block text-[11px] font-extrabold uppercase tracking-wider text-neutral-700 mb-1">
                         Experience Level *
                       </label>
-                      <select
-                        name="experience"
-                        value={formData.experience}
-                        onChange={handleChange}
-                        className="w-full px-4 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-[#111111] focus:ring-2 focus:ring-black/5 outline-none text-xs font-medium text-[#111111] transition-all"
-                      >
-                        <option value="1-2 Years">1-2 Years</option>
-                        <option value="3-5 Years">3-5 Years</option>
-                        <option value="5+ Years">5+ Years</option>
-                      </select>
+                      <div className="relative w-full">
+                        <select
+                          name="experience"
+                          value={formData.experience}
+                          onChange={handleChange}
+                          className="w-full pl-4 pr-10 py-2.5 rounded-xl bg-neutral-50 border border-neutral-200 focus:bg-white focus:border-[#111111] focus:ring-2 focus:ring-black/5 outline-none text-xs font-medium text-[#111111] transition-all cursor-pointer appearance-none"
+                        >
+                          <option value="1-2 Years">1-2 Years</option>
+                          <option value="3-5 Years">3-5 Years</option>
+                          <option value="5+ Years">5+ Years</option>
+                        </select>
+                        <ChevronDown className="w-3.5 h-3.5 text-neutral-400 pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2" />
+                      </div>
                     </div>
                   </div>
 

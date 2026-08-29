@@ -511,21 +511,24 @@ const ContactForm = ({ isOpen, onClose }) => {
                     <label htmlFor="contact-service" className="block text-xs font-semibold text-gray-700 mb-1.5">
                       Area of Expertise <span className="text-gray-400 font-normal">(Optional)</span>
                     </label>
-                    <select
-                      id="contact-service"
-                      name="interestedService"
-                      value={formData.interestedService}
-                      onChange={handleInputChange}
-                      className="w-full h-11 px-3.5 text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white border border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15 rounded-xl font-medium transition-all duration-200 outline-none cursor-pointer"
-                    >
-                      <option value="Web Development">Web Development</option>
-                      <option value="Software Development">Software Development</option>
-                      <option value="App Development">App Development</option>
-                      <option value="Digital Marketing">Digital Marketing</option>
-                      <option value="Cyber Security">Cyber Security</option>
-                      <option value="Sustainability">Sustainability</option>
-                      <option value="Other / Not Sure">Other / Not Sure</option>
-                    </select>
+                    <div className="relative w-full">
+                      <select
+                        id="contact-service"
+                        name="interestedService"
+                        value={formData.interestedService}
+                        onChange={handleInputChange}
+                        className="w-full h-11 pl-3.5 pr-10 text-sm text-[#111111] bg-white hover:bg-gray-50 focus:bg-white border border-[#E5E5E5] focus:border-[#FF2B2B] focus:ring-4 focus:ring-[#FF2B2B]/15 rounded-xl font-medium transition-all duration-200 outline-none cursor-pointer appearance-none"
+                      >
+                        <option value="Web Development">Web Development</option>
+                        <option value="Software Development">Software Development</option>
+                        <option value="App Development">App Development</option>
+                        <option value="Digital Marketing">Digital Marketing</option>
+                        <option value="Cyber Security">Cyber Security</option>
+                        <option value="Sustainability">Sustainability</option>
+                        <option value="Other / Not Sure">Other / Not Sure</option>
+                      </select>
+                      <ChevronDown className="w-4 h-4 text-gray-500 pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2" />
+                    </div>
                   </div>
                 </div>
 

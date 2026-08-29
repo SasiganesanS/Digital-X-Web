@@ -294,8 +294,8 @@ const ServicesCoverflow = () => {
                       : "0 10px 25px rgba(0, 0, 0, 0.35)",
                   }}
                 >
-                  {/* Image container frame */}
-                  <div className={`relative w-full h-[48%] rounded-xl overflow-hidden flex items-center justify-center p-2 border border-black/10 transition-colors duration-300 ${
+                  {/* Image container frame — Fixed identical height matching 3rd image size */}
+                  <div className={`relative w-full h-[140px] shrink-0 flex-shrink-0 rounded-xl overflow-hidden flex items-center justify-center p-2 border border-black/10 transition-colors duration-300 ${
                     s.isFront ? "bg-[#000000]" : "bg-[#111111]"
                   }`}>
                     <img
@@ -308,13 +308,13 @@ const ServicesCoverflow = () => {
 
                   {/* Text (Only visible on active card) */}
                   <div
-                    className="relative flex-1 flex flex-col justify-between px-3 py-2.5 transition-opacity duration-300"
+                    className="relative flex-1 flex flex-col justify-between px-3 py-2 transition-opacity duration-300 overflow-hidden"
                     style={{
                       opacity: s.isFront ? 1 : 0,
                       pointerEvents: s.isFront ? "auto" : "none"
                     }}
                   >
-                    <div className="flex flex-col gap-1.5">
+                    <div className="flex flex-col gap-1">
                       <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#ef2029]">
                         Expertise
                       </span>
@@ -327,7 +327,7 @@ const ServicesCoverflow = () => {
                     </div>
 
                     {/* Focus tag inside active card — Replaces Learn More */}
-                    <div className="mt-1 inline-flex items-center gap-1 text-[#ef2029] font-extrabold text-[9px] uppercase tracking-wider">
+                    <div className="mt-1 inline-flex items-center gap-1 text-[#ef2029] font-extrabold text-[9px] uppercase tracking-wider shrink-0">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#ef2029]" />
                       <span>High Impact Strategy</span>
                     </div>
