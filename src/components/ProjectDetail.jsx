@@ -10,6 +10,7 @@ import SectionBadge from "./common/SectionBadge";
 import { projects } from "../data/projects";
 import ContactForm from "./ContactForm";
 import CaseStudySpaceBackground from "./CaseStudySpaceBackground";
+import HeroLayout from "./common/HeroLayout";
 
 const renderStyledTitle = (title) => {
   if (!title) return null;
@@ -112,98 +113,126 @@ const ProjectDetail = () => {
       {/* Main Content Sections */}
       <div className="relative z-10 w-full">
         {/* ── PROJECT SHOWCASE HERO ── */}
-        <section className="relative w-full pt-4 sm:pt-6 lg:pt-8 pb-10 sm:pb-12 lg:pb-14 bg-transparent">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 w-full">
-            
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-              
-              {/* Left Column: Project Overview */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:col-span-7 flex flex-col items-start"
+        <HeroLayout
+          sectionId="project-detail-hero"
+          leftColClass="lg:col-span-7"
+          rightColClass="lg:col-span-5"
+          badge={
+            <div className="flex items-center">
+              <button
+                type="button"
+                onClick={handleBack}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white shadow-2xs hover:border-black/20 text-[#111111] text-xs font-bold uppercase tracking-wider transition-all duration-200 group cursor-pointer"
               >
-                {/* Back Button */}
-                <div className="flex items-center mb-6">
-                  <button
-                    type="button"
-                    onClick={handleBack}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white shadow-2xs hover:border-black/20 text-[#111111] text-xs font-bold uppercase tracking-wider transition-all duration-200 group cursor-pointer"
-                  >
-                    <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#E31D2E]" />
-                    <span>{fromPath === '/' ? "Back to Home" : "Back to Projects"}</span>
-                  </button>
-                </div>
+                <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-1 text-[#E31D2E]" />
+                <span>{fromPath === '/' ? "Back to Home" : "Back to Projects"}</span>
+              </button>
+            </div>
+          }
+          title={
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              className="text-3xl sm:text-4xl lg:text-[44px] font-black leading-[1.1] tracking-tight text-white mb-4 max-w-2xl font-sans"
+            >
+              {renderStyledTitle(project.title)}
+            </motion.h1>
+          }
+          description={
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="text-neutral-300 text-base sm:text-lg font-medium leading-relaxed mb-6 max-w-2xl font-sans"
+            >
+              {project.description}
+            </motion.p>
+          }
+          actions={
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="flex flex-col items-start w-full gap-4 pt-1"
+            >
+              {/* Key Outcome & Year Badges */}
+              <div className="flex flex-wrap items-center gap-2.5 w-full">
+                {project.result && (
+                  <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white border border-gray-200 text-[#111111] shadow-xs">
+                    <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse shrink-0" />
+                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#E31D2E]">
+                      Outcome:
+                    </span>
+                    <span className="text-xs sm:text-sm font-black text-[#111111]">
+                      {project.result}
+                    </span>
+                  </div>
+                )}
+                {project.year && (
+                  <div className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-[#111111] text-xs font-bold uppercase tracking-wider shadow-xs">
+                    <span className="text-neutral-500 font-semibold">Year:</span>
+                    <span className="text-[#111111] font-black">{project.year}</span>
+                  </div>
+                )}
+              </div>
 
-                {/* Title */}
-                <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-black leading-[1.1] tracking-tight text-white mb-4 max-w-2xl font-sans">
-                  {renderStyledTitle(project.title)}
-                </h1>
+              {/* Action Buttons: View Case Study + Request Proposal */}
+              <div className="flex flex-wrap items-center gap-4 pt-1">
+                <Link
+                  to={`/case-study/${project.slug || project.id}`}
+                  state={{ from: fromPath || '/projects' }}
+                  className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white px-7 py-3.5 rounded-xl font-black text-[13px] sm:text-[14px] uppercase tracking-[0.02em] shadow-lg shadow-red-500/20 transition-all duration-300 hover:-translate-y-0.5 font-sans"
+                >
+                  <span>Read Full Case Study</span>
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
 
-                {/* Subtitle */}
-                <p className="text-neutral-300 text-base sm:text-lg font-medium leading-relaxed mb-6 max-w-2xl font-sans">
-                  {project.description}
-                </p>
+                <button
+                  type="button"
+                  onClick={() => setShowContactForm(true)}
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-gray-300 bg-white hover:border-gray-400 text-[#111111] font-extrabold text-[13px] sm:text-[14px] uppercase tracking-[0.02em] transition-all font-sans cursor-pointer"
+                >
+                  <span>Request Similar Project</span>
+                </button>
+              </div>
+            </motion.div>
+          }
+          media={
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="w-full flex justify-center lg:justify-end"
+            >
+              <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
+                <div className="relative rounded-2xl p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden">
+                  <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-white">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
 
-                {/* Action Buttons: View Case Study + Get Proposal */}
-                <div className="flex flex-wrap items-center gap-4 mb-6">
-                  <Link
-                    to={`/case-study/${project.slug || project.id}`}
-                    state={{ from: fromPath || '/projects' }}
-                    className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-[#c91827] text-white px-7 py-3.5 rounded-xl font-bold text-[13px] sm:text-[14px] uppercase tracking-[0.02em] shadow-lg shadow-red-500/20 transition-all hover:-translate-y-0.5 font-sans"
-                  >
-                    <span>Read Full Case Study</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-
-                  <button
-                    type="button"
-                    onClick={() => setShowContactForm(true)}
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-gray-300 bg-white hover:border-gray-400 text-[#111111] font-bold text-[13px] sm:text-[14px] uppercase tracking-[0.02em] transition-all font-sans cursor-pointer"
-                  >
-                    <span>Request Similar Project</span>
-                  </button>
-                </div>
-              </motion.div>
-
-              {/* Right Column: Project Media Card */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.96, y: 20 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className="lg:col-span-5 w-full flex justify-center lg:justify-end"
-              >
-                <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
-                  <div className="relative rounded-2xl p-3.5 sm:p-4 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden">
-                    <div className="relative rounded-xl overflow-hidden aspect-[4/3] bg-white">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
-                      />
-                    </div>
-
-                    <div className="mt-4 p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 flex items-center justify-between">
-                      <div>
-                        <div className="text-[10px] font-extrabold uppercase tracking-widest text-[#E31D2E]">
-                          Key Outcome
-                        </div>
-                        <div className="text-base sm:text-lg font-black text-[#111111]">
-                          {project.result}
-                        </div>
+                  <div className="mt-4 p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 flex items-center justify-between">
+                    <div>
+                      <div className="text-[10px] font-extrabold uppercase tracking-widest text-[#E31D2E]">
+                        Key Outcome
                       </div>
-                      <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#575757] bg-white px-3 py-1 rounded-md border border-neutral-200">
-                        Delivered
-                      </span>
+                      <div className="text-base sm:text-lg font-black text-[#111111]">
+                        {project.result}
+                      </div>
                     </div>
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#575757] bg-white px-3 py-1 rounded-md border border-neutral-200">
+                      Delivered
+                    </span>
                   </div>
                 </div>
-              </motion.div>
-
-            </div>
-          </div>
-        </section>
+              </div>
+            </motion.div>
+          }
+        />
 
         {/* ── PROJECT HIGHLIGHTS & SCOPE ── */}
         {project.overview && (

@@ -950,29 +950,38 @@ a[class*="bg-gradient-to-r"][class*="from-[#E8192C]"]:hover svg {
   width: 100%;
 }
 
-/* Hero sections use content-driven height to prevent huge empty whitespace gaps */
-.page-layout-wrapper>section:first-of-type,
-.page-layout-wrapper>div:first-child>section:first-of-type,
-.page-layout-wrapper>main:first-child>section:first-of-type {
+/* Hero sections full viewport screen edge rule - Subtracts navbar top offset so bottom line aligns exactly with visible screen bottom */
+.hero-screen-edge {
+  height: calc(100vh - var(--hero-top-offset, 76px)) !important;
+  height: calc(100dvh - var(--hero-top-offset, 76px)) !important;
+  min-height: calc(100vh - var(--hero-top-offset, 76px)) !important;
+  min-height: calc(100dvh - var(--hero-top-offset, 76px)) !important;
+  box-sizing: border-box !important;
+}
+
+/* Hero sections fallback height override */
+.page-layout-wrapper>section:first-of-type:not(.hero-screen-edge),
+.page-layout-wrapper>div:first-child>section:first-of-type:not(.hero-screen-edge),
+.page-layout-wrapper>main:first-child>section:first-of-type:not(.hero-screen-edge) {
   min-height: 0 !important;
 }
 
-.page-layout-wrapper section:first-of-type.h-screen,
-.page-layout-wrapper section:first-of-type.max-h-screen,
-.page-layout-wrapper section:first-of-type.max-h-\[100vh\],
-.page-layout-wrapper>div:first-child>section:first-of-type.h-screen,
-.page-layout-wrapper>div:first-child>section:first-of-type.max-h-screen,
-.page-layout-wrapper>div:first-child>section:first-of-type.max-h-\[100vh\] {
+.page-layout-wrapper section:first-of-type.h-screen:not(.hero-screen-edge),
+.page-layout-wrapper section:first-of-type.max-h-screen:not(.hero-screen-edge),
+.page-layout-wrapper section:first-of-type.max-h-\[100vh\]:not(.hero-screen-edge),
+.page-layout-wrapper>div:first-child>section:first-of-type.h-screen:not(.hero-screen-edge),
+.page-layout-wrapper>div:first-child>section:first-of-type.max-h-screen:not(.hero-screen-edge),
+.page-layout-wrapper>div:first-child>section:first-of-type.max-h-\[100vh\]:not(.hero-screen-edge) {
   height: auto !important;
   max-height: none !important;
 }
 
-.page-layout-wrapper section:first-of-type.min-h-0,
-.page-layout-wrapper section:first-of-type.\!min-h-0,
-.page-layout-wrapper section:first-of-type.min-h-auto,
-.page-layout-wrapper>div:first-child>section:first-of-type.min-h-0,
-.page-layout-wrapper>div:first-child>section:first-of-type.\!min-h-0,
-.page-layout-wrapper>div:first-child>section:first-of-type.min-h-auto {
+.page-layout-wrapper section:first-of-type.min-h-0:not(.hero-screen-edge),
+.page-layout-wrapper section:first-of-type.\!min-h-0:not(.hero-screen-edge),
+.page-layout-wrapper section:first-of-type.min-h-auto:not(.hero-screen-edge),
+.page-layout-wrapper>div:first-child>section:first-of-type.min-h-0:not(.hero-screen-edge),
+.page-layout-wrapper>div:first-child>section:first-of-type.\!min-h-0:not(.hero-screen-edge),
+.page-layout-wrapper>div:first-child>section:first-of-type.min-h-auto:not(.hero-screen-edge) {
   min-height: 0 !important;
 }
 

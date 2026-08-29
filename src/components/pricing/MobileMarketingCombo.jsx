@@ -484,8 +484,8 @@ const MobileMarketingCombo = () => {
 
       {/* Quote Request Modal */}
       {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl p-8 max-w-md w-full relative max-h-[90vh] overflow-y-auto">
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl p-4 sm:p-7 max-w-md w-[94%] sm:w-full relative max-h-[90dvh] overflow-y-auto custom-scrollbar border border-[#111111] shadow-2xl my-auto pb-8 sm:pb-10">
             <button
               className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
               onClick={closeModal}

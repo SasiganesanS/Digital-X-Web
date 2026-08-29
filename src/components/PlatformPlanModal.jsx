@@ -289,7 +289,7 @@ export default function PlatformPlanModal({
       clickPosition={clickPosition}
       maxWidth="max-w-[1000px]"
     >
-      <div className="bg-[#FAFAFA] text-[#111111] font-sans w-full max-w-[1000px] min-h-[620px] max-h-[680px] rounded-2xl border border-black/10 shadow-[0_25px_60px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col relative select-none">
+      <div className="bg-[#FAFAFA] text-[#111111] font-sans w-full max-w-[1000px] max-h-[85dvh] rounded-2xl border border-[#111111] shadow-[0_25px_60px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col relative select-none my-auto">
         {/* Top Navigation Header */}
         <div className="px-6 py-4 border-b border-neutral-200/60 bg-white/80 backdrop-blur-md flex items-center justify-between z-20 shrink-0">
           <div className="flex items-center gap-3">

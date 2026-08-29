@@ -113,9 +113,9 @@ export default function HomeSpaceBackground() {
         className="absolute inset-0 w-full h-full"
         style={{ y: shouldReduceMotion ? 0 : layer2Y }}
       >
-        {/* ITEM 2 (Upper-Left ~ 22%): Photorealistic 3D Space Station */}
+        {/* ITEM 2 (Upper-Left ~ 34%): Photorealistic 3D Space Station */}
         <motion.div
-          className="absolute top-[22%] -left-8 sm:-left-10 lg:left-0 pointer-events-none opacity-90 z-10"
+          className="absolute top-[34%] -left-8 sm:-left-10 lg:left-0 pointer-events-none opacity-90 z-10"
           animate={shouldReduceMotion ? {} : { y: [-10, 10, -10], rotate: [0, 6, 0] }}
           transition={{ duration: 13, repeat: Infinity, ease: "easeInOut" }}
         >

@@ -370,7 +370,7 @@ const JobApplication = ({ job, onClose }) => {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
           transition={{ type: 'spring', duration: 0.35, bounce: 0.15 }}
-          className="w-full max-w-[620px] bg-white rounded-[28px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] border border-gray-100 relative flex flex-col my-auto overflow-hidden text-gray-900 font-sans p-6 sm:p-7 z-10"
+          className="w-[94%] sm:w-full max-w-[620px] bg-white rounded-2xl sm:rounded-[28px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.25)] border border-[#111111] relative flex flex-col my-auto max-h-[90dvh] overflow-y-auto custom-scrollbar text-gray-900 font-sans p-4 sm:p-7 pb-8 sm:pb-10 z-10"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Close Circle Button */}

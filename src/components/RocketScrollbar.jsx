@@ -161,16 +161,16 @@ export default function RocketScrollbar() {
       ref={trackRef}
       onClick={handleTrackClick}
       aria-label="Rocket Scrollbar"
-      className="fixed right-1 sm:right-2.5 top-0 bottom-0 w-7 z-[9999] hidden sm:flex flex-col items-center justify-start select-none cursor-pointer group"
+      className="fixed right-1 sm:right-3 top-0 bottom-0 w-12 z-[9999] hidden sm:flex flex-col items-center justify-start select-none cursor-pointer group"
     >
       {/* ── Background Track Line ── */}
       <div className="absolute top-[88px] bottom-[88px] w-[1.5px] bg-[#111111]/10 rounded-full pointer-events-none" />
 
-      {/* ── Subtle Red Scroll Trail (Connecting Top of Track to Rocket Position) ── */}
+      {/* ── Subtle Red Scroll Trail (Connecting Top of Track to Rocket Nose) ── */}
       <div
         className="absolute top-[88px] w-[2px] bg-gradient-to-b from-[#E31D2E]/20 via-[#E31D2E]/60 to-[#E31D2E] rounded-full pointer-events-none"
         style={{
-          height: Math.max(0, currentRocketY - TRACK_PADDING),
+          height: Math.max(0, currentRocketY - TRACK_PADDING + 10),
           willChange: "height",
         }}
       />
@@ -203,12 +203,12 @@ export default function RocketScrollbar() {
           }`}
         >
           <svg
-            width="22"
-            height="26"
+            width="46"
+            height="56"
             viewBox="0 0 24 30"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-5 h-6 text-[#E31D2E]"
+            className="w-11 h-14 text-[#E31D2E]"
           >
             {/* Main Metallic Body */}
             <path
@@ -259,11 +259,11 @@ export default function RocketScrollbar() {
                   repeatType: "reverse",
                   ease: "easeInOut",
                 }}
-                className="flex flex-col items-center -mt-0.5 origin-top pointer-events-none"
+                className="flex flex-col items-center -mt-3 origin-top pointer-events-none"
               >
                 <svg
-                  width="14"
-                  height="14"
+                  width="28"
+                  height="28"
                   viewBox="0 0 16 16"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -302,11 +302,11 @@ export default function RocketScrollbar() {
                   repeat: Infinity,
                   ease: "easeOut",
                 }}
-                className="flex flex-col items-center -mt-0.5 origin-top pointer-events-none"
+                className="flex flex-col items-center -mt-3 origin-top pointer-events-none"
               >
                 <svg
-                  width="16"
-                  height="20"
+                  width="31"
+                  height="38"
                   viewBox="0 0 20 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

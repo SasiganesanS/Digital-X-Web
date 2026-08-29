@@ -52,25 +52,21 @@ const AboutSection = () => {
           </div>
 
           {/* Right — body copy */}
-          <div className="flex-1 flex flex-col justify-center gap-5">
-            <motion.div variants={fadeUp} className="relative pl-3.5 sm:pl-5">
-              <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-[#E31D2E] via-[#E31D2E]/60 to-transparent rounded-full" />
+          <div className="flex-1 flex flex-col justify-center">
+            <motion.div variants={fadeUp} className="relative pl-4 sm:pl-5 flex flex-col gap-4 border-l-2 border-[#E31D2E]">
               <p className="text-[#111111] text-base sm:text-lg md:text-xl leading-relaxed font-semibold">
                 <span className="font-inlander font-bold">PRASKLA DIGITAL</span> <BrandX className="text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.1em] -ml-0.5" /> is a mindful marketing and production firm built on the belief that true growth
                 comes from <span className="text-[#E31D2E] font-black">clarity, creativity, and collaboration</span>.
                 We partner with businesses and personal brands to transform their ideas into
                 measurable digital success.
               </p>
-            </motion.div>
 
-            <motion.p
-              variants={fadeUp}
-              className="text-neutral-600 text-base leading-relaxed font-normal"
-            >
-              By combining strategic thinking, creative execution, and performance-driven
-              optimization, we help brands build <span className="text-[#111111] font-bold">visibility, credibility,
-                and sustainable growth</span> — growing alongside them at every stage.
-            </motion.p>
+              <p className="text-neutral-600 text-base leading-relaxed font-normal">
+                By combining strategic thinking, creative execution, and performance-driven
+                optimization, we help brands build <span className="text-[#111111] font-bold">visibility, credibility,
+                  and sustainable growth</span> — growing alongside them at every stage.
+              </p>
+            </motion.div>
           </div>
         </motion.div>
       </div>

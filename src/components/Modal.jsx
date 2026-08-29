@@ -115,7 +115,7 @@ export default function Modal({
               duration: 0.35,
               ease: [0.16, 1, 0.3, 1],
             }}
-            className={`relative bg-white border border-[#ECECEC] p-4 sm:p-8 rounded-[28px] shadow-[0_16px_50px_rgba(0,0,0,0.08)] text-[#111111] w-full ${maxWidth} max-h-[90vh] my-auto overflow-hidden flex flex-col`}
+            className={`relative bg-white border border-[#111111] p-4 sm:p-7 rounded-2xl sm:rounded-[28px] shadow-[0_20px_60px_rgba(0,0,0,0.25)] text-[#111111] w-[94%] sm:w-full ${maxWidth} max-h-[90dvh] my-auto overflow-hidden flex flex-col`}
             onClick={(e) => e.stopPropagation()}
           >
             {/* Clean Close Button */}

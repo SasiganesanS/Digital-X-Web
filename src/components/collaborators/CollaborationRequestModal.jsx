@@ -96,7 +96,7 @@ export default function CollaborationRequestModal({ collaborator, isOpen, onClos
 
           {/* Modal Container */}
           <motion.div
-            className="relative w-full max-w-2xl max-h-[90vh] flex flex-col rounded-[2.2rem] bg-white border border-neutral-200/90 shadow-[0_30px_80px_rgba(0,0,0,0.35)] overflow-hidden z-10 text-[#111111]"
+            className="relative w-[94%] sm:w-full max-w-2xl max-h-[90dvh] flex flex-col rounded-2xl sm:rounded-[2rem] bg-white border border-[#111111] shadow-[0_25px_70px_rgba(0,0,0,0.35)] overflow-hidden z-10 text-[#111111] my-auto"
             initial={{ opacity: 0, scale: 0.94, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 20 }}
@@ -108,15 +108,15 @@ export default function CollaborationRequestModal({ collaborator, isOpen, onClos
               type="button"
               onClick={onClose}
               aria-label="Close modal"
-              className="absolute top-5 right-5 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center bg-neutral-100 border border-neutral-200 text-neutral-500 hover:bg-[#111111] hover:text-white transition-all duration-300 shadow-sm cursor-pointer z-30 group"
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center bg-neutral-100 border border-neutral-300 text-neutral-600 hover:bg-[#111111] hover:text-white transition-all duration-300 shadow-sm cursor-pointer z-30 group"
             >
               <svg className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:rotate-90" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
-            {/* Scrollable Form Body */}
-            <div className="p-6 sm:p-8 md:p-9 overflow-y-auto custom-scrollbar">
+            {/* Scrollable Form Body - Guaranteed Zero Cut-Off with Bottom Clearance */}
+            <div className="p-4 sm:p-7 md:p-8 overflow-y-auto custom-scrollbar flex-1 pb-8 sm:pb-10">
               
               {!submitted ? (
                 <>

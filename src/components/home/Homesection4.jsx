@@ -98,8 +98,15 @@ const Homesection4 = () => {
                 {/* Inner Separate Card Box */}
                 <div className="relative w-full rounded-2xl border border-neutral-200/90 bg-[#F8F9FA] p-5 sm:p-6 shadow-sm text-left">
                   <div className="flex flex-col items-start space-y-5">
-                    {/* Top Header Row with Badge */}
-                    <div className="w-full flex items-center justify-end">
+                    {/* Top Header Row with Title & Badge */}
+                    <div className="w-full flex flex-wrap items-center justify-between gap-3">
+                      <motion.h3
+                        variants={fadeUp}
+                        className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight"
+                      >
+                        Begin Your Project
+                      </motion.h3>
+
                       <motion.span
                         variants={fadeUp}
                         className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white border border-neutral-200/80 text-[11px] font-extrabold text-[#111111] uppercase tracking-wider shadow-xs"
@@ -108,14 +115,6 @@ const Homesection4 = () => {
                         Instant Onboarding
                       </motion.span>
                     </div>
-
-                    {/* Heading */}
-                    <motion.h3
-                      variants={fadeUp}
-                      className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight"
-                    >
-                      Begin Your Project
-                    </motion.h3>
 
                     {/* Description */}
                     <motion.p

@@ -77,33 +77,6 @@ const HeroSection = () => {
     setMousePos({ x, y });
   };
 
-  const bgElements = (
-    <>
-      {/* ── Scroll Indicator ── */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.3 }}
-        className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1.5 cursor-pointer opacity-90 hover:opacity-100 transition-opacity"
-        onClick={() => {
-          const el = document.getElementById("projects") || document.getElementById("expertise");
-          if (el) el.scrollIntoView({ behavior: "smooth" });
-        }}
-      >
-        <span className="text-[9px] font-bold uppercase tracking-[0.25em] !text-neutral-300">
-          SCROLL .
-        </span>
-        <motion.div
-          animate={{ y: [0, 4, 0] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
-          className="w-4 h-6 rounded-full border border-neutral-600 flex items-start justify-center p-1 bg-black/60 backdrop-blur-md"
-        >
-          <span className="w-1 h-1.5 rounded-full bg-[#E31D2E]" />
-        </motion.div>
-      </motion.div>
-    </>
-  );
-
   const media = (
     <motion.div
       className="w-full max-w-[380px] flex-shrink-0 relative mx-auto lg:mx-0"
@@ -120,7 +93,6 @@ const HeroSection = () => {
       sectionId="home"
       onMouseMove={handleMouseMove}
       className="bg-[#050508] !text-white"
-      bgElements={bgElements}
       badge={
         <SectionBadge text="Home" theme="dark" />
       }

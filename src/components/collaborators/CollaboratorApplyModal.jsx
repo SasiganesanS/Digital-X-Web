@@ -77,7 +77,7 @@ export default function CollaboratorApplyModal({ isOpen, onClose }) {
             initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
-            className="relative z-10 w-full max-w-lg max-h-[88vh] bg-white rounded-2xl p-5 sm:p-7 shadow-2xl border border-neutral-200 text-[#111111] overflow-y-auto custom-scrollbar my-auto"
+            className="relative z-10 w-[94%] sm:w-full max-w-lg max-h-[90dvh] bg-white rounded-2xl p-4 sm:p-7 shadow-2xl border border-[#111111] text-[#111111] overflow-y-auto custom-scrollbar my-auto pb-8 sm:pb-10"
           >
             {/* Close Button */}
             <button

@@ -956,7 +956,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
               src={Logo}
               alt="PRASKLA DIGITAL X Logo"
               ref={logoImgRef}
-              className="h-[44px] xs:h-[52px] sm:h-[68px] lg:h-[76px] !important w-auto object-contain transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.08)] group-hover:drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)] relative z-10"
+              className="h-[44px] xs:h-[52px] sm:h-[68px] lg:h-[76px] !important w-auto object-contain transition-all duration-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.08)] group-hover:drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)] relative z-10"                                                                                  
               style={{ willChange: 'transform, filter' }}
             />
 

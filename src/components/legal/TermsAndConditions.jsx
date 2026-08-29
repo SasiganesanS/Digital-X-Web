@@ -77,9 +77,9 @@ const TermsAndConditions = () => {
       <div className="relative z-10 w-full">
         {/* SECTION 1 — HERO */}
         <section className="legal-hero relative bg-transparent">
-          <HeroLayout className="py-4 sm:py-6 lg:py-8">
-            {/* Top Row: Standard Baseline Header */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+          <HeroLayout verticalCenter={true}>
+            {/* Top Row: Vertically Centered Header & Media Card */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto">
               {/* Left Column: Badge -> Heading -> Description */}
               <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left w-full">
                 <div className="mb-4 flex justify-center lg:justify-start w-full">
@@ -96,7 +96,7 @@ const TermsAndConditions = () => {
               </div>
 
               {/* Right Column: Hero Media Card */}
-              <div className="lg:col-span-5 w-full flex justify-center lg:justify-end items-start pt-2 lg:pt-0">
+              <div className="lg:col-span-5 w-full flex justify-center lg:justify-end items-center pt-2 lg:pt-0">
                 {media}
               </div>
             </div>
