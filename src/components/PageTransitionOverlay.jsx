@@ -38,12 +38,12 @@ export default function PageTransitionOverlay() {
     }
   }, [location.pathname, location.search]);
 
-  // 3. Dismiss overlay after 800ms
+  // 3. Fast dismissal as soon as route location changes, with safety max timer
   useEffect(() => {
     if (active) {
       const timer = setTimeout(() => {
         setActive(false);
-      }, 800);
+      }, 250);
       return () => clearTimeout(timer);
     }
   }, [active, location.pathname, location.search]);

@@ -925,9 +925,12 @@ export default function ServiceCalculator() {
                   const isHighlighted = activeIndex === originalIndex;
                   const isProgrammaticHover = Boolean(focusedService && service.title.toLowerCase() === focusedService.toLowerCase());
 
+                  const isClone = i >= servicesData.length;
+
                   return (
                     <div
                       key={`${service.title}-${i}`}
+                      aria-hidden={isClone ? "true" : undefined}
                       className="w-[85vw] sm:w-[320px] md:w-[340px] lg:w-[360px] flex-shrink-0"
                       onClick={() => {
                         goToIndex(originalIndex, 3000, i);
@@ -936,6 +939,7 @@ export default function ServiceCalculator() {
                       }}
                     >
                       <div
+                        tabIndex={isClone ? -1 : 0}
                         className={`relative rounded-2xl p-6 sm:p-7 flex flex-col justify-between items-start text-left h-[420px] cursor-pointer transition-all duration-300 ease-out group overflow-hidden select-none bg-white border ${
                           isProgrammaticHover || isHighlighted
                             ? 'border-[#111111] shadow-[0_20px_45px_rgba(0,0,0,0.14)] z-30'
@@ -959,6 +963,10 @@ export default function ServiceCalculator() {
                             <img
                               src={service.image}
                               alt={service.title}
+                              width="64"
+                              height="64"
+                              loading={isClone ? "lazy" : "eager"}
+                              decoding="async"
                               className="w-full h-full object-cover rounded-2xl"
                             />
                           </div>

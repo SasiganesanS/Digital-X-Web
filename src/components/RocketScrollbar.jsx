@@ -38,17 +38,23 @@ export default function RocketScrollbar() {
     }
   }, []);
 
+  const rafIdRef = useRef(null);
+
   // Handle Window Scroll & Resize Events
   useEffect(() => {
     const handleScroll = () => {
-      updateScrollProgress();
-      setIsScrolling(true);
+      if (rafIdRef.current) return;
+      rafIdRef.current = requestAnimationFrame(() => {
+        rafIdRef.current = null;
+        updateScrollProgress();
+        setIsScrolling(true);
 
-      if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
-      scrollTimeoutRef.current = setTimeout(() => {
-        setIsScrolling(false);
-        setRocketMotion("idle");
-      }, 300);
+        if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+        scrollTimeoutRef.current = setTimeout(() => {
+          setIsScrolling(false);
+          setRocketMotion("idle");
+        }, 300);
+      });
     };
 
     const handleResize = () => {
@@ -63,6 +69,7 @@ export default function RocketScrollbar() {
       window.removeEventListener("scroll", handleScroll);
       window.removeEventListener("resize", handleResize);
       if (scrollTimeoutRef.current) clearTimeout(scrollTimeoutRef.current);
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
     };
   }, [updateScrollProgress]);
 

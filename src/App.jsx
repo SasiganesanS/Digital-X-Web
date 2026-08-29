@@ -1,60 +1,54 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { HashRouter, Routes, Route, useLocation, Link } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 
-// --- All component imports ---
+// --- Layout & Shell component imports ---
 import Navbar from "./components/Navbar";
 import FavIcon from "./assets/fav.webp";
 import Home from "./components/home/Home";
-import Homesection2 from "./components/home/Homesection2";
-import Homesection3 from "./components/home/Homesection3";
-import Homesection4 from "./components/home/Homesection4";
-import Homesection5 from "./components/home/Homesection5";
-import About from "./components/about/About";
-import Teams from "./components/Teams";
-import Clients from "./components/Clients";
-import Projects from "./components/Projects";
-import Services from "./components/Services";
-import Careers from "./components/Careers";
 import Footer from "./components/Footer";
-import Partners from "./components/Partners";
 import NotFound from "./components/NotFound";
 import ContactForm from "./components/ContactForm";
-import BusinessWebsitePricing from "./components/pricing/BusinessWebsitePricing";
-import EcommerceWebsitePricing from "./components/pricing/EcommerceWebsitePricing";
-import MobileApplicationPricing from "./components/pricing/MobileApplicationPricing";
-import DigitalMarketingPricing from "./components/pricing/DigitalMarketingPricing";
-import SoftwareDevelopmentPricing from "./components/pricing/SoftwareDevelopmentPricing";
-import CybersecurityPricing from "./components/pricing/CybersecurityPricing";
-import SustainabilityPricing from "./components/pricing/SustainabilityPricing";
-import EcommerceMarketingCombo from "./components/pricing/EcommerceMarketingCombo";
-import SoftwareMarketingCombo from "./components/pricing/SoftwareMarketingCombo";
-import MobileMarketingCombo from "./components/pricing/MobileMarketingCombo";
-import BlogPage from "./components/pricing/BlogPage";
-import MainBlogPage from "./components/MainBlogPage";
-import ProjectCaseStudy from "./components/ProjectCaseStudy";
-import ProjectDetail from "./components/ProjectDetail";
-import ServiceCalculator from "./components/ServiceCalculator";
-import PlatformPlanPage from "./components/PlatformPlanPage";
 import CinematicUniverse from "./components/CinematicUniverse";
 import ScrollToTop from "./components/ScrollToTop";
 import RocketScrollbar from "./components/RocketScrollbar";
 import SearchOverlay from "./components/SearchOverlay";
-import CollaboratorDirectory from "./components/collaborators/CollaboratorDirectory";
-import CollaboratorProfilePage from "./components/collaborators/CollaboratorProfilePage";
-
 import FooterReveal from "./components/FooterReveal";
-
-// Legal Page Imports
-import PrivacyPolicy from "./components/legal/PrivacyPolicy";
-import TermsAndConditions from "./components/legal/TermsAndConditions";
-import CookiePolicy from "./components/legal/CookiePolicy";
-
-import ServiceCard from "./components/serviceCard-reveal/ServiceCard";
-
-// Animation Wrapper
 import AnimatedPage from "./components/AnimatedPage";
 import PageTransitionOverlay from "./components/PageTransitionOverlay";
+import ErrorBoundary from "./components/ErrorBoundary";
+
+// --- Lazy-Loaded Page Components (Code-Splitting) ---
+const About = lazy(() => import("./components/about/About"));
+const Clients = lazy(() => import("./components/Clients"));
+const Projects = lazy(() => import("./components/Projects"));
+const Careers = lazy(() => import("./components/Careers"));
+const ServiceCalculator = lazy(() => import("./components/ServiceCalculator"));
+const CollaboratorDirectory = lazy(() => import("./components/collaborators/CollaboratorDirectory"));
+const CollaboratorProfilePage = lazy(() => import("./components/collaborators/CollaboratorProfilePage"));
+
+const BusinessWebsitePricing = lazy(() => import("./components/pricing/BusinessWebsitePricing"));
+const EcommerceWebsitePricing = lazy(() => import("./components/pricing/EcommerceWebsitePricing"));
+const MobileApplicationPricing = lazy(() => import("./components/pricing/MobileApplicationPricing"));
+const DigitalMarketingPricing = lazy(() => import("./components/pricing/DigitalMarketingPricing"));
+const SoftwareDevelopmentPricing = lazy(() => import("./components/pricing/SoftwareDevelopmentPricing"));
+const CybersecurityPricing = lazy(() => import("./components/pricing/CybersecurityPricing"));
+const SustainabilityPricing = lazy(() => import("./components/pricing/SustainabilityPricing"));
+
+const EcommerceMarketingCombo = lazy(() => import("./components/pricing/EcommerceMarketingCombo"));
+const SoftwareMarketingCombo = lazy(() => import("./components/pricing/SoftwareMarketingCombo"));
+const MobileMarketingCombo = lazy(() => import("./components/pricing/MobileMarketingCombo"));
+
+const BlogPage = lazy(() => import("./components/pricing/BlogPage"));
+const MainBlogPage = lazy(() => import("./components/MainBlogPage"));
+const ProjectCaseStudy = lazy(() => import("./components/ProjectCaseStudy"));
+const ProjectDetail = lazy(() => import("./components/ProjectDetail"));
+const PlatformPlanPage = lazy(() => import("./components/PlatformPlanPage"));
+
+const PrivacyPolicy = lazy(() => import("./components/legal/PrivacyPolicy"));
+const TermsAndConditions = lazy(() => import("./components/legal/TermsAndConditions"));
+const CookiePolicy = lazy(() => import("./components/legal/CookiePolicy"));
+const ServiceCard = lazy(() => import("./components/serviceCard-reveal/ServiceCard"));
 
 // ===================================================================
 // HomePage Wrapper with Scroll Restoration
@@ -471,7 +465,9 @@ const MainLayout = () => {
         onClose={() => setShowContactForm(false)}
       />
       <main className="relative z-10 w-full">
-        <AppRoutes />
+        <Suspense fallback={null}>
+          <AppRoutes />
+        </Suspense>
       </main>
       <FooterReveal setShowContactForm={setShowContactForm} />
       <ScrollToTop />
@@ -480,8 +476,6 @@ const MainLayout = () => {
     </div>
   );
 };
-
-import ErrorBoundary from "./components/ErrorBoundary";
 
 // ===================================================================
 // App component (renders the merged MainLayout)
