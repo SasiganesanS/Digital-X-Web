@@ -47,8 +47,8 @@ export default function FeaturedWorks() {
   const startScrollTopRef = useRef(0);
 
   const handlePointerDown = (e) => {
-    // Only trigger on primary mouse button (left-click) or touch
-    if (e.pointerType === "mouse" && e.button !== 0) return;
+    // Only trigger on desktop mouse dragging (let mobile touch devices use smooth native scroll)
+    if (e.pointerType !== "mouse" || e.button !== 0) return;
 
     isDraggingRef.current = true;
     hasDraggedRef.current = false;

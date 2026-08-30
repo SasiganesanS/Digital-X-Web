@@ -144,7 +144,7 @@ const ProjectDetail = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-neutral-300 text-base sm:text-lg font-medium leading-relaxed mb-6 max-w-2xl font-sans"
+              className="hero-description text-neutral-300 text-base sm:text-lg font-medium leading-relaxed mb-4 sm:mb-6 max-w-2xl font-sans"
             >
               {project.description}
             </motion.p>
@@ -154,23 +154,23 @@ const ProjectDetail = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-start w-full gap-4 pt-1"
+              className="flex flex-col items-center lg:items-start w-full gap-2 sm:gap-4 pt-0.5"
             >
               {/* Key Outcome & Year Badges */}
-              <div className="flex flex-wrap items-center gap-2.5 w-full">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-1.5 sm:gap-2.5 w-full">
                 {project.result && (
-                  <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white border border-gray-200 text-[#111111] shadow-xs">
-                    <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse shrink-0" />
-                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#E31D2E]">
+                  <div className="inline-flex items-center gap-1.5 sm:gap-2.5 px-2.5 py-1 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl bg-white border border-gray-200 text-[#111111] shadow-xs">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#E31D2E] animate-pulse shrink-0" />
+                    <span className="text-[9px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#E31D2E]">
                       Outcome:
                     </span>
-                    <span className="text-xs sm:text-sm font-black text-[#111111]">
+                    <span className="text-[10px] sm:text-sm font-black text-[#111111]">
                       {project.result}
                     </span>
                   </div>
                 )}
                 {project.year && (
-                  <div className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-[#111111] text-xs font-bold uppercase tracking-wider shadow-xs">
+                  <div className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3.5 sm:py-2 rounded-lg sm:rounded-xl bg-white border border-gray-200 text-[#111111] text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-xs">
                     <span className="text-neutral-500 font-semibold">Year:</span>
                     <span className="text-[#111111] font-black">{project.year}</span>
                   </div>
@@ -178,20 +178,20 @@ const ProjectDetail = () => {
               </div>
 
               {/* Action Buttons: View Case Study + Request Proposal */}
-              <div className="flex flex-wrap items-center gap-4 pt-1">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 sm:gap-4 pt-1">
                 <Link
                   to={`/case-study/${project.slug || project.id}`}
                   state={{ from: fromPath || '/projects' }}
-                  className="inline-flex items-center gap-2.5 bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white px-7 py-3.5 rounded-xl font-black text-[13px] sm:text-[14px] uppercase tracking-[0.02em] shadow-lg shadow-red-500/20 transition-all duration-300 hover:-translate-y-0.5 font-sans"
+                  className="inline-flex items-center gap-1.5 sm:gap-2.5 bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white px-4 py-2 sm:px-7 sm:py-3.5 rounded-xl font-black text-[10px] sm:text-[14px] uppercase tracking-[0.02em] shadow-lg shadow-red-500/20 transition-all duration-300 hover:-translate-y-0.5 font-sans"
                 >
                   <span>Read Full Case Study</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </Link>
 
                 <button
                   type="button"
                   onClick={() => setShowContactForm(true)}
-                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl border border-gray-300 bg-white hover:border-gray-400 text-[#111111] font-extrabold text-[13px] sm:text-[14px] uppercase tracking-[0.02em] transition-all font-sans cursor-pointer"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 sm:px-6 sm:py-3.5 rounded-xl border border-gray-300 bg-white hover:border-gray-400 text-[#111111] font-extrabold text-[10px] sm:text-[14px] uppercase tracking-[0.02em] transition-all font-sans cursor-pointer"
                 >
                   <span>Request Similar Project</span>
                 </button>
@@ -205,9 +205,9 @@ const ProjectDetail = () => {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="w-full flex justify-center lg:justify-end"
             >
-              <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
-                <div className="relative rounded-2xl p-3 sm:p-4 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden max-w-md mx-auto lg:max-w-none">
-                  <div className="relative rounded-xl overflow-hidden aspect-square bg-[#050609]">
+              <div className="relative w-full max-w-[240px] sm:max-w-lg mx-auto lg:max-w-none">
+                <div className="relative rounded-2xl p-1.5 sm:p-4 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden max-w-[240px] sm:max-w-md mx-auto lg:max-w-none">
+                  <div className="relative rounded-xl overflow-hidden aspect-[16/10] sm:aspect-square bg-[#050609]">
                     <img
                       src={project.image}
                       alt={project.title}
@@ -215,16 +215,16 @@ const ProjectDetail = () => {
                     />
                   </div>
 
-                  <div className="mt-4 p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 flex items-center justify-between">
+                  <div className="mt-2 sm:mt-4 p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-neutral-50 border border-neutral-200/80 flex items-center justify-between">
                     <div>
-                      <div className="text-[10px] font-extrabold uppercase tracking-widest text-[#E31D2E]">
+                      <div className="text-[8px] sm:text-[10px] font-extrabold uppercase tracking-widest text-[#E31D2E]">
                         Key Outcome
                       </div>
-                      <div className="text-base sm:text-lg font-black text-[#111111]">
+                      <div className="text-xs sm:text-lg font-black text-[#111111] truncate max-w-[140px] sm:max-w-none">
                         {project.result}
                       </div>
                     </div>
-                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-[#575757] bg-white px-3 py-1 rounded-md border border-neutral-200">
+                    <span className="text-[8px] sm:text-[10px] font-extrabold uppercase tracking-wider text-[#575757] bg-white px-2 py-0.5 sm:px-3 sm:py-1 rounded-md border border-neutral-200">
                       Delivered
                     </span>
                   </div>

@@ -23,7 +23,7 @@ const servicesData = [
     shortTitle: "SEO",
     category: "Organic Growth",
     headline: "Be found when your customers are searching.",
-    desc: "We help your business rank higher on search engines, attract high-intent visitors, and convert organic traffic into sustainable growth.",
+    desc: "We help your business rank higher on search engines, attract high-intent visitors, and drive organic growth.",
   },
   {
     id: "02",
@@ -32,7 +32,7 @@ const servicesData = [
     shortTitle: "SMM — Social Media Marketing",
     category: "Social Growth",
     headline: "Turn social media into a growth engine.",
-    desc: "We build engaging social strategies that make your brand visible, relatable, and memorable while creating genuine connections.",
+    desc: "We build engaging social strategies that make your brand visible, relatable, and memorable.",
   },
   {
     id: "03",
@@ -41,7 +41,7 @@ const servicesData = [
     shortTitle: "Paid Advertising",
     category: "Paid Growth",
     headline: "Put your brand in front of the right people.",
-    desc: "We create and manage targeted ad campaigns designed to reach the right audience, generate leads, and accelerate measurable business growth.",
+    desc: "We manage targeted ad campaigns designed to reach high-intent audiences and accelerate ROI.",
   },
   {
     id: "04",
@@ -50,7 +50,7 @@ const servicesData = [
     shortTitle: "Website Design & Development",
     category: "Digital Experience",
     headline: "Your website is your digital first impression. Make it count.",
-    desc: "We build modern, conversion-focused websites that look stunning and perform seamlessly to communicate your brand value clearly.",
+    desc: "We build modern, conversion-focused websites that look stunning and perform seamlessly.",
   },
   {
     id: "05",
@@ -59,7 +59,7 @@ const servicesData = [
     shortTitle: "Content Marketing",
     category: "Content Strategy",
     headline: "Content that earns attention—and builds trust.",
-    desc: "We create strategic content that educates your audience, builds authority, and guides potential customers to choose your brand.",
+    desc: "We create strategic content that educates your audience, builds authority, and guides sales.",
   },
   {
     id: "06",
@@ -68,7 +68,7 @@ const servicesData = [
     shortTitle: "Video Production",
     category: "Creative Production",
     headline: "Tell your story. Show your value. Make it unforgettable.",
-    desc: "We produce captivating video content designed to capture attention, communicate your message clearly, and leave a lasting impression.",
+    desc: "We produce captivating video content designed to capture attention and communicate your value.",
   },
   {
     id: "07",
@@ -77,7 +77,7 @@ const servicesData = [
     shortTitle: "E-Commerce Solutions",
     category: "Commerce Growth",
     headline: "Build an online store designed to sell.",
-    desc: "We optimize customer journeys and storefront conversions to transform your e-commerce store into a high-revenue sales engine.",
+    desc: "We optimize storefront conversions to transform your online store into a high-revenue sales engine.",
   },
   {
     id: "08",
@@ -86,7 +86,7 @@ const servicesData = [
     shortTitle: "Email Marketing",
     category: "Lifecycle Marketing",
     headline: "Turn subscribers into repeat revenue.",
-    desc: "Nurture relationships and maximize customer retention with automated, personalized email sequences that land straight in the primary inbox.",
+    desc: "Nurture customer retention with automated, personalized email sequences that land in primary inbox.",
   },
   {
     id: "09",
@@ -95,7 +95,7 @@ const servicesData = [
     shortTitle: "Influencer Marketing",
     category: "Creator Partnerships",
     headline: "Amplify your brand with authentic creator voices.",
-    desc: "Expand brand reach and build trust by pairing your products with aligned content creators and industry figures for authentic brand endorsement.",
+    desc: "Expand brand reach and build trust by pairing your products with aligned content creators.",
   },
   {
     id: "10",
@@ -104,7 +104,7 @@ const servicesData = [
     shortTitle: "Performance Marketing",
     category: "Paid Growth",
     headline: "Scale customer acquisition with data precision.",
-    desc: "Execute data-driven acquisition campaigns designed to generate qualified leads, lower acquisition costs, and accelerate scalable growth.",
+    desc: "Execute data-driven acquisition campaigns to generate qualified leads and accelerate scalable growth.",
   },
   {
     id: "11",
@@ -113,7 +113,7 @@ const servicesData = [
     shortTitle: "ORM",
     category: "Brand Reputation",
     headline: "Protect and elevate your brand perception.",
-    desc: "Protect and elevate your brand perception by monitoring online sentiment, managing reviews, and highlighting positive brand stories.",
+    desc: "Protect and elevate your brand perception by monitoring online sentiment and managing reviews.",
   },
   {
     id: "12",
@@ -122,7 +122,7 @@ const servicesData = [
     shortTitle: "Analytics & Reporting",
     category: "Insights",
     headline: "Turn raw data into actionable growth strategies.",
-    desc: "Gain actionable clarity into user behavior, funnel drop-offs, and marketing performance with automated dashboards and custom reporting.",
+    desc: "Gain actionable clarity into user behavior and funnel performance with automated custom reporting.",
   },
 ];
 

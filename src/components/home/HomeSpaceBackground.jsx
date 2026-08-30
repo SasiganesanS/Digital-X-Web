@@ -30,15 +30,36 @@ const FULLPAGE_COMETS = [
 
 export default function HomeSpaceBackground() {
   const shouldReduceMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = React.useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const { scrollYProgress } = useScroll();
 
-  // Multi-layered Parallax depth transforms
+  // Multi-layered Parallax depth transforms (Disabled on mobile to eliminate scroll flickering)
   const layer1Y = useTransform(scrollYProgress, [0, 1], ["0px", "-120px"]); // Far Background (Stars)
   const layer2Y = useTransform(scrollYProgress, [0, 1], ["0px", "-260px"]); // Mid Background (Space Station, Asteroids, Satellite)
   const layer3Y = useTransform(scrollYProgress, [0, 1], ["0px", "-420px"]); // Foreground (Mars Planet Views)
 
+  const disableParallax = shouldReduceMotion || isMobile;
+
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none bg-[#050609]">
+    <div
+      className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none bg-[#050609]"
+      style={{
+        WebkitBackfaceVisibility: "hidden",
+        backfaceVisibility: "hidden",
+        transform: "translateZ(0)",
+      }}
+    >
       
       {/* ── BASE DARK SPACE ATMOSPHERE ── */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#030407] via-[#06080E] via-[#0A0C14] to-[#040508]" />
@@ -75,7 +96,7 @@ export default function HomeSpaceBackground() {
       {/* ── LAYER 1: FAR BACKGROUND (STARS) ── */}
       <motion.div
         className="absolute inset-0 w-full h-full"
-        style={{ y: shouldReduceMotion ? 0 : layer1Y }}
+        style={{ y: disableParallax ? 0 : layer1Y }}
       >
         {FULLPAGE_STARS.map((star) => (
           <motion.div
@@ -111,7 +132,7 @@ export default function HomeSpaceBackground() {
       {/* ── LAYER 2: MID BACKGROUND (ALTERNATING SPACE STATION, ASTEROIDS, METEORS & SATELLITE) ── */}
       <motion.div
         className="absolute inset-0 w-full h-full"
-        style={{ y: shouldReduceMotion ? 0 : layer2Y }}
+        style={{ y: disableParallax ? 0 : layer2Y }}
       >
         {/* ITEM 2 (Upper-Left ~ 34%): Photorealistic 3D Space Station */}
         <motion.div
@@ -218,7 +239,7 @@ export default function HomeSpaceBackground() {
       {/* ── LAYER 3: FOREGROUND (2 MARS PLANET VIEWS - TOP RIGHT & MID LEFT) ── */}
       <motion.div
         className="absolute inset-0 w-full h-full"
-        style={{ y: shouldReduceMotion ? 0 : layer3Y }}
+        style={{ y: disableParallax ? 0 : layer3Y }}
       >
         {/* ITEM 1 (Top-Right ~ 3%): Mars Main Canyon View */}
         <motion.div

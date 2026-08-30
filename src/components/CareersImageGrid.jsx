@@ -56,10 +56,10 @@ export default function CareersImageGrid({ teamMembers }) {
       initial={{ opacity: 0, scale: 0.96 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full max-w-[380px] sm:max-w-[440px] lg:max-w-[470px] aspect-square mx-auto select-none"
+      className="relative w-full max-w-[250px] sm:max-w-[440px] lg:max-w-[470px] aspect-square mx-auto select-none"
     >
       {/* Outer Showcase Container */}
-      <div className="relative w-full h-full rounded-2xl p-2 sm:p-2.5 md:p-3 bg-white border border-neutral-200/90 shadow-2xl overflow-hidden flex items-center justify-center">
+      <div className="relative w-full h-full rounded-2xl p-1.5 sm:p-2.5 md:p-3 bg-white border border-neutral-200/90 shadow-2xl overflow-hidden flex items-center justify-center">
         {/* Soft Radial Ambient Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[340px] h-[340px] bg-[#E31D2E]/7 rounded-full blur-[90px] pointer-events-none z-0" />
         <div
@@ -107,7 +107,7 @@ export default function CareersImageGrid({ teamMembers }) {
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-tr from-white/70 via-transparent to-white/40 pointer-events-none z-10" />
 
         {/* 3×3 Grid Container */}
-        <div className="grid grid-cols-3 gap-3.5 sm:gap-4 lg:gap-5 w-full h-full relative z-20">
+        <div className="grid grid-cols-3 gap-1.5 sm:gap-4 lg:gap-5 w-full h-full relative z-20">
           {members.map((member, index) => {
             const isCenter = index === 4 || member.id === 5;
             const isHovered = hoveredIndex === index;
@@ -191,7 +191,7 @@ function TileCard({
       onMouseEnter={onMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className={`relative rounded-xl sm:rounded-2xl p-2.5 sm:p-3 flex flex-col items-center justify-between border transition-all duration-300 overflow-hidden cursor-pointer select-none ${
+      className={`relative rounded-lg sm:rounded-2xl p-1 sm:p-3 flex flex-col items-center justify-between border transition-all duration-300 overflow-hidden cursor-pointer select-none ${
         isHovered
           ? "bg-white border-black shadow-xl z-30 scale-[1.02]"
           : "bg-white border-neutral-200/80 shadow-md hover:bg-white"
@@ -206,7 +206,7 @@ function TileCard({
 
       {/* Image Area */}
       <div className={`relative w-full aspect-square overflow-hidden flex items-center justify-center z-10 ${
-        isCenter ? "bg-transparent p-0" : "rounded-[18px] sm:rounded-[22px] p-2 bg-gradient-to-br from-neutral-50/80 to-transparent"
+        isCenter ? "bg-transparent p-0" : "rounded-md sm:rounded-[22px] p-0.5 sm:p-2 bg-gradient-to-br from-neutral-50/80 to-transparent"
       }`}>
         <motion.img
           src={member.image || member}
@@ -223,23 +223,23 @@ function TileCard({
       </div>
 
       {/* Label Subtitle */}
-      <div className="relative z-10 text-center pb-0.5 mt-1.5 w-full flex flex-col items-center">
+      <div className="relative z-10 text-center pb-0.5 mt-0.5 sm:mt-1.5 w-full flex flex-col items-center">
         <span className={`tracking-tight block leading-tight ${
           isCenter
-            ? "font-inlander text-[12px] sm:text-[13.5px] font-black text-[#E31D2E] uppercase tracking-wide text-center"
-            : "text-[10px] sm:text-[11px] font-black text-[#111111]"
+            ? "font-inlander text-[9px] sm:text-[13.5px] font-black text-[#E31D2E] uppercase tracking-wide text-center"
+            : "text-[7.5px] sm:text-[11px] font-black text-[#111111]"
         }`}>
           {labelInfo.title}
         </span>
         <div className="flex items-center justify-center w-full">
           <span className={`block -mt-0.5 inline-flex items-center justify-center gap-0.5 leading-tight ${
             isCenter
-              ? "font-inlander text-[9.5px] sm:text-[11px] font-black uppercase tracking-wider text-[#111111] pl-1.5"
-              : "text-[9px] font-bold uppercase tracking-widest text-[#575757]"
+              ? "font-inlander text-[7px] sm:text-[11px] font-black uppercase tracking-wider text-[#111111] pl-0.5 sm:pl-1.5"
+              : "text-[6.5px] sm:text-[9px] font-bold uppercase tracking-widest text-[#575757]"
           }`}>
             {labelInfo.sub === "Digital X" ? (
               <>
-                <span>Digital</span> <BrandX className="text-[20px] sm:text-[22px] font-pdx text-[#E31D2E] inline-block -ml-0.5 -mt-0.5" />
+                <span>Digital</span> <BrandX className="text-[14px] sm:text-[22px] font-pdx text-[#E31D2E] inline-block -ml-0.5 -mt-0.5" />
               </>
             ) : (
               labelInfo.sub

@@ -135,21 +135,21 @@ const About = () => {
       transition={{ duration: 0.75, delay: 0.3 }}
       className="w-full max-w-xl"
     >
-      {/* 3 Compact Horizontal White Feature Cards — Sleek 3-column row on desktop, compact horizontal rows on mobile */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 w-full">
+      {/* 3 Compact Horizontal White Feature Cards — 3-column grid fitting fully within screen width */}
+      <div className="grid grid-cols-3 gap-1.5 sm:gap-3 w-full">
         {[
           {
-            icon: <TrendingUp className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#111111]" />,
+            icon: <TrendingUp className="w-3 h-3 sm:w-4 sm:h-4 text-[#111111]" />,
             title: "Growth Strategy",
             sub: "Real-World Impact",
           },
           {
-            icon: <Award className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#111111]" />,
+            icon: <Award className="w-3 h-3 sm:w-4 sm:h-4 text-[#111111]" />,
             title: "Proven Execution",
             sub: "Cross-Industry",
           },
           {
-            icon: <Users className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#111111]" />,
+            icon: <Users className="w-3 h-3 sm:w-4 sm:h-4 text-[#111111]" />,
             title: "Dedicated Team",
             sub: "Performance Focused",
           },
@@ -157,14 +157,14 @@ const About = () => {
           <motion.div
             key={i}
             whileHover={{ y: -3, scale: 1.02 }}
-            className="p-2.5 sm:p-3.5 rounded-xl sm:rounded-2xl bg-white border border-neutral-200/80 shadow-md hover:border-neutral-300 hover:shadow-lg transition-all duration-300 flex flex-row sm:flex-col items-center sm:items-start gap-2.5 sm:gap-2 text-[#111111]"
+            className="p-1.5 sm:p-3 rounded-xl sm:rounded-2xl bg-white border border-neutral-200/80 shadow-md hover:border-neutral-300 hover:shadow-lg transition-all duration-300 flex flex-col items-center sm:items-start gap-1 sm:gap-2 text-[#111111] text-center sm:text-left min-w-0"
           >
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-black/5 border border-black/10 flex items-center justify-center text-[#111111] shrink-0">
+            <div className="w-5 h-5 sm:w-8 sm:h-8 rounded-md sm:rounded-xl bg-black/5 border border-black/10 flex items-center justify-center text-[#111111] shrink-0">
               {item.icon}
             </div>
-            <div className="min-w-0">
-              <h4 className="text-xs font-black text-[#111111] truncate">{item.title}</h4>
-              <p className="text-[10px] text-neutral-500 font-medium leading-none mt-0.5 truncate">{item.sub}</p>
+            <div className="w-full min-w-0 text-center sm:text-left">
+              <h4 className="text-[9.5px] sm:text-xs font-black text-[#111111] leading-tight truncate">{item.title}</h4>
+              <p className="text-[8px] sm:text-[10px] text-neutral-500 font-medium leading-tight mt-0.5 truncate">{item.sub}</p>
             </div>
           </motion.div>
         ))}
@@ -187,30 +187,30 @@ const About = () => {
           y: panelMouse.y,
         }}
         transition={{ type: "spring", stiffness: 200, damping: 20 }}
-        className="group relative rounded-2xl p-4 sm:p-7 overflow-hidden border border-neutral-200 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.12)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.18)] transition-all duration-500"
+        className="group relative rounded-2xl p-3 sm:p-7 overflow-hidden border border-neutral-200 bg-white shadow-[0_20px_50px_rgba(0,0,0,0.12)] hover:shadow-[0_25px_60px_rgba(0,0,0,0.18)] transition-all duration-500"
       >
         {/* Header Row: Logo Orb + Title + Pill Badge */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-4 sm:mb-5">
-          <div className="flex items-center gap-3 min-w-0">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-2xl bg-white border border-neutral-200 p-2 shadow-xs flex items-center justify-center flex-shrink-0 group-hover:rotate-6 transition-transform duration-500">
+        <div className="flex flex-row items-center justify-between gap-2 sm:gap-4 mb-2 sm:mb-5">
+          <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+            <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white border border-neutral-200 p-1.5 sm:p-2 shadow-xs flex items-center justify-center flex-shrink-0 group-hover:rotate-6 transition-transform duration-500">
               <img src={pyLogo} alt="Praskla Digital X" className="w-full h-full object-contain" />
             </div>
-            <div className="min-w-0">
-              <h3 className="font-inlander text-xs sm:text-sm font-black text-[#111111] flex items-center gap-1.5 leading-none">
-                PRASKLA DIGITAL <BrandX className="text-[22px] sm:text-[30px] leading-none shrink-0 text-[#E31D2E] -mt-1 -ml-1" />
+            <div className="min-w-0 text-left">
+              <h3 className="font-inlander text-[11px] sm:text-sm font-black text-[#111111] flex items-center gap-1 leading-none">
+                PRASKLA DIGITAL <BrandX className="text-[18px] sm:text-[30px] leading-none shrink-0 text-[#E31D2E] -mt-0.5 -ml-0.5" />
               </h3>
-              <p className="text-[10px] sm:text-[11px] font-semibold text-neutral-500 mt-0.5 truncate max-w-[210px] sm:max-w-none">A Mindful Marketing and Production Firm</p>
+              <p className="text-[9px] sm:text-[11px] font-semibold text-neutral-500 mt-0.5 truncate max-w-[160px] sm:max-w-none">A Mindful Marketing Firm</p>
             </div>
           </div>
 
-          <span className="px-2.5 py-1 rounded-xl bg-neutral-100 border border-neutral-200/80 text-[9px] sm:text-[10px] font-extrabold text-[#111111] uppercase tracking-wider flex items-center gap-1.5 shrink-0 self-start sm:self-auto">
+          <span className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-xl bg-neutral-100 border border-neutral-200/80 text-[8px] sm:text-[10px] font-extrabold text-[#111111] uppercase tracking-wider flex items-center gap-1 shrink-0">
             <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E] animate-pulse" />
             Excellence
           </span>
         </div>
 
         {/* Cycling phrase banner card */}
-        <div className="relative rounded-2xl p-3 sm:p-4 bg-neutral-50 border border-neutral-200/80 mb-3 sm:mb-4 min-h-[64px] sm:min-h-[72px] flex flex-col justify-center items-center text-center shadow-2xs">
+        <div className="relative rounded-2xl p-2 sm:p-4 bg-neutral-50 border border-neutral-200/80 mb-2 sm:mb-4 min-h-[48px] sm:min-h-[72px] flex flex-col justify-center items-center text-center shadow-2xs">
           <AnimatePresence mode="wait">
             <motion.p
               key={index}
@@ -218,20 +218,20 @@ const About = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.3 }}
-              className="text-[#111111] font-black text-xs sm:text-[15px] leading-snug tracking-tight"
+              className="text-[#111111] font-black text-[11px] sm:text-[15px] leading-snug tracking-tight"
             >
               {phrases[index]}
             </motion.p>
           </AnimatePresence>
 
           {/* Progress bar line */}
-          <div className="flex gap-1.5 justify-center mt-2.5 sm:mt-3">
+          <div className="flex gap-1.5 justify-center mt-1.5 sm:mt-3">
             {phrases.map((_, idx) => (
               <div
                 key={idx}
                 className="h-1 rounded-full transition-all duration-300"
                 style={{
-                  width: idx === index ? "20px" : "6px",
+                  width: idx === index ? "16px" : "5px",
                   background: idx === index ? "#111111" : "rgba(17,17,17,0.18)",
                 }}
               />
@@ -240,25 +240,25 @@ const About = () => {
         </div>
 
         {/* 2x2 Agency Core Focus Grid */}
-        <div className="grid grid-cols-2 gap-2 sm:gap-2.5 mb-3 sm:mb-4">
+        <div className="grid grid-cols-2 gap-1.5 sm:gap-2.5 mb-2 sm:mb-4">
           {[
             {
-              icon: <Zap className="w-4 h-4" />,
+              icon: <Zap className="w-3.5 h-3.5 sm:w-4 sm:h-4" />,
               title: "Performance First",
               desc: "ROI-Focused Execution",
             },
             {
-              icon: <Layers className="w-4 h-4" />,
+              icon: <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4" />,
               title: "Brand Systems",
               desc: "Cohesive Identity & Tech",
             },
             {
-              icon: <ShieldCheck className="w-4 h-4" />,
+              icon: <ShieldCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />,
               title: "Mindful Strategy",
               desc: "Transparent & Scalable",
             },
             {
-              icon: <Sparkles className="w-4 h-4" />,
+              icon: <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />,
               title: "Creative Mastery",
               desc: "High-Impact Content",
             },
@@ -266,16 +266,16 @@ const About = () => {
             <motion.div
               key={i}
               whileHover={{ y: -2 }}
-              className="p-2.5 sm:p-3 rounded-xl bg-white border border-neutral-200/90 shadow-2xs hover:border-black/30 hover:shadow-md transition-all duration-300 flex items-center gap-2 sm:gap-2.5 group/box cursor-pointer"
+              className="p-1.5 sm:p-3 rounded-xl bg-white border border-neutral-200/90 shadow-2xs hover:border-black/30 hover:shadow-md transition-all duration-300 flex items-center gap-1.5 sm:gap-2.5 group/box cursor-pointer text-left"
             >
-              <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-neutral-100 border border-neutral-200/80 flex items-center justify-center shrink-0 text-[#111111] group-hover/box:bg-[#111111] group-hover/box:text-white group-hover/box:border-[#111111] transition-all duration-300 shadow-2xs">
+              <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-xl bg-neutral-100 border border-neutral-200/80 flex items-center justify-center shrink-0 text-[#111111] group-hover/box:bg-[#111111] group-hover/box:text-white group-hover/box:border-[#111111] transition-all duration-300 shadow-2xs">
                 {item.icon}
               </div>
               <div className="min-w-0">
-                <h4 className="text-[11px] sm:text-xs font-black text-[#111111] leading-tight truncate">
+                <h4 className="text-[10px] sm:text-xs font-black text-[#111111] leading-tight truncate">
                   {item.title}
                 </h4>
-                <p className="text-[9px] sm:text-[10px] text-neutral-500 font-bold leading-tight truncate mt-0.5">
+                <p className="text-[8.5px] sm:text-[10px] text-neutral-500 font-bold leading-tight truncate mt-0.5">
                   {item.desc}
                 </p>
               </div>
@@ -284,18 +284,18 @@ const About = () => {
         </div>
 
         {/* Quote Box */}
-        <div className="p-3 sm:p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 shadow-2xs">
-          <p className="text-neutral-700 text-xs sm:text-[13px] leading-relaxed font-semibold italic text-center">
+        <div className="p-2 sm:p-4 rounded-2xl bg-neutral-50 border border-neutral-200/80 shadow-2xs">
+          <p className="text-neutral-700 text-[10.5px] sm:text-[13px] leading-snug font-semibold italic text-center">
             "Creating impactful digital brand experiences that combine strategic clarity, high performance, and human connection."
           </p>
         </div>
 
         {/* Footer Bar */}
-        <div className="mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-neutral-200/80 flex items-center justify-between text-[10px] sm:text-[11px] text-neutral-500 font-bold uppercase tracking-wider">
-          <span className="inline-flex items-center gap-1.5 font-inlander font-bold text-[#111111]">
-            PRASKLA DIGITAL <BrandX className="text-[20px] sm:text-[22px] leading-none shrink-0 text-[#111111] -mt-0.5 -ml-0.5" />
+        <div className="mt-2 sm:mt-4 pt-1.5 sm:pt-3 border-t border-neutral-200/80 flex items-center justify-between text-[9px] sm:text-[11px] text-neutral-500 font-bold uppercase tracking-wider">
+          <span className="inline-flex items-center gap-1 font-inlander font-bold text-[#111111]">
+            PRASKLA DIGITAL <BrandX className="text-[16px] sm:text-[22px] leading-none shrink-0 text-[#111111] -mt-0.5 -ml-0.5" />
           </span>
-          <span className="text-[#111111]">Established Excellence</span>
+          <span className="text-[#111111]">ESTABLISHED EXCELLENCE</span>
         </div>
       </motion.div>
     </motion.div>

@@ -1119,60 +1119,150 @@ img, video, canvas, svg {
     box-sizing: border-box !important;
   }
 
-  /* 2. Header Offset & Natural Height Flow — Hero Expands to Fit All Mobile Children */
-  .hero-screen-edge,
+  /* 2. Header Offset & Fit Entire Hero + Expertise in First Viewport Fold on Mobile */
+  #home.hero-screen-edge,
   #home,
+  #about.hero-screen-edge,
   #about,
+  #services-main,
+  #projects-hero.hero-screen-edge,
+  #projects-hero,
+  #careers-hero.hero-screen-edge,
+  #careers-hero,
+  #project-detail-hero.hero-screen-edge,
+  #project-detail-hero,
+  #case-study-hero.hero-screen-edge,
+  #case-study-hero,
+  #collaborators-hero.hero-screen-edge,
+  #collaborators-hero,
+  #collaborator-profile-hero.hero-screen-edge,
+  #collaborator-profile-hero,
+  #privacy-policy-hero.hero-screen-edge,
+  #privacy-policy-hero,
+  #terms-hero.hero-screen-edge,
+  #terms-hero,
+  #cookie-hero.hero-screen-edge,
+  #cookie-hero {
+    height: auto !important;
+    min-height: calc(100dvh - var(--mobile-header-height, 68px)) !important;
+    padding-top: 4px !important;
+    padding-bottom: 8px !important;
+    box-sizing: border-box !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+  }
+
+  #home > div,
+  #about > div,
+  #services-main > div,
+  #projects-hero > div,
+  #careers-hero > div,
+  #project-detail-hero > div,
+  #case-study-hero > div,
+  #collaborators-hero > div,
+  #collaborator-profile-hero > div,
+  #privacy-policy-hero > div,
+  #terms-hero > div,
+  #cookie-hero > div {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+  }
+
   #services,
   #projects {
     height: auto !important;
     min-height: 0 !important;
     max-height: none !important;
     overflow: visible !important;
-    padding-top: calc(var(--mobile-header-height, 76px) + 16px) !important;
-    scroll-padding-top: var(--mobile-header-height, 76px) !important;
+    padding-top: calc(var(--mobile-header-height, 68px) + 16px) !important;
+    scroll-padding-top: var(--mobile-header-height, 68px) !important;
     box-sizing: border-box !important;
   }
 
   /* 3. Hero Sequence Spacing Rhythm */
-  /* HOME Label Badge */
+  /* Label Badges */
   #home [class*="SectionBadge"],
-  #home .badge-container {
+  #home .badge-container,
+  #about [class*="SectionBadge"],
+  #about .badge-container,
+  #services-main [class*="SectionBadge"],
+  #services-main .badge-container,
+  #projects-hero [class*="SectionBadge"],
+  #projects-hero .badge-container,
+  #careers-hero [class*="SectionBadge"],
+  #careers-hero .badge-container,
+  #project-detail-hero [class*="SectionBadge"],
+  #project-detail-hero .badge-container,
+  #case-study-hero [class*="SectionBadge"],
+  #case-study-hero .badge-container,
+  #collaborators-hero [class*="SectionBadge"],
+  #collaborators-hero .badge-container,
+  #collaborator-profile-hero [class*="SectionBadge"],
+  #collaborator-profile-hero .badge-container,
+  #privacy-policy-hero [class*="SectionBadge"],
+  #privacy-policy-hero .badge-container,
+  #terms-hero [class*="SectionBadge"],
+  #terms-hero .badge-container,
+  #cookie-hero [class*="SectionBadge"],
+  #cookie-hero .badge-container {
     margin-top: 0 !important;
-    margin-bottom: 18px !important;
+    margin-bottom: 4px !important;
     display: flex !important;
     justify-content: center !important;
     width: 100% !important;
   }
 
-  /* Main Headline */
-  #home h1 {
-    font-size: clamp(26px, 6.8vw, 34px) !important;
-    line-height: 1.08 !important;
-    letter-spacing: -0.035em !important;
+  /* Main Headlines */
+  #home h1,
+  #about h1,
+  #services-main h1,
+  #projects-hero h1,
+  #careers-hero h1,
+  #project-detail-hero h1,
+  #case-study-hero h1,
+  #collaborators-hero h1,
+  #collaborator-profile-hero h1,
+  #privacy-policy-hero h1,
+  #terms-hero h1,
+  #cookie-hero h1 {
+    font-size: clamp(19px, 5vw, 23px) !important;
+    line-height: 1.12 !important;
+    letter-spacing: -0.03em !important;
     text-align: center !important;
     margin-top: 0 !important;
-    margin-bottom: 20px !important;
+    margin-bottom: 4px !important;
     max-width: 100% !important;
-    padding-left: 8px !important;
-    padding-right: 8px !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
     word-break: break-word !important;
     overflow-wrap: break-word !important;
   }
 
-  /* Description Paragraph */
-  #home .hero-description {
-    font-size: 15px !important;
-    line-height: 1.55 !important;
+  /* Description Paragraphs */
+  #home .hero-description,
+  #about .hero-description,
+  #services-main .hero-description,
+  #projects-hero .hero-description,
+  #careers-hero .hero-description,
+  #project-detail-hero .hero-description,
+  #case-study-hero .hero-description,
+  #collaborators-hero .hero-description,
+  #collaborator-profile-hero .hero-description,
+  #privacy-policy-hero .hero-description,
+  #terms-hero .hero-description,
+  #cookie-hero .hero-description {
+    font-size: 11px !important;
+    line-height: 1.35 !important;
     text-align: center !important;
     margin-top: 0 !important;
-    margin-bottom: 40px !important;
-    max-width: 34ch !important;
+    margin-bottom: 6px !important;
+    max-width: 36ch !important;
     margin-left: auto !important;
     margin-right: auto !important;
     position: relative !important;
     z-index: 10 !important;
-    color: rgba(229, 229, 229, 0.95) !important;
+    color: rgba(229, 229, 229, 0.9) !important;
   }
 
   /* 4. Decorative Background Planets on Mobile */
@@ -1189,34 +1279,34 @@ img, video, canvas, svg {
   #home img[alt*="Mars"],
   #home img[alt*="Station"],
   #home img[alt*="Asteroid"] {
-    opacity: 0.35 !important;
+    opacity: 0.25 !important;
     z-index: 0 !important;
-    max-width: 150px !important;
-    max-height: 150px !important;
+    max-width: 110px !important;
+    max-height: 110px !important;
   }
 
   /* 5. Expertise Section Below Description */
   #home [aria-label="Expertise Carousel"] {
     margin-top: 0 !important;
-    min-height: auto !important;
+    min-height: 0 !important;
   }
 
   #home [aria-label="Expertise Carousel"] > p.expertise-subtitle {
-    font-size: 9px !important;
-    letter-spacing: 0.2em !important;
-    margin-top: 4px !important;
-    margin-bottom: 20px !important;
+    font-size: 8px !important;
+    letter-spacing: 0.18em !important;
+    margin-top: 1px !important;
+    margin-bottom: 4px !important;
     text-align: center !important;
   }
 
-  /* Expertise Coverflow Container — Reserves full 440px height for active card, pagination, and CTA button */
+  /* Expertise Coverflow Container */
   #home .max-w-\[380px\] {
-    width: calc(100% - 24px) !important;
-    max-width: 360px !important;
+    width: calc(100% - 16px) !important;
+    max-width: 320px !important;
     margin-left: auto !important;
     margin-right: auto !important;
     height: auto !important;
-    min-height: 440px !important;
+    min-height: 0 !important;
     overflow: visible !important;
   }
 
@@ -1260,5 +1350,22 @@ img, video, canvas, svg {
   .projects-carousel-track,
   [class*="marquee"] {
     max-width: 100vw !important;
+  }
+
+  /* 8. WebKit & Mobile GPU Layer Flicker & Blinking Prevention */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .neu-card,
+  .clay-card,
+  section,
+  .hero-screen-edge,
+  [class*="rounded-2xl"],
+  [class*="rounded-xl"] {
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
   }
 }

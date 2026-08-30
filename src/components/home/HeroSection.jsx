@@ -8,7 +8,7 @@ import SectionBadge from "../common/SectionBadge";
 function AnimatedStat({ targetNum, suffix = "+", label, delay = 0 }) {
   const [count, setCount] = useState(targetNum || 0);
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: false, margin: "-20px" });
+  const isInView = useInView(containerRef, { once: true, margin: "-20px" });
 
   useEffect(() => {
     if (!isInView) {

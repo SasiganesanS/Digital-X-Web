@@ -39,6 +39,21 @@ const CARD_H = 308;
 
 const ServicesCoverflow = () => {
   const navigate = useNavigate();
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const cardW = isMobile ? 195 : 230;
+  const cardH = isMobile ? 235 : 308;
+
   const total = servicesData.length;
   const [active, setActive] = useState(0);
   const [dragX, setDragX] = useState(0);
@@ -107,7 +122,7 @@ const ServicesCoverflow = () => {
   const handleDragEnd = (event, info) => {
     const offset = info.offset.x;
     const velocity = info.velocity.x;
-    const STEP_PX = 170;
+    const STEP_PX = isMobile ? 130 : 170;
 
     // Calculate exact continuous card shift based on drag distance & velocity momentum
     const totalShift = -(offset + velocity * 0.25) / STEP_PX;
@@ -122,7 +137,7 @@ const ServicesCoverflow = () => {
 
   /* ── Compute each card's position tightly centered in the static box ── */
   const getCardStyle = (index) => {
-    const STEP_PX = 160;
+    const STEP_PX = isMobile ? 130 : 160;
     const activePos = isDragging
       ? (((active - dragX / STEP_PX) % total) + total) % total
       : active;
@@ -153,13 +168,13 @@ const ServicesCoverflow = () => {
     const isRight = rawOffset > 0.35 && rawOffset <= 1.15;
 
     // Horizontal offset for enlarged cards strictly bounded within outer box
-    const x = rawOffset * 76;
+    const x = rawOffset * (isMobile ? 58 : 76);
     const z = isFront ? 0 : -40;
     const y = isFront ? 0 : 3;
     const scale = isFront ? 1 : 0.92;
     const opacity = isFront ? 1 : 0.95;
     const zIndex = isFront ? 100 : 80;
-    const blurAmount = isFront ? 0 : 0.5;
+    const blurAmount = isFront || isMobile ? 0 : 0.5;
 
     return {
       x,
@@ -178,7 +193,7 @@ const ServicesCoverflow = () => {
     <div
       className={`relative w-full flex flex-col items-center justify-center select-none ${isDragging ? "cursor-grabbing" : "cursor-grab"
         }`}
-      style={{ minHeight: 375 }}
+      style={{ minHeight: isMobile ? 250 : 375 }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(true);
@@ -195,7 +210,7 @@ const ServicesCoverflow = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="mb-1.5 z-10"
+        className="mb-1 sm:mb-1.5 z-10"
       >
         <SectionBadge text="OUR EXPERTISE" theme="dark" />
       </motion.div>
@@ -205,7 +220,7 @@ const ServicesCoverflow = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.15 }}
-        className="expertise-subtitle !text-neutral-300 text-[9px] font-bold tracking-[0.2em] uppercase mb-2.5 z-10"
+        className="expertise-subtitle !text-neutral-300 text-[8px] sm:text-[9px] font-bold tracking-[0.2em] uppercase mb-1.5 sm:mb-2.5 z-10"
       >
         TACTILE DIGITAL SOLUTIONS
       </motion.p>
@@ -214,7 +229,7 @@ const ServicesCoverflow = () => {
       <motion.div
         className="relative w-full max-w-[380px] flex items-center justify-center overflow-hidden"
         style={{
-          height: 330,
+          height: isMobile ? 235 : 330,
           perspective: 1200,
           perspectiveOrigin: "50% 45%",
         }}
@@ -233,7 +248,7 @@ const ServicesCoverflow = () => {
           className="absolute rounded-full pointer-events-none"
           style={{
             bottom: 5,
-            width: CARD_W * 0.9,
+            width: cardW * 0.9,
             height: 12,
             background: "radial-gradient(ellipse, rgba(17,17,17,0.12) 0%, transparent 70%)",
             filter: "blur(6px)",
@@ -245,8 +260,8 @@ const ServicesCoverflow = () => {
         <div
           className="relative"
           style={{
-            width: CARD_W,
-            height: CARD_H,
+            width: cardW,
+            height: cardH,
             transformStyle: "preserve-3d",
           }}
         >
@@ -258,8 +273,8 @@ const ServicesCoverflow = () => {
                 key={service.title + i}
                 className="absolute top-0 left-0 cursor-pointer group"
                 style={{
-                  width: CARD_W,
-                  height: CARD_H,
+                  width: cardW,
+                  height: cardH,
                   zIndex: s.zIndex,
                   transformStyle: "preserve-3d",
                 }}
@@ -282,7 +297,7 @@ const ServicesCoverflow = () => {
                 onClick={() => handleCardClick(i)}
               >
                 <div
-                  className="relative w-full h-full overflow-hidden flex flex-col p-3 transition-all duration-300"
+                  className="relative w-full h-full overflow-hidden flex flex-col p-2 sm:p-3 transition-all duration-300"
                   style={{
                     background: s.isFront ? "#FFFFFF" : "rgba(255, 255, 255, 0.88)",
                     backdropFilter: "none",
@@ -295,38 +310,38 @@ const ServicesCoverflow = () => {
                   }}
                 >
                   {/* Image container frame — Fixed identical height matching 3rd image size */}
-                  <div className={`relative w-full h-[140px] shrink-0 flex-shrink-0 rounded-xl overflow-hidden flex items-center justify-center p-2 border border-black/10 transition-colors duration-300 ${
+                  <div className={`relative w-full ${isMobile ? "h-[85px]" : "h-[140px]"} shrink-0 flex-shrink-0 rounded-xl overflow-hidden flex items-center justify-center p-1.5 sm:p-2 border border-black/10 transition-colors duration-300 ${
                     s.isFront ? "bg-[#000000]" : "bg-[#111111]"
                   }`}>
                     <img
                       src={service.image}
                       alt={service.title}
                       draggable={false}
-                      className="w-full h-full object-contain rounded-[16px]"
+                      className="w-full h-full object-contain rounded-[14px]"
                     />
                   </div>
 
                   {/* Text (Only visible on active card) */}
                   <div
-                    className="relative flex-1 flex flex-col justify-between px-3 py-2 transition-opacity duration-300 overflow-hidden text-left"
+                    className="relative flex-1 flex flex-col justify-between px-1.5 sm:px-3 py-1.5 sm:py-2 transition-opacity duration-300 overflow-hidden text-left"
                     style={{
                       opacity: s.isFront ? 1 : 0,
                       pointerEvents: s.isFront ? "auto" : "none"
                     }}
                   >
-                    <div className="flex flex-col gap-1 text-left">
-                      <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#ef2029] text-left block">
+                    <div className="flex flex-col gap-0.5 sm:gap-1 text-left">
+                      <span className="text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.25em] text-[#ef2029] text-left block">
                         Expertise
                       </span>
-                      <h3 className="text-[#111111] font-black uppercase tracking-wide leading-tight text-xs text-left">
+                      <h3 className="text-[#111111] font-black uppercase tracking-tight leading-[1.2] text-[10.5px] sm:text-xs text-left">
                         {service.title}
                       </h3>
                       <p
                         className="font-normal"
                         style={{
                           color: "#333333",
-                          fontSize: "10.5px",
-                          lineHeight: "1.45",
+                          fontSize: isMobile ? "9.5px" : "10.5px",
+                          lineHeight: "1.35",
                           letterSpacing: "normal",
                           textAlign: "left",
                           marginTop: "2px",
@@ -339,7 +354,7 @@ const ServicesCoverflow = () => {
                     </div>
 
                     {/* Focus tag inside active card — Replaces Learn More */}
-                    <div className="mt-1 inline-flex items-center gap-1 text-[#ef2029] font-extrabold text-[9px] uppercase tracking-wider shrink-0">
+                    <div className="mt-1 inline-flex items-center gap-1 text-[#ef2029] font-extrabold text-[8px] sm:text-[9px] uppercase tracking-wider shrink-0">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#ef2029]" />
                       <span>High Impact Strategy</span>
                     </div>
@@ -352,7 +367,7 @@ const ServicesCoverflow = () => {
       </motion.div>
 
       {/* Pagination dots */}
-      <div className="flex items-center gap-2 mt-2 z-10 flex-wrap justify-center max-w-md px-4">
+      <div className="flex items-center gap-1.5 sm:gap-2 mt-1 sm:mt-2 z-10 flex-wrap justify-center max-w-md px-4">
         {servicesData.map((service, i) => (
           <button
             key={service.title + i}
@@ -360,8 +375,8 @@ const ServicesCoverflow = () => {
             onClick={() => goTo(i)}
             className="transition-all duration-300 rounded-full"
             style={{
-              width: i === active ? 18 : 5,
-              height: 5,
+              width: i === active ? (isMobile ? 14 : 18) : (isMobile ? 4 : 5),
+              height: isMobile ? 4 : 5,
               background: i === active ? "#ef2029" : "rgba(17,17,17,0.15)",
             }}
           />
@@ -371,7 +386,7 @@ const ServicesCoverflow = () => {
       {/* View Expertise Button */}
       <button
         onClick={() => navigate("/services")}
-        className="mt-2.5 z-10 text-[10px] font-extrabold uppercase tracking-[0.25em] bg-[#FF2B2B] hover:bg-[#E51D1D] text-white px-6 py-2.5 rounded-xl whitespace-nowrap shadow-[0_8px_20px_rgba(255,43,43,0.4)] transition-all duration-300 hover:scale-105 cursor-pointer"
+        className="mt-1.5 sm:mt-2.5 z-10 text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.25em] bg-[#FF2B2B] hover:bg-[#E51D1D] text-white px-5 sm:px-6 py-1.5 sm:py-2.5 rounded-xl whitespace-nowrap shadow-[0_8px_20px_rgba(255,43,43,0.4)] transition-all duration-300 hover:scale-105 cursor-pointer"
       >
         VIEW EXPERTISE
       </button>

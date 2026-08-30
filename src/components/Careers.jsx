@@ -177,6 +177,7 @@ const Careers = () => {
       {/* Main Careers Content Sections */}
       <div className="relative z-10 w-full">
         <HeroLayout
+          sectionId="careers-hero"
           badge={
             <SectionBadge text="Careers" theme="dark" />
           }
@@ -187,7 +188,7 @@ const Careers = () => {
             </h1>
           }
           description={
-            <p className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
+            <p className="hero-description text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
               Craft high-impact digital campaigns, elevate brands, and grow alongside a team of strategic, creative, and performance marketing minds.
             </p>
           }

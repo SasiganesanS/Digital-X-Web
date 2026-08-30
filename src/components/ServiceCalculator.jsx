@@ -292,11 +292,11 @@ function HeroShowcase({ ourServicesImg }) {
         }}
       >
         {/* Outer Showcase Frame */}
-        <div className={`relative w-full rounded-2xl p-2 sm:p-2.5 lg:p-3 bg-white border border-neutral-200/90 shadow-2xl transition-all duration-500 overflow-visible ${
+        <div className={`relative w-full rounded-2xl p-1.5 sm:p-2.5 lg:p-3 bg-white border border-neutral-200/90 shadow-2xl transition-all duration-500 overflow-visible ${
           isHovered ? "shadow-[0_30px_70px_rgba(0,0,0,0.18)] bg-white" : ""
         }`}>
           {/* Image Container with Parallax Effect */}
-          <div className="relative w-full rounded-2xl overflow-hidden aspect-[16/10] sm:aspect-[16/9.5] min-h-[220px] sm:min-h-[400px] lg:min-h-[440px] bg-white border border-neutral-200/60">
+          <div className="relative w-full rounded-2xl overflow-hidden aspect-[16/9.5] min-h-[160px] sm:min-h-[400px] lg:min-h-[440px] bg-white border border-neutral-200/60">
             <img
               src={ourServicesImg}
               alt="Digital Marketing Strategy"
@@ -316,30 +316,30 @@ function HeroShowcase({ ourServicesImg }) {
               initial={{ opacity: 0, y: 15, scale: 0.92 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.7, delay: 0.5 }}
-              className="absolute bottom-4 left-4 sm:bottom-5 sm:left-5 z-30 p-4 sm:p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-[0_16px_40px_rgba(0,0,0,0.15)] max-w-[260px] sm:max-w-[320px]"
+              className="absolute bottom-2 left-2 sm:bottom-5 sm:left-5 z-30 p-2 sm:p-5 rounded-xl sm:rounded-2xl bg-white border border-neutral-200/90 shadow-[0_16px_40px_rgba(0,0,0,0.15)] max-w-[205px] sm:max-w-[320px]"
             >
               {/* Panel Header */}
-              <div className="flex items-center gap-2.5 mb-3">
-                <span className="relative flex h-3 w-3">
+              <div className="flex items-center gap-1.5 sm:gap-2.5 mb-1 sm:mb-3">
+                <span className="relative flex h-2 w-2 sm:h-3 sm:w-3">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#E31D2E] opacity-75" />
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-[#E31D2E]" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 sm:h-3 sm:w-3 bg-[#E31D2E]" />
                 </span>
-                <span className="text-[#111111] text-xs sm:text-sm font-black uppercase tracking-wider">
+                <span className="text-[#111111] text-[9.5px] sm:text-sm font-black uppercase tracking-wider">
                   Performance-Driven Growth
                 </span>
               </div>
 
               {/* Panel Check Items */}
-              <div className="grid grid-cols-2 gap-2.5 pt-2.5 border-t border-neutral-200/80">
+              <div className="grid grid-cols-2 gap-1 sm:gap-2.5 pt-1 sm:pt-2.5 border-t border-neutral-200/80">
                 {[
                   { name: "SEO" },
                   { name: "Branding" },
                   { name: "Content" },
                   { name: "Paid Ads" },
                 ].map((item, idx) => (
-                  <div key={idx} className="flex items-center gap-2 text-left">
-                    <FiCheckCircle className="w-4 h-4 text-[#E31D2E] shrink-0" />
-                    <span className="text-[#111111] text-xs font-black tracking-tight">
+                  <div key={idx} className="flex items-center gap-1 sm:gap-2 text-left">
+                    <FiCheckCircle className="w-3 h-3 sm:w-4 sm:h-4 text-[#E31D2E] shrink-0" />
+                    <span className="text-[#111111] text-[9px] sm:text-xs font-black tracking-tight">
                       {item.name}
                     </span>
                   </div>
@@ -818,6 +818,7 @@ export default function ServiceCalculator() {
       <div className="relative z-10 w-full">
         {/* ── Hero Section — Shared HeroLayout baseline and vertical rhythm ── */}
         <HeroLayout
+          sectionId="services-main"
           bgElements={
             <>
               <div
@@ -856,7 +857,7 @@ export default function ServiceCalculator() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
+              className="hero-description text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
             >
               Comprehensive branding, media, and performance marketing solutions designed to help your business grow strategically, creatively, and profitably.
             </motion.p>

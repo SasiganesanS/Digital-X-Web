@@ -24,48 +24,48 @@ const PrivacyPolicy = () => {
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.6, delay: 0.2 }}
-      className="w-full max-w-md p-6 rounded-2xl bg-white border border-neutral-200/90 shadow-2xl space-y-4 relative overflow-hidden text-[#111111]"
+      className="w-full max-w-[260px] sm:max-w-md p-2.5 sm:p-6 rounded-2xl bg-white border border-neutral-200/90 shadow-2xl space-y-2 sm:space-y-4 relative overflow-hidden text-[#111111]"
     >
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-neutral-100 pb-3">
-        <div className="flex items-center gap-2">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#E31D2E] animate-pulse" />
-          <span className="text-xs font-extrabold text-[#111111] uppercase tracking-wider">Data Protection</span>
+      <div className="flex items-center justify-between border-b border-neutral-100 pb-2 sm:pb-3">
+        <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#E31D2E] animate-pulse" />
+          <span className="text-[10px] sm:text-xs font-extrabold text-[#111111] uppercase tracking-wider">Data Protection</span>
         </div>
-        <span className="text-[10px] font-black uppercase tracking-widest text-[#111111] bg-neutral-100 px-2.5 py-1 rounded-xl border border-neutral-200/80">
+        <span className="text-[8px] sm:text-[10px] font-black uppercase tracking-widest text-[#111111] bg-neutral-100 px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg sm:rounded-xl border border-neutral-200/80">
           Active Security
         </span>
       </div>
 
       {/* Feature Metrics */}
-      <div className="grid grid-cols-2 gap-3">
-        <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200/80">
-          <div className="flex items-center gap-2 mb-1 text-[#111111]">
-            <Lock className="w-4 h-4" />
-            <span className="text-xs font-black text-[#111111]">256-Bit SSL</span>
+      <div className="grid grid-cols-2 gap-2 sm:gap-3">
+        <div className="p-2 sm:p-3.5 rounded-xl bg-neutral-50 border border-neutral-200/80">
+          <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1 text-[#111111]">
+            <Lock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <span className="text-[10px] sm:text-xs font-black text-[#111111]">256-Bit SSL</span>
           </div>
-          <p className="text-[11px] text-neutral-600 font-medium leading-snug">Bank-grade data encryption in transit.</p>
+          <p className="text-[9px] sm:text-[11px] text-neutral-600 font-medium leading-snug">Bank-grade data encryption in transit.</p>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-neutral-50 border border-neutral-200/80">
-          <div className="flex items-center gap-2 mb-1 text-[#111111]">
-            <UserCheck className="w-4 h-4" />
-            <span className="text-xs font-black text-[#111111]">Zero Data Sale</span>
+        <div className="p-2 sm:p-3.5 rounded-xl bg-neutral-50 border border-neutral-200/80">
+          <div className="flex items-center gap-1.5 sm:gap-2 mb-0.5 sm:mb-1 text-[#111111]">
+            <UserCheck className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+            <span className="text-[10px] sm:text-xs font-black text-[#111111]">Zero Data Sale</span>
           </div>
-          <p className="text-[11px] text-neutral-600 font-medium leading-snug">We never sell or lease user records.</p>
+          <p className="text-[9px] sm:text-[11px] text-neutral-600 font-medium leading-snug">We never sell or lease user records.</p>
         </div>
       </div>
 
       {/* Compliance Seal */}
-      <div className="p-3.5 rounded-xl bg-[#111111] text-white flex items-center justify-between shadow-md">
-        <div className="flex items-center gap-2.5">
-          <ShieldCheck className="w-5 h-5 text-white" />
+      <div className="p-2 sm:p-3.5 rounded-xl bg-[#111111] text-white flex items-center justify-between shadow-md">
+        <div className="flex items-center gap-2 sm:gap-2.5">
+          <ShieldCheck className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
           <div>
-            <div className="text-xs font-black">GDPR & DPDP Framework</div>
-            <div className="text-[10px] text-neutral-400 font-medium">Strict Privacy Protocol Verified</div>
+            <div className="text-[10px] sm:text-xs font-black">GDPR & DPDP Framework</div>
+            <div className="text-[8px] sm:text-[10px] text-neutral-400 font-medium">Strict Privacy Protocol Verified</div>
           </div>
         </div>
-        <Eye className="w-5 h-5 text-white shrink-0" />
+        <Eye className="w-4 h-4 sm:w-5 sm:h-5 text-white shrink-0" />
       </div>
     </motion.div>
   );
@@ -79,7 +79,7 @@ const PrivacyPolicy = () => {
       <div className="relative z-10 w-full">
         {/* SECTION 1 — HERO */}
         <section className="legal-hero relative bg-transparent">
-          <HeroLayout verticalCenter={true}>
+          <HeroLayout sectionId="privacy-policy-hero" verticalCenter={true}>
             {/* Top Row: Vertically Centered Header & Data Protection Card */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto">
               {/* Left Column: Badge -> Heading -> Description */}
@@ -92,7 +92,7 @@ const PrivacyPolicy = () => {
                   Privacy <span className="text-[#E31D2E]">Policy</span>
                 </h1>
 
-                <p className="text-neutral-300 text-base sm:text-lg font-medium leading-relaxed max-w-xl">
+                <p className="hero-description text-neutral-300 text-base sm:text-lg font-medium leading-relaxed max-w-xl">
                   We value your trust and are committed to protecting your personal information. Read our transparent privacy standards.
                 </p>
               </div>

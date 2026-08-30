@@ -66,15 +66,15 @@ function ProjectCounter({ targetNum, suffix = "+", label, delay = 0 }) {
       animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 15, scale: 0.95 }}
       transition={{ duration: 0.6, delay: delay * 0.3, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -5, scale: 1.02 }}
-      className="clay-card relative flex flex-col items-start p-3.5 px-4 sm:px-5 rounded-2xl border border-white/90 shadow-xl bg-white hover:bg-white cursor-default group transition-all duration-300 w-full min-w-0"
+      className="clay-card relative flex flex-col items-start p-2 px-3 sm:p-3.5 sm:px-5 rounded-xl sm:rounded-2xl border border-white/90 shadow-xl bg-white hover:bg-white cursor-default group transition-all duration-300 w-full min-w-0"
     >
-      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/70 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white/70 via-transparent to-transparent pointer-events-none" />
 
       <div className="relative z-10 flex flex-col">
-        <span className="text-2xl sm:text-3xl font-black text-[#111111] tracking-tight group-hover:text-[#E31D2E] transition-colors duration-300">
+        <span className="text-lg sm:text-3xl font-black text-[#111111] tracking-tight group-hover:text-[#E31D2E] transition-colors duration-300">
           {count}{suffix}
         </span>
-        <span className="text-[#575757] text-[10px] font-bold uppercase tracking-[0.18em] mt-0.5">
+        <span className="text-[#575757] text-[8.5px] sm:text-[10px] font-bold uppercase tracking-[0.18em] mt-0.5 truncate">
           {label}
         </span>
       </div>
@@ -114,7 +114,7 @@ function ProjectShowcase({ projectImages, imageIndex }) {
       initial={{ opacity: 0, scale: 0.95, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-      className="relative w-full max-w-[360px] sm:max-w-[420px] lg:max-w-[450px] mx-auto perspective-[1000px] select-none"
+      className="relative w-full max-w-[240px] sm:max-w-[420px] lg:max-w-[450px] mx-auto perspective-[1000px] select-none"
     >
       <div
         onMouseMove={handleMouseMove}
@@ -127,11 +127,11 @@ function ProjectShowcase({ projectImages, imageIndex }) {
         }}
       >
         {/* Outer Showcase Frame */}
-        <div className={`relative rounded-2xl p-2 sm:p-2.5 bg-white border border-white/90 shadow-2xl transition-all duration-500 overflow-hidden ${
+        <div className={`relative rounded-2xl p-1.5 sm:p-2.5 bg-white border border-white/90 shadow-2xl transition-all duration-500 overflow-hidden ${
           isHovered ? "shadow-[0_25px_60px_rgba(0,0,0,0.15)] bg-white" : ""
         }`}>
           {/* Slideshow Image Container */}
-          <div className="relative rounded-xl overflow-hidden aspect-square bg-neutral-900">
+          <div className="relative rounded-xl overflow-hidden aspect-[16/10] sm:aspect-square bg-neutral-900">
             <AnimatePresence initial={false} mode="wait">
               {projectImages.map((img, idx) => (
                 idx === imageIndex && (
@@ -159,16 +159,16 @@ function ProjectShowcase({ projectImages, imageIndex }) {
             initial={{ opacity: 0, y: 15, scale: 0.92 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 z-20 p-3.5 px-4.5 rounded-2xl bg-white border border-white/90 shadow-xl flex items-center gap-3"
+            className="absolute bottom-2 left-2 sm:bottom-8 sm:left-8 z-20 p-1.5 px-2.5 sm:p-3.5 sm:px-4.5 rounded-xl sm:rounded-2xl bg-white border border-white/90 shadow-xl flex items-center gap-2 sm:gap-3"
           >
-            <div className="w-8 h-8 rounded-xl bg-neutral-100 border border-neutral-200/80 flex items-center justify-center text-[#111111] font-black text-sm">
+            <div className="w-6 h-6 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-neutral-100 border border-neutral-200/80 flex items-center justify-center text-[#111111] font-black text-xs sm:text-sm shrink-0">
               ★
             </div>
             <div>
-              <div className="text-[#E31D2E] text-[10px] font-black tracking-widest uppercase flex items-center gap-0.5">
+              <div className="text-[#E31D2E] text-[8px] sm:text-[10px] font-black tracking-widest uppercase flex items-center gap-0.5">
                 <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
               </div>
-              <div className="text-[#111111] text-xs font-black tracking-tight">
+              <div className="text-[#111111] text-[9.5px] sm:text-xs font-black tracking-tight">
                 Trusted by Growing Brands
               </div>
             </div>
@@ -275,6 +275,7 @@ const Projects = () => {
       <div className="relative z-10 w-full">
         {/* ------------------ Hero Section ------------------ */}
         <HeroLayout
+          sectionId="projects-hero"
           bgElements={null}
           badge={
             <motion.div
@@ -303,14 +304,14 @@ const Projects = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.2 }}
-              className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
+              className="hero-description text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8"
             >
               A curated showcase of performance campaigns, digital products, and brand identity projects built for growth.
             </motion.p>
           }
         actions={
           <div className="flex flex-col items-center lg:items-start gap-3.5 relative z-10 w-full">
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 w-full max-w-xl justify-center lg:justify-start">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-2.5 w-full max-w-xl justify-center lg:justify-start">
               <ProjectCounter targetNum="10" suffix="+" label="Projects Completed" delay={0} />
               <ProjectCounter targetNum="8" suffix="+" label="Brands Supported" delay={0.1} />
               <ProjectCounter targetNum="90" suffix="%+" label="Client Retention" delay={0.2} />

@@ -60,15 +60,15 @@ export default function CollaboratorProfilePage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="w-full min-w-0 rounded-2xl bg-white border border-neutral-200/90 p-5 sm:p-7 lg:p-8 shadow-[0_12px_40px_rgba(0,0,0,0.1)] text-[#111111] overflow-hidden box-border"
+            className="w-full min-w-0 rounded-2xl bg-white border border-neutral-200/90 p-3 sm:p-7 lg:p-8 shadow-[0_12px_40px_rgba(0,0,0,0.1)] text-[#111111] overflow-hidden box-border"
           >
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 items-center w-full min-w-0">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 sm:gap-8 items-center w-full min-w-0">
               
               {/* Left Image Column (5 Cols) — Sleek Compact Avatar Box */}
               <div className="lg:col-span-5 w-full min-w-0 flex justify-center">
-                <div className="relative w-full max-w-[300px] h-56 sm:h-64 lg:h-72 rounded-2xl overflow-hidden border border-neutral-200/80 shadow-xs bg-neutral-100/90 flex items-center justify-center">
-                  <User className="w-20 h-20 text-neutral-400 stroke-[1.4]" />
-                  <div className="absolute top-3 left-3 px-3 py-1 rounded-full text-[11px] font-bold bg-white/95 backdrop-blur-md text-[#111111] border border-white/60 shadow-2xs flex items-center gap-1.5">
+                <div className="relative w-full max-w-[200px] sm:max-w-[300px] h-32 sm:h-64 lg:h-72 rounded-xl sm:rounded-2xl overflow-hidden border border-neutral-200/80 shadow-xs bg-neutral-100/90 flex items-center justify-center">
+                  <User className="w-12 h-12 sm:w-20 sm:h-20 text-neutral-400 stroke-[1.4]" />
+                  <div className="absolute top-2 left-2 sm:top-3 sm:left-3 px-2 py-0.5 sm:px-3 sm:py-1 rounded-full text-[9px] sm:text-[11px] font-bold bg-white/95 backdrop-blur-md text-[#111111] border border-white/60 shadow-2xs flex items-center gap-1 sm:gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
                     <span>{collaborator.availability}</span>
                   </div>
@@ -76,38 +76,38 @@ export default function CollaboratorProfilePage() {
               </div>
 
               {/* Right Info Column (7 Cols) */}
-              <div className="lg:col-span-7 w-full min-w-0 flex flex-col items-start text-left">
-                <div className="mb-2">
+              <div className="lg:col-span-7 w-full min-w-0 flex flex-col items-center lg:items-start text-center lg:text-left">
+                <div className="mb-1.5">
                   <SectionBadge text={collaborator.categoryLabel} />
                 </div>
 
-                <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#111111] tracking-tight leading-tight mb-1.5 break-words">
+                <h1 className="text-xl sm:text-3xl lg:text-4xl font-black text-[#111111] tracking-tight leading-tight mb-1 break-words">
                   {collaborator.name}
                 </h1>
 
-                <p className="text-xs font-extrabold text-[#E31D2E] uppercase tracking-widest mb-3 leading-snug">
+                <p className="text-[10px] sm:text-xs font-extrabold text-[#E31D2E] uppercase tracking-widest mb-2 leading-snug">
                   {collaborator.role} • {collaborator.experience} Experience
                 </p>
 
-                <p className="text-neutral-600 text-xs sm:text-sm font-medium leading-relaxed mb-4">
+                <p className="hero-description text-neutral-600 text-xs sm:text-sm font-medium leading-relaxed mb-3 max-w-xl">
                   {collaborator.shortDescription}
                 </p>
 
                 {/* Quick Metrics */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full min-w-0 mb-5 p-3.5 rounded-xl bg-neutral-50 border border-neutral-200/80 shadow-2xs box-border">
-                  <div className="min-w-0">
-                    <span className="text-[10px] font-extrabold text-neutral-400 uppercase tracking-widest block mb-0.5">
+                <div className="grid grid-cols-2 gap-2 sm:gap-3 w-full min-w-0 mb-3.5 p-2 sm:p-3.5 rounded-xl bg-neutral-50 border border-neutral-200/80 shadow-2xs box-border">
+                  <div className="min-w-0 text-center lg:text-left">
+                    <span className="text-[8.5px] sm:text-[10px] font-extrabold text-neutral-400 uppercase tracking-widest block mb-0.5">
                       Experience Level
                     </span>
-                    <span className="text-sm font-black text-[#111111] block truncate">
+                    <span className="text-xs sm:text-sm font-black text-[#111111] block truncate">
                       {collaborator.experience}
                     </span>
                   </div>
-                  <div className="min-w-0">
-                    <span className="text-[10px] font-extrabold text-neutral-400 uppercase tracking-widest block mb-0.5">
+                  <div className="min-w-0 text-center lg:text-left">
+                    <span className="text-[8.5px] sm:text-[10px] font-extrabold text-neutral-400 uppercase tracking-widest block mb-0.5">
                       Engagement Status
                     </span>
-                    <span className="text-sm font-black text-[#111111] block truncate">
+                    <span className="text-xs sm:text-sm font-black text-[#111111] block truncate">
                       Agency Network Partner
                     </span>
                   </div>
@@ -117,13 +117,13 @@ export default function CollaboratorProfilePage() {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(true)}
-                  className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[#E31D2E] hover:bg-black text-white font-black text-xs tracking-widest uppercase transition-all duration-300 shadow-md hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full sm:w-auto px-4 py-2 sm:px-6 sm:py-3 rounded-xl bg-[#E31D2E] hover:bg-black text-white font-black text-[10px] sm:text-xs tracking-widest uppercase transition-all duration-300 shadow-md hover:scale-105 active:scale-95 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>Request This Collaborator</span>
                   <ArrowUpRight className="w-3.5 h-3.5 stroke-[2.5]" />
                 </button>
 
-                <p className="text-[10px] font-semibold text-neutral-400 mt-2.5">
+                <p className="text-[9px] sm:text-[10px] font-semibold text-neutral-400 mt-1.5 sm:mt-2.5">
                   Praskla DigitalX coordinates every collaboration from project requirements to execution.
                 </p>
               </div>

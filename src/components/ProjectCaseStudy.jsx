@@ -123,7 +123,7 @@ const ProjectCaseStudy = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-neutral-300 text-base sm:text-lg font-medium leading-relaxed mb-6 max-w-2xl font-sans"
+              className="hero-description text-neutral-300 text-base sm:text-lg font-medium leading-relaxed mb-4 sm:mb-6 max-w-2xl font-sans"
             >
               {project.description}
             </motion.p>
@@ -133,23 +133,23 @@ const ProjectCaseStudy = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="flex flex-col items-start w-full gap-4 pt-1"
+              className="flex flex-col items-center lg:items-start w-full gap-2 sm:gap-4 pt-0.5"
             >
               {/* Key Outcome & Year Badges */}
-              <div className="flex flex-wrap items-center gap-2.5 w-full">
+              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-1.5 sm:gap-2.5 w-full">
                 {project.result && (
-                  <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-xl bg-white border border-gray-200 text-[#111111] shadow-xs">
-                    <span className="w-2 h-2 rounded-full bg-[#E31D2E] animate-pulse shrink-0" />
-                    <span className="text-[11px] font-extrabold uppercase tracking-wider text-[#E31D2E]">
+                  <div className="inline-flex items-center gap-1.5 sm:gap-2.5 px-2.5 py-1 sm:px-4 sm:py-2 rounded-lg sm:rounded-xl bg-white border border-gray-200 text-[#111111] shadow-xs">
+                    <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#E31D2E] animate-pulse shrink-0" />
+                    <span className="text-[9px] sm:text-[11px] font-extrabold uppercase tracking-wider text-[#E31D2E]">
                       Outcome:
                     </span>
-                    <span className="text-xs sm:text-sm font-black text-[#111111]">
+                    <span className="text-[10px] sm:text-sm font-black text-[#111111]">
                       {project.result}
                     </span>
                   </div>
                 )}
                 {project.year && (
-                  <div className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-gray-200 text-[#111111] text-xs font-bold uppercase tracking-wider shadow-xs">
+                  <div className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-3.5 sm:py-2 rounded-lg sm:rounded-xl bg-white border border-gray-200 text-[#111111] text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-xs">
                     <span className="text-neutral-500 font-semibold">Year:</span>
                     <span className="text-[#111111] font-black">{project.year}</span>
                   </div>
@@ -157,14 +157,14 @@ const ProjectCaseStudy = () => {
               </div>
 
               {/* Action Button */}
-              <div className="pt-2">
+              <div className="pt-1">
                 <button
                   type="button"
                   onClick={() => setShowContactForm(true)}
-                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-xl bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer font-sans"
+                  className="inline-flex items-center gap-2 px-4 py-2 sm:px-6 sm:py-3.5 rounded-xl bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white font-black text-[10px] sm:text-sm uppercase tracking-wider shadow-lg shadow-red-500/20 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer font-sans"
                 >
                   <span>Request Similar Project</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </button>
               </div>
             </motion.div>
@@ -176,9 +176,9 @@ const ProjectCaseStudy = () => {
               transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
               className="w-full flex justify-center lg:justify-end"
             >
-              <div className="relative w-full max-w-lg mx-auto lg:max-w-none">
-                <div className="relative rounded-2xl p-3 sm:p-4 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden max-w-md mx-auto lg:max-w-none">
-                  <div className="relative rounded-xl overflow-hidden aspect-square bg-[#050609]">
+              <div className="relative w-full max-w-[240px] sm:max-w-lg mx-auto lg:max-w-none">
+                <div className="relative rounded-2xl p-1.5 sm:p-4 bg-white border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.06)] overflow-hidden max-w-[240px] sm:max-w-md mx-auto lg:max-w-none">
+                  <div className="relative rounded-xl overflow-hidden aspect-[16/10] sm:aspect-square bg-[#050609]">
                     <img
                       src={project.image}
                       alt={project.title}
@@ -187,9 +187,9 @@ const ProjectCaseStudy = () => {
                   </div>
 
                   {/* Clean floating status badge */}
-                  <div className="absolute bottom-6 left-6 sm:bottom-8 sm:left-8 p-3 px-4 rounded-xl bg-white/95 backdrop-blur-md border border-gray-200 shadow-md flex items-center gap-2.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#E31D2E] animate-ping" />
-                    <span className="text-[#111111] text-xs font-extrabold uppercase tracking-wider">
+                  <div className="absolute bottom-2 left-2 sm:bottom-8 sm:left-8 p-1.5 px-2.5 sm:p-3 sm:px-4 rounded-lg sm:rounded-xl bg-white/95 backdrop-blur-md border border-gray-200 shadow-md flex items-center gap-1.5 sm:gap-2.5">
+                    <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#E31D2E] animate-ping" />
+                    <span className="text-[#111111] text-[9px] sm:text-xs font-extrabold uppercase tracking-wider">
                       Featured Case Study
                     </span>
                   </div>

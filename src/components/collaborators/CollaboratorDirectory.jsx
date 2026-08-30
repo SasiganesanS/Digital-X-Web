@@ -78,7 +78,7 @@ export default function CollaboratorDirectory() {
             Creative <span className="text-[#E31D2E]">Collaborators</span>
           </h1>
 
-          <p className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-medium leading-relaxed max-w-2xl mx-auto mb-8 font-sans">
+          <p className="hero-description text-neutral-300 text-base sm:text-lg lg:text-[19px] font-medium leading-relaxed max-w-2xl mx-auto mb-6 sm:mb-8 font-sans">
             A curated network of creative professionals, influencers, executives, and specialists working with Praskla DigitalX to bring ideas to life. Praskla DigitalX coordinates every engagement from project scope to final delivery.
           </p>
 
@@ -86,10 +86,10 @@ export default function CollaboratorDirectory() {
             <button
               type="button"
               onClick={() => setIsApplyModalOpen(true)}
-              className="px-7 py-3.5 rounded-xl bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white font-black text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-lg shadow-red-500/20 hover:scale-105 active:scale-95 flex items-center gap-2.5 cursor-pointer font-sans"
+              className="px-4 py-2 sm:px-7 sm:py-3.5 rounded-xl bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white font-black text-[10px] sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-lg shadow-red-500/20 hover:scale-105 active:scale-95 flex items-center gap-2 sm:gap-2.5 cursor-pointer font-sans"
             >
               <span>Apply as Collaborator</span>
-              <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+              <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
             </button>
           </div>
         </motion.div>

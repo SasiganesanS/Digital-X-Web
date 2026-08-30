@@ -30,7 +30,14 @@ const COMETS = [
 
 export default function SpaceHeroBackground() {
   return (
-    <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none bg-[#030306]">
+    <div
+      className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none bg-[#030306]"
+      style={{
+        WebkitBackfaceVisibility: "hidden",
+        backfaceVisibility: "hidden",
+        transform: "translateZ(0)",
+      }}
+    >
       
       {/* Pitch Black Cosmic Void Base */}
       <div className="absolute inset-0 bg-gradient-to-b from-[#020204] via-[#05050A] to-[#030305]" />
