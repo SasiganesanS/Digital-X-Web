@@ -32,6 +32,7 @@ import {
   FaLeaf,
   FaPalette,
   FaVideo,
+  FaArrowRight,
 } from "react-icons/fa";
 import {
   FiUsers,
@@ -171,8 +172,8 @@ function AnimatedPriceDisplay({ value = 5000, textColor = "text-[#111111]" }) {
   const numToFormat = typeof displayValue === 'number' && !isNaN(displayValue) ? displayValue : 5000;
 
   return (
-    <div className={`flex items-baseline gap-1 text-3xl sm:text-[2.5rem] font-black ${textColor} tracking-tight`}>
-      <span className="text-[#111111] text-2xl sm:text-3xl font-black">₹</span>
+    <div className={`flex items-baseline gap-1 text-xl sm:text-[2.5rem] font-black ${textColor} tracking-tight`}>
+      <span className="text-[#111111] text-lg sm:text-3xl font-black">₹</span>
       <span>{numToFormat.toLocaleString()}</span>
     </div>
   );
@@ -674,6 +675,19 @@ export default function ServiceCalculator() {
   };
 
   useEffect(() => {
+    const handleUpdateEvent = () => {
+      const storedItems = sessionStorage.getItem('serviceCalculatorItems');
+      if (storedItems) {
+        try {
+          const items = JSON.parse(storedItems);
+          const restored = restoreFromIds(items);
+          if (restored.length > 0) {
+            setSelectedItems(restored.slice(-1));
+          }
+        } catch (e) { }
+      }
+    };
+
     const storedItems = sessionStorage.getItem('serviceCalculatorItems');
     if (storedItems) {
       try {
@@ -683,6 +697,9 @@ export default function ServiceCalculator() {
       } catch (e) { }
     }
     setIsInitialLoad(false);
+
+    window.addEventListener('serviceCalculatorUpdate', handleUpdateEvent);
+    return () => window.removeEventListener('serviceCalculatorUpdate', handleUpdateEvent);
   }, []);
 
   useEffect(() => {
@@ -703,11 +720,6 @@ export default function ServiceCalculator() {
 
   const handlePlatformClick = (platform, event) => {
     if (!platform) return;
-    if (isMobile) {
-      sessionStorage.setItem('currentPlatformId', platform.id);
-      navigate('/platform-plan');
-      return;
-    }
     const rect = event?.currentTarget ? event.currentTarget.getBoundingClientRect() : { left: window.innerWidth / 2, top: window.innerHeight / 2, width: 0, height: 0 };
     setClickPosition({ x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 });
     setModalPlatform(platform);
@@ -1044,7 +1056,7 @@ export default function ServiceCalculator() {
       {/* ── Pricing Calculator / Growth Package Estimator ── */}
       <div
         ref={calculatorRef}
-        className="relative py-12 sm:py-14 lg:py-16 overflow-hidden bg-transparent"
+        className="relative py-4 sm:py-14 lg:py-16 overflow-hidden bg-transparent"
       >
         {/* Subtle Decorative Background Elements */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#E31D2E]/4 rounded-full blur-[160px] pointer-events-none" />
@@ -1053,41 +1065,41 @@ export default function ServiceCalculator() {
           style={{ backgroundImage: "radial-gradient(circle,#111 1px,transparent 1px)", backgroundSize: "40px 40px" }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
+        <div className="relative z-10 max-w-7xl mx-auto px-3.5 sm:px-6 md:px-10 lg:px-16">
           {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center justify-center text-center mb-16"
+            className="flex flex-col items-center justify-center text-center mb-4 sm:mb-16"
           >
             {/* Small Badge */}
-            <div className="mb-4">
+            <div className="mb-1.5 sm:mb-4">
               <SectionBadge text="BUILD YOUR PLAN" theme="dark" />
             </div>
 
             {/* Large Heading */}
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white tracking-tight mb-4">
+            <h2 className="text-xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight mb-1 sm:mb-4">
               Create Your <span className="text-[#E31D2E]">Digital Growth Package</span>
             </h2>
 
             {/* Small Supporting Paragraph */}
-            <p className="text-neutral-300 text-base md:text-lg max-w-xl font-medium">
+            <p className="text-neutral-300 text-xs sm:text-base md:text-lg max-w-xl font-medium hidden sm:block">
               Select the services you need and instantly preview your investment.
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-8 items-start">
             {/* Left Column: Pillars */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="bg-white p-6 sm:p-8 md:p-9 rounded-2xl border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.05)] relative overflow-hidden">
-                <div className="flex items-center justify-between mb-7 pb-4 border-b border-gray-100">
-                  <h3 className="text-xs font-black text-[#111111] uppercase tracking-[0.2em] flex items-center gap-2.5">
-                    <span className="w-2.5 h-2.5 rounded-xl bg-[#111111] animate-pulse" />
+            <div className="lg:col-span-7 space-y-4 sm:space-y-6">
+              <div className="bg-white p-3.5 sm:p-8 md:p-9 rounded-2xl border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.05)] relative overflow-hidden">
+                <div className="flex items-center justify-between mb-3.5 sm:mb-7 pb-2.5 sm:pb-4 border-b border-gray-100">
+                  <h3 className="text-[11px] sm:text-xs font-black text-[#111111] uppercase tracking-[0.18em] sm:tracking-[0.2em] flex items-center gap-2">
+                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-xl bg-[#111111] animate-pulse" />
                     SELECT THE PACKAGES
                   </h3>
-                  <span className="text-[11px] font-bold text-gray-400 uppercase tracking-wider bg-gray-100 px-3 py-1 rounded-xl">
+                  <span className="text-[9.5px] sm:text-[11px] font-bold text-gray-400 uppercase tracking-wider bg-gray-100 px-2 py-0.5 sm:px-3 sm:py-1 rounded-lg sm:rounded-xl">
                     {PLATFORMS.length} Available
                   </span>
                 </div>
@@ -1115,45 +1127,45 @@ export default function ServiceCalculator() {
                         key={p.id || pTitle}
                         type="button"
                         onClick={(e) => handlePlatformClick(p, e)}
-                        className={`group relative p-5 rounded-xl border transition-all duration-300 text-left overflow-hidden flex items-center justify-between cursor-pointer min-h-[105px] ${
+                        className={`group relative p-3 sm:p-5 rounded-xl border transition-all duration-300 text-left overflow-hidden flex items-center justify-between cursor-pointer min-h-[72px] sm:min-h-[105px] ${
                           isSelected
-                            ? "bg-[#111111] text-white border-[#111111] shadow-[0_14px_36px_rgba(0,0,0,0.12)] scale-[1.02] -translate-y-0.5"
+                            ? "bg-[#111111] text-white border-[#111111] shadow-[0_14px_36px_rgba(0,0,0,0.12)] scale-[1.01] -translate-y-0.5"
                             : "bg-slate-50/70 border-slate-200/80 hover:bg-white hover:border-black/20 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] hover:-translate-y-0.5"
                         }`}
                       >
-                        <div className="relative z-10 flex items-center gap-3.5">
+                        <div className="relative z-10 flex items-center gap-2.5 sm:gap-3.5">
                           {/* Floating Layered Icon Container */}
-                          <div className={`relative w-11 h-11 rounded-xl flex items-center justify-center border transition-all duration-300 shrink-0 ${
+                          <div className={`relative w-9 h-9 sm:w-11 sm:h-11 rounded-xl flex items-center justify-center border transition-all duration-300 shrink-0 ${
                             isSelected
                               ? "bg-white text-[#111111] border-white shadow-[0_4px_16px_rgba(0,0,0,0.12)] scale-105"
                               : "bg-white text-[#111111] border-gray-200 group-hover:border-black/20 group-hover:scale-105 group-hover:rotate-[6deg]"
                           }`}>
-                            {PlatformIcon ? <PlatformIcon className="text-lg transition-transform duration-300" /> : null}
+                            {PlatformIcon ? <PlatformIcon className="text-base sm:text-lg transition-transform duration-300" /> : null}
                           </div>
 
                           {/* Content */}
                           <div>
-                            <div className={`font-extrabold text-sm sm:text-base leading-snug transition-colors duration-300 ${
+                            <div className={`font-extrabold text-xs sm:text-base leading-snug transition-colors duration-300 ${
                               isSelected ? "text-white" : "text-[#111111]"
                             }`}>
                               {pTitle}
                             </div>
-                            <div className="text-xs font-bold mt-1 inline-flex items-center gap-1.5">
+                            <div className="text-[11px] sm:text-xs font-bold mt-0.5 inline-flex items-center gap-1">
                               <span className={`font-black ${isSelected ? "text-white" : "text-[#111111]"}`}>₹{pPrice.toLocaleString()}</span>
-                              <span className={`font-semibold text-[10px] uppercase tracking-wider ${isSelected ? "text-neutral-300" : "text-gray-400"}`}>base</span>
+                              <span className={`font-semibold text-[9px] sm:text-[10px] uppercase tracking-wider ${isSelected ? "text-neutral-300" : "text-gray-400"}`}>base</span>
                             </div>
                           </div>
                         </div>
 
                         {/* Right Indicator (Check or Arrow) */}
-                        <div className="relative z-10 shrink-0 ml-2">
+                        <div className="relative z-10 shrink-0 ml-1.5">
                           {isSelected ? (
-                            <div className="w-7 h-7 rounded-xl bg-white text-[#111111] flex items-center justify-center shadow-md">
-                              <FaCheckCircle className="text-xs text-[#111111]" />
+                            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg sm:rounded-xl bg-white text-[#111111] flex items-center justify-center shadow-md">
+                              <FaCheckCircle className="text-[10px] sm:text-xs text-[#111111]" />
                             </div>
                           ) : (
-                            <div className="w-7 h-7 rounded-xl border border-gray-200 flex items-center justify-center bg-white group-hover:border-black/30 group-hover:bg-neutral-100 transition-all shadow-2xs">
-                              <FaArrowRight className="text-gray-400 text-[10px] group-hover:text-[#111111] transition-colors" />
+                            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg sm:rounded-xl border border-gray-200 flex items-center justify-center bg-white group-hover:border-black/30 group-hover:bg-neutral-100 transition-all shadow-2xs">
+                              <FaArrowRight className="text-gray-400 text-[9px] sm:text-[10px] group-hover:text-[#111111] transition-colors" />
                             </div>
                           )}
                         </div>
@@ -1165,33 +1177,33 @@ export default function ServiceCalculator() {
                   const techList = PLATFORMS.filter((p) => p && p.id !== "marketing" && p.id !== "video");
 
                   return (
-                    <div className="space-y-7">
+                    <div className="space-y-4 sm:space-y-7">
                       {/* Group 1: Digital Marketing */}
-                      <div className="space-y-4">
-                        <div className="flex items-center gap-3">
-                          <span className="text-[11px] font-extrabold text-[#111111] uppercase tracking-[0.18em] bg-neutral-100 border border-neutral-200 px-3.5 py-1.5 rounded-xl flex items-center gap-1.5 shadow-2xs">
+                      <div className="space-y-2.5 sm:space-y-4">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <span className="text-[10px] sm:text-[11px] font-extrabold text-[#111111] uppercase tracking-[0.16em] sm:tracking-[0.18em] bg-neutral-100 border border-neutral-200 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-lg sm:rounded-xl flex items-center gap-1.5 shadow-2xs">
                             <span className="w-1.5 h-1.5 rounded-full bg-[#111111]" />
                             Digital Marketing
                           </span>
                           <div className="h-[1px] flex-1 bg-gradient-to-r from-neutral-300 via-neutral-200 to-transparent" />
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                           {marketingList.map((p) => renderCard(p))}
                         </div>
                       </div>
 
                       {/* Group 2: Technology */}
-                      <div className="space-y-4 pt-1">
-                        <div className="flex items-center gap-3">
-                          <span className="text-[11px] font-extrabold text-[#111111] uppercase tracking-[0.18em] bg-neutral-100 border border-neutral-200 px-3.5 py-1.5 rounded-xl flex items-center gap-1.5 shadow-2xs">
+                      <div className="space-y-2.5 sm:space-y-4 pt-0.5">
+                        <div className="flex items-center gap-2 sm:gap-3">
+                          <span className="text-[10px] sm:text-[11px] font-extrabold text-[#111111] uppercase tracking-[0.16em] sm:tracking-[0.18em] bg-neutral-100 border border-neutral-200 px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-lg sm:rounded-xl flex items-center gap-1.5 shadow-2xs">
                             <span className="w-1.5 h-1.5 rounded-full bg-[#111111]" />
                             Technology
                           </span>
                           <div className="h-[1px] flex-1 bg-gradient-to-r from-neutral-300 via-neutral-200 to-transparent" />
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
                           {techList.map((p) => renderCard(p))}
                         </div>
                       </div>
@@ -1204,21 +1216,21 @@ export default function ServiceCalculator() {
             {/* Right Column: Redesigned Dashboard-Style Sticky Summary Card */}
             <div className="lg:col-span-5">
               <div className="sticky top-28">
-                <div className="bg-white p-6 sm:p-8 rounded-2xl border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.05)] relative overflow-hidden">
-                  <div className="relative z-10 space-y-5">
+                <div className="bg-white p-3.5 sm:p-8 rounded-2xl border border-gray-200/90 shadow-[0_20px_50px_rgba(17,17,17,0.05)] relative overflow-hidden">
+                  <div className="relative z-10 space-y-3 sm:space-y-5">
                     {/* Header with Inline Status Badge */}
-                    <div className="flex items-center justify-between pb-4 border-b border-gray-100">
-                      <h3 className="text-xs font-black text-[#111111] uppercase tracking-[0.2em] flex items-center gap-2.5">
-                        <span className="w-2.5 h-2.5 rounded-xl bg-[#111111]" />
+                    <div className="flex items-center justify-between pb-2.5 sm:pb-4 border-b border-gray-100">
+                      <h3 className="text-[11px] sm:text-xs font-black text-[#111111] uppercase tracking-[0.18em] sm:tracking-[0.2em] flex items-center gap-2">
+                        <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-xl bg-[#111111]" />
                         Plan Summary
                       </h3>
-                      <span className="px-3 py-1 rounded-xl text-[11px] font-bold uppercase tracking-wider bg-neutral-100 text-[#111111] border border-neutral-200">
+                      <span className="px-2 py-0.5 sm:px-3 sm:py-1 rounded-lg sm:rounded-xl text-[10px] sm:text-[11px] font-bold uppercase tracking-wider bg-neutral-100 text-[#111111] border border-neutral-200">
                         {Array.isArray(selectedItems) ? selectedItems.length : 0} {selectedItems?.length === 1 ? "Pillar" : "Pillars"}
                       </span>
                     </div>
 
                     {/* Selected Services Area with Elegant Empty State */}
-                    <div className="max-h-[300px] overflow-y-auto pr-1 space-y-2.5 custom-scrollbar">
+                    <div className="max-h-[220px] sm:max-h-[300px] overflow-y-auto pr-1 space-y-2 custom-scrollbar">
                       <AnimatePresence mode="popLayout">
                         {!Array.isArray(selectedItems) || selectedItems.length === 0 ? (
                           <motion.div
@@ -1226,14 +1238,14 @@ export default function ServiceCalculator() {
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.95 }}
-                            className="py-8 px-4 text-center border border-dashed border-gray-200 rounded-2xl bg-slate-50/50 flex flex-col items-center justify-center space-y-2.5"
+                            className="py-3 px-3 sm:py-8 sm:px-4 text-center border border-dashed border-gray-200 rounded-xl sm:rounded-2xl bg-slate-50/50 flex flex-col items-center justify-center space-y-1.5 sm:space-y-2.5"
                           >
-                            <div className="w-12 h-12 rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center text-[#111111] shadow-2xs">
-                              <FiLayers className="w-5 h-5" />
+                            <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-neutral-100 border border-neutral-200 flex items-center justify-center text-[#111111] shadow-2xs">
+                              <FiLayers className="w-4 h-4 sm:w-5 sm:h-5" />
                             </div>
                             <div>
                               <h4 className="text-xs font-extrabold text-[#111111]">No services selected yet</h4>
-                              <p className="text-[11px] text-gray-500 font-medium mt-1 leading-relaxed max-w-[240px] mx-auto">
+                              <p className="text-[10px] sm:text-[11px] text-gray-500 font-medium mt-0.5 leading-snug sm:leading-relaxed max-w-[240px] mx-auto">
                                 Click one or more packages on the left to build your tailored growth plan.
                               </p>
                             </div>
@@ -1255,34 +1267,34 @@ export default function ServiceCalculator() {
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9, y: -10 }}
                                 transition={{ duration: 0.2 }}
-                                className="p-3.5 px-4 rounded-xl bg-slate-50/80 border border-slate-100 shadow-2xs hover:border-black/20 transition-all flex items-center justify-between group"
+                                className="p-2.5 px-3 sm:p-3.5 sm:px-4 rounded-xl bg-slate-50/80 border border-slate-100 shadow-2xs hover:border-black/20 transition-all flex items-center justify-between group"
                               >
-                                <div className="flex items-center gap-3">
-                                  <div className="w-8 h-8 rounded-xl bg-neutral-100 border border-neutral-200 flex items-center justify-center text-[#111111] shrink-0 font-bold">
-                                    <FiCheckCircle className="w-4 h-4 text-[#111111]" />
+                                <div className="flex items-center gap-2.5 sm:gap-3">
+                                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg sm:rounded-xl bg-neutral-100 border border-neutral-200 flex items-center justify-center text-[#111111] shrink-0 font-bold">
+                                    <FiCheckCircle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#111111]" />
                                   </div>
                                   <div>
                                     <div className="text-xs sm:text-sm font-extrabold text-[#111111] tracking-tight">{platformTitle}</div>
-                                    <div className="text-[#111111] text-[10px] font-bold mt-0.5 inline-flex items-center gap-1.5">
+                                    <div className="text-[#111111] text-[9.5px] sm:text-[10px] font-bold mt-0.5 inline-flex items-center gap-1 sm:gap-1.5">
                                       <MdStars className="text-xs text-[#111111]" />
                                       <span>{planTitle}</span>
                                       {item.durationLabel && (
-                                        <span className="text-gray-500 font-semibold text-[9px] bg-gray-200/60 px-1.5 py-0.2 rounded-md">
+                                        <span className="text-gray-500 font-semibold text-[8.5px] sm:text-[9px] bg-gray-200/60 px-1 py-0.2 rounded-md">
                                           {item.durationLabel}
                                         </span>
                                       )}
                                     </div>
                                   </div>
                                 </div>
-                                <div className="flex items-center gap-3">
+                                <div className="flex items-center gap-2 sm:gap-3">
                                   <span className="text-xs sm:text-sm font-black text-[#111111]">₹{itemPrice.toLocaleString()}</span>
                                   <button
                                     type="button"
                                     onClick={() => setSelectedItems(prev => prev.filter((_, i) => i !== idx))}
-                                    className="w-7 h-7 rounded-full bg-gray-200/60 hover:bg-neutral-200 text-gray-400 hover:text-[#111111] flex items-center justify-center transition-colors cursor-pointer"
+                                    className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-gray-200/60 hover:bg-neutral-200 text-gray-400 hover:text-[#111111] flex items-center justify-center transition-colors cursor-pointer"
                                     title="Remove service"
                                   >
-                                    <FaTimesCircle className="text-xs" />
+                                    <FaTimesCircle className="text-[10px] sm:text-xs" />
                                   </button>
                                 </div>
                               </motion.div>
@@ -1293,37 +1305,37 @@ export default function ServiceCalculator() {
                     </div>
 
                     {/* Included Benefits Two-Column Checklist */}
-                    <div className="p-3.5 bg-slate-50/80 rounded-xl border border-slate-100">
-                      <div className="grid grid-cols-2 gap-2.5 text-[11px] font-bold text-gray-700">
-                        <div className="flex items-center gap-1.5">
-                          <FiCheckCircle className="text-[#111111] shrink-0 w-3.5 h-3.5" />
-                          <span>Dedicated Support</span>
+                    <div className="p-2.5 sm:p-3.5 bg-slate-50/80 rounded-xl border border-slate-100">
+                      <div className="grid grid-cols-2 gap-1.5 sm:gap-2.5 text-[10px] sm:text-[11px] font-bold text-gray-700">
+                        <div className="flex items-center gap-1 sm:gap-1.5">
+                          <FiCheckCircle className="text-[#111111] shrink-0 w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                          <span className="truncate">Dedicated Support</span>
                         </div>
-                        <div className="flex items-center gap-1.5">
-                          <FiCheckCircle className="text-[#111111] shrink-0 w-3.5 h-3.5" />
-                          <span>Strategy & Audits</span>
+                        <div className="flex items-center gap-1 sm:gap-1.5">
+                          <FiCheckCircle className="text-[#111111] shrink-0 w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                          <span className="truncate">Strategy & Audits</span>
                         </div>
-                        <div className="flex items-center gap-1.5">
-                          <FiCheckCircle className="text-[#111111] shrink-0 w-3.5 h-3.5" />
-                          <span>Timeline Planning</span>
+                        <div className="flex items-center gap-1 sm:gap-1.5">
+                          <FiCheckCircle className="text-[#111111] shrink-0 w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                          <span className="truncate">Timeline Planning</span>
                         </div>
-                        <div className="flex items-center gap-1.5">
-                          <FiCheckCircle className="text-[#111111] shrink-0 w-3.5 h-3.5" />
-                          <span>Monthly Reporting</span>
+                        <div className="flex items-center gap-1 sm:gap-1.5">
+                          <FiCheckCircle className="text-[#111111] shrink-0 w-3 h-3 sm:w-3.5 sm:h-3.5" />
+                          <span className="truncate">Monthly Reporting</span>
                         </div>
                       </div>
                     </div>
 
                     {/* Investment Estimate & Proposal CTA */}
-                    <div className="pt-4 border-t border-gray-100 space-y-4">
+                    <div className="pt-2.5 sm:pt-4 border-t border-gray-100 space-y-2.5 sm:space-y-4">
                       {/* High Contrast Clean Investment Display Card */}
-                      <div className="bg-slate-50 p-4 sm:p-5 rounded-xl border border-slate-200/80 shadow-2xs relative overflow-hidden">
+                      <div className="bg-slate-50 p-2.5 sm:p-5 rounded-xl border border-slate-200/80 shadow-2xs relative overflow-hidden">
                         <div className="relative z-10">
-                          <div className="text-gray-500 text-[10px] font-extrabold uppercase tracking-[0.2em] mb-1">
+                          <div className="text-gray-500 text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.18em] sm:tracking-[0.2em] mb-0.5 sm:mb-1">
                             Estimated Investment
                           </div>
                           <AnimatedPriceDisplay value={total} textColor="text-[#111111]" />
-                          <div className="text-gray-400 text-[10px] font-medium mt-1">
+                          <div className="text-gray-400 text-[9px] sm:text-[10px] font-medium mt-0.5">
                             Includes base setup fee & selected pillars
                           </div>
                         </div>
@@ -1333,14 +1345,14 @@ export default function ServiceCalculator() {
                       <button
                         type="button"
                         onClick={handleGetProposalClick}
-                        className="w-full py-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] active:bg-[#1eb757] text-white font-extrabold flex items-center justify-center gap-2.5 transition-all duration-200 shadow-[0_10px_25px_rgba(37,211,102,0.25)] hover:shadow-[0_14px_32px_rgba(37,211,102,0.4)] hover:-translate-y-0.5 active:scale-[0.98] text-xs sm:text-sm uppercase tracking-wider group cursor-pointer"
+                        className="w-full py-2.5 sm:py-4 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] active:bg-[#1eb757] text-white font-extrabold flex items-center justify-center gap-2 sm:gap-2.5 transition-all duration-200 shadow-[0_10px_25px_rgba(37,211,102,0.25)] hover:shadow-[0_14px_32px_rgba(37,211,102,0.4)] hover:-translate-y-0.5 active:scale-[0.98] text-xs sm:text-sm uppercase tracking-wider group cursor-pointer"
                       >
-                        <IoLogoWhatsapp className="text-xl sm:text-2xl shrink-0" />
+                        <IoLogoWhatsapp className="text-lg sm:text-2xl shrink-0" />
                         <span>GET DETAILED PROPOSAL</span>
                         <span className="transition-transform duration-200 group-hover:translate-x-1 font-bold">→</span>
                       </button>
 
-                      <p className="text-center text-gray-400 text-[10px] font-bold uppercase tracking-widest pt-0.5">
+                      <p className="text-center text-gray-400 text-[8.5px] sm:text-[10px] font-bold uppercase tracking-widest pt-0.5 hidden sm:block">
                         Final pricing subject to specific scope requirements
                       </p>
                     </div>
@@ -1463,10 +1475,3 @@ function Panel({ title, children }) {
     </div>
   );
 }
-
-const FaArrowRight = ({ className }) => (
-  <svg className={className} width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M5 12H19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M12 5L19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-);

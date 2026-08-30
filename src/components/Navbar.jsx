@@ -630,6 +630,38 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
     return () => window.removeEventListener('resize', onResize);
   }, [ease, initialLoadAnimation]);
 
+  // Handle click outside & escape key to close mobile menu
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    const handlePointerDownOutside = (event) => {
+      if (
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target) &&
+        hamburgerRef.current &&
+        !hamburgerRef.current.contains(event.target)
+      ) {
+        closeMobileMenu();
+      }
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        closeMobileMenu();
+      }
+    };
+
+    document.addEventListener("pointerdown", handlePointerDownOutside);
+    document.addEventListener("touchstart", handlePointerDownOutside);
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("pointerdown", handlePointerDownOutside);
+      document.removeEventListener("touchstart", handlePointerDownOutside);
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isMobileMenuOpen]);
+
   const handleLogoEnter = () => {
     const img = logoImgRef.current;
     if (!img) return;
@@ -908,6 +940,15 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
               <span className="hamburger-line" />
             </button>
           </nav>
+
+          {/* MOBILE BACKDROP OVERLAY FOR OUTSIDE CLICK CLOSE */}
+          {isMobileMenuOpen && (
+            <div
+              className="fixed inset-0 bg-black/40 backdrop-blur-xs z-[990] mobile-only cursor-pointer"
+              onClick={closeMobileMenu}
+              aria-hidden="true"
+            />
+          )}
 
           {/* MOBILE POPOVER MENU */}
           <div className="mobile-menu-popover mobile-only" ref={mobileMenuRef} style={cssVars}>

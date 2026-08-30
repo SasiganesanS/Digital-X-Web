@@ -496,9 +496,9 @@ const Projects = () => {
               </span>
             </div>
 
-            {/* Scrollable Container with Custom Scrollbar */}
-            <div className="max-h-[360px] sm:max-h-[720px] lg:max-h-[760px] overflow-y-auto overscroll-contain pr-1.5 sm:pr-3 custom-scrollbar">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch py-2">
+            {/* Scrollable Container with Custom Scrollbar & Mobile Scroll Snapping */}
+            <div className="max-h-[62dvh] sm:max-h-[720px] lg:max-h-[760px] overflow-y-auto overscroll-contain pr-1.5 sm:pr-3 custom-scrollbar snap-y snap-mandatory">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-stretch py-1 sm:py-2">
                 {filteredProjects.map((project, index) => {
                   const categoryTag = project.tags || "Featured Case Study";
                   const description = project.overview?.paragraph || project.description;
@@ -514,10 +514,10 @@ const Projects = () => {
                       transition={{ duration: 0.4, delay: index * 0.05, ease: [0.16, 1, 0.3, 1] }}
                       whileHover={{ y: -4 }}
                       onClick={() => navigate(`/project/${project.slug || project.id}`, { state: { from: '/projects', projectSlug: project.slug || project.id } })}
-                      className="group relative flex flex-col justify-between cursor-pointer p-3.5 sm:p-4 rounded-2xl border border-neutral-200/80 shadow-[0_8px_24px_rgba(0,0,0,0.03)] bg-white hover:border-black/20 hover:shadow-[0_14px_36px_rgba(0,0,0,0.08)] transition-all duration-300 select-none"
+                      className="group relative flex flex-col justify-between cursor-pointer p-3 sm:p-4 rounded-2xl border border-neutral-200/80 shadow-[0_8px_24px_rgba(0,0,0,0.03)] bg-white hover:border-black/20 hover:shadow-[0_14px_36px_rgba(0,0,0,0.08)] transition-all duration-300 select-none snap-start"
                     >
-                      {/* 1. Image Area — Box fits 1:1 image exactly */}
-                      <div className="relative w-full aspect-square overflow-hidden rounded-xl border border-neutral-200/60 mb-3 bg-white shadow-2xs">
+                      {/* 1. Image Area — Sleek 16:10 Banner on Mobile, 1:1 Square on Desktop */}
+                      <div className="relative w-full aspect-[16/10] sm:aspect-square overflow-hidden rounded-xl border border-neutral-200/60 mb-2.5 sm:mb-3 bg-white shadow-2xs">
                         <img
                           src={project.image}
                           alt={project.title}
@@ -526,8 +526,8 @@ const Projects = () => {
                       </div>
 
                       {/* 2. Project Name & Case Study CTA Row */}
-                      <div className="flex items-start justify-between gap-3 mb-3 px-0.5">
-                        <h3 className="text-base sm:text-lg font-black text-[#111111] leading-snug group-hover:text-[#E31D2E] transition-colors duration-300 tracking-tight">
+                      <div className="flex items-start justify-between gap-2 mb-2 sm:mb-3 px-0.5">
+                        <h3 className="text-sm sm:text-lg font-black text-[#111111] leading-snug group-hover:text-[#E31D2E] transition-colors duration-300 tracking-tight">
                           {project.title}
                         </h3>
 
@@ -538,7 +538,7 @@ const Projects = () => {
                             e.stopPropagation();
                             navigate(`/case-study/${project.slug || project.id}`, { state: { from: '/projects', projectSlug: project.slug || project.id } });
                           }}
-                          className="px-3 py-1.5 rounded-xl bg-[#E31D2E] text-white font-black text-[10px] uppercase tracking-wider flex items-center gap-1 shrink-0 shadow-2xs hover:bg-[#c91827] hover:scale-105 transition-all duration-300 cursor-pointer"
+                          className="px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl bg-[#E31D2E] text-white font-black text-[9.5px] sm:text-[10px] uppercase tracking-wider flex items-center gap-1 shrink-0 shadow-2xs hover:bg-[#c91827] hover:scale-105 transition-all duration-300 cursor-pointer"
                         >
                           <span>Case Study</span>
                           <ArrowUpRight className="w-3 h-3" />
@@ -546,11 +546,11 @@ const Projects = () => {
                       </div>
 
                       {/* 3. Options / Service Chips */}
-                      <div className="flex flex-wrap items-center gap-1.5 pt-2.5 border-t border-neutral-100 px-0.5">
+                      <div className="flex flex-wrap items-center gap-1 sm:gap-1.5 pt-2 sm:pt-2.5 border-t border-neutral-100 px-0.5">
                         {techTags.map((tag, i) => (
                           <span
                             key={i}
-                            className="px-2.5 py-1 rounded-md bg-neutral-100/90 text-neutral-600 text-[10px] font-bold tracking-wide transition-colors duration-200"
+                            className="px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-neutral-100/90 text-neutral-600 text-[9px] sm:text-[10px] font-bold tracking-wide transition-colors duration-200"
                           >
                             {tag}
                           </span>
