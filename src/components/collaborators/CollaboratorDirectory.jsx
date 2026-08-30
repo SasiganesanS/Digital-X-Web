@@ -96,9 +96,9 @@ export default function CollaboratorDirectory() {
       </HeroLayout>
 
       {/* ── DIRECTORY & PROCESS CONTENT (SCROLL SECTION) ── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-14 lg:py-16">
         {/* Category Filters Pill Bar */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-12 sm:mb-16">
+        <div className="flex flex-wrap items-center justify-center gap-1.5 sm:gap-3 mb-6 sm:mb-16">
           {CATEGORIES.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
@@ -106,7 +106,7 @@ export default function CollaboratorDirectory() {
                 key={cat.id}
                 type="button"
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-5 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold transition-all duration-300 cursor-pointer ${
+                className={`px-3 py-1.5 sm:px-5 sm:py-2.5 rounded-lg sm:rounded-xl text-[11px] sm:text-sm font-extrabold transition-all duration-300 cursor-pointer ${
                   isActive
                     ? "bg-[#E31D2E] text-white shadow-md scale-105"
                     : "bg-white text-[#111111] hover:bg-neutral-100 border border-white/90 shadow-sm"
@@ -119,33 +119,33 @@ export default function CollaboratorDirectory() {
         </div>
 
         {/* Collaborators Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 mb-10 sm:mb-20">
           {filteredCollaborators.map((collaborator) => (
             <CollaboratorCard key={collaborator.slug} collaborator={collaborator} />
           ))}
         </div>
 
         {/* How Collaboration Works — Process Section */}
-        <div className="rounded-2xl bg-neutral-50 border border-neutral-200/80 p-8 sm:p-12 lg:p-14 mb-16">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-black uppercase tracking-[0.2em] text-[#E31D2E] block mb-2">
+        <div className="rounded-2xl bg-neutral-50 border border-neutral-200/80 p-4 sm:p-12 lg:p-14 mb-8 sm:mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-6 sm:mb-12">
+            <span className="text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-[#E31D2E] block mb-1 sm:mb-2">
               Agency Managed Engagement
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-[#111111] tracking-tight">
+            <h2 className="text-xl sm:text-4xl font-black text-[#111111] tracking-tight">
               How Collaboration Works
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
             {PROCESS_STEPS.map((step) => (
               <div key={step.num} className="group flex flex-col items-start text-left relative h-full">
-                <span className="text-3xl sm:text-4xl font-black text-[#E31D2E] mb-3">
+                <span className="text-2xl sm:text-4xl font-black text-[#E31D2E] mb-1.5 sm:mb-3">
                   {step.num}
                 </span>
-                <h4 className="text-base sm:text-lg font-black text-[#111111] mb-2 leading-snug">
+                <h4 className="text-sm sm:text-lg font-black text-[#111111] mb-1 sm:mb-2 leading-snug">
                   {step.title}
                 </h4>
-                <p className="text-xs sm:text-sm text-neutral-600 font-medium leading-relaxed min-h-[3.25rem]">
+                <p className="text-xs sm:text-sm text-neutral-600 font-medium leading-relaxed min-h-[3rem]">
                   {step.desc}
                 </p>
               </div>

@@ -255,20 +255,20 @@ export default function FeaturedWorks() {
   };
 
   return (
-    <section id="projects" className="relative overflow-hidden bg-transparent py-10 sm:py-12 lg:py-14">
+    <section id="projects" className="relative overflow-hidden bg-transparent py-5 sm:py-12 lg:py-14">
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
         {/* Main Unified Card Container — Header & Showcase in ONE Box (matching Hero Section card) */}
-        <div className="relative flex flex-col items-start p-4 sm:p-8 lg:p-9 rounded-2xl border border-white/90 shadow-[0_25px_60px_rgba(0,0,0,0.4)] bg-white text-[#111111] transition-all duration-300 w-full overflow-hidden">
+        <div className="relative flex flex-col items-start p-2.5 sm:p-8 lg:p-9 rounded-2xl border border-white/90 shadow-[0_25px_60px_rgba(0,0,0,0.4)] bg-white text-[#111111] transition-all duration-300 w-full overflow-hidden">
           
           {/* Section Header (Inside the Card Box) */}
-          <div className="mb-4 sm:mb-6 w-full max-w-3xl space-y-1.5 sm:space-y-2">
-            <div className="mb-2 sm:mb-3 flex justify-start">
+          <div className="mb-2 sm:mb-6 w-full max-w-3xl space-y-1 sm:space-y-2">
+            <div className="mb-1 sm:mb-3 flex justify-start">
               <SectionBadge text="Case Studies" />
             </div>
-            <h2 className="text-xl sm:text-3xl lg:text-[36px] font-black leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans">
+            <h2 className="text-base sm:text-3xl lg:text-[36px] font-black leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans">
               Featured <span className="text-[#E31D2E]">Case Studies</span>.
             </h2>
-            <p className="text-neutral-600 text-xs sm:text-base font-normal leading-[1.5] sm:leading-[1.6] max-w-2xl font-sans">
+            <p className="text-neutral-600 text-[10.5px] sm:text-base font-normal leading-[1.4] sm:leading-[1.6] max-w-2xl font-sans">
               Browse our curated case studies across branding, digital media, 3D studios, and production.
             </p>
           </div>
@@ -277,13 +277,13 @@ export default function FeaturedWorks() {
           <div
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className="flex flex-col lg:flex-row gap-4 sm:gap-5 items-stretch w-full h-auto lg:h-[415px]"
+            className="flex flex-col lg:flex-row gap-2.5 sm:gap-5 items-stretch w-full h-auto lg:h-[415px]"
           >
             {/* ── LEFT COLUMN: Fitted Aspect-Square Preview Card (Zero Wasted Space) ── */}
-            <div className="flex-shrink-0 flex items-center justify-center w-full lg:w-auto h-[210px] sm:h-[280px] lg:h-full">
+            <div className="flex-shrink-0 flex items-center justify-center w-full lg:w-auto h-[125px] sm:h-[280px] lg:h-full">
               <div 
                 onClick={() => navigate(`/case-study/${activeProject.slug || activeProject.id}`)}
-                className="relative h-full aspect-square max-w-full overflow-hidden rounded-2xl border border-neutral-200/90 bg-neutral-900 shadow-md transition-all duration-300 group cursor-pointer"
+                className="relative h-full aspect-square max-w-full overflow-hidden rounded-xl sm:rounded-2xl border border-neutral-200/90 bg-neutral-900 shadow-md transition-all duration-300 group cursor-pointer"
               >
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -314,7 +314,7 @@ export default function FeaturedWorks() {
             </div>
 
             {/* ── RIGHT COLUMN: Portfolio List Navigator (Bounded height scrollable container on mobile) ── */}
-            <div className="flex-1 relative h-auto sm:h-full w-full rounded-2xl border border-neutral-200/80 bg-neutral-50/70 shadow-xs transition-all duration-300 p-2.5 sm:p-4 flex flex-col justify-between overflow-hidden self-stretch">
+            <div className="flex-1 relative h-auto sm:h-full w-full rounded-xl sm:rounded-2xl border border-neutral-200/80 bg-neutral-50/70 shadow-xs transition-all duration-300 p-1.5 sm:p-4 flex flex-col justify-between overflow-hidden self-stretch">
               
               {/* Middle: Continuous Native Scroll Container */}
               <div
@@ -327,7 +327,7 @@ export default function FeaturedWorks() {
                 onPointerUp={handlePointerUp}
                 onPointerCancel={handlePointerCancel}
                 onDragStart={(e) => e.preventDefault()}
-                className={`flex-1 min-h-0 h-[210px] max-h-[210px] sm:h-auto sm:max-h-none my-0.5 p-1 flex flex-col gap-2 overflow-y-auto overscroll-contain focus:outline-none select-none custom-scrollbar ${
+                className={`flex-1 min-h-0 h-[140px] max-h-[140px] sm:h-auto sm:max-h-none my-0.5 p-0.5 flex flex-col gap-1.5 overflow-y-auto overscroll-contain focus:outline-none select-none custom-scrollbar ${
                   isDraggingState ? "cursor-grabbing select-none scroll-auto" : "cursor-grab scroll-smooth"
                 }`}
                 style={{ overscrollBehavior: "contain", touchAction: "pan-y" }}
@@ -341,15 +341,15 @@ export default function FeaturedWorks() {
                       ref={(el) => (itemRefs.current[idx] = el)}
                       type="button"
                       onClick={() => handleCardClick(idx)}
-                      className={`group relative flex items-center justify-between w-full p-2 sm:p-2.5 rounded-xl border text-left transition-all duration-300 min-w-[230px] lg:min-w-0 flex-shrink-0 box-border ${
+                      className={`group relative flex items-center justify-between w-full p-1.5 sm:p-2.5 rounded-lg sm:rounded-xl border text-left transition-all duration-300 min-w-[200px] lg:min-w-0 flex-shrink-0 box-border ${
                         isActive
                           ? "border-[#111111] bg-white text-[#111111] shadow-[0_4px_16px_rgba(17,17,17,0.12)]"
                           : "border-neutral-200/60 bg-white/60 text-neutral-600 hover:border-neutral-300 hover:bg-white hover:text-[#111111]"
                       }`}
                     >
                       {/* Project Cover Thumbnail + Details */}
-                      <div className="flex items-center gap-2.5 truncate pr-2 pointer-events-none">
-                        <div className="relative w-[38px] h-[38px] sm:w-[42px] sm:h-[42px] rounded-lg overflow-hidden border border-neutral-200/80 flex-shrink-0 bg-neutral-100 shadow-xs">
+                      <div className="flex items-center gap-2 truncate pr-2 pointer-events-none">
+                        <div className="relative w-[28px] h-[28px] sm:w-[42px] sm:h-[42px] rounded-md sm:rounded-lg overflow-hidden border border-neutral-200/80 flex-shrink-0 bg-neutral-100 shadow-xs">
                           <img
                             src={project.image}
                             alt={project.title}
@@ -361,13 +361,13 @@ export default function FeaturedWorks() {
 
                         <div className="truncate">
                           <h4
-                            className={`text-xs sm:text-sm font-extrabold truncate transition-colors ${
+                            className={`text-[11px] sm:text-sm font-extrabold truncate transition-colors ${
                               isActive ? "text-[#111111]" : "text-neutral-700 group-hover:text-[#111111]"
                             }`}
                           >
                             {project.title}
                           </h4>
-                          <span className="text-[10px] sm:text-[11px] font-medium text-neutral-400 block truncate mt-0.5">
+                          <span className="text-[9px] sm:text-[11px] font-medium text-neutral-400 block truncate mt-0.5">
                             {project.category || project.services?.[0] || "Portfolio Showcase"}
                           </span>
                         </div>
@@ -375,7 +375,7 @@ export default function FeaturedWorks() {
 
                       {/* Arrow Icon */}
                       <ArrowUpRight
-                        className={`w-3.5 h-3.5 flex-shrink-0 transition-all duration-300 pointer-events-none ${
+                        className={`w-3 h-3 sm:w-3.5 sm:h-3.5 flex-shrink-0 transition-all duration-300 pointer-events-none ${
                           isActive
                             ? "text-[#111111] translate-x-0.5 -translate-y-0.5"
                             : "text-neutral-300 group-hover:text-neutral-500"
@@ -387,13 +387,13 @@ export default function FeaturedWorks() {
               </div>
 
               {/* Bottom Section: Glass Capsule Segmented Page Controller & Pinned CTA Button */}
-              <div className="flex-shrink-0 pt-2.5 flex flex-col gap-2.5">
+              <div className="flex-shrink-0 pt-1.5 flex flex-col gap-1.5 sm:gap-2.5">
                 {/* Segmented Controller */}
                 {totalPages > 1 && (
                   <div className="flex items-center justify-center select-none">
                     <motion.div 
                       layout
-                      className="inline-flex items-center gap-1 p-1 rounded-xl bg-white border border-neutral-200/80 shadow-xs"
+                      className="inline-flex items-center gap-1 p-0.5 sm:p-1 rounded-lg sm:rounded-xl bg-white border border-neutral-200/80 shadow-xs"
                     >
                       {/* Left Chevron Button */}
                       <motion.button
@@ -402,10 +402,10 @@ export default function FeaturedWorks() {
                         whileTap={{ scale: 0.9 }}
                         onClick={handlePrev}
                         disabled={scrollPage === 0}
-                        className="flex h-6 w-6 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-neutral-100 transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                        className="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-neutral-100 transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
                         aria-label="Previous page"
                       >
-                        <ChevronLeft className="w-3.5 h-3.5" />
+                        <ChevronLeft className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                       </motion.button>
 
                       {/* Sliding Window Page Numbers */}
@@ -418,7 +418,7 @@ export default function FeaturedWorks() {
                               whileHover={{ scale: 1.15 }}
                               whileTap={{ scale: 0.9 }}
                               onClick={handleEllipsisClick}
-                              className="flex h-6 px-1 items-center justify-center text-xs font-bold text-neutral-400 hover:text-[#111111] transition-colors cursor-pointer select-none"
+                              className="flex h-5 px-1 items-center justify-center text-[10px] sm:text-xs font-bold text-neutral-400 hover:text-[#111111] transition-colors cursor-pointer select-none"
                               aria-label="Jump forward 3 pages"
                             >
                               ...
@@ -436,7 +436,7 @@ export default function FeaturedWorks() {
                             onClick={() => handlePageSelect(pageIdx)}
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
-                            className={`relative flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-black transition-colors cursor-pointer ${
+                            className={`relative flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full text-[10px] sm:text-[11px] font-black transition-colors cursor-pointer ${
                               isCurrent ? "text-white" : "text-neutral-600 hover:text-[#111111] hover:bg-neutral-100"
                             }`}
                             aria-label={`Page ${item}`}
@@ -460,10 +460,10 @@ export default function FeaturedWorks() {
                         whileTap={{ scale: 0.9 }}
                         onClick={handleNext}
                         disabled={scrollPage === totalPages - 1}
-                        className="flex h-6 w-6 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-neutral-100 transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
+                        className="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full text-neutral-500 hover:text-[#111111] hover:bg-neutral-100 transition-colors disabled:opacity-30 disabled:pointer-events-none cursor-pointer"
                         aria-label="Next page"
                       >
-                        <ChevronRight className="w-3.5 h-3.5" />
+                        <ChevronRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
                       </motion.button>
                     </motion.div>
                   </div>
@@ -473,10 +473,10 @@ export default function FeaturedWorks() {
                 <Link
                   to={`/case-study/${activeProject.slug || ""}`}
                   state={{ from: '/' }}
-                  className="primary-btn flex items-center justify-between w-full rounded-xl px-4 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] text-white shadow-md transition-all hover:scale-[1.01]"
+                  className="primary-btn flex items-center justify-between w-full rounded-lg sm:rounded-xl px-3 py-1.5 sm:px-4 sm:py-2.5 text-[9.5px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-white shadow-md transition-all hover:scale-[1.01]"
                 >
                   <span>View Case Study</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 text-white" />
+                  <ArrowUpRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />
                 </Link>
               </div>
             </div>

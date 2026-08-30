@@ -236,17 +236,17 @@ const ProjectDetail = () => {
 
         {/* ── PROJECT HIGHLIGHTS & SCOPE ── */}
         {project.overview && (
-          <section className="relative w-full py-12 sm:py-16 lg:py-20 bg-transparent">
+          <section className="relative w-full py-5 sm:py-16 lg:py-20 bg-transparent">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
-              <div className="bg-white p-8 sm:p-10 md:p-12 rounded-2xl border border-white/90 shadow-2xl relative overflow-hidden text-[#111111]">
-                <div className="max-w-3xl mb-8">
-                  <div className="mb-3">
+              <div className="bg-white p-4 sm:p-10 md:p-12 rounded-2xl border border-white/90 shadow-2xl relative overflow-hidden text-[#111111]">
+                <div className="max-w-3xl mb-4 sm:mb-8">
+                  <div className="mb-2 sm:mb-3">
                     <SectionBadge text="Project Scope" />
                   </div>
-                  <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#111111] leading-tight mb-4 tracking-tight font-sans">
+                  <h2 className="text-lg sm:text-3xl lg:text-4xl font-black text-[#111111] leading-tight mb-2 sm:mb-4 tracking-tight font-sans">
                     {project.overview.headline}
                   </h2>
-                  <p className="text-[#575757] text-base leading-relaxed font-medium font-sans">
+                  <p className="text-[#575757] text-xs sm:text-base leading-relaxed font-medium font-sans">
                     {project.overview.paragraph}
                   </p>
                 </div>
@@ -254,19 +254,19 @@ const ProjectDetail = () => {
                 {/* Deliverables & Features Grid */}
                 {project.overview.features && (
                   <div>
-                    <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#111111] mb-5 font-sans">
+                    <h3 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-[#111111] mb-3 sm:mb-5 font-sans">
                       Deliverables & Highlights
                     </h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2.5 sm:gap-4">
                       {project.overview.features.map((item, idx) => (
                         <div
                           key={idx}
-                          className="p-4 rounded-xl bg-neutral-50 border border-neutral-200/80 flex items-start gap-3"
+                          className="p-2.5 sm:p-4 rounded-xl bg-neutral-50 border border-neutral-200/80 flex items-start gap-2.5"
                         >
-                          <span className="w-5 h-5 rounded-full bg-neutral-200/80 text-[#111111] font-black text-xs flex items-center justify-center shrink-0 mt-0.5">
+                          <span className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-neutral-200/80 text-[#111111] font-black text-[10px] sm:text-xs flex items-center justify-center shrink-0 mt-0.5">
                             ✓
                           </span>
-                          <span className="text-sm font-semibold text-[#111111] leading-relaxed font-sans">
+                          <span className="text-xs sm:text-sm font-semibold text-[#111111] leading-relaxed font-sans">
                             {item}
                           </span>
                         </div>
@@ -280,7 +280,7 @@ const ProjectDetail = () => {
         )}
 
         {/* ── CTA FOOTER (SEAMLESS DARK LAYOUT WITHOUT BOX CONTAINER) ── */}
-        <section className="relative w-full py-12 sm:py-16 lg:py-20 bg-transparent">
+        <section className="relative w-full py-5 sm:py-16 lg:py-20 bg-transparent">
           <div className="max-w-3xl mx-auto px-4 sm:px-6 text-center">
             
             <motion.div
@@ -290,31 +290,31 @@ const ProjectDetail = () => {
               transition={{ duration: 0.6 }}
               className="flex flex-col items-center"
             >
-              <div className="mb-4">
+              <div className="mb-2 sm:mb-4">
                 <SectionBadge text="WORK WITH US" theme="dark" />
               </div>
 
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-4">
+              <h2 className="text-xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-2 sm:mb-4">
                 Have a project similar to <span className="text-[#E31D2E]">{project.title}?</span>
               </h2>
 
-              <p className="text-neutral-300 text-sm sm:text-base max-w-lg mx-auto mb-8 leading-relaxed font-medium">
+              <p className="text-neutral-300 text-xs sm:text-base max-w-lg mx-auto mb-4 sm:mb-8 leading-relaxed font-medium">
                 Let's create a tailor-made digital solution to scale your brand.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
+              <div className="flex flex-col sm:flex-row gap-2.5 sm:gap-4 justify-center items-center w-full sm:w-auto">
                 <button
                   type="button"
                   onClick={() => setShowContactForm(true)}
-                  className="w-full sm:w-auto px-8 py-4 rounded-xl bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all duration-300 flex items-center justify-center gap-2.5 cursor-pointer"
+                  className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 rounded-xl bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white font-black text-xs sm:text-sm uppercase tracking-wider shadow-lg transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <span>Get Started Now</span>
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 </button>
 
                 <Link
                   to={`/case-study/${project.slug || project.id}`}
-                  className="w-full sm:w-auto px-8 py-4 rounded-xl border border-white/80 bg-white text-[#111111] hover:bg-neutral-100 font-black text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md"
+                  className="w-full sm:w-auto px-6 py-3 sm:px-8 sm:py-4 rounded-xl border border-white/80 bg-white text-[#111111] hover:bg-neutral-100 font-black text-xs sm:text-sm uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md"
                 >
                   <span>View Full Case Study</span>
                 </Link>

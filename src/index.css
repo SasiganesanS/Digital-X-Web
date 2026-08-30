@@ -1122,8 +1122,8 @@ img, video, canvas, svg {
   /* 2. Header Offset & Fit Entire Hero + Expertise in First Viewport Fold on Mobile */
   #home.hero-screen-edge,
   #home,
-  #about.hero-screen-edge,
-  #about,
+  #about-hero.hero-screen-edge,
+  #about-hero,
   #services-main,
   #projects-hero.hero-screen-edge,
   #projects-hero,
@@ -1154,7 +1154,7 @@ img, video, canvas, svg {
   }
 
   #home > div,
-  #about > div,
+  #about-hero > div,
   #services-main > div,
   #projects-hero > div,
   #careers-hero > div,
@@ -1170,12 +1170,13 @@ img, video, canvas, svg {
   }
 
   #services,
-  #projects {
+  #projects,
+  #home-about,
+  #start-project {
     height: auto !important;
     min-height: 0 !important;
     max-height: none !important;
     overflow: visible !important;
-    padding-top: calc(var(--mobile-header-height, 68px) + 16px) !important;
     scroll-padding-top: var(--mobile-header-height, 68px) !important;
     box-sizing: border-box !important;
   }

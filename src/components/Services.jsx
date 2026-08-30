@@ -153,7 +153,7 @@ const Services = () => {
                         setSelectedTitle(service.title);
                         setSelectedDetailService(service);
                       }}
-                      className={`relative bg-white rounded-2xl p-5 md:p-6 pt-7 flex flex-col items-center text-center min-h-[260px] sm:min-h-[280px] cursor-pointer transition-all duration-500 group overflow-hidden ${
+                      className={`relative bg-white rounded-xl sm:rounded-2xl p-3.5 sm:p-6 pt-5 sm:pt-7 flex flex-col items-center text-center min-h-[150px] sm:min-h-[280px] cursor-pointer transition-all duration-500 group overflow-hidden ${
                         isSelected
                           ? "shadow-[0_18px_45px_rgba(0,0,0,0.1)] -translate-y-2 z-20"
                           : "hover:border-black/20 hover:-translate-y-1.5 hover:shadow-[0_16px_50px_rgba(0,0,0,0.08)] shadow-[0_8px_30px_rgba(0,0,0,0.04)]"
@@ -161,18 +161,18 @@ const Services = () => {
                     >
                       {/* Active Red Tag Indicator */}
                       {isSelected && (
-                        <div className="absolute top-3 right-3 flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-[#FF2B2B]/10 border border-[#FF2B2B]/30">
-                          <span className="h-2 w-2 rounded-full bg-[#FF2B2B] animate-pulse" />
-                          <span className="text-[10px] font-bold text-[#FF2B2B] uppercase tracking-wider">
+                        <div className="absolute top-2 right-2 flex items-center gap-1 px-2 py-0.5 rounded-lg sm:rounded-xl bg-[#FF2B2B]/10 border border-[#FF2B2B]/30">
+                          <span className="h-1.5 w-1.5 rounded-full bg-[#FF2B2B] animate-pulse" />
+                          <span className="text-[9px] font-bold text-[#FF2B2B] uppercase tracking-wider">
                             Selected
                           </span>
                         </div>
                       )}
 
-                      <div className={`relative z-10 w-[88px] h-[88px] md:w-[100px] md:h-[100px] mb-5 rounded-full p-1.5 transition-all duration-500 flex items-center justify-center -mt-1 bg-white shadow-sm ${
+                      <div className={`relative z-10 w-[54px] h-[54px] sm:w-[100px] sm:h-[100px] mb-2 sm:mb-5 rounded-full p-1 transition-all duration-500 flex items-center justify-center -mt-0.5 sm:-mt-1 bg-white shadow-sm ${
                         isSelected
-                          ? "border-[3px] border-[#FF2B2B] ring-4 ring-[#FF2B2B]/15"
-                          : "border-[3px] border-neutral-200 group-hover:border-black/30"
+                          ? "border-[2px] sm:border-[3px] border-[#FF2B2B] ring-2 sm:ring-4 ring-[#FF2B2B]/15"
+                          : "border-[2px] sm:border-[3px] border-neutral-200 group-hover:border-black/30"
                       }`}>
                         <img
                           src={service.image}
@@ -181,12 +181,12 @@ const Services = () => {
                         />
                       </div>
 
-                      <h3 className={`relative z-10 text-lg md:text-xl font-black mb-2 tracking-tight transition-colors duration-300 ${
+                      <h3 className={`relative z-10 text-sm sm:text-xl font-black mb-1 sm:mb-2 tracking-tight transition-colors duration-300 ${
                         isSelected ? "text-[#FF2B2B]" : "text-[#111111] group-hover:text-[#FF2B2B]"
                       }`}>
                         {service.title}
                       </h3>
-                      <p className="relative z-10 text-[#555555] font-medium text-sm leading-relaxed px-1 group-hover:text-[#111111] transition-colors duration-300">
+                      <p className="relative z-10 text-[#555555] font-medium text-xs sm:text-sm leading-relaxed px-1 group-hover:text-[#111111] transition-colors duration-300">
                         {service.desc}
                       </p>
 
@@ -202,22 +202,22 @@ const Services = () => {
         </div>
       </section>
 
-      <section className="py-10 sm:py-12 lg:py-14 bg-[#FAFAFA]">
+      <section className="py-5 sm:py-12 lg:py-14 bg-[#FAFAFA]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl bg-[#111111] p-8 md:p-12 text-center relative overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
+            className="rounded-2xl bg-[#111111] p-4 sm:p-12 text-center relative overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.08)]"
           >
-            <h2 className="text-2xl md:text-3xl font-black text-white mb-6 relative z-10 leading-tight">
+            <h2 className="text-lg sm:text-3xl font-black text-white mb-3 sm:mb-6 relative z-10 leading-tight">
               See the Impact <br className="hidden md:block" />
               We&apos;ve Delivered
             </h2>
 
             <Link
               to="/projects"
-              className="inline-flex items-center justify-center bg-white text-black px-7 py-3.5 rounded-xl font-bold text-sm hover:bg-neutral-100 transition-all duration-300 hover:scale-105 active:scale-95 relative z-10 shadow-md"
+              className="inline-flex items-center justify-center bg-white text-black px-5 py-2.5 sm:px-7 sm:py-3.5 rounded-xl font-bold text-xs sm:text-sm hover:bg-neutral-100 transition-all duration-300 hover:scale-105 active:scale-95 relative z-10 shadow-md"
             >
               View Our Portfolio
             </Link>

@@ -104,44 +104,44 @@ const TermsAndConditions = () => {
         </section>
 
         {/* SECTION 2 — KEY HIGHLIGHTS */}
-        <section className="legal-features w-full py-4 sm:py-6 lg:py-8">
+        <section className="legal-features w-full py-2 sm:py-6 lg:py-8">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
+              className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4"
             >
-              <div className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-md hover:shadow-xl transition-all duration-300">
-                <div className="w-10 h-10 rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-3">
-                  <FileCheck className="w-5 h-5" />
+              <div className="p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-white border border-neutral-200/90 shadow-md hover:shadow-xl transition-all duration-300">
+                <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
+                  <FileCheck className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-sm font-black text-[#111111] mb-1">Clear Scope of Work</h3>
-                <p className="text-xs text-neutral-600 font-medium leading-relaxed">All digital projects operate under explicit Statement of Work agreements.</p>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Clear Scope of Work</h3>
+                <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">All digital projects operate under explicit Statement of Work agreements.</p>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-md hover:shadow-xl transition-all duration-300">
-                <div className="w-10 h-10 rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-3">
-                  <Copyright className="w-5 h-5" />
+              <div className="p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-white border border-neutral-200/90 shadow-md hover:shadow-xl transition-all duration-300">
+                <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
+                  <Copyright className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-sm font-black text-[#111111] mb-1">Intellectual Property</h3>
-                <p className="text-xs text-neutral-600 font-medium leading-relaxed">Clients receive full ownership of approved deliverables upon final payment.</p>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Intellectual Property</h3>
+                <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">Clients receive full ownership of approved deliverables upon final payment.</p>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-md hover:shadow-xl transition-all duration-300">
-                <div className="w-10 h-10 rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-3">
-                  <CreditCard className="w-5 h-5" />
+              <div className="p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-white border border-neutral-200/90 shadow-md hover:shadow-xl transition-all duration-300">
+                <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
+                  <CreditCard className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-sm font-black text-[#111111] mb-1">Transparent Billing</h3>
-                <p className="text-xs text-neutral-600 font-medium leading-relaxed">Milestone-based invoices with clear deliverables and commercial terms.</p>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Transparent Billing</h3>
+                <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">Milestone-based invoices with clear deliverables and commercial terms.</p>
               </div>
 
-              <div className="p-5 rounded-2xl bg-white border border-neutral-200/90 shadow-md hover:shadow-xl transition-all duration-300">
-                <div className="w-10 h-10 rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-3">
-                  <Scale className="w-5 h-5" />
+              <div className="p-3 sm:p-5 rounded-xl sm:rounded-2xl bg-white border border-neutral-200/90 shadow-md hover:shadow-xl transition-all duration-300">
+                <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
+                  <Scale className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-sm font-black text-[#111111] mb-1">Governing Standards</h3>
-                <p className="text-xs text-neutral-600 font-medium leading-relaxed">Commercial agreements are structured in compliance with applicable law.</p>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Governing Standards</h3>
+                <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">Commercial agreements are structured in compliance with applicable law.</p>
               </div>
             </motion.div>
           </div>

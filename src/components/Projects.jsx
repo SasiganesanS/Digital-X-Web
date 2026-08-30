@@ -327,7 +327,7 @@ const Projects = () => {
       />
 
       {/* ------------------ Our Workflow Process Section ------------------ */}
-      <section className="projects-empower-section relative bg-transparent py-10 sm:py-12 lg:py-14 overflow-hidden">
+      <section className="projects-empower-section relative bg-transparent py-5 sm:py-12 lg:py-14 overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Section Header */}
           <motion.div
@@ -335,21 +335,21 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center justify-center text-center mb-8 sm:mb-10 lg:mb-12 max-w-4xl mx-auto"
+            className="flex flex-col items-center justify-center text-center mb-4 sm:mb-10 lg:mb-12 max-w-4xl mx-auto"
           >
             {/* Small Badge */}
-            <div className="mb-4">
+            <div className="mb-2 sm:mb-4">
               <SectionBadge text="OUR WORKFLOW" theme="dark" />
             </div>
 
             {/* Heading */}
-            <h2 className="text-3xl md:text-5xl lg:text-[46px] font-black text-white leading-tight tracking-tight mb-4">
+            <h2 className="text-xl md:text-5xl lg:text-[46px] font-black text-white leading-tight tracking-tight mb-2 sm:mb-4">
               Empowering progress through{" "}
               <span className="relative inline-block text-[#E31D2E]">
                 mindful strategy and creative execution.
               </span>
             </h2>
-            <p className="text-neutral-300 text-base sm:text-lg leading-relaxed font-medium max-w-3xl">
+            <p className="text-neutral-300 text-xs sm:text-lg leading-relaxed font-medium max-w-3xl">
               We transform insights into impactful brand experiences strategically created, seamlessly launched and constantly optimized for growth.
             </p>
           </motion.div>
@@ -368,13 +368,13 @@ const Projects = () => {
             </div>
 
             {/* 4 Step Milestone Cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative z-10 pt-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8 relative z-10 pt-5 sm:pt-8">
               {data.map((item, index) => {
                 const icons = [
-                  <TrendingUp className="w-5 h-5 sm:w-5 sm:h-5 text-[#111111]" />,
-                  <ArrowUpRight className="w-5 h-5 sm:w-5 sm:h-5 text-[#111111]" />,
-                  <Star className="w-5 h-5 sm:w-5 sm:h-5 text-[#111111]" />,
-                  <Check className="w-5 h-5 sm:w-5 sm:h-5 text-[#111111]" />
+                  <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-[#111111]" />,
+                  <ArrowUpRight className="w-4 h-4 sm:w-5 sm:h-5 text-[#111111]" />,
+                  <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#111111]" />,
+                  <Check className="w-4 h-4 sm:w-5 sm:h-5 text-[#111111]" />
                 ];
 
                 return (
@@ -385,37 +385,37 @@ const Projects = () => {
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     whileHover={{ y: -6, scale: 1.02 }}
-                    className="clay-card relative group p-6 sm:p-7 pt-8 flex flex-col justify-between rounded-2xl border border-white/90 shadow-xl bg-white hover:bg-white transition-all duration-500 min-h-[250px] sm:min-h-[270px] overflow-visible select-none"
+                    className="clay-card relative group p-3.5 sm:p-7 pt-6 sm:pt-8 flex flex-col justify-between rounded-xl sm:rounded-2xl border border-white/90 shadow-xl bg-white hover:bg-white transition-all duration-500 min-h-[150px] sm:min-h-[270px] overflow-visible select-none"
                   >
                     {/* Light Inner Glass Highlight */}
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/80 via-transparent to-transparent pointer-events-none" />
 
                     {/* Floating Step Number Badge — Top Right */}
-                    <div className="absolute -top-3.5 right-6 sm:right-7 px-3 py-0.5 rounded-xl bg-white/95 border border-neutral-200 text-[#111111] font-black text-[11px] sm:text-xs shadow-sm tracking-wider flex items-center gap-1 z-20">
+                    <div className="absolute -top-3 right-4 sm:right-7 px-2.5 py-0.5 rounded-lg sm:rounded-xl bg-white/95 border border-neutral-200 text-[#111111] font-black text-[10px] sm:text-xs shadow-sm tracking-wider flex items-center gap-1 z-20">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#111111]" />
                       <span>0{index + 1}</span>
                     </div>
 
                     {/* Overlapping Icon Capsule — Top Left */}
-                    <div className="absolute -top-6 left-6 sm:left-7 z-20">
-                      <div className="relative z-10 w-12 h-12 rounded-2xl bg-white border border-neutral-200 flex items-center justify-center shadow-sm group-hover:rotate-[8deg] group-hover:scale-105 transition-all duration-500">
+                    <div className="absolute -top-5 left-4 sm:left-7 z-20">
+                      <div className="relative z-10 w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-white border border-neutral-200 flex items-center justify-center shadow-sm group-hover:rotate-[8deg] group-hover:scale-105 transition-all duration-500">
                         {icons[index]}
                       </div>
                     </div>
 
                     {/* Content & Phase Tag */}
-                    <div className="relative z-10 pt-4 sm:pt-5">
-                      <span className="text-[#111111] text-[10px] font-black uppercase tracking-[0.2em] mb-1.5 block">
+                    <div className="relative z-10 pt-2 sm:pt-5">
+                      <span className="text-[#111111] text-[9px] sm:text-[10px] font-black uppercase tracking-[0.2em] mb-1 block">
                         {WORKFLOW_LABELS[index] || "Phase"}
                       </span>
-                      <h3 className="text-lg sm:text-xl font-black mb-2 leading-snug tracking-tight text-[#111111]">
+                      <h3 className="text-sm sm:text-xl font-black mb-1.5 sm:mb-2 leading-snug tracking-tight text-[#111111]">
                         {item.title.split(' & ').map((part, i) => (
                           <React.Fragment key={i}>
                             {part} {i === 0 && <br />}
                           </React.Fragment>
                         ))}
                       </h3>
-                      <p className="text-xs leading-relaxed font-medium text-[#575757]">
+                      <p className="text-[11px] sm:text-xs leading-relaxed font-medium text-[#575757]">
                         {item.desc}
                       </p>
                     </div>
@@ -431,7 +431,7 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="text-center text-white text-xs sm:text-sm font-black uppercase tracking-[0.28em] mt-16 flex items-center justify-center gap-4 drop-shadow-sm"
+            className="text-center text-white text-[10px] sm:text-sm font-black uppercase tracking-[0.28em] mt-6 sm:mt-16 flex items-center justify-center gap-4 drop-shadow-sm"
           >
             <span className="w-16 h-[1.5px] bg-gradient-to-r from-transparent via-white/70 to-white hidden sm:block" />
             <span className="text-white drop-shadow-[0_2px_10px_rgba(255,255,255,0.4)]">Every project follows a structured growth framework.</span>
@@ -442,7 +442,7 @@ const Projects = () => {
       </section>
 
       {/* ------------------ Featured Case Studies Section ------------------ */}
-      <section className="relative bg-transparent py-10 sm:py-12 lg:py-14 overflow-hidden">
+      <section className="relative bg-transparent py-5 sm:py-12 lg:py-14 overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
           {/* Section Header */}
           <motion.div
@@ -450,15 +450,15 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center justify-center text-center mb-8 sm:mb-10 lg:mb-12"
+            className="flex flex-col items-center justify-center text-center mb-4 sm:mb-10 lg:mb-12"
           >
             {/* Small Badge */}
-            <div className="mb-4">
+            <div className="mb-2 sm:mb-4">
               <SectionBadge text="SELECTED CASE STUDIES" theme="dark" />
             </div>
 
             {/* Heading with Animated Underline */}
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight max-w-4xl tracking-tight">
+            <h2 className="text-xl md:text-5xl lg:text-6xl font-black text-white leading-tight max-w-4xl tracking-tight">
               Building Brands That{" "}
               <span className="relative inline-block text-[#FF2B2B]">
                 Perform
@@ -467,12 +467,12 @@ const Projects = () => {
           </motion.div>
 
           {/* Unified Scrollable Project Container */}
-          <div className="clay-card relative w-full rounded-2xl p-6 sm:p-8 lg:p-10 bg-white border border-white/90 shadow-2xl text-[#111111]">
+          <div className="clay-card relative w-full rounded-2xl p-3 sm:p-8 lg:p-10 bg-white border border-white/90 shadow-2xl text-[#111111]">
             {/* Top Row: Year Filter Select Dropdown on Top Left */}
-            <div className="flex items-center justify-between gap-4 mb-6 px-1 flex-wrap">
-              <div className="flex items-center gap-2.5">
-                <label htmlFor="year-filter-select" className="text-xs font-black uppercase tracking-wider text-neutral-500 flex items-center gap-1.5 cursor-pointer">
-                  <Filter className="w-3.5 h-3.5 text-[#E31D2E]" />
+            <div className="flex items-center justify-between gap-2 mb-3 sm:mb-6 px-1 flex-wrap">
+              <div className="flex items-center gap-2">
+                <label htmlFor="year-filter-select" className="text-[10px] sm:text-xs font-black uppercase tracking-wider text-neutral-500 flex items-center gap-1 cursor-pointer">
+                  <Filter className="w-3 h-3 text-[#E31D2E]" />
                   <span>Filter Year:</span>
                 </label>
 
@@ -481,23 +481,23 @@ const Projects = () => {
                     id="year-filter-select"
                     value={selectedYear}
                     onChange={(e) => setSelectedYear(e.target.value)}
-                    className="appearance-none bg-white text-neutral-900 font-extrabold text-xs tracking-wider px-3.5 py-1.5 pr-8 rounded-xl border border-neutral-200/90 shadow-2xs hover:border-black/30 focus:border-[#E31D2E] focus:outline-none cursor-pointer transition-all duration-200"
+                    className="appearance-none bg-white text-neutral-900 font-extrabold text-[10px] sm:text-xs tracking-wider px-2.5 py-1 pr-6 rounded-lg sm:rounded-xl border border-neutral-200/90 shadow-2xs hover:border-black/30 focus:border-[#E31D2E] focus:outline-none cursor-pointer transition-all duration-200"
                   >
                     <option value="ALL">All Years</option>
                     <option value="2026">2026</option>
                     <option value="2025">2025</option>
                   </select>
-                  <ChevronDown className="w-3.5 h-3.5 text-neutral-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                  <ChevronDown className="w-3 h-3 text-neutral-400 absolute right-1.5 top-1/2 -translate-y-1/2 pointer-events-none" />
                 </div>
               </div>
 
-              <span className="text-[11px] font-extrabold text-neutral-500 tracking-wider uppercase bg-white/80 border border-neutral-200/80 px-3.5 py-1.5 rounded-xl shadow-2xs">
+              <span className="text-[9.5px] sm:text-[11px] font-extrabold text-neutral-500 tracking-wider uppercase bg-white/80 border border-neutral-200/80 px-2.5 py-1 rounded-lg sm:rounded-xl shadow-2xs">
                 Showing {filteredProjects.length} Projects
               </span>
             </div>
 
             {/* Scrollable Container with Custom Scrollbar */}
-            <div className="max-h-[660px] sm:max-h-[720px] lg:max-h-[760px] overflow-y-auto overscroll-contain pr-2 sm:pr-3 custom-scrollbar">
+            <div className="max-h-[360px] sm:max-h-[720px] lg:max-h-[760px] overflow-y-auto overscroll-contain pr-1.5 sm:pr-3 custom-scrollbar">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 items-stretch py-2">
                 {filteredProjects.map((project, index) => {
                   const categoryTag = project.tags || "Featured Case Study";

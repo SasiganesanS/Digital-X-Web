@@ -201,37 +201,37 @@ const ProjectCaseStudy = () => {
 
         {/* ── OVERVIEW / CHALLENGES & SOLUTIONS SECTION ── */}
         {project.overview && (
-          <section className="relative w-full py-8 sm:py-10 lg:py-12 bg-transparent">
+          <section className="relative w-full py-5 sm:py-10 lg:py-12 bg-transparent">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
               
-              <div className="bg-white p-6 sm:p-8 rounded-2xl border border-white/90 shadow-2xl relative overflow-hidden text-[#111111]">
+              <div className="bg-white p-3.5 sm:p-8 rounded-2xl border border-white/90 shadow-2xl relative overflow-hidden text-[#111111]">
                 
                 {/* Top Narrative Row */}
-                <div className="mb-6 pb-6 border-b border-neutral-100">
-                  <div className="mb-3">
+                <div className="mb-4 pb-4 border-b border-neutral-100">
+                  <div className="mb-2 sm:mb-3">
                     <SectionBadge text="Project Overview" />
                   </div>
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-black text-[#111111] leading-snug mb-2.5 tracking-tight font-sans">
+                  <h2 className="text-lg sm:text-2xl lg:text-3xl font-black text-[#111111] leading-snug mb-2 tracking-tight font-sans">
                     {project.overview.headline}
                   </h2>
-                  <p className="text-[#575757] text-sm leading-relaxed font-medium font-sans max-w-4xl">
+                  <p className="text-[#575757] text-xs sm:text-sm leading-relaxed font-medium font-sans max-w-4xl">
                     {project.overview.paragraph}
                   </p>
                 </div>
 
                 {/* Bottom 2-Column Side-by-Side Subgrid: Key Challenges (Left) & Our Solution (Right) */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-stretch relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-5 items-stretch relative z-10">
                   {/* Key Challenges Box */}
                   {project.overview.challenges && (
-                    <div className="p-5 sm:p-6 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-3.5">
-                      <h3 className="text-[11px] font-black uppercase tracking-[0.18em] text-[#E31D2E] flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-[#E31D2E]" />
+                    <div className="p-3 sm:p-6 rounded-2xl bg-neutral-50 border border-neutral-200/80 space-y-2 sm:space-y-3.5">
+                      <h3 className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.18em] text-[#E31D2E] flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
                         Key Challenges
                       </h3>
-                      <ul className="space-y-2.5">
+                      <ul className="space-y-1.5 sm:space-y-2.5">
                         {project.overview.challenges.map((c, i) => (
-                          <li key={i} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-[#111111]">
-                            <span className="w-4 h-4 rounded-full bg-neutral-200/70 border border-neutral-300 text-[#111111] font-black text-[9px] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                          <li key={i} className="flex items-start gap-2 text-xs sm:text-[13px] text-[#111111]">
+                            <span className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-neutral-200/70 border border-neutral-300 text-[#111111] font-black text-[8px] sm:text-[9px] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
                               0{i + 1}
                             </span>
                             <span className="leading-snug font-semibold">{c}</span>
@@ -243,15 +243,15 @@ const ProjectCaseStudy = () => {
 
                   {/* Solutions Box */}
                   {project.overview.solutions && (
-                    <div className="p-5 sm:p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200/80 space-y-3.5">
-                      <h3 className="text-[11px] font-black uppercase tracking-[0.18em] text-emerald-700 flex items-center gap-2">
-                        <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                    <div className="p-3 sm:p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200/80 space-y-2 sm:space-y-3.5">
+                      <h3 className="text-[10px] sm:text-[11px] font-black uppercase tracking-[0.18em] text-emerald-700 flex items-center gap-1.5">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                         Our Solution & Strategy
                       </h3>
-                      <ul className="space-y-2.5">
+                      <ul className="space-y-1.5 sm:space-y-2.5">
                         {project.overview.solutions.map((s, i) => (
-                          <li key={i} className="flex items-start gap-2.5 text-xs sm:text-[13px] text-[#111111]">
-                            <span className="w-4 h-4 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 font-black text-[9px] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
+                          <li key={i} className="flex items-start gap-2 text-xs sm:text-[13px] text-[#111111]">
+                            <span className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-emerald-100 border border-emerald-200 text-emerald-800 font-black text-[8px] sm:text-[9px] flex items-center justify-center shrink-0 mt-0.5 shadow-2xs">
                               ✓
                             </span>
                             <span className="leading-snug font-semibold">{s}</span>
@@ -270,7 +270,7 @@ const ProjectCaseStudy = () => {
 
         {/* ── FEATURES & CAPABILITIES GRID ── */}
         {project.features?.length > 0 && (
-          <section className="relative w-full py-12 sm:py-16 lg:py-20 bg-transparent border-t border-gray-200/20">
+          <section className="relative w-full py-5 sm:py-16 lg:py-20 bg-transparent border-t border-gray-200/20">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
               
               <motion.div
@@ -278,17 +278,17 @@ const ProjectCaseStudy = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
-                className="text-center mb-12"
+                className="text-center mb-4 sm:mb-12"
               >
-                <div className="flex justify-center mb-3">
+                <div className="flex justify-center mb-2 sm:mb-3">
                   <SectionBadge text={project.featuresLabel || "Execution Details"} theme="dark" />
                 </div>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+                <h2 className="text-xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
                   {project.featuresTitle || "Key Capabilities Implemented"}
                 </h2>
               </motion.div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
                 {project.features.map((f, i) => (
                   <motion.div
                     key={f.id || i}
@@ -297,16 +297,16 @@ const ProjectCaseStudy = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: i * 0.07 }}
                     whileHover={{ y: -5 }}
-                    className="group relative p-7 sm:p-8 rounded-2xl bg-white border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-black/20 hover:shadow-[0_18px_44px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                    className="group relative p-4 sm:p-8 rounded-2xl bg-white border border-gray-200/90 shadow-[0_10px_30px_rgba(17,17,17,0.03)] hover:border-black/20 hover:shadow-[0_18px_44px_rgba(0,0,0,0.08)] transition-all duration-300 flex flex-col justify-between overflow-hidden"
                   >
                     <div>
-                      <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-black/5 border border-black/20 text-[#111111] text-[10px] font-black uppercase tracking-widest mb-4">
+                      <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-lg sm:rounded-xl bg-black/5 border border-black/20 text-[#111111] text-[9px] sm:text-[10px] font-black uppercase tracking-widest mb-2 sm:mb-4">
                         <span>Feature 0{i + 1}</span>
                       </div>
-                      <h3 className="text-lg sm:text-xl font-black text-[#111111] mb-2.5 leading-snug tracking-tight font-sans">
+                      <h3 className="text-base sm:text-xl font-black text-[#111111] mb-1.5 sm:mb-2.5 leading-snug tracking-tight font-sans">
                         {f.title}
                       </h3>
-                      <p className="text-[#575757] text-sm leading-relaxed font-medium">
+                      <p className="text-[#575757] text-xs sm:text-sm leading-relaxed font-medium">
                         {f.description}
                       </p>
                     </div>
@@ -320,10 +320,10 @@ const ProjectCaseStudy = () => {
 
         {/* ── MEASURABLE RESULTS & IMPACT ── */}
         {project.results?.length > 0 && (
-          <section className="relative w-full py-12 sm:py-16 lg:py-20 bg-transparent">
+          <section className="relative w-full py-5 sm:py-16 lg:py-20 bg-transparent">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
               
-              <div className="bg-white rounded-2xl p-8 sm:p-10 md:p-12 border border-white/90 shadow-2xl relative overflow-hidden text-[#111111]">
+              <div className="bg-white rounded-2xl p-4 sm:p-10 md:p-12 border border-white/90 shadow-2xl relative overflow-hidden text-[#111111]">
                 
                 {/* Header Row — Title Left, Impact Badge Right */}
                 <motion.div
@@ -331,16 +331,16 @@ const ProjectCaseStudy = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6 }}
-                  className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 sm:mb-12 relative z-10 border-b border-neutral-100 pb-8"
+                  className="flex flex-col md:flex-row md:items-end justify-between gap-3 sm:gap-6 mb-4 sm:mb-12 relative z-10 border-b border-neutral-100 pb-4 sm:pb-8"
                 >
                   <div className="max-w-2xl">
-                    <div className="mb-3">
+                    <div className="mb-2 sm:mb-3">
                       <SectionBadge text="Impact & Outcomes" />
                     </div>
-                    <h2 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#111111] tracking-tight leading-tight mb-3 font-sans">
+                    <h2 className="text-lg sm:text-3xl lg:text-4xl font-black text-[#111111] tracking-tight leading-tight mb-2 sm:mb-3 font-sans">
                       Measurable <span className="text-[#E31D2E]">Business Growth</span>
                     </h2>
-                    <p className="text-[#575757] text-sm sm:text-base font-medium leading-relaxed font-sans">
+                    <p className="text-[#575757] text-xs sm:text-base font-medium leading-relaxed font-sans">
                       Concrete performance metrics and real outcomes achieved through our tailored strategy and execution.
                     </p>
                   </div>

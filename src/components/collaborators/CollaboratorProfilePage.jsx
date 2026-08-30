@@ -134,47 +134,47 @@ export default function CollaboratorProfilePage() {
       </HeroLayout>
 
       {/* ── CONTENT SCROLL SECTIONS (COMES NEXT WHEN SCROLLING) ── */}
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14 lg:py-16 pb-24 sm:pb-32 lg:pb-40 box-border">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 mb-16 sm:mb-20 w-full min-w-0">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-14 lg:py-16 pb-12 sm:pb-32 lg:pb-40 box-border">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-8 mb-8 sm:mb-20 w-full min-w-0">
           
           {/* Left Bio Box (7 Cols) */}
-          <div className="lg:col-span-7 w-full min-w-0 bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-neutral-200/90 shadow-sm box-border">
-            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#E31D2E] mb-3 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-[#E31D2E]" />
+          <div className="lg:col-span-7 w-full min-w-0 bg-white rounded-2xl p-4 sm:p-8 lg:p-10 border border-neutral-200/90 shadow-sm box-border">
+            <h3 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-[#E31D2E] mb-2 sm:mb-3 flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#E31D2E]" />
               About {collaborator.name}
             </h3>
-            <p className="text-neutral-700 text-sm sm:text-base font-medium leading-relaxed mb-6">
+            <p className="text-neutral-700 text-xs sm:text-base font-medium leading-relaxed mb-4 sm:mb-6">
               {collaborator.bio}
             </p>
 
-            <h4 className="text-xs font-black uppercase tracking-[0.18em] text-[#111111] mb-3">
+            <h4 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.18em] text-[#111111] mb-2 sm:mb-3">
               Capabilities & Expertise
             </h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
               {collaborator.services.map((svc, idx) => (
-                <div key={idx} className="flex items-center gap-2.5 bg-neutral-50 p-3 rounded-xl border border-neutral-200/80 min-w-0">
-                  <div className="w-4 h-4 rounded-full bg-[#111111] text-white flex items-center justify-center text-[9px] font-black shrink-0">
+                <div key={idx} className="flex items-center gap-2 bg-neutral-50 p-2 sm:p-3 rounded-xl border border-neutral-200/80 min-w-0">
+                  <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#111111] text-white flex items-center justify-center text-[8px] sm:text-[9px] font-black shrink-0">
                     ✓
                   </div>
-                  <span className="text-xs font-bold text-neutral-800 truncate">{svc}</span>
+                  <span className="text-[11px] sm:text-xs font-bold text-neutral-800 truncate">{svc}</span>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Right Skills Box (5 Cols) */}
-          <div className="lg:col-span-5 w-full min-w-0 bg-white rounded-2xl p-6 sm:p-8 lg:p-10 border border-neutral-200/90 shadow-sm flex flex-col justify-between box-border">
+          <div className="lg:col-span-5 w-full min-w-0 bg-white rounded-2xl p-4 sm:p-8 lg:p-10 border border-neutral-200/90 shadow-sm flex flex-col justify-between box-border">
             <div>
-              <h3 className="text-xs font-black uppercase tracking-[0.2em] text-[#111111] mb-4 flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-[#111111]" />
+              <h3 className="text-[10px] sm:text-xs font-black uppercase tracking-[0.2em] text-[#111111] mb-2 sm:mb-4 flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#111111]" />
                 Specialized Skills
               </h3>
 
-              <div className="flex flex-wrap gap-2 mb-6">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-4 sm:mb-6">
                 {collaborator.skills.map((skill, idx) => (
                   <span
                     key={idx}
-                    className="px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-neutral-100 text-[#111111] border border-neutral-200/80"
+                    className="px-2.5 py-1 sm:px-3.5 sm:py-1.5 rounded-lg sm:rounded-xl text-[10px] sm:text-xs font-extrabold bg-neutral-100 text-[#111111] border border-neutral-200/80"
                   >
                     {skill}
                   </span>
@@ -182,11 +182,11 @@ export default function CollaboratorProfilePage() {
               </div>
             </div>
 
-            <div className="p-4 sm:p-5 rounded-2xl bg-neutral-50 border border-neutral-200/80 mt-4">
-              <span className="text-[10px] font-black uppercase tracking-wider text-[#E31D2E] block mb-1">
+            <div className="p-3 sm:p-5 rounded-2xl bg-neutral-50 border border-neutral-200/80 mt-2 sm:mt-4">
+              <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-wider text-[#E31D2E] block mb-0.5">
                 Collaborator Engagement
               </span>
-              <p className="text-xs font-medium text-neutral-600">
+              <p className="text-[10.5px] sm:text-xs font-medium text-neutral-600">
                 Project scheduling, scope definition, contracts, and commercial terms are fully managed by Praskla DigitalX.
               </p>
             </div>
@@ -195,27 +195,27 @@ export default function CollaboratorProfilePage() {
         </div>
 
         {/* Bottom CTA Section */}
-        <div className="relative py-10 sm:py-16 text-center text-white overflow-hidden w-full max-w-3xl mx-auto my-6">
+        <div className="relative py-5 sm:py-16 text-center text-white overflow-hidden w-full max-w-3xl mx-auto my-3 sm:my-6">
           <div className="relative z-10 w-full min-w-0 flex flex-col items-center">
-            <div className="mb-4">
+            <div className="mb-2 sm:mb-4">
               <SectionBadge text="AGENCY MANAGED ENGAGEMENT" theme="dark" />
             </div>
 
-            <h3 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-4">
+            <h3 className="text-xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight mb-2 sm:mb-4">
               Ready to Collaborate with <span className="text-[#E31D2E]">{collaborator.name}</span>?
             </h3>
 
-            <p className="text-neutral-300 text-sm sm:text-base font-medium leading-relaxed mb-8 max-w-xl">
+            <p className="text-neutral-300 text-xs sm:text-base font-medium leading-relaxed mb-4 sm:mb-8 max-w-xl">
               Submit your project details to Praskla DigitalX. We handle project scoping, terms, commercial arrangements, and team coordination.
             </p>
 
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="px-8 py-4 rounded-xl bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white font-black text-xs sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
+              className="px-6 py-3 sm:px-8 sm:py-4 rounded-xl bg-[#E31D2E] hover:bg-white hover:text-[#111111] text-white font-black text-[10px] sm:text-sm tracking-widest uppercase transition-all duration-300 shadow-lg hover:scale-105 active:scale-95 flex items-center gap-2 cursor-pointer"
             >
               <span>Request This Collaborator</span>
-              <ArrowUpRight className="w-4 h-4 stroke-[2.5]" />
+              <ArrowUpRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-[2.5]" />
             </button>
           </div>
         </div>

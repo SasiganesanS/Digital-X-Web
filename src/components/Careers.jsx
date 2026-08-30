@@ -219,7 +219,7 @@ const Careers = () => {
       {/* Job search section */}
       <section
         ref={jobSearchRef}
-        className="relative bg-transparent py-4 sm:py-6 overflow-hidden"
+        className="relative bg-transparent py-3 sm:py-6 overflow-hidden"
         aria-label="Job search and filters"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
@@ -228,19 +228,19 @@ const Careers = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4 }}
-            className="clay-card bg-white p-5 sm:p-7 lg:p-8 rounded-2xl border border-white/90 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-8 items-center text-[#111111]"
+            className="clay-card bg-white p-3.5 sm:p-7 lg:p-8 rounded-2xl border border-white/90 shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-3.5 lg:gap-8 items-center text-[#111111]"
           >
             {/* Left Column: Badge, Heading, and Search Bar */}
-            <div className="lg:col-span-6 flex flex-col space-y-3">
+            <div className="lg:col-span-6 flex flex-col space-y-2 sm:space-y-3">
               <div className="inline-flex">
-                <div className="border border-neutral-200/80 bg-neutral-100 px-3.5 py-1 rounded-xl shadow-2xs">
-                  <span className="font-bold text-[11px] uppercase tracking-widest text-[#111111]">
+                <div className="border border-neutral-200/80 bg-neutral-100 px-2.5 py-0.5 sm:px-3.5 sm:py-1 rounded-lg sm:rounded-xl shadow-2xs">
+                  <span className="font-bold text-[10px] sm:text-[11px] uppercase tracking-widest text-[#111111]">
                     We're growing our team
                   </span>
                 </div>
               </div>
 
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-black leading-tight tracking-[-0.025em] text-[#111111] font-sans">
+              <h2 className="text-base sm:text-2xl lg:text-3xl font-black leading-tight tracking-[-0.025em] text-[#111111] font-sans">
                 Find the position that fits your ambitions
               </h2>
 
