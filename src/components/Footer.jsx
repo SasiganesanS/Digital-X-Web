@@ -75,11 +75,11 @@ const Footer = ({ setShowContactForm }) => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 lg:gap-10 py-8 lg:py-10 items-center"
+          className="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-10 py-8 lg:py-10 items-center text-center md:text-left"
         >
           {/* LEFT COLUMN: Logo, Tagline, Description */}
-          <div className="md:col-span-7 space-y-3">
-            <Link to="/" className="flex items-center gap-3 sm:gap-3.5 group w-fit select-none">
+          <div className="md:col-span-7 flex flex-col items-center md:items-start space-y-3">
+            <Link to="/" className="flex items-center gap-3 sm:gap-3.5 group select-none">
               {/* Logo Emblem */}
               <div className="w-[48px] h-[48px] sm:w-[54px] sm:h-[54px] lg:w-[60px] lg:h-[60px] rounded-[14px] bg-white p-1.5 flex items-center justify-center border border-white/20 shadow-md shrink-0 transition-all duration-300 group-hover:scale-105">
                 <img
@@ -90,7 +90,7 @@ const Footer = ({ setShowContactForm }) => {
               </div>
 
               {/* 2-line Text Column */}
-              <div className="flex flex-col justify-center min-w-0">
+              <div className="flex flex-col justify-center min-w-0 text-left">
                 <div className="flex items-center gap-1 sm:gap-1.5 leading-none">
                   <span className="font-inlander text-[17px] sm:text-[20px] lg:text-[22px] font-black text-white leading-none tracking-[0.01em] uppercase whitespace-nowrap">
                     PRASKLA DIGITAL
@@ -103,44 +103,54 @@ const Footer = ({ setShowContactForm }) => {
               </div>
             </Link>
 
-            <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed font-medium max-w-lg font-sans">
+            <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed font-medium max-w-lg font-sans text-center md:text-left">
               Helping ambitious brands grow through strategy, design, technology, and marketing.
             </p>
           </div>
 
           {/* RIGHT COLUMN: Contact Details & Social Buttons */}
-          <div className="md:col-span-5 flex flex-col items-start md:items-end justify-center space-y-4">
-            <div className="flex flex-col gap-2.5 text-xs sm:text-sm font-semibold text-[#9CA3AF] max-w-sm w-full sm:w-auto font-sans">
+          <div className="md:col-span-5 flex flex-col items-center md:items-end justify-center space-y-5">
+            <div className="flex flex-col items-start gap-3 text-xs sm:text-sm font-semibold text-[#9CA3AF] font-sans w-fit mx-auto md:mx-0">
+              {/* Email */}
               <a
                 href="mailto:marketing@prasklatechnology.com"
-                className="flex items-center gap-2.5 hover:text-white transition-colors group text-left min-w-0"
+                className="flex items-center gap-3 hover:text-white transition-colors group cursor-pointer text-left"
               >
-                <FiMail className="w-4 h-4 text-[#FF2B2B] shrink-0" />
-                <span className="break-all sm:break-normal">marketing@prasklatechnology.com</span>
+                <div className="w-8 h-8 rounded-xl bg-[#FF2B2B]/12 border border-[#FF2B2B]/30 flex items-center justify-center shrink-0 group-hover:bg-[#FF2B2B] transition-all duration-300">
+                  <FiMail className="w-4 h-4 text-[#FF2B2B] group-hover:text-white transition-colors" />
+                </div>
+                <span className="break-all sm:break-normal text-white/90">marketing@prasklatechnology.com</span>
               </a>
+
+              {/* Phone */}
               <a
                 href="tel:+919566880740"
-                className="flex items-center gap-2.5 hover:text-white transition-colors group text-left"
+                className="flex items-center gap-3 hover:text-white transition-colors group cursor-pointer text-left"
               >
-                <FiPhone className="w-4 h-4 text-[#FF2B2B] shrink-0" />
-                <span>+91 95668 80740</span>
+                <div className="w-8 h-8 rounded-xl bg-[#FF2B2B]/12 border border-[#FF2B2B]/30 flex items-center justify-center shrink-0 group-hover:bg-[#FF2B2B] transition-all duration-300">
+                  <FiPhone className="w-4 h-4 text-[#FF2B2B] group-hover:text-white transition-colors" />
+                </div>
+                <span className="text-white/90">+91 95668 80740</span>
               </a>
+
+              {/* Map Location */}
               <a
                 href="https://www.google.com/maps/search/?api=1&query=KSRCE%2C+KSR+College+Campus%2C+Tiruchengode%2C+Namakkal+-+637215"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-start gap-2.5 text-[#9CA3AF] hover:text-white transition-colors group text-left cursor-pointer"
+                className="flex items-start gap-3 text-[#9CA3AF] hover:text-white transition-colors group cursor-pointer text-left max-w-xs sm:max-w-sm"
               >
-                <FiMapPin className="w-4 h-4 text-[#FF2B2B] shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-200" />
-                <span className="leading-snug">
-                  3rd Floor, A Block, KSRCE, KSR College Campus,<br className="hidden sm:inline" />
-                  Tiruchengode, Namakkal - 637215
+                <div className="w-8 h-8 rounded-xl bg-[#FF2B2B]/12 border border-[#FF2B2B]/30 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-[#FF2B2B] transition-all duration-300">
+                  <FiMapPin className="w-4 h-4 text-[#FF2B2B] group-hover:text-white transition-colors" />
+                </div>
+                <span className="leading-relaxed text-white/90">
+                  3rd Floor, A Block, KSRCE, KSR College Campus,<br className="hidden sm:inline" /> Tiruchengode, Namakkal - 637215
                 </span>
               </a>
             </div>
 
             {/* Circular Social Buttons */}
-            <div className="flex items-center gap-2 pt-1">
+            <div className="flex items-center justify-center md:justify-end gap-2.5 pt-1 flex-wrap">
               {[
                 { href: "https://www.facebook.com/profile.php?id=61572150718570", icon: FaFacebookF, label: "Facebook" },
                 { href: "https://www.instagram.com/praskla_digital_x/", icon: FaInstagram, label: "Instagram" },
@@ -157,9 +167,9 @@ const Footer = ({ setShowContactForm }) => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.label}
-                    className="w-8 h-8 rounded-full border border-white/[0.1] bg-[#161616] flex items-center justify-center text-[#9CA3AF] hover:text-white hover:border-white/40 hover:bg-white/10 hover:-translate-y-0.5 transition-all duration-300"
+                    className="w-9 h-9 rounded-xl border border-white/15 bg-white/10 flex items-center justify-center text-white hover:text-white hover:bg-[#FF2B2B] hover:border-[#FF2B2B] hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-[0_6px_20px_rgba(255,43,43,0.4)]"
                   >
-                    <SocialIcon size={13} />
+                    <SocialIcon size={14} className="text-white" />
                   </a>
                 );
               })}
@@ -168,8 +178,8 @@ const Footer = ({ setShowContactForm }) => {
         </motion.div>
 
         {/* BOTTOM LEGAL BAR */}
-        <div className="relative z-10 border-t border-white/[0.08] pt-5 pb-1">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-3 text-center md:text-left text-xs font-semibold text-[#9CA3AF] font-sans">
+        <div className="relative z-10 border-t border-white/[0.08] pt-5 pb-16 sm:pb-6">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3.5 text-center md:text-left text-xs font-semibold text-[#9CA3AF] font-sans">
             <div className="flex flex-col items-center md:items-start justify-center text-center md:text-left">
               <span className="inline-flex items-center gap-1.5 justify-center md:justify-start">
                 © {new Date().getFullYear()} <span className="font-inlander font-bold">PRASKLA DIGITAL</span> <BrandX className="text-[18px] sm:text-[20px] font-pdx inline-block text-[#FF2B2B] translate-y-[1px] ml-0.5" />
@@ -179,13 +189,15 @@ const Footer = ({ setShowContactForm }) => {
               </span>
             </div>
 
-            <div className="flex items-center gap-4 sm:gap-6 flex-wrap justify-center">
+            <div className="flex items-center gap-3 sm:gap-6 flex-wrap justify-center text-xs">
               <Link to="/privacy-policy" className="hover:text-white transition-colors">
                 Privacy Policy
               </Link>
+              <span className="text-white/20 font-light">•</span>
               <Link to="/terms-and-conditions" className="hover:text-white transition-colors">
                 Terms of Service
               </Link>
+              <span className="text-white/20 font-light">•</span>
               <Link to="/cookie-policy" className="hover:text-white transition-colors">
                 Cookie Policy
               </Link>
