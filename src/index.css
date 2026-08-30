@@ -1120,13 +1120,16 @@ img, video, canvas, svg {
   }
 
   /* 2. Header Offset & Natural Height Flow — Hero Expands to Fit All Mobile Children */
+  .hero-screen-edge,
   #home,
-  #home.hero-screen-edge {
+  #about,
+  #services,
+  #projects {
     height: auto !important;
     min-height: 0 !important;
     max-height: none !important;
     overflow: visible !important;
-    padding-top: calc(var(--mobile-header-height, 76px) + 20px) !important;
+    padding-top: calc(var(--mobile-header-height, 76px) + 16px) !important;
     scroll-padding-top: var(--mobile-header-height, 76px) !important;
     box-sizing: border-box !important;
   }
@@ -1158,7 +1161,7 @@ img, video, canvas, svg {
   }
 
   /* Description Paragraph */
-  #home p {
+  #home .hero-description {
     font-size: 15px !important;
     line-height: 1.55 !important;
     text-align: center !important;
@@ -1198,7 +1201,7 @@ img, video, canvas, svg {
     min-height: auto !important;
   }
 
-  #home [aria-label="Expertise Carousel"] p {
+  #home [aria-label="Expertise Carousel"] > p.expertise-subtitle {
     font-size: 9px !important;
     letter-spacing: 0.2em !important;
     margin-top: 4px !important;
@@ -1219,17 +1222,17 @@ img, video, canvas, svg {
 
   /* 6. Case Studies Section Transition */
   #projects {
-    padding-top: 44px !important;
-    padding-bottom: 40px !important;
+    padding-top: 24px !important;
+    padding-bottom: 24px !important;
   }
 
   #projects > div {
-    padding-left: 16px !important;
-    padding-right: 16px !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
   }
 
-  #projects .rounded-2xl {
-    padding: 20px 16px !important;
+  #projects > div > .rounded-2xl {
+    padding: 16px 12px !important;
     box-sizing: border-box !important;
   }
 

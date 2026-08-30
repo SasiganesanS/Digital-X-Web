@@ -57,7 +57,7 @@ const HeroLayout = ({
               {description && (
                 <div className="w-full">
                   {typeof description === "string" ? (
-                    <p className="text-inherit opacity-85 text-sm sm:text-base lg:text-[19px] font-normal leading-[1.5] sm:leading-[1.6] font-sans max-w-2xl mb-5 sm:mb-7 lg:mb-8">
+                    <p className="hero-description text-inherit opacity-85 text-sm sm:text-base lg:text-[19px] font-normal leading-[1.5] sm:leading-[1.6] font-sans max-w-2xl mb-5 sm:mb-7 lg:mb-8">
                       {description}
                     </p>
                   ) : (

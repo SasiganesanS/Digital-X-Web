@@ -205,7 +205,7 @@ const ServicesCoverflow = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay: 0.15 }}
-        className="!text-neutral-300 text-[9px] font-bold tracking-[0.2em] uppercase mb-2.5 z-10"
+        className="expertise-subtitle !text-neutral-300 text-[9px] font-bold tracking-[0.2em] uppercase mb-2.5 z-10"
       >
         TACTILE DIGITAL SOLUTIONS
       </motion.p>
@@ -308,20 +308,32 @@ const ServicesCoverflow = () => {
 
                   {/* Text (Only visible on active card) */}
                   <div
-                    className="relative flex-1 flex flex-col justify-between px-3 py-2 transition-opacity duration-300 overflow-hidden"
+                    className="relative flex-1 flex flex-col justify-between px-3 py-2 transition-opacity duration-300 overflow-hidden text-left"
                     style={{
                       opacity: s.isFront ? 1 : 0,
                       pointerEvents: s.isFront ? "auto" : "none"
                     }}
                   >
-                    <div className="flex flex-col gap-1">
-                      <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#ef2029]">
+                    <div className="flex flex-col gap-1 text-left">
+                      <span className="text-[9px] font-bold uppercase tracking-[0.25em] text-[#ef2029] text-left block">
                         Expertise
                       </span>
-                      <h3 className="text-[#111111] font-black uppercase tracking-wide leading-tight text-xs">
+                      <h3 className="text-[#111111] font-black uppercase tracking-wide leading-tight text-xs text-left">
                         {service.title}
                       </h3>
-                      <p className="text-[#575757] leading-relaxed font-normal text-[10px]">
+                      <p
+                        className="font-normal"
+                        style={{
+                          color: "#333333",
+                          fontSize: "10.5px",
+                          lineHeight: "1.45",
+                          letterSpacing: "normal",
+                          textAlign: "left",
+                          marginTop: "2px",
+                          marginBottom: "0px",
+                          maxWidth: "none",
+                        }}
+                      >
                         {service.desc}
                       </p>
                     </div>

@@ -890,13 +890,13 @@ export default function ServiceCalculator() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center justify-center text-center gap-2 mb-16"
+            className="flex flex-col items-center justify-center text-center gap-2 mb-8 sm:mb-16"
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight">
               Our <span className="text-[#FF2B2B]">Core Services</span>
             </h2>
-            <div className="h-1.5 w-24 bg-[#FF2B2B] rounded-xl mb-1" />
-            <p className="text-neutral-300 text-sm md:text-base font-medium max-w-md tracking-wide">
+            <div className="h-1.5 w-20 sm:w-24 bg-[#FF2B2B] rounded-xl mb-1" />
+            <p className="text-neutral-300 text-xs sm:text-sm md:text-base font-medium max-w-md tracking-wide">
               Strategic services designed to accelerate modern brands.
             </p>
           </motion.div>
@@ -909,13 +909,13 @@ export default function ServiceCalculator() {
                 isDragging ? "cursor-grabbing" : "cursor-grab"
               }`}
               style={{
-                WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
-                maskImage: "linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)",
+                maskImage: "linear-gradient(to right, transparent 0%, black 3%, black 97%, transparent 100%)",
               }}
             >
               <motion.div
                 ref={trackRef}
-                className="flex gap-6 sm:gap-8 py-8"
+                className="flex gap-4 sm:gap-8 py-4 sm:py-8"
                 style={{ x, width: "max-content" }}
                 onMouseEnter={() => { hoverRef.current = true; }}
                 onMouseLeave={() => { hoverRef.current = false; }}
@@ -940,7 +940,7 @@ export default function ServiceCalculator() {
                     >
                       <div
                         tabIndex={isClone ? -1 : 0}
-                        className={`relative rounded-2xl p-6 sm:p-7 flex flex-col justify-between items-start text-left h-[420px] cursor-pointer transition-all duration-300 ease-out group overflow-hidden select-none bg-white border ${
+                        className={`relative rounded-2xl p-5 sm:p-7 flex flex-col justify-between items-start text-left h-auto min-h-[300px] sm:h-[420px] cursor-pointer transition-all duration-300 ease-out group overflow-hidden select-none bg-white border ${
                           isProgrammaticHover || isHighlighted
                             ? 'border-[#111111] shadow-[0_20px_45px_rgba(0,0,0,0.14)] z-30'
                             : 'border-neutral-300 shadow-[0_8px_24px_rgba(0,0,0,0.06)] hover:border-black/30 hover:shadow-[0_14px_32px_rgba(0,0,0,0.1)] z-10'
@@ -950,14 +950,14 @@ export default function ServiceCalculator() {
                         <div className="absolute inset-[1px] rounded-2xl bg-gradient-to-br from-white/30 via-transparent to-transparent pointer-events-none z-0" />
                         
                         {/* Top Area — Floating Icon Container */}
-                        <div className="relative mb-3.5">
+                        <div className="relative mb-2.5 sm:mb-3.5">
                           {/* Outer Glow Ring */}
                           <div className={`absolute inset-0 rounded-2xl blur-md transition-all duration-500 ${
                             isProgrammaticHover ? 'bg-black/10 scale-110' : 'bg-black/5'
                           }`} />
 
                           {/* Icon Capsule */}
-                          <div className={`relative z-10 w-16 h-16 sm:w-18 sm:h-18 rounded-2xl p-2 border transition-all duration-500 flex items-center justify-center bg-gradient-to-br from-white via-white/95 to-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.05)] ${
+                          <div className={`relative z-10 w-14 h-14 sm:w-18 sm:h-18 rounded-2xl p-1.5 sm:p-2 border transition-all duration-500 flex items-center justify-center bg-gradient-to-br from-white via-white/95 to-white/70 shadow-[0_8px_20px_rgba(17,17,17,0.05)] ${
                             isProgrammaticHover ? 'border-black/40 shadow-[0_4px_16px_rgba(0,0,0,0.08)] -translate-y-1 rotate-[5deg]' : 'border-neutral-200'
                           }`}>
                             <img
@@ -981,18 +981,18 @@ export default function ServiceCalculator() {
                           </span>
 
                           {/* Title */}
-                          <h3 className="text-lg md:text-xl font-extrabold leading-[1.1] mb-2 tracking-tight text-[#111111]">
+                          <h3 className="text-base sm:text-lg md:text-xl font-extrabold leading-[1.1] mb-1.5 sm:mb-2 tracking-tight text-[#111111]">
                             {service.title}
                           </h3>
 
                           {/* Description */}
-                          <p className="text-[#575757] font-medium text-xs sm:text-sm leading-relaxed mb-3.5">
+                          <p className="text-[#575757] font-medium text-xs sm:text-sm leading-relaxed mb-3 sm:mb-3.5">
                             {service.desc}
                           </p>
                         </div>
 
                         {/* Bottom Feature Deliverables — Replaces Learn More */}
-                        <div className="relative z-10 w-full pt-3 mt-auto border-t border-black/10 flex flex-wrap items-center gap-1.5">
+                        <div className="relative z-10 w-full pt-2.5 sm:pt-3 mt-3 sm:mt-auto border-t border-black/10 flex flex-wrap items-center gap-1.5">
                           {getServiceHighlights(service.title).map((highlight, idx) => (
                             <span
                               key={idx}

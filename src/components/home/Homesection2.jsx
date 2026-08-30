@@ -258,17 +258,17 @@ export default function FeaturedWorks() {
     <section id="projects" className="relative overflow-hidden bg-transparent py-10 sm:py-12 lg:py-14">
       <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
         {/* Main Unified Card Container — Header & Showcase in ONE Box (matching Hero Section card) */}
-        <div className="relative flex flex-col items-start p-6 sm:p-8 lg:p-9 rounded-2xl border border-white/90 shadow-[0_25px_60px_rgba(0,0,0,0.4)] bg-white text-[#111111] transition-all duration-300 w-full overflow-hidden">
+        <div className="relative flex flex-col items-start p-4 sm:p-8 lg:p-9 rounded-2xl border border-white/90 shadow-[0_25px_60px_rgba(0,0,0,0.4)] bg-white text-[#111111] transition-all duration-300 w-full overflow-hidden">
           
           {/* Section Header (Inside the Card Box) */}
-          <div className="mb-6 w-full max-w-3xl space-y-2">
-            <div className="mb-3 flex justify-start">
+          <div className="mb-4 sm:mb-6 w-full max-w-3xl space-y-1.5 sm:space-y-2">
+            <div className="mb-2 sm:mb-3 flex justify-start">
               <SectionBadge text="Case Studies" />
             </div>
-            <h2 className="text-2xl sm:text-3xl lg:text-[36px] font-black leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans">
+            <h2 className="text-xl sm:text-3xl lg:text-[36px] font-black leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans">
               Featured <span className="text-[#E31D2E]">Case Studies</span>.
             </h2>
-            <p className="text-neutral-600 text-sm sm:text-base font-normal leading-[1.6] max-w-2xl font-sans">
+            <p className="text-neutral-600 text-xs sm:text-base font-normal leading-[1.5] sm:leading-[1.6] max-w-2xl font-sans">
               Browse our curated case studies across branding, digital media, 3D studios, and production.
             </p>
           </div>
@@ -277,10 +277,10 @@ export default function FeaturedWorks() {
           <div
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className="flex flex-col lg:flex-row gap-5 items-stretch w-full h-auto sm:h-[395px] lg:h-[415px]"
+            className="flex flex-col lg:flex-row gap-4 sm:gap-5 items-stretch w-full h-auto lg:h-[415px]"
           >
             {/* ── LEFT COLUMN: Fitted Aspect-Square Preview Card (Zero Wasted Space) ── */}
-            <div className="flex-shrink-0 flex items-center justify-center w-full lg:w-auto h-[280px] sm:h-full">
+            <div className="flex-shrink-0 flex items-center justify-center w-full lg:w-auto h-[210px] sm:h-[280px] lg:h-full">
               <div 
                 onClick={() => navigate(`/case-study/${activeProject.slug || activeProject.id}`)}
                 className="relative h-full aspect-square max-w-full overflow-hidden rounded-2xl border border-neutral-200/90 bg-neutral-900 shadow-md transition-all duration-300 group cursor-pointer"
@@ -303,8 +303,8 @@ export default function FeaturedWorks() {
                   </motion.div>
                 </AnimatePresence>
 
-                {/* Category Pill Tag Overlay */}
-                <div className="absolute top-4 left-4 z-20">
+                {/* Category Pill Tag Overlay - Hidden on mobile so it never obscures image or logo */}
+                <div className="hidden sm:flex absolute top-4 left-4 z-20">
                   <span className="px-3.5 py-1.5 rounded-xl bg-white/95 backdrop-blur-md border border-white/80 shadow-[0_8px_24px_rgba(0,0,0,0.18)] text-[#111111] text-[10px] font-black uppercase tracking-[0.2em] flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#E31D2E]" />
                     <span>{activeProject.category || activeProject.services?.[0] || "Featured Work"}</span>
@@ -313,8 +313,8 @@ export default function FeaturedWorks() {
               </div>
             </div>
 
-            {/* ── RIGHT COLUMN: Portfolio List Navigator ── */}
-            <div className="flex-1 relative h-full w-full rounded-2xl border border-neutral-200/80 bg-neutral-50/70 shadow-xs transition-all duration-300 p-3.5 sm:p-4 flex flex-col justify-between overflow-hidden self-stretch">
+            {/* ── RIGHT COLUMN: Portfolio List Navigator (Bounded height scrollable container on mobile) ── */}
+            <div className="flex-1 relative h-auto sm:h-full w-full rounded-2xl border border-neutral-200/80 bg-neutral-50/70 shadow-xs transition-all duration-300 p-2.5 sm:p-4 flex flex-col justify-between overflow-hidden self-stretch">
               
               {/* Middle: Continuous Native Scroll Container */}
               <div
@@ -327,7 +327,7 @@ export default function FeaturedWorks() {
                 onPointerUp={handlePointerUp}
                 onPointerCancel={handlePointerCancel}
                 onDragStart={(e) => e.preventDefault()}
-                className={`flex-1 my-0.5 p-1 flex flex-col gap-2 overflow-y-auto overscroll-contain focus:outline-none select-none custom-scrollbar ${
+                className={`flex-1 min-h-0 h-[210px] max-h-[210px] sm:h-auto sm:max-h-none my-0.5 p-1 flex flex-col gap-2 overflow-y-auto overscroll-contain focus:outline-none select-none custom-scrollbar ${
                   isDraggingState ? "cursor-grabbing select-none scroll-auto" : "cursor-grab scroll-smooth"
                 }`}
                 style={{ overscrollBehavior: "contain", touchAction: "pan-y" }}

@@ -103,7 +103,7 @@ const HeroSection = () => {
         </h1>
       }
       description={
-        <p className="text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
+        <p className="hero-description text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
           Your strategic growth partner for branding, performance marketing, software development, and digital transformation. We convert creative vision into measurable business results.
         </p>
       }
