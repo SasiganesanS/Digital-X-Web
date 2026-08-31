@@ -18,7 +18,10 @@ import {
   FiArrowRight,
 } from "react-icons/fi";
 
+import { useLanguage } from "../context/LanguageContext";
+
 const Footer = ({ setShowContactForm }) => {
+  const { t } = useLanguage();
   return (
     <footer id="contact" className="relative w-full bg-[#0B0B0B] bg-gradient-to-b from-[#161616] via-[#111111] to-[#0A0A0A] border-t border-white/[0.08] text-white py-10 sm:py-12 lg:py-14 z-10 overflow-hidden">
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16">
@@ -99,14 +102,14 @@ const Footer = ({ setShowContactForm }) => {
                   </span>
                   <BrandX className="text-[38px] sm:text-[46px] lg:text-[52px] leading-none shrink-0 text-[#FF2B2B] -mt-1.5 sm:-mt-2 -ml-1 sm:-ml-1.5 drop-shadow-[0_1px_4px_rgba(255,43,43,0.35)]" />
                 </div>
-                <span className="font-dingos text-[7.5px] xs:text-[8.5px] sm:text-[9.5px] lg:text-[10px] font-bold text-[#FF2B2B] block tracking-tight leading-none whitespace-nowrap truncate max-w-[180px] xs:max-w-[205px] sm:max-w-[235px] lg:max-w-[255px] -mt-0.5 sm:-mt-1">
-                  A Mindful Marketing and Production Firm
+                <span className="font-dingos text-[6.8px] xs:text-[7.5px] sm:text-[8.5px] lg:text-[9px] font-bold text-[#FF2B2B] block tracking-tight leading-normal whitespace-nowrap overflow-visible max-w-[175px] xs:max-w-[200px] sm:max-w-[240px] lg:max-w-[260px] -mt-1 sm:-mt-1.5 pb-0.5 truncate">
+                  {t("footer_tagline", "A Mindful Marketing and Production Firm")}
                 </span>
               </div>
             </Link>
 
             <p className="text-xs sm:text-sm text-[#9CA3AF] leading-relaxed font-medium max-w-lg font-sans text-center md:text-left">
-              Helping ambitious brands grow through strategy, design, technology, and marketing.
+              {t("footer_desc", "Helping ambitious brands grow through strategy, design, technology, and marketing.")}
             </p>
           </div>
 
@@ -187,21 +190,21 @@ const Footer = ({ setShowContactForm }) => {
                 © {new Date().getFullYear()} <span className="font-inlander font-bold">PRASKLA DIGITAL</span> <BrandX className="text-[18px] sm:text-[20px] font-pdx inline-block text-[#FF2B2B] translate-y-[1px] ml-0.5" />
               </span>
               <span className="text-[#9CA3AF] text-[11px] mt-0.5">
-                All rights reserved.
+                {t("footer_rights", "All rights reserved.")}
               </span>
             </div>
 
             <div className="flex items-center gap-3 sm:gap-6 flex-wrap justify-center text-xs">
               <Link to="/privacy-policy" className="hover:text-white transition-colors">
-                Privacy Policy
+                {t("footer_privacy", "Privacy Policy")}
               </Link>
               <span className="text-white/20 font-light">•</span>
               <Link to="/terms-and-conditions" className="hover:text-white transition-colors">
-                Terms of Service
+                {t("footer_terms", "Terms of Use")}
               </Link>
               <span className="text-white/20 font-light">•</span>
               <Link to="/cookie-policy" className="hover:text-white transition-colors">
-                Cookie Policy
+                {t("footer_cookies", "Cookie Policy")}
               </Link>
             </div>
           </div>

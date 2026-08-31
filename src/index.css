@@ -1370,3 +1370,58 @@ img, video, canvas, svg {
     transform: translate3d(0, 0, 0) !important;
   }
 }
+
+/* ---------------- 9. Google Translate Clean System & UI Dimension Stability ---------------- */
+#google_translate_element,
+.goog-te-gadget,
+.goog-te-gadget-simple,
+.goog-te-gadget-icon,
+.goog-te-spinner-pos,
+.goog-te-spinner,
+.goog-te-spinner-animation,
+.goog-logo-link,
+.goog-te-banner-frame,
+.goog-te-banner,
+iframe.goog-te-banner-frame,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight,
+.skiptranslate,
+iframe[id*="google_translate"],
+div[id*="google_translate"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+  max-width: 0 !important;
+  max-height: 0 !important;
+  clip: rect(0, 0, 0, 0) !important;
+  pointer-events: none !important;
+  position: absolute !important;
+  left: -9999px !important;
+  top: -9999px !important;
+}
+
+body {
+  top: 0px !important;
+  position: static !important;
+}
+
+/* Dimension & Layout Stability Rules for English <-> German switching */
+.pill-list .pill {
+  min-width: 90px;
+  text-align: center;
+  justify-content: center;
+}
+
+.nav-brand-capsule {
+  flex-shrink: 0 !important;
+  min-width: max-content;
+}
+
+.nav-links-capsule {
+  flex-shrink: 0 !important;
+}

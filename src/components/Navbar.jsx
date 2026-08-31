@@ -2,16 +2,18 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { gsap } from 'gsap';
-import { ArrowRight, ArrowUpRight, Search } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Search, Globe, Menu, X } from 'lucide-react';
 import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
 import BrandX from "./common/BrandX";
+import { useLanguage } from "../context/LanguageContext";
+import LanguageToggleSwitch from "./common/LanguageToggleSwitch";
 
 const navItemsList = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Projects", href: "/projects" },
-  { label: "Careers", href: "/careers" }
+  { label: "Home", key: "nav_home", href: "/" },
+  { label: "About", key: "nav_about", href: "/about" },
+  { label: "Services", key: "nav_services", href: "/services" },
+  { label: "Projects", key: "nav_projects", href: "/projects" },
+  { label: "Careers", key: "nav_careers", href: "/careers" }
 ];
 
 const BRAND_TAGLINES = [
@@ -24,10 +26,12 @@ const BRAND_TAGLINES = [
 ];
 
 function AnimatedBrandTagline() {
+  const { language, t } = useLanguage();
+  const isGerman = language === "de";
   return (
-    <div className="relative -mt-0.5 sm:-mt-1 w-full max-w-[190px] xs:max-w-[220px] sm:max-w-[260px]">
-      <span className="font-dingos text-[7.5px] xs:text-[8px] sm:text-[9px] lg:text-[9.5px] font-bold text-[#E31D2E] block tracking-tight leading-none whitespace-nowrap truncate">
-        A Mindful Marketing and Production Firm
+    <div className="relative -mt-1 sm:-mt-1.5 w-full max-w-[175px] xs:max-w-[200px] sm:max-w-[240px] lg:max-w-[260px] overflow-visible pb-0.5">
+      <span className={`font-dingos ${isGerman ? "text-[6.2px] xs:text-[6.8px] sm:text-[7.6px] lg:text-[8.2px]" : "text-[6.8px] xs:text-[7.2px] sm:text-[8.2px] lg:text-[8.8px]"} font-bold text-[#E31D2E] block tracking-tight leading-normal whitespace-nowrap overflow-visible truncate`}>
+        {t("nav_brand_tagline", "A Mindful Marketing and Production Firm")}
       </span>
     </div>
   );
@@ -359,43 +363,75 @@ const navStyles = `
 
 .mobile-menu-popover {
   position: absolute;
-  top: calc(100% + 12px);
+  top: calc(100% + 10px);
   right: 0;
-  width: 240px;
+  width: 255px;
+  max-width: calc(100vw - 24px);
   background: #FFFFFF;
   border: 1px solid #ECECEC;
-  border-radius: 24px;
+  border-radius: 20px;
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
   z-index: 998;
   opacity: 0;
   transform-origin: top right;
+  transition: opacity 200ms ease, transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
   visibility: hidden;
+  box-sizing: border-box;
+}
+
+.mobile-menu-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.mobile-menu-row__label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+}
+
+.mobile-menu-row__control,
+.mobile-menu-row__icon {
+  flex: 0 0 auto;
 }
 
 .mobile-menu-list {
   list-style: none;
   margin: 0;
-  padding: 8px;
+  padding: 6px;
   display: flex;
   flex-direction: column;
   gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .mobile-menu-popover .mobile-menu-link {
-  display: block;
-  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 9px 14px;
   color: #111111;
   background-color: #FAFAFA;
   text-decoration: none;
-  font-size: 15px;
-  font-weight: 600;
-  border-radius: 50px;
+  font-size: 13.5px;
+  font-weight: 700;
+  border-radius: 12px;
   transition: all 0.2s ease;
+  box-sizing: border-box;
 }
 
 .mobile-menu-popover .mobile-menu-link:hover {
   cursor: pointer;
-  background-color: #FF2B2B;
+  background-color: #E31D2E;
   color: #ffffff;
 }
 
@@ -437,6 +473,7 @@ const navStyles = `
 `;
 
 const Navbar = ({ setShowContactForm, onOpenSearch }) => {
+  const { language, toggleLanguage, t } = useLanguage();
   const location = useLocation();
   const activeHref = location.pathname;
 
@@ -844,12 +881,12 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
           </motion.div>
 
           {/* 2-line Text Column (PRASKLA DIGITAL + Animated Single-Line Tagline) */}
-          <div className="flex flex-col justify-center min-w-0">
-            <div className="flex items-center gap-0.5 sm:gap-1.5 leading-none">
-              <span className="font-inlander text-[13px] xs:text-[15px] sm:text-[20px] lg:text-[22px] font-black text-[#111111] leading-none tracking-[0.01em] uppercase whitespace-nowrap">
+          <div className="flex flex-col justify-center min-w-0 notranslate">
+            <div className="flex items-center gap-0.5 sm:gap-1.5 leading-none notranslate">
+              <span className="font-inlander text-[13px] xs:text-[15px] sm:text-[20px] lg:text-[22px] font-black text-[#111111] leading-none tracking-[0.01em] uppercase whitespace-nowrap notranslate">
                 PRASKLA DIGITAL
               </span>
-              <BrandX className="text-[26px] xs:text-[32px] sm:text-[46px] lg:text-[52px] leading-none shrink-0 text-[#E31D2E] -mt-1 sm:-mt-2 -ml-0.5 sm:-ml-1.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
+              <BrandX className="text-[26px] xs:text-[32px] sm:text-[46px] lg:text-[52px] leading-none shrink-0 text-[#E31D2E] -mt-1 sm:-mt-2 -ml-0.5 sm:-ml-1.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)] notranslate" />
             </div>
             <div className="block">
               <AnimatedBrandTagline />
@@ -886,7 +923,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                             />
                           )}
                           <span className="relative z-10 font-bold text-[12px] uppercase tracking-[0.03em] select-none text-white transition-colors duration-200">
-                            {item.label}
+                            {t(item.key, item.label)}
                           </span>
                         </Link>
                       ) : (
@@ -894,7 +931,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                           role="menuitem"
                           href={item.href}
                           className="pill group"
-                          aria-label={item.label}
+                          aria-label={t(item.key, item.label)}
                           onMouseEnter={() => setHoveredIndex(i)}
                         >
                           {isHighlighted && (
@@ -905,13 +942,19 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                             />
                           )}
                           <span className="relative z-10 font-bold text-[12px] uppercase tracking-[0.03em] select-none text-white transition-colors duration-200">
-                            {item.label}
+                            {t(item.key, item.label)}
                           </span>
                         </a>
                       )}
                     </li>
                   );
                 })}
+
+                {/* LANGUAGE TOGGLE SWITCH (Sliding iOS / Brand Crimson Toggle) */}
+                <li role="none" className="flex items-center px-1">
+                  <LanguageToggleSwitch showLabel={false} />
+                </li>
+
                 {/* SEARCH BUTTON (Adopted to navbar UI as pill item) */}
                 <li role="none">
                   <button
@@ -930,15 +973,21 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
               </ul>
             </div>
 
-            <button
-              className="mobile-menu-button mobile-only"
-              onClick={toggleMobileMenu}
-              aria-label="Toggle menu"
-              ref={hamburgerRef}
-            >
-              <span className="hamburger-line" />
-              <span className="hamburger-line" />
-            </button>
+            <div className="flex items-center mobile-only shrink-0">
+              <button
+                type="button"
+                className="mobile-menu-trigger w-10 h-10 rounded-full bg-white border border-neutral-200/90 shadow-sm flex items-center justify-center text-[#111111] shrink-0 relative z-[999] cursor-pointer hover:bg-neutral-50 transition-colors"
+                onClick={toggleMobileMenu}
+                aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+                ref={hamburgerRef}
+              >
+                {isMobileMenuOpen ? (
+                  <X className="w-5 h-5 text-[#111111] stroke-[2.5] shrink-0 pointer-events-none relative z-10" />
+                ) : (
+                  <Menu className="w-5 h-5 text-[#111111] stroke-[2.5] shrink-0 pointer-events-none relative z-10" />
+                )}
+              </button>
+            </div>
           </nav>
 
           {/* MOBILE BACKDROP OVERLAY FOR OUTSIDE CLICK CLOSE */}
@@ -961,7 +1010,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                       className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
                       onClick={closeMobileMenu}
                     >
-                      {item.label}
+                      {t(item.key, item.label)}
                     </Link>
                   ) : (
                     <a
@@ -969,11 +1018,24 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                       className={`mobile-menu-link${activeHref === item.href ? ' is-active' : ''}`}
                       onClick={closeMobileMenu}
                     >
-                      {item.label}
+                      {t(item.key, item.label)}
                     </a>
                   )}
                 </li>
               ))}
+              <li className="pt-0.5 px-0.5">
+                <div
+                  className="mobile-menu-row px-3.5 py-2 rounded-xl bg-[#FAFAFA] text-[#111111] font-bold text-[13px] border border-neutral-200/80"
+                >
+                  <div className="flex items-center gap-2 min-w-0 flex-1">
+                    <Globe className="w-3.5 h-3.5 text-[#E31D2E] shrink-0" />
+                    <span className="mobile-menu-row__label truncate">{t("nav_language", "Language")}</span>
+                  </div>
+                  <div className="mobile-menu-row__control shrink-0">
+                    <LanguageToggleSwitch compact={true} showLabel={false} />
+                  </div>
+                </div>
+              </li>
               <li className="pt-1 px-1">
                 <button
                   type="button"
@@ -981,13 +1043,13 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
                     closeMobileMenu();
                     if (onOpenSearch) onOpenSearch();
                   }}
-                  className="w-full flex items-center justify-between px-4 py-2 rounded-xl bg-[#FAFAFA] hover:bg-[#F4F4F4] text-[#111111] font-semibold text-sm transition-colors border border-gray-200/80"
+                  className="mobile-menu-row w-full px-4 py-2 rounded-xl bg-[#FAFAFA] hover:bg-[#F4F4F4] text-[#111111] font-semibold text-sm transition-colors border border-gray-200/80"
                 >
-                  <div className="flex items-center gap-2">
-                    <Search className="w-4 h-4 text-[#E31D2E]" />
-                    <span>Search Site</span>
+                  <div className="flex items-center gap-2.5 min-w-0 flex-1 text-left">
+                    <Search className="w-4 h-4 text-[#E31D2E] shrink-0" />
+                    <span className="mobile-menu-row__label truncate">{t("nav_search_website", "Search Website")}</span>
                   </div>
-                  <kbd className="px-1.5 py-0.5 text-[10px] font-bold text-gray-500 bg-gray-200/80 rounded">
+                  <kbd className="mobile-menu-row__icon px-1.5 py-0.5 text-[10px] font-bold text-gray-500 bg-gray-200/80 rounded shrink-0">
                     ⌘K
                   </kbd>
                 </button>

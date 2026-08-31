@@ -163,8 +163,8 @@ const About = () => {
               {item.icon}
             </div>
             <div className="w-full min-w-0 text-center sm:text-left">
-              <h4 className="text-[9.5px] sm:text-xs font-black text-[#111111] leading-tight truncate">{item.title}</h4>
-              <p className="text-[8px] sm:text-[10px] text-neutral-500 font-medium leading-tight mt-0.5 truncate">{item.sub}</p>
+              <h4 className="text-[9.5px] sm:text-xs font-black text-[#111111] leading-tight break-words">{item.title}</h4>
+              <p className="text-[8px] sm:text-[10px] text-neutral-500 font-medium leading-tight mt-0.5 break-words">{item.sub}</p>
             </div>
           </motion.div>
         ))}
@@ -199,7 +199,7 @@ const About = () => {
               <h3 className="font-inlander text-[11px] sm:text-sm font-black text-[#111111] flex items-center gap-1 leading-none">
                 PRASKLA DIGITAL <BrandX className="text-[18px] sm:text-[30px] leading-none shrink-0 text-[#E31D2E] -mt-0.5 -ml-0.5" />
               </h3>
-              <p className="text-[9px] sm:text-[11px] font-semibold text-neutral-500 mt-0.5 truncate max-w-[160px] sm:max-w-none">A Mindful Marketing Firm</p>
+              <p className="text-[9px] sm:text-[11px] font-semibold text-neutral-500 mt-0.5 whitespace-nowrap">A Mindful Marketing Firm</p>
             </div>
           </div>
 
@@ -272,10 +272,10 @@ const About = () => {
                 {item.icon}
               </div>
               <div className="min-w-0">
-                <h4 className="text-[10px] sm:text-xs font-black text-[#111111] leading-tight truncate">
+                <h4 className="text-[9.5px] sm:text-xs font-black text-[#111111] leading-tight break-words">
                   {item.title}
                 </h4>
-                <p className="text-[8.5px] sm:text-[10px] text-neutral-500 font-bold leading-tight truncate mt-0.5">
+                <p className="text-[8px] sm:text-[9.5px] text-neutral-500 font-bold leading-tight mt-0.5 break-words">
                   {item.desc}
                 </p>
               </div>
@@ -521,10 +521,10 @@ const About = () => {
                       <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white border border-neutral-200 flex items-center justify-center text-[#111111] mb-1.5 sm:mb-3 shadow-2xs group-hover:scale-105 group-hover:bg-[#111111] group-hover:text-white transition-all duration-300">
                         <IconComp className="w-3.5 h-3.5 sm:w-5 sm:h-5 stroke-[2]" />
                       </div>
-                      <h4 className="text-[11px] sm:text-sm font-black text-[#111111] leading-tight mb-0.5 truncate w-full">
+                      <h4 className="text-[10px] sm:text-sm font-black text-[#111111] leading-tight mb-0.5 w-full break-words">
                         {item.title}
                       </h4>
-                      <p className="text-neutral-500 text-[9px] sm:text-xs font-bold leading-tight truncate w-full">
+                      <p className="text-neutral-500 text-[8.5px] sm:text-xs font-bold leading-tight w-full break-words">
                         {item.sub}
                       </p>
                     </motion.div>

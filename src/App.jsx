@@ -481,16 +481,20 @@ const MainLayout = () => {
   );
 };
 
+import { LanguageProvider } from "./context/LanguageContext";
+
 // ===================================================================
 // App component (renders the merged MainLayout)
 // ===================================================================
 function App() {
   return (
-    <HashRouter>
-      <ErrorBoundary>
-        <MainLayout />
-      </ErrorBoundary>
-    </HashRouter>
+    <LanguageProvider>
+      <HashRouter>
+        <ErrorBoundary>
+          <MainLayout />
+        </ErrorBoundary>
+      </HashRouter>
+    </LanguageProvider>
   );
 }
 

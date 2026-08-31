@@ -303,10 +303,10 @@ export default function PlatformPlanModal({
               </button>
             ) : null}
             <div className="flex-1 min-w-0">
-              <span className="text-[9px] sm:text-[10px] font-black text-[#E31D2E] uppercase tracking-[0.18em] sm:tracking-[0.25em] block truncate">
+              <span className="text-[9px] sm:text-[10px] font-black text-[#E31D2E] uppercase tracking-wider block break-words">
                 {selectedService.title} Project Brief
               </span>
-              <h2 className="text-xs sm:text-sm font-black text-[#111111] truncate">
+              <h2 className="text-xs sm:text-sm font-black text-[#111111] break-words">
                 {step === 2 && `Choose ${selectedService.title} Package`}
                 {step === 3 && `Customize Add-ons & Duration`}
                 {step === 4 && "Final Proposal Summary"}

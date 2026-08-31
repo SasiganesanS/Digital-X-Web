@@ -37,7 +37,10 @@ const ToyAstronaut = ({ style, className = "", seated = false }) => (
 const CARD_W = 230;
 const CARD_H = 308;
 
+import { useLanguage } from "../../context/LanguageContext";
+
 const ServicesCoverflow = () => {
+  const { t } = useLanguage();
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(
     typeof window !== "undefined" ? window.innerWidth < 768 : false
@@ -212,7 +215,7 @@ const ServicesCoverflow = () => {
         transition={{ duration: 0.6 }}
         className="mb-1 sm:mb-1.5 z-10"
       >
-        <SectionBadge text="OUR EXPERTISE" theme="dark" />
+        <SectionBadge text={t("expertise_badge", "OUR EXPERTISE")} theme="dark" />
       </motion.div>
 
       <motion.p
@@ -222,7 +225,7 @@ const ServicesCoverflow = () => {
         transition={{ duration: 0.6, delay: 0.15 }}
         className="expertise-subtitle !text-neutral-300 text-[8px] sm:text-[9px] font-bold tracking-[0.2em] uppercase mb-1.5 sm:mb-2.5 z-10"
       >
-        TACTILE DIGITAL SOLUTIONS
+        {t("expertise_subtitle", "TACTILE DIGITAL SOLUTIONS")}
       </motion.p>
 
       {/* ── 3D Carousel Stage ── */}
@@ -324,25 +327,25 @@ const ServicesCoverflow = () => {
 
                   {/* Text (Only visible on active card) */}
                   <div
-                    className="relative flex-1 flex flex-col justify-between px-1.5 sm:px-3 py-1.5 sm:py-2 transition-opacity duration-300 overflow-hidden text-left"
+                    className="relative flex-1 flex flex-col justify-between px-1.5 sm:px-3 py-1.5 sm:py-2 transition-opacity duration-300 overflow-visible text-left"
                     style={{
                       opacity: s.isFront ? 1 : 0,
                       pointerEvents: s.isFront ? "auto" : "none"
                     }}
                   >
-                    <div className="flex flex-col gap-0.5 sm:gap-1 text-left">
-                      <span className="text-[8px] sm:text-[9px] font-bold uppercase tracking-[0.25em] text-[#ef2029] text-left block">
-                        Expertise
+                    <div className="flex flex-col gap-0.5 text-left min-w-0">
+                      <span className="text-[7.5px] sm:text-[8.5px] font-bold uppercase tracking-wider text-[#ef2029] text-left block">
+                        {t("expertise_badge", "OUR EXPERTISE")}
                       </span>
-                      <h3 className="text-[#111111] font-black uppercase tracking-tight leading-[1.2] text-[10.5px] sm:text-xs text-left">
+                      <h3 className="text-[#111111] font-black uppercase tracking-normal leading-[1.15] text-[10px] sm:text-[11.5px] text-left break-words">
                         {service.title}
                       </h3>
                       <p
-                        className="font-normal"
+                        className="font-normal break-words"
                         style={{
                           color: "#333333",
-                          fontSize: isMobile ? "9.5px" : "10.5px",
-                          lineHeight: "1.35",
+                          fontSize: isMobile ? "8.5px" : "9.5px",
+                          lineHeight: "1.3",
                           letterSpacing: "normal",
                           textAlign: "left",
                           marginTop: "2px",
@@ -355,9 +358,9 @@ const ServicesCoverflow = () => {
                     </div>
 
                     {/* Focus tag inside active card — Replaces Learn More */}
-                    <div className="mt-1 inline-flex items-center gap-1 text-[#ef2029] font-extrabold text-[8px] sm:text-[9px] uppercase tracking-wider shrink-0">
+                    <div className="mt-1 inline-flex items-center gap-1 text-[#ef2029] font-extrabold text-[7.5px] sm:text-[8.5px] uppercase tracking-wider shrink-0">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#ef2029]" />
-                      <span>High Impact Strategy</span>
+                      <span>{t("expertise_strategy_tag", "High Impact Strategy")}</span>
                     </div>
                   </div>
                 </div>
@@ -389,7 +392,7 @@ const ServicesCoverflow = () => {
         onClick={() => navigate("/services")}
         className="mt-1.5 sm:mt-2.5 z-10 text-[9px] sm:text-[10px] font-extrabold uppercase tracking-[0.25em] bg-[#FF2B2B] hover:bg-[#E51D1D] text-white px-5 sm:px-6 py-1.5 sm:py-2.5 rounded-xl whitespace-nowrap shadow-[0_8px_20px_rgba(255,43,43,0.4)] transition-all duration-300 hover:scale-105 cursor-pointer"
       >
-        VIEW EXPERTISE
+        {t("expertise_btn", "VIEW EXPERTISE")}
       </button>
     </div>
   );

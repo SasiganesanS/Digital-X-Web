@@ -85,7 +85,10 @@ const imageVariants = {
 };
 
 
+import { useLanguage } from "../../context/LanguageContext";
+
 const Homesection5 = () => {
+  const { t } = useLanguage();
   const [[page, direction], setPage] = useState([0, 0]);
   const review = reviews[page];
 
@@ -131,11 +134,11 @@ const Homesection5 = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <h2 className="text-3xl font-bold text-[#301045] sm:text-4xl mb-4">
-            Trusted by businesses like yours
+            {t("testimonials_title", "Trusted by businesses like yours")}
           </h2>
           <div className="w-20 h-1 bg-[#301045] mx-auto mb-4 rounded-full"></div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            See what our clients say about their success.
+            {t("testimonials_subtitle", "See what our clients say about their success.")}
           </p>
         </motion.div>
 

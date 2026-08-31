@@ -70,11 +70,11 @@ function ProjectCounter({ targetNum, suffix = "+", label, delay = 0 }) {
     >
       <div className="absolute inset-0 rounded-xl sm:rounded-2xl bg-gradient-to-br from-white/70 via-transparent to-transparent pointer-events-none" />
 
-      <div className="relative z-10 flex flex-col">
+      <div className="relative z-10 flex flex-col w-full min-w-0">
         <span className="text-lg sm:text-3xl font-black text-[#111111] tracking-tight group-hover:text-[#E31D2E] transition-colors duration-300">
           {count}{suffix}
         </span>
-        <span className="text-[#575757] text-[8.5px] sm:text-[10px] font-bold uppercase tracking-[0.18em] mt-0.5 truncate">
+        <span className="text-[#575757] text-[7.5px] xs:text-[8px] sm:text-[9.5px] font-bold uppercase tracking-tight leading-tight mt-0.5 whitespace-normal break-words">
           {label}
         </span>
       </div>

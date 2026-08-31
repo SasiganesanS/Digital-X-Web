@@ -4,6 +4,8 @@ import SectionBadge from "../common/SectionBadge";
 import { ArrowRight, Sparkles } from "lucide-react";
 import ProjectBriefModal from "../ProjectBriefModal";
 
+import { useLanguage } from "../../context/LanguageContext";
+
 const containerVariants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.12 } },
@@ -15,15 +17,16 @@ const fadeUp = {
 };
 
 const Homesection4 = () => {
+  const { t } = useLanguage();
   const [isBriefModalOpen, setIsBriefModalOpen] = useState(false);
 
   const benefits = [
-    "Free consultation",
-    "Tailored strategy",
-    "Transparent quotation",
-    "Faster project onboarding",
-    "Dedicated project manager",
-    "No commitment required",
+    t("start_benefit_1", "Free consultation"),
+    t("start_benefit_2", "Tailored strategy"),
+    t("start_benefit_3", "Transparent quotation"),
+    t("start_benefit_4", "Faster project onboarding"),
+    t("start_benefit_5", "Dedicated project manager"),
+    t("start_benefit_6", "No commitment required"),
   ];
 
   return (
@@ -48,7 +51,7 @@ const Homesection4 = () => {
               >
                 {/* Small badge */}
                 <motion.div variants={fadeUp} className="mb-1.5 sm:mb-4">
-                  <SectionBadge text="Start Your Project" />
+                  <SectionBadge text={t("start_badge", "Start Your Project")} />
                 </motion.div>
 
                 {/* Large Heading */}
@@ -56,8 +59,8 @@ const Homesection4 = () => {
                   variants={fadeUp}
                   className="text-base sm:text-2xl lg:text-3xl xl:text-[34px] font-black leading-[1.1] tracking-[-0.03em] text-[#111111] mb-1.5 sm:mb-4 max-w-xl font-sans"
                 >
-                  Let's Build Something{" "}
-                  <span className="text-[#E31D2E]">Exceptional Together</span>
+                  {t("start_title_1", "Let's Build Something ")}
+                  <span className="text-[#E31D2E]">{t("start_title_highlight", "Exceptional Together")}</span>
                 </motion.h2>
 
                 {/* Description */}
@@ -65,9 +68,7 @@ const Homesection4 = () => {
                   variants={fadeUp}
                   className="text-[#575757] text-[11px] sm:text-base leading-relaxed font-normal mb-3 sm:mb-6 max-w-xl font-sans"
                 >
-                  Every successful project starts with understanding your business.
-                  Tell us about your goals, timeline, and budget, and let's craft
-                  a high-performance digital solution together.
+                  {t("start_desc")}
                 </motion.p>
 
                 {/* Small benefits */}
@@ -104,7 +105,7 @@ const Homesection4 = () => {
                         variants={fadeUp}
                         className="text-base sm:text-3xl font-black text-[#111111] tracking-tight"
                       >
-                        Begin Your Project
+                        {t("start_card_title", "Begin Your Project")}
                       </motion.h3>
 
                       <motion.span
@@ -112,7 +113,7 @@ const Homesection4 = () => {
                         className="inline-flex items-center gap-1 px-2 py-0.5 sm:px-3 sm:py-1 rounded-lg sm:rounded-xl bg-white border border-neutral-200/80 text-[9px] sm:text-[11px] font-extrabold text-[#111111] uppercase tracking-wider shadow-xs"
                       >
                         <span className="w-1.5 h-1.5 rounded-full bg-[#111111] animate-pulse" />
-                        Instant Onboarding
+                        {t("start_card_sub", "Instant Onboarding")}
                       </motion.span>
                     </div>
 
@@ -121,10 +122,7 @@ const Homesection4 = () => {
                       variants={fadeUp}
                       className="text-[10.5px] sm:text-base text-neutral-600 leading-relaxed font-normal"
                     >
-                      Tell us everything about your business in one place.
-                      <br className="hidden sm:inline" />
-                      Once submitted, our team will analyze your requirements and
-                      contact you with a customized proposal.
+                      {t("start_card_desc")}
                     </motion.p>
 
                     {/* Highlights Bar */}
@@ -150,7 +148,7 @@ const Homesection4 = () => {
                         onClick={() => setIsBriefModalOpen(true)}
                         className="w-full inline-flex items-center justify-center gap-2 bg-[#E31D2E] hover:bg-[#C1121F] text-white px-4 py-2 sm:px-7 sm:py-3.5 rounded-xl font-bold text-xs sm:text-base shadow-sm hover:shadow-md hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 cursor-pointer group/btn"
                       >
-                        <span>Apply for Your Project</span>
+                        <span>{t("start_btn", "Apply for Your Project")}</span>
                         <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 transition-transform group-hover/btn:translate-x-1" />
                       </button>
                     </motion.div>

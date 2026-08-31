@@ -116,7 +116,7 @@ const TermsAndConditions = () => {
                 <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
                   <FileCheck className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Clear Scope of Work</h3>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 break-words">Clear Scope of Work</h3>
                 <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">All digital projects operate under explicit Statement of Work agreements.</p>
               </div>
 
@@ -124,7 +124,7 @@ const TermsAndConditions = () => {
                 <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
                   <Copyright className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Intellectual Property</h3>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 break-words">Intellectual Property</h3>
                 <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">Clients receive full ownership of approved deliverables upon final payment.</p>
               </div>
 
@@ -132,7 +132,7 @@ const TermsAndConditions = () => {
                 <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
                   <CreditCard className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Transparent Billing</h3>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 break-words">Transparent Billing</h3>
                 <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">Milestone-based invoices with clear deliverables and commercial terms.</p>
               </div>
 
@@ -140,7 +140,7 @@ const TermsAndConditions = () => {
                 <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
                   <Scale className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Governing Standards</h3>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 break-words">Governing Standards</h3>
                 <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">Commercial agreements are structured in compliance with applicable law.</p>
               </div>
             </motion.div>

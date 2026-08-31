@@ -118,7 +118,7 @@ const PrivacyPolicy = () => {
                 <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
                   <Lock className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">256-Bit SSL Encryption</h3>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 break-words">256-Bit SSL Encryption</h3>
                 <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">All user communications and form submissions are encrypted in transit.</p>
               </div>
 
@@ -126,7 +126,7 @@ const PrivacyPolicy = () => {
                 <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
                   <UserCheck className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Zero Data Selling</h3>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 break-words">Zero Data Selling</h3>
                 <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">We never sell, rent, or trade client or visitor records with third parties.</p>
               </div>
 
@@ -134,7 +134,7 @@ const PrivacyPolicy = () => {
                 <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
                   <Eye className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Purpose-Driven Use</h3>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 break-words">Purpose-Driven Use</h3>
                 <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">Data collection is strictly limited to fulfilling requested digital services.</p>
               </div>
 
@@ -142,7 +142,7 @@ const PrivacyPolicy = () => {
                 <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
                   <ShieldCheck className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Full Privacy Rights</h3>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 break-words">Full Privacy Rights</h3>
                 <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">Request data exports, access logs, or permanent deletion anytime.</p>
               </div>
             </motion.div>

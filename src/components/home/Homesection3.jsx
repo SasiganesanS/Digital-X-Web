@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import SectionBadge from "../common/SectionBadge";
 import BrandX from "../common/BrandX";
 
+import { useLanguage } from "../../context/LanguageContext";
+
 const containerVariants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.15 } },
@@ -16,6 +18,8 @@ const fadeUp = {
 };
 
 const AboutSection = () => {
+  const { t } = useLanguage();
+
   return (
     <section
       id="home-about"
@@ -35,7 +39,7 @@ const AboutSection = () => {
           <div className="flex-1">
             {/* Eyebrow badge */}
             <motion.div variants={fadeUp} className="mb-2 sm:mb-6">
-              <SectionBadge text="our goal" />
+              <SectionBadge text={t("about_badge", "our goal")} />
             </motion.div>
 
             {/* Headline */}
@@ -43,11 +47,11 @@ const AboutSection = () => {
               variants={fadeUp}
               className="text-lg sm:text-3xl lg:text-[40px] xl:text-[44px] font-black leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans"
             >
-              Empowering Brands through{" "}
+              {t("about_title_1", "Empowering Brands through ")}
               <span className="text-[#E31D2E]">
-                Mindful
+                {t("about_title_highlight", "Mindful")}
               </span>{" "}
-              Marketing.
+              {t("about_title_2", "Marketing.")}
             </motion.h2>
           </div>
 
@@ -55,16 +59,11 @@ const AboutSection = () => {
           <div className="flex-1 flex flex-col justify-center">
             <motion.div variants={fadeUp} className="relative pl-3 sm:pl-5 flex flex-col gap-2 sm:gap-4 border-l-2 border-[#E31D2E]">
               <p className="text-[#111111] text-xs sm:text-lg md:text-xl leading-relaxed font-semibold">
-                <span className="font-inlander font-bold">PRASKLA DIGITAL</span> <BrandX className="text-[1.4em] sm:text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.1em] -ml-0.5" /> is a mindful marketing and production firm built on the belief that true growth
-                comes from <span className="text-[#E31D2E] font-black">clarity, creativity, and collaboration</span>.
-                We partner with businesses and personal brands to transform their ideas into
-                measurable digital success.
+                <span className="font-inlander font-bold">PRASKLA DIGITAL</span> <BrandX className="text-[1.4em] sm:text-[1.65em] font-pdx text-[#E31D2E] inline-block translate-y-[0.1em] -ml-0.5" /> {t("about_text_1")}
               </p>
 
               <p className="text-neutral-600 text-[11px] sm:text-base leading-relaxed font-normal">
-                By combining strategic thinking, creative execution, and performance-driven
-                optimization, we help brands build <span className="text-[#111111] font-bold">visibility, credibility,
-                  and sustainable growth</span> — growing alongside them at every stage.
+                {t("about_text_2")}
               </p>
             </motion.div>
           </div>

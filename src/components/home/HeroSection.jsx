@@ -66,7 +66,10 @@ function AnimatedStat({ targetNum, suffix = "+", label, delay = 0 }) {
   );
 }
 
+import { useLanguage } from "../../context/LanguageContext";
+
 const HeroSection = () => {
+  const { t } = useLanguage();
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e) => {
@@ -96,17 +99,18 @@ const HeroSection = () => {
       onMouseMove={handleMouseMove}
       className="bg-[#050508] !text-white"
       badge={
-        <SectionBadge text="Home" theme="dark" />
+        <SectionBadge text={t("hero_badge", "Home")} theme="dark" />
       }
       title={
         <h1 className="text-3xl sm:text-4xl lg:text-[42px] xl:text-[46px] font-black leading-[1.08] sm:leading-[1.1] tracking-[-0.035em] text-white font-sans mb-5 sm:mb-6 max-w-2xl">
-          Where brands evolve into{" "}
-          <span className="text-[#E31D2E]">powerful</span> digital movements.
+          {t("hero_title_1", "Where brands evolve into ")}
+          <span className="text-[#E31D2E]">{t("hero_title_highlight", "powerful")}</span>
+          {t("hero_title_2", " digital movements.")}
         </h1>
       }
       description={
         <p className="hero-description text-neutral-300 text-base sm:text-lg lg:text-[19px] font-normal leading-[1.6] font-sans max-w-2xl mb-7 sm:mb-8">
-          Your strategic growth partner for branding, performance marketing, software development, and digital transformation. We convert creative vision into measurable business results.
+          {t("hero_desc")}
         </p>
       }
       media={media}

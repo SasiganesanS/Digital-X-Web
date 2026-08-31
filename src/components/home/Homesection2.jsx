@@ -6,9 +6,12 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 
 import SectionBadge from "../common/SectionBadge";
 
+import { useLanguage } from "../../context/LanguageContext";
+
 const PROJECTS_PER_PAGE = 4;
 
 export default function FeaturedWorks() {
+  const { t } = useLanguage();
   const navigate = useNavigate();
   // Single master source of truth state
   const [activeIndex, setActiveIndex] = useState(0);
@@ -263,13 +266,14 @@ export default function FeaturedWorks() {
           {/* Section Header (Inside the Card Box) */}
           <div className="mb-2 sm:mb-6 w-full max-w-3xl space-y-1 sm:space-y-2">
             <div className="mb-1 sm:mb-3 flex justify-start">
-              <SectionBadge text="Case Studies" />
+              <SectionBadge text={t("projects_badge", "Case Studies")} />
             </div>
             <h2 className="text-base sm:text-3xl lg:text-[36px] font-black leading-[1.1] tracking-[-0.035em] text-[#111111] font-sans">
-              Featured <span className="text-[#E31D2E]">Case Studies</span>.
+              {t("projects_title_1", "Featured ")}
+              <span className="text-[#E31D2E]">{t("projects_title_highlight", "Case Studies")}</span>.
             </h2>
             <p className="text-neutral-600 text-[10.5px] sm:text-base font-normal leading-[1.4] sm:leading-[1.6] max-w-2xl font-sans">
-              Browse our curated case studies across branding, digital media, 3D studios, and production.
+              {t("projects_desc")}
             </p>
           </div>
 

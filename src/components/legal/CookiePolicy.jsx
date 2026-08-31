@@ -116,7 +116,7 @@ const CookiePolicy = () => {
                 <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
                   <Cookie className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Essential Cookies</h3>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 break-words">Essential Cookies</h3>
                 <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">Necessary for core site navigation, form security, and session state.</p>
               </div>
 
@@ -124,7 +124,7 @@ const CookiePolicy = () => {
                 <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
                   <BarChart3 className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Performance Analytics</h3>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 break-words">Performance Analytics</h3>
                 <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">Anonymous traffic insights to improve page speeds and user experience.</p>
               </div>
 
@@ -132,7 +132,7 @@ const CookiePolicy = () => {
                 <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
                   <Sliders className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">Functional Memory</h3>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 break-words">Functional Memory</h3>
                 <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">Remembers user preferences such as active filters and theme choices.</p>
               </div>
 
@@ -140,7 +140,7 @@ const CookiePolicy = () => {
                 <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-neutral-100 text-[#111111] border border-neutral-200/80 flex items-center justify-center mb-1.5 sm:mb-3">
                   <Settings className="w-3.5 h-3.5 sm:w-5 sm:h-5" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 truncate">User Control</h3>
+                <h3 className="text-xs sm:text-sm font-black text-[#111111] mb-0.5 sm:mb-1 break-words">User Control</h3>
                 <p className="text-[10px] sm:text-xs text-neutral-600 font-medium leading-relaxed">Manage or disable cookies anytime via standard web browser settings.</p>
               </div>
             </motion.div>
