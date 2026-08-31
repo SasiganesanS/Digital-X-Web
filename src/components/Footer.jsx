@@ -116,15 +116,28 @@ const Footer = ({ setShowContactForm }) => {
           {/* RIGHT COLUMN: Contact Details & Social Buttons */}
           <div className="md:col-span-5 flex flex-col items-center md:items-end justify-center space-y-5">
             <div className="flex flex-col items-start gap-3 text-xs sm:text-sm font-semibold text-[#9CA3AF] font-sans w-fit mx-auto md:mx-0">
-              {/* Email */}
+              {/* Business Email */}
               <a
-                href="mailto:marketing@prasklatechnology.com"
+                href="mailto:business@praskladigitalx.com"
                 className="flex items-center gap-3 hover:text-white transition-colors group cursor-pointer text-left"
+                title="Business Inquiries"
               >
                 <div className="w-8 h-8 rounded-xl bg-[#FF2B2B]/12 border border-[#FF2B2B]/30 flex items-center justify-center shrink-0 group-hover:bg-[#FF2B2B] transition-all duration-300">
                   <FiMail className="w-4 h-4 text-[#FF2B2B] group-hover:text-white transition-colors" />
                 </div>
-                <span className="break-all sm:break-normal text-white/90">marketing@prasklatechnology.com</span>
+                <span className="break-all sm:break-normal text-white/90">business@praskladigitalx.com</span>
+              </a>
+
+              {/* Support Email */}
+              <a
+                href="mailto:support@praskladigitalx.com"
+                className="flex items-center gap-3 hover:text-white transition-colors group cursor-pointer text-left"
+                title="Customer & Client Support"
+              >
+                <div className="w-8 h-8 rounded-xl bg-[#FF2B2B]/12 border border-[#FF2B2B]/30 flex items-center justify-center shrink-0 group-hover:bg-[#FF2B2B] transition-all duration-300">
+                  <FiMail className="w-4 h-4 text-[#FF2B2B] group-hover:text-white transition-colors" />
+                </div>
+                <span className="break-all sm:break-normal text-white/90">support@praskladigitalx.com</span>
               </a>
 
               {/* Phone */}

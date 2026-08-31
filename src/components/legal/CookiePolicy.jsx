@@ -288,11 +288,11 @@ const CookiePolicy = () => {
                     If you have any questions regarding our Cookie Policy or data practices, contact us:
                   </p>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <a href="mailto:hello@praskla.com" className="p-4 rounded-xl bg-neutral-50 border border-neutral-200/80 flex items-center gap-3 hover:border-black/30 transition-colors group">
+                    <a href="mailto:support@praskladigitalx.com" className="p-4 rounded-xl bg-neutral-50 border border-neutral-200/80 flex items-center gap-3 hover:border-black/30 transition-colors group">
                       <Mail className="w-5 h-5 text-[#111111] shrink-0" />
                       <div>
                         <div className="text-xs text-neutral-400 font-semibold">Email Us</div>
-                        <div className="text-xs sm:text-sm font-bold text-[#111111] truncate">hello@praskla.com</div>
+                        <div className="text-xs sm:text-sm font-bold text-[#111111] truncate">support@praskladigitalx.com</div>
                       </div>
                     </a>
                     <a href="tel:+919566880740" className="p-4 rounded-xl bg-neutral-50 border border-neutral-200/80 flex items-center gap-3 hover:border-black/30 transition-colors group">

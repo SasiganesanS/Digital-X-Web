@@ -20,7 +20,7 @@ const bounceKeyframes = [
 ];
 
 const bounceOptions = {
-  duration: 700,
+  duration: 900,
   easing: "cubic-bezier(0.34, 1.56, 0.64, 1)",
   fill: "both",
 };

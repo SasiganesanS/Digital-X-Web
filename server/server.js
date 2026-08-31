@@ -17,7 +17,8 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const MARKETING_EMAIL = process.env.TEST_MODE === 'true' && process.env.TEST_EMAIL
   ? process.env.TEST_EMAIL
-  : (process.env.MARKETING_EMAIL || process.env.ADMIN_EMAIL || 'marketing@prasklatechnology.com');
+  : (process.env.MARKETING_EMAIL || process.env.ADMIN_EMAIL || 'business@praskladigitalx.com');
+const SUPPORT_EMAIL = process.env.SUPPORT_EMAIL || 'support@praskladigitalx.com';
 const SMTP_FROM_NAME = process.env.SMTP_FROM_NAME || process.env.EMAIL_FROM_NAME || 'Praskla Digital X';
 const SMTP_FROM_EMAIL = process.env.SMTP_FROM_EMAIL || process.env.SMTP_USERNAME || process.env.SMTP_USER || process.env.MAIL_USER || MARKETING_EMAIL;
 const ADMIN_EMAIL = MARKETING_EMAIL;
