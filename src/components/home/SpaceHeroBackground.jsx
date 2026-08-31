@@ -29,6 +29,8 @@ const COMETS = [
 ];
 
 export default function SpaceHeroBackground() {
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
     <div
       className="absolute inset-0 pointer-events-none z-0 overflow-hidden select-none bg-[#030306]"
@@ -46,12 +48,12 @@ export default function SpaceHeroBackground() {
 
       {/* 1. Rotating Galaxy Core Spiral */}
       <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[750px] rounded-[100%] opacity-45 blur-[120px]"
+        className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] sm:w-[1200px] h-[350px] sm:h-[750px] rounded-[100%] opacity-45 ${isMobile ? "blur-[25px]" : "blur-[120px]"}`}
         style={{
           background:
             "radial-gradient(ellipse at center, rgba(227,29,46,0.25) 0%, rgba(20,20,30,0.15) 45%, transparent 80%)",
         }}
-        animate={{
+        animate={isMobile ? {} : {
           rotate: [0, 360],
           scale: [0.95, 1.08, 0.95],
         }}
@@ -160,7 +162,7 @@ export default function SpaceHeroBackground() {
 
       {/* 4. HIGH DENSITY TWINKLING STARDUST FIELD */}
       <div className="absolute inset-0">
-        {GALAXY_STARS.map((star) => (
+        {(isMobile ? GALAXY_STARS.slice(0, 30) : GALAXY_STARS).map((star) => (
           <motion.div
             key={star.id}
             className="absolute rounded-full bg-white"
@@ -173,7 +175,7 @@ export default function SpaceHeroBackground() {
                 ? "0 0 10px rgba(255, 255, 255, 1), 0 0 18px rgba(239, 32, 41, 0.8)"
                 : "0 0 4px rgba(255, 255, 255, 0.7)",
             }}
-            animate={{
+            animate={isMobile ? {} : {
               opacity: [0.2, 1, 0.2],
               scale: star.glow ? [0.8, 1.5, 0.8] : [0.8, 1.2, 0.8],
             }}

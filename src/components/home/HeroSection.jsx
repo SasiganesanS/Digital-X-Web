@@ -77,12 +77,14 @@ const HeroSection = () => {
     setMousePos({ x, y });
   };
 
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   const media = (
     <motion.div
       className="w-full max-w-[380px] flex-shrink-0 relative mx-auto lg:mx-0"
-      initial={{ opacity: 0, scale: 0.9, y: 20 }}
+      initial={isMobile ? false : { opacity: 0, scale: 0.9, y: 20 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+      transition={{ duration: 0.5, delay: isMobile ? 0 : 0.2, ease: "easeOut" }}
     >
       <SolarSystemHero />
     </motion.div>

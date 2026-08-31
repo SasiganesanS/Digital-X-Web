@@ -25,8 +25,8 @@ const BRAND_TAGLINES = [
 
 function AnimatedBrandTagline() {
   return (
-    <div className="h-[10px] sm:h-[11px] lg:h-[12px] relative mt-[3px] w-full max-w-[220px] sm:max-w-[260px]">
-      <span className="font-dingos text-[8px] sm:text-[9px] lg:text-[9.5px] font-bold text-[#E31D2E] block tracking-tight leading-none whitespace-nowrap truncate">
+    <div className="relative -mt-0.5 sm:-mt-1 w-full max-w-[190px] xs:max-w-[220px] sm:max-w-[260px]">
+      <span className="font-dingos text-[7.5px] xs:text-[8px] sm:text-[9px] lg:text-[9.5px] font-bold text-[#E31D2E] block tracking-tight leading-none whitespace-nowrap truncate">
         A Mindful Marketing and Production Firm
       </span>
     </div>
@@ -851,7 +851,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
               </span>
               <BrandX className="text-[26px] xs:text-[32px] sm:text-[46px] lg:text-[52px] leading-none shrink-0 text-[#E31D2E] -mt-1 sm:-mt-2 -ml-0.5 sm:-ml-1.5 drop-shadow-[0_1px_2px_rgba(0,0,0,0.1)]" />
             </div>
-            <div className="hidden xs:block">
+            <div className="block">
               <AnimatedBrandTagline />
             </div>
           </div>

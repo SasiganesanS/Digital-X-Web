@@ -116,8 +116,9 @@ const Homesection5 = () => {
       className="py-12 sm:py-14 lg:py-16 bg-white relative overflow-hidden flex items-center"
     >
       {/* Background Blobs (using the custom blur from config) */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-neutral-100 rounded-full filter blur-[100px] opacity-40 animate-blob"></div>
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gray-100 rounded-full filter blur-[100px] opacity-40 animate-blob animation-delay-4000"></div>
+      <div className="absolute top-1/4 left-10 w-72 h-72 bg-[#301045]/5 rounded-full filter blur-[25px] sm:blur-[100px] opacity-70 animate-blob"></div>
+      <div className="absolute top-1/3 right-10 w-80 h-80 bg-red-100/30 rounded-full filter blur-[25px] sm:blur-[100px] opacity-60 animate-blob animation-delay-2000"></div>
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gray-100 rounded-full filter blur-[25px] sm:blur-[100px] opacity-40 animate-blob animation-delay-4000"></div>
 
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-10 lg:px-16 relative z-10">
 

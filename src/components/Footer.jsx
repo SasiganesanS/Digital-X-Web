@@ -85,6 +85,8 @@ const Footer = ({ setShowContactForm }) => {
                 <img
                   src={Logo}
                   alt="PRASKLA DIGITAL X Logo"
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-contain"
                 />
               </div>
@@ -97,7 +99,7 @@ const Footer = ({ setShowContactForm }) => {
                   </span>
                   <BrandX className="text-[38px] sm:text-[46px] lg:text-[52px] leading-none shrink-0 text-[#FF2B2B] -mt-1.5 sm:-mt-2 -ml-1 sm:-ml-1.5 drop-shadow-[0_1px_4px_rgba(255,43,43,0.35)]" />
                 </div>
-                <span className="font-dingos text-[9px] sm:text-[10px] lg:text-[11px] font-bold text-[#FF2B2B] block tracking-tight leading-none whitespace-nowrap mt-1">
+                <span className="font-dingos text-[7.5px] xs:text-[8.5px] sm:text-[9.5px] lg:text-[10px] font-bold text-[#FF2B2B] block tracking-tight leading-none whitespace-nowrap truncate max-w-[180px] xs:max-w-[205px] sm:max-w-[235px] lg:max-w-[255px] -mt-0.5 sm:-mt-1">
                   A Mindful Marketing and Production Firm
                 </span>
               </div>

@@ -318,6 +318,7 @@ const ServicesCoverflow = () => {
                       alt={service.title}
                       draggable={false}
                       className="w-full h-full object-contain rounded-[14px]"
+                      style={{ mixBlendMode: "screen" }}
                     />
                   </div>
 

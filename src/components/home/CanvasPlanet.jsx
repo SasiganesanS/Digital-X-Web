@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function CanvasPlanet({
   src,
@@ -19,13 +19,26 @@ export default function CanvasPlanet({
 
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
-      canvas.width = img.naturalWidth || img.width || 500;
-      canvas.height = img.naturalHeight || img.height || 500;
+      const maxDim = 256;
+      let w = img.naturalWidth || img.width || 300;
+      let h = img.naturalHeight || img.height || 300;
+      if (w > maxDim || h > maxDim) {
+        if (w > h) {
+          h = Math.round((h * maxDim) / w);
+          w = maxDim;
+        } else {
+          w = Math.round((w * maxDim) / h);
+          h = maxDim;
+        }
+      }
 
-      ctx.drawImage(img, 0, 0);
+      canvas.width = w;
+      canvas.height = h;
+
+      ctx.drawImage(img, 0, 0, w, h);
 
       try {
-        const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const imgData = ctx.getImageData(0, 0, w, h);
         const data = imgData.data;
 
         for (let i = 0; i < data.length; i += 4) {
@@ -37,7 +50,6 @@ export default function CanvasPlanet({
           if (maxVal < threshold) {
             data[i + 3] = 0; // 100% Transparent
           } else if (maxVal < 60) {
-            // Smooth alpha transparency gradient at edges
             const alphaFactor = (maxVal - threshold) / (60 - threshold);
             data[i + 3] = Math.floor(data[i + 3] * alphaFactor);
           }
@@ -46,7 +58,6 @@ export default function CanvasPlanet({
         ctx.putImageData(imgData, 0, 0);
         setDataUrl(canvas.toDataURL("image/png"));
       } catch (e) {
-        // Fallback to original image if canvas security throws
         setDataUrl(src);
       }
     };
@@ -60,15 +71,12 @@ export default function CanvasPlanet({
     };
   }, [src, threshold]);
 
-  if (!dataUrl) {
-    return <div className={className} />;
-  }
-
   return (
     <img
-      src={dataUrl}
+      src={dataUrl || src}
       alt={alt}
       className={`${className} pointer-events-none select-none`}
+      style={{ mixBlendMode: "screen" }}
       draggable={false}
     />
   );

@@ -66,19 +66,19 @@ export default function HomeSpaceBackground() {
 
       {/* Brand Red & Mars Crimson Cosmic Ambient Glows */}
       <div
-        className="absolute top-[8%] right-[2%] w-[850px] h-[520px] rounded-full opacity-35 blur-[140px] pointer-events-none"
+        className={`absolute top-[8%] right-[2%] w-[320px] sm:w-[850px] h-[260px] sm:h-[520px] rounded-full opacity-35 ${isMobile ? "blur-[30px]" : "blur-[140px]"} pointer-events-none`}
         style={{
           background: "radial-gradient(ellipse at center, rgba(239,32,41,0.22) 0%, rgba(15,18,28,0.1) 60%, transparent 80%)",
         }}
       />
       <div
-        className="absolute top-[45%] left-[2%] w-[950px] h-[650px] rounded-full opacity-30 blur-[150px] pointer-events-none"
+        className={`absolute top-[45%] left-[2%] w-[350px] sm:w-[950px] h-[300px] sm:h-[650px] rounded-full opacity-30 ${isMobile ? "blur-[35px]" : "blur-[150px]"} pointer-events-none`}
         style={{
           background: "radial-gradient(ellipse at center, rgba(239,32,41,0.18) 0%, rgba(20,24,38,0.1) 65%, transparent 80%)",
         }}
       />
       <div
-        className="absolute top-[75%] right-[4%] w-[800px] h-[550px] rounded-full opacity-25 blur-[140px] pointer-events-none"
+        className={`absolute top-[75%] right-[4%] w-[300px] sm:w-[800px] h-[250px] sm:h-[550px] rounded-full opacity-25 ${isMobile ? "blur-[30px]" : "blur-[140px]"} pointer-events-none`}
         style={{
           background: "radial-gradient(ellipse at center, rgba(227,29,46,0.16) 0%, rgba(10,12,20,0.1) 60%, transparent 80%)",
         }}
@@ -98,7 +98,7 @@ export default function HomeSpaceBackground() {
         className="absolute inset-0 w-full h-full"
         style={{ y: disableParallax ? 0 : layer1Y }}
       >
-        {FULLPAGE_STARS.map((star) => (
+        {(isMobile ? FULLPAGE_STARS.slice(0, 35) : FULLPAGE_STARS).map((star) => (
           <motion.div
             key={star.id}
             className="absolute rounded-full bg-white"
@@ -112,7 +112,7 @@ export default function HomeSpaceBackground() {
                 : "0 0 4px rgba(255, 255, 255, 0.6)",
             }}
             animate={
-              shouldReduceMotion
+              shouldReduceMotion || isMobile
                 ? {}
                 : {
                     opacity: [0.2, 0.95, 0.2],

@@ -13,21 +13,7 @@ export default function PageTransitionOverlay() {
   const [active, setActive] = useState(false);
   const prevPathRef = useRef(location.pathname + location.search);
 
-  // 1. Intercept navigation click events immediately
-  useEffect(() => {
-    const handleGlobalClick = (e) => {
-      const target = e.target.closest("a, button, [role='button']");
-      if (target) {
-        const href = target.getAttribute("href") || target.getAttribute("to");
-        if (href && !href.startsWith("#") && !href.startsWith("mailto:") && !href.startsWith("tel:")) {
-          setActive(true);
-        }
-      }
-    };
 
-    window.addEventListener("click", handleGlobalClick, { capture: true, passive: true });
-    return () => window.removeEventListener("click", handleGlobalClick, { capture: true });
-  }, []);
 
   // 2. Synchronous location update check
   useLayoutEffect(() => {
