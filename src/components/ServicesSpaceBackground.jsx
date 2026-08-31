@@ -29,12 +29,26 @@ const FULLPAGE_COMETS = [
 
 export default function ServicesSpaceBackground() {
   const shouldReduceMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = React.useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const { scrollYProgress } = useScroll();
 
   // Multi-layered Parallax depth transforms
   const layer1Y = useTransform(scrollYProgress, [0, 1], ["0px", "-120px"]); // Stars
   const layer2Y = useTransform(scrollYProgress, [0, 1], ["0px", "-260px"]); // Asteroids, Galaxy & Satellites
   const layer3Y = useTransform(scrollYProgress, [0, 1], ["0px", "-420px"]); // Neptune Planets
+
+  const disableParallax = shouldReduceMotion || isMobile;
 
   return (
     <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden select-none bg-[#030407]">
@@ -44,19 +58,19 @@ export default function ServicesSpaceBackground() {
 
       {/* Deep Sapphire Blue & Brand Red Cosmic Ambient Glows */}
       <div
-        className="absolute top-[4%] right-[2%] w-[850px] h-[520px] rounded-full opacity-40 blur-[140px] pointer-events-none"
+        className={`absolute top-[4%] right-[2%] w-[320px] sm:w-[850px] h-[260px] sm:h-[520px] rounded-full opacity-40 ${isMobile ? "blur-[25px]" : "blur-[140px]"} pointer-events-none`}
         style={{
           background: "radial-gradient(ellipse at center, rgba(59,130,246,0.28) 0%, rgba(227,29,46,0.14) 55%, transparent 80%)",
         }}
       />
       <div
-        className="absolute top-[36%] left-[2%] w-[950px] h-[650px] rounded-full opacity-35 blur-[150px] pointer-events-none"
+        className={`absolute top-[36%] left-[2%] w-[350px] sm:w-[950px] h-[300px] sm:h-[650px] rounded-full opacity-35 ${isMobile ? "blur-[30px]" : "blur-[150px]"} pointer-events-none`}
         style={{
           background: "radial-gradient(ellipse at center, rgba(30,58,138,0.32) 0%, rgba(59,130,246,0.14) 60%, transparent 80%)",
         }}
       />
       <div
-        className="absolute top-[70%] right-[4%] w-[800px] h-[550px] rounded-full opacity-30 blur-[140px] pointer-events-none"
+        className={`absolute top-[70%] right-[4%] w-[300px] sm:w-[800px] h-[250px] sm:h-[550px] rounded-full opacity-30 ${isMobile ? "blur-[25px]" : "blur-[140px]"} pointer-events-none`}
         style={{
           background: "radial-gradient(ellipse at center, rgba(59,130,246,0.24) 0%, rgba(10,12,20,0.1) 60%, transparent 80%)",
         }}
@@ -74,9 +88,9 @@ export default function ServicesSpaceBackground() {
       {/* ── LAYER 1: FAR BACKGROUND (STARS & NEBULAE) ── */}
       <motion.div
         className="absolute inset-0 w-full h-full"
-        style={{ y: shouldReduceMotion ? 0 : layer1Y }}
+        style={{ y: disableParallax ? 0 : layer1Y }}
       >
-        {FULLPAGE_STARS.map((star) => (
+        {(isMobile ? FULLPAGE_STARS.slice(0, 35) : FULLPAGE_STARS).map((star) => (
           <motion.div
             key={star.id}
             className="absolute rounded-full bg-white"
@@ -90,7 +104,7 @@ export default function ServicesSpaceBackground() {
                 : "0 0 6px rgba(255, 255, 255, 0.8)",
             }}
             animate={
-              shouldReduceMotion
+              shouldReduceMotion || isMobile
                 ? {}
                 : {
                     opacity: [0.3, 1, 0.3],
@@ -110,7 +124,7 @@ export default function ServicesSpaceBackground() {
       {/* ── LAYER 2: MID BACKGROUND (ALTERNATING METEOR, GALAXY, SATELLITE & ASTEROID) ── */}
       <motion.div
         className="absolute inset-0 w-full h-full"
-        style={{ y: shouldReduceMotion ? 0 : layer2Y }}
+        style={{ y: disableParallax ? 0 : layer2Y }}
       >
         {/* ITEM 2 (Upper-Left ~ 22%): Burning Fiery Plasma Meteor */}
         <motion.div
@@ -217,7 +231,7 @@ export default function ServicesSpaceBackground() {
       {/* ── LAYER 3: FOREGROUND (2 NEPTUNE PLANET VIEWS - TOP RIGHT & MID LEFT) ── */}
       <motion.div
         className="absolute inset-0 w-full h-full"
-        style={{ y: shouldReduceMotion ? 0 : layer3Y }}
+        style={{ y: disableParallax ? 0 : layer3Y }}
       >
         {/* ITEM 1 (Top-Right ~ 3%): Neptune Planet View 1 */}
         <motion.div
