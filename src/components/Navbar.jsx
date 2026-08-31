@@ -7,6 +7,7 @@ import Logo from "../assets/Praskla_Digital_X_Logo_Trasnparent_Background.webp";
 import BrandX from "./common/BrandX";
 import { useLanguage } from "../context/LanguageContext";
 import LanguageToggleSwitch from "./common/LanguageToggleSwitch";
+import NavbarIconSystem from "./navbarIcons/NavbarIconSystem";
 
 const navItemsList = [
   { label: "Home", key: "nav_home", href: "/" },
@@ -50,7 +51,7 @@ const navStyles = `
   background: #FFFFFF !important;
   border-bottom: 1px solid rgba(0, 0, 0, 0.07);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
-  z-index: 50;
+  z-index: 9999 !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -60,6 +61,7 @@ const navStyles = `
   transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
   pointer-events: auto;
+  overflow: visible !important;
 }
 
 @media (min-width: 640px) {
@@ -137,8 +139,8 @@ const navStyles = `
 }
 
 .nav-search-pill:hover {
-  background-color: rgba(255, 255, 255, 0.15) !important;
-  color: #FF2B2B !important;
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
 }
 
 .nav-search-pill:hover svg {
@@ -786,14 +788,23 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
   };
 
   const handleCtaClick = (e) => {
-    if (e) e.preventDefault();
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
     if (isMobileMenuOpen) {
-      toggleMobileMenu();
+      closeMobileMenu();
     }
 
+    // 1. Open Contact Form Modal Overlay
+    if (typeof setShowContactForm === 'function') {
+      setShowContactForm(true);
+    }
+
+    // 2. Smooth scroll to contact/footer section
     const contactElem = document.getElementById('contact') || document.querySelector('footer');
     if (contactElem) {
-      const navbarOffset = 90;
+      const navbarOffset = 80;
       const elementPosition = contactElem.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - navbarOffset;
 
@@ -801,10 +812,6 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
         top: offsetPosition,
         behavior: 'smooth'
       });
-    }
-
-    if (setShowContactForm) {
-      setShowContactForm(true);
     }
   };
 
@@ -831,7 +838,9 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: navStyles }} />
-      <div className={`pill-nav-container${!shouldShowNavbar ? ' nav-hidden' : ''}`}>
+      <div className={`pill-nav-container desktop-navbar relative isolate overflow-visible${!shouldShowNavbar ? ' nav-hidden' : ''}`}>
+        {/* DECORATIVE DESKTOP-ONLY ANIMATED ICON SYSTEM */}
+        <NavbarIconSystem />
         
         {/* ── LEFT SEPARATE CAPSULE: DEDICATED BRAND BLOCK ── */}
         <Link
@@ -993,7 +1002,7 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
           {/* MOBILE BACKDROP OVERLAY FOR OUTSIDE CLICK CLOSE */}
           {isMobileMenuOpen && (
             <div
-              className="fixed inset-0 bg-black/40 backdrop-blur-xs z-[990] mobile-only cursor-pointer"
+              className="fixed inset-0 bg-black/40 backdrop-blur-xs z-[99990] mobile-only cursor-pointer"
               onClick={closeMobileMenu}
               aria-hidden="true"
             />
@@ -1074,11 +1083,11 @@ const Navbar = ({ setShowContactForm, onOpenSearch }) => {
         </div>
 
         {/* DESKTOP CTA BUTTON (Separated in Far Right Corner) */}
-        <div className="hidden lg:block shrink-0">
+        <div className="hidden md:block shrink-0 relative z-[100] pointer-events-auto">
           <button
             type="button"
             onClick={handleCtaClick}
-            className="nav-cta-btn group"
+            className="nav-cta-btn group relative z-[100] cursor-pointer pointer-events-auto"
             aria-label="Get in Touch"
           >
             <span className="relative flex h-2 w-2 shrink-0">
