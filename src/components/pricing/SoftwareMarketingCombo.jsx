@@ -8,6 +8,7 @@ const SoftwareMarketingCombo = () => {
   const [activeTab, setActiveTab] = useState("plans");
   const [customBudget, setCustomBudget] = useState("");
   const [selectedCurrency, setSelectedCurrency] = useState("EUR"); // Default is euros
+  const [selectedBudgetRange, setSelectedBudgetRange] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [formError, setFormError] = useState("");
@@ -225,7 +226,7 @@ const SoftwareMarketingCombo = () => {
         service: "Software & Marketing Combo"
       };
       
-      // Send email using Brevo SMTP
+      // Dispatch quote request via frontend emailService
       const emailResult = await sendPricingQuoteEmails(emailData);
       
       if (emailResult.success) {

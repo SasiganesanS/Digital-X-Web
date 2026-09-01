@@ -1,150 +1,114 @@
 // src/utils/emailService.js
-// Client API service connecting frontend components to Praskla Digital X Backend Server
+// Centralized Form Submissions Bridge routing through src/services/mailService.js
 
-const getApiBaseUrl = () => {
-  if (import.meta.env.VITE_API_BASE_URL) {
-    return import.meta.env.VITE_API_BASE_URL;
-  }
-  if (typeof window !== 'undefined' && window.location && window.location.hostname) {
-    return `http://${window.location.hostname}:3001`;
-  }
-  return 'http://localhost:3001';
-};
+import { sendMail } from '../services/mailService';
 
-const API_BASE_URL = getApiBaseUrl();
-
-/**
- * Helper to normalize fetch errors into user-friendly error messages
- */
-const handleFetchError = (error) => {
-  const msg = error?.message || '';
-  if (msg.includes('Failed to fetch') || msg.includes('NetworkError') || msg.includes('Load failed')) {
-    return 'Unable to connect to server. Please ensure the backend server is running or contact us directly on WhatsApp.';
-  }
-  return msg || 'Unable to submit enquiry. Please try again.';
+const generateLeadId = () => {
+  const dateStr = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+  const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+  return `PDX-LEAD-${dateStr}-${randomSuffix}`;
 };
 
 /**
- * Submits Quick Contact Reach Us enquiry to backend
- * @param {Object} formData
+ * 1. Contact Form Submission
+ * Maps fields to digital-x-admin template: LEAD_ID, NAME, EMAIL, PHONE, COMPANY, SERVICE, MESSAGE
  */
 export const sendContactFormEmails = async (formData) => {
-  try {
-    const response = await fetch(`${API_BASE_URL}/api/contact`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+  const leadId = generateLeadId();
+  const variables = {
+    LEAD_ID: leadId,
+    NAME: formData.name || 'N/A',
+    EMAIL: formData.email || 'N/A',
+    PHONE: formData.phone || 'N/A',
+    COMPANY: formData.company || 'N/A',
+    SERVICE: formData.interestedService || 'General Inquiry',
+    MESSAGE: formData.message || 'N/A',
+  };
 
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.message || 'Failed to submit enquiry');
-    }
-
-    return {
-      success: true,
-      leadId: data.leadId,
-      message: data.message || 'Message received! Thanks for contacting PRASKLA DIGITAL X.',
-    };
-  } catch (error) {
-    console.error('Error in sendContactFormEmails:', error);
-    return {
-      success: false,
-      message: handleFetchError(error),
-    };
-  }
+  return await sendMail({
+    subject: `New Contact Enquiry — ${formData.name || 'Lead'} — ${leadId}`,
+    template: 'digital-x-admin',
+    variables,
+  });
 };
 
 /**
- * Submits complete 10-section Project Brief application to backend
- * @param {Object|FormData} formDataPayload
+ * 2. Project Application / Brief Submission
+ * Maps fields to digital-x-admin template: LEAD_ID, NAME, EMAIL, PHONE, COMPANY, SERVICE, MESSAGE
  */
 export const sendProjectApplicationEmails = async (formDataPayload) => {
-  try {
-    const isFormData = formDataPayload instanceof FormData;
-    const options = {
-      method: 'POST',
-    };
-
-    if (isFormData) {
-      options.body = formDataPayload;
-    } else {
-      options.headers = { 'Content-Type': 'application/json' };
-      options.body = JSON.stringify(formDataPayload);
-    }
-
-    const response = await fetch(`${API_BASE_URL}/api/project-application`, options);
-    const data = await response.json();
-
-    if (!response.ok) {
-      throw new Error(data.message || 'Failed to submit project brief');
-    }
-
-    return {
-      success: true,
-      applicationId: data.applicationId,
-      message: data.message || 'Project Brief received successfully.',
-    };
-  } catch (error) {
-    console.error('Error in sendProjectApplicationEmails:', error);
-    return {
-      success: false,
-      message: handleFetchError(error),
-    };
+  let dataObj = {};
+  if (formDataPayload instanceof FormData) {
+    formDataPayload.forEach((value, key) => {
+      if (typeof value === 'string') {
+        dataObj[key] = value;
+      }
+    });
+  } else {
+    dataObj = formDataPayload || {};
   }
+
+  const leadId = generateLeadId();
+  const overview = dataObj.projectOverview || dataObj.additionalRequirements || 'N/A';
+  const variables = {
+    LEAD_ID: leadId,
+    NAME: dataObj.fullName || dataObj.companyName || 'Client',
+    EMAIL: dataObj.workEmail || 'N/A',
+    PHONE: dataObj.phoneNumber || 'N/A',
+    COMPANY: dataObj.companyName || 'N/A',
+    SERVICE: `Project Brief: ${dataObj.primaryServices || 'Services'}`,
+    MESSAGE: `Industry: ${dataObj.industry || 'N/A'}\nBudget: ${dataObj.projectBudget || 'N/A'}\nTimeline: ${dataObj.targetTimeline || 'N/A'}\nOverview: ${overview}`,
+  };
+
+  return await sendMail({
+    subject: `New Project Brief — ${dataObj.companyName || dataObj.fullName || 'Client'} — ${leadId}`,
+    template: 'digital-x-admin',
+    variables,
+  });
 };
 
 /**
- * Submits pricing quotation request to backend
- * @param {Object} formData
+ * 3. Quote Form Submission
+ * Maps fields to digital-x-admin template: LEAD_ID, NAME, EMAIL, PHONE, COMPANY, SERVICE, MESSAGE
  */
 export const sendPricingQuoteEmails = async (formData) => {
-  try {
-    const payload = {
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      company: formData.company || '',
-      interestedService: `${formData.service || 'Service'} — ${formData.selectedPlan || 'Quotation'}`,
-      message: `Quotation Request:\nService: ${formData.service || 'N/A'}\nPlan: ${formData.selectedPlan || 'N/A'}\nBudget: ${formData.budget || 'N/A'}\nDetails: ${formData.projectDetails || 'N/A'}`,
-      sourcePage: 'Service Quotation Flow',
-    };
+  const leadId = generateLeadId();
+  const variables = {
+    LEAD_ID: leadId,
+    NAME: formData.name || 'Client',
+    EMAIL: formData.email || 'N/A',
+    PHONE: formData.phone || 'N/A',
+    COMPANY: formData.company || 'N/A',
+    SERVICE: `Quotation Request: ${formData.service || 'Service'} (${formData.selectedPlan || 'Plan'})`,
+    MESSAGE: `Budget: ${formData.budget || 'N/A'}\nDetails: ${formData.projectDetails || 'N/A'}`,
+  };
 
-    return await sendContactFormEmails(payload);
-  } catch (error) {
-    console.error('Error in sendPricingQuoteEmails:', error);
-    return {
-      success: false,
-      message: handleFetchError(error),
-    };
-  }
+  return await sendMail({
+    subject: `New Quotation Request — ${formData.name || 'Client'} — ${leadId}`,
+    template: 'digital-x-admin',
+    variables,
+  });
 };
 
 /**
- * Submits job application to backend
- * @param {Object} formData
- * @param {Object} job
+ * 4. Career Form Submission
+ * Maps fields to digital-x-admin template: LEAD_ID, NAME, EMAIL, PHONE, COMPANY, SERVICE, MESSAGE
  */
 export const sendJobApplicationEmails = async (formData, job) => {
-  try {
-    const payload = {
-      name: formData.name,
-      email: formData.email,
-      phone: formData.phone,
-      company: 'Careers Applicant',
-      interestedService: `Job Application: ${job?.title || 'Position'}`,
-      message: `Job Application for ${job?.title || 'Position'}\nCover Letter: ${formData.coverLetter || 'N/A'}\nExperience: ${formData.experience || 'N/A'}`,
-      sourcePage: 'Careers Page',
-    };
+  const leadId = generateLeadId();
+  const variables = {
+    LEAD_ID: leadId,
+    NAME: formData.name || 'Applicant',
+    EMAIL: formData.email || 'N/A',
+    PHONE: formData.phone || 'N/A',
+    COMPANY: 'Careers Applicant',
+    SERVICE: `Job Application: ${job?.title || 'Position'}`,
+    MESSAGE: `Target Position: ${job?.title || 'General Position'}\nExperience: ${formData.experience || 'N/A'}\nNotes: ${formData.coverLetter || 'N/A'}`,
+  };
 
-    return await sendContactFormEmails(payload);
-  } catch (error) {
-    console.error('Error in sendJobApplicationEmails:', error);
-    return {
-      success: false,
-      message: handleFetchError(error),
-    };
-  }
+  return await sendMail({
+    subject: `New Career Application — ${formData.name || 'Applicant'} — ${job?.title || 'Position'}`,
+    template: 'digital-x-admin',
+    variables,
+  });
 };

@@ -17,13 +17,6 @@ export default defineConfig({
     host: true,
     port: 5173,
     historyApiFallback: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-        secure: false,
-      },
-    },
   },
   preview: {
     historyApiFallback: true,

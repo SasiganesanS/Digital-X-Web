@@ -1,42 +1,31 @@
-# React + Vite
+# PRASKLA DIGITAL X — Static Frontend Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repository contains the static frontend application for **PRASKLA DIGITAL X**, built using React, Vite, and Tailwind CSS for deployment on MilesWeb static web hosting.
 
-Currently, two official plugins are available:
+## Architecture
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```
+Customer Browser
+    ↓
+praskladigitalx.com (Static HTML/JS on MilesWeb)
+    ↓ HTTPS API Request
+Mail/PY API Service (https://mail.prasklatechnology.com/api/send-email)
+    ↓
+business@praskladigitalx.com
+```
 
-# Praskla Technology Website
+## Form Dispatcher (`src/utils/emailService.js`)
 
-This repository contains the Praskla Technology website built with React and Vite. The website includes contact forms, career pages, and pricing information.
+All frontend forms (Contact Form, Project Brief Applications, Service Quotations, and Career Applications) dispatch submissions via HTTPS `fetch()` requests directly to the Mail/PY service.
 
-## Features
+- **Recipient**: `business@praskladigitalx.com`
+- **Endpoint**: `https://mail.prasklatechnology.com/api/send-email`
+- **Security**: 100% frontend-only. Contains NO secret API keys, SMTP credentials, or database connection strings.
 
-- Contact form with email notifications
-- Career application forms with resume upload
-- Pricing pages with quote request forms
-- Email notifications for all form submissions
+## Build Command
 
-## Email Integration
+```bash
+npm run build
+```
 
-The website uses Hostinger SMTP for sending emails with an asynchronous message queue system. The configuration is set up in `src/utils/emailService.js`.
-
-### Email Configuration
-
-- SMTP Server: smtp.hostinger.com
-- Port: 465 (SSL)
-- Email: info@prasklatechnology.com
-
-### Message Queue System
-
-The email service implements a message queue with the following features:
-
-- Asynchronous processing: Forms submit immediately while emails are sent in the background
-- Delayed sending: 2-second delay between emails to avoid rate limiting
-- Failure resilience: Queue continues processing even if one email fails
-
-### Testing Email Functionality
-
-To test the email functionality:
-
+Generates static distribution assets in the `dist/` directory for uploading to MilesWeb `public_html`.

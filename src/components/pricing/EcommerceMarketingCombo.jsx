@@ -317,7 +317,7 @@ const EcommerceMarketingCombo = () => {
         service: "Ecommerce & Marketing Combo"
       };
       
-      // Send email using Brevo SMTP
+      // Dispatch quote request via frontend emailService
       const emailResult = await sendPricingQuoteEmails(emailData);
       
       if (emailResult.success) {

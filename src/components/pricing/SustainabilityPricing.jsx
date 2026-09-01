@@ -229,7 +229,7 @@ const SustainabilityPricing = () => {
         service: "Sustainability Solutions"
       };
       
-      // Send email using Brevo SMTP
+      // Dispatch quote request via frontend emailService
       const emailResult = await sendPricingQuoteEmails(emailData);
       
       if (emailResult.success) {
