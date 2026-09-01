@@ -1,38 +1,54 @@
 import React, { useEffect, useRef, useState } from "react";
-import KiteIcon from "./KiteIcon";
-import GameControllerIcon from "./GameControllerIcon";
-import TrophyIcon from "./TrophyIcon";
-import RocketIcon from "./RocketIcon";
-import UmbrellaIcon from "./UmbrellaIcon";
-import MovieCameraIcon from "./MovieCameraIcon";
-import HourglassIcon from "./HourglassIcon";
+import MicroscopeIcon from "./MicroscopeIcon";
+import TestTubeIcon from "./TestTubeIcon";
 import DnaIcon from "./DnaIcon";
-import InfinityIcon from "./InfinityIcon";
-import MagnifierIcon from "./MagnifierIcon";
-import ScissorsIcon from "./ScissorsIcon";
+import FlaskIcon from "./FlaskIcon";
+import PetriDishIcon from "./PetriDishIcon";
 import MicrobeIcon from "./MicrobeIcon";
+import TelescopeIcon from "./TelescopeIcon";
+import SatelliteDishIcon from "./SatelliteDishIcon";
+import AtomIcon from "./AtomIcon";
+import BrainIcon from "./BrainIcon";
 import LightBulbIcon from "./LightBulbIcon";
-import FerrisWheelIcon from "./FerrisWheelIcon";
+import BatteryIcon from "./BatteryIcon";
+import ThermometerIcon from "./ThermometerIcon";
+import CompassIcon from "./CompassIcon";
+import RocketIcon from "./RocketIcon";
 import UfoIcon from "./UfoIcon";
-import HelicopterIcon from "./HelicopterIcon";
+import SatelliteIcon from "./SatelliteIcon";
+import CometIcon from "./CometIcon";
+import CrescentMoonIcon from "./CrescentMoonIcon";
+import StarIcon from "./StarIcon";
+import SaturnPlanetIcon from "./SaturnPlanetIcon";
+import EarthGlobeIcon from "./EarthGlobeIcon";
+import AstronautIcon from "./AstronautIcon";
 
 const NAVBAR_ICONS = [
-  KiteIcon,             // 0
-  GameControllerIcon,   // 1
-  TrophyIcon,           // 2
-  RocketIcon,           // 3
-  UmbrellaIcon,         // 4
-  MovieCameraIcon,      // 5
-  HourglassIcon,        // 6
-  DnaIcon,              // 7
-  InfinityIcon,         // 8
-  MagnifierIcon,        // 9
-  ScissorsIcon,         // 10
-  MicrobeIcon,          // 11
-  LightBulbIcon,        // 12
-  FerrisWheelIcon,      // 13
-  UfoIcon,              // 14
-  HelicopterIcon        // 15
+  MicroscopeIcon,     // 🔬 1
+  TestTubeIcon,       // 🧪 2
+  DnaIcon,            // 🧬 3
+  FlaskIcon,          // ⚗️ 4
+  PetriDishIcon,      // 🧫 5
+  MicrobeIcon,        // 🦠 6
+  TelescopeIcon,      // 🔭 7
+  SatelliteDishIcon,  // 📡 8
+  AtomIcon,           // ⚛️ 9
+  BrainIcon,          // 🧠 10
+  LightBulbIcon,      // 💡 11
+  BatteryIcon,        // 🔋 12
+  ThermometerIcon,    // 🌡️ 13
+  CompassIcon,        // 🧭 14
+  RocketIcon,         // 🚀 15
+  UfoIcon,            // 🛸 16
+  SatelliteIcon,      // 🛰️ 17
+  CometIcon,          // ☄️ 18
+  CrescentMoonIcon,   // 🌙 19
+  StarIcon,           // ⭐ 20
+  SaturnPlanetIcon,   // 🪐 21
+  EarthGlobeIcon,     // 🌍 22
+  TelescopeIcon,      // 🔭 23
+  AstronautIcon,      // 👨‍🚀 24
+  AtomIcon            // ⚛️ 25
 ];
 
 const ICON_LIFETIME = 30000; // 30 seconds
@@ -80,7 +96,7 @@ export default function NavbarIconSystem() {
     return () => window.removeEventListener("resize", checkIsDesktop);
   }, []);
 
-  // 2. 30-Second Icon Lifecycle Cycle (Preserving motion state)
+  // 2. 30-Second Icon Lifecycle Cycle (Preserving motion state across icon swaps)
   useEffect(() => {
     if (!isDesktop) return;
 
@@ -157,7 +173,7 @@ export default function NavbarIconSystem() {
     };
   }, [isDesktop]);
 
-  // 4. Carrom Physics RAF Loop: Slow Peaceful Float + Direct Mouse Strike Impulse + Immediate Overlap Prevention
+  // 4. Physics RAF Loop: Slow Floating Drift + Mouse Impulse + Overlap Prevention
   useEffect(() => {
     if (!isDesktop) return;
 
@@ -193,7 +209,7 @@ export default function NavbarIconSystem() {
           const collisionRadius = 34; // Mouse cannot overlap on top of icon
 
           if (dist < collisionRadius) {
-            // Immediate Overlap Push: Move icon outside mouse radius so mouse NEVER sits on top of icon
+            // Immediate Overlap Push
             const overlap = collisionRadius - dist;
             const nx = dist > 0.1 ? dx / dist : (Math.random() > 0.5 ? 1 : -1);
             const ny = dist > 0.1 ? dy / dist : (Math.random() > 0.5 ? 1 : -1);
@@ -201,7 +217,7 @@ export default function NavbarIconSystem() {
             posRef.current.x += nx * overlap;
             posRef.current.y += ny * overlap;
 
-            // Striker Impulse: Impart momentum ONLY if mouse is moving into the icon
+            // Striker Impulse: Impart momentum if mouse is moving
             const cursorSpeed = Math.hypot(cursor.vx, cursor.vy);
             if (cursorSpeed > 15) {
               const impulseMag = Math.min(cursorSpeed * 0.85 + 40, 260); // Cap max hit speed
@@ -211,7 +227,7 @@ export default function NavbarIconSystem() {
           }
         }
 
-        // --- 2. FRICTION DECAY (Quickly returns hit momentum back to 0) ---
+        // --- 2. FRICTION DECAY ---
         velRef.current.vx *= Math.pow(0.015, dt);
         velRef.current.vy *= Math.pow(0.015, dt);
 
@@ -237,8 +253,7 @@ export default function NavbarIconSystem() {
           velRef.current.vy = -velRef.current.vy * 0.8;
         }
 
-        // --- 4. VERY SLOW, PEACEFUL FLOATING DRIFT (When NOT hit by mouse) ---
-        // Ultra-slow horizontal drift across navbar (only ~10px per second)
+        // --- 4. VERY SLOW, PEACEFUL FLOATING DRIFT ---
         const slowDriftSpeed = 0.18;
         baseDriftXRef.current += driftDirRef.current * slowDriftSpeed;
         if (baseDriftXRef.current >= maxX - 35) driftDirRef.current = -1;
